@@ -4,16 +4,16 @@ enmap.sqlite-shm
 
 enmap.sqlite-wal
 
-public/stats.txt
+stats.txt
 
-public/reviews.txt
+reviews.txt
 
-public/staff.txt
+staff.txt
 
-public/leaderboard.txt
+leaderboard.txt
 
-public/supporters.txt
+supporters.txt
 
-public/server_list.txt
+server_list.txt
 
-public/featured_profile.txt
+featured_profile.txt
