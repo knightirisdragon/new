@@ -788,11 +788,11 @@ peeky.on('ready', async () => {
     //Announce Connection
     console.log("The application is ready.");
 
-    //DDBL
-    ddbl.postStats(peeky.user.id, peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to DDBL.") && ErrorBag.add(err));
+    //DDB
+    ddbl.postStats(peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to DDB.") && ErrorBag.add(err));
   
-    //DBL
-    dbl.postStats(peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to DDBL.") && ErrorBag.add(err));
+    //DB
+    dbl.postStats(peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to DB.") && ErrorBag.add(err));
 
 });
 
@@ -4201,7 +4201,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
     await ddbl.hasVoted24(message.author.id).then(VotedState => {
 
     if  (VotedState == true)  {
-        InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DDBL today.");
+        InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DDB today.");
 
         peeky.userData.math(key, "+", 1, "Chests");
         VotesCounted ++;
