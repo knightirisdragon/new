@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>PEEKY the Discord Bot</title>
+    <link rel="icon" href="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2-1.png.png?1553621395208">
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1024">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <meta name="theme-color" content="#7289DA">
+    <meta property="og:image" content="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2.png?1553619432603"/>
+    
+    <meta property="og:title" content="PEEKY the Discord Bot" />
+    <meta property="og:url" content="https://peeky.glitch.me/" />
+    
+    <meta name="description" content="he best Server Management bot for your Discord server!" />
+    <meta property="og:description" content="The best Server Management bot for your Discord server!"/>
+    
+    <style>
+      
+    #Reviews  {
+    text-align: left;
+    padding: 15px;
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: transform .25s ease;
+    border: rgba(35, 39, 42, 0.9) solid;
+    background-color: rgba(35, 39, 42, 0.5);
+    }
+      
+    #Reviews:hover  {
+    cursor: pointer;
+    }
+
+    .stafficon  {
+    border-radius: 10px;
+    border: rgba(35, 39, 42, 0.75) solid;
+    }
+      
+    .staffbutton_a  {
+    width: 20px;
+    height: 20px;      
+    }
+      
+    .staffbutton  {
+    width: 35px;
+    height: 35px;
+    border: rgba(35, 39, 42, 0.5) 2px solid;
+    border-radius: 10px;
+    transition: transform .25s ease;
+    }
+      
+    .staffbutton:hover  {
+    transform: scale(0.9);
+    }
+    
+    .featuredprofile  {
+    border-radius: 10px;  
+    border: rgba(35, 39, 42, 0.75) 5px solid;
+    transition: transform .25s ease;
+    }
+  
+    .featuredprofile:hover  {
+    cursor: pointer;
+    transform: scale(0.99);
+    }
+
+    #InvBtn, 
+    #InvBtn2 ,
+    #InvBtn3  {
+    width: 100%;      
+    }
+      
+    .botstats  {
+    padding: 10px;
+    display: inline-block;
+    background-color: transparent;
+    cursor: pointer;
+    }
+      
+    .fullsize  {
+    background-color: rgba(35, 39, 42, 0.25);
+    }
+      
+    .category  {
+    background-color: #2c2f33;
+    width: 100%;
+    border-radius: 15px;
+    border: rgba(35, 39, 42, 0.9) 5px solid;
+    display: inline-block;
+    text-align: center;
+    padding 15px;
+    }
+      
+    .category_name  {
+    font-size: 18px;
+    }
+
+    .summaryhome {
+    transform: scale(1);
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    border-radius: 25px;
+    border: rgba(35, 39, 42, 0.5) 5px solid;
+    }
+
+    .container:hover .summaryhome {
+    filter: blur(2px);
+    }
+
+    </style>
+
+    <link rel="stylesheet" href="/style.css">
+    <script src="/server.js" defer></script>
+
+  </head> 
+  
+<body onload="UpdateStats(); UpdateFeaturedProfile();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+  
+<b>
+
+<div class="sidenav">
+ 
+<a href="https://peeky.glitch.me/"><img src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855" width="100%" class="peeky_icon"></a>
+
+      <div id="ServerCount"></div>
+
+      <br>
+
+      <div class="category">
+      <br><b class="category_name">  Documentation  </b><br><br>
+  
+      <a class="button" href="functions.html" rel="noopener noreferrer"><font size="4">  Functions</font></a>  <br><br>
+      <a class="button" href="commands.html" rel="noopener noreferrer"><font size="4">   Commands</font></a>  <br><br>
+      <a class="button" href="tutorials.html" rel="noopener noreferrer"><font size="4">  Tutorials</font></a>
+        
+      <br><br></div>
+  
+      <br><br>
+
+      <div class="category">
+      <br><b class="category_name">  Rewards  </b><br><br>
+  
+      <a class="button" href="store.html" rel="noopener noreferrer"><font size="4">  Store  </font>  </a>  <br><br>
+      <a class="button" href="votepages.html" rel="noopener noreferrer"><font size="4">  Vote Pages  </font>  <font size="4" color="red">  NEW!  </font>  </a>
+      
+      <br><br></div>
+  
+      <br><br>
+
+      <div class="category">
+      <br><b class="category_name">  Profile System  </b><br><br>
+        
+      <a class="button" href="leaderboard.html" rel="noopener noreferrer"><font size="4">  Leaderboard</font></a>  <br><br>
+      <a class="button" href="backgrounds.html" rel="noopener noreferrer"><font size="4">  Backgrounds</font></a>  <br><br>
+      <a class="button" href="badges.html" rel="noopener noreferrer"><font size="4">       Badges</font></a>
+      
+      <br><br></div>
+  
+      <br><br>
+
+      <div class="category">
+      <br><b class="category_name">  Miscellaneous  </b><br><br>
+  
+      <a class="button" href="supporters.html" rel="noopener noreferrer"><font size="4">   Supporters</font></a>  <br><br>
+      <a class="button" href="serverlist.html" rel="noopener noreferrer"><font size="4">  Server List  </font></a>  <br><br>
+      <a class="button" href="wallpapers.html" rel="noopener noreferrer"><font size="4">  Wallpapers</font></a>
+      
+      <br><br></div>
+  
+      <br><br>
+
+      <div class="category">
+      <br><b class="category_name">  Listing Sites  </b><br><br>
+  
+      <a class="button" href="https://discordbots.org/bot/482945063282802698" rel="noopener noreferrer"><font size="4">  Discord Bot List  </font></a>  <br><br>
+      <a class="button" href="https://divinediscordbots.com/bot/482945063282802698" rel="noopener noreferrer"><font size="4">  Divine Discord Bot List  </font></a>  <br><br>
+      <a class="button" href="https://discordapps.dev/en-GB/bots/482945063282802698" rel="noopener noreferrer"><font size="4">  Discord App Marketplace  </font></a>  <br><br>
+      <a class="button" href="https://discord.bots.gg/bots/482945063282802698" rel="noopener noreferrer"><font size="4">  Discord Bots  </font></a>
+      
+      <br><br></div>
+
+</div>
+
+<div class="subbody">
+
+<div class="fullsize">
+  
+<div id="Reviews"></div>  <br>
+
+<br>
+  
+<center>
+<div style="width: 100%; padding: 10px;">
+<a style="margin-bottom:5px;" class="button" id="InvBtn" href="invite.html" rel="noopener noreferrer"><font size="4">Add PEEKY to your Server</font></a>
+<a class="button" id="InvBtn2" href="server.html" rel="noopener noreferrer"><font size="4">Join the Support Server</font></a>
+</div>
+</center>
+
+</div> 
+  
+<br>
+
+<div class="fullsize">
+
+<font size="7" class="headertext">Bot's Summary</font>  <br><br>
+<font size="4">PEEKY offers everything that a Discord server could need, for free!</font>  <br>
+<font size="2">New features are added every few days.</font>  <br><br>
+    
+    <div class="container">
+      <img src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ffunctions.png?1553874119121" alt="1" width="400px" class="summaryhome">
+      
+      <b class="description">
+      <font size="5" class="headertext">Functions</font>  <br><br>
+      PEEKY stores alot of great functions that range from good Streaming Utilities to some of the most responsible Auto Mod/Anti-Raid techniques on Discord.
+      </b>
+    </div>
+  
+    <div class="container">
+      <img src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fprofile.png?1556190562543" alt="1" width="400px" class="summaryhome">
+      
+      <b class="description">
+      <font size="5" class="headertext">Profile System</font>  <br><br>
+      PEEKY has a Profile System with customizable backgrounds, a global leaderboard, descriptions, badges, chests, levels and much more!
+      </b>
+  
+    </div>
+    
+    <div class="container">
+      <img src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fmod%20commands.png?1553875231865" alt="1" width="400px" class="summaryhome">
+      
+      <b class="description">
+      <font size="5" class="headertext">Moderation Commands</font>  <br><br>
+      PEEKY has a selection of good and unique moderation commands for you and your server moderators!
+      </b>
+        
+    </div>
+  
+</div>
+  
+<br>
+
+<div class="fullsize">
+
+<font size="7" class="headertext">Contacts</font>  <br><br>  
+<center>
+<div style="width: 100%;">
+    <p id="StaffList"></p>  <br>
+</div>
+</center>
+
+</div>
+  
+<br>
+    
+<div class="fullsize"><b>
+
+    <center><font size="7" class="headertext">Featured Profile</font>  <br><br>
+    </center>
+    
+    <div id="FeaturedProfile">
+    <img src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky_1920x1080.jpg?1554307832464" class="featuredprofile" width="500" height="300">
+    </div>
+    <font size="1">You can get a similar profile and use it across Discord for free!</font>  <br><br>
+
+</b></div>
+
+</div>
+
+</b>
+
+  </body>
+</html>

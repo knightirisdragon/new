@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PEEKY's Server List</title>
+    <link rel="icon" href="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2-1.png.png?1553621395208">
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1024">
+    
+    <link rel="stylesheet" href="/style.css">
+    <script src="/server.js" defer></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  
+<style>
+
+.serveritem  {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: #2C2F33;
+    border: rgba(35, 39, 42, 1) solid;
+    border-radius: 50px;
+    width: 225px;
+    height: 225px;
+    cursor: pointer;
+    text-align: left;
+    display: inline-block;
+    position: relative;
+    transition: transform .25s ease;
+}  
+
+.serveritem:hover  {
+    transform: scale(0.985);
+}
+  
+.servername  {
+    text-align: center;
+    background-color: rgba(35, 39, 42, 0.9);
+    border-bottom: rgba(35, 39, 42, 0.9) solid;
+    border-top: rgba(35, 39, 42, 0.9) solid;
+    width: 100%;
+    padding: 5px;
+    position: absolute;
+    top: 40%;
+    display: inline-block;
+}
+  
+</style>
+  
+<body onload="CanReport = true; UpdateServerList();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">   
+
+<center>   
+    <font size="4"><a class="topnavbutton" id="hideshowbutton" onclick="hideshowtopnav();">Hide Menu</a></font>
+    
+    <div class="topnav" id="topnavmenu">
+      <b>
+      <a class="button" href="https://peeky.glitch.me" rel="noopener noreferrer"><font size="4">Home</font></a>
+      </b>
+    </div>
+</center> 
+
+<div class="fullsize"><b>
+  
+<font size="7" class="headertext">PEEKY's Server List</font>  <br><br>
+<font size="4">This is the list of PEEKY's upgraded servers.</font>  <br>
+<font size="2">For help with setting up your server in here, visit the Tutorials page!</font>  <br>
+<a><font size="1" color="lightgray">Please report any NSFW / Advertisment servers to PEEKY's owner.</font></a>
+  
+<br><br>
+  
+<div id="ServerList"></div>
+  
+<br>
+
+</b></div>
+
+  </body>
+</html>

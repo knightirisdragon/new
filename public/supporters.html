@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>PEEKY's Supporters</title>
+    <link rel="icon" href="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2-1.png.png?1553621395208">
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1024">
+    
+    <link rel="stylesheet" href="/style.css">
+    <script src="/server.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  
+<style>
+
+.supporters  {
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    width: 500px;
+    cursor: pointer;
+}
+  
+.supporterinfo  {
+    background-color: rgba(35, 39, 42, 0.75);
+    border: rgba(35, 39, 42, 0.9) solid;
+    border-radius: 10px; 
+    padding: 10px;
+    width: 100%;
+    display: inline-block; 
+}
+  
+.supporter  {
+    background-image: url('https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground1.jpg?1537872247903');
+    background-size: 500px 300px;
+    background-repeat: no-repeat;
+    background-color: rgba(35, 39, 42, 0.75);
+    border: rgba(35, 39, 42, 0.9) solid;
+    border-radius: 10px;
+    font-size: 30px;
+    padding: 10px;
+    width: 100%;
+    display: inline-block; 
+    transition: transform .25s ease;
+}
+
+.supporter:hover  {
+    transform: scale(1.15);
+}
+
+.supportericon  {
+    vertical-align: middle;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    border: white 2px solid;
+}
+  
+.peekymessagediv  {
+    position: relative;
+    display: inline-block;  
+}
+
+.peekymessagediv .peekymessage {
+    color: white;
+    background-color: rgba(35, 39, 42, 0.9);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: left;
+    width: 250px;
+    position: absolute;
+    left: 130%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+  
+.peekymessage:after {
+	content: '';
+	position: absolute;
+	left: 0px;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-right-color: rgba(35, 39, 42, 0.9);
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -10px;
+	margin-left: -20px;
+}
+  
+</style>
+  
+<body onload="UpdateSupporters(); UpdateFeaturedProfile();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+
+<center>  
+
+    <font size="4"><a class="topnavbutton" id="hideshowbutton" onclick="hideshowtopnav();">Hide Menu</a></font>
+    
+    <div class="topnav" id="topnavmenu">
+      <b>
+      <a class="button" href="https://peeky.glitch.me" rel="noopener noreferrer"><font size="4">Home</font></a>
+      </b>
+    </div>
+</center>
+    
+<div class="fullsize">
+
+    <center><b><font size="7" class="headertext">PEEKY's Supporters</font>  <br><br>
+    <font size="4">This is the list of all of PEEKY's Supporters.</font><br>
+    <font size="2">Thank you to everyone that is supporting the bot!</font></b>
+    </center>
+
+    <br>
+  
+<center>
+<div class="supporters"> <font size="4">
+<b id="SupporterList"></b>
+</font> </div>
+</center>
+
+</div>
+    
+  </body>
+</html>

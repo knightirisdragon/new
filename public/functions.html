@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<script>
+
+function AR_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Automatic Reactions</font>  <br>  Automatically adds default or custom reactions to sent images.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Channel Function</font>  <br>  Ignores: <font color="lightgray">Bots</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle automatic reactions</font>  <br>  Set: <font color="lightgray">p!set automatic reactions [text]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Far.png?1555756975220">';  
+};
+  
+function WM_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Welcome Messages</font>  <br>  Documents who leaves and joins your server to a specific channel and also users that advertise websites in their usernames.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Server Function</font>  <br>  Ignores: <font color="lightgray">Nothing</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle welcome messages</font>  <br>  Set: <font color="lightgray">p!set welcome messages [channel name]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fwm.png?1555754212651">';  
+};
+  
+function MC_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Member Counter</font>  <br>  Creates a member counter inside the channel list.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Server Function</font>  <br>  Ignores: <font color="lightgray">Nothing</font>  <br>  Cooldown: <font color="lightgray">5 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle member counter</font>  <br>  Set: <font color="lightgray">p!set member counter [text]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fmc.png?1556198598043">';  
+};
+
+function CN_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Clear Nicknames</font>  <br>  Gives a filtered nickname to any member who has weird symbols in their username.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Server Function</font>  <br>  Ignores: <font color="lightgray">Bots and members with a nickname or the MANAGE_NICKNAMES permission.</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle clear nicknames</font>  <br>  Set: <font color="lightgray">p!set clear nicknames [text]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fcn.png?1555758115359">';  
+};
+  
+function CW_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Classification Wall</font>  <br>  Displays all the members with a specific role in a special wall.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Server Function</font>  <br>  Ignores: <font color="lightgray">Nothing</font>  <br>  Cooldown: <font color="lightgray">5 Minutes</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle classification wall</font>  <br>  Set: <font color="lightgray">p!set classification wall [role name]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fcw.png?1555758115892">';  
+};
+
+function SA_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Suspicion Alert</font>  <br>  Sends the server owner a warning about suspicious users joining the server.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Server Function</font>  <br>  Ignores: <font color="lightgray">Bots</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle suspicion alert</font>  <br>  Set: <font color="lightgray">p!set suspicion alert [number]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fsa.png?1555855269483">';  
+};
+
+function FP_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Flood Protection</font>  <br>  Mutes potentional userbots, spammers and raiders to prevent the chat from being flooded.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Server Function</font>  <br>  Ignores: <font color="lightgray">Members with the MANAGE_MESSAGES permission.</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle flood protection</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ffp.png?1555758115216">';  
+};
+
+function EC_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Event Countdown</font>  <br>  Creates a countdown in the channel list that shows how much time is left before a specific date.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Server Function</font>  <br>  Ignores: <font color="lightgray">Nothing</font>  <br>  Cooldown: <font color="lightgray">5 Minutes</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle event countdown</font>  <br>  Set: <font color="lightgray">p!set event countdown [timestamp]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fec.png?1553709452345">';  
+};
+
+function SM_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Server Message</font>  <br>  Sends a custom welcoming message to any user that joins your server.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Server Function</font>  <br>  Ignores: <font color="lightgray">Bots</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle server message</font>  <br>  Set: <font color="lightgray">p!set server message [text]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fsm.png?1555758115561">';  
+};
+  
+function JR_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Join Role</font>  <br>  Gives a specific role to anyone who joins your server. <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Server Function</font>  <br>  Ignores: <font color="lightgray">Nothing</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle join role</font>  <br>  Set: <font color="lightgray">p!set join role [role name]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fjr.png?1555855460223">';
+};
+
+function SR_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Streamer Role</font>  <br>  Gives a role to anyone who goes live.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Server Function</font>  <br>  Ignores: <font color="lightgray">Bots</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle streamer role</font>  <br>  Set: <font color="lightgray">p!set streamer role [text]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fsr.png?1553545756595">';
+};
+
+function ML_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Message Log</font>  <br>  Logs any message that gets a 📌 reaction to a specific channel.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Channel Function</font>  <br>  Ignores: <font color="lightgray">Bots</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle message log</font>  <br>  Set: <font color="lightgray">p!set message log [channel name]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fml.png?1553545755781">';
+};
+  
+function IO_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Images Only</font>  <br>  Deletes any message that has no image attached to it.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Server Function</font>  <br>  Ignores: <font color="lightgray">Members with the MANAGE_MESSAGES permission.</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle images only</font></font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fio.png?1553545758069">';
+};
+
+function SL_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Spoiler Lock</font>  <br>  Deletes any non-spoiler images that were sent by new or untrusted members.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Channel Function</font>  <br>  Ignores: <font color="lightgray">Members with the MANAGE_MESSAGES permission.</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle spoiler lock</font>  <br>  Set: <font color="lightgray">p!set spoiler lock [number]</font>  </font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fsl.png?1553545753796">';
+};
+
+function BW_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Banned Words</font>  <br>  Deletes any messages that includes a banned word.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Server Function</font>  <br>  Ignores: <font color="lightgray">Members with the MANAGE_MESSAGES permission.</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>   <font size="5">  Commands  </font>  <br> Toggle: <font color="lightgray">p!toggle banned word</font>  <br>  Set: <font color="lightgray">p!set banned word [text]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbw.png?1555945578025">';
+};
+
+function N_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<font size="5">Notifications</font>  <br>  Notifies the current channel whenever some functions get triggered or someone levels up.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Server Function</font>  <br>  Ignores: <font color="lightgray">Depends</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle member counter</font>  </font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fn_.png?1555145983991">';
+};
+    
+function Close()  {
+    document.getElementById('fulldesc').style.display = "none";
+};
+  
+</script>
+
+<style>
+
+.function_showcase {
+    border: rgba(35, 39, 42, 0.9) solid;
+    position: relative;
+    cursor: pointer;
+    opacity: 1;
+    border-radius: 10px;
+    width: 400px;
+    height: 250px;
+    display: inline-block;
+    text-align: center;
+    color: white;
+    transition: transform .25s ease;
+    background-image: url('https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground187.png?1548198438043');
+}
+
+.function_showcase:hover {
+    transform: scale(0.99);
+    cursor: pointer;
+}
+
+</style>
+
+<html lang="en">
+  <head>
+    <title>PEEKY's Functions</title>
+    <link rel="icon" href="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2-1.png.png?1553621395208">
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1024">
+    
+    <link rel="stylesheet" href="/style.css">
+    <script src="/server.js" defer></script>
+    <script>
+    var allowed = "true"
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+  
+<body onload="Close()" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+
+<center>   
+    <font size="4"><a class="topnavbutton" id="hideshowbutton" onclick="hideshowtopnav();">Hide Menu</a></font>
+    
+    <div class="topnav" id="topnavmenu">
+      <b>
+      <a class="button" href="https://peeky.glitch.me" rel="noopener noreferrer"><font size="4">Home</font></a>
+      </b>
+    </div>
+</center>
+    
+    <div class="demo" id="fulldesc">
+    <center>  <font size="2"><a class="button" id="descbutton" onclick="Close();"> X </a></font>  </center>
+    <b id="description">Item Description</b>
+    <br><br>
+    </div>
+    
+<div class="fullsize">
+
+    <center><b>
+      
+    <font size="7" class="headertext">PEEKY's Functions</font>  <br><br>
+    <font size="4">This is the list of all the PEEKY's functions.</font><br>
+    <font size="2">Click on one of the function's name to reveal more information about it.</font><br>
+    <font size="2">To view a function's state and setting, use the Overview command.</font>
+      
+    </b></center>
+    
+    <br>
+    <br>
+
+    <b>
+    <center>
+    
+    <div class="function_showcase">
+    <div class="centered"> 
+        
+    <div class="popup" onclick="AR_Popup()">  Automatic Reactions  </div>
+        
+    </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered"> 
+
+    <div class="popup" onclick="WM_Popup()">  Welcome Messages  </div>
+
+    </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="MC_Popup()">  Member Counter  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="CN_Popup()">  Clear Nicknames  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="CW_Popup()">  Classification Wall  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="SA_Popup()">  Suspicion Alert  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="FP_Popup()">  Flood Protection  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="EC_Popup()">  Event Countdown  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="SM_Popup()">  Server Message  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered"> 
+        
+    <div class="popup" onclick="JR_Popup()">  Join Role  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered"> 
+        
+    <div class="popup" onclick="SR_Popup()">  Streamer Role  </div>
+        
+      </div>
+    </div>
+    
+      <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="ML_Popup()">  Message Log  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="IO_Popup()">  Images Only  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="SL_Popup()">  Spoiler Lock  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="BW_Popup()">  Banned Words  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="N_Popup()">Notifications  </div>
+        
+      </div>
+    </div>
+      
+    </center>
+    </b>
+
+</div>
+    
+</body>
+</html>

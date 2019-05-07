@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>PEEKY's Vote Pages</title>
+    <link rel="icon" href="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2-1.png.png?1553621395208">
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1024">
+
+    <link rel="stylesheet" href="/style.css">
+    <script src="/server.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+  </head>
+  
+<style>
+
+.voteitem  {
+    background-size: 100% 100%;
+    background-color: #7289DA;
+    border: rgba(35, 39, 42, 1) 5px solid;
+    border-radius: 5px;
+    height: 250px;
+    width: 400px;
+    padding: 10px 10px;
+    margin-bottom: 5px;
+    display: inline-block;
+    transition: transform .25s ease;
+    position: relative;
+}
+
+.voteitem:hover  {
+    transform: scale(0.98);
+    cursor: pointer;
+    filter: blur(0px)
+}
+  
+.textvoteitem a {
+    background-color: rgba(35, 39, 42, 1);
+    border-radius: 0px;
+    width: 100%;
+    bottom: 10px;
+    right: 0;
+    text-align: center;
+    position: absolute;
+    display: inline-block;
+}
+  
+.textvoteitem a:hover {
+    background-color: rgba(35, 39, 42, 1);
+    transform: scale(1);
+}
+
+</style>
+  
+<body background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+
+<center>  
+    <font size="4"><a class="topnavbutton" id="hideshowbutton" onclick="hideshowtopnav();">Hide Menu</a></font>
+    
+    <div class="topnav" id="topnavmenu">
+      <b>
+      <a class="button" href="https://peeky.glitch.me" rel="noopener noreferrer"><font size="4">Home</font></a>
+      </b>
+    </div>
+</center>
+
+<div class="fullsize">
+
+    <center><b>
+    <font size="7" class="headertext">PEEKY's Vote Pages</font>  <br><br>
+    <font size="4">Here you can vote for PEEKY and earn a bunch of rewards.</font>
+    </b></center>
+  
+    <br><br>
+    
+    <div class="voteitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fdbl_logo.svg?1557174100865');">
+    <div class="textvoteitem">
+    <b>
+    <a class="button" href="https://discordbots.org/bot/482945063282802698/vote">  Website: <font color="#7289DA">discordbots.org</font> <br> Reward: <font color="#7289DA">Additional chest in the Daily reward</font>  </a>  <br>
+    </b>
+    </div>
+    </div>
+    
+    <div class="voteitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fddbl_logo.png?1557173598487');">
+    <div class="textvoteitem">
+    <b>
+    <a class="button" href="https://divinediscordbots.com/bot/482945063282802698/vote">  Website: <font color="#7289DA">divinediscordbots.com</font> <br> Reward: <font color="#7289DA">Additional chest in the Daily reward</font>  </a>  <br>
+    </b>
+    </div>
+    </div>
+  
+<br><br>
+</div>
+
+<br><br>
+    
+</body>
+</html>

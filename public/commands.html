@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>PEEKY's Commands</title>
+    <link rel="icon" href="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2-1.png.png?1553621395208">
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1024">
+    
+    <link rel="stylesheet" href="/style.css">
+    <script src="/server.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head> 
+  
+<body background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+
+<center>  
+
+    <font size="4"><a class="topnavbutton" id="hideshowbutton" onclick="hideshowtopnav();">Hide Menu</a></font>
+    
+    <div class="topnav" id="topnavmenu">
+      <b>
+      <a class="button" href="https://peeky.glitch.me" rel="noopener noreferrer"><font size="4">Home</font></a>
+      </b>
+    </div>
+</center>
+
+<div class="fullsize">
+
+<center><b><font size="7" class="headertext">PEEKY's Commands</font></b></center>
+    
+<br>
+<br>
+    
+<center><b class="table_description"><font size="4" >Function Commands</font></b></center>
+<table>
+  <tr>
+    <th>Command Name</th>
+    <th>Description</th>
+    <th>Usage</th>
+    <th>Permissions Needed</th>
+  </tr>
+  <tr>
+    <td>Overview</td>
+    <td>Gives you the list of all the functions and their current state and setting.</td>
+    <td>p!overview</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Toggle</td>
+    <td>Toggles a function's state.</td>
+    <td>p!toggle <font color="#7289DA">[<a href="functions.html" rel="noopener noreferrer" class="HomeHyperlinks"><font color="#7289DA">function name</font></a>]</font></td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+  <tr>
+    <td>Set</td>
+    <td>Sets a function's specific setting, if available.</td>
+    <td>p!set <font color="#7289DA">[<a href="functions.html" rel="noopener noreferrer" class="HomeHyperlinks"><font color="#7289DA">function name</font></a>] [setting]</font></td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+</table>   
+    
+<br>
+<br>
+    
+<center><b class="table_description"><font size="4">Moderation Commands</font></b></center>
+<table>
+  <tr>
+    <th>Command Name</th>
+    <th>Description</th>
+    <th>Usage</th>
+    <th>Permissions Needed</th>
+  </tr>
+  <tr>
+    <td>Mute</td>
+    <td>Mutes the mentioned user.</td>
+    <td>p!mute <font color="#7289DA">[user mention] [reason]</font></td>
+    <td>MUTE_MEMBERS</td>
+  </tr>
+  <tr>
+    <td>Unmute</td>
+    <td>Unmutes the mentioned user.</td>
+    <td>p!mute <font color="#7289DA">[user mention] [reason]</font></td>
+    <td>MUTE_MEMBERS</td>
+  </tr>
+  <tr>
+    <td>Purge</td>
+    <td>Purges a specific amont of messages.</td>
+    <td>p!purge <font color="#7289DA">[number]</font></td>
+    <td>MANAGE_MESSAGES</td>
+  </tr>
+  <tr>
+    <td>IDBan</td>
+    <td>Bans a user outside the server based on their ID.</td>
+    <td>p!idban <font color="#7289DA">[user id]</font></td>
+    <td>BAN_MEMBERS</td>
+  </tr>
+  <tr>
+    <td>Ban</td>
+    <td>Bans a user inside the server.</td>
+    <td>p!idban <font color="#7289DA">[user mention] [reason]</font></td>
+    <td>BAN_MEMBERS</td>
+  </tr>
+  <tr>
+    <td>Lockdown</td>
+    <td>Locks the current channel for a specific role. This can only be reverted manually as it's supposed to be used in an emergency.</td>
+    <td>p!lockdown <font color="#7289DA">[role mention]</font></td>
+    <td>MANAGE_CHANNELS</td>
+  </tr>
+  <tr>
+    <td>MutedRole</td>
+    <td>Changes the name of the Muted role that PEEKY uses for the moderation commands and some functions.</td>
+    <td>p!mutedrole <font color="#7289DA">[role name]</font></td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+  <tr>
+    <td>Prefix</td>
+    <td>Changes the prefix for the entire server. The prefix for this command MUST be the default one.</td>
+    <td>p!prefix <font color="#7289DA">[text]</font></td>
+    <td>Server Owner</td>
+  </tr>
+</table>
+
+<br>
+<br>
+
+<center><b class="table_description"><font size="4" >Profile Commands</font></b></center>
+<table>
+  <tr>
+    <th>Command Name</th>
+    <th>Description</th>
+    <th>Usage</th>
+    <th>Permissions Needed</th>
+  </tr>
+  <tr>
+    <td>Profile</td>
+    <td>Shows a profile of you or the person you've mentioned.</td>
+    <td>p!profile <font color="#7289DA">[user mention]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Inventory</td>
+    <td>Shows someone's very own inventory that has their backgrounds and badges.</td>
+    <td>p!inventory <font color="#7289DA">[user mention]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>BuyBackground</td>
+    <td>Buys the specified background for your profile and adds it your inventory for a specific price.</td>
+    <td>p!buybackground <font color="#7289DA">[<a href="backgrounds.html" rel="noopener noreferrer" class="HomeHyperlinks"><font color="#7289DA">background ID</font></a>]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>SetBackground</td>
+    <td>Sets the specified background for your profile, but only if you already have it in your inventory.</td>
+    <td>p!setbackground <font color="#7289DA">[<a href="backgrounds.html" rel="noopener noreferrer" class="HomeHyperlinks"><font color="#7289DA">background ID</font></a>]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>SellBackground</td>
+    <td>Sells a background from your inventory for 50 Gredit.</td>
+    <td>p!sellbackground <font color="#7289DA">[<a href="backgrounds.html" rel="noopener noreferrer" class="HomeHyperlinks"><font color="#7289DA">background ID</font></a> / "all"]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>BuyDescription</td>
+    <td>Buys a description for your profile at the price of 25 Gredit.</td>
+    <td>p!buydescription <font color="#7289DA">[text / "random"]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Daily</td>
+    <td>Gives you a daily reward.</td>
+    <td>p!daily</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Redeem</td>
+    <td>Rewards you for items bought from the <a href="store.html" rel="noopener noreferrer" class="HomeHyperlinks">store</a>.</td>
+    <td>p!redeem</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Gift</td>
+    <td>Give someone some of your items like backgrounds, chests, etc...</td>
+    <td>p!gift <font color="#7289DA">[user mention] ["gredit" / "chest" / "background"] [number]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Open</td>
+    <td>Opens one or more of your chests for a nice loot.</td>
+    <td>p!open <font color="#7289DA">[nothing / "all"]</font></td>
+    <td>None</td>
+  </tr>
+</table>   
+    
+<br>
+<br>
+
+<center><b class="table_description"><font size="4" >Miscellaneous Commands</font></b></center>
+<table>
+  <tr>
+    <th>Command Name</th>
+    <th>Description</th>
+    <th>Usage</th>
+    <th>Permissions Needed</th>
+  </tr>
+  <tr>
+    <td>Help</td>
+    <td>Shows PEEKY's help menu.</td>
+    <td>p!help</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>SetInvite</td>
+    <td>Searches the current channel for an server invite to use in the server list. (Upgraded Servers only)</td>
+    <td>p!setinvite</td>
+    <td>Server Owner</td>
+  </tr>
+  <tr>
+    <td>Get</td>
+    <td>Transforms provided text like roles, emojis, mentions to get their IDs.</td>
+    <td>p!get <font color="#7289DA">[text]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Eval</td>
+    <td>Runs the provided code.</td>
+    <td>p!eval <font color="#7289DA">[code]</font></td>
+    <td>PEEKY's Owner</td>
+  </tr>
+</table>
+  
+</div>
+    
+  </body>
+</html>
