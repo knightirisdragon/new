@@ -23,7 +23,6 @@ peeky.channelData = new Enmap({name: "channelData"});
 
 //OTHER
 const fs         = require('fs');
-const db         = require('quick.db');
 const ms         = require('parse-ms');
 const node_fetch = require('node-fetch');
 

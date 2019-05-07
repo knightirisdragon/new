@@ -6,18 +6,20 @@
     "discord.js": "^11.4.2",
     "dblapi.js": "^2.3.0",
     "ddblapi.js": "^1.0.0",
-    "dominant-color": "^0.0.1",
+    
     "canvas": "^2.5.0",
     "canvas-node": "^0.3.20",
-    "better-sqlite-pool": "^0.2.2",
+    "dominant-color": "^0.0.1",
+    
     "enmap": "^4.8.5",
-    "quick.db": "^6.3.2",
+    "better-sqlite-pool": "^0.2.2",
+    "sqlite3": "^4.0.6",
+    
     "express": "^4.16.4",
     "request": "^2.88.0",
+    "require.js": "^1.0.0",
     "node-fetch": "^2.5.0",
-    "parse-ms": "^2.0.0",
-    "sqlite3": "^4.0.6",
-    "require.js": "^1.0.0"
+    "parse-ms": "^2.0.0"
   },
   "engines": {
     "node": "8"
