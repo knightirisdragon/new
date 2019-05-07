@@ -1273,7 +1273,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
             StaffButton.push('<a href="https://twitter.com/vojtech_jilovec" target="_blank">  <img src=' + TwitterIcon + ' class="staffbutton">  </a>');
             StaffButton.push('<a href="https://www.reddit.com/user/vojtasonic" target="_blank">  <img src=' + RedditIcon + ' class="staffbutton">  </a>');
         } else
-      
+
         //Nick
         if  (guildMemberId == "298551254978789378")  {
             StaffButton.push('<a href="https://twitter.com/MRArmy4" target="_blank">  <img src=' + TwitterIcon + ' class="staffbutton">  </a>');
