@@ -14,6 +14,10 @@ const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 const ytdl_discord = require('ytdl-core-discord');
 const ytdl         = require('ytdl-core');
 
+async function play(connection, url) {
+      connection.playOpusStream(await ytdl(url));
+}
+
 //CANVAS
 const Canvas       = require('canvas');
 const request      = require('request');
@@ -4778,6 +4782,22 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 300000);
           
         var connection = await voiceChannel.join();
+      
+        play(connection, GivenSong)
+        .on('end', () => {
+          const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              
+          voiceChannel.leave();
+          CurrentlyPlaying.delete(message.guild.id);
+        })
+        .on('error', error => {
+          const embed = {"description": ErrorIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          
+          voiceChannel.leave();
+          CurrentlyPlaying.delete(message.guild.id);
+        });
 
             ytdl.getInfo(GivenSong).then(async (info) => {
               
@@ -4785,19 +4805,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const Length    = info.length_seconds;
             const Author    = info.author.name;
             const Thumbnail = info.player_response.videoDetails.thumbnail.thumbnails[info.player_response.videoDetails.thumbnail.thumbnails.length - 1].url; //info.thumbnail_url;
-              
-            connection.playOpusStream(await ytdl_discord(GivenSong))
-            .on('end', () => {
-              const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-              
-              voiceChannel.leave();
-              CurrentlyPlaying.delete(message.guild.id);
-            })
-            .on('error', error => {
-              voiceChannel.leave();
-              CurrentlyPlaying.delete(message.guild.id);
-            });
 
             message.channel.startTyping();
 
@@ -4889,10 +4896,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "leave")
 
     if  (message.member.voiceChannel && message.member.voiceChannel.members.has(PeekyId))  {
 
-        const voiceChannel = message.member.voiceChannel;
-        voiceChannel.leave();
-        CurrentlyPlaying.delete(message.guild.id);
+        message.member.voiceChannel.leave();
         message.channel.stopTyping();
+        CurrentlyPlaying.delete(message.guild.id);
       
     } else {
       const embed = {"description": ErrorIcon + " You are not in a channel with me in it.",  "color": EmbedColor}; 
