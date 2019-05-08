@@ -4774,7 +4774,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         const voiceChannel = message.member.voiceChannel;
         const permissions  = voiceChannel.permissionsFor(message.client.user);
   
-    if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)).map(c => c.name).length == 0)  {
+    //if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)).map(c => c.name).length == 0)  {
     
     if  (permissions.has('CONNECT') && permissions.has('SPEAK'))  {
 
@@ -4782,22 +4782,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 300000);
           
         var connection = await voiceChannel.join();
-
-        connection.playOpusStream(await ytdl_discord(GivenSong))
-        .on('end', () => {
-          const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-          voiceChannel.leave();
-          CurrentlyPlaying.delete(message.guild.id);
-        })
-        .on('error', error => {
-          const embed = {"description": ErrorIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-          voiceChannel.leave();
-          CurrentlyPlaying.delete(message.guild.id);
-        });
 
         ytdl.getInfo(GivenSong).then(async (info) => {
               
@@ -4860,10 +4844,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
-    } else {
+    /*} else {
       const embed = {"description": ErrorIcon + " I am already playing a song in this server.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
+    };*/
 
     } else {
       const embed = {"description": ErrorIcon + " You need to join a voice channel",  "color": EmbedColor}; 
