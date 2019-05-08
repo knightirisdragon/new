@@ -38,6 +38,7 @@ const FalseMsgIDs            = new Set();
 const LoggedMessages         = new Set();
 const ClearedNames           = new Set();
 const QueuedSOSMessages      = new Set();
+const CurrentlyPlaying       = new Set();
 const WebsiteCooldowns       = new Set();  //Auto Wipe, Website stats, Featured Profile, etc.
 const GainCooldown           = new Set();
 const OverviewCooldown       = new Set();
@@ -4755,6 +4756,10 @@ if (!ProfileCooldown.has(message.author.id)) {
 
 //Play
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play "))  {
+  
+    if  (!CurrentlyPlaying.has(message.guild.id))  {
+      
+        CurrentlyPlaying.add(message.guild.id);
 
     var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
   
@@ -4770,12 +4775,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     if  (permissions.has('CONNECT') && permissions.has('SPEAK')) {
           
             var connection = await voiceChannel.join();
-
-            getInfo(GivenSong).then(async info => {
-            const Title = info.items[0].title;
-            const Length = info.items[0].duration;
-              
-            if  (Length <= 300)  {
         
             const dispatcher = connection.playStream(ytdl(GivenSong, { filter: "audioonly" }))
             .on('end', () => {
@@ -4790,15 +4789,14 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
               voiceChannel.leave();
             });
+
+            getInfo(GivenSong).then(async info => {
+            const Title = info.items[0].title;
+            const Length = info.items[0].duration;
              
             message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
-              
-            } else {
-              const embed = {"description": ErrorIcon + " The requested video is more tahn 5 minutes long.",  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };
 
-        });
+            });
           
     } else {
       const embed = {"description": ErrorIcon + " I am missing some required permissions in that channel.",  "color": EmbedColor}; 
@@ -4819,18 +4817,25 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
       const embed = {"description": ErrorIcon + " You need to enter a valid YouTube URL.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
+      
+    }
+     else
+    {
+      const embed = {"description": ErrorIcon + CooldownMessage1[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
 };
 
 //Leave
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "leave"))  {
 
-    if  (message.member.voiceChannel)  {
+    if  (message.member.voiceChannel && message.member.voiceChannel.members.has(PeekyId))  {
 
         const voiceChannel = message.member.voiceChannel;
         voiceChannel.leave();
       
-    };
+    } else console.log(":(")
 
 };
 
