@@ -4778,6 +4778,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     if  (permissions.has('CONNECT') && permissions.has('SPEAK')) {
           
             var connection = await voiceChannel.join();
+
+            getInfo(GivenSong).then(async info => {
+            const Title = info.items[0].title;
+            const Length = info.items[0].duration;
         
             const dispatcher = connection.playStream(ytdl(GivenSong, { filter: "audioonly" }))
             .on('end', () => {
@@ -4794,10 +4798,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               voiceChannel.leave();
               CurrentlyPlaying.delete(message.guild.id);
             });
-
-            getInfo(GivenSong).then(async info => {
-            const Title = info.items[0].title;
-            const Length = info.items[0].duration;
              
             message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
 
