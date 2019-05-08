@@ -4767,13 +4767,15 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
   
     if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)).map(c => c.name).length == 0)  {
     
-        if  (permissions.has('CONNECT') && permissions.has('SPEAK')) {
+    if  (permissions.has('CONNECT') && permissions.has('SPEAK')) {
+          
+            var connection = await voiceChannel.join();
 
             getInfo(GivenSong).then(async info => {
             const Title = info.items[0].title;
-            const Length = info.items[0].length_seconds;
-          
-            var connection = await voiceChannel.join();
+            const Length = info.items[0].duration;
+              
+            if  (Length <= 300)  {
         
             const dispatcher = connection.playStream(ytdl(GivenSong))
             .on('end', () => {
@@ -4785,17 +4787,33 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               voiceChannel.leave();
             });
              
-            message.channel.send("**" + Title + "**" + "\n" + "Playing in " + voiceChannel.name + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
+            message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
+              
+            } else {
+              console.log("ouch")
+            };
 
         });
           
-        };
+    } else {
+      const embed = {"description": ErrorIcon + " I am missing some required permissions in that channel.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
-    } else console.log("3")
+    } else {
+      const embed = {"description": ErrorIcon + " I am already playing a song in the other channels.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
-    } else console.log("1")
+    } else {
+      const embed = {"description": ErrorIcon + " You need to join a voice channel",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
       
-    } else console.log("2")
+    } else {
+      const embed = {"description": ErrorIcon + " You need to enter a valid YouTube URL.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
 };
 
