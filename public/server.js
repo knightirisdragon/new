@@ -4799,19 +4799,23 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             });
               
 
-            const canvas = Canvas.createCanvas(500, 400);
+            const canvas = Canvas.createCanvas(500, 360);
             const ctx = canvas.getContext('2d');
               
             const background = await Canvas.loadImage(DefaultBackground);
             ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-              
+
+            ctx.globalAlpha = 0.75;
+            ctx.fillStyle = "grey";
+            ctx.fillRect(5, 5, canvas.width - 10, canvas.height - 10);
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+
             const thumbnail = await Canvas.loadImage(Thumbnail);
             ctx.drawImage(thumbnail, 10, 10, canvas.width - 20, 250);
 
-            //Draw Events
-
             //String Setting
-            ctx.fillStyle = "grey";
+            ctx.fillStyle = "black";
             ctx.textAlign = "left";
             ctx.fillStyle = "white";
             ctx.shadowColor = "black";
