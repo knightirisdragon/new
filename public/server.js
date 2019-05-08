@@ -4776,8 +4776,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
         CurrentlyPlaying.add(message.guild.id);
         setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 300000);
-
-        message.channel.startTyping();
           
         var connection = await voiceChannel.join();
 
@@ -4800,7 +4798,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               voiceChannel.leave();
               CurrentlyPlaying.delete(message.guild.id);
             });
-              
+
+            message.channel.startTyping();
 
             const canvas = Canvas.createCanvas(500, 370);
             const ctx = canvas.getContext('2d');
@@ -4892,6 +4891,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "leave")
 
         const voiceChannel = message.member.voiceChannel;
         voiceChannel.leave();
+        CurrentlyPlaying.delete(message.guild.id);
+        message.channel.stopTyping();
       
     } else {
       const embed = {"description": ErrorIcon + " You are not in a channel with me in it.",  "color": EmbedColor}; 
