@@ -4782,7 +4782,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               
             const Title     = info.title;
             const Length    = info.length_seconds;
-            const Thumbnail = info.thumbnail_url;
             const Author    = info.author.name;
               
             connection.playOpusStream(await ytdl_discord(GivenSong))
@@ -4798,7 +4797,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               CurrentlyPlaying.delete(message.guild.id);
             });
 
-            message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing a song by " + Function_RemoveFormatting(Author, "other") + " in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.", {file: "http://link.to/your.file"});
+            message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing a song by " + Function_RemoveFormatting(Author, "other") + " in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
 
             });
           
