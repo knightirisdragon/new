@@ -4779,11 +4779,15 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         
             const dispatcher = connection.playStream(ytdl(GivenSong))
             .on('end', () => {
-              console.log('Music ended!');
+              const embed = {"description": InfoIcon + " The song has now finished.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              
               voiceChannel.leave();
             })
             .on('error', error => {
-              console.error(error);
+              const embed = {"description": ErrorIcon + " Something unexpected happened, ouch!",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
               voiceChannel.leave();
             });
              
@@ -4801,7 +4805,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     };
 
     } else {
-      const embed = {"description": ErrorIcon + " I am already playing a song in the other channels.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " I am already playing a song in this server.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
