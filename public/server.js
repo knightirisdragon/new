@@ -4822,23 +4822,16 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
 };
 
-//Play
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "stop "))  {
+//Leave
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "leave"))  {
 
-    if  (message.member.voiceChannel.members.has(PeekyId))  {
+    if  (message.member.voiceChannel)  {
 
         const voiceChannel = message.member.voiceChannel;
+        voiceChannel.leave();
       
-        voiceChannel.join().then(connection => {
-
-            if  (voiceChannel.dispatcher.destroyed == false)  {
-                voiceChannel.dispatcher.end();
-                voiceChannel.leave();
-            };
-
-        });
-
     };
+
 };
 
 //Moderation Commands
