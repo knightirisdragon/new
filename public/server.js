@@ -11,9 +11,10 @@ const DBL = require("dblapi.js");
 const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 
 //MUSIC
-const opus = require('node-opus');
-const ytdl = require('ytdl-core');
-const { getInfo } = require('ytdl-getinfo');
+//const opus = require('node-opus');
+const ytdl_discord = require('ytdl-core-discord');
+const ytdl         = require('ytdl-core');
+const { getInfo }  = require('ytdl-getinfo');
 
 //CANVAS
 const Canvas       = require('canvas');
@@ -4783,7 +4784,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const Title = info.items[0].title;
             const Length = info.items[0].duration;
         
-            const dispatcher = connection.playStream(ytdl(GivenSong, { filter: "audioonly" }))
+            async function play(connection, GivenSong) {
+
+            connection.playOpusStream(await ytdl(GivenSong))
             .on('end', () => {
               const embed = {"description": InfoIcon + " The song has now finished.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -4795,7 +4798,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               voiceChannel.leave();
               CurrentlyPlaying.delete(message.guild.id);
             });
-             
+            };
+
             message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
 
             });
