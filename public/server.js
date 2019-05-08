@@ -4794,7 +4794,77 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
               
             } else {
-              console.log("ouch")
+              const embed = {"description": ErrorIcon + " The requested video is more tahn 5 minutes long.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
+        });
+          
+    } else {
+      const embed = {"description": ErrorIcon + " I am missing some required permissions in that channel.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+    } else {
+      const embed = {"description": ErrorIcon + " I am already playing a song in this server.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+    } else {
+      const embed = {"description": ErrorIcon + " You need to join a voice channel",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+      
+    } else {
+      const embed = {"description": ErrorIcon + " You need to enter a valid YouTube URL.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+
+//Play
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play "))  {
+
+    var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "stop ")[1];
+  
+    if  ((GivenSong) && (ytdl.validateURL(GivenSong) == true))  {
+
+    if  (message.member.voiceChannel)  {
+
+        const voiceChannel = message.member.voiceChannel;
+        const permissions  = voiceChannel.permissionsFor(message.client.user);
+  
+    if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)).map(c => c.name).length == 0)  {
+    
+    if  (permissions.has('CONNECT') && permissions.has('SPEAK')) {
+          
+            var connection = await voiceChannel.join();
+
+            getInfo(GivenSong).then(async info => {
+            const Title = info.items[0].title;
+            const Length = info.items[0].duration;
+              
+            if  (Length <= 300)  {
+        
+            const dispatcher = connection.playStream(ytdl(GivenSong, { filter: "audioonly" }))
+            .on('end', () => {
+              const embed = {"description": InfoIcon + " The song has now finished.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              
+              voiceChannel.leave();
+            })
+            .on('error', error => {
+              const embed = {"description": ErrorIcon + " Something unexpected happened, ouch!",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+              voiceChannel.leave();
+            });
+             
+            message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
+              
+            } else {
+              const embed = {"description": ErrorIcon + " The requested video is more tahn 5 minutes long.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
         });
