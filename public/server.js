@@ -4799,7 +4799,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             });
               
 
-            const canvas = Canvas.createCanvas(500, 370);
+            const canvas = Canvas.createCanvas(500, 380);
             const ctx = canvas.getContext('2d');
               
             const background = await Canvas.loadImage(DefaultBackground);
@@ -4808,11 +4808,17 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             ctx.globalAlpha = 0.25;
             ctx.fillStyle = "grey";
             ctx.fillRect(5, 5, canvas.width - 10, canvas.height - 10);
-            ctx.stroke();
-            ctx.globalAlpha = 1;
 
+            ctx.stroke();
+
+            ctx.globalAlpha = 0.75;
+            ctx.fillRect(5, 5, canvas.width - 10, 280);
+
+            ctx.stroke();
+              
+            ctx.globalAlpha = 1;
             const thumbnail = await Canvas.loadImage(Thumbnail);
-            ctx.drawImage(thumbnail, 15, 15, canvas.width - 35, 260);
+            ctx.drawImage(thumbnail, 15, 15, canvas.width - 30, 260);
 
             //String Setting
             ctx.fillStyle = "black";
@@ -4825,11 +4831,11 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
             //Now Playing
             ctx.font = "30px " + DefaultFont;
-            ctx.fillText("Now Playing:", 15, 300);
+            ctx.fillText("Now Playing", 15, 325);
 
-            //Tag String
+            //Song Name
             ctx.font = "20px " + DefaultFont;
-            ctx.fillText(Title, 15, 335);
+            ctx.fillText(Title, 15, 355);
 
             const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
             await message.channel.send("", attachment).catch(error => ErrorBag.add(error))
