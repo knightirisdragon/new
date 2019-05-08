@@ -4782,24 +4782,24 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 300000);
           
         var connection = await voiceChannel.join();
-      
-        play(connection, GivenSong)
+
+        connection.playOpusStream(await ytdl_discord(GivenSong))
         .on('end', () => {
           const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-              
+
           voiceChannel.leave();
           CurrentlyPlaying.delete(message.guild.id);
         })
         .on('error', error => {
           const embed = {"description": ErrorIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-          
+
           voiceChannel.leave();
           CurrentlyPlaying.delete(message.guild.id);
         });
 
-            ytdl.getInfo(GivenSong).then(async (info) => {
+        ytdl.getInfo(GivenSong).then(async (info) => {
               
             const Title     = info.title;
             const Length    = info.length_seconds;
@@ -4853,7 +4853,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               
             message.delete().catch(error => ErrorBag.add(error));
 
-            });
+        });
           
     } else {
       const embed = {"description": ErrorIcon + " I am missing some required permissions in that channel.",  "color": EmbedColor}; 
@@ -4892,8 +4892,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 //Leave
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "leave"))  {
 
-    if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)).map(c => c.name).length > 0)  {
-
     if  (message.member.voiceChannel && message.member.voiceChannel.members.has(PeekyId))  {
 
         message.member.voiceChannel.leave();
@@ -4901,12 +4899,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "leave")
         CurrentlyPlaying.delete(message.guild.id);
       
     } else {
-      const embed = {"description": ErrorIcon + " You are not in a channel with me in it.",  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-
-    } else {
-      const embed = {"description": ErrorIcon + " I am not playing any songs in this server.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " You are not in the same channel as me.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
