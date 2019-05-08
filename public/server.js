@@ -4751,10 +4751,29 @@ if (!ProfileCooldown.has(message.author.id)) {
 //Play
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play "))  {
 
+    var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
+  
+    if  (GivenSong)  {
+  
+    if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)).map(c => c.name).length == 0)  {
     if  (message.member.voiceChannel)  {
+
+        const voiceChannel = message.member.voiceChannel;
+        const permissions  = voiceChannel.permissionsFor(message.client.user);
+    
+        if (permissions.has('CONNECT') && permissions.has('SPEAK')) {
+          
+           var connection = await voiceChannel.join();
         
-    };
-    //connection.playOpusStream(await ytdl(url));
+           connection.playOpusStream(await ytdl(GivenSong));
+          
+        };
+
+    } else console.log("3")
+
+    } else console.log("1")
+      
+    } else console.log("2")
 
 };
 
