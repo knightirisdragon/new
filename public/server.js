@@ -4807,7 +4807,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
             ctx.globalAlpha = 0.25;
-            ctx.fillStyle = "grey";
+            ctx.fillStyle = "#7289DA";
             ctx.fillRect(5, 5, canvas.width - 10, canvas.height - 10);
 
             ctx.stroke();
@@ -4831,12 +4831,12 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             ctx.globalAlpha = 1;
 
             //Now Playing
-            ctx.font = "30px " + DefaultFont;
-            ctx.fillText("Now Playing", 15, 325);
+            ctx.font = "15px " + DefaultFont;
+            ctx.fillText("Now Playing", 15, 315);
 
             //Song Name
             ctx.font = "20px " + DefaultFont;
-            ctx.fillText(Title, 15, 355);
+            ctx.fillText(Title, 15, 345);
 
             const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
             await message.channel.send("", attachment).catch(error => ErrorBag.add(error))
