@@ -11,7 +11,7 @@ const DBL = require("dblapi.js");
 const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 
 //MUSIC
-const ytdl = require('ytdl-core-discord');
+const ytdl = require('ytdl-core');
 const { getInfo } = require('ytdl-getinfo')
 
 //CANVAS
@@ -4757,25 +4757,32 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
     var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
   
-    if  ((GivenSong) && (getInfo.validateURL(GivenSong) == true))  {
-  
-    if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)).map(c => c.name).length == 0)  {
+    if  ((GivenSong) && (ytdl.validateURL(GivenSong) == true))  {
+
     if  (message.member.voiceChannel)  {
 
         const voiceChannel = message.member.voiceChannel;
         const permissions  = voiceChannel.permissionsFor(message.client.user);
+  
+    if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)/* && i.id !== voiceChannel.id*/).map(c => c.name).length == 0)  {
     
-        if (permissions.has('CONNECT') && permissions.has('SPEAK')) {
+        if  (permissions.has('CONNECT') && permissions.has('SPEAK')) {
           
-           var connection = await voiceChannel.join();
+            var connection = await voiceChannel.join();
         
-           connection.playOpusStream(await ytdl(GivenSong)).catch(error => ErrorBag.add(error));
+            const dispatcher = connection.playStream(GivenSong)
+            .on('end', () => {
+              console.log('Music ended!');
+            })
+            .on('error', error => {
+              console.error(error);
+            });
 
-           getInfo(GivenSong).then(info => {
-               const Title = info.items[0].title;
+            getInfo(GivenSong).then(info => {
+                const Title = info.items[0].title;
              
-               message.channel.send(Title)
-           });
+                message.channel.send("**" + Title + "**")
+        });
           
         };
 

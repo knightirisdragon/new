@@ -13,6 +13,7 @@ dependencies:
   request: 2.88.0
   require.js: 1.0.0
   sqlite3: 4.0.6
+  ytdl-core: 0.29.1
   ytdl-core-discord: 1.0.3
   ytdl-getinfo: 1.1.0
 packages:
@@ -1472,5 +1473,6 @@ specifiers:
   request: ^2.88.0
   require.js: ^1.0.0
   sqlite3: ^4.0.6
+  ytdl-core: ^0.29.0
   ytdl-core-discord: ^1.0.3
   ytdl-getinfo: ^1.1.0
