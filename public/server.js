@@ -4870,7 +4870,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     };
       
     } else {
-      const embed = {"description": ErrorIcon + " You can only give me one song to play.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " You must not request a video playlist.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
       
