@@ -4780,12 +4780,16 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
             ytdl.getInfo(GivenSong).then(async info => {
               
-            const Title = info.title;
-            const Length = info.length_seconds;
+            console.log(info.thumbnail)
+              
+            const Title     = info.title;
+            const Length    = info.length_seconds;
+            const Thumbnail = info.thumbnail.url;
+            const Author    = info.author.name;
               
             connection.playOpusStream(await ytdl_discord(GivenSong))
             .on('end', () => {
-              const embed = {"description": InfoIcon + " The song has now finished.",  "color": EmbedColor}; 
+              const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
               
               voiceChannel.leave();
@@ -4796,7 +4800,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               CurrentlyPlaying.delete(message.guild.id);
             });
 
-            message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
+            message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing a song by " + Function_RemoveFormatting(Author, "other") + " in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.", {file: "http://link.to/your.file"});
 
             });
           
