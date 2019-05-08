@@ -9,12 +9,12 @@ dependencies:
   enmap: 4.8.5
   express: 4.16.4
   node-fetch: 2.5.0
-  opusscript: 0.0.6
   parse-ms: 2.0.0
   request: 2.88.0
   require.js: 1.0.0
   sqlite3: 4.0.6
   ytdl-core: 0.29.1
+  ytdl-core-discord: 1.0.3
   ytdl-getinfo: 1.1.0
 packages:
   /abbrev/1.1.1:
@@ -950,10 +950,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
-  /opusscript/0.0.6:
-    dev: false
-    resolution:
-      integrity: sha512-F7nx1SWZCD5Rq2W+5Fx39HlkRkz/5Zqt0LglEB9uHexk8HjedDEiM+u/Y2rBfDFcS/0uQIWu2lJhw+Gjsta+cA==
   /os-homedir/1.0.2:
     dev: false
     engines:
@@ -1007,6 +1003,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-c9KkNifSMU/iXT8FFTaBwBMr+rdVcN+H/uNv1o+CuFeTThNZNTOrQ+RgXA1yL/DeLk098duAeRPP3QNPNbhxYQ==
+  /prism-media/1.0.2:
+    dev: false
+    peerDependencies:
+      ffmpeg-binaries: ^4.0.0
+      ffmpeg-static: ^2.4.0
+      node-opus: ^0.3.1
+      opusscript: ^0.0.6
+    resolution:
+      integrity: sha512-KCu3SlT1EtS0lvF74NGLSTzr5jrkRajE9n+S2jnUvvdiN5SpjsGj0/HgR1QK9+985Yv8cxjwZnpFRaj+SimDGA==
   /process-nextick-args/2.0.0:
     dev: false
     resolution:
@@ -1425,6 +1430,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-S+Zk8DEWE6oKpV+vI3qWkaK+jSbIK86pCwe2IF/xwIpQ8jEuxpw9NyaGjmp9+BoJv5FV2piqCDcoCtStppiq2A==
+  /ytdl-core-discord/1.0.3:
+    dependencies:
+      prism-media: 1.0.2
+      ytdl-core: 0.29.1
+    dev: false
+    resolution:
+      integrity: sha512-/POaSbStmY+PMRnxz4mVN0Rw9Ktt3zs94j2bRX30vmtdMR1yCz9JbEmRY4ouXJK18k/FjdRs5Bnvinud2hbYGQ==
   /ytdl-core/0.29.1:
     dependencies:
       html-entities: 1.2.1
@@ -1457,10 +1469,10 @@ specifiers:
   enmap: ^4.8.5
   express: ^4.16.4
   node-fetch: ^2.5.0
-  opusscript: ^0.0.6
   parse-ms: ^2.0.0
   request: ^2.88.0
   require.js: ^1.0.0
   sqlite3: ^4.0.6
   ytdl-core: ^0.29.0
+  ytdl-core-discord: ^1.0.3
   ytdl-getinfo: ^1.1.0

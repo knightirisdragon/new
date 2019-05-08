@@ -11,10 +11,8 @@ const DBL = require("dblapi.js");
 const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 
 //MUSIC
-//const opus = require('node-opus');
 const ytdl_discord = require('ytdl-core-discord');
 const ytdl         = require('ytdl-core');
-const { getInfo }  = require('ytdl-getinfo');
 
 //CANVAS
 const Canvas       = require('canvas');
@@ -4763,9 +4761,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
   
     if  (!GivenSong.includes("?list="))  {
-
-        CurrentlyPlaying.add(message.guild.id);
-        setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 300000);
       
     if  ((GivenSong) && (ytdl.validateURL(GivenSong) == true))  {
 
@@ -4776,17 +4771,19 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
   
     if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)).map(c => c.name).length == 0)  {
     
-    if  (permissions.has('CONNECT') && permissions.has('SPEAK')) {
+    if  (permissions.has('CONNECT') && permissions.has('SPEAK'))  {
+
+        CurrentlyPlaying.add(message.guild.id);
+        setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 300000);
           
-            var connection = await voiceChannel.join();
+        var connection = await voiceChannel.join();
 
-            getInfo(GivenSong).then(async info => {
-            const Title = info.items[0].title;
-            const Length = info.items[0].duration;
-        
-            async function play(connection, GivenSong) {
-
-            connection.playOpusStream(await ytdl(GivenSong))
+            ytdl.getInfo(GivenSong).then(async info => {
+              
+            const Title = info.title;
+            const Length = info.length_seconds;
+              
+            connection.playOpusStream(await ytdl_discord(GivenSong))
             .on('end', () => {
               const embed = {"description": InfoIcon + " The song has now finished.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -4798,7 +4795,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               voiceChannel.leave();
               CurrentlyPlaying.delete(message.guild.id);
             });
-            };
 
             message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
 
