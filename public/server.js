@@ -792,10 +792,9 @@ fetch('https://peeky.glitch.me/staff.txt')
 };
 
 peeky.once('ready', () => {
-	  console.log('Ready!');
 
     //Announce Connection
-    console.log("The application is ready.");
+	  console.log('Ready.');
 
     //DDB
     ddbl.postStats(peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to DDB.") && ErrorBag.add(err));
@@ -806,11 +805,11 @@ peeky.once('ready', () => {
 });
 
 peeky.once('reconnecting', () => {
-	  console.log('Reconnecting!');
+	  console.log('Reconnecting.');
 });
 
 peeky.once('disconnect', () => {
-	  console.log('Disconnect!');
+	  console.log('Disconnected.');
 });
 
 //Fixes
