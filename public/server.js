@@ -4783,6 +4783,14 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
           
         var connection = await voiceChannel.join();
 
+        const dispatcher = connection.playOpusStream(await ytdl(GivenSong, {filter: 'audioonly'}))
+        .on('end', () => {
+          console.log('Music ended!');
+        })
+        .on('error', error => {
+          console.error(error);
+        });
+
         ytdl.getInfo(GivenSong).then(async (info) => {
               
             const Title     = info.title;
