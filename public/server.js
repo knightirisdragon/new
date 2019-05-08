@@ -4800,7 +4800,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             });
               
 
-            const canvas = Canvas.createCanvas(500, 380);
+            const canvas = Canvas.createCanvas(500, 370);
             const ctx = canvas.getContext('2d');
               
             const background = await Canvas.loadImage(DefaultBackground);
