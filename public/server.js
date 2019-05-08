@@ -4764,6 +4764,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     if  (!GivenSong.includes("?list="))  {
 
         CurrentlyPlaying.add(message.guild.id);
+        setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 300000);
       
     if  ((GivenSong) && (ytdl.validateURL(GivenSong) == true))  {
 
