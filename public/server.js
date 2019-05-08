@@ -4768,21 +4768,25 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)).map(c => c.name).length == 0)  {
     
         if  (permissions.has('CONNECT') && permissions.has('SPEAK')) {
+
+            getInfo(GivenSong).then(async info => {
+            const Title = info.items[0].title;
+            const Length = info.items[0].length_seconds;
           
             var connection = await voiceChannel.join();
         
             const dispatcher = connection.playStream(ytdl(GivenSong))
             .on('end', () => {
               console.log('Music ended!');
+              voiceChannel.leave();
             })
             .on('error', error => {
               console.error(error);
+              voiceChannel.leave();
             });
-
-            getInfo(GivenSong).then(info => {
-                const Title = info.items[0].title;
              
-                message.channel.send("**" + Title + "**" + "\n" + "\n" + "Playing in " + voiceChannel.name) + " with isteners.";
+            message.channel.send("**" + Title + "**" + "\n" + "Playing in " + voiceChannel.name + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
+
         });
           
         };
