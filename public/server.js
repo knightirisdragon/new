@@ -10,6 +10,9 @@ const ddbl = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
 const DBL = require("dblapi.js");
 const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 
+//MUSIC
+const ytdl = require('ytdl-core-discord');
+
 //CANVAS
 const Canvas       = require('canvas');
 const request      = require('request');
@@ -4741,6 +4744,18 @@ if (!ProfileCooldown.has(message.author.id)) {
           const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
          };
+};
+
+//Music Commands
+
+//Play
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play "))  {
+
+    if  (message.member.voiceChannel)  {
+        
+    };
+    //connection.playOpusStream(await ytdl(url));
+
 };
 
 //Moderation Commands
