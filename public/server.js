@@ -11,8 +11,9 @@ const DBL = require("dblapi.js");
 const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 
 //MUSIC
+const opus = require('node-opus');
 const ytdl = require('ytdl-core');
-const { getInfo } = require('ytdl-getinfo')
+const { getInfo } = require('ytdl-getinfo');
 
 //CANVAS
 const Canvas       = require('canvas');
@@ -4764,13 +4765,13 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         const voiceChannel = message.member.voiceChannel;
         const permissions  = voiceChannel.permissionsFor(message.client.user);
   
-    if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)/* && i.id !== voiceChannel.id*/).map(c => c.name).length == 0)  {
+    if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)).map(c => c.name).length == 0)  {
     
         if  (permissions.has('CONNECT') && permissions.has('SPEAK')) {
           
             var connection = await voiceChannel.join();
         
-            const dispatcher = connection.playStream(GivenSong)
+            const dispatcher = connection.playStream(ytdl(GivenSong))
             .on('end', () => {
               console.log('Music ended!');
             })
@@ -4781,7 +4782,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             getInfo(GivenSong).then(info => {
                 const Title = info.items[0].title;
              
-                message.channel.send("**" + Title + "**")
+                message.channel.send("**" + Title + "**" + "\n" + "\n" + "Playing in " + voiceChannel.name) + " with isteners.";
         });
           
         };

@@ -9,12 +9,12 @@ dependencies:
   enmap: 4.8.5
   express: 4.16.4
   node-fetch: 2.5.0
+  node-opus: 0.3.1
   parse-ms: 2.0.0
   request: 2.88.0
   require.js: 1.0.0
   sqlite3: 4.0.6
   ytdl-core: 0.29.1
-  ytdl-core-discord: 1.0.3
   ytdl-getinfo: 1.1.0
 packages:
   /abbrev/1.1.1:
@@ -129,6 +129,17 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-Uj1ZYOcq1GtFyFgJgqMVDoDLTy1B1pM9+bULnlX8szRX4cPjE/7JbKxCzQGhYlZlLkHQvtXXhCZ3skqsQ2byMA==
+  /bindings/1.2.1:
+    dev: false
+    resolution:
+      integrity: sha1-FK1hE4EtLTfXLme0ystLtyZQXxE=
+  /bindings/1.5.0:
+    dependencies:
+      file-uri-to-path: 1.0.0
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==
   /body-parser/1.18.3:
     dependencies:
       bytes: 3.0.0
@@ -237,6 +248,10 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-brWl9y6vOB1xYPZcpZde3N9zDByXTosAeMDo4p1wzo6UMOX4vumB+TP1RZ76sfE6Md68Q0NJSrE/gbezd4Ul+w==
+  /commander/2.20.0:
+    dev: false
+    resolution:
+      integrity: sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==
   /concat-map/0.0.1:
     dev: false
     resolution:
@@ -468,6 +483,11 @@ packages:
     dev: false
     resolution:
       integrity: sha1-1RQsDK7msRifh9OnYREGT4bIu/I=
+  /file-uri-to-path/1.0.0:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==
   /finalhandler/1.1.1:
     dependencies:
       debug: 2.6.9
@@ -876,6 +896,19 @@ packages:
       node: 4.x || >=6.0.0
     resolution:
       integrity: sha512-YuZKluhWGJwCcUu4RlZstdAxr8bFfOVHakc1mplwHkk8J+tqM1Y5yraYvIUpeX8aY7+crCwiELJq7Vl0o0LWXw==
+  /node-opus/0.3.1:
+    dependencies:
+      bindings: 1.2.1
+      commander: 2.20.0
+      nan: 2.13.2
+    dev: false
+    engines:
+      node: '>=5.10.0'
+    optionalDependencies:
+      ogg-packet: 1.0.1
+    requiresBuild: true
+    resolution:
+      integrity: sha512-1Cb8OvHhdDspVfeKMjEgbedJabyE1Ib6OcN2BMEsRCU7FIsciuBpOErcie3y0qTf83nclPAY+kBU3Oj+U+oRlQ==
   /node-pre-gyp/0.11.0:
     dependencies:
       detect-libc: 1.0.3
@@ -936,6 +969,13 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
+  /ogg-packet/1.0.1:
+    dependencies:
+      ref-struct: 1.1.0
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-dW1ok3BMnMikyXGDIgVEckWnlViW8JLWQV4qj9aN/rNRVqHlDYSlcIEtSIMH7tpuUOiIxAhY3+OxNdIOm6s17A==
   /on-finished/2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -1003,15 +1043,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-c9KkNifSMU/iXT8FFTaBwBMr+rdVcN+H/uNv1o+CuFeTThNZNTOrQ+RgXA1yL/DeLk098duAeRPP3QNPNbhxYQ==
-  /prism-media/1.0.2:
-    dev: false
-    peerDependencies:
-      ffmpeg-binaries: ^4.0.0
-      ffmpeg-static: ^2.4.0
-      node-opus: ^0.3.1
-      opusscript: ^0.0.6
-    resolution:
-      integrity: sha512-KCu3SlT1EtS0lvF74NGLSTzr5jrkRajE9n+S2jnUvvdiN5SpjsGj0/HgR1QK9+985Yv8cxjwZnpFRaj+SimDGA==
   /process-nextick-args/2.0.0:
     dev: false
     resolution:
@@ -1095,6 +1126,24 @@ packages:
     dev: false
     resolution:
       integrity: sha512-tQtKA9WIAhBF3+VLAseyMqZeBjW0AHJoxOtYqSUZNJxauErmLbVm2FW1y+J/YA9dUrAC39ITejlZWhVIwawkKw==
+  /ref-struct/1.1.0:
+    dependencies:
+      debug: 2.6.9
+      ref: 1.3.5
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha1-XV7mWtQc78Olxf60BYcmHkee3BM=
+  /ref/1.3.5:
+    dependencies:
+      bindings: 1.5.0
+      debug: 2.6.9
+      nan: 2.13.2
+    dev: false
+    optional: true
+    requiresBuild: true
+    resolution:
+      integrity: sha512-2cBCniTtxcGUjDpvFfVpw323a83/0RLSGJJY5l5lcomZWhYpU2cuLdsvYqMixvsdLJ9+sTdzEkju8J8ZHDM2nA==
   /request/2.88.0:
     dependencies:
       aws-sign2: 0.7.0
@@ -1430,13 +1479,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-S+Zk8DEWE6oKpV+vI3qWkaK+jSbIK86pCwe2IF/xwIpQ8jEuxpw9NyaGjmp9+BoJv5FV2piqCDcoCtStppiq2A==
-  /ytdl-core-discord/1.0.3:
-    dependencies:
-      prism-media: 1.0.2
-      ytdl-core: 0.29.1
-    dev: false
-    resolution:
-      integrity: sha512-/POaSbStmY+PMRnxz4mVN0Rw9Ktt3zs94j2bRX30vmtdMR1yCz9JbEmRY4ouXJK18k/FjdRs5Bnvinud2hbYGQ==
   /ytdl-core/0.29.1:
     dependencies:
       html-entities: 1.2.1
@@ -1469,10 +1511,10 @@ specifiers:
   enmap: ^4.8.5
   express: ^4.16.4
   node-fetch: ^2.5.0
+  node-opus: ^0.3.1
   parse-ms: ^2.0.0
   request: ^2.88.0
   require.js: ^1.0.0
   sqlite3: ^4.0.6
   ytdl-core: ^0.29.0
-  ytdl-core-discord: ^1.0.3
   ytdl-getinfo: ^1.1.0
