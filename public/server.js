@@ -4780,11 +4780,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
             ytdl.getInfo(GivenSong).then(async info => {
               
-            console.log(info.thumbnail)
-              
             const Title     = info.title;
             const Length    = info.length_seconds;
-            const Thumbnail = info.thumbnail.url;
+            const Thumbnail = info.thumbnail_url;
             const Author    = info.author.name;
               
             connection.playOpusStream(await ytdl_discord(GivenSong))
