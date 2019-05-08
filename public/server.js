@@ -4783,6 +4783,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const Title     = info.title;
             const Length    = info.length_seconds;
             const Author    = info.author.name;
+            const Thumbnail = info.thumbnail_url;
               
             connection.playOpusStream(await ytdl_discord(GivenSong))
             .on('end', () => {
@@ -4796,8 +4797,21 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               voiceChannel.leave();
               CurrentlyPlaying.delete(message.guild.id);
             });
+              
 
-            message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing a song by " + Function_RemoveFormatting(Author, "other") + " in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
+            const canvas = Canvas.createCanvas(500, 250);
+            const ctx = canvas.getContext('2d');
+              
+            const background = await Canvas.loadImage(DefaultBackground);
+            ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+              
+            const thumbnail = await Canvas.loadImage(Thumbnail);
+            ctx.drawImage(thumbnail, 10, 10, 225, 255);
+
+            const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+            await message.channel.send("", attachment).catch(error => ErrorBag.add(error))
+
+            //message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing a song by " + Function_RemoveFormatting(Author, "other") + " in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
 
             });
           
