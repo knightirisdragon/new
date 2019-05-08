@@ -4792,9 +4792,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               CurrentlyPlaying.delete(message.guild.id);
             })
             .on('error', error => {
-              const embed = {"description": ErrorIcon + " Something unexpected happened, ouch!",  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
               voiceChannel.leave();
               CurrentlyPlaying.delete(message.guild.id);
             });
