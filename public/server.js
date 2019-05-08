@@ -4837,6 +4837,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             //Song Name
             ctx.font = "20px " + DefaultFont;
             ctx.fillText(Title, 15, 345);
+              
+    message.channel.stopTyping();
 
             const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
             await message.channel.send("", attachment).catch(error => ErrorBag.add(error))
