@@ -4782,13 +4782,18 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 300000);
           
         var connection = await voiceChannel.join();
-
-        const dispatcher = connection.playOpusStream(await ytdl(GivenSong, {filter: 'audioonly'}))
+              
+        connection.playOpusStream(await ytdl_discord(GivenSong)).catch(error => ErrorBag.add(error))
         .on('end', () => {
-          console.log('Music ended!');
+           const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
+           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              
+           voiceChannel.leave();
+           CurrentlyPlaying.delete(message.guild.id);
         })
         .on('error', error => {
-          console.error(error);
+           voiceChannel.leave();
+           CurrentlyPlaying.delete(message.guild.id);
         });
 
         ytdl.getInfo(GivenSong).then(async (info) => {
