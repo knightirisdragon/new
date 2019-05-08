@@ -12,6 +12,7 @@ const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 
 //MUSIC
 const ytdl = require('ytdl-core-discord');
+const { getInfo } = require('ytdl-getinfo')
 
 //CANVAS
 const Canvas       = require('canvas');
@@ -784,8 +785,8 @@ fetch('https://peeky.glitch.me/staff.txt')
   
 };
 
-//READY EVENT
-peeky.on('ready', async () => {
+peeky.once('ready', () => {
+	  console.log('Ready!');
 
     //Announce Connection
     console.log("The application is ready.");
@@ -795,12 +796,15 @@ peeky.on('ready', async () => {
   
     //DB
     dbl.postStats(peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to DB.") && ErrorBag.add(err));
-
+  
 });
 
-//RECONNECTING EVENT
-peeky.on('reconnecting', () => {
-    console.log("The application is reconnecting.");
+peeky.once('reconnecting', () => {
+	  console.log('Reconnecting!');
+});
+
+peeky.once('disconnect', () => {
+	  console.log('Disconnect!');
 });
 
 //Fixes
@@ -4753,7 +4757,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
     var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
   
-    if  (GivenSong)  {
+    if  ((GivenSong) && (getInfo.validateURL(GivenSong) == true))  {
   
     if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)).map(c => c.name).length == 0)  {
     if  (message.member.voiceChannel)  {
@@ -4765,7 +4769,13 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
           
            var connection = await voiceChannel.join();
         
-           connection.playOpusStream(await ytdl(GivenSong));
+           connection.playOpusStream(await ytdl(GivenSong)).catch(error => ErrorBag.add(error));
+
+           getInfo(GivenSong).then(info => {
+               const Title = info.items[0].title;
+             
+               message.channel.send(Title)
+           });
           
         };
 
