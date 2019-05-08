@@ -4783,7 +4783,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const Title     = info.title;
             const Length    = info.length_seconds;
             const Author    = info.author.name;
-            const Thumbnail = info.thumbnail_url;
+            const Thumbnail = info.player_response.videoDetails.thumbnail.thumbnails[info.player_response.videoDetails.thumbnail.thumbnails.length - 1].url; //info.thumbnail_url;
               
             connection.playOpusStream(await ytdl_discord(GivenSong))
             .on('end', () => {
@@ -4799,14 +4799,33 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             });
               
 
-            const canvas = Canvas.createCanvas(500, 250);
+            const canvas = Canvas.createCanvas(500, 400);
             const ctx = canvas.getContext('2d');
               
             const background = await Canvas.loadImage(DefaultBackground);
             ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
               
             const thumbnail = await Canvas.loadImage(Thumbnail);
-            ctx.drawImage(thumbnail, 10, 10, 225, 255);
+            ctx.drawImage(thumbnail, 10, 10, canvas.width - 20, 250);
+
+            //Draw Events
+
+            //String Setting
+            ctx.fillStyle = "grey";
+            ctx.textAlign = "left";
+            ctx.fillStyle = "white";
+            ctx.shadowColor = "black";
+            ctx.shadowOffsetX = 1; 
+            ctx.shadowOffsetY = 1;
+            ctx.globalAlpha = 1;
+
+            //Now Playing
+            ctx.font = "30px " + DefaultFont;
+            ctx.fillText("Now Playing:", 10, 300);
+
+            //Tag String
+            ctx.font = "20px " + DefaultFont;
+            ctx.fillText(Title, 10, 335);
 
             const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
             await message.channel.send("", attachment).catch(error => ErrorBag.add(error))
