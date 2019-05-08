@@ -593,7 +593,52 @@ function function_RemoveTags(text)  {
       return text.replace(/(<([^>]+)>)/ig, "");
 };
 
-function_MusicEmbed()  {}
+//CANVAS: Music embed
+async function function_MusicEmbed(Title, Thumbnail, Author, Length)  {
+  
+            var attachment = null;
+  
+            const canvas = Canvas.createCanvas(500, 370);
+            const ctx = canvas.getContext('2d');
+
+            const background = await Canvas.loadImage(DefaultBackground);
+            ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+            ctx.globalAlpha = 0.25;
+            ctx.fillStyle = "#7289DA";
+            ctx.fillRect(5, 5, canvas.width - 10, canvas.height - 10);
+
+            ctx.stroke();
+
+            ctx.globalAlpha = 0.75;
+            ctx.fillRect(5, 5, canvas.width - 10, 280);
+
+            ctx.stroke();
+
+            ctx.globalAlpha = 1;
+            const thumbnail = await Canvas.loadImage(Thumbnail);
+            ctx.drawImage(thumbnail, 15, 15, canvas.width - 30, 260);
+
+            //String Setting
+            ctx.fillStyle = "black";
+            ctx.textAlign = "left";
+            ctx.fillStyle = "white";
+            ctx.shadowColor = "black";
+            ctx.shadowOffsetX = 1; 
+            ctx.shadowOffsetY = 1;
+            ctx.globalAlpha = 1;
+
+            //Now Playing
+            ctx.font = "15px " + DefaultFont;
+            ctx.fillText("Now Playing", 15, 315);
+
+            //Song Name
+            ctx.font = "20px " + DefaultFont;
+            ctx.fillText(Title, 15, 345);
+
+            return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+
+};
 
 //Random Description
 function function_RandomDescription()  {
@@ -4804,14 +4849,11 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
           
             CooldownExpires = Length;
 
-            message.channel.startTyping();
-
-            
+            /*message.channel.startTyping();
               
-            message.channel.stopTyping();
+            message.channel.stopTyping();*/
 
-            const attachment = new Discord.Attachment(await function_MusicEmbed().toBuffer(), 'peeky.png', { quality: 0.1 });
-            await message.channel.send("", attachment).catch(error => ErrorBag.add(error))
+            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length)).catch(error => ErrorBag.add(error))
               
             message.delete().catch(error => ErrorBag.add(error));
 
