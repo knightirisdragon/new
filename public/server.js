@@ -4777,7 +4777,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               
             if  (Length <= 300)  {
         
-            const dispatcher = connection.playStream(ytdl(GivenSong))
+            const dispatcher = connection.playStream(ytdl(GivenSong, { filter: "audioonly" }))
             .on('end', () => {
               const embed = {"description": InfoIcon + " The song has now finished.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
