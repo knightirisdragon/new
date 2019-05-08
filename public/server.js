@@ -4779,7 +4779,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
           
         var connection = await voiceChannel.join();
 
-            ytdl.getInfo(GivenSong, async (info) => {
+            ytdl.getInfo(GivenSong, async info => {
               
             const Title     = info.title;
             const Length    = info.length_seconds;
