@@ -4771,19 +4771,17 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
     if  (message.member.voiceChannel)  {
 
-        const voiceChannel = message.member.voiceChannel;
-        const permissions  = voiceChannel.permissionsFor(message.client.user);
-  
-    //if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)).map(c => c.name).length == 0)  {
+        var CooldownExpires = 300000;
+        const voiceChannel  = message.member.voiceChannel;
+        const permissions   = voiceChannel.permissionsFor(message.client.user);
     
     if  (permissions.has('CONNECT') && permissions.has('SPEAK'))  {
 
         CurrentlyPlaying.add(message.guild.id);
-        setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 300000);
           
         var connection = await voiceChannel.join();
               
-        connection.playOpusStream(await ytdl_discord(GivenSong)).catch(error => ErrorBag.add(error))
+        connection.playOpusStream(await ytdl_discord(GivenSong).catch(error => ErrorBag.add(error)))
         .on('end', () => {
            const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -4801,7 +4799,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const Title     = info.title;
             const Length    = info.length_seconds;
             const Author    = info.author.name;
-            const Thumbnail = info.player_response.videoDetails.thumbnail.thumbnails[info.player_response.videoDetails.thumbnail.thumbnails.length - 1].url; //info.thumbnail_url;
+            const Thumbnail = info.player_response.videoDetails.thumbnail.thumbnails[info.player_response.videoDetails.thumbnail.thumbnails.length - 1].url;
+          
+            CooldownExpires = Length;
 
             message.channel.startTyping();
 
@@ -4851,16 +4851,13 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             message.delete().catch(error => ErrorBag.add(error));
 
         });
+
+        setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, CooldownExpires);
           
     } else {
       const embed = {"description": ErrorIcon + " I am missing some required permissions in that channel.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-
-    /*} else {
-      const embed = {"description": ErrorIcon + " I am already playing a song in this server.",  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };*/
 
     } else {
       const embed = {"description": ErrorIcon + " You need to join a voice channel",  "color": EmbedColor}; 
