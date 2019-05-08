@@ -4758,11 +4758,13 @@ if (!ProfileCooldown.has(message.author.id)) {
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play "))  {
   
     if  (!CurrentlyPlaying.has(message.guild.id))  {
-      
-        CurrentlyPlaying.add(message.guild.id);
 
     var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
   
+    if  (!GivenSong.includes("?list="))  {
+
+        CurrentlyPlaying.add(message.guild.id);
+      
     if  ((GivenSong) && (ytdl.validateURL(GivenSong) == true))  {
 
     if  (message.member.voiceChannel)  {
@@ -4782,12 +4784,14 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
               
               voiceChannel.leave();
+              CurrentlyPlaying.delete(message.guild.id);
             })
             .on('error', error => {
               const embed = {"description": ErrorIcon + " Something unexpected happened, ouch!",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
               voiceChannel.leave();
+              CurrentlyPlaying.delete(message.guild.id);
             });
 
             getInfo(GivenSong).then(async info => {
@@ -4818,10 +4822,15 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
       
+    } else {
+      const embed = {"description": ErrorIcon + " You can only give me one song to play.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+      
     }
      else
     {
-      const embed = {"description": ErrorIcon + CooldownMessage1[0],  "color": EmbedColor}; 
+      const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -4830,12 +4839,22 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 //Leave
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "leave"))  {
 
+    if  (message.guild.channels.filter(i => i.type == "voice" && i.members.has(PeekyId)).map(c => c.name).length > 0)  {
+
     if  (message.member.voiceChannel && message.member.voiceChannel.members.has(PeekyId))  {
 
         const voiceChannel = message.member.voiceChannel;
         voiceChannel.leave();
       
-    } else console.log(":(")
+    } else {
+      const embed = {"description": ErrorIcon + " You are not in a channel with me in it.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+    } else {
+      const embed = {"description": ErrorIcon + " I am not playing any songs in this server.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
 };
 
