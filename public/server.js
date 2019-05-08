@@ -4799,7 +4799,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             });
               
 
-            const canvas = Canvas.createCanvas(500, 360);
+            const canvas = Canvas.createCanvas(500, 370);
             const ctx = canvas.getContext('2d');
               
             const background = await Canvas.loadImage(DefaultBackground);
@@ -4812,7 +4812,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             ctx.globalAlpha = 1;
 
             const thumbnail = await Canvas.loadImage(Thumbnail);
-            ctx.drawImage(thumbnail, 10, 10, canvas.width - 20, 250);
+            ctx.drawImage(thumbnail, 15, 15, canvas.width - 35, 260);
 
             //String Setting
             ctx.fillStyle = "black";
@@ -4833,8 +4833,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
             const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
             await message.channel.send("", attachment).catch(error => ErrorBag.add(error))
-
-            //message.channel.send("**" + Function_RemoveFormatting(Title, "other") + "**" + "\n" + "Playing a song by " + Function_RemoveFormatting(Author, "other") + " in " + Function_RemoveFormatting(voiceChannel.name, "other") + " with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.");
+              
+            message.delete().catch(error => ErrorBag.add(error));
 
             });
           
