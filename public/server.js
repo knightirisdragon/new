@@ -1051,7 +1051,7 @@ peeky.on('message', async (message) => {
       //Avatar
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
-	  const avatar = await Canvas.loadImage(message.author.displayAvatarURL);
+	  const avatar = await Canvas.loadImage(message.author.avatarURL.replace("https", "http"));
     ctx.drawImage(avatar, 15, 15, 65, 65);
     
     const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
@@ -1667,7 +1667,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
     //Avatar
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
-    const avatar = await Canvas.loadImage(member.user.displayAvatarURL);
+    const avatar = await Canvas.loadImage(member.user.avatarURL.replace("https", "http"));
     ctx.drawImage(avatar, 15, 15, 65, 65);
     
     const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
@@ -1826,7 +1826,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
     //Avatar
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
-    const avatar = await Canvas.loadImage(member.user.displayAvatarURL);
+    const avatar = await Canvas.loadImage(member.user.avatarURL.replace("https", "http"));
     ctx.drawImage(avatar, 15, 15, 65, 65);
 
     const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
@@ -4698,7 +4698,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.rect(14, 254, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 29), 30);
   
         //Avatar
-	  const avatar = await Canvas.loadImage(SomeoneTagged.displayAvatarURL);
+    const avatar = await Canvas.loadImage(SomeoneTagged.avatarURL.replace("https", "http"));
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
     ctx.drawImage(avatar, 18, 17, 60, 60);
