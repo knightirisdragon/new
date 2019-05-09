@@ -781,6 +781,15 @@ function copyBackgroundId(id)  {
 
 };
 
+function UpdateBackgrounds()  {
+
+    fetch('https://peeky.glitch.me/backgrounds.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("BackgroundList").innerHTML = data;
+    });
+  
+};
+
 function UpdateSupporters()  {
 
     fetch('https://peeky.glitch.me/supporters.txt')
@@ -1234,6 +1243,27 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     };
 
   fs.writeFile('public/leaderboard.txt', "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for a special badge! </b>  </div> </center>" + Leaderboard.join("<br><br>"), (err) => {
+      if (err) console.log(err);
+  });
+      
+  console.log("The leaderboard has been updated.");
+
+};
+
+if  (!WebsiteCooldowns.has("backgrounds"))  {
+
+    WebsiteCooldowns.add("backgrounds");
+
+    const BackgroundList = [];
+    var   Current        = 0;
+
+    Banners.forEach(data => {
+          Current ++;
+          BackgroundList.push('<div class="background">  <img src="' + data[0] + '" onclick="copyBackgroundId(' + Current + ');" id="1" width="500" height="300" class="background_image"> <div class="background_centered">  <br>  <b><font class="background_text" color="white" size="4">ID: ' + Current + '</font></b> </div></div>');
+    });
+
+
+  fs.writeFile('public/backgrounds.txt', BackgroundList.join("<br><br>"), (err) => {
       if (err) console.log(err);
   });
       
