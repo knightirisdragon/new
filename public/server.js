@@ -86,9 +86,9 @@ const CelebratorImage   = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602
 const PollerImage       = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpoller.png?1556170526097";
 const PublisherImage    = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpublisher.png?1555782065115";
 
-const DefaultFont   = "Verdana";
-const Dark = "#36393E";
-const Light = "#424549";
+const DefaultFont = "Verdana";
+const Dark        = "#36393E";
+const Light       = "#424549";
 
 //Config
 const OngoingEvent         = false;
@@ -685,63 +685,6 @@ function function_DaysLeft(value)  {
   
 };
 
-function backgroundList1() {
-  
-    var backgroundlist3 = document.getElementById("backgrounds3");
-    var backgroundlist2 = document.getElementById("backgrounds2");
-    var backgroundlist1 = document.getElementById("backgrounds1");
-    var backgroundlist0 = document.getElementById("backgrounds0");
-  
-    if (backgroundlist1.style.display === "none") {
-        backgroundlist1.style.display = "block";
-        backgroundlist0.style.display = "none";
-      
-        backgroundlist2.style.display = "none";
-        backgroundlist3.style.display = "none";
-    } else {
-        backgroundlist1.style.display = "none";
-        backgroundlist0.style.display = "block";
-    };
-};
-
-function backgroundList2() {
-  
-    var backgroundlist3 = document.getElementById("backgrounds3");
-    var backgroundlist2 = document.getElementById("backgrounds2");
-    var backgroundlist1 = document.getElementById("backgrounds1");
-    var backgroundlist0 = document.getElementById("backgrounds0");
-  
-    if (backgroundlist2.style.display === "none") {
-        backgroundlist2.style.display = "block"
-        backgroundlist0.style.display = "none";
-      
-        backgroundlist1.style.display = "none";
-        backgroundlist3.style.display = "none";
-    } else {
-        backgroundlist2.style.display = "none";
-        backgroundlist0.style.display = "block";
-    };
-};
-
-function backgroundList3() {
-  
-    var backgroundlist3 = document.getElementById("backgrounds3");
-    var backgroundlist2 = document.getElementById("backgrounds2");
-    var backgroundlist1 = document.getElementById("backgrounds1");
-    var backgroundlist0 = document.getElementById("backgrounds0");
-  
-    if (backgroundlist3.style.display === "none") {
-        backgroundlist3.style.display = "block";
-        backgroundlist0.style.display = "none";
-      
-        backgroundlist1.style.display = "none";
-        backgroundlist2.style.display = "none";
-    } else {
-        backgroundlist3.style.display = "none";
-        backgroundlist0.style.display = "block";
-    };
-};
-
 function hideshowtopnav() {
    var x = document.getElementById("topnavmenu");
    var y = document.getElementById("hideshowbutton");
@@ -764,21 +707,6 @@ function hidetipsfunc() {
         allowed = "false";
         y.innerHTML = "Show Tips";
     };
-};
-
-function copyBackgroundId(id)  {
-
-    if  (allowed == "true")  {
-
-    var copyinput = document.createElement('input');
-    var BuyCommand = copyinput.value = "p!buybackground " + id;
-    var SellCommand = copyinput.value = "p!sellbackground " + id;
-    var SetCommand = copyinput.value = "p!setbackground " + id;
-
-    alert(BuyCommand + ' / ' + SetCommand + ' / ' + SellCommand);
-
-    };
-
 };
 
 function UpdateBackgrounds()  {
@@ -1259,11 +1187,11 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
 
     Banners.forEach(data => {
           Current ++;
-          BackgroundList.push('<div class="background">  <img src="' + data[0] + '" onclick="copyBackgroundId(' + Current + ');" id="1" width="500" height="300" class="background_image"> <div class="background_centered">  <br>  <b><font class="background_text" color="white" size="4">ID: ' + Current + '</font></b> </div></div>');
+          BackgroundList.push('<div class="background">  <img src="' + data[0] + '"  id="1" width="500" height="300" class="background_image"> <div class="background_centered">  <b><font class="background_text" color="white" size="4"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div></div>');
     });
 
 
-  fs.writeFile('public/backgrounds.txt', BackgroundList.join("<br><br>"), (err) => {
+  fs.writeFile('public/backgrounds.txt', BackgroundList.join(" "), (err) => {
       if (err) console.log(err);
   });
       
