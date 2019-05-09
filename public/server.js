@@ -595,9 +595,12 @@ function function_RemoveTags(text)  {
 };
 
 //CANVAS: Music embed
-async function function_MusicEmbed(Title, Thumbnail, Author, Length, Header)  {
+async function function_MusicEmbed(Title, Thumbnail, Author, Length, Started, Header)  {
   
             var attachment = null;
+  
+            var Now = new Date();
+            var Now = new Date();
   
             const canvas = Canvas.createCanvas(500, 370);
             const ctx = canvas.getContext('2d');
@@ -4858,11 +4861,12 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
             peeky.serverData.set(keySF, Author, "Author");
             peeky.serverData.set(keySF, Length, "Length");
+            peeky.serverData.set(keySF, new Date(), "Started");
           
             CooldownExpires = Length;
 
             message.channel.startTyping();
-            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "Started Playing")).catch(error => ErrorBag.add(error));
+            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, Started, "Started Playing")).catch(error => ErrorBag.add(error));
             message.channel.stopTyping();
               
             message.delete().catch(error => ErrorBag.add(error));
@@ -4916,9 +4920,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
         const Thumbnail = peeky.serverData.get(keySF, "Thumbnail");
         const Author    = peeky.serverData.get(keySF, "Author");
         const Length    = peeky.serverData.get(keySF, "Length");
+        const Started   = peeky.serverData.get(keySF, "Started");
 
         message.channel.startTyping();
-        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "Currently Playing")).catch(error => ErrorBag.add(error));
+        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, Started, "Currently Playing")).catch(error => ErrorBag.add(error));
         message.channel.stopTyping();
           
     } else {
