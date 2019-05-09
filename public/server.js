@@ -888,6 +888,12 @@ peeky.on('message', async (message) => {
         Level: 1,
         Chests: 0,
       
+        //Music
+        Title: undefined,
+        Thumbnail: undefined,
+        Author: undefined,
+        Length: 0,
+      
         ContributorBadge: false,
         BugHunterBadge: false,
         VeteranBadge: false,
@@ -4842,10 +4848,15 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
         ytdl.getInfo(GivenSong).then(async (info) => {
               
-            const Title     = info.title;
-            const Length    = info.length_seconds;
-            const Author    = info.author.name;
             const Thumbnail = info.player_response.videoDetails.thumbnail.thumbnails[info.player_response.videoDetails.thumbnail.thumbnails.length - 1].url;
+            const Title     = info.title;
+            const Author    = info.author.name;
+            const Length    = info.length_seconds;
+          
+            peeky.serverData.set(keySF, Title, "Title");
+            peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
+            peeky.serverData.set(keySF, Author, "Author");
+            peeky.serverData.set(keySF, Length, "Length");
           
             CooldownExpires = Length;
 
@@ -4867,7 +4878,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     };
 
     } else {
-      const embed = {"description": ErrorIcon + " You need to join a voice channel",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " You need to join a voice channel.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
       
@@ -4885,6 +4896,36 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
      else
     {
       const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+
+//Current
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current"))  {
+  
+    if  (!CurrentlyPlaying.has(message.guild.id))  {
+
+    if  (message.member.voiceChannel && message.member.voiceChannel.members.has(PeekyId))  {
+
+        const Title     = peeky.serverData.get(keySF, "Title");
+        const Thumbnail = peeky.serverData.get(keySF, "Thumbnail");
+        const Author    = peeky.serverData.get(keySF, "Author");
+        const Length    = peeky.serverData.get(keySF, "Length");
+
+        message.channel.startTyping();
+        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length)).catch(error => ErrorBag.add(error))
+        message.channel.stopTyping();
+              
+        message.delete().catch(error => ErrorBag.add(error));
+          
+    } else {
+      const embed = {"description": ErrorIcon + " I am not playing any song in this server.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+    } else {
+      const embed = {"description": ErrorIcon + " We need to share a voice channel.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
