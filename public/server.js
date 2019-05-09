@@ -105,6 +105,7 @@ const blacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch
 const whitelistedSymbols  = [  "a", "á", "b", "c", "č", "d", "ď", "e", "é", "ě", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "ň", "o", "ó", "p", "q", "r", "ř", "s", "š", "t", "u", "ů", "ú", "v", "w", "x", "y", "ý", "z", "ž", "0", "1", "2", "3", "4", "6", "5", "7", "8", "9", "_", "-", " ", ",", ".", "'", '"', "(", ")", "[", "]"  ];
 const DefaultDescriptions = [  "I'm very busy and important.", "I sip water quite slowly.", "Battery low, I'm scared.", "I have a car for each day of the month.", "I make up a dream in my head before I go to bed.", "My life is a green screen.", "I don't believe in showers.", "Certified troublemaker.", "I'm a Bacon Guru.", "Smarter than a 5th grader.", "I took an arrow to the knee.", "Pikachu chooses me.", "I'm real, I hope my followers are too.", "I have invincible minions.", "Is this water dry?", "I yell at inanimate objects.", "I sneak drinks into movie theatres.", "I hide my sweat well.", "I unleashed the zombie apocalypse.", "I'm a very mysterious person.", "I am so funny.", "I slapped a chicken once.", "I don't know what alt-tab does.", "Hitting things to make them work.", "I put fries into my straw.", "I walk faster when I see a creepy van.", "More than meets the eye.", "I draw on fogged up windows.", "Born at a very young age."  ];
 const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
+const Playlist            = [  "https://youtu.be/I-sH53vXP2A", "https://youtu.be/R_N15egKj6c", "https://youtu.be/gFQwn6M1RMc", "https://youtu.be/DlXJuvGQfA4", "https://youtu.be/XkkvC3D_srM", "https://youtu.be/FTQbiNvZqaY", "https://youtu.be/pPArO-OI_3U", "https://youtu.be/aiSdTQ9DW9g", "https://youtu.be/k92Bgqz-p_8", "https://youtu.be/pXRviuL6vMY", "https://youtu.be/IhP3J0j9JmY", "https://youtu.be/_ubnhgZgsfc", "https://youtu.be/9u9ymiSmtXY", "https://youtu.be/vSkb0kDacjs", "https://youtu.be/l9T-2Fb_ZlY", "https://www.youtube.com/watch?v=K3Qzzggn--s", "https://youtu.be/eLigICVB-uM", "https://youtu.be/oY9m2sHQwLs"  ];
 
 //Amounts
 const NormalPrice         = 250;
@@ -4785,7 +4786,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
   
     if  (GivenSong == RandomString)  {
-        GivenSong = Playlist[Math.floor(Math.random()*items.length)];
+        GivenSong = Playlist[Math.floor(Math.random()*Playlist.length)];
     };
       
     if  (!GivenSong.includes("?list="))  {
@@ -4836,6 +4837,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
                voiceChannel.leave();
                CurrentlyPlaying.delete(message.guild.id);
+            })
+            .on('error', (err) => {
+               console.log(err)
+               CurrentlyPlaying.delete(message.guild.id);
             });
               
             } else {
@@ -4846,8 +4851,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         }).catch(async (error) => {
             const embed = {"description": ErrorIcon + " Failed to get the YouTube video.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            }
-      );
+        });
 
         setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, CooldownExpires);
           
