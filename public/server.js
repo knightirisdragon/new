@@ -1395,7 +1395,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
     };
     });
 
-    fs.writeFile('public/staff.txt', '<font size="5" class="headertext">Developers</font>  <br>  <font size="2">These are the people that work on PEEKY to make him the best possible Discord bot that it is today.</font>  <br><br>  ' + DevList.join(" ") + '<br><br>  <font size="5" class="headertext">Helpers</font>  <br>  <font size="2">These are the people that can help you fix some PEEKY related issues.</font>  <br><br>' + HelperList.join(" ") + '<br><br>  <font size="5" class="headertext">Moderators</font>  <br>  <font size="2">These are the people that moderate the Support Server, they may be able to help with PEEKY related problems.</font>  <br><br>' + ModList.join(" "), (err) => {
+    fs.writeFile('public/staff.txt', '<font size="5" class="headertext">Developers</font>  <br>  <font size="2">These are the people that work on PEEKY to make him the best possible Discord bot that it is today.</font>  <br><br>  ' + DevList.join(" ") + '<br><br>  <font size="5" class="headertext">Helpers</font>  <br>  <font size="2">These are the people that can help you fix some PEEKY related issues.</font>  <br><br>' + HelperList.join(" ") + '<br><br>  <font size="5" class="headertext">Moderators</font>  <br>  <font size="2">These are the people that moderate the Support Server to keep it safe.</font>  <br><br>' + ModList.join(" "), (err) => {
         if (err) console.log(err);
     });
       
