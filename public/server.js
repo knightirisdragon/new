@@ -47,6 +47,7 @@ const GainCooldown           = new Set();
 const OverviewCooldown       = new Set();
 const SetInviteCooldown      = new Set();
 const ProfileCooldown        = new Set();  const ProfileCooldownMS = 5000;
+const MusicCmdCooldown       = new Set();
 const PeekyCmdCooldown       = new Set();
 const ChannelCooldown        = new Set();  const ChannelCooldownMS   = 10000;
 const RoleCooldown           = new Set();  const RoleCooldownMS      = 10000;
@@ -594,7 +595,7 @@ function function_RemoveTags(text)  {
 };
 
 //CANVAS: Music embed
-async function function_MusicEmbed(Title, Thumbnail, Author, Length)  {
+async function function_MusicEmbed(Title, Thumbnail, Author, Length, Header)  {
   
             var attachment = null;
   
@@ -630,7 +631,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length)  {
 
             //Now Playing
             ctx.font = "15px " + DefaultFont;
-            ctx.fillText("Now Playing", 15, 315);
+            ctx.fillText(Header, 15, 315);
 
             //Song Name
             ctx.font = "20px " + DefaultFont;
@@ -4860,11 +4861,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
           
             CooldownExpires = Length;
 
-            /*message.channel.startTyping();
-              
-            message.channel.stopTyping();*/
-
-            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length)).catch(error => ErrorBag.add(error))
+            message.channel.startTyping();
+            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "Started Playing")).catch(error => ErrorBag.add(error));
+            message.channel.stopTyping();
               
             message.delete().catch(error => ErrorBag.add(error));
 
@@ -4903,10 +4902,15 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
 //Current
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current"))  {
-  
-    if  (!CurrentlyPlaying.has(message.guild.id))  {
 
-    if  (message.member.voiceChannel && message.member.voiceChannel.members.has(PeekyId))  {
+    if  (CurrentlyPlaying.has(message.guild.id))  {
+      
+    if  (!MusicCmdCooldown.has(message.author.id))  {
+
+    if  (message.member.voiceChannel && message.member.voiceChannel.members.find(m => m.id == PeekyId))  {
+      
+        MusicCmdCooldown.add(message.author.id);
+        setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, CooldownExpires);
 
         const Title     = peeky.serverData.get(keySF, "Title");
         const Thumbnail = peeky.serverData.get(keySF, "Thumbnail");
@@ -4914,13 +4918,16 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
         const Length    = peeky.serverData.get(keySF, "Length");
 
         message.channel.startTyping();
-        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length)).catch(error => ErrorBag.add(error))
+        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "Currently Playing")).catch(error => ErrorBag.add(error));
         message.channel.stopTyping();
-              
-        message.delete().catch(error => ErrorBag.add(error));
           
     } else {
       const embed = {"description": ErrorIcon + " I am not playing any song in this server.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+    } else {
+      const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -4934,7 +4941,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
 //Leave
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "leave"))  {
 
-    if  (message.member.voiceChannel && message.member.voiceChannel.members.has(PeekyId))  {
+    if  (message.member.voiceChannel && message.member.voiceChannel.members.find(m => m.id == PeekyId))  {
 
         message.member.voiceChannel.leave();
         message.channel.stopTyping();
