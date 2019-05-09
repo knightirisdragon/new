@@ -595,7 +595,7 @@ function function_RemoveTags(text)  {
 };
 
 //CANVAS: Music embed
-async function function_MusicEmbed(Title, Thumbnail, Author, Length, Started, Header)  {
+async function function_MusicEmbed(Title, Thumbnail, Author, Length, Header)  {
   
             var attachment = null;
   
@@ -633,7 +633,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, Started, He
 
             //Now Playing
             ctx.font = "15px " + DefaultFont;
-            ctx.fillText(Header + " with " + (Now.setMinutes(Now.getMinutes() + Length / 60) - Started).toFixed(1) + " minutes left.", 15, 315);
+            ctx.fillText(Header + " " + Author + "'s", 15, 315);
 
             //Song Name
             ctx.font = "20px " + DefaultFont;
@@ -4866,7 +4866,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             CooldownExpires = Length;
 
             message.channel.startTyping();
-            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, Started, "Started Playing")).catch(error => ErrorBag.add(error));
+            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "Started playing")).catch(error => ErrorBag.add(error));
             message.channel.stopTyping();
               
             message.delete().catch(error => ErrorBag.add(error));
@@ -4914,7 +4914,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
     if  (message.member.voiceChannel && message.member.voiceChannel.members.find(m => m.id == PeekyId))  {
       
         MusicCmdCooldown.add(message.author.id);
-        setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, CooldownExpires);
+        setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 5000);
 
         const Title     = peeky.serverData.get(keySF, "Title");
         const Thumbnail = peeky.serverData.get(keySF, "Thumbnail");
@@ -4923,7 +4923,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
         const Started   = peeky.serverData.get(keySF, "Started");
 
         message.channel.startTyping();
-        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, Started, "Currently Playing")).catch(error => ErrorBag.add(error));
+        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "Currently playing")).catch(error => ErrorBag.add(error));
         message.channel.stopTyping();
         
     } else {
