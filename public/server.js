@@ -675,7 +675,7 @@ function function_DaysLeft(value)  {
   
     if  (!isNaN(value))  {
 
-    return (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(1))
+        return (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(1))
       
     }  else  {
 
