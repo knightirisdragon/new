@@ -4784,6 +4784,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
     var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
   
+    if  (GivenSong == RandomString)  {
+        GivenSong = Playlist[Math.floor(Math.random()*items.length)];
+    };
+      
     if  (!GivenSong.includes("?list="))  {
       
     if  ((GivenSong) && (ytdl.validateURL(GivenSong) == true))  {
@@ -4798,7 +4802,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
         CurrentlyPlaying.add(message.guild.id);
 
-        ytdl.getInfo(GivenSong).then(async (info) => {
+        await ytdl.getInfo(GivenSong).then(async (info) => {
               
             const Thumbnail  = info.player_response.videoDetails.thumbnail.thumbnails[info.player_response.videoDetails.thumbnail.thumbnails.length - 1].url;
             const Title      = info.title;
@@ -4832,12 +4836,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
                voiceChannel.leave();
                CurrentlyPlaying.delete(message.guild.id);
-            })
-            .on('error', (err) => {
-               console.log(err);
-
-               voiceChannel.leave();
-               CurrentlyPlaying.delete(message.guild.id);
             });
               
             } else {
@@ -4845,7 +4843,11 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
-        });
+        }).catch(async (error) => {
+            const embed = {"description": ErrorIcon + " Failed to get the YouTube video.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            }
+      );
 
         setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, CooldownExpires);
           
