@@ -4809,9 +4809,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
             const Started    = new Date();
           
-            if  (Length <= 300)  {
+            if  (Length <= 3600000)  {
 
-            connection.playOpusStream(await ytdl_discord(GivenSong).catch(error => ErrorBag.add(error)))
+            connection.playOpusStream(await ytdl_discord(GivenSong).catch(error => ErrorBag.add(error) && voiceChannel.leave()))
             .on('end', () => {
                const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
