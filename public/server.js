@@ -11,8 +11,8 @@ const DBL = require("dblapi.js");
 const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 
 //MUSIC
-const ytdl_discord = require('ytdl-core-discord');
-const ytdl         = require('ytdl-core');
+const ytdl_discord  = require('ytdl-core-discord');
+const ytdl          = require('ytdl-core');
 
 //CANVAS
 const Canvas       = require('canvas');
