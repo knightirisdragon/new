@@ -4891,7 +4891,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     };
       
     } else {
-      const embed = {"description": ErrorIcon + " You must not request a video playlist.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " You must cannot play a video playlist.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
       
@@ -4953,7 +4953,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "leave")
         CurrentlyPlaying.delete(message.guild.id);
       
     } else {
-      const embed = {"description": ErrorIcon + " You are not in the same channel as me.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " We need to share a voice channel.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 

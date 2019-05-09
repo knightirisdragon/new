@@ -316,8 +316,9 @@ th, td {
 
 .background {
     display: inline-block;
-    transition: transform .25s ease;
     text-align: left;
+    margin: 5px;
+    transition: transform .25s ease;
 }
 
 .background:hover {
