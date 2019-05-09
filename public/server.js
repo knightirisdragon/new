@@ -4825,10 +4825,16 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
           
             var connection = await voiceChannel.join();
 
-            connection.playOpusStream(await ytdl_discord(GivenSong).catch(error => ErrorBag.add(error) && voiceChannel.leave()))
+            connection.playOpusStream(await ytdl_discord(GivenSong).catch(error => ErrorBag.add(error)))
             .on('end', () => {
                const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+               voiceChannel.leave();
+               CurrentlyPlaying.delete(message.guild.id);
+            })
+            .on('error', (err) => {
+               console.log(err);
 
                voiceChannel.leave();
                CurrentlyPlaying.delete(message.guild.id);
