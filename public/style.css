@@ -317,7 +317,7 @@ th, td {
 .background {
     display: inline-block;
     text-align: left;
-    margin: 5px;
+    margin: -4px;
     transition: transform .25s ease;
 }
 
@@ -330,7 +330,7 @@ th, td {
 
 .background_image {
     filter: blur(2px);
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 .background:hover .background_centered {
