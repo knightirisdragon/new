@@ -14,10 +14,6 @@ const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 const ytdl_discord = require('ytdl-core-discord');
 const ytdl         = require('ytdl-core');
 
-async function play(connection, url) {
-      connection.playOpusStream(await ytdl(url));
-}
-
 //CANVAS
 const Canvas       = require('canvas');
 const request      = require('request');
