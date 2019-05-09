@@ -600,7 +600,6 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, Started, He
             var attachment = null;
   
             var Now = new Date();
-            var Now = new Date();
   
             const canvas = Canvas.createCanvas(500, 370);
             const ctx = canvas.getContext('2d');
@@ -634,7 +633,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, Started, He
 
             //Now Playing
             ctx.font = "15px " + DefaultFont;
-            ctx.fillText(Header, 15, 315);
+            ctx.fillText(Header + " with " + (Now.setMinutes(Now.getMinutes() + Length / 60) - Started).toFixed(1) + " minutes left.", 15, 315);
 
             //Song Name
             ctx.font = "20px " + DefaultFont;
@@ -680,7 +679,7 @@ function function_DaysLeft(value)  {
   
     if  (!isNaN(value))  {
 
-    return (Math.abs((new Date() - new Date(value))/ (1000 * 60 * 60 * 24)).toFixed(1))
+    return (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(1))
       
     }  else  {
 
@@ -4856,12 +4855,13 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const Title     = info.title;
             const Author    = info.author.name;
             const Length    = info.length_seconds;
+            const Started   = new Date();
           
             peeky.serverData.set(keySF, Title, "Title");
             peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
             peeky.serverData.set(keySF, Author, "Author");
             peeky.serverData.set(keySF, Length, "Length");
-            peeky.serverData.set(keySF, new Date(), "Started");
+            peeky.serverData.set(keySF, Started, "Started");
           
             CooldownExpires = Length;
 
@@ -4925,11 +4925,11 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
         message.channel.startTyping();
         await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, Started, "Currently Playing")).catch(error => ErrorBag.add(error));
         message.channel.stopTyping();
-          
+        
     } else {
-      const embed = {"description": ErrorIcon + " I am not playing any song in this server.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " We need to share a voice channel.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
+    };  
 
     } else {
       const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
@@ -4937,7 +4937,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
     };
 
     } else {
-      const embed = {"description": ErrorIcon + " We need to share a voice channel.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " I am not playing any song in this server.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
