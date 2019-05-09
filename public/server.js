@@ -582,7 +582,7 @@ function function_RemoveTags(text)  {
 };
 
 //CANVAS: Music embed
-async function function_MusicEmbed(Title, Thumbnail, Author, Length, Header)  {
+async function function_MusicEmbed(Title, Thumbnail, Author, Length, Header, Type)  {
   
             var attachment = null;
   
@@ -618,9 +618,13 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, Header)  {
             ctx.shadowOffsetY = 1;
             ctx.globalAlpha = 1;
 
-            //Now Playing
+            //Header
             ctx.font = "15px " + DefaultFont;
-            ctx.fillText(Header + " " + Author + "'s", 15, 315);
+            if  (Type == "Started")  {
+                ctx.fillText(Header + " " + Author + "'s", 15, 315);
+            }  else if  (Type == "Current")  {
+                ctx.fillText(function_MinLeft(Length), 15, 315);
+            };
 
             //Song Name
             ctx.font = "20px " + DefaultFont;
@@ -661,12 +665,27 @@ function function_DateFormat(value)  {
   
 };
 
-//Date Format
+//Days Left
 function function_DaysLeft(value)  {
   
     if  (!isNaN(value))  {
 
         return (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(1))
+      
+    }  else  {
+
+       return "Invalid Date"; 
+      
+    };
+  
+};
+
+//Minutes Left
+function function_MinLeft(value)  {
+  
+    if  (!isNaN(value))  {
+
+        return (Math.abs((new Date() - new Date(value)) / (1000 * 60)).toFixed(1))
       
     }  else  {
 
@@ -4799,7 +4818,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const Thumbnail = info.player_response.videoDetails.thumbnail.thumbnails[info.player_response.videoDetails.thumbnail.thumbnails.length - 1].url;
             const Title     = info.title;
             const Author    = info.author.name;
-            const Length    = info.length_seconds;
+            var Length    = new Date();
+              
             const Started   = new Date();
           
             peeky.serverData.set(keySF, Title, "Title");
@@ -4811,7 +4831,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             CooldownExpires = Length;
 
             message.channel.startTyping();
-            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "Started playing")).catch(error => ErrorBag.add(error));
+            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "Started playing", "Started")).catch(error => ErrorBag.add(error));
             message.channel.stopTyping();
               
             message.delete().catch(error => ErrorBag.add(error));
@@ -4851,8 +4871,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
 //Current
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current"))  {
-
-    if  (CurrentlyPlaying.has(message.guild.id))  {
       
     if  (!MusicCmdCooldown.has(message.author.id))  {
 
@@ -4868,7 +4886,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
         const Started   = peeky.serverData.get(keySF, "Started");
 
         message.channel.startTyping();
-        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "Currently playing")).catch(error => ErrorBag.add(error));
+        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "minutes left", "Current")).catch(error => ErrorBag.add(error));
         message.channel.stopTyping();
         
     } else {
@@ -4878,11 +4896,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
 
     } else {
       const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-
-    } else {
-      const embed = {"description": ErrorIcon + " I am not playing any song in this server.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
