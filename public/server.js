@@ -4797,8 +4797,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     if  (permissions.has('CONNECT') && permissions.has('SPEAK'))  {
 
         CurrentlyPlaying.add(message.guild.id);
-          
-        var connection = await voiceChannel.join();
 
         ytdl.getInfo(GivenSong).then(async (info) => {
               
@@ -4810,19 +4808,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const Started    = new Date();
           
             if  (Length <= 3600000)  {
-
-            connection.playOpusStream(await ytdl_discord(GivenSong).catch(error => ErrorBag.add(error) && voiceChannel.leave()))
-            .on('end', () => {
-               const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
-               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-               voiceChannel.leave();
-               CurrentlyPlaying.delete(message.guild.id);
-            })
-            .on('error', error => {
-               voiceChannel.leave();
-               CurrentlyPlaying.delete(message.guild.id);
-            });
           
             peeky.serverData.set(keySF, Title, "Title");
             peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
@@ -4837,6 +4822,17 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             message.channel.stopTyping();
               
             message.delete().catch(error => ErrorBag.add(error));
+          
+            var connection = await voiceChannel.join();
+
+            connection.playOpusStream(await ytdl_discord(GivenSong).catch(error => ErrorBag.add(error) && voiceChannel.leave()))
+            .on('end', () => {
+               const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
+               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+               voiceChannel.leave();
+               CurrentlyPlaying.delete(message.guild.id);
+            });
               
             } else {
               const embed = {"description": ErrorIcon + " You cannot play songs longer than 1 hour.",  "color": EmbedColor}; 
