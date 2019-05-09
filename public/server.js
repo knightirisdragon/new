@@ -623,7 +623,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, Header, Typ
             if  (Type == "Started")  {
                 ctx.fillText(Header + " " + Author + "'s", 15, 315);
             }  else if  (Type == "Current")  {
-                ctx.fillText(function_MinLeft(Length), 15, 315);
+                ctx.fillText("Currently playing with " + function_MinLeft(Length) + " minutes left", 15, 315);
             };
 
             //Song Name
@@ -685,7 +685,7 @@ function function_MinLeft(value)  {
   
     if  (!isNaN(value))  {
 
-        return (Math.abs((new Date() - new Date(value)) / (1000 * 60)).toFixed(1))
+        return (Math.abs((new Date() - new Date(value)) / (1000 * 60)).toFixed(2))
       
     }  else  {
 
@@ -4799,42 +4799,49 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         CurrentlyPlaying.add(message.guild.id);
           
         var connection = await voiceChannel.join();
-              
-        connection.playOpusStream(await ytdl_discord(GivenSong).catch(error => ErrorBag.add(error)))
-        .on('end', () => {
-           const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
-           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-              
-           voiceChannel.leave();
-           CurrentlyPlaying.delete(message.guild.id);
-        })
-        .on('error', error => {
-           voiceChannel.leave();
-           CurrentlyPlaying.delete(message.guild.id);
-        });
 
         ytdl.getInfo(GivenSong).then(async (info) => {
               
-            const Thumbnail = info.player_response.videoDetails.thumbnail.thumbnails[info.player_response.videoDetails.thumbnail.thumbnails.length - 1].url;
-            const Title     = info.title;
-            const Author    = info.author.name;
-            var Length    = new Date();
-              
-            const Started   = new Date();
+            const Thumbnail  = info.player_response.videoDetails.thumbnail.thumbnails[info.player_response.videoDetails.thumbnail.thumbnails.length - 1].url;
+            const Title      = info.title;
+            const Author     = info.author.name;
+            const Length     = info.length_seconds;
+            const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
+            const Started    = new Date();
+          
+            if  (Length <= 300)  {
+
+            connection.playOpusStream(await ytdl_discord(GivenSong).catch(error => ErrorBag.add(error)))
+            .on('end', () => {
+               const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
+               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+               voiceChannel.leave();
+               CurrentlyPlaying.delete(message.guild.id);
+            })
+            .on('error', error => {
+               voiceChannel.leave();
+               CurrentlyPlaying.delete(message.guild.id);
+            });
           
             peeky.serverData.set(keySF, Title, "Title");
             peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
             peeky.serverData.set(keySF, Author, "Author");
-            peeky.serverData.set(keySF, Length, "Length");
+            peeky.serverData.set(keySF, LengthDate, "Length");
             peeky.serverData.set(keySF, Started, "Started");
           
             CooldownExpires = Length;
 
             message.channel.startTyping();
-            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "Started playing", "Started")).catch(error => ErrorBag.add(error));
+            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, "Started playing", "Started")).catch(error => ErrorBag.add(error));
             message.channel.stopTyping();
               
             message.delete().catch(error => ErrorBag.add(error));
+              
+            } else {
+              const embed = {"description": ErrorIcon + " You cannot play songs longer than 1 hour.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
 
         });
 
