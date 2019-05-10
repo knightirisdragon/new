@@ -4949,6 +4949,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
 
     } else 
     if  (PlaylistAction.startsWith(" remove "))  {
+      
         var PlaylistRequest = PlaylistAction.replace(" remove ", "");
 
         if  (peeky.userData.get(key, "Playlist").includes(PlaylistRequest))  {
@@ -4967,12 +4968,19 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
     
     } else 
     if  (PlaylistAction.startsWith(" clear"))  {
+      
         peeky.userData.set(key, [], "Playlist");
 
         const embed = {"description": SuccessIcon + " Your playlist has been cleared.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      
     } else  {
-        message.channel.send("**" + message.author.username + "'s Playlist**" + "\n\n" + "<" + peeky.userData.get(key, "Playlist").join("> \n<") + ">").catch(error => ErrorBag.add(error));
+        if  (peeky.userData.get(key, "Playlist").length > 0)  {
+            var PlaylistList = "<" + peeky.userData.get(key, "Playlist").join("> \n<") + ">";
+        }  else  {
+           var PlaylistList = "Playlist is empty.";
+        };
+        message.channel.send("**" + message.author.username + "'s Playlist**" + "\n\n" + PlaylistList).catch(error => ErrorBag.add(error));
     };
 
     } else {
