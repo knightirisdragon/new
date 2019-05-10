@@ -4786,13 +4786,17 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
     };
   
-    if  (GivenSong == "playlist" && peeky.userData.get(key, "Playlist").length > 0)  {
+    if  (GivenSong == "playlist")  {
+    if  (peeky.userData.get(key, "Playlist").length > 0)  {
+      
         GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
+      
     } else {
             const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             
             GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+    };
     };
       
     if  (!GivenSong.includes("?list="))  {
