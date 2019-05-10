@@ -4922,6 +4922,29 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
 
 };
 
+//Playlist
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlist"))  {
+
+    var PlaylistAction = message.content.split(peeky.serverData.get(keySF, "prefix") + "playlist")[1];
+  
+    if  (PlaylistAction == " add")  {
+      
+        if  (ytdl.validateURL(split(PlaylistAction + " add ")) == true)  {
+         
+        };
+    
+    } else 
+    if  (PlaylistAction == " remove")  {
+    
+    } else 
+    if  (PlaylistAction == " clear")  {
+    
+    } else  {
+    
+    };
+
+};
+
 //Leave
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "leave"))  {
 
