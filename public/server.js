@@ -213,7 +213,7 @@ const PermissionsMessageError2 = [ErrorIcon + " You need to be the owner of this
 const ErrorMessage1  = [ErrorIcon + " You need more Gredit to do that."]
 const ErrorMessage2  = [ErrorIcon + " The new description is too large."];
 const ErrorMessage3  = [ErrorIcon + " The provided mention is invalid."];
-const ErrorMessage4  = null;
+const ErrorMessage4  = [ErrorIcon + " You need to enter a valid YouTube URL."];
 const ErrorMessage5  = [ErrorIcon + " You do not have that background in your inventory."];
 const ErrorMessage6  = [ErrorIcon + " You do not have enough chests."];
 const ErrorMessage7  = [ErrorIcon + " The mentioned user has no profile."];
@@ -4872,7 +4872,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     };
       
     } else {
-      const embed = {"description": ErrorIcon + " You need to enter a valid YouTube URL.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage4[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
       
@@ -4928,9 +4928,16 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
     var PlaylistAction = message.content.split(peeky.serverData.get(keySF, "prefix") + "playlist")[1];
   
     if  (PlaylistAction == " add")  {
+        var PlaylistRequest = PlaylistAction.split(" add ")[1];
       
-        if  (ytdl.validateURL(split(PlaylistAction + " add ")) == true)  {
-         
+        if  (ytdl.validateURL(PlaylistRequest) == true)  {
+            peeky.userData.get(key, "Playlist").push(PlaylistRequest);
+
+            const embed = {"description": SuccessIcon + " Added the song to your playlist.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        } else {
+          const embed = {"description": ErrorMessage4[0],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
     
     } else 
