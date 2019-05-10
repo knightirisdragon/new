@@ -4931,28 +4931,46 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
         setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 5000);
 
     var PlaylistAction = message.content.split(peeky.serverData.get(keySF, "prefix") + "playlist")[1];
-      console.log(PlaylistAction)
   
     if  (PlaylistAction.startsWith(" add "))  {
         var PlaylistRequest = PlaylistAction.replace(" add ", "");
-      console.log(PlaylistRequest);
       
         if  (ytdl.validateURL(PlaylistRequest) == true)  {
+          
             peeky.userData.get(key, "Playlist").push(PlaylistRequest);
 
             const embed = {"description": SuccessIcon + " Added the song to your playlist.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          
         } else {
           const embed = {"description": ErrorMessage4[0],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
     } else 
-    if  (PlaylistAction.startsWith(" remove"))  {
+    if  (PlaylistAction.startsWith(" remove "))  {
+        var PlaylistRequest = PlaylistAction.replace(" remove ", "");
+
+        if  (peeky.userData.get(key, "Playlist").includes(PlaylistRequest))  {
+
+        var BackgroundIndex = peeky.userData.get(key, "Playlist").indexOf(PlaylistRequest);
+
+        peeky.userData.get(key, "Playlist").splice(PlaylistRequest, 1);  //Remove the background
+
+        const embed = {"description": SuccessIcon + " The song has been removed from your playlist.",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          
+        } else {
+          const embed = {"description": ErrorIcon + " That song is not in your playlist.",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
     
     } else 
     if  (PlaylistAction.startsWith(" clear"))  {
-    
+        peeky.userData.set(key, [], "Playlist");
+
+        const embed = {"description": SuccessIcon + " Your playlist has been cleared.",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     } else  {
         message.channel.send("**" + message.author.username + "'s Playlist**" + "\n\n" + "<" + peeky.userData.get(key, "Playlist").join("> \n<") + ">").catch(error => ErrorBag.add(error));
     };
