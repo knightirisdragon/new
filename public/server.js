@@ -4925,14 +4925,15 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
 //Playlist
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlist"))  {
       
-    MusicCmdCooldown.add(message.author.id);
-    setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 5000);
-      
     if  (!MusicCmdCooldown.has(message.author.id))  {
 
+        MusicCmdCooldown.add(message.author.id);
+        setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 5000);
+
     var PlaylistAction = message.content.split(peeky.serverData.get(keySF, "prefix") + "playlist")[1];
+      console.log(PlaylistAction)
   
-    if  (PlaylistAction == " add")  {
+    if  (PlaylistAction.startsWith(" add"))  {
         var PlaylistRequest = PlaylistAction.split(" add ")[1];
       
         if  (ytdl.validateURL(PlaylistRequest) == true)  {
@@ -4944,15 +4945,15 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
           const embed = {"description": ErrorMessage4[0],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
+
+    } else 
+    if  (PlaylistAction.startsWith(" remove"))  {
     
     } else 
-    if  (PlaylistAction == " remove")  {
-    
-    } else 
-    if  (PlaylistAction == " clear")  {
+    if  (PlaylistAction.startsWith(" clear"))  {
     
     } else  {
-    
+        message.channel.send("**" + message.author.username + "'s Playlist**")
     };
 
     } else {
