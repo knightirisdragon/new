@@ -4968,11 +4968,11 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
     
     } else 
     if  (PlaylistAction.startsWith(" clear"))  {
+
+        const embed = {"description": SuccessIcon + " Your playlist has been cleared of " + peeky.userData.get(key, "Playlist").length + " songs.",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
         peeky.userData.set(key, [], "Playlist");
-
-        const embed = {"description": SuccessIcon + " Your playlist has been cleared.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     } else  {
         if  (peeky.userData.get(key, "Playlist").length > 0)  {
