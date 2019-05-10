@@ -4933,8 +4933,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
     var PlaylistAction = message.content.split(peeky.serverData.get(keySF, "prefix") + "playlist")[1];
       console.log(PlaylistAction)
   
-    if  (PlaylistAction.startsWith(" add"))  {
-        var PlaylistRequest = PlaylistAction.split(" add ")[1];
+    if  (PlaylistAction.startsWith(" add "))  {
+        var PlaylistRequest = PlaylistAction.replace(" add ", "");
+      console.log(PlaylistRequest);
       
         if  (ytdl.validateURL(PlaylistRequest) == true)  {
             peeky.userData.get(key, "Playlist").push(PlaylistRequest);
@@ -4953,7 +4954,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
     if  (PlaylistAction.startsWith(" clear"))  {
     
     } else  {
-        message.channel.send("**" + message.author.username + "'s Playlist**")
+        message.channel.send("**" + message.author.username + "'s Playlist**" + "\n\n" + "<" + peeky.userData.get(key, "Playlist").join("> \n<") + ">").catch(error => ErrorBag.add(error));
     };
 
     } else {
