@@ -4924,6 +4924,11 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
 
 //Playlist
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlist"))  {
+      
+    MusicCmdCooldown.add(message.author.id);
+    setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 5000);
+      
+    if  (!MusicCmdCooldown.has(message.author.id))  {
 
     var PlaylistAction = message.content.split(peeky.serverData.get(keySF, "prefix") + "playlist")[1];
   
@@ -4948,6 +4953,11 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
     
     } else  {
     
+    };
+
+    } else {
+      const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 };
