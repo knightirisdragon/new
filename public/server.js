@@ -836,10 +836,7 @@ peeky.on('message', async (message) => {
         Chests: 0,
       
         //Music
-        Title: undefined,
-        Thumbnail: undefined,
-        Author: undefined,
-        Length: 0,
+        Playlist: [],
       
         ContributorBadge: false,
         BugHunterBadge: false,
