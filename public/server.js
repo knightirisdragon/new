@@ -13,6 +13,7 @@ const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 //MUSIC
 const ytdl_discord  = require('ytdl-core-discord');
 const ytdl          = require('ytdl-core');
+const opus          = require('node-opus');
 
 //CANVAS
 const Canvas       = require('canvas');
@@ -808,7 +809,7 @@ fetch('https://peeky.glitch.me/staff.txt')
   
 };
 
-peeky.once('ready', () => {
+peeky.on('ready', () => {
 
     //Announce Connection
 	  console.log('Ready.');
@@ -821,12 +822,16 @@ peeky.once('ready', () => {
   
 });
 
-peeky.once('reconnecting', () => {
+peeky.on('reconnecting', () => {
 	  console.log('Reconnecting.');
 });
 
-peeky.once('disconnect', () => {
+peeky.on('disconnect', () => {
 	  console.log('Disconnected.');
+});
+
+peeky.on('debug', (error) => {
+	  console.log(error);
 });
 
 //Fixes
@@ -4863,8 +4868,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             message.delete().catch(error => ErrorBag.add(error));
           
             var connection = await voiceChannel.join();
-
-            connection.playOpusStream(await ytdl(GivenSong, {  type: 'audioonly'  }).catch(error => ErrorBag.add(error)))
+            
+            //connection.playOpusStream(await ytdl_discord(GivenSong, {  type: 'audioonly'  }).catch(error => ErrorBag.add(error)))
+            connection.playStream(await ytdl(GivenSong, {  type: 'audioonly'  }))
             .on('end', () => {
                const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -4883,6 +4889,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             };
 
         }).catch(async (error) => {
+            ErrorBag.add(error);
             const embed = {"description": ErrorIcon + " Failed to get the YouTube video.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         });
