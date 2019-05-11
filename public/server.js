@@ -5006,7 +5006,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
       };
   
       if  (peeky.userData.get(SomeoneTagged.id, "Playlist").length > 0)  {
-          var PlaylistList = "<" + peeky.userData.get(key, "Playlist").join("> \n<") + ">";
+          var PlaylistList = "<" + peeky.userData.get(SomeoneTagged.id, "Playlist").join("> \n<") + ">";
       }  else  {
          var PlaylistList = "The playlist is empty.";
       };
