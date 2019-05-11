@@ -592,8 +592,6 @@ async function function_WelcomeMessagesEmbed(member, type)  {
     const canvas = Canvas.createCanvas(500, 95);
     const ctx    = canvas.getContext('2d');
       
-    /*//Setting
-      
     ctx.globalAlpha = 0.75;
       
     var TheBannerShown = DefaultBackground;
@@ -625,16 +623,11 @@ async function function_WelcomeMessagesEmbed(member, type)  {
     //Joined String
     ctx.font = "25px " + DefaultFont;
     ctx.textAlign = "right";
+    ctx.fillStyle = "white";
 
-    if  (type == "join")  {
-      
-        ctx.fillStyle = "lightgreen";
-      
-    }  else  {
-      
-       ctx.fillStyle = "pink";
-      
-    };
+    if  (type == "join")  {  ctx.fillStyle = "lightgreen";  }  
+    else if (type == "leave")  {  ctx.fillStyle = "pink";  };
+
     ctx.fillText("●", canvas.width - 5, 20);
       
     //Name String
@@ -678,7 +671,7 @@ async function function_WelcomeMessagesEmbed(member, type)  {
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
     const avatar = await Canvas.loadImage(member.user.avatarURL.replace("https", "http"));
-    ctx.drawImage(avatar, 15, 15, 65, 65);*/
+    ctx.drawImage(avatar, 15, 15, 65, 65);
 
     return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
@@ -1766,7 +1759,6 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
   
     //Permission Checking
     if(member.guild.me.hasPermission("SEND_MESSAGES")) {
-    //Permission Checking
     
     const guild     = member.guild;
     var ProfileName = member.user.username;
@@ -1775,109 +1767,14 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
     var channel = guild.channels.find(c=> c.name == name);
     
     if (channel) {
-   
-    const canvas = Canvas.createCanvas(500, 95);
-    const ctx = canvas.getContext('2d');
       
-    ctx.globalAlpha = 0.75;
-      
-    var TheBannerShown = DefaultBackground;
-
-    if  (peeky.userData.has(key))  {
-      
-    for(var i = 0; i < Banners.length; i++) {
-       if (peeky.userData.get(key, "Background") == i + 1) {
-           TheBannerShown = Banners[i][Banner.Source];
-         break;
-       };
-    };
-      
-    };
-
-    const background = await Canvas.loadImage(TheBannerShown);
-    ctx.drawImage(background, 0, 0, canvas.width, 300);  
-  
-    const AvatarField = await Canvas.loadImage(DarkField);
-    ctx.drawImage(AvatarField, 10, 10, 75, 75); //Avatar Background  
-      
-    //Setting
-    ctx.shadowColor = "black";
-    ctx.shadowOffsetX = 1; 
-    ctx.shadowOffsetY = 1;
-    ctx.globalAlpha = 1;
-      
-    //Draw Events
-      
-        //Left String
-    ctx.font = "25px " + DefaultFont;
-    ctx.fillStyle = "pink";
-    ctx.textAlign = "right";
-    ctx.fillText("●", canvas.width - 5, 20);
-      
-        //Name String
-    ctx.font = "30px " + DefaultFont;
-    ctx.fillStyle = "white";
-    ctx.textAlign = "left";
-      
-    let foundWord = false;
-    
-    for (var i in blacklistedWebsites) {
-      
-    if (member.user.username.toLowerCase().includes(blacklistedWebsites[i])) foundWord = true;
-      
-    if (foundWord == true) {  {  ProfileName = "Name Censored";  ctx.fillStyle = "pink";  };  foundWord = false;  };    
-    break;
-    
-    };
-      
-    ctx.fillText(ProfileName, 95, 40);
-      
-    if  (peeky.userData.has(key))  {
-    
-        //Description String
-    var text = peeky.userData.get(key, "Description");
-    var fontsize=18;
-    var y_position = 75;
-
-    do {
-      
-         fontsize--;
-         ctx.font=fontsize+"px " + DefaultFont;
-       
-       } while  (ctx.measureText(text).width > (canvas.width - 95));
-      
-    if (text.includes("\n")) {
-                              y_position = 62.5;
-                             };
-        
-    ctx.fillText(peeky.userData.get(key, "Description"), 95, y_position);
-    }
-    else if (!member.user.bot) {
-    ctx.font = "18px " + DefaultFont;
-    ctx.fillStyle = "pink";
-    ctx.fillText("No Profile" , 95, 75);
-    }
-    else {
-    ctx.font = "18px " + DefaultFont;
-    ctx.fillStyle = "lightblue";
-    ctx.fillText("Bot" , 95, 75);
-    };
-
-    //Avatar
-    ctx.shadowOffsetX = 0; 
-    ctx.shadowOffsetY = 0;
-    const avatar = await Canvas.loadImage(member.user.avatarURL.replace("https", "http"));
-    ctx.drawImage(avatar, 15, 15, 65, 65);
-
-    const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
-
-    channel.send("", attachment)
-    .catch(error => ErrorBag.add(error));
+    channel.send("", await function_WelcomeMessagesEmbed(member, "leave")).catch(error => ErrorBag.add(error));
     
     console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
       
     };
     };
+
 };
 
 };
