@@ -697,16 +697,21 @@ function function_MinLeft(value)  {
 };
 
 //Numarize Array
-function function_NumarizeArray(array)  {
+function function_NumarizeArray(array, brackets)  {
 
 var Current = 0; var List = [];
+if  (brackets == undefined)  {
+    var Brackets = "";
+} else {
+  Brackets = brackets;
+};
 
 array.forEach(i => {
     Current ++;
-    List.push(Current + ". " + i)
+    List.push(Current + ". " + Brackets[0] + i + Brackets[1])
 });
   
-return array;
+return List;
 
 };
 
@@ -5018,14 +5023,16 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
       if  (MentionedMember) {
           SomeoneTagged = MentionedMember.user;
       };
+
+      const Playlist = peeky.userData.get(SomeoneTagged.id, "Playlist");
   
-      if  (peeky.userData.get(SomeoneTagged.id, "Playlist").length > 0)  {
-          var PlaylistList = "<" + peeky.userData.get(SomeoneTagged.id, "Playlist").join("> \n<") + ">";
+      if  (Playlist.length > 0)  {
+          var FinalizedPlaylist = function_NumarizeArray(Playlist, ["<", ">"])
       }  else  {
-         var PlaylistList = "The playlist is empty.";
+         var FinalizedPlaylist = "The playlist is empty.";
       };
 
-      message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other") + "'s playlist called " + peeky.userData.get(SomeoneTagged.id, "PlaylistName") + "**" + "\n\n" + PlaylistList).catch(error => ErrorBag.add(error));
+      message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other") + "'s playlist called " + peeky.userData.get(SomeoneTagged.id, "PlaylistName") + "**" + "\n\n" + FinalizedPlaylist).catch(error => ErrorBag.add(error));
       
     };
 
