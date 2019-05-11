@@ -4974,7 +4974,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
     } else  
     if  (PlaylistAction.startsWith(" rename "))  {
       
-        var PlaylistRequest = PlaylistAction.replace(" rename ", "");
+        var PlaylistRequest = Function_RemoveFormatting(PlaylistAction.replace(" rename ", ""), "other");
 
         peeky.userData.set(key, PlaylistRequest, "PlaylistName")
 
