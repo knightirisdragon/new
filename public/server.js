@@ -4814,7 +4814,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
         CurrentlyPlaying.add(message.guild.id);
 
-        await ytdl.getInfo(GivenSong).then(async (info) => {
+        await ytdl.getBasicInfo(GivenSong).then(async (info) => {
               
             const Thumbnail  = info.player_response.videoDetails.thumbnail.thumbnails[info.player_response.videoDetails.thumbnail.thumbnails.length - 1].url;
             const Title      = info.title;
@@ -4940,6 +4940,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
     if  (PlaylistAction.startsWith(" add "))  {
         var PlaylistRequest = PlaylistAction.replace(" add ", "");
       
+    if  (!PlaylistRequest.includes("?list="))  {
+      
         if  (ytdl.validateURL(PlaylistRequest) == true)  {
           
             peeky.userData.get(key, "Playlist").push(PlaylistRequest);
@@ -4951,6 +4953,11 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
           const embed = {"description": ErrorMessage4[0],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
+    
+    } else {
+      const embed = {"description": ErrorIcon + " You cannot add playlists to your playlist.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
     } else 
     if  (PlaylistAction.startsWith(" remove "))  {
@@ -4990,14 +4997,21 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
         peeky.userData.set(key, [], "Playlist");
       
     } else  {
+      
+      var MentionedMember = message.mentions.members.first();
+      var SomeoneTagged = message.author;
+      
+      if  (MentionedMember && MentionedMember.id) {
+          SomeoneTagged 
+      };
   
-        if  (peeky.userData.get(key, "Playlist").length > 0)  {
-            var PlaylistList = "<" + peeky.userData.get(key, "Playlist").join("> \n<") + ">";
-        }  else  {
-           var PlaylistList = "Playlist is empty.";
-        };
+      if  (peeky.userData.get(key, "Playlist").length > 0)  {
+          var PlaylistList = "<" + peeky.userData.get(key, "Playlist").join("> \n<") + ">";
+      }  else  {
+         var PlaylistList = "The playlist is empty.";
+      };
 
-        message.channel.send("**" + Function_RemoveFormatting(message.author.username, "other") + "'s playlist called " + peeky.userData.get(key, "PlaylistName") + "**" + "\n\n" + PlaylistList).catch(error => ErrorBag.add(error));
+      message.channel.send("**" + Function_RemoveFormatting(message.author.username, "other") + "'s playlist called " + peeky.userData.get(key, "PlaylistName") + "**" + "\n\n" + PlaylistList).catch(error => ErrorBag.add(error));
       
     };
 
