@@ -696,6 +696,20 @@ function function_MinLeft(value)  {
   
 };
 
+//Numarize Array
+function function_NumarizeArray(array)  {
+
+var Current = 0; var List = [];
+
+array.forEach(i => {
+    Current ++;
+    List.push(Current + ". " + i)
+});
+  
+return array;
+
+};
+
 function hideshowtopnav() {
    var x = document.getElementById("topnavmenu");
    var y = document.getElementById("hideshowbutton");
