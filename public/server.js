@@ -584,10 +584,10 @@ function function_RemoveTags(text)  {
 };
 
 //CANVAS: Welcome Messages embed
-async function function_WelcomeMessagesEmbed(User, Type)  {
+async function function_WelcomeMessagesEmbed(user, member)  {
   
-    var attachment = null;
-    const key = User;
+    var   attachment = null;
+    const key        = user;
       
     const canvas = Canvas.createCanvas(500, 95);
     const ctx    = canvas.getContext('2d');
@@ -597,13 +597,13 @@ async function function_WelcomeMessagesEmbed(User, Type)  {
     var TheBannerShown = DefaultBackground;
     
     if  (peeky.userData.has(key))  {
-      
-    for(var i = 0; i < Banners.length; i++) {
-       if (peeky.userData.get(key, "Background") == i + 1) {
-           TheBannerShown = Banners[i][Banner.Source];
-         break;
-       };
-    };
+
+        for(var i = 0; i < Banners.length; i++) {
+           if (peeky.userData.get(key, "Background") == i + 1) {
+               TheBannerShown = Banners[i][Banner.Source];
+               break;
+           };
+        };
       
     };
 
@@ -621,48 +621,21 @@ async function function_WelcomeMessagesEmbed(User, Type)  {
       
     //Draw Events
       
-        //Joined String
+    //Joined String
     ctx.font = "25px " + DefaultFont;
     ctx.fillStyle = "lightgreen";
     ctx.textAlign = "right";
     ctx.fillText("●", canvas.width - 5, 20);
       
-        //Name String
+    //Name String
     ctx.font = "30px " + DefaultFont;
     ctx.fillStyle = "white";
     ctx.textAlign = "left";
-      
-    let foundWord = false;
-      
-    for (var i in blacklistedWebsites) {
-      
-    if (member.user.username.toLowerCase().includes(blacklistedWebsites[i])) foundWord = true;
-      
-    if (foundWord == true) {
-       ProfileName = "Name Censored"
-       ctx.fillStyle = "pink"
-                                                     
-    if  (member.guild.me.hasPermission("BAN_MEMBERS"))  {
-    if  (member.bannable && !member.user.bot)  {
-
-        member.send("You have been banned from **" + Function_RemoveFormatting(guild.name, "other") + "** for having possible referrals in your username.\nYou can try to contact the server owner, " + Function_RemoveFormatting(guild.owner.tag, "other") + ", to get your ban revoked.")
-        .catch(error => ErrorBag.add(error));
-
-        member.guild.ban(member, { reason: "Triggered by the Welcome Messages function.", days: 0 })
-        .catch(error => ErrorBag.add(error));
-
-    };
-    };
-    };
-      foundWord = false;
-      break;
-    };
-      
-    ctx.fillText(ProfileName, 95, 40);
+    ctx.fillText(peeky.users.get(user).username, 95, 40);
       
     if  (peeky.userData.has(key))  {
     
-        //Description String
+    //Description String
     var text = peeky.userData.get(key, "Description");
     var fontsize=18;
     var y_position = 75;
@@ -680,7 +653,7 @@ async function function_WelcomeMessagesEmbed(User, Type)  {
         
     ctx.fillText(peeky.userData.get(key, "Description"), 95, y_position);
     }
-    else if (!member.user.bot) {
+    else if (!user.bot) {
     ctx.font = "18px " + DefaultFont;
     ctx.fillStyle = "pink";
     ctx.fillText("No Profile" , 95, 75);
@@ -697,7 +670,7 @@ async function function_WelcomeMessagesEmbed(User, Type)  {
     const avatar = await Canvas.loadImage(member.user.avatarURL.replace("https", "http"));
     ctx.drawImage(avatar, 15, 15, 65, 65);
   
-            return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+    return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
 };
 
@@ -1730,7 +1703,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
     
     if (channel) {
     
-    const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+    const attachment = new Discord.Attachment( await function_WelcomeMessagesEmbed(member.user.id, member), 'peeky.png', { quality: 0.1 });
       
     channel.send("", attachment)
     .catch(error => ErrorBag.add(error));
