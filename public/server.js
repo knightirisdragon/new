@@ -4704,7 +4704,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         Type = "Random";
     };
   
-    if  (GivenSong == "playlist" || GivenSong == peeky.userData.get(key, "PlaylistName").toLowerCase())  {
+    if  (GivenSong == "playlist")  {
     if  (peeky.userData.get(key, "Playlist").length > 0)  {
       
         GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
@@ -4729,20 +4729,17 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         const permissions   = voiceChannel.permissionsFor(message.client.user);
     
     if  (permissions.has('CONNECT') && permissions.has('SPEAK'))  {
-
+              
         CurrentlyPlaying.add(message.guild.id);
 
         await ytdl.getBasicInfo(GivenSong).then(async (info) => {
               
             const Thumbnail  = info.player_response.videoDetails.thumbnail.thumbnails[info.player_response.videoDetails.thumbnail.thumbnails.length - 1].url;
-            const IsLive     = info.player_response.videoDetails.isLiveContent;
             const Title      = info.title;
             const Author     = info.author.name;
             const Length     = info.length_seconds;
             const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
             const Started    = new Date();
-          
-            if  (IsLive == false)  {
           
             if  (Length <= 3600000)  {
           
@@ -4761,26 +4758,24 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             message.delete().catch(error => ErrorBag.add(error));
               
             await voiceChannel.join().then(connection => {
+
             const stream = ytdl(GivenSong);
             const dispatcher = connection.playStream(stream);
 
             dispatcher.on('end', async reason => {
               
+               CurrentlyPlaying.delete(message.guild.id)
                voiceChannel.leave();
               
                const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                
-            })
+            });
+
             });
               
             } else {
               const embed = {"description": ErrorIcon + " You cannot play songs longer than 1 hour.",  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };
-              
-            } else {
-              const embed = {"description": ErrorIcon + " You cannot play livestream videos.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
