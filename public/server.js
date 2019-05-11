@@ -4704,7 +4704,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         Type = "Random";
     };
   
-    if  (GivenSong == "playlist")  {
+    if  (GivenSong == "playlist" || peeky.userData.get(key, "PlaylistName").toLowerCase())  {
     if  (peeky.userData.get(key, "Playlist").length > 0)  {
       
         GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
