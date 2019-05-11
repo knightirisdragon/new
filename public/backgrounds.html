@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>PEEKY's Badges</title>
+    <title>PEEKY's Backgrounds</title>
     <link rel="icon" href="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2-1.png.png?1553621395208">
     
     <meta charset="utf-8">
@@ -12,6 +12,54 @@
     <script src="/server.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+  
+<style>
+
+.loading_placeholder {
+}
+
+.background_centered {
+    background-color: rgba(35, 39, 42, 0.5);
+    padding: 15px;
+    position: absolute;
+    opacity: 0.25;
+    border-radius: 5px;
+    transform: translate(20px, -120%);
+}
+
+.background {
+    display: inline-block;
+    text-align: left;
+    margin: -4px;
+    transition: transform .25s ease;
+}
+
+.background:hover {
+    position: relative;
+    transform: scale(1.1);
+    z-index: 1;  
+    opacity: 1.0;
+}
+
+.background_image {
+    filter: blur(2px);
+    border-radius: 0px;
+}
+
+.background:hover .background_centered {
+    opacity: 0.9;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.background:hover .background_image {
+    opacity: 1;
+    filter: blur(0px);
+    cursor: pointer;
+    border-radius: 10px;
+}
+  
+</style>
   
 <body onload="UpdateBackgrounds()" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
 

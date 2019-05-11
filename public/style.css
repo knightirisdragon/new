@@ -78,6 +78,11 @@ a.button:hover {
     width: 100%;
 }
 
+.loading_placeholder  {
+    background-color: lightgray;    
+    border-radius: 10px;
+}
+
 #descbutton  {
     position: absolute;
     width: 45px;
@@ -304,48 +309,6 @@ th, td {
     z-index: 1;
     transform: scale(0.95);
     cursor: pointer;
-}
-
-.background_centered {
-    background-color: rgba(35, 39, 42, 0.5);
-    padding: 15px;
-    position: absolute;
-    opacity: 0.25;
-    border-radius: 5px;
-    width: 460px;
-    transform: translate(20px, -120%);
-}
-
-.background {
-    display: inline-block;
-    text-align: left;
-    margin: -4px;
-    transition: transform .25s ease;
-}
-
-.background:hover {
-    position: relative;
-    transform: scale(1.1);
-    z-index: 1;  
-    opacity: 1.0;
-}
-
-.background_image {
-    filter: blur(2px);
-    border-radius: 0px;
-}
-
-.background:hover .background_centered {
-    opacity: 0.9;
-    cursor: pointer;
-    border-radius: 10px;
-}
-
-.background:hover .background_image {
-    opacity: 1;
-    filter: blur(0px);
-    cursor: pointer;
-    border-radius: 10px;
 }
 
 .badge_centered {
