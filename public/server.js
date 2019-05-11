@@ -4704,17 +4704,17 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         Type = "Random";
     };
   
-    if  (GivenSong == "playlist")  {
+    if  (GivenSong == "playlist" || GivenSong == peeky.userData.get(key, "PlaylistName").toLowerCase())  {
     if  (peeky.userData.get(key, "Playlist").length > 0)  {
       
         GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
         Type = "Playlist";
       
     } else {
-            const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             
-            GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+      GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
     };
     };
       
@@ -4735,7 +4735,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         await ytdl.getBasicInfo(GivenSong).then(async (info) => {
               
             const Thumbnail  = info.player_response.videoDetails.thumbnail.thumbnails[info.player_response.videoDetails.thumbnail.thumbnails.length - 1].url;
-            const IsLive     = info.player_response.videoDetails.isLiveConten;
+            const IsLive     = info.player_response.videoDetails.isLiveContent;
             const Title      = info.title;
             const Author     = info.author.name;
             const Length     = info.length_seconds;
@@ -4784,7 +4784,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             };
 
         }).catch(async (error) => {
-            console.log(error); //Temporary
             ErrorBag.add(error);
           
             const embed = {"description": ErrorIcon + " Failed to get the YouTube video.",  "color": EmbedColor}; 
