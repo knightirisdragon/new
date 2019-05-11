@@ -78,11 +78,6 @@ a.button:hover {
     width: 100%;
 }
 
-.loading_placeholder  {
-    background-color: lightgray;    
-    border-radius: 10px;
-}
-
 #descbutton  {
     position: absolute;
     width: 45px;
