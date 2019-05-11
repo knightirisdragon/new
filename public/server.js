@@ -670,7 +670,7 @@ async function function_WelcomeMessagesEmbed(member, type)  {
     //Avatar
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
-    const avatar = await Canvas.loadImage(member.user.avatarURL.replace("https", "http"));
+    const avatar = await Canvas.loadImage(member.user.displayAvatarURL);
     ctx.drawImage(avatar, 15, 15, 65, 65);
 
     return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
@@ -1174,7 +1174,7 @@ peeky.on('message', async (message) => {
       //Avatar
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
-	  const avatar = await Canvas.loadImage(message.author.avatarURL.replace("https", "http"));
+	  const avatar = await Canvas.loadImage(message.author.displayAvatarURL);
     ctx.drawImage(avatar, 15, 15, 65, 65);
     
     const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
@@ -1286,7 +1286,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
            };
         };
 
-        var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname'>  <img src='" + CurrentUser.avatarURL + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + peeky.userData.get(`${data.UserID}`, 'Gredit').toLocaleString('en') + " Gredit</b>  </div>";
+        var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname'>  <img src='" + CurrentUser.displayAvatarURL + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + peeky.userData.get(`${data.UserID}`, 'Gredit').toLocaleString('en') + " Gredit</b>  </div>";
         if  (currentplace == 1 || currentplace == 2 || currentplace == 3)  {
             LeaderboardTop.push(SavedProfile);
         } else  {
@@ -1386,7 +1386,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
             };
         };
 
-        SupporterList.push('<div class="supporter" style="background-image: url(' + TheBannerShown + ')">  <div class="supporterinfo">  <img src=' + '"' + guildMember.user.avatarURL + '" width="30px" height="30px" class="supportericon"' + '> <b>' + function_RemoveTags(guildMember.user.username) + '</b>  </div>  </div>');
+        SupporterList.push('<div class="supporter" style="background-image: url(' + TheBannerShown + ')">  <div class="supporterinfo">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="30px" height="30px" class="supportericon"' + '> <b>' + function_RemoveTags(guildMember.user.username) + '</b>  </div>  </div>');
     
     };
     });
@@ -1463,7 +1463,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
             StaffButton.push('...');
         };
       
-        var CurrentContact = '<div class="container">  <img src=' + '"' + guildMember.user.avatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="2"> ' + function_RemoveTags(guildMember.user.username) + '<font size="2" color=#7289DA>#' + guildMember.user.discriminator + '</font>' + '  <br>  ' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '  </font>  <br><br>  ' + StaffButton.join(" ") + '  </b>  </div>';
+        var CurrentContact = '<div class="container">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="2"> ' + function_RemoveTags(guildMember.user.username) + '<font size="2" color=#7289DA>#' + guildMember.user.discriminator + '</font>' + '  <br>  ' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '  </font>  <br><br>  ' + StaffButton.join(" ") + '  </b>  </div>';
       
         if  (guildMember.roles.has("574255080069398543"))  {
             DevList.push(CurrentContact);
@@ -1867,13 +1867,13 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 
               if  (!FoundHook)  {
 
-                  Channel.createWebhook("PEEKY", peeky.user.avatarURL).catch(error => ErrorBag.add(error))
+                  Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL).catch(error => ErrorBag.add(error))
                   .then(Webhook => {
 
                   Webhook.send(Original_Message.content + "\n­", {
 
                   "username": Original_Message.author.tag,
-                  "avatarURL": Original_Message.author.avatarURL,
+                  "avatarURL": Original_Message.author.displayAvatarURL,
                   "files": [image],
 
                   "embeds":  [{
@@ -1894,7 +1894,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
                  Webhook.send(Original_Message.content + "\n­", {
 
                  "username": Original_Message.author.tag,
-                 "avatarURL": Original_Message.author.avatarURL,
+                 "avatarURL": Original_Message.author.displayAvatarURL,
                  "files": [image],
                    
                   "embeds":  [{
@@ -4635,7 +4635,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.rect(14, 254, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 29), 30);
   
         //Avatar
-    const avatar = await Canvas.loadImage(SomeoneTagged.avatarURL.replace("https", "http"));
+    const avatar = await Canvas.loadImage(SomeoneTagged.displayAvatarURL);
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
     ctx.drawImage(avatar, 18, 17, 60, 60);
@@ -4759,18 +4759,19 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             message.channel.stopTyping();
               
             message.delete().catch(error => ErrorBag.add(error));
-          
-            var connection = await voiceChannel.join();
-            
-            //connection.playOpusStream(await ytdl_discord(GivenSong, {  type: 'audioonly'  }).catch(error => ErrorBag.add(error)))
-            connection.playStream(await ytdl(GivenSong, {}))
-            .on('end', reason => {
+              
+            await voiceChannel.join().then(connection => {
+            const stream = ytdl(GivenSong);
+            const dispatcher = connection.playStream(stream);
+
+            dispatcher.on('end', async reason => {
+              
+               voiceChannel.leave();
               
                const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-               voiceChannel.leave();
-               CurrentlyPlaying.delete(message.guild.id);
+               
+            })
             });
               
             } else {
