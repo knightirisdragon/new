@@ -583,7 +583,7 @@ function function_RemoveTags(text)  {
 };
 
 //CANVAS: Music embed
-async function function_MusicEmbed(Title, Thumbnail, Author, Length, Header, Type)  {
+async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)  {
   
             var attachment = null;
   
@@ -622,13 +622,11 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, Header, Typ
             //Header
             ctx.font = "15px " + DefaultFont;
             if  (Type == "Started")  {
-                ctx.fillText("Started playing " + Author + "'s.", 15, 315);
-            }  else if  (Type == "YouTube")  {
-                ctx.fillText("Started playing a random song.", 15, 315);
+                ctx.fillText("Started playing " + Author + "'s song.", 15, 315);
             }  else if  (Type == "Playlist")  {
-                ctx.fillText("Playing a random song from  minutes left.", 15, 315);
+                ctx.fillText("Started playing a random song from " + peeky.users.get(User) + "'s playlist called " + peeky.userData.get(User, "Playlist") + ".", 15, 315);
             }  else if  (Type == "Random")  {
-                ctx.fillText("Currently playing with " + function_MinLeft(Length) + " minutes left.", 15, 315);
+                ctx.fillText("Started playing a random song.", 15, 315);
             }  else if  (Type == "Current")  {
                 ctx.fillText("Currently playing with " + function_MinLeft(Length) + " minutes left.", 15, 315);
             };
@@ -4859,14 +4857,14 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             CooldownExpires = Length;
 
             message.channel.startTyping();
-            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, "Started playing", "Started")).catch(error => ErrorBag.add(error));
+            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, "Started")).catch(error => ErrorBag.add(error));
             message.channel.stopTyping();
               
             message.delete().catch(error => ErrorBag.add(error));
           
             var connection = await voiceChannel.join();
 
-            connection.playOpusStream(await ytdl_discord(GivenSong, {  type: 'audioonly'  }).catch(error => ErrorBag.add(error)))
+            connection.playOpusStream(await ytdl(GivenSong, {  type: 'audioonly'  }).catch(error => ErrorBag.add(error)))
             .on('end', () => {
                const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
