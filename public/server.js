@@ -622,9 +622,15 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, Header, Typ
             //Header
             ctx.font = "15px " + DefaultFont;
             if  (Type == "Started")  {
-                ctx.fillText(Header + " " + Author + "'s", 15, 315);
+                ctx.fillText("Started playing " + Author + "'s.", 15, 315);
+            }  else if  (Type == "YouTube")  {
+                ctx.fillText("Started playing a random song.", 15, 315);
+            }  else if  (Type == "Playlist")  {
+                ctx.fillText("Playing a random song from  minutes left.", 15, 315);
+            }  else if  (Type == "Random")  {
+                ctx.fillText("Currently playing with " + function_MinLeft(Length) + " minutes left.", 15, 315);
             }  else if  (Type == "Current")  {
-                ctx.fillText("Currently playing with " + function_MinLeft(Length) + " minutes left", 15, 315);
+                ctx.fillText("Currently playing with " + function_MinLeft(Length) + " minutes left.", 15, 315);
             };
 
             //Song Name
@@ -708,10 +714,10 @@ if  (brackets == undefined)  {
 
 array.forEach(i => {
     Current ++;
-    List.push(Current + ". " + Brackets[0] + i + Brackets[1])
+    List.push(Current + ". " + Brackets[0] + i + Brackets[1] + "\n");
 });
   
-return List;
+return List.join("");
 
 };
 
