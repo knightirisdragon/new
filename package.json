@@ -13,7 +13,7 @@
     "dominant-color": "^0.0.1",
     "enmap": "^4.8.5",
     "better-sqlite-pool": "^0.2.2",
-    "sqlite3": "^4.0.6",
+    "sqlite3": "^4.0.8",
     "express": "^4.16.4",
     "request": "^2.88.0",
     "require.js": "^1.0.0",
