@@ -625,7 +625,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             if  (Type == "Started")  {
                 ctx.fillText("Started playing " + Author + "'s song.", 15, 315);
             }  else if  (Type == "Playlist")  {
-                ctx.fillText("Started playing a random song from " + peeky.users.get(User) + "'s playlist called " + peeky.userData.get(User, "Playlist") + ".", 15, 315);
+                ctx.fillText("Started playing a random song from " + peeky.users.get(User).username + "'s playlist.", 15, 315);
             }  else if  (Type == "Random")  {
                 ctx.fillText("Started playing a random song.", 15, 315);
             }  else if  (Type == "Current")  {
@@ -4810,15 +4810,18 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     if  (!CurrentlyPlaying.has(message.guild.id))  {
 
     var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
+    var Type = "Started";
   
     if  (GivenSong == RandomString)  {
         GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+        Type = "Random";
     };
   
     if  (GivenSong == "playlist")  {
     if  (peeky.userData.get(key, "Playlist").length > 0)  {
       
         GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
+        Type = "Playlist";
       
     } else {
             const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
@@ -4850,6 +4853,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const Length     = info.length_seconds;
             const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
             const Started    = new Date();
+            
           
             if  (Length <= 3600000)  {
           
@@ -4862,7 +4866,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             CooldownExpires = Length;
 
             message.channel.startTyping();
-            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, "Started")).catch(error => ErrorBag.add(error));
+            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
             message.channel.stopTyping();
               
             message.delete().catch(error => ErrorBag.add(error));
@@ -4877,10 +4881,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
                voiceChannel.leave();
                CurrentlyPlaying.delete(message.guild.id);
-            })
-            .on('error', (err) => {
-               console.log(err)
-               CurrentlyPlaying.delete(message.guild.id);
             });
               
             } else {
@@ -4889,7 +4889,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             };
 
         }).catch(async (error) => {
+            console.log(error); //Temporary
             ErrorBag.add(error);
+          
             const embed = {"description": ErrorIcon + " Failed to get the YouTube video.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         });
