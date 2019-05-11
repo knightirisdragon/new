@@ -4875,7 +4875,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             
             //connection.playOpusStream(await ytdl_discord(GivenSong, {  type: 'audioonly'  }).catch(error => ErrorBag.add(error)))
             connection.playStream(await ytdl(GivenSong, {}))
-            .on('end', () => {
+            .on('end', reason => {
+               console.log(reason);
               
                const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
