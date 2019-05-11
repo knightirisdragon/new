@@ -584,13 +584,15 @@ function function_RemoveTags(text)  {
 };
 
 //CANVAS: Welcome Messages embed
-async function function_WelcomeMessagesEmbed(user, member)  {
+async function function_WelcomeMessagesEmbed(member, type)  {
   
     var   attachment = null;
-    const key        = user;
+    const key        = member.user.id;
       
     const canvas = Canvas.createCanvas(500, 95);
     const ctx    = canvas.getContext('2d');
+      
+    /*//Setting
       
     ctx.globalAlpha = 0.75;
       
@@ -612,8 +614,7 @@ async function function_WelcomeMessagesEmbed(user, member)  {
       
     const AvatarField = await Canvas.loadImage(DarkField);
     ctx.drawImage(AvatarField, 10, 10, 75, 75); //Avatar Background
-      
-    //Setting
+
     ctx.shadowColor = "black";
     ctx.shadowOffsetX = 1; 
     ctx.shadowOffsetY = 1;
@@ -623,15 +624,24 @@ async function function_WelcomeMessagesEmbed(user, member)  {
       
     //Joined String
     ctx.font = "25px " + DefaultFont;
-    ctx.fillStyle = "lightgreen";
     ctx.textAlign = "right";
+
+    if  (type == "join")  {
+      
+        ctx.fillStyle = "lightgreen";
+      
+    }  else  {
+      
+       ctx.fillStyle = "pink";
+      
+    };
     ctx.fillText("●", canvas.width - 5, 20);
       
     //Name String
     ctx.font = "30px " + DefaultFont;
     ctx.fillStyle = "white";
     ctx.textAlign = "left";
-    ctx.fillText(peeky.users.get(user).username, 95, 40);
+    ctx.fillText(peeky.users.get(key).username, 95, 40);
       
     if  (peeky.userData.has(key))  {
     
@@ -653,7 +663,7 @@ async function function_WelcomeMessagesEmbed(user, member)  {
         
     ctx.fillText(peeky.userData.get(key, "Description"), 95, y_position);
     }
-    else if (!user.bot) {
+    else if (!member.user.bot) {
     ctx.font = "18px " + DefaultFont;
     ctx.fillStyle = "pink";
     ctx.fillText("No Profile" , 95, 75);
@@ -668,8 +678,8 @@ async function function_WelcomeMessagesEmbed(user, member)  {
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
     const avatar = await Canvas.loadImage(member.user.avatarURL.replace("https", "http"));
-    ctx.drawImage(avatar, 15, 15, 65, 65);
-  
+    ctx.drawImage(avatar, 15, 15, 65, 65);*/
+
     return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
 };
@@ -1702,11 +1712,8 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
     var channel = guild.channels.find(c=> c.name == name);
     
     if (channel) {
-    
-    const attachment = new Discord.Attachment( await function_WelcomeMessagesEmbed(member.user.id, member), 'peeky.png', { quality: 0.1 });
       
-    channel.send("", attachment)
-    .catch(error => ErrorBag.add(error));
+    channel.send("", await function_WelcomeMessagesEmbed(member, "join")).catch(error => ErrorBag.add(error));
     
     console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
       
