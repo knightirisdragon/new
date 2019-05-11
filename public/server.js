@@ -837,6 +837,7 @@ peeky.on('message', async (message) => {
       
         //Music
         Playlist: [],
+        PlaylistName: "Favorite Songs",
       
         ContributorBadge: false,
         BugHunterBadge: false,
@@ -4970,21 +4971,34 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
     
-    } else 
+    } else  
+    if  (PlaylistAction.startsWith(" rename "))  {
+      
+        var PlaylistRequest = PlaylistAction.replace(" rename ", "");
+
+        peeky.userData.set(key, PlaylistRequest, "PlaylistName")
+
+        const embed = {"description": SuccessIcon + " Your playlist has renamed to **" + peeky.userData.get(key, "PlaylistName") + "**.",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      
+    } else
     if  (PlaylistAction.startsWith(" clear"))  {
 
-        const embed = {"description": SuccessIcon + " Your playlist has been cleared of " + peeky.userData.get(key, "Playlist").length + " songs.",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " Your playlist has been cleared of **" + peeky.userData.get(key, "Playlist").length + " songs**.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
         peeky.userData.set(key, [], "Playlist");
       
     } else  {
+  
         if  (peeky.userData.get(key, "Playlist").length > 0)  {
             var PlaylistList = "<" + peeky.userData.get(key, "Playlist").join("> \n<") + ">";
         }  else  {
            var PlaylistList = "Playlist is empty.";
         };
-        message.channel.send("**" + message.author.username + "'s Playlist**" + "\n\n" + PlaylistList).catch(error => ErrorBag.add(error));
+
+        message.channel.send("**" + Function_RemoveFormatting(message.author.username, "other") + "'s playlist called " + peeky.userData.get(key, "PlaylistName") + "**" + "\n\n" + PlaylistList).catch(error => ErrorBag.add(error));
+      
     };
 
     } else {
