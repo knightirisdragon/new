@@ -814,6 +814,36 @@ return List.join("");
 
 };
 
+function AddBookmark(a)  {
+  
+  var pageTitle=document.title;
+	var pageURL=document.location;
+	try {
+		// Internet Explorer solution
+		eval("window.external.AddFa-vorite(pageURL, pageTitle)".replace(/-/g,''));
+	}
+	catch (e) {
+		try {
+			// Mozilla Firefox solution
+			window.sidebar.addPanel(pageTitle, pageURL, "");
+		}
+		catch (e) {
+			// Opera solution
+			if (typeof(opera)=="object") {
+				a.rel="sidebar";
+				a.title=pageTitle;
+				a.url=pageURL;
+				return true;
+			} else {
+				// The rest browsers (i.e Chrome, Safari)
+				alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Cmd' : 'Ctrl') + '+D to bookmark this page.');
+			}
+		}
+	}
+	return false;
+
+};
+
 function hideshowtopnav() {
    var x = document.getElementById("topnavmenu");
    var y = document.getElementById("hideshowbutton");
@@ -4704,7 +4734,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         Type = "Random";
     };
   
-    if  (GivenSong == "playlist" || peeky.userData.get(key, "PlaylistName").toLowerCase())  {
+    if  (GivenSong == "playlist" || GivenSong == peeky.userData.get(key, "PlaylistName").toLowerCase())  {
     if  (peeky.userData.get(key, "Playlist").length > 0)  {
       
         GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
@@ -4741,7 +4771,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
             const Started    = new Date();
           
-            if  (Length <= 3600000)  {
+            if  (Length <= 3600000 && Length > 0)  {
           
             peeky.serverData.set(keySF, Title, "Title");
             peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
@@ -4775,7 +4805,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             });
               
             } else {
-              const embed = {"description": ErrorIcon + " You cannot play songs longer than 1 hour.",  "color": EmbedColor}; 
+              const embed = {"description": ErrorIcon + " You cannot play livestreams or songs longer than 1 hour.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
