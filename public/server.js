@@ -5241,8 +5241,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 };
 };
   
-//MutedRole
-if  (message.content.startsWith(Prefix + "mutedrole "))  {
+//MuteRole
+if  (message.content.startsWith(Prefix + "muterole "))  {
 
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
   
@@ -5275,7 +5275,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 
     peeky.serverData.set(keySF, MutedRole, "muted_role");
   
-    const embed = {"description": SuccessIcon + " The server's muted role is now called **@­" + MutedRole + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};     await message.channel.send({ embed })
+    const embed = {"description": SuccessIcon + " The server's mute role is now called **@­" + MutedRole + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};     await message.channel.send({ embed })
     .catch(error => ErrorBag.add(error));
 
 }
