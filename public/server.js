@@ -2540,7 +2540,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
    Functions.push(
                         "**Server Information**" + "\n\n" +
                         WhiteSquare + " **Prefix**" + "\n" + Hollow + " " + "This server's prefix is `" + peeky.serverData.get(keySF, "prefix") + "`." + "\n" +
-                        WhiteSquare + " **Muted Role**" + "\n" + Hollow + " " + "This server's muted role is called `" + peeky.serverData.get(keySF, "muted_role") + "`." + "\n­"
+                        WhiteSquare + " **Mute Role**" + "\n" + Hollow + " " + "This server's mute role is called `" + peeky.serverData.get(keySF, "muted_role") + "`." + "\n­"
    );
   
    Functions.push(
