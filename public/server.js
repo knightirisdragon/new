@@ -847,6 +847,15 @@ function UpdateBackgrounds()  {
   
 };
 
+function UpdateRandomSongs()  {
+
+    fetch('https://peeky.glitch.me/random_songs.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("RandomSongsList").innerHTML = data;
+    });
+  
+};
+
 function UpdateSupporters()  {
 
     fetch('https://peeky.glitch.me/supporters.txt')
@@ -1327,6 +1336,27 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
   });
       
   console.log("The backgrounds have been updated.");
+
+};
+
+if  (!WebsiteCooldowns.has("randomsongs"))  {
+
+    WebsiteCooldowns.add("randomsongs");
+
+    const SongList = [];
+    var   Current  = 0;
+
+    RandomSongs.forEach(song_info => {
+          Current ++;
+          SongList.push('<iframe width="560" height="315" src="' + song_info[0] + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+    });
+
+
+  fs.writeFile('public/random_songs.txt', SongList.join(" "), (err) => {
+      if (err) console.log(err);
+  });
+      
+  console.log("The random songs have been updated.");
 
 };
 
