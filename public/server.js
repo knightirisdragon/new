@@ -770,7 +770,7 @@ function function_DaysLeft(value)  {
   
     if  (!isNaN(value))  {
 
-        return (new Date(Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)))).toISOString().substr(11, 8);
+        return Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24))
       
     }  else  {
 
@@ -785,7 +785,7 @@ function function_MinLeft(value)  {
   
     if  (!isNaN(value))  {
 
-        return (Math.abs((new Date() - new Date(value)) / (1000 * 60))).toString().split(" ")[4];
+        return new Date(Math.abs((new Date() - new Date(value)) / (1000 * 60))).toISOString().substr(11, 8);
       
     }  else  {
 
@@ -4779,7 +4779,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
           
             if  (Length <= 3600000 && Length > 0)  {
               
-            CurrentlyPlaying.add(message.guild.id);
+            await CurrentlyPlaying.add(message.guild.id);
           
             peeky.serverData.set(keySF, Title, "Title");
             peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
@@ -4787,7 +4787,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             peeky.serverData.set(keySF, LengthDate, "Length");
             peeky.serverData.set(keySF, Started, "Started");
           
-            CooldownExpires = Length;
+            CooldownExpires = (Length * 1000);
 
             message.channel.startTyping();
             await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
@@ -4802,7 +4802,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
             dispatcher.on('end', async reason => {
               
-               CurrentlyPlaying.delete(message.guild.id)
+               CurrentlyPlaying.delete(message.guild.id);
                voiceChannel.leave();
               
                const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
