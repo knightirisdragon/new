@@ -1310,11 +1310,11 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
       
     };
 
-  fs.writeFile('public/leaderboard.txt', "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for a special badge! </b>  </div> </center>" + Leaderboard.join("<br><br>"), (err) => {
-      if (err) console.log(err);
-  });
-      
-  console.log("The leaderboard has been updated.");
+    fs.writeFile('public/leaderboard.txt', "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for a special badge! </b>  </div> </center>" + Leaderboard.join("<br><br>"), (err) => {
+        if (err) console.log(err);
+    });
+
+    console.log("The leaderboard has been updated.");
 
 };
 
@@ -1331,11 +1331,11 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     });
 
 
-  fs.writeFile('public/backgrounds.txt', BackgroundList.join(" "), (err) => {
-      if (err) console.log(err);
-  });
-      
-  console.log("The backgrounds have been updated.");
+    fs.writeFile('public/backgrounds.txt', BackgroundList.join(" "), (err) => {
+        if (err) console.log(err);
+    });
+
+    console.log("The backgrounds have been updated.");
 
 };
 
@@ -1352,11 +1352,11 @@ if  (!WebsiteCooldowns.has("randomsongs"))  {
     });
 
 
-  fs.writeFile('public/random_songs.txt', SongList.join(" <br> "), (err) => {
-      if (err) console.log(err);
-  });
-      
-  console.log("The random songs have been updated.");
+    fs.writeFile('public/random_songs.txt', SongList.join(" <br> "), (err) => {
+        if (err) console.log(err);
+    });
+
+    console.log("The random songs have been updated.");
 
 };
 
@@ -1390,11 +1390,11 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
       
     };
 
-  fs.writeFile('public/server_list.txt', ServerList.join(" "), (err) => {
-      if (err) console.log(err);
-  });
+    fs.writeFile('public/server_list.txt', ServerList.join(" "), (err) => {
+        if (err) console.log(err);
+    });
 
-  console.log("The server list has been updated.");
+    console.log("The server list has been updated.");
 
 };
   
