@@ -800,8 +800,12 @@ function function_MinLeft(value)  {
         var Seconds = Math.abs((new Date() - new Date(value)) / (1000 * 60)).toFixed(0);
         var Minutes = Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60)).toFixed(0);
 
-        if(Seconds  < 10){Seconds = "0" + Seconds };
-        if(Minutes < 10){Minutes = "0" + Minutes };
+        if  (Seconds  < 10)  {
+            Seconds = "0" + Seconds;
+        };
+        if  (Minutes < 10)  {
+            Minutes = "0" + Minutes;
+        };
 
         TimeLeft = Minutes +":"+ Seconds;
       
