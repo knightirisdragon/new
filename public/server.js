@@ -321,15 +321,15 @@ var Banners = [
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground89.png?1540724452325", NormalPrice, "The horde"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground90.jpg?1540724504181", NormalPrice, "The Moonlord"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground91.jpg?1540732418318", NormalPrice, "Wastelanders"],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground92.png?1540732542780", NormalPrice, ""],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground93.png?1540732797407", NormalPrice, ""],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground94.png?1540732802324", NormalPrice, ""],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground95.png?1540732804837", NormalPrice, ""],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground96.png?1540733411430", NormalPrice, ""],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground97.png?1540738875332", NormalPrice, ""],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground98.jpeg?1540751959042", NormalPrice, ""],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground99.jpg?1540906544488", NormalPrice, ""],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground100.jpg?1540906676579", NormalPrice, ""],  
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground92.png?1540732542780", NormalPrice, "Shad rage"],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground93.png?1540732797407", NormalPrice, "Five Finger Death Punch"],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground94.png?1540732802324", NormalPrice, "Slza"],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground95.png?1540732804837", NormalPrice, "Hollywood Undead"],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground96.png?1540733411430", NormalPrice, "Carnival infestation"],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground97.png?1540738875332", NormalPrice, "Last Man Battalion"],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground98.jpeg?1540751959042", NormalPrice, "Cake liar"],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground99.jpg?1540906544488", NormalPrice, "Fallout together"],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground100.jpg?1540906676579", NormalPrice, "Rigged game"],  
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground_101.jpg?1540909984834", NormalPrice, ""],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground102.png?1540910240235", NormalPrice, ""],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground103.png?1540910702105", NormalPrice, ""],
@@ -4395,8 +4395,11 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (peeky.userData.get(key2, "CharityBadge") == true)                                               {  Badges.push(CharityEmote + " Charity")  };
     if  (peeky.userData.get(key2, "FashionBadge") == true)                                               {  Badges.push(FashionEmote + " Fashion")  };
     if  (Badges.length == 0)  {Badges = ["None"]; BadgesAmount = 0;} else {BadgesAmount = Badges.length};
+      
+    var FixedBackgrounds = peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).join(', ');
+        
 
-        message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other") + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**Backgrounds (" + BackgroundsAmount.toLocaleString('en') + ")**\n" + peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).join(', ') + "" + EndString + ".\n\n**Badges (" + BadgesAmount + ")**\n" + Badges.join(', ') + ".")
+        message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other") + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**Backgrounds (" + BackgroundsAmount.toLocaleString('en') + ")**\n" + FixedBackgrounds + "" + EndString + ".\n\n**Badges (" + BadgesAmount + ")**\n" + Badges.join(', ') + ".")
         .catch(error => ErrorBag.add(error));
       
     }
