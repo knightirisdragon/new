@@ -4401,7 +4401,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
 
         peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
             Current ++;
-            FixedBackgrounds.push(Banners[Current][2] + " (" + banner + ")");
+            FixedBackgrounds.push(Banners[banner[0]] + " (" + banner + ")");
         });
 
         message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other") + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**Backgrounds (" + BackgroundsAmount.toLocaleString('en') + ")**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**Badges (" + BadgesAmount + ")**\n" + Badges.join(', ') + ".")
