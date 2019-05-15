@@ -230,7 +230,7 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 var Banner = {  Source : 0,  Price : 1 ,  Name : 2  };
 var Banners = [
 
-    [DefaultBackground, FreePrice, "Blue Fog"], //Default
+    [DefaultBackground, FreePrice, "Blue fog"], //Default
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground2.jpg?1537950866619", NormalPrice, "Welcome to NYC"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground3.jpg?1535302285990", NormalPrice, "Henry the knight"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground4.jpg?1535333614451", NormalPrice, "Fallout's garage"],
@@ -469,14 +469,14 @@ var Banners = [
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground237.jpg?1555788526781", NormalPrice, "Isle Of Dogs"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground238.png?1555788529003", NormalPrice, "Ghosts"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground239.png?1555881581795", NormalPrice, "Pillar man Richard"],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground240.png?1555881583428", NormalPrice, ""],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground241.png?1556138322772", NormalPrice, ""],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground242.png?1556142651459", NormalPrice, ""],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground243.png?1556379776934", NormalPrice, ""],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground244.jpg?1556379779436", NormalPrice, ""],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground245.png?1556379786683", NormalPrice, ""],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground246.png?1556379788689", NormalPrice, ""],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground247.png?1557333122021", NormalPrice, ""]
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground240.png?1555881583428", NormalPrice, "Galaxy boy"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground241.png?1556138322772", NormalPrice, "Staredown"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground242.png?1556142651459", NormalPrice, "Dead end"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground243.png?1556379776934", NormalPrice, "Fires fade"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground244.jpg?1556379779436", NormalPrice, "The Bay city"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground245.png?1556379786683", NormalPrice, "Airport security"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground246.png?1556379788689", NormalPrice, "New wave"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground247.png?1557333122021", NormalPrice, "Dragonhearted"]
 
 ];
 
@@ -770,7 +770,7 @@ function function_DaysLeft(value)  {
   
     if  (!isNaN(value))  {
 
-        return (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(1))
+        return (new Date(Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)))).toISOString().substr(11, 8);
       
     }  else  {
 
@@ -785,7 +785,7 @@ function function_MinLeft(value)  {
   
     if  (!isNaN(value))  {
 
-        return (Math.abs((new Date() - new Date(value)) / (1000 * 60)).toFixed(2))
+        return (Math.abs((new Date() - new Date(value)) / (1000 * 60))).toString().split(" ")[4];
       
     }  else  {
 
