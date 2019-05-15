@@ -775,10 +775,10 @@ function function_DaysLeft(value)  {
         var Seconds = Math.abs((new Date() - new Date(value)) / (1000 * 60)).toFixed(0);
         var Minutes = Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60)).toFixed(0);
 
-        if(Seconds  < 10){Seconds = "0" + Returned };
-        if(ReturnedM < 10){ReturnedM = "0" + ReturnedM };
+        if(Seconds  < 10){Seconds = "0" + Seconds };
+        if(Minutes < 10){Minutes = "0" + Minutes };
 
-        ReturnedM +":"+ Returned
+        TimeLeft = Minutes +":"+ Seconds;
       
         return TimeLeft;
       
@@ -794,15 +794,18 @@ function function_DaysLeft(value)  {
 function function_MinLeft(value)  {
   
     if  (!isNaN(value))  {
-      
-        var dt   = new Date();
-        var Left = Math.abs((new Date() - new Date(value)) / (1000 * 60));
-      
-        (dt.getMinutes() + Left).toISOString().substr(11, 8);
 
-        //
+        var TimeLeft = null;
       
-        return "test";
+        var Seconds = Math.abs((new Date() - new Date(value)) / (1000 * 60)).toFixed(0);
+        var Minutes = Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60)).toFixed(0);
+
+        if(Seconds  < 10){Seconds = "0" + Seconds };
+        if(Minutes < 10){Minutes = "0" + Minutes };
+
+        TimeLeft = Minutes +":"+ Seconds;
+      
+        return TimeLeft;
       
     }  else  {
 
