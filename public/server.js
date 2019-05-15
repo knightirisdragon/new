@@ -4396,10 +4396,15 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (peeky.userData.get(key2, "FashionBadge") == true)                                               {  Badges.push(FashionEmote + " Fashion")  };
     if  (Badges.length == 0)  {Badges = ["None"]; BadgesAmount = 0;} else {BadgesAmount = Badges.length};
       
-    var FixedBackgrounds = peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).join(', ');
-        
+    var FixedBackgrounds = [];
+    var Current = 0;
 
-        message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other") + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**Backgrounds (" + BackgroundsAmount.toLocaleString('en') + ")**\n" + FixedBackgrounds + "" + EndString + ".\n\n**Badges (" + BadgesAmount + ")**\n" + Badges.join(', ') + ".")
+        peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
+            Current ++;
+            FixedBackgrounds.push(Banners[Current][2] + " (" + banner + ")");
+        });
+
+        message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other") + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**Backgrounds (" + BackgroundsAmount.toLocaleString('en') + ")**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**Badges (" + BadgesAmount + ")**\n" + Badges.join(', ') + ".")
         .catch(error => ErrorBag.add(error));
       
     }
