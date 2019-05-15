@@ -723,7 +723,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             }  else if  (Type == "Random")  {
                 ctx.fillText("Started playing a random song.", 15, 315);
             }  else if  (Type == "Current")  {
-                ctx.fillText("Currently playing with " + function_MinLeft(Length) + " minutes left.", 15, 315);
+                ctx.fillText("Currently playing with approximately " + function_MinLeft(Length) + " minutes left.", 15, 315);
             };
 
             //Song Name
@@ -787,7 +787,7 @@ function function_MinLeft(value)  {
 
         var TimeLeft = null;
       
-        var Seconds = Math.abs((new Date() - new Date(value)) / (1000)).toFixed(0);
+        var Seconds = Math.abs((new Date() - new Date(value)) / (1000)).toFixed(0).slice(0, 2);
         var Minutes = Math.abs((new Date() - new Date(value)) / (1000 * 60)).toFixed(0);
 
         if  (Seconds  < 10)  {
