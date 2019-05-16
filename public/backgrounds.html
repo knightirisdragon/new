@@ -57,32 +57,28 @@
     border-radius: 10px;
 }
   
-#sort_old {
-    display: none;
-}
-  
-#sort_new {
-    display: block;
-}
-  
 </style>
   
 <script>
   
-CurrentSortMode = "new";
+CurrentSortMode = "old";
   
 function ChangeSorting(current)  {
   
-  console.log(current)
+    console.log(current);
   
     if  (current == "new")  {
         CurrentSortMode = "old";
-        document.getElementById("sort_new").display = "none";
-        document.getElementById("sort_old").display = "block";
+        document.getElementById("sort_new").style.display = "none";
+        document.getElementById("sort_old").style.display = "block";
+      
+        document.getElementById("sort_mode").innerHTML = "Sorting: Oldest";
     } else {
         CurrentSortMode = "new";
-        document.getElementById("sort_new").display = "block";
-        document.getElementById("sort_old").display = "none";        
+        document.getElementById("sort_new").style.display = "block";
+        document.getElementById("sort_old").style.display = "none";
+      
+        document.getElementById("sort_mode").innerHTML = "Sorting: Newest";
     };
     
 };
@@ -106,8 +102,11 @@ function ChangeSorting(current)  {
 <div class="fullsize">
 
     <center><b><font size="7" class="headertext">PEEKY's Backgrounds</font>  <br><br>
-    <font size="4">This is the list of all the backgrounds for PEEKY.</font></b>
+    <font size="4">This is the list of all the backgrounds for PEEKY.</font>
+    <font size="4"><b id="sort_mode">Sorting: Oldest</font>
     </center>
+  
+<br><br>
   
 <br><br>
 
