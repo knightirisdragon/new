@@ -1349,7 +1349,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     });
 
 
-    fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>", (err) => {
+    fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + BackgroundList.filter(i => i.includes('id="' + peeky.userData.get(OwnerId, "Background") + '"')).join(" ") + " </div>", (err) => {
         if (err) console.log(err);
     });
 

@@ -57,6 +57,7 @@
 }
   
 #sort_new,
+#featured,
 #sort_random {
     display: none;  
 }
@@ -66,7 +67,7 @@
 <script>
   
 var CurrentSortMode = "old";
-var MaxSortingModes = 3;
+var MaxSortingModes = 4;
   
 function ChangeSorting(current)  {
   
@@ -77,6 +78,7 @@ function ChangeSorting(current)  {
         document.getElementById("sort_new").style.display = "none";
         document.getElementById("sort_old").style.display = "block";
         document.getElementById("sort_random").style.display = "none";
+        document.getElementById("sort_featured").style.display = "none";
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Oldest (1/" + MaxSortingModes + ")";
     } else if (current == "old") {
@@ -84,15 +86,25 @@ function ChangeSorting(current)  {
         document.getElementById("sort_new").style.display = "block";
         document.getElementById("sort_old").style.display = "none";
         document.getElementById("sort_random").style.display = "none";
+        document.getElementById("sort_featured").style.display = "none";
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Newest (2/" + MaxSortingModes + ")";
     } else if (current == "random") {
-        CurrentSortMode = "new";
+        CurrentSortMode = "featured";
         document.getElementById("sort_new").style.display = "none";
         document.getElementById("sort_old").style.display = "none";
         document.getElementById("sort_random").style.display = "block";
+        document.getElementById("sort_featured").style.display = "none";
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Random (3/" + MaxSortingModes + ")";
+    } else if (current == "featured") {
+        CurrentSortMode = "new";
+        document.getElementById("sort_new").style.display = "none";
+        document.getElementById("sort_old").style.display = "none";
+        document.getElementById("sort_random").style.display = "none";
+        document.getElementById("sort_featured").style.display = "block";
+      
+        document.getElementById("sort_mode").innerHTML = "Sorting: Featured (4/" + MaxSortingModes + ")";
     }
     
 };
@@ -117,7 +129,7 @@ function ChangeSorting(current)  {
 
     <center><b><font size="7" class="headertext">PEEKY's Backgrounds</font>  <br><br>
     <font size="4">This is the list of all the backgrounds for PEEKY.</font>  <br>
-    <font size="2"><b id="sort_mode">Sorting: Oldest (1/3)</b></font></b>
+    <font size="2"><b id="sort_mode">Sorting: Oldest (1/4)</b></font></b>
     </center>
   
 <br><br>
