@@ -723,7 +723,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             }  else if  (Type == "Random")  {
                 ctx.fillText("Started playing a random song.", 15, 315);
             }  else if  (Type == "Current")  {
-                ctx.fillText("Currently playing with approximately " + function_MinLeft(Length) + " minutes left.", 15, 315);
+                ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes") + " minutes left.", 15, 315);
             };
 
             //Song Name
@@ -769,52 +769,23 @@ function function_DateFormat(value)  {
 function function_TimeLeft(value, type)  {
   
     if  (!isNaN(value))  {
+      
+    if  (type == "days")  {
 
-        return (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(1))
+        return (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(1));
+      
+    }  else if  (type == "minutes")  {
+
+        return (Math.abs((new Date() - new Date(value)) / (1000 * 60)).toFixed(1));
+      
+    };
       
     }  else  {
 
        return "Invalid Date"; 
       
     };
-  
-};
 
-//Minutes Left
-function function_MinLeft(value)  {
-  
-
-};
-
-
-
-//Minutes Left
-function function_MinLeft(value)  {
-  
-    if  (!isNaN(value))  {
-
-        var TimeLeft = null;
-      
-        var Seconds = Math.abs((new Date() - new Date(value)) / (1000)).toFixed(0).slice(0, 2);
-        var Minutes = Math.abs((new Date() - new Date(value)) / (1000 * 60)).toFixed(0);
-
-        if  (Seconds  < 10)  {
-            Seconds = "0" + Seconds;
-        };
-        if  (Minutes < 10)  {
-            Minutes = "0" + Minutes;
-        };
-
-        TimeLeft = Minutes +":"+ Seconds;
-      
-        return TimeLeft;
-      
-    }  else  {
-
-       return "Invalid Date"; 
-      
-    };
-  
 };
 
 //Numarize Array
@@ -1327,7 +1298,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     }
      else
     {
-     Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This profile will get wiped in " + function_DaysLeft(peeky.userData.get(data.UserID, "lastSeen")) + " days if they do not come back.  </font></b>  </div>");
+     Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This profile will get wiped in " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days") + " days if they do not come back.  </font></b>  </div>");
     };
       
     };
