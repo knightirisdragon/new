@@ -1140,9 +1140,16 @@ peeky.on('message', async (message) => {
     peeky.userData.math(key, "+", Math.round(Math.random() * BadgeGreditAmount), "Gredit");
     peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");
       
-    //"Double" Exp
+    //EVENT DOUBLE EXP
     if  (OngoingEvent == true)  {
         peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");
+      
+        //Supporter Bonus
+        if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {
+            peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");            
+            peeky.userData.math(key, "+", Math.round(Math.random() * BadgeGreditAmount), "Gredit");
+        };
+
     };
 
     };
@@ -1341,15 +1348,25 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 300000);
 
     const BackgroundList = [];
+    const FeaturedList   = [];
     var   Current        = 0;
 
     Banners.forEach(background_info => {
+
           Current ++;
-          BackgroundList.push('<div class="background">  <img src="' + background_info[0] + '"  id="1" width="500" height="300" class="background_image"> <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2">  ' + background_info[1] + ' Gredit  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div></div>');
+      
+          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  id="1" width="500" height="300" class="background_image"> <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2">  ' + background_info[1] + ' Gredit  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div></div>';
+    
+          BackgroundList.push(BackgroundString);
+
+          if  (Current == peeky.userData.get(OwnerId, "Background"))  {
+              FeaturedList.push(BackgroundString);
+          };
+    
     });
 
 
-    fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + BackgroundList.filter(i => i.includes('id="' + peeky.userData.get(OwnerId, "Background") + '"')).join(" ") + " </div>", (err) => {
+    fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>", (err) => {
         if (err) console.log(err);
     });
 
