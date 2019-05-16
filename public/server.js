@@ -3912,7 +3912,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
     peeky.userData.set(key, i, "Background");
     peeky.userData.get(key, "Inventory").push(i);
   
-    var embed = {"description": SuccessIcon + " You have bought the **" + i + "th Background** bought for **" + Banners[i - 1][Banner.Price].toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    var embed = {"description": SuccessIcon + " You have bought the **" + Banners[i - 1][Banner.Name] + "** background bought for **" + Banners[i - 1][Banner.Price].toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
     break;
@@ -3950,7 +3950,7 @@ if  (peeky.userData.get(key, "Inventory").includes(i))  {
 
     peeky.userData.set(key, i, "Background");
   
-    const embed = {"description": SuccessIcon + " You have set the **" + i + "th Background**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " You have set the **" + Banners[i - 1][Banner.Name] + "** background.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
     break;
@@ -3997,7 +3997,7 @@ if  (BackgroundToSell !== 1)  {
 
     };
 
-      const embed = {"description": SuccessIcon + " You have sold the **" + BackgroundToSell + "th Background** for **" + SellPrice.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
+      const embed = {"description": SuccessIcon + " You have sold the **" + Banners[BackgroundToSell - 1][Banner.Name] + "** background for **" + SellPrice.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
     }
