@@ -86,6 +86,7 @@ const MovieNighterImage = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873
 const CelebratorImage   = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fcelebrator.png?1554493808779";
 const PollerImage       = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpoller.png?1556170526097";
 const PublisherImage    = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpublisher.png?1555782065115";
+const PartyImage        = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fparty.png?1558040749323";
 
 const DefaultFont = "Verdana";
 const Dark        = "#36393E";
@@ -142,6 +143,7 @@ const MovieNighterEmote = "<:movienighter:557968105494675456>";
 const CelebratorEmote   = "<:celebrator:563812757787508746>";
 const PollerEmote       = "<:poller:570845554758778880>";
 const PublisherEmote    = "<:publisher:569215883109466143>";
+const PartyEmote        = "<:party:578689212262383626>";
 
 //Other Emotes
 const ErrorIcon    = "<:peeky_error:529412267343872031>";
@@ -4425,6 +4427,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (peeky.userData.get(key2, "PollerBadge") == true)                                                {  Badges.push(PollerEmote + " Poller")  };
     if  (peeky.userData.get(key2, "VoterBadge") == true)                                                 {  Badges.push(VoterEmote + " Voter")  };
     if  (peeky.userData.get(key2, "PublisherBadge") == true)                                             {  Badges.push(PublisherEmote + " Publisher")  };
+    if  (peeky.userData.get(key2, "PartyBadge") == true)                                                 {  Badges.push(PartyEmote + " Party")  };
     if  (peeky.userData.get(key2, "OwnershipBadge") == true)                                             {  Badges.push(OwnershipEmote + " Ownership")  };
     if  (peeky.userData.get(key2, "GamblerBadge") >= 10)                                                 {  Badges.push(GamblerEmote + " Gambler")  };
     if  (peeky.userData.get(key2, "CharityBadge") == true)                                               {  Badges.push(CharityEmote + " Charity")  };
@@ -4650,6 +4653,13 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.drawImage(medalist_icon, (canvas.width - 48), BadgeYpos, 30, 30);
     };
 
+        //Party Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const publisher_icon = await Canvas.loadImage(PartyImage);
+    if  (peeky.userData.get(key2, "PartyBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(publisher_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    };
+
         //Poller Icon
     if  (BadgeAmount < MaxBadges)  {
     const poller_icon = await Canvas.loadImage(PollerImage);
@@ -4840,7 +4850,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
                CurrentlyPlaying.delete(message.guild.id);
                voiceChannel.leave();
               
-               const embed = {"description": InfoIcon + " The song has now finished with " + voiceChannel.members.filter(m => !m.user.bot).size + " listeners.",  "color": EmbedColor}; 
+               const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id)
+              
+               const embed = {"description": InfoIcon + " The song has now finished with " +  + " listeners.",  "color": EmbedColor}; 
                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                
             });
