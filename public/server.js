@@ -814,15 +814,15 @@ return List.join("");
 
 };
 
-function shuffle(a) {
+function function_ShuffleArray(array) {
     var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
+    for (i = array.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
+        x = array[i];
+        array[i] = array[j];
+        array[j] = x;
     }
-    return a;
+    return array;
 }
 
 function hideshowtopnav() {
@@ -1332,6 +1332,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
 if  (!WebsiteCooldowns.has("backgrounds"))  {
 
     WebsiteCooldowns.add("backgrounds");
+    setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 300000);
 
     const BackgroundList = [];
     var   Current        = 0;
@@ -1342,7 +1343,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     });
 
 
-    fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>", (err) => {
+    fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>", (err) => {
         if (err) console.log(err);
     });
 

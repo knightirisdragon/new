@@ -28,7 +28,7 @@
 .background {
     display: inline-block;
     text-align: left;
-    margin: -2px;
+    margin: 0px;
     transition: transform .25s ease;
 }
 
@@ -40,8 +40,8 @@
 }
 
 .background_image {
-    filter: blur(2px);
-    border-radius: 0px;
+    filter: blur(0px);
+    border-radius: 5px;
 }
 
 .background:hover .background_centered {
@@ -54,10 +54,13 @@
     opacity: 1;
     filter: blur(0px);
     cursor: pointer;
-    border-radius: 10px;
 }
   
 #sort_new {
+    display: none;  
+}
+  
+#sort_random {
     display: none;  
 }
   
@@ -75,15 +78,24 @@ function ChangeSorting(current)  {
         CurrentSortMode = "old";
         document.getElementById("sort_new").style.display = "none";
         document.getElementById("sort_old").style.display = "block";
+        document.getElementById("sort_random").style.display = "none";
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Oldest";
-    } else {
-        CurrentSortMode = "new";
+    } else if (current == "old") {
+        CurrentSortMode = "random";
         document.getElementById("sort_new").style.display = "block";
         document.getElementById("sort_old").style.display = "none";
+        document.getElementById("sort_random").style.display = "none";
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Newest";
-    };
+    } else if (current == "random") {
+        CurrentSortMode = "new";
+        document.getElementById("sort_new").style.display = "none";
+        document.getElementById("sort_old").style.display = "none";
+        document.getElementById("sort_random").style.display = "block";
+      
+        document.getElementById("sort_mode").innerHTML = "Sorting: Random";
+    }
     
 };
   
@@ -99,7 +111,7 @@ function ChangeSorting(current)  {
       <b>
       <a class="button" href="https://peeky.glitch.me" rel="noopener noreferrer"><font size="4">Home</font></a>
       <a class="button" href="server.html" rel="noopener noreferrer"><font size="4">Submit</font></a>
-      <a class="button" onclick="ChangeSorting(CurrentSortMode);"><font size="4">Sort</font></a>
+      <a class="button" onclick="ChangeSorting(CurrentSortMode);"><font size="4">Sort List</font></a>
       </b>
     </div>
 
