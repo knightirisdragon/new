@@ -143,7 +143,7 @@ const MovieNighterEmote = "<:movienighter:557968105494675456>";
 const CelebratorEmote   = "<:celebrator:563812757787508746>";
 const PollerEmote       = "<:poller:570845554758778880>";
 const PublisherEmote    = "<:publisher:569215883109466143>";
-const PartyEmote        = "<:party:578689212262383626>";
+const PartyEmote        = "<:party:578689336116248618>";
 
 //Other Emotes
 const ErrorIcon    = "<:peeky_error:529412267343872031>";
@@ -1002,6 +1002,7 @@ peeky.on('message', async (message) => {
         CelebratorBadge: false,
         PollerBadge: false,
         PublisherBadge: false,
+        PartyBadge: false,
       
         BadgeGredit: 0,
         BadgeExp: 0,
@@ -1114,6 +1115,9 @@ peeky.on('message', async (message) => {
       
         //Medallist
     if  (peeky.userData.get(key, "MedallistBadge") == true)  {  BadgeExpAmount += 2;  };
+      
+        //Party
+    if  (peeky.userData.get(key, "PartyBadge") == true)  {  BadgeGreditAmount += 2;  };
       
         //Poller
     if  (peeky.userData.get(key, "PollerBadge") == true)  {  BadgeGreditAmount += 2;  };
@@ -4847,13 +4851,25 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
             dispatcher.on('end', async reason => {
               
-               CurrentlyPlaying.delete(message.guild.id);
-               voiceChannel.leave();
+            CurrentlyPlaying.delete(message.guild.id);
+            voiceChannel.leave();
               
-               const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id)
+            const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id)
               
-               const embed = {"description": InfoIcon + " The song has now finished with " +  + " listeners.",  "color": EmbedColor}; 
-               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            const embed = {"description": InfoIcon + " The song has now finished with " + Listeners.length + " listeners.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              
+            if  (Listeners.length >= 5)  {
+              
+                Listeners.forEach(id => {
+
+                    if  (peeky.userData.has(i) && peeky.userData.get(id, "PartyBadge") == false)  {
+                        peeky.userData.set(id, true, "PartyBadge");
+                    };
+
+                });
+
+            };
                
             });
 
