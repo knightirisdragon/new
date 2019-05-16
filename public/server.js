@@ -765,8 +765,8 @@ function function_DateFormat(value)  {
   
 };
 
-//Days Left
-function function_DaysLeft(value)  {
+//Time Left
+function function_TimeLeft(value, type)  {
   
     if  (!isNaN(value))  {
 
@@ -779,6 +779,14 @@ function function_DaysLeft(value)  {
     };
   
 };
+
+//Minutes Left
+function function_MinLeft(value)  {
+  
+
+};
+
+
 
 //Minutes Left
 function function_MinLeft(value)  {
@@ -4309,7 +4317,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         peeky.userData.set(key, 1, "Background");
         InfoMessages.push(InfoMessage2[0]);
 
-        const embed = {"description": SuccessIcon + " You have given the **" + DonatedAmount + "th Background** to **" + Function_RemoveFormatting(DonatedUser.user.username, "other") + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have given the **" + Banners[DonatedAmount - 1][Banner.Name] + "** background to **" + Function_RemoveFormatting(DonatedUser.user.username, "other") + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
 
         }
