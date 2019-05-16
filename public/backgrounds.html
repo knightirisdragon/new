@@ -13,16 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
   
-<script>
-  
-function UpdateBackgroundPage()  {
-
-    document.getElementById("sort_old").display = "none";
-  
-};
-  
-</script>
-  
 <style>
 
 .background_centered {
@@ -67,9 +57,39 @@ function UpdateBackgroundPage()  {
     border-radius: 10px;
 }
   
+#sort_old {
+    display: none;
+}
+  
+#sort_new {
+    display: block;
+}
+  
 </style>
   
-<body onload="UpdateBackgrounds(); UpdateBackgroundPage();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+<script>
+  
+CurrentSortMode = "new";
+  
+function ChangeSorting(current)  {
+  
+  console.log(current)
+  
+    if  (current == "new")  {
+        CurrentSortMode = "old";
+        document.getElementById("sort_new").display = "none";
+        document.getElementById("sort_old").display = "block";
+    } else {
+        CurrentSortMode = "new";
+        document.getElementById("sort_new").display = "block";
+        document.getElementById("sort_old").display = "none";        
+    };
+    
+};
+  
+</script>
+  
+<body onload="UpdateBackgrounds();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
 
 <center>  
 
@@ -79,6 +99,7 @@ function UpdateBackgroundPage()  {
       <b>
       <a class="button" href="https://peeky.glitch.me" rel="noopener noreferrer"><font size="4">Home</font></a>
       <a class="button" href="server.html" rel="noopener noreferrer"><font size="4">Submit</font></a>
+      <a class="button" onclick="ChangeSorting(CurrentSortMode);"><font size="4">Sort</font></a>
       </b>
     </div>
 
