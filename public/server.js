@@ -1331,7 +1331,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     });
 
 
-    fs.writeFile('public/backgrounds.txt', BackgroundList.join(" "), (err) => {
+    fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<br>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>", (err) => {
         if (err) console.log(err);
     });
 
