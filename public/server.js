@@ -787,7 +787,7 @@ function function_TimeLeft(value, type)  {
       
     if  (type == "days")  {
 
-        return (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(1));
+        return InactiveDays - (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(1));
       
     }  else if  (type == "minutes")  {
 
@@ -4839,7 +4839,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               
                 Listeners.forEach(id => {
 
-                    if  (peeky.userData.has(i) && peeky.userData.get(id, "PartyBadge") == false)  {
+                    if  (peeky.userData.has(id) && peeky.userData.get(id, "PartyBadge") == false)  {
                         peeky.userData.set(id, true, "PartyBadge");
                     };
 
