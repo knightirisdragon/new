@@ -831,30 +831,6 @@ function function_ShuffleArray(array) {
         array[j] = x;
     }
     return array;
-}
-
-function hideshowtopnav() {
-   var x = document.getElementById("topnavmenu");
-   var y = document.getElementById("hideshowbutton");
-
-   if (x.style.display === "none") {
-        x.style.display = "block";
-        y.innerHTML = "Hide Menu";
-   } else {
-        x.style.display = "none";
-        y.innerHTML = "Show Menu";
-   };
-};
-
-function hidetipsfunc() {
-    var y = document.getElementById("hidetipsbutton");
-    if (allowed == "false") {
-        allowed = "true";
-        y.innerHTML = "Hide Tips";
-    } else {
-        allowed = "false";
-        y.innerHTML = "Show Tips";
-    };
 };
 
 function UpdateBackgrounds()  {
