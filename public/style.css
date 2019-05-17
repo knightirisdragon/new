@@ -9,8 +9,6 @@ body {
   a  {text-shadow: 1px 1px black; color: white; text-decoration: none;}
   img  {border-radius: 15px; cursor: pointer;}
 
-.topnavbutton,
-.sidenavbutton,
 .popup,
 .serverinvite,
 .button {
@@ -29,27 +27,6 @@ a.button:hover {
     background-color: #2c2f33;
     transform: scale(0.99);
 }
-
-.topnavbutton,
-.tipsbutton {
-    padding: 10px;
-    position: fixed;
-    z-index: 99;
-    border-radius: 25px;
-    width: 150px;
-    background-color: rgba(35, 39, 42, 0.5);
-    border: rgba(35, 39, 42, 0.9) solid;
-}   
-
-.topnavbutton:hover,
-.tipsbutton:hover {
-    cursor: pointer;
-    background-color: #2c2f33;
-    transform: scale(0.99);
-}
-
-.topnavbutton  {  background-color: rgba(35, 39, 42, 0.75);  left: 15px;  top: 12px;  }
-.tipsbutton    {  background-color: rgba(35, 39, 42, 0.75);  left: 15px;  top: 75px;  }
 
 .subbody  {
   background-color: transparent;
