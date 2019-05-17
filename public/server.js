@@ -300,7 +300,7 @@ var Banners = [
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground66.jpg?1540238680343", NormalPrice, "Clear view"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground67.jpg?1540238738204", NormalPrice, "Silent thief"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground68.jpg?1540239775507", NormalPrice, "Mighty assassin"],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground69.png?1540240323226", NormalPrice, "Powerarmor soldiers"],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground69.png?1540240323226", NormalPrice, "Power armor"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground70.jpg?1540240540188", NormalPrice, "Horse poker"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground71.png?1540240626824", NormalPrice, "War never changes"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground72.png?1540309268628", NormalPrice, "Peace and calm"],  
@@ -4859,7 +4859,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const embed = {"description": InfoIcon + " The song has now finished with " + Listeners.length + " listeners.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
               
-            if  (Listeners.length >= 5)  {
+            if  (Listeners.length >= 2)  {
               
                 Listeners.forEach(id => {
 

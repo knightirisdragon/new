@@ -70,8 +70,9 @@ var CurrentSortMode = "old";
 var MaxSortingModes = 4;
   
 function ChangeSorting(current)  {
-  
-    console.log(current);
+
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   
     if  (current == "new")  {
         CurrentSortMode = "old";
