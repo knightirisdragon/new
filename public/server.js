@@ -1772,11 +1772,12 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
         Detected = true;
     };
       
-    await channel.send("", await function_WelcomeMessagesEmbed(member, "join", Detected)).catch(error => ErrorBag.add(error));
-      
     if  (Detected == true)  {
         member.guild.ban(member.id, {  reason: "Triggered by the Welcome Messages function.", days: 0  }).catch(error => ErrorBag.add(error));
     };
+      
+    channel.
+    await channel.send("", await function_WelcomeMessagesEmbed(member, "join", Detected)).catch(error => ErrorBag.add(error));
     
     console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
       
