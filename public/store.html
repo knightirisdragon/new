@@ -59,7 +59,7 @@
     background-color: rgba(35, 39, 42, 0.5);
     border: rgba(35, 39, 42, 1) 2px solid;
     border-radius: 5px;
-    background-size: cover;
+    background-size: 100%;
     height: 300px;
     width: 400px;
     padding: 10px 10px;
@@ -70,7 +70,7 @@
 }
   
 .textstoreitem {
-    background-color: rgba(35, 39, 42, 0.95);
+    background-color: rgba(35, 39, 42, 0.99);
     border-top: rgba(35, 39, 42, 1) 2px solid;
     border-radius: 0px;
     width: 100%;
@@ -82,10 +82,12 @@
 }
   
 .textstoreitem .name { 
-    width: 97.4%;
+    background-color: #7289DA;
+    padding: 3.7px;
+    width: 77.5%;
   
     top: 5px;
-    left: 10px;
+    left: 5px;
     text-align: left;
     position: absolute;
     display: inline-block;
@@ -97,6 +99,7 @@
     background-color: #7289DA;
     border-radius: 1px;
     padding: 7px;
+    width: 75px;
   
     font-size: 10px;
   
@@ -111,16 +114,23 @@
 }
   
 .textstoreitem .price {
-    color: #8094dd;
-    border-radius: 5px;
-    padding: 5px;
+    background-color: #7289DA;
+    border-radius: 1px;
+    padding: 7px;
+    width: 75px;
   
-    font-size: 12px;
+    font-size: 10px;
   
-    top: 40px;
+    bottom: 5px;
     right: 5px;
     position: absolute;
     display: inline-block;
+}
+
+#highlighted1,
+#highlighted2  {
+    height: 350px;
+    width: 450px;  
 }
 
 </style>
@@ -154,7 +164,7 @@
   
     <br><br>
     
-    <div class="storeitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_supporter.png?1553799537404');">
+    <div class="storeitem" id="highlighted1" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_supporter.png?1553799537404');">
     <div class="textstoreitem">
     <b>
     <b class="name">  Supporter  </b>  <a class="buy" onclick="Supporter()"> More Info </a>  <b class="price">€ 4.99</b>
@@ -162,18 +172,23 @@
     </div>
     </div>
     
-    <div class="storeitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_serverupgrade.png?1553799054471')">
+    <div class="storeitem" id="highlighted2" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_serverupgrade.png?1553799054471')">
     <div class="textstoreitem">
     <b>
-    <a class="name" onclick="ServerUpgrade()"> Server Upgrade </a>  <b class="buy">PURCHASE</b>  <b class="price">€ 2.99</b>
+    <b class="name">  Server Upgrade  </b>  <a class="buy" onclick="Supporter()"> More Info </a>  <b class="price">€ 2.99</b>
     </b>
     </div>
     </div>
+  
+    <br><br><br>
+  
+    <center>
+    <div style="width: 50%;">
     
     <div class="storeitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_1000gredit.png?1555191535131')">
     <div class="textstoreitem">
     <b>
-    <a class="name" onclick="Gredit(1000)"> 1.000 Gredit </a>  <b class="buy">PURCHASE</b>  <b class="price">€ 0.99</b>
+    <b class="name">  1,000 Gredit  </b>  <a class="buy" onclick="Supporter()"> More Info </a>  <b class="price">€ 0.99</b>
     </b>
     </div>
     </div>
@@ -181,7 +196,7 @@
     <div class="storeitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_2000gredit.png?1555191535631')">
     <div class="textstoreitem">
     <b>
-    <a class="name" onclick="Gredit(2000)"> 2.000 Gredit </a>  <b class="buy">PURCHASE</b>  <b class="price">€ 1.99</b>
+    <b class="name">  2,000 Gredit  </b>  <a class="buy" onclick="Supporter()"> More Info </a>  <b class="price">€ 1.99</b>
     </b>
     </div>
     </div>
@@ -189,7 +204,7 @@
     <div class="storeitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_5000gredit.png?1555191535348')">
     <div class="textstoreitem">
     <b>
-    <a class="name" onclick="Gredit(5000)"> 5.000 Gredit </a>  <b class="buy">PURCHASE</b>  <b class="price">€ 4.99</b>
+    <b class="name">  5,000 Gredit  </b>  <a class="buy" onclick="Supporter()"> More Info </a>  <b class="price">€ 4.99</b>
     </b>
     </div>
     </div>
@@ -197,10 +212,13 @@
     <div class="storeitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_10000gredit.png?1555191535517')">
     <div class="textstoreitem">
     <b>
-    <a class="name" onclick="Gredit(10000)"> 10.000 Gredit </a>  <b class="buy">PURCHASE</b>  <b class="price">€ 9.99</b>
+    <b class="name">  10,000 Gredit  </b>  <a class="buy" onclick="Supporter()"> More Info </a>  <b class="price">€ 9.99</b>
     </b>
     </div>
     </div>
+      
+    </div>
+    </center>
   
 <b><center>
 <br> <font size="2">With each redeemed item, you or the gifted user will receive <font color="#7289DA">100 Exp</font> and the <font color="#7289DA">Contributor badge</font>!</font>
