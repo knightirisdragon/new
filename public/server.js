@@ -1766,7 +1766,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
 
     var channel = guild.channels.find(c=> c.name == name);
     
-    if (channel) {
+    if (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES')) {
       
     if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "bw").includes(word)))  {
         Detected = true;
@@ -1809,18 +1809,18 @@ if  (!MemberCounterCooldown.has(member.guild.id))  {
     setTimeout(() => {MemberCounterCooldown.delete(member.guild.id)}, 5000);
 
     //Permission Checking
-    if(member.guild.me.hasPermission("MANAGE_CHANNELS")) {
+    if  (member.guild.me.hasPermission("MANAGE_CHANNELS")) {
       
-      var id = peeky.serverData.get(keySF, "member_counter_bonus_id");
-      var Prefix = peeky.serverData.get(keySF, "member_counter_bonus_setting");
+        var id = peeky.serverData.get(keySF, "member_counter_bonus_id");
+        var Prefix = peeky.serverData.get(keySF, "member_counter_bonus_setting");
 
-      var channel = member.guild.channels.find(g => g.id == id);
+        var channel = member.guild.channels.find(g => g.id == id);
 
-      if (channel) {
-          channel.setName(Prefix + ": " + member.guild.members.filter(m => !m.user.bot).size).catch(error => ErrorBag.add(error));
+        if (channel) {
+            channel.setName(Prefix + ": " + member.guild.members.filter(m => !m.user.bot).size).catch(error => ErrorBag.add(error));
 
-          console.log("The Member Counter function has been triggered in " + member.guild.name + ".");
-      };
+            console.log("The Member Counter function has been triggered in " + member.guild.name + ".");
+        };
     
     };
 
@@ -1840,7 +1840,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
 
     var channel = guild.channels.find(c=> c.name == name);
     
-    if (channel) {
+    if (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES')) {
       
     if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "bw").includes(word)))  {
         Detected = true;
