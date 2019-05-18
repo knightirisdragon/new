@@ -1330,7 +1330,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
       
     };
 
-    fs.writeFile('public/leaderboard.txt', "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for a special badge! </b>  </div> </center>" + Leaderboard.join("<br><br>"), (err) => {
+    await fs.writeFile('public/leaderboard.txt', "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for a special badge! </b>  </div> </center>" + Leaderboard.join("<br><br>"), (err) => {
         if (err) console.log(err);
     });
 
@@ -1362,7 +1362,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     });
 
 
-    fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>", (err) => {
+    await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>", (err) => {
         if (err) console.log(err);
     });
 
@@ -1383,7 +1383,7 @@ if  (!WebsiteCooldowns.has("randomsongs"))  {
     });
 
 
-    fs.writeFile('public/random_songs.txt', SongList.join(" <br> "), (err) => {
+    await fs.writeFile('public/random_songs.txt', SongList.join(" <br> "), (err) => {
         if (err) console.log(err);
     });
 
@@ -1421,7 +1421,7 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
       
     };
 
-    fs.writeFile('public/server_list.txt', ServerList.join(" "), (err) => {
+    await fs.writeFile('public/server_list.txt', ServerList.join(" "), (err) => {
         if (err) console.log(err);
     });
 
@@ -1456,7 +1456,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
         SupporterList.push('<center><font size="4">  You can become a supporter in the store!  </font></center>')
     };
 
-    fs.writeFile('public/supporters.txt', SupporterList.join("<br><br>"), (err) => {
+    await fs.writeFile('public/supporters.txt', SupporterList.join("<br><br>"), (err) => {
         if (err) console.log(err);
     });
       
@@ -1541,7 +1541,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
     };
     });
 
-    fs.writeFile('public/staff.txt', '<font size="5" class="headertext">Developers</font>  <br>  <font size="2">These are the people that work on PEEKY to make him the best possible Discord bot that it is today.</font>  <br><br>  ' + DevList.join(" ") + '<br><br>  <font size="5" class="headertext">Helpers</font>  <br>  <font size="2">These are the people that can help you fix some PEEKY related issues.</font>  <br><br>' + HelperList.join(" ") + '<br><br>  <font size="5" class="headertext">Moderators</font>  <br>  <font size="2">These are the people that moderate the Support Server to keep it safe.</font>  <br><br>' + ModList.join(" "), (err) => {
+    await fs.writeFile('public/staff.txt', '<font size="5" class="headertext">Developers</font>  <br>  <font size="2">These are the people that work on PEEKY to make him the best possible Discord bot that it is today.</font>  <br><br>  ' + DevList.join(" ") + '<br><br>  <font size="5" class="headertext">Helpers</font>  <br>  <font size="2">These are the people that can help you fix some PEEKY related issues.</font>  <br><br>' + HelperList.join(" ") + '<br><br>  <font size="5" class="headertext">Moderators</font>  <br>  <font size="2">These are the people that moderate the Support Server to keep it safe.</font>  <br><br>' + ModList.join(" "), (err) => {
         if (err) console.log(err);
     });
       
@@ -1566,7 +1566,7 @@ if  (!WebsiteCooldowns.has("stats"))  {
     WebsiteCooldowns.add("reviews");
     setTimeout(() => {WebsiteCooldowns.delete("reviews")}, 300000);
     
-    node_fetch('https://ls.terminal.ink/api/v2/bots/482945063282802698').then(response => response.json()).then((data) => {
+    node_fetch('https://ls.terminal.ink/api/v2/bots/482945063282802698').then(response => response.json()).then(async (data) => {
       
     var FilteredReviews = data.data.reviews.filter(r => r.text.length >= 200);
       
@@ -1579,11 +1579,11 @@ if  (!WebsiteCooldowns.has("stats"))  {
     var ReviewDate     = new Date(FilteredReviews[RandomReview].date);
     var ReviewFullDate = function_DateFormat(ReviewDate);
       
-    fs.writeFile('public/reviews.txt',  "<font color='#7289DA' size='1'>Random Review with " + FilteredReviews[RandomReview].rating + " Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast 200 characters long to show up here.</font></center>", (err) => {
+    await fs.writeFile('public/reviews.txt',  "<font color='#7289DA' size='1'>Random Review with " + FilteredReviews[RandomReview].rating + " Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast 200 characters long to show up here.</font></center>", (err) => {
         if (err) console.log(err); 
     });
 
-    fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + MaxServers + "</font> Servers</a> <br> <a class='botstats'><font color='#7289DA'>" + data.data.reviews.length + "</font> Reviews</a> <br> <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a> <br> <a class='botstats'><font color='#7289DA'>" + DaysOld + "</font> Days Old</a>", (err) => {
+    await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + MaxServers + "</font> Servers</a> <br> <a class='botstats'><font color='#7289DA'>" + data.data.reviews.length + "</font> Reviews</a> <br> <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a> <br> <a class='botstats'><font color='#7289DA'>" + DaysOld + "</font> Days Old</a>", (err) => {
         if (err) console.log(err); 
     });
       
