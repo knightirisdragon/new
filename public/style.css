@@ -6,7 +6,7 @@ body {
 
   b   {color: white;}
   h1  {color: transparent}
-  a  {text-shadow: 1px 1px black; color: white; text-decoration: none;}
+  a  {color: white; text-decoration: none;}
   img  {border-radius: 15px; cursor: pointer;}
 
 .popup,
