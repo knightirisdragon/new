@@ -1342,7 +1342,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
 
           Current ++;
       
-          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  id="1" width="500" height="300" class="background_image"> <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  <br><br>  <font size="2">  ' + background_info[1] + ' Gredit  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div></div>';
+          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  id="1" width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  <br><br>  <font size="2">  ' + background_info[1] + ' Gredit  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>  <div id="compact">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  </div>  </div>  ';
     
           BackgroundList.push(BackgroundString);
 
