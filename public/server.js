@@ -654,9 +654,15 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     ctx.fillStyle = "white";
     ctx.textAlign = "left";
   
-    if  (detected == true)  {} else {}
+    if  (detected == true)  {
+        ctx.fillStyle = "pink";
+        var NameString = "Censored";    
+    } else {
+        ctx.fillStyle = "white";
+        var NameString = peeky.users.get(key).username;
+    };
   
-    ctx.fillText(, 95, 40);
+    ctx.fillText(NameString, 95, 40);
       
     if  (peeky.userData.has(key))  {
     
@@ -666,7 +672,6 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     var y_position = 75;
 
     do {
-      
          fontsize--;
          ctx.font=fontsize+"px " + DefaultFont;
        
@@ -676,6 +681,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
                               y_position = 62.5;
                              };
         
+    ctx.fillStyle = "white";
     ctx.fillText(peeky.userData.get(key, "Description"), 95, y_position);
     }
     else if (!member.user.bot) {
@@ -1762,7 +1768,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
     
     if (channel) {
       
-    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.nickname.toLowerCase(), "bw").includes(word)))  {
+    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "bw").includes(word)))  {
         Detected = true;
     };
       
@@ -1827,12 +1833,17 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
     const guild     = member.guild;
     var ProfileName = member.user.username;
     const name      = peeky.serverData.get(keySF, "welcome_messages_bonus_setting");
+    var Detected    = false;
 
     var channel = guild.channels.find(c=> c.name == name);
     
     if (channel) {
       
-    channel.send("", await function_WelcomeMessagesEmbed(member, "leave")).catch(error => ErrorBag.add(error));
+    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "bw").includes(word)))  {
+        Detected = true;
+    };
+      
+    channel.send("", await function_WelcomeMessagesEmbed(member, "leave", Detected)).catch(error => ErrorBag.add(error));
     
     console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
       
