@@ -1774,10 +1774,12 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
       
     if  (Detected == true)  {
         member.guild.ban(member.id, {  reason: "Triggered by the Welcome Messages function.", days: 0  }).catch(error => ErrorBag.add(error));
+        member.send("You have been automatically banned for having a possible website ad in your username.  \n  Contact the server owner **" + member.guild.owner.user.tag + "** to get your ban revoked.")
     };
       
-    channel.
+    channel.startTyping();
     await channel.send("", await function_WelcomeMessagesEmbed(member, "join", Detected)).catch(error => ErrorBag.add(error));
+    channel.stopTyping();
     
     console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
       
@@ -1844,7 +1846,9 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
         Detected = true;
     };
       
-    channel.send("", await function_WelcomeMessagesEmbed(member, "leave", Detected)).catch(error => ErrorBag.add(error));
+    channel.startTyping();
+    await channel.send("", await function_WelcomeMessagesEmbed(member, "leave", Detected)).catch(error => ErrorBag.add(error));
+    channel.stopTyping();
     
     console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
       
@@ -4820,9 +4824,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
         var CooldownExpires = 300000;
         const voiceChannel  = message.member.voiceChannel;
-        const permissions   = voiceChannel.permissionsFor(message.client.user);
     
-    if  (permissions.has('CONNECT') && permissions.has('SPEAK'))  {
+    if  (voiceChannel.permissionsFor(message.client.user).has('CONNECT') && voiceChannel.permissionsFor(message.client.user).has('SPEAK'))  {
 
         await ytdl.getBasicInfo(GivenSong).then(async (info) => {
               
