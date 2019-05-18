@@ -9,6 +9,81 @@ body {
   a  {color: white; text-decoration: none;}
   img  {border-radius: 15px; cursor: pointer;}
 
+.listitem  {
+    background-color: #7289DA;
+    border: rgba(35, 39, 42, 1) 2px solid;
+    border-radius: 0px;
+    background-size: 100%;
+    height: 250px;
+    width: 400px;
+    padding: 10px 10px;
+    margin: 5px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+  
+.textlistitem {
+    background-color: rgba(35, 39, 42, 0.85);
+    border-top: rgba(35, 39, 42, 0.69) 2px solid;
+    border-radius: 0px;
+    width: 100%;
+    height: 40px;
+    bottom: 0px;
+    right: 0;
+    position: absolute;
+    display: inline-block;
+}
+  
+.textlistitem .name { 
+    background-color: rgba(35, 39, 42, 0.85);
+    border-top: rgba(35, 39, 42, 0.69) 2px solid;
+    border-bottom: rgba(35, 39, 42, 0.69) 2px solid;
+    padding: 5px;
+    padding-left: 10px;
+    width: 100%;
+  
+    font-size: 17px;
+  
+    top: -40px;
+    left: 0px;
+    position: absolute;
+    display: inline-block;
+    text-align: left;
+
+    transition: transform .25s ease;
+}
+  
+.textlistitem .buy {
+    background-color: #7289DA;
+    border-radius: 1px;
+    padding: 7px;
+    width: 75px;
+  
+    font-size: 10px;
+  
+    top: 5px;
+    left: 5px;
+    position: absolute;
+    display: inline-block;
+}
+  
+.textlistitem  .buy:hover {
+    background-color: #8094dd;
+}
+  
+.textlistitem .price {
+    border-radius: 1px;
+    padding: 7px;
+  
+    font-size: 10px;
+  
+    top: -36px;
+    right: 5px;
+    position: absolute;
+    display: inline-block;
+}
+
 .popup,
 .serverinvite,
 .button {
