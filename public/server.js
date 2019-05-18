@@ -603,7 +603,7 @@ function function_RemoveTags(text)  {
 };
 
 //CANVAS: Welcome Messages embed
-async function function_WelcomeMessagesEmbed(member, type)  {
+async function function_WelcomeMessagesEmbed(member, type, detected)  {
   
     var   attachment = null;
     const key        = member.user.id;
@@ -653,7 +653,10 @@ async function function_WelcomeMessagesEmbed(member, type)  {
     ctx.font = "30px " + DefaultFont;
     ctx.fillStyle = "white";
     ctx.textAlign = "left";
-    ctx.fillText(peeky.users.get(key).username, 95, 40);
+  
+    if  (detected == true)  {} else {}
+  
+    ctx.fillText(, 95, 40);
       
     if  (peeky.userData.has(key))  {
     
@@ -1753,12 +1756,21 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
     const guild     = member.guild;
     var ProfileName = member.user.username;
     const name      = peeky.serverData.get(keySF, "welcome_messages_bonus_setting");
+    var Detected    = false;
 
     var channel = guild.channels.find(c=> c.name == name);
     
     if (channel) {
       
-    channel.send("", await function_WelcomeMessagesEmbed(member, "join")).catch(error => ErrorBag.add(error));
+    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.nickname.toLowerCase(), "bw").includes(word)))  {
+        Detected = true;
+    };
+      
+    await channel.send("", await function_WelcomeMessagesEmbed(member, "join", Detected)).catch(error => ErrorBag.add(error));
+      
+    if  (Detected == true)  {
+        member.guild.ban(member.id, {  reason: "Triggered by the Welcome Messages function.", days: 0  }).catch(error => ErrorBag.add(error));
+    };
     
     console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
       
