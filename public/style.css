@@ -73,15 +73,13 @@ body {
     background-color: #8094dd;
 }
   
-.textlistitem .price {
-    border-left: rgba(35, 39, 42, 0.69) 2px solid;
-    border-radius: 1px;
+.textlistitem .price {  
     padding: 7px;
   
     font-size: 10px;
   
-    top: -36px;
-    right: 5px;
+    top: -37px;
+    right: 0px;
     position: absolute;
     display: inline-block;
 }
