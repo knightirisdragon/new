@@ -964,6 +964,7 @@ peeky.on('message', async (message) => {
         Exp: 1,
         Level: 1,
         Chests: 0,
+        Redeemed: 0,
       
         //Music
         Playlist: [],
@@ -3814,6 +3815,8 @@ if  (!ProfileCooldown.has(message.author.id))  {
             InfoMessages.push(InfoMessage1[0]);
 
         };
+      
+        peeky.userData.math(key, "+", RedeemedAmount, "Redeemed");
       
         var embed = {"description": SuccessIcon + " You have successfully redeemed **" + RedeemedAmount.toLocaleString('en') + " item" + NumberString + "**!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
