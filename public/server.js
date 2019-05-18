@@ -791,11 +791,11 @@ function function_TimeLeft(value, type)  {
       
     if  (type == "days")  {
 
-        return InactiveDays - (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(1));
+        return InactiveDays - (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(0));
       
     }  else if  (type == "minutes")  {
 
-        return (Math.abs((new Date() - new Date(value)) / (1000 * 60)).toFixed(1));
+        return (Math.abs((new Date() - new Date(value)) / (1000 * 60)).toFixed(0));
       
     };
       
