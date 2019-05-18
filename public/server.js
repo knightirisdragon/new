@@ -1603,7 +1603,7 @@ if  (peeky.guilds.size <= MaxServers)  {
                      + "\n" + " - "+ "Visit https://peeky.glitch.me/tutorials.html for some tutorials." 
                      + "\n" + " - " + "Send me a question and I'll send it to my owner and then he'll add you."
                      + "\n" + " - " + "Join my Support Server and discuss your problem with other users."
-                     + "\n" + "You can also type **" + HelpCommand + "** for more information."
+                     + "\n\n" + "**You can also type " + HelpCommand + " in the server for more information.**"
                     ).catch(error => ErrorBag.add(error));
   
     let channelID;
