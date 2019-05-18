@@ -2128,26 +2128,26 @@ if  (ReactionEmoji1 && ReactionEmoji2)  {
     };
 };
   
-//Image Only
+//Images Only
 if  (peeky.channelData.get(keyCF, "image_only_bonus") == true)  {
   
 if  (message.author.id !== PeekyId && message.guild.me.hasPermission("MANAGE_MESSAGES"))  {
 
 if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.size < 1)  {
 
-        message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
+    message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
   
-         if   (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id))  {
-         
-              ResponseCooldowns.add(message.guild.id);
-              setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
+    if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id))  {
+        
+        ResponseCooldowns.add(message.guild.id);
+        setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
 
-              const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other") + "**'s message because of the **Images Only** function.",  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+        const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other") + "**'s message because of the **Images Only** function.",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
 
-        };
+    };
 
-        console.log("The Images Only function has been triggered in " + message.guild.name + ".");
+    console.log("The Images Only function has been triggered in " + message.guild.name + ".");
 
 };
 };
@@ -2170,21 +2170,21 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
 
     if  (peeky.serverData.get(keySF, "event_countdown_bonus_setting") > 0 && TheDate > 0)  {
 
-      var Time = (new Date(peeky.serverData.get(keySF, "event_countdown_bonus_setting")) - Date.now());
-      var FixedTime = (Math.abs(Time / (1000 * 60 * 60)).toFixed(1));
-      var LengthName = "hours";
-            
-      if  (FixedTime > 24)  {
-          FixedTime = (Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(1)); LengthName = "days";
-              
-          if  (FixedTime >= 365)  {
-              FixedTime = "over"; LengthName = "a year";
-          };
-                                  
-      };
+        var Time = (new Date(peeky.serverData.get(keySF, "event_countdown_bonus_setting")) - Date.now());
+        var FixedTime = (Math.abs(Time / (1000 * 60 * 60)).toFixed(1));
+        var LengthName = "hours";
 
-      ChannelExists.setName("Starting in " + FixedTime + " " + LengthName).catch(error => ErrorBag.add(error));
-      console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
+        if  (FixedTime > 24)  {
+            FixedTime = (Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(1)); LengthName = "days";
+
+            if  (FixedTime >= 365)  {
+                FixedTime = "over"; LengthName = "a year";
+            };
+
+        };
+
+        ChannelExists.setName("Starting in " + FixedTime + " " + LengthName).catch(error => ErrorBag.add(error));
+        console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
 
     }
      else if (ChannelExists.name !== EndName)
@@ -2251,12 +2251,12 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 
     const p_role           = peeky.guilds.get(message.guild.id).roles.find(r => r.name == peeky.serverData.get(keySF, "donor_wall_bonus_setting"));
     const p_channel        = peeky.guilds.get(message.guild.id).channels.find(channel => channel.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
-    var WallList     = peeky.serverData.get(keySF, "donor_wall_bonus_array");
+    var WallList           = peeky.serverData.get(keySF, "donor_wall_bonus_array");
     const p_message        = peeky.serverData.get(keySF, "donor_wall_bonus_id");
     var EndString          = "";
     var Tag                = "";
   
-    WallList = [];  //Empty the array to avoid dupes.
+    WallList = [];
 
     if  (p_message !== null) {
       
