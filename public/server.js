@@ -1608,12 +1608,11 @@ if  (peeky.guilds.size <= MaxServers)  {
         var HelpCommand = Prefix + "help";
     };
 
-    guild.owner.send("Thank you for inviting me to **" + Function_RemoveFormatting(guild.name, "other") + "**!\n\n**If you are not sure about what to do, consider these options:**"
+    guild.owner.send("**Thank you for inviting me to " + Function_RemoveFormatting(guild.name, "other") + "**!"
+                     + "\n\n**If you are not sure about what to do, consider these options:**"
                      + "\n" + " - "+ "Visit https://peeky.glitch.me/tutorials.html for some tutorials." 
                      + "\n" + " - " + "Send me a question and I'll send it to my owner and then he'll add you."
-                     + "\n" + " - " + "Join my Support Server and discuss your problem with other users."
-                     + "\n\n" + "**You can also type " + HelpCommand + " in the server for more information.**"
-                    ).catch(error => ErrorBag.add(error));
+                     + "\n" + " - " + "Join my Support Server and discuss your problem with other users.").catch(error => ErrorBag.add(error));
   
     let channelID;
     let channels = guild.channels;
@@ -1740,18 +1739,20 @@ if  (!MemberCounterCooldown.has(member.guild.id))  {
 if (peeky.serverData.get(keySF, "join_role_bonus") == true) {
   
     //Permission Checking
-    if(member.guild.me.hasPermission("MANAGE_ROLES")) {
+  if  (member.guild.me.hasPermission("MANAGE_ROLES")) {
       
-  var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
-  var RoleExist = member.guild.roles.find(role => role.name == name);
-  
-  if  (RoleExist) {
-      member.addRole(RoleExist, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
-    
-      console.log("The Join Role function has been triggered in " + member.guild.name + ".");
+      var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
+      var RoleExist = member.guild.roles.find(role => role.name == name);
+
+      if  (RoleExist) {
+          member.addRole(RoleExist, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
+
+          console.log("The Join Role function has been triggered in " + member.guild.name + ".");
+      };
+
   };
 
-}};
+};
 
 //Welcome Messages Function
 if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
@@ -1774,7 +1775,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
       
     if  (Detected == true)  {
         member.guild.ban(member.id, {  reason: "Triggered by the Welcome Messages function.", days: 0  }).catch(error => ErrorBag.add(error));
-        member.send("You have been automatically banned for having a possible website ad in your username.  \n  Contact the server owner **" + member.guild.owner.user.tag + "** to get your ban revoked.")
+        member.send("**You have been automatically banned for having a possible website advertisment in your username.**  \n  Contact the server owner " + member.guild.owner.user.tag + " to get your ban revoked.")
     };
       
     channel.startTyping();
@@ -2433,7 +2434,7 @@ if  ((((new Date() - new Date(message.member.joinedAt)) / 60000) < peeky.serverD
 };
 
 //COMMANDS
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")) && !message.webhookID && !message.author.bot && message.guild.me.permissions.has("SEND_MESSAGES"))  {
+if  (message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && message.content.startsWith(peeky.serverData.get(keySF, "prefix")) && !message.webhookID && !message.author.bot)  {
   
 //Misc. Commands
 
@@ -4825,7 +4826,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         var CooldownExpires = 300000;
         const voiceChannel  = message.member.voiceChannel;
     
-    if  (voiceChannel.permissionsFor(message.client.user).has('CONNECT') && voiceChannel.permissionsFor(message.client.user).has('SPEAK'))  {
+    if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT') && voiceChannel.permissionsFor(peeky.user).has('SPEAK'))  {
 
         await ytdl.getBasicInfo(GivenSong).then(async (info) => {
               
