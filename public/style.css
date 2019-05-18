@@ -56,7 +56,8 @@ body {
   
 .textlistitem .buy {
     background-color: #7289DA;
-    border-radius: 1px;
+    border-bottom: rgba(35, 39, 42, 0.69) 2px solid;
+    border-radius: 5px;
     padding: 7px;
     width: 75px;
   
@@ -73,6 +74,7 @@ body {
 }
   
 .textlistitem .price {
+    border-left: rgba(35, 39, 42, 0.69) 2px solid;
     border-radius: 1px;
     padding: 7px;
   
