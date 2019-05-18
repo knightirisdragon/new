@@ -3,22 +3,22 @@
     "start": "node public/server.js"
   },
   "dependencies": {
-    "discord.js": "^11.4.2",
+    "discord.js": "^11.5.0",
     "dblapi.js": "^2.3.0",
     "ddblapi.js": "^1.0.0",
     "node-opus": "^0.3.1",
-    "ytdl-core": "^0.29.0",
+    "ytdl-core": "^0.29.2",
     "ytdl-core-discord": "^1.0.3",
     "canvas": "^2.5.0",
     "canvas-node": "^0.3.20",
     "dominant-color": "^0.0.1",
-    "enmap": "^4.8.5",
+    "enmap": "^4.8.6",
     "better-sqlite-pool": "^0.2.2",
     "sqlite3": "^4.0.8",
     "express": "^4.16.4",
     "request": "^2.88.0",
     "require.js": "^1.0.0",
-    "node-fetch": "^2.5.0",
+    "node-fetch": "^2.6.0",
     "parse-ms": "^2.0.0"
   },
   "engines": {
