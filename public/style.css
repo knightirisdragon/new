@@ -54,41 +54,30 @@ body {
     transition: transform .25s ease;
 }
   
+.textlistitem .purchase,
 .textlistitem .info {
     background-color: #7289DA;
     border-bottom: rgba(35, 39, 42, 0.69) 2px solid;
     border-radius: 5px;
     padding: 7px;
     width: 75px;
-  
     font-size: 10px;
-  
-    top: 5px;
-    left: 5px;
     position: absolute;
     display: inline-block;
-}
-  
-.textlistitem  .info:hover {
-    background-color: #8094dd;
 }
   
 .textlistitem .purchase {
-    background-color: #7289DA;
-    border-bottom: rgba(35, 39, 42, 0.69) 2px solid;
-    border-radius: 5px;
-    padding: 7px;
-    width: 75px;
-  
-    font-size: 10px;
-  
     top: 5px;
     left: 85px;
-    position: absolute;
-    display: inline-block;
 }
   
-.textlistitem  .purchase:hover {
+.textlistitem .info {
+    top: 5px;
+    left: 5px;
+}
+
+.textlistitem  .purchase:hover,
+.textlistitem  .info:hover {
     background-color: #8094dd;
 }
   
