@@ -36,14 +36,27 @@
     }
       
     .newsitem  {
-    text-align: left;
-    padding: 15px;
+    background-color: rgba(35, 39, 42, 0.5);
+    border-left: #7289DA 2px solid;
     width: 100%;
-    position: relative;
+    padding: 15px;
+      
     display: inline-block;
-    border-radius: 10px;
-    text-decoration: none;
     transition: transform .25s ease;
+    }
+      
+    .newsitem:hover  {
+    border-left: #8094dd 4px solid;
+    transform: scale(0.99);
+    cursor: pointer;
+    }
+      
+    .newsheader  {
+    font-size: 20px;
+    }
+      
+    .newsbody  {
+    font-size: 13px;
     }
       
     #Reviews:hover  {
@@ -58,8 +71,8 @@
     text-align: left;
     padding: 15px;
     position: relative;
-    display: inline-block;
     text-decoration: none;
+    display: inline-block;
     transition: transform .25s ease;
     }
       
