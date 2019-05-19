@@ -913,6 +913,11 @@ fetch('https://peeky.glitch.me/reviews.txt')
    document.getElementById("Reviews").innerHTML = data
 });
   
+fetch('https://peeky.glitch.me/news.txt')
+.then(response => response.text()).then((data) => {
+   document.getElementById("News").innerHTML = data;
+});
+  
 fetch('https://peeky.glitch.me/staff.txt')
 .then(response => response.text()).then((data) => {
    document.getElementById("StaffList").innerHTML = data;
@@ -1471,16 +1476,18 @@ if  (!WebsiteCooldowns.has("news"))  {
 
     var NewsList = [];
 
-    message.guild.channels.get(AnnouncementsChannel).fetchMessages({ limit: 5 })
-    .then(messages => messages.forEach(m => {
-  
-    NewsList.push('<div class="newsitem">  ' + m.content + '  </div>');
-      
-    })).catch(console.error);
-
-    await fs.writeFile('public/news.txt', SupporterList.join("<br><br>"), (err) => {
-        if (err) console.log(err);
+    peeky.channels.get(AnnouncementsChannel).fetchMessages({ limit: 5 })
+    .then(async (messages) => {
+          
+    messages.forEach(m => {
+        NewsList.push('<div class="newsitem"> ' + m.content + ' </div>');
     });
+
+    await fs.writeFile('public/news.txt', NewsList.join("<br><br>"), (err) => {
+        if (err) console.log(err);
+    });    
+    
+    }).catch(error => ErrorBag.add(error));
       
     console.log("The news list has been updated.");
 
