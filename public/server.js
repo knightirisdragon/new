@@ -614,17 +614,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     ctx.globalAlpha = 0.75;
       
     var TheBannerShown = DefaultBackground;
-    
-    if  (peeky.userData.has(key))  {
-
-        for(var i = 0; i < Banners.length; i++) {
-           if (peeky.userData.get(key, "Background") == i + 1) {
-               TheBannerShown = Banners[i][Banner.Source];
-               break;
-           };
-        };
-      
-    };
+    TheBannerShown = function_GetBackground(key);
 
     const background = await Canvas.loadImage(TheBannerShown);
     ctx.drawImage(background, 0, 0, canvas.width, 300);  
@@ -771,13 +761,11 @@ function function_RandomDescription()  {
 function function_GetBackground(key)  {
 
 if  (peeky.userData.has(key))  {
-  
-    
       
-    for(var i = 0; i < Banners.length; i++) {
-       if (peeky.userData.get(key2, "Background") == i + 1) {
-           TheBannerShown = Banners[i][Banner.Source];
-         break;
+    for  (var i = 0; i < Banners.length; i++) {
+       if   (peeky.userData.get(key, "Background") == i + 1) {
+            return Banners[i][Banner.Source];
+            break;
        };
     };
       
@@ -1330,13 +1318,9 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
         if  (GotBadge == true && peeky.userData.get(`${data.UserID}`, "MedallistBadge") == false)  {
             peeky.userData.set(`${data.UserID}`, true, "MedallistBadge")
         };
-      
-        for(var i = 0; i < Banners.length; i++) {
-           if (peeky.userData.get(`${data.UserID}`, "Background") == i + 1) {
-               var TheBannerShown = Banners[i][Banner.Source];
-             break;
-           };
-        };
+
+        var TheBannerShown = DefaultBackground;
+        TheBannerShown = function_GetBackground(data.UserID);
 
         var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname'>  <img src='" + CurrentUser.displayAvatarURL + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + peeky.userData.get(`${data.UserID}`, 'Gredit').toLocaleString('en') + " Gredit</b>  </div>";
         if  (currentplace == 1 || currentplace == 2 || currentplace == 3)  {
@@ -1460,15 +1444,9 @@ if  (!WebsiteCooldowns.has("supporters"))  {
     var SupporterList = [];
     peeky.guilds.get(SupportServer).members.forEach(function(guildMember, guildMemberId) {
     if  (guildMember.roles.has(SupporterRole))  {
-      
-        if  (peeky.userData.has(`${guildMemberId}`))  {
-            for(var i = 0; i < Banners.length; i++) {
-               if (peeky.userData.get(`${guildMemberId}`, "Background") == i + 1) {
-                  var TheBannerShown = Banners[i][Banner.Source];
-                  break;
-               };
-            };
-        };
+
+        var TheBannerShown = DefaultBackground;
+        TheBannerShown = function_GetBackground(guildMemberId);
 
         SupporterList.push('<div class="supporter" style="background-image: url(' + TheBannerShown + ')">  <div class="supporterinfo">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="30px" height="30px" class="supportericon"' + '> <b>' + function_RemoveTags(guildMember.user.username) + '</b>  </div>  </div>');
     
@@ -4567,7 +4545,6 @@ if (!ProfileCooldown.has(message.author.id)) {
     if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.author;  };
 
     //Vars
-    var TheBannerShown       = "empty";
     const ProfileName        = SomeoneTagged.username;
     const PeekySupportServer = peeky.guilds.get(SupportServer);
     const TheUserWithRole    = peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id);
@@ -4581,7 +4558,8 @@ if (!ProfileCooldown.has(message.author.id)) {
 
     message.channel.startTyping();
       
-    //BACKGROUNDS LOL
+    var TheBannerShown = DefaultBackground;
+    TheBannerShown = function_GetBackground(key);
 
     const background = await Canvas.loadImage(TheBannerShown);
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
