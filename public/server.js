@@ -506,7 +506,7 @@ var Banners = [
 //FUNCTIONS
 
 //Remove Formatting
-function Function_RemoveFormatting(text, type)  {
+function Function_RemoveFormatting(text, type, sliced)  {
     
     if  (type == "sm")  {
 
@@ -527,7 +527,11 @@ function Function_RemoveFormatting(text, type)  {
   
     if  (type == "get")  {
 
-    var FixedText = text.toLowerCase().replace(/`/g, '').slice(0, 1900);
+    var FixedText = text.toLowerCase().replace(/`/g, '')
+      
+    if  (sliced == true)  {
+        FixedText.slice(0, 1900);
+    };
 
     if  (FixedText !== "")  {
 
@@ -540,7 +544,11 @@ function Function_RemoveFormatting(text, type)  {
   
     if  (type == "channel")  {
 
-    var FixedText = text.toLowerCase().replace(/[~*|` ]/g, '').replace(/\n/g, '').slice(0, 100);
+    var FixedText = text.toLowerCase().replace(/[~*|` ]/g, '').replace(/\n/g, '')
+      
+    if  (sliced == true)  {
+        FixedText.slice(0, 100);
+    };
 
     if  (FixedText !== "")  {
 
@@ -553,7 +561,11 @@ function Function_RemoveFormatting(text, type)  {
       
     if  (type == "role")  {
 
-    var FixedText = text.replace(/[~*|`]/g, '').replace(/\n/g, '').slice(0, 32);
+    var FixedText = text.replace(/[~*|`]/g, '').replace(/\n/g, '')
+      
+    if  (sliced == true)  {
+        FixedText.slice(0, 32);
+    };
 
     if  (FixedText !== "")  {
         return FixedText;
@@ -565,7 +577,11 @@ function Function_RemoveFormatting(text, type)  {
       
     if  (type == "other")  {
 
-    var FixedText = text.replace(/[~*|`_]/g, '').replace(/\n/g, '').slice(0, 100);
+    var FixedText = text.replace(/[~*|`_]/g, '').replace(/\n/g, '')
+      
+    if  (sliced == true)  {
+        FixedText.slice(0, 100);
+    };
 
     if  (FixedText !== "")  {
         return FixedText;
@@ -577,7 +593,11 @@ function Function_RemoveFormatting(text, type)  {
       
     if  (type == "bw")  {
 
-    var FixedText = text.replace(/[ ]/g, '').replace(/\n/g, '').slice(0, 50);
+    var FixedText = text.replace(/[ ]/g, '').replace(/\n/g, '')
+      
+    if  (sliced == true)  {
+        FixedText.slice(0, 50);
+    };
 
         return FixedText;
       
@@ -1479,7 +1499,7 @@ if  (!WebsiteCooldowns.has("news"))  {
     peeky.channels.get(AnnouncementsChannel).fetchMessages({ limit: 4 })
     .then(async (messages) => {
           
-    messages.forEach(m => {
+    await messages.forEach(m => {
         var Header = m.content.split("\n")[0];
         var Body   = m.content.split("\n").join("<br>").replace(Header, "");
       
