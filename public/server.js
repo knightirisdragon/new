@@ -1593,7 +1593,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
         ModList.push(Filler);
     };
 
-    await fs.writeFile('public/staff.txt', '<font size="5" class="headertext">Developers</font>  <br>  <font size="2">These are the people that work on PEEKY to make him the best possible Discord bot that it is today.</font>  <br><br>  <div class="staffroom">  ' + DevList.join(" ") + '  </div>  <br><br>  <font size="5" class="headertext">Helpers</font>  <br>  <font size="2">These are the people that can help you fix some PEEKY related issues.</font>  <br><br>  <div class="staffroom">  ' + HelperList.join(" ") + '  </div>  <br><br>  <font size="5" class="headertext">Moderators</font>  <br>  <font size="2">These are the people that moderate the Support Server to keep it safe.</font>  <br><br>  <div class="staffroom">  ' + ModList.join(" ") + '  </div>', (err) => {
+    await fs.writeFile('public/staff.txt', '<font size="4">Developers</font>  <br>  <font size="2">These are the people that work on PEEKY to make him the best possible Discord bot that it is today.</font>  <br><br>  <div class="staffroom">  ' + DevList.join(" ") + '  </div>  <br><br>  <font size="4">Helpers</font>  <br>  <font size="2">These are the people that can help you fix some PEEKY related issues.</font>  <br><br>  <div class="staffroom">  ' + HelperList.join(" ") + '  </div>  <br><br>  <font size="4">Moderators</font>  <br>  <font size="2">These are the people that moderate the Support Server to keep it safe.</font>  <br><br>  <div class="staffroom">  ' + ModList.join(" ") + '  </div>', (err) => {
         if (err) console.log(err);
     });
       
