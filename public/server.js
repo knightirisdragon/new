@@ -2334,7 +2334,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
 
     if  (message.guild.me.hasPermission("MANAGE_NICKNAMES") && !message.member.permissions.has("MANAGE_NICKNAMES") && message.member.nickname == null && !message.author.bot)  {
-      
+
     if  (!ClearedNames.has(message.author.tag)) {
 
         ClearedNames.add(message.author.tag);
@@ -5163,7 +5163,7 @@ if  (message.member.permissions.has("MUTE_MEMBERS")) {
 //Unmute
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "unmute "))  {
 
-if  (message.member.permissions.has("MUTE_MEMBERS")) {
+if  (message.member.permissions.has("MUTE_MEMBERS"))  {
       
     var MentionedMember = message.mentions.members.first();
     var name = peeky.serverData.get(keySF, "muted_role");
