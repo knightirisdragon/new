@@ -1472,7 +1472,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
 if  (!WebsiteCooldowns.has("news"))  {
       
     WebsiteCooldowns.add("news");
-    setTimeout(() => {WebsiteCooldowns.delete("news")}, 3600000);
+    setTimeout(() => {WebsiteCooldowns.delete("news")}, 600000);
 
     var NewsList = [];
 
@@ -1481,7 +1481,7 @@ if  (!WebsiteCooldowns.has("news"))  {
           
     messages.forEach(m => {
         var Header = m.content.split("\n")[0];
-        var Body   = m.content.slice(Header.length, 750).replace(/\n/g, '<br>');
+        var Body   = Header.split()//.replace(/\n/g, '<br>');
 
         NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other") + '  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other") + '  </b>  </div>');
     });
