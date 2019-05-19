@@ -1279,7 +1279,7 @@ peeky.on('message', async (message) => {
 if  (!WebsiteCooldowns.has("leaderboard"))  {
 
     WebsiteCooldowns.add("leaderboard");
-    setTimeout(() => {WebsiteCooldowns.delete("leaderboard")}, 600000);
+    //  setTimeout(() => {WebsiteCooldowns.delete("leaderboard")}, 600000);
   
     //Update leadeboard
     var filtered         = peeky.userData.filter( p => p.Gredit && p.FashionBadge == true ).array();
@@ -1346,7 +1346,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
 if  (!WebsiteCooldowns.has("backgrounds"))  {
 
     WebsiteCooldowns.add("backgrounds");
-    setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 600000);
+    //  setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 600000);
 
     const BackgroundList = [];
     const FeaturedList   = [];
@@ -1399,7 +1399,7 @@ if  (!WebsiteCooldowns.has("randomsongs"))  {
 if  (!WebsiteCooldowns.has("serverlist"))  {
 
     WebsiteCooldowns.add("serverlist");
-    setTimeout(() => {WebsiteCooldowns.delete("serverlist")}, 600000);
+    //  setTimeout(() => {WebsiteCooldowns.delete("serverlist")}, 600000);
   
     //Update leadeboard
     var serverlist = peeky.serverData.filter( p => p.server_upgraded == true ).array();
@@ -1437,7 +1437,7 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
 if  (!WebsiteCooldowns.has("supporters"))  {
       
     WebsiteCooldowns.add("supporters");
-    setTimeout(() => {WebsiteCooldowns.delete("supporters")}, 600000);
+    //  setTimeout(() => {WebsiteCooldowns.delete("supporters")}, 600000);
 
     var SupporterList = [];
     peeky.guilds.get(SupportServer).members.forEach(function(guildMember, guildMemberId) {
@@ -1472,7 +1472,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
 if  (!WebsiteCooldowns.has("news"))  {
       
     WebsiteCooldowns.add("news");
-    setTimeout(() => {WebsiteCooldowns.delete("news")}, 600000);
+    //  setTimeout(() => {WebsiteCooldowns.delete("news")}, 600000);
 
     var NewsList = [];
 
@@ -1482,8 +1482,14 @@ if  (!WebsiteCooldowns.has("news"))  {
     messages.forEach(m => {
         var Header = m.content.split("\n")[0];
         var Body   = m.content.split("\n").join("<br>").replace(Header, "");
+      
+        if  (m.attachments.size > 0)  {
+            var Image = '<img src="' + m.attachments.array()[0].url + '" width="250px">'
+        }   else  {
+            var Image = "";
+        };
 
-        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other") + '  </b>  <br>  <b class="newsauthor">  ' + m.author.tag + '  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other") + '  </b>  </div>');
+        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other") + '  </b>  <br>  <b class="newsauthor">  ' + m.author.tag + '  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other") + '  </b>  <br>  ' + Image + '  </div>');
     });
 
     await fs.writeFile('public/news.txt', NewsList.join("<br><br>"), (err) => {
@@ -1499,7 +1505,7 @@ if  (!WebsiteCooldowns.has("news"))  {
 if  (!WebsiteCooldowns.has("staff"))  {
       
     WebsiteCooldowns.add("staff");
-    setTimeout(() => {WebsiteCooldowns.delete("staff")}, 600000);
+    //  setTimeout(() => {WebsiteCooldowns.delete("staff")}, 600000);
         
     var HelperList = [];
     var DevList    = [];
@@ -1585,7 +1591,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
 if  (!WebsiteCooldowns.has("stats"))  {
       
     WebsiteCooldowns.add("stats");
-    setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
+    //  setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
 
     var Votes = 0;
   
@@ -1596,7 +1602,7 @@ if  (!WebsiteCooldowns.has("stats"))  {
     });
       
     WebsiteCooldowns.add("reviews");
-    setTimeout(() => {WebsiteCooldowns.delete("reviews")}, 600000);
+    //  setTimeout(() => {WebsiteCooldowns.delete("reviews")}, 600000);
     
     node_fetch('https://ls.terminal.ink/api/v2/bots/482945063282802698').then(response => response.json()).then(async (data) => {
       
