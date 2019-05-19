@@ -1489,7 +1489,7 @@ if  (!WebsiteCooldowns.has("news"))  {
             var Image = "";
         };
 
-        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other") + '  </b>  <br>  <b class="newsauthor">  ' + m.author.tag + ' posted at ' + function_DateFormat(m.createdAt) + '.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other") + '  </b>  <br><br>  ' + Image + '  </div>');
+        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other") + '  </b>  <br>  <b class="newsauthor">  Posted by ' + m.author.tag + ' on  ' + function_DateFormat(m.createdAt) + '.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other") + '  </b>  <br><br>  ' + Image + '  </div>');
     });
 
     await fs.writeFile('public/news.txt', NewsList.join("<br><br>"), (err) => {
@@ -4563,16 +4563,7 @@ if (!ProfileCooldown.has(message.author.id)) {
 
     message.channel.startTyping();
       
-    if  (peeky.userData.has(key))  {
-      
-    for(var i = 0; i < Banners.length; i++) {
-       if (peeky.userData.get(key2, "Background") == i + 1) {
-           TheBannerShown = Banners[i][Banner.Source];
-         break;
-       };
-    };
-      
-    };
+    //BACKGROUNDS LOL
 
     const background = await Canvas.loadImage(TheBannerShown);
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
