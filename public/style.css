@@ -57,7 +57,6 @@ body {
 .textlistitem .purchase,
 .textlistitem .info {
     background-color: #7289DA;
-    border-bottom: rgba(35, 39, 42, 0.69) 2px solid;
     border-radius: 5px;
     padding: 7px;
     width: 75px;
@@ -120,16 +119,23 @@ a.button:hover {
 
 .fullsize  {
     background-color: rgba(44, 47, 51, 0.5);
-    border: rgba(35, 39, 42, 0.95) solid;
-    border-radius: 5px;
+    border: rgba(35, 39, 42, 0.95) 2px solid;
+    border-radius: 4px;
     padding: 15px;
     text-align: center;
 }
 
 .homeheader,
 .headertext  {
-    padding: 15px;
+    background-color: #7289DA;
+    border-top: rgba(35, 39, 42, 0.5) 2px solid;
+    border-bottom: rgba(35, 39, 42, 0.5) 2px solid;
+  
+    padding: 10px;
+    width: 100%;
     color: white;
+    
+    display: inline-block;
 }
 
 .middletext  {
@@ -417,7 +423,7 @@ th, td {
 
 .sidenav {
     background-color: rgba(44, 47, 51, 0.75);
-    border-right: rgba(35, 39, 42, 0.95) solid;
+    border-right: rgba(35, 39, 42, 0.95) 2px solid;
     overflow: scroll;
     text-shadow: 1px 1px black;
     padding: 10px;
@@ -431,7 +437,7 @@ th, td {
 
 .topnav {
     background-color: rgba(44, 47, 51, 0.75);
-    border-top: rgba(35, 39, 42, 0.95) solid;
+    border-top: rgba(35, 39, 42, 0.95) 2px solid;
     padding: 10px;
     position: fixed;
     text-align: left;
@@ -449,6 +455,7 @@ th, td {
 
 .topnav a  {
     width: 200px;
+    margin-right: 10px;
     text-align: center;
 }
 
