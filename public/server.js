@@ -495,7 +495,11 @@ var Banners = [
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground261.png?1558103378145", NormalPrice, "Contract delivery", "A Hat in Time"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground262.png?1558103379729", NormalPrice, "Ashen", "Ashen"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground263.png?1558103382341", NormalPrice, "Roll out!", "Not credited"],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground264.png?1558103383792", NormalPrice, "The Ghost", "Call of Duty Ghosts"]
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground264.png?1558103383792", NormalPrice, "The Ghost", "Call of Duty Ghosts"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground365.jpg?1558284670746", NormalPrice, "Gun Kid", "Not credited"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground366.jpg?1558284672817", NormalPrice, "Sleeping King", "Shrek"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground367.png?1558284675840", NormalPrice, "Gaming Pattern", "Discord"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground368.png?1558284679152", NormalPrice, "Afterthoughts", "Discord"]
 
 ];
 
@@ -1285,7 +1289,7 @@ peeky.on('message', async (message) => {
 if  (!WebsiteCooldowns.has("leaderboard"))  {
 
     WebsiteCooldowns.add("leaderboard");
-    //  setTimeout(() => {WebsiteCooldowns.delete("leaderboard")}, 600000);
+    setTimeout(() => {WebsiteCooldowns.delete("leaderboard")}, 600000);
   
     //Update leadeboard
     var filtered         = peeky.userData.filter( p => p.Gredit && p.FashionBadge == true ).array();
@@ -1348,7 +1352,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
 if  (!WebsiteCooldowns.has("backgrounds"))  {
 
     WebsiteCooldowns.add("backgrounds");
-    //  setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 600000);
+    setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 600000);
 
     const BackgroundList = [];
     const FeaturedList   = [];
@@ -1401,7 +1405,7 @@ if  (!WebsiteCooldowns.has("randomsongs"))  {
 if  (!WebsiteCooldowns.has("serverlist"))  {
 
     WebsiteCooldowns.add("serverlist");
-    //  setTimeout(() => {WebsiteCooldowns.delete("serverlist")}, 600000);
+    setTimeout(() => {WebsiteCooldowns.delete("serverlist")}, 600000);
   
     //Update leadeboard
     var serverlist = peeky.serverData.filter( p => p.server_upgraded == true ).array();
@@ -1439,7 +1443,7 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
 if  (!WebsiteCooldowns.has("supporters"))  {
       
     WebsiteCooldowns.add("supporters");
-    //  setTimeout(() => {WebsiteCooldowns.delete("supporters")}, 600000);
+    setTimeout(() => {WebsiteCooldowns.delete("supporters")}, 600000);
 
     var SupporterList = [];
     peeky.guilds.get(SupportServer).members.forEach(function(guildMember, guildMemberId) {
