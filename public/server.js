@@ -510,7 +510,7 @@ function Function_RemoveFormatting(text, type, sliced)  {
     
     if  (type == "sm")  {
 
-    var FixedText = text.replace(/\n/g, ' ').replace(/\*/g, '').replace(/`/g, '').replace(/|/g, '').replace(/~/g, '')
+    var FixedText = text.replace(/\n/g, ' ').replace(/\*/g, '').replace(/`/g, '').replace(/|/g, '').replace(/~/g, '');
 
     if  (FixedText !== "")  {
       
@@ -527,7 +527,7 @@ function Function_RemoveFormatting(text, type, sliced)  {
   
     if  (type == "get")  {
 
-    var FixedText = text.toLowerCase().replace(/`/g, '')
+    var FixedText = text.toLowerCase().replace(/`/g, '');
       
     if  (sliced == true)  {
         FixedText.slice(0, 1900);
@@ -544,7 +544,7 @@ function Function_RemoveFormatting(text, type, sliced)  {
   
     if  (type == "channel")  {
 
-    var FixedText = text.toLowerCase().replace(/[~*|` ]/g, '').replace(/\n/g, '')
+    var FixedText = text.toLowerCase().replace(/[~*|` ]/g, '').replace(/\n/g, '');
       
     if  (sliced == true)  {
         FixedText.slice(0, 100);
@@ -561,7 +561,7 @@ function Function_RemoveFormatting(text, type, sliced)  {
       
     if  (type == "role")  {
 
-    var FixedText = text.replace(/[~*|`]/g, '').replace(/\n/g, '')
+    var FixedText = text.replace(/[~*|`]/g, '').replace(/\n/g, '');
       
     if  (sliced == true)  {
         FixedText.slice(0, 32);
@@ -577,7 +577,7 @@ function Function_RemoveFormatting(text, type, sliced)  {
       
     if  (type == "other")  {
 
-    var FixedText = text.replace(/[~*|`_]/g, '').replace(/\n/g, '')
+    var FixedText = text.replace(/[~*|`_]/g, '').replace(/\n/g, '');
       
     if  (sliced == true)  {
         FixedText.slice(0, 100);
@@ -593,7 +593,7 @@ function Function_RemoveFormatting(text, type, sliced)  {
       
     if  (type == "bw")  {
 
-    var FixedText = text.replace(/[ ]/g, '').replace(/\n/g, '')
+    var FixedText = text.replace(/[ ]/g, '').replace(/\n/g, '');
       
     if  (sliced == true)  {
         FixedText.slice(0, 50);
@@ -1509,7 +1509,7 @@ if  (!WebsiteCooldowns.has("news"))  {
             var Image = "";
         };
 
-        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other") + '  </b>  <br>  <b class="newsauthor">  Posted by ' + m.author.tag + ' on  ' + function_DateFormat(m.createdAt) + '.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other") + '  </b>  <br><br>  ' + Image + '  </div>');
+        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", false) + '  </b>  <br>  <b class="newsauthor">  Posted by ' + m.author.tag + ' on  ' + function_DateFormat(m.createdAt) + '.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", false) + '  </b>  <br><br>  ' + Image + '  </div>');
     });
 
     await fs.writeFile('public/news.txt', NewsList.join("<br><br>"), (err) => {
@@ -1680,7 +1680,7 @@ if  (peeky.guilds.size <= MaxServers)  {
         var HelpCommand = Prefix + "help";
     };
 
-    guild.owner.send("**Thank you for inviting me to " + Function_RemoveFormatting(guild.name, "other") + "**!"
+    guild.owner.send("**Thank you for inviting me to " + Function_RemoveFormatting(guild.name, "other", true) + "**!"
                      + "\n\n**If you are not sure about what to do, consider these options:**"
                      + "\n" + " - "+ "Visit https://peeky.glitch.me/tutorials.html for some tutorials." 
                      + "\n" + " - " + "Send me a question and I'll send it to my owner and then he'll add you."
@@ -1745,7 +1745,7 @@ if (member.user.id !== PeekyId && peeky.serverData.has(keySF)) {
 //Server Message
 if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user.bot) {
       
-    member.send((peeky.serverData.get(keySF, "server_message_bonus_setting")).replace(GuildNameTag, Function_RemoveFormatting(member.guild.name, "other")).replace(GuildSizeTag, member.guild.members.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym))
+    member.send((peeky.serverData.get(keySF, "server_message_bonus_setting")).replace(GuildNameTag, Function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym))
     .catch(error => ErrorBag.add(error));
 
 };
@@ -1772,7 +1772,7 @@ if (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.user
 
         if  (Suspicions > 0) {
         
-            peeky.users.get(owner).send("**Someone suspicious has joined " + Function_RemoveFormatting(member.guild.name, "other") + "!**\nBe aware of this user but don't ban them just because you've got this message!\n\n**User:** " + Function_RemoveFormatting(member.user.tag, "other") + " (<@" + member.user.id + ">)\n**Suspicions:** " + (String.join(" / ") + "\n­"))
+            peeky.users.get(owner).send("**Someone suspicious has joined " + Function_RemoveFormatting(member.guild.name, "other", true) + "!**\nBe aware of this user but don't ban them just because you've got this message!\n\n**User:** " + Function_RemoveFormatting(member.user.tag, "other", true) + " (<@" + member.user.id + ">)\n**Suspicions:** " + (String.join(" / ") + "\n­"))
             .catch(error => ErrorBag.add(error));
             
             console.log("The Suspicion Alert function has been triggered in " + member.guild.name + ".");
@@ -1841,7 +1841,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
     
     if (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES')) {
       
-    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "bw").includes(word)))  {
+    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "bw", true).includes(word)))  {
         Detected = true;
     };
       
@@ -1915,7 +1915,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
     
     if (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES')) {
       
-    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "bw").includes(word)))  {
+    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "bw", true).includes(word)))  {
         Detected = true;
     };
       
@@ -2063,7 +2063,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
   
             if  (peeky.serverData.get(keySF, "notifications") == true)  {
                   
-                const embed = {"description": InfoIcon + " I have logged **" + Function_RemoveFormatting(reaction.message.author.username, "other") + "**'s message at **" + Function_RemoveFormatting(user.username, "other") + "**'s request.",  "color": EmbedColor}; 
+                const embed = {"description": InfoIcon + " I have logged **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**'s message at **" + Function_RemoveFormatting(user.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
                 reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
                   
             };
@@ -2214,7 +2214,7 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.s
         ResponseCooldowns.add(message.guild.id);
         setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
 
-        const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other") + "**'s message because of the **Images Only** function.",  "color": EmbedColor}; 
+        const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s message because of the **Images Only** function.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
 
     };
@@ -2340,7 +2340,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
        if  (guildMember.roles.has(p_role.id))  {
        if  (guildMember.user.bot)                                {  Tag = BotTag;  };
        if  (guildMember.user.id == message.guild.owner.user.id)  {  Tag = OwnerTag;  };
-           WallList.push(Function_RemoveFormatting(guildMember.user.username, "cw") +  "#" + guildMember.user.discriminator + " " + Tag);
+           WallList.push(Function_RemoveFormatting(guildMember.user.username, "cw", true) +  "#" + guildMember.user.discriminator + " " + Tag);
            Tag = "";
        };
        });
@@ -2358,7 +2358,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
           setTimeout(() => {DonorWallCooldown.delete(message.guild.id)}, 300000);
 
           peeky.channels.get(p_channel.id).fetchMessage(p_message)
-          .then(m => m.edit("**" + Function_RemoveFormatting(message.guild.name, "other") + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString)
+          .then(m => m.edit("**" + Function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString)
           .catch(error => ErrorBag.add(error)));
 
           console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
@@ -2417,7 +2417,7 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
                    
           if  (peeky.serverData.get(keySF, "notifications") == true)  {
             
-              const embed = {"description": InfoIcon + " I have cleared **" + Function_RemoveFormatting(message.author.username, "other") + "**'s because of the **Clear Nicknames** function.",  "color": EmbedColor};
+              const embed = {"description": InfoIcon + " I have cleared **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s because of the **Clear Nicknames** function.",  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
             
               };
@@ -2453,7 +2453,7 @@ if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true)  {
   
 if  (message.author.id !== PeekyId && message.guild.me.hasPermission("MANAGE_MESSAGES"))  {
     
-if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(keySF, "banned_words_bonus_setting").some(word => Function_RemoveFormatting(message.content.toLowerCase(), "bw").includes(word)))  {
+if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(keySF, "banned_words_bonus_setting").some(word => Function_RemoveFormatting(message.content.toLowerCase(), "bw", true).includes(word)))  {
 
      message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
   
@@ -2462,7 +2462,7 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(
          ResponseCooldowns.add(message.guild.id);
          setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
        
-         const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other") + "**'s message because of the **Banned Words** function.",  "color": EmbedColor}; 
+         const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s message because of the **Banned Words** function.",  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
 
      };
@@ -2491,7 +2491,7 @@ if  ((((new Date() - new Date(message.member.joinedAt)) / 60000) < peeky.serverD
          ResponseCooldowns.add(message.guild.id);
          setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
        
-         const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other") + "**'s message because of the **Spoiler Lock** function.",  "color": EmbedColor}; 
+         const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s message because of the **Spoiler Lock** function.",  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
 
      };
@@ -2531,7 +2531,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))
   
 //Get
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "get "))  {
-    message.channel.send("`" + Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get") + "`")
+    message.channel.send("`" + Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get", true) + "`")
     .catch(error => ErrorBag.add(error));
 };
 
@@ -2667,7 +2667,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
    );
   
    Functions.push(
-                        "**Functions in " + Function_RemoveFormatting(message.guild.name, "other") + ".**" + "\n\n" +
+                        "**Functions in " + Function_RemoveFormatting(message.guild.name, "other", true) + ".**" + "\n\n" +
 
                         WM + " **Welcome Messages** " + "\n" + Hollow + " " + "When someone joins this server it will be announced in a channel called `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`." + "\n" +
                         MC + " **Member Counter** " + "\n" + Hollow + " " + "The member counter prefix is `" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
@@ -2679,7 +2679,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
    Functions.push(
                         FP + " **Flood Protection** " + "\n" + Hollow + " " + "No Setting." + "\n" +
                         EC + " **Event Countdown** " + "\n" + Hollow + " " + "The current timestamp is `" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n" +
-                        SM + " **Server Message** " + "\n" + Hollow + " " + "The server message is `" + Function_RemoveFormatting(ServerMessage, "sm") + "`." + "\n" +
+                        SM + " **Server Message** " + "\n" + Hollow + " " + "The server message is `" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n" +
                         JR + " **Join Role** " + "\n" + Hollow + " " + "Everyone who joins the server gets a role called `@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n" +
                         SR + " **Streamer Role** " + "\n" + Hollow + " " + "When someone starts streaming, they will get a role called `@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`." + "\n" +
 
@@ -2688,7 +2688,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
    );
 
    Functions.push(
-                        "**Functions in #­" + Function_RemoveFormatting(message.channel.name, "other") + ".**" + "\n\n" +
+                        "**Functions in #­" + Function_RemoveFormatting(message.channel.name, "other", true) + ".**" + "\n\n" +
 
                         AR + " **Automatic Reactions** " + "\n" + Hollow + " " + "The custom reaction names are `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` and `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`." + "\n" +
                         ML + " **Message Log** " + "\n" + Hollow + " " + "Logged messages will be sent to a channel called `#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`." + "\n" +
@@ -3367,7 +3367,7 @@ if  (FunctioName.startsWith("welcome messages ")) {
   if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
 
   var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set welcome messages ")[1];
-  var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel");
+  var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
   peeky.serverData.set(keySF, FixedChannelName.toLowerCase(), "welcome_messages_bonus_setting");
 
       
@@ -3401,7 +3401,7 @@ if  (FunctioName.startsWith("join role ")) {
   if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
     
   var RoleName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set join role ")[1];
-  peeky.serverData.set(keySF, Function_RemoveFormatting(RoleName, "role"), "join_role_bonus_setting");
+  peeky.serverData.set(keySF, Function_RemoveFormatting(RoleName, "role"), "join_role_bonus_setting", true);
 
   const embed = {"description": SuccessIcon + " The **Join Role** setting has been set to **@­" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "**.",  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -3432,7 +3432,7 @@ if  (FunctioName.startsWith("streamer role ")) {
   if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
     
   var RoleName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set streamer role ")[1];
-  peeky.serverData.set(keySF, Function_RemoveFormatting(RoleName, "role"), "streamer_role_bonus_setting");
+  peeky.serverData.set(keySF, Function_RemoveFormatting(RoleName, "role"), "streamer_role_bonus_setting", true);
 
   const embed = {"description": SuccessIcon + " The **Streamer Role** setting has been set to **@­" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "**.",  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -3463,7 +3463,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
 
     var ReactionName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set automatic reactions ")[1];
-    var FixedReactionName = Function_RemoveFormatting(ReactionName, "other");
+    var FixedReactionName = Function_RemoveFormatting(ReactionName, "other", true);
     peeky.serverData.set(keySF, FixedReactionName, "automatic_reactions_bonus_setting");
     
     const embed = {"description": SuccessIcon + " The **Automatic Reactions** setting has been set to **:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:** and **:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:**.",  "color": EmbedColor}; 
@@ -3495,8 +3495,8 @@ if  (FunctioName.startsWith("classification wall ")) {
   if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
     
   var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set classification wall ")[1];
-  peeky.serverData.set(keySF, Function_RemoveFormatting(ChannelName, "role"), "donor_wall_bonus_setting");
-  peeky.serverData.set(keySF, Function_RemoveFormatting(ChannelName, "channel") + "s", "donor_wall_bonus_channel");
+  peeky.serverData.set(keySF, Function_RemoveFormatting(ChannelName, "role"), "donor_wall_bonus_setting", true);
+  peeky.serverData.set(keySF, Function_RemoveFormatting(ChannelName, "channel") + "s", "donor_wall_bonus_channel", true);
   
   const embed = {"description": SuccessIcon + " The **Classification Wall** setting has been set to **#­" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "** and **@­" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "**.",  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -3529,7 +3529,7 @@ if  (FunctioName.startsWith("member counter ")) {
     var CounterName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set member counter ")[1];
     let foundWord = false;
       
-    peeky.serverData.set(keySF, Function_RemoveFormatting(CounterName, "other"), "member_counter_bonus_setting");
+    peeky.serverData.set(keySF, Function_RemoveFormatting(CounterName, "other"), "member_counter_bonus_setting", true);
 
     const embed = {"description": SuccessIcon + " The **Member Counter** setting has been set to **" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -3679,7 +3679,7 @@ if  (FunctioName.startsWith("message log ")) {
   if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
     
   var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set message log ")[1];
-  var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel");
+  var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
 
   peeky.serverData.set(keySF, FixedChannelName.toLowerCase(), "message_log_bonus_setting");
 
@@ -3712,7 +3712,7 @@ if  (FunctioName.startsWith("clear nicknames ")) {
   if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
    
   var NewSetting = message.content.split(peeky.serverData.get(keySF, "prefix") + "set clear nicknames ")[1];
-  peeky.serverData.set(keySF, Function_RemoveFormatting(NewSetting, "other"), "clear_nicknames_bonus_setting");
+  peeky.serverData.set(keySF, Function_RemoveFormatting(NewSetting, "other"), "clear_nicknames_bonus_setting", true);
 
   const embed = {"description": SuccessIcon + " The **Clear Nicknames** setting has been set to **" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "**.",  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -3747,7 +3747,7 @@ if  (FunctioName.startsWith("server message ")) {
 
   peeky.serverData.set(keySF, ServerMessageContent, "server_message_bonus_setting");
     
-      ServerMessagePreview = Function_RemoveFormatting(ServerMessagePreview, "sm");
+      ServerMessagePreview = Function_RemoveFormatting(ServerMessagePreview, "sm", true);
   
   if  (ServerMessageContent.includes(GuildNameTag)) {  TagString += "\n\n" + InfoIcon + " The **" + GuildNameTag + "** tag was detected."  };
   if  (ServerMessageContent.includes(GuildSizeTag)) {  TagString += "\n\n" + InfoIcon + " The **" + GuildSizeTag + "** tag was detected."  };
@@ -3776,7 +3776,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-    var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set banned words ")[1].slice(0, 20).toLowerCase(), "other");
+    var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set banned words ")[1].slice(0, 20).toLowerCase(), "other", true);
     peeky.serverData.get(keySF, "banned_words_bonus_setting").push(ReceivedArray);
   
 if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length <= MaxBW) {
@@ -3903,7 +3903,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         RedeemedAmount += 1;
         ContributorValid = true;
       
-        peeky.channels.get(AnnouncementsChannel).send("**" + Function_RemoveFormatting(message.author.tag, "other") + "** has upgraded **" + Function_RemoveFormatting(message.guild.owner.user.tag, "other") + "**'s server called **" + Function_RemoveFormatting(message.guild.name, "other") + "**.").catch(error => ErrorBag.add(error));
+        peeky.channels.get(AnnouncementsChannel).send("**" + Function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + Function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + Function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
     };
 
     if  (RedeemedAmount > 0)  {
@@ -4374,7 +4374,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         peeky.userData.math(key, "-", DonatedAmount, "Gredit");
         peeky.userData.math(key2, "+", Number(DonatedAmount), "Gredit");
   
-        const embed = {"description": SuccessIcon + " You have given **" + DonatedAmount.toLocaleString('en') + " " + GreditIcon + "** to **" + Function_RemoveFormatting(DonatedUser.user.username, "other") + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have given **" + DonatedAmount.toLocaleString('en') + " " + GreditIcon + "** to **" + Function_RemoveFormatting(DonatedUser.user.username, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
           
         }
@@ -4393,7 +4393,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         peeky.userData.math(key, "-", DonatedAmount, "Chests");
         peeky.userData.math(key2, "+", Number(DonatedAmount), "Chests");
   
-        const embed = {"description": SuccessIcon + " You have given **" + DonatedAmount.toLocaleString('en') + " " + ChestIcon + "** to **" + Function_RemoveFormatting(DonatedUser.user.username, "other") + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have given **" + DonatedAmount.toLocaleString('en') + " " + ChestIcon + "** to **" + Function_RemoveFormatting(DonatedUser.user.username, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           
         }
@@ -4420,7 +4420,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         peeky.userData.set(key, 1, "Background");
         InfoMessages.push(InfoMessage2[0]);
 
-        const embed = {"description": SuccessIcon + " You have given the **" + Banners[DonatedAmount - 1][Banner.Name] + "** background to **" + Function_RemoveFormatting(DonatedUser.user.username, "other") + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have given the **" + Banners[DonatedAmount - 1][Banner.Name] + "** background to **" + Function_RemoveFormatting(DonatedUser.user.username, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
 
         }
@@ -4530,7 +4530,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
             FixedBackgrounds.push(Banners[banner - 1][2] + " (" + banner + ")");
         });
 
-        message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other") + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**Backgrounds (" + BackgroundsAmount.toLocaleString('en') + ")**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**Badges (" + BadgesAmount + ")**\n" + Badges.join(', ') + ".")
+        message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**Backgrounds (" + BackgroundsAmount.toLocaleString('en') + ")**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**Badges (" + BadgesAmount + ")**\n" + Badges.join(', ') + ".")
         .catch(error => ErrorBag.add(error));
       
     }
@@ -4822,7 +4822,7 @@ if (!ProfileCooldown.has(message.author.id)) {
         WebsiteCooldowns.add("featuredprofile");
 
         var FeaturedDate = new Date();
-        var data = "<font size='4'>" + Function_RemoveFormatting(SomeoneTagged.username, "other") + "'s profile got featured on " + function_DateFormat(FeaturedDate) + '.</font>  <br>  <font size="2">Use the Profile command as a Supporter every 30 minutes to have your profile featured.</font>  <br><br>  <img src="' + m.attachments.array()[0].url + '" class="featuredprofile">';
+        var data = "<font size='4'>" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s profile got featured on " + function_DateFormat(FeaturedDate) + '.</font>  <br>  <font size="2">Use the Profile command as a Supporter every 30 minutes to have your profile featured.</font>  <br><br>  <img src="' + m.attachments.array()[0].url + '" class="featuredprofile">';
 
         fs.writeFile('public/featured_profile.txt', data, (err) => {
             if (err) console.log(err); 
@@ -5078,7 +5078,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
     } else  
     if  (PlaylistAction.startsWith(" rename "))  {
       
-        var PlaylistRequest = Function_RemoveFormatting(PlaylistAction.replace(" rename ", ""), "other");
+        var PlaylistRequest = Function_RemoveFormatting(PlaylistAction.replace(" rename ", ""), "other", true);
 
         peeky.userData.set(key, PlaylistRequest, "PlaylistName")
 
@@ -5110,7 +5110,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
          var FinalizedPlaylist = "The playlist is empty.";
       };
 
-      message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other") + "'s playlist called " + peeky.userData.get(SomeoneTagged.id, "PlaylistName") + "**" + "\n\n" + FinalizedPlaylist).catch(error => ErrorBag.add(error));
+      message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s playlist called " + peeky.userData.get(SomeoneTagged.id, "PlaylistName") + "**" + "\n\n" + FinalizedPlaylist).catch(error => ErrorBag.add(error));
       
     };
 
@@ -5154,9 +5154,9 @@ if  (message.member.permissions.has("MUTE_MEMBERS")) {
       
     if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
 
-        MentionedMember.user.send("You have been muted in **" + Function_RemoveFormatting(message.guild.name, "other") + "** by **" + Function_RemoveFormatting(message.author.username, "other") + "**.").catch(error => ErrorBag.add(error));
+        MentionedMember.user.send("You have been muted in **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
-        const embed = {"description": SuccessIcon + " I have muted **" + Function_RemoveFormatting(MentionedMember.user.username, "other") + "** at **" + Function_RemoveFormatting(message.author.username, "other") + "**'s request.",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " I have muted **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           
         MentionedMember.addRole(message.member.guild.roles.find(role => role.name == name), "Muted by " + message.author.tag + ".").catch(error => ErrorBag.add(error));
@@ -5206,9 +5206,9 @@ if  (message.member.permissions.has("MUTE_MEMBERS"))  {
       
     if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
 
-        MentionedMember.user.send("You have been unmuted in **" + Function_RemoveFormatting(message.guild.name, "other") + "** by **" + Function_RemoveFormatting(message.author.username, "other") + "**.").catch(error => ErrorBag.add(error));
+        MentionedMember.user.send("You have been unmuted in **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
-        const embed = {"description": SuccessIcon + " I have unmuted **" + Function_RemoveFormatting(MentionedMember.user.username, "other") + "** at **" + Function_RemoveFormatting(message.author.username, "other") + "**'s request.",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " I have unmuted **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           
         MentionedMember.removeRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => ErrorBag.add(error));
@@ -5260,7 +5260,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "idban "
         
             message.guild.ban(GivenID, {  reason: "ID Banned by " + message.author.tag + ".", days: 0  }).catch(error => ErrorBag.add(error));
           
-            const embed = {"description": SuccessIcon + " I have ID banned **" + Function_RemoveFormatting(peeky.users.get(GivenID).username, "other") + "** at **" + Function_RemoveFormatting(message.author.username, "other") + "**'s request.",  "color": EmbedColor}; 
+            const embed = {"description": SuccessIcon + " I have ID banned **" + Function_RemoveFormatting(peeky.users.get(GivenID).username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             
         }
@@ -5295,9 +5295,9 @@ if  (message.member.permissions.has("BAN_MEMBERS")) {
           
 if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS")) {
   
-    await MentionedMember.user.send("You have been banned from **" + Function_RemoveFormatting(message.guild.name, "other") + "** by **" + Function_RemoveFormatting(message.author.username, "other") + "**.").catch(error => ErrorBag.add(error));
+    await MentionedMember.user.send("You have been banned from **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
-    const embed = {"description": SuccessIcon + " I have banned **" + Function_RemoveFormatting(MentionedMember.user.username, "other") + "** at **" + Function_RemoveFormatting(message.author.username, "other") + "**'s request.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " I have banned **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
     message.guild.ban(MentionedMember, { reason: "Banned by " + message.author.tag + ".", days: 0  }).catch(error => ErrorBag.add(error));
@@ -5333,7 +5333,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "purge "
         .catch(error => ErrorBag.add(error))
         .then(() => {
           
-        const embed = {"description":  SuccessIcon + " I have purged **" + BulkAmount + " messages** at **" + Function_RemoveFormatting(message.author.username, "other") + "**'s request.",  "color": EmbedColor}; 
+        const embed = {"description":  SuccessIcon + " I have purged **" + BulkAmount + " messages** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
         });
@@ -5364,7 +5364,7 @@ if  (message.member.permissions.has("MANAGE_CHANNELS")) {
           
 if  (GivenRole && GivenRole.name !== "@everyone") {
   
-    const embed = {"description": SuccessIcon + " The channel is now locked down for everyone except **@­" + Function_RemoveFormatting(GivenRole.name, "other") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " The channel is now locked down for everyone except **@­" + Function_RemoveFormatting(GivenRole.name, "other", true) + "**.",  "color": EmbedColor}; 
     await message.channel.send({ embed })
     .catch(error => ErrorBag.add(error));
   
@@ -5422,7 +5422,7 @@ if  (message.content.startsWith(Prefix + "muterole "))  {
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
   
     var MutedRole = message.content.split(Prefix + "mutedrole ")[1];
-    var FixedMutedRole = Function_RemoveFormatting(MutedRole, "muted_role");
+    var FixedMutedRole = Function_RemoveFormatting(MutedRole, "muted_role", true);
     var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
     var InfoMessages = [];
   
