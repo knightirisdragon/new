@@ -1476,16 +1476,14 @@ if  (!WebsiteCooldowns.has("news"))  {
 
     var NewsList = [];
 
-    peeky.channels.get(AnnouncementsChannel).fetchMessages({ limit: 5 })
+    peeky.channels.get(AnnouncementsChannel).fetchMessages({ limit: 4 })
     .then(async (messages) => {
           
     messages.forEach(m => {
-        var Header = Function_RemoveFormatting(m.content.split("\n")[0], "other");
-        var Body   = m.content.slice(Header.length, Header.length + 500);
-        
-        //.replace(/\n/g, '<br>');
+        var Header = m.content.split("\n")[0];
+        var Body   = m.content.slice(Header.length, 750).replace(/\n/g, '<br>');
 
-        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Header + '  </b>  <br>  <b class="newsbody">  ' + Body + '  </b>  </div>');
+        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other") + '  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other") + '  </b>  </div>');
     });
 
     await fs.writeFile('public/news.txt', NewsList.join("<br><br>"), (err) => {
