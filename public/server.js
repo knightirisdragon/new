@@ -1279,7 +1279,7 @@ peeky.on('message', async (message) => {
 if  (!WebsiteCooldowns.has("leaderboard"))  {
 
     WebsiteCooldowns.add("leaderboard");
-    setTimeout(() => {WebsiteCooldowns.delete("leaderboard")}, 300000);
+    setTimeout(() => {WebsiteCooldowns.delete("leaderboard")}, 600000);
   
     //Update leadeboard
     var filtered         = peeky.userData.filter( p => p.Gredit && p.FashionBadge == true ).array();
@@ -1346,7 +1346,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
 if  (!WebsiteCooldowns.has("backgrounds"))  {
 
     WebsiteCooldowns.add("backgrounds");
-    setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 300000);
+    setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 600000);
 
     const BackgroundList = [];
     const FeaturedList   = [];
@@ -1399,7 +1399,7 @@ if  (!WebsiteCooldowns.has("randomsongs"))  {
 if  (!WebsiteCooldowns.has("serverlist"))  {
 
     WebsiteCooldowns.add("serverlist");
-    setTimeout(() => {WebsiteCooldowns.delete("serverlist")}, 300000);
+    setTimeout(() => {WebsiteCooldowns.delete("serverlist")}, 600000);
   
     //Update leadeboard
     var serverlist = peeky.serverData.filter( p => p.server_upgraded == true ).array();
@@ -1437,7 +1437,7 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
 if  (!WebsiteCooldowns.has("supporters"))  {
       
     WebsiteCooldowns.add("supporters");
-    setTimeout(() => {WebsiteCooldowns.delete("supporters")}, 300000);
+    setTimeout(() => {WebsiteCooldowns.delete("supporters")}, 600000);
 
     var SupporterList = [];
     peeky.guilds.get(SupportServer).members.forEach(function(guildMember, guildMemberId) {
@@ -1481,7 +1481,9 @@ if  (!WebsiteCooldowns.has("news"))  {
           
     messages.forEach(m => {
         var Header = m.content.split("\n")[0];
-        var Body   = m.content.replace("\n", "<br>").replace(Header, "");
+        var Body   = m.content.split("\n").join("<br>").replace(Header, "");
+      
+        console.log(m.content.split("\n"));
 
         NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other") + '  </b>  <br>  <b class="newsbody">  ' + Body + '  </b>  </div>');
     });
@@ -1499,7 +1501,7 @@ if  (!WebsiteCooldowns.has("news"))  {
 if  (!WebsiteCooldowns.has("staff"))  {
       
     WebsiteCooldowns.add("staff");
-    setTimeout(() => {WebsiteCooldowns.delete("staff")}, 300000);
+    setTimeout(() => {WebsiteCooldowns.delete("staff")}, 600000);
         
     var HelperList = [];
     var DevList    = [];
@@ -1585,8 +1587,8 @@ if  (!WebsiteCooldowns.has("staff"))  {
 if  (!WebsiteCooldowns.has("stats"))  {
       
     WebsiteCooldowns.add("stats");
-    setTimeout(() => {WebsiteCooldowns.delete("stats")}, 300000);
-      
+    setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
+
     var Votes = 0;
   
     await ddbl.getVotes(PeekyId).catch(error => ErrorBag.add(error) && FailedVoteChecks.add(message.id)).then(async function (res)  {
@@ -1596,7 +1598,7 @@ if  (!WebsiteCooldowns.has("stats"))  {
     });
       
     WebsiteCooldowns.add("reviews");
-    setTimeout(() => {WebsiteCooldowns.delete("reviews")}, 300000);
+    setTimeout(() => {WebsiteCooldowns.delete("reviews")}, 600000);
     
     node_fetch('https://ls.terminal.ink/api/v2/bots/482945063282802698').then(response => response.json()).then(async (data) => {
       
