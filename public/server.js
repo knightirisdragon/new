@@ -1463,6 +1463,23 @@ if  (!WebsiteCooldowns.has("supporters"))  {
     console.log("The supporters list has been updated.");
 
 };
+  
+if  (!WebsiteCooldowns.has("news"))  {
+      
+    WebsiteCooldowns.add("news");
+    setTimeout(() => {WebsiteCooldowns.delete("news")}, 3600000);
+
+    var NewsList = [];
+  
+    NewsList.push('<div class="newsitem">     </div>')
+
+    await fs.writeFile('public/news.txt', SupporterList.join("<br><br>"), (err) => {
+        if (err) console.log(err);
+    });
+      
+    console.log("The news list has been updated.");
+
+};
 
 if  (!WebsiteCooldowns.has("staff"))  {
       
