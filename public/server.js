@@ -4797,7 +4797,7 @@ if (!ProfileCooldown.has(message.author.id)) {
         WebsiteCooldowns.add("featuredprofile");
 
         var FeaturedDate = new Date();
-        var data = Function_RemoveFormatting(SomeoneTagged.username, "other") + "'s profile got featured on " + function_DateFormat(FeaturedDate) + '.  <br>  <font size="1">Use the Profile command as a Supporter every 30 minutes to have your profile featured.</font>  <br><br>  <img src="' + m.attachments.array()[0].url + '" class="featuredprofile">';
+        var data = "<font size='4'>" + Function_RemoveFormatting(SomeoneTagged.username, "other") + "'s profile got featured on " + function_DateFormat(FeaturedDate) + '.</font>  <br>  <font size="2">Use the Profile command as a Supporter every 30 minutes to have your profile featured.</font>  <br><br>  <img src="' + m.attachments.array()[0].url + '" class="featuredprofile">';
 
         fs.writeFile('public/featured_profile.txt', data, (err) => {
             if (err) console.log(err); 
