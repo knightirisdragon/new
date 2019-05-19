@@ -1481,7 +1481,7 @@ if  (!WebsiteCooldowns.has("news"))  {
           
     messages.forEach(m => {
         var Header = m.content.split("\n")[0];
-        var Body   = m.content.replace("\n", "<br>")
+        var Body   = m.content.replace("\n", "<br>").replace(Header, "");
 
         NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other") + '  </b>  <br>  <b class="newsbody">  ' + Body + '  </b>  </div>');
     });
