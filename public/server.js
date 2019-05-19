@@ -1472,7 +1472,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
 if  (!WebsiteCooldowns.has("news"))  {
       
     WebsiteCooldowns.add("news");
-    //  setTimeout(() => {WebsiteCooldowns.delete("news")}, 600000);
+    setTimeout(() => {WebsiteCooldowns.delete("news")}, 600000);
 
     var NewsList = [];
 
@@ -1505,7 +1505,7 @@ if  (!WebsiteCooldowns.has("news"))  {
 if  (!WebsiteCooldowns.has("staff"))  {
       
     WebsiteCooldowns.add("staff");
-    //  setTimeout(() => {WebsiteCooldowns.delete("staff")}, 600000);
+    setTimeout(() => {WebsiteCooldowns.delete("staff")}, 600000);
         
     var HelperList = [];
     var DevList    = [];
@@ -1605,7 +1605,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
 if  (!WebsiteCooldowns.has("stats"))  {
       
     WebsiteCooldowns.add("stats");
-    //  setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
+    setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
 
     var Votes = 0;
   
@@ -1616,7 +1616,7 @@ if  (!WebsiteCooldowns.has("stats"))  {
     });
       
     WebsiteCooldowns.add("reviews");
-    //  setTimeout(() => {WebsiteCooldowns.delete("reviews")}, 600000);
+    setTimeout(() => {WebsiteCooldowns.delete("reviews")}, 600000);
     
     node_fetch('https://ls.terminal.ink/api/v2/bots/482945063282802698').then(response => response.json()).then(async (data) => {
       
