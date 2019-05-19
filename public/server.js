@@ -767,6 +767,24 @@ function function_RandomDescription()  {
     return DefaultDescriptions[Math.floor(Math.random()*DefaultDescriptions.length)];
 };
 
+//Get Background
+function function_GetBackground(key)  {
+
+if  (peeky.userData.has(key))  {
+  
+    
+      
+    for(var i = 0; i < Banners.length; i++) {
+       if (peeky.userData.get(key2, "Background") == i + 1) {
+           TheBannerShown = Banners[i][Banner.Source];
+         break;
+       };
+    };
+      
+};
+  
+};
+
 //Date Format
 function function_DateFormat(value)  {
   
