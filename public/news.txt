@@ -1,11 +1,1 @@
-<div class="newsitem">  <b class="newsheader">  **Voting Time**  </b>  <br>  <b class="newsbody">  
-Should I add the abiltiy or Supporters to get custom backgrounds?
-
-@everyone  </b>  </div><br><br><div class="newsitem">  <b class="newsheader">  **Store and Vote Pages, pages have got their CSS updated!**  </b>  <br>  <b class="newsbody">  
-They should now look more cool and whatever.  </b>  </div><br><br><div class="newsitem">  <b class="newsheader">  **Updated the Welcome Messages function**  </b>  <br>  <b class="newsbody">  
-The function will now censor and ban advertising users again.  </b>  </div><br><br><div class="newsitem">  <b class="newsheader">  **The invite link has bee updated!**  </b>  <br>  <b class="newsbody">  
-I have changed some permissions but that's not it!
-It will now redirect you to a Thank You page upon inviting PEEKY!  </b>  </div><br><br><div class="newsitem">  <b class="newsheader">  I have been working on PEEKY alot for the past few days so here's a giveaway!  </b>  <br>  <b class="newsbody">  
-If you could bother, please go look at the made changes by scrolling up.
-
-@everyone  </b>  </div>
+<div class="newsitem">  <b class="newsheader">  Voting Time  </b>  <br>  <b class="newsbody">  Should I add the abiltiy or Supporters to get custom backgrounds?@everyone  </b>  </div><br><br><div class="newsitem">  <b class="newsheader">  Store and Vote Pages, pages have got their CSS updated!  </b>  <br>  <b class="newsbody">  They should now look more cool and whatever.  </b>  </div><br><br><div class="newsitem">  <b class="newsheader">  Updated the Welcome Messages function  </b>  <br>  <b class="newsbody">  The function will now censor and ban advertising users again.  </b>  </div><br><br><div class="newsitem">  <b class="newsheader">  The invite link has bee updated!  </b>  <br>  <b class="newsbody">  I have changed some permissions but that's not it!It will now redirect you to a Thank You page upon   </b>  </div><br><br><div class="newsitem">  <b class="newsheader">  I have been working on PEEKY alot for the past few days so here's a giveaway!  </b>  <br>  <b class="newsbody">  If you could bother, please go look at the made changes by scrolling up.@everyone  </b>  </div>
