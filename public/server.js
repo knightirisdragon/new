@@ -1480,7 +1480,12 @@ if  (!WebsiteCooldowns.has("news"))  {
     .then(async (messages) => {
           
     messages.forEach(m => {
-        NewsList.push('<div class="newsitem"> ' + m.content + ' </div>');
+        var Header = m.content.split("\n")[0];
+        var Body = m.content.split("\n")[1];
+      
+        console.log(m.content.split("\n"));
+      
+        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other") + '  </b>  <br>  <b class="newsheader">  ' + Function_RemoveFormatting(Body, "other") + '  </b>  </div>');
     });
 
     await fs.writeFile('public/news.txt', NewsList.join("<br><br>"), (err) => {
