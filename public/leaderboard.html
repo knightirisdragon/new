@@ -34,12 +34,10 @@
     background-image: url('https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground1.jpg?1537872247903');
     background-size: 500px 300px;
     background-repeat: no-repeat;
-    background-color: rgba(35, 39, 42, 1);
-    border: rgba(35, 39, 42, 1) 5px solid;
-    border-radius: 10px;
+    background-color: rgba(35, 39, 42, 0.5);
+    border-left: #7289DA 2px solid;
     width: 500px;
     padding: 10px;
-    cursor: pointer;
     text-align: left;
     display: inline-block;
     transition: transform .25s ease;
@@ -52,10 +50,15 @@
     color: pink;
     width: 100%;
 }
+
+.leaderboarditem:hover  {
+    border-left: #8094dd 4px solid;
+}
   
 .unknown:hover,
 .leaderboarditem:hover  {
-    transform: scale(0.975)
+    transform: scale(0.99);
+    cursor: pointer;
 }
   
 .leaderboardname  {
@@ -94,11 +97,11 @@
 }
 #first  .leaderboardname  {
     background-color: #f4b744;
-    border-bottom: rgba(35, 39, 42, 0.75) 5px solid;
+    border-color: rgba(35, 39, 42, 0.75);
 }
 #first  .leaderboardstats  {
     background-color: #f4b744;
-    border-bottom: rgba(35, 39, 42, 0.75) 5px solid;
+    border-color: rgba(35, 39, 42, 0.75);
 }
 
 #second  {
@@ -106,11 +109,11 @@
 }
 #second  .leaderboardname  {
     background-color: #bbbbbb;
-    border-bottom: rgba(35, 39, 42, 0.75) 5px solid;
+    border-color: rgba(35, 39, 42, 0.75);
 }
 #second  .leaderboardstats  {
     background-color: #bbbbbb;
-    border-bottom: rgba(35, 39, 42, 0.75) 5px solid;
+    border-color: rgba(35, 39, 42, 0.75);
 }
 
 #third  {
@@ -118,11 +121,11 @@
 }
 #third  .leaderboardname  {
     background-color: #b2866a;
-    border-bottom: rgba(35, 39, 42, 0.75) 5px solid;
+    border-color: rgba(35, 39, 42, 0.75);
 }
 #third  .leaderboardstats  {
     background-color: #b2866a;
-    border-bottom: rgba(35, 39, 42, 0.75) 5px solid;
+    border-color: rgba(35, 39, 42, 0.75);
 }
   
 </style>
