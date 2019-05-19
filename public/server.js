@@ -1563,7 +1563,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
         };
       
         var CurrentContact = '<div class="container">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="2"> ' + function_RemoveTags(guildMember.user.username) + '<font size="2" color=#7289DA>#' + guildMember.user.discriminator + '</font>' + '  <br>  ' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '  </font>  <br><br>  ' + StaffButton.join(" ") + '  </b>  </div>';
-      
+
         if  (guildMember.roles.has("574255080069398543"))  {
             DevList.push(CurrentContact);
         };
@@ -1578,8 +1578,22 @@ if  (!WebsiteCooldowns.has("staff"))  {
 
     };
     });
+  
+    const Filler = '<img src="https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2FScreenshot_3.png?1537690815402" width="200px" height="200px" class="stafficon"' + '>';
+  
+    while (DevList.length < 3)  {
+        DevList.push(Filler);
+    };
+  
+    while (HelperList.length < 3)  {
+        HelperList.push(Filler);
+    };
+  
+    while (ModList.length < 3)  {
+        ModList.push(Filler);
+    };
 
-    await fs.writeFile('public/staff.txt', '<font size="5" class="headertext">Developers</font>  <br>  <font size="2">These are the people that work on PEEKY to make him the best possible Discord bot that it is today.</font>  <br><br>  <div class="staffroom">  ' + DevList.join(" ") + '  <>  <br><br>  <font size="5" class="headertext">Helpers</font>  <br>  <font size="2">These are the people that can help you fix some PEEKY related issues.</font>  <br><br>' + HelperList.join(" ") + '<br><br>  <font size="5" class="headertext">Moderators</font>  <br>  <font size="2">These are the people that moderate the Support Server to keep it safe.</font>  <br><br>' + ModList.join(" "), (err) => {
+    await fs.writeFile('public/staff.txt', '<font size="5" class="headertext">Developers</font>  <br>  <font size="2">These are the people that work on PEEKY to make him the best possible Discord bot that it is today.</font>  <br><br>  <div class="staffroom">  ' + DevList.join(" ") + '  </div>  <br><br>  <font size="5" class="headertext">Helpers</font>  <br>  <font size="2">These are the people that can help you fix some PEEKY related issues.</font>  <br><br>  <div class="staffroom">  ' + HelperList.join(" ") + '  </div>  <br><br>  <font size="5" class="headertext">Moderators</font>  <br>  <font size="2">These are the people that moderate the Support Server to keep it safe.</font>  <br><br>  <div class="staffroom">  ' + ModList.join(" ") + '  </div>', (err) => {
         if (err) console.log(err);
     });
       
