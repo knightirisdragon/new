@@ -16,17 +16,28 @@
 <style>
   
 .leaderboardtop  {
-    background-color: rgba(35, 39, 42, 0.75);
-    border-bottom: #7289DA 5px solid;
-    border-top: #7289DA 5px solid;
-    border-radius: 10px;
     width: 550px;
     padding: 15px;
     margin-bottom: 20px;
+    display: inline-block;
+    transition: transform .25s ease;
 }
   
 .toptext  {
+    background-color: rgba(35, 39, 42, 0.5);
+    border-left: #7289DA 2px solid;
+    width: 100%;
+    padding: 10px;
     color: #7289DA;
+    margin-top: 10px;
+    display: inline-block;
+    transition: transform .25s ease;
+}
+  
+.toptext:hover  {
+    border-left: #8094dd 4px solid;
+    transform: scale(0.99);
+    cursor: pointer;
 }
   
 .unknown,
@@ -83,13 +94,6 @@
     border: white 2px solid;
     width: 30px;
     height: 30px;
-}
-  
-#first,
-#second,
-#third  {
-    border: 5px solid;
-    border-radius: 10px;
 }
   
 #first  {
