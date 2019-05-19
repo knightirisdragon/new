@@ -1470,8 +1470,13 @@ if  (!WebsiteCooldowns.has("news"))  {
     setTimeout(() => {WebsiteCooldowns.delete("news")}, 3600000);
 
     var NewsList = [];
+
+    message.guild.channels.get(AnnouncementsChannel).fetchMessages({ limit: 5 })
+    .then(messages => messages.forEach(m => {
   
-    NewsList.push('<div class="newsitem">     </div>')
+    NewsList.push('<div class="newsitem">  ' + m.content + '  </div>');
+      
+    })).catch(console.error);
 
     await fs.writeFile('public/news.txt', SupporterList.join("<br><br>"), (err) => {
         if (err) console.log(err);
