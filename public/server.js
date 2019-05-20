@@ -1504,12 +1504,16 @@ if  (!WebsiteCooldowns.has("news"))  {
         var Body   = m.content.split("\n").join("<br>").replace(Header, "");
       
         if  (m.attachments.size > 0)  {
-            var Image = '<img class="newsimage" src="' + m.attachments.array()[0].url + '">'
+            m.attachments.array().forEach(a => {
+
+            Image.push('<br><br>  <img class="newsimage" src="' + a.url + '">');
+
+            });
         }   else  {
-            var Image = "";
+            var Image = [];
         };
 
-        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", false) + '  </b>  <br>  <b class="newsauthor">  Posted by ' + m.author.tag + ' on  ' + function_DateFormat(m.createdAt) + '.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", false) + '  </b>  <br><br>  ' + Image + '  <br><br><br>  <a class="button" href="https://discordapp.com/channels/' + SupportServer + '/' + AnnouncementsChannel + '/' + m.id + '">Open in Discord</a>  </div>');
+        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", false) + '  </b>  <br>  <b class="newsauthor">  Posted by ' + m.author.tag + ' on  ' + function_DateFormat(m.createdAt) + '.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", false) + '  </b>  ' + Image.join(" ") + '  <br><br><br>  <a class="button" href="https://discordapp.com/channels/' + SupportServer + '/' + AnnouncementsChannel + '/' + m.id + '">Open in Discord</a>  </div>');
     });
 
     await fs.writeFile('public/news.txt', NewsList.join("<br><br>"), (err) => {
