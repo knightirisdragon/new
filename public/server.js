@@ -99,6 +99,7 @@ const OwnerId              = "108899856889737216";
 const PeekyId              = "482945063282802698";
 const SupportServer        = "319891596772638744";
 const AnnouncementsChannel = "346710479407808524";
+const WorkshopChannel      = "501130667078189066";
 const EmojiStorage         = "493048757286600716";
 
 //Arrays
@@ -2184,7 +2185,7 @@ if  (!message.webhookID)  {
 if  (!message.author.bot && message.guild.owner !== undefined)  {
   
 //Publisher Badge
-if  (message.channel.id == "501130667078189066" && message.attachments.size == 1 && message.content.toLowerCase().includes("name:") && message.content.toLowerCase().includes("credit:"))  {
+if  (message.channel.id == WorkshopChannel && message.attachments.size == 1 && message.content.toLowerCase().includes("name:") && message.content.toLowerCase().includes("credit:"))  {
     if  (peeky.userData.has(key) && peeky.userData.get(key, "PublisherBadge") == false)  {
         peeky.userData.set(key, true, "PublisherBadge");
     };
