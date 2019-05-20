@@ -800,11 +800,9 @@ if  (peeky.userData.has(key))  {
 
 //Date Format
 function function_DateFormat(value)  {
-  
-    if  (!isNaN(value))  {
       
-        var ThisDate  = value.getUTCDate();
-        var ThisMonth = value.getUTCMonth() + 1;
+    var ThisDate  = value.getUTCDate();
+    var ThisMonth = value.getUTCMonth() + 1;
       
     if  (ThisDate < 10)  {
         ThisDate = "0" + ThisDate;
@@ -815,12 +813,6 @@ function function_DateFormat(value)  {
     };
 
     return Days[value.getUTCDay()] + ", " + ThisDate + "/" + ThisMonth + "/" + value.getFullYear();
-      
-    }  else  {
-
-       return "Invalid Date"; 
-      
-    };
   
 };
 
@@ -1473,12 +1465,12 @@ if  (!WebsiteCooldowns.has("supporters"))  {
 
     var SupporterList = [];
     peeky.guilds.get(SupportServer).members.forEach(function(guildMember, guildMemberId) {
-    if  (guildMember.roles.has(SupporterRole))  {
+    if  (guildMember.roles.has(SupporterRole) && peeky.userData.has(guildMemberId))  {
 
         var TheBannerShown = DefaultBackground;
         TheBannerShown = function_GetBackground(guildMemberId);
 
-        SupporterList.push('<div class="supporter" style="background-image: url(' + TheBannerShown + ')">  <div class="supporterinfo">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="30px" height="30px" class="supportericon"' + '>  <b>' + function_RemoveTags(guildMember.user.username) + '</b>  <br>  <b class="SupporterDate">' + function_DateFormat(peeky.userData.get(guildMemberId, "SupporterSince")) + '</b>  </div>  </div>');
+        SupporterList.push('<div class="supporter" style="background-image: url(' + TheBannerShown + ')">  <div class="supporterinfo">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="30px" height="30px" class="supportericon"' + '>  <b>' + function_RemoveTags(guildMember.user.username) + '</b>  </div>  </div>');
     
     };
     });
@@ -1975,37 +1967,35 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
 });
 
 
-//PRESENCE UPDATE EVENTS
-peeky.on("presenceUpdate", async (oldMember, newMember) => {
+//GUILD MEMBER UPDATE EVENTS
+peeky.on("guildMemberUpdate", async (oldMember, newMember) => {
   
 const key = `${newMember.user.id}`;
 const keySF = `${newMember.guild.id}`;
   
 //Supporter Date
 if  (keySF == SupportServer)  {
-  
-    console.log("0");
 
 if  (peeky.userData.has(key))  {
-  
-    console.log("1");
     
     var HadRole = oldMember.roles.find(r => r.id == SupporterRole);
     var HasRole = newMember.roles.find(r => r.id == SupporterRole);
   
-    if  (HadRole == null)  {  
-  
-    console.log("2");
-    if  (HasRole)  {
-  
-    console.log("3");
+    if  (HadRole == null && HasRole)  {
       
         peeky.userData.set(key, new Date(), "SupporterSince");
     };
-    };
   
 };
 };
+
+});
+
+//PRESENCE UPDATE EVENTS
+peeky.on("presenceUpdate", async (oldMember, newMember) => {
+  
+const key = `${newMember.user.id}`;
+const keySF = `${newMember.guild.id}`;
   
 //FUNCTIONS
 if  (peeky.serverData.has(keySF))  {
