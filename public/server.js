@@ -1536,9 +1536,21 @@ if  (message.channel.id == AnnouncementsChannel && !WebsiteCooldowns.has("worksh
     peeky.channels.get(WorkshopChannel).fetchMessages({ limit: 50 })
     .then(async (messages) => {
       
-    messages.filter(message.reactions.find(r => r.name !== "🏁")).forEach(m => {
-    
-    
+    messages.forEach(m => {
+
+        if  (m.reactions.find(r => r.name !== "🏁"))  {
+          
+            if  (m.attachments.size > 0 && m.content.toLowerCase().includes("Name: ") && m.content.toLowerCase().includes("Credit: "))  {
+              
+                var Name   = ;
+                var Credit = "";
+              
+                var BackgroundString = '<div class="background">  <img src="' + m.attachments[0].url + '"  id="1" width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + background_info[1] + ' Gredit  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>';
+
+                WorkshopList.push(BackgroundString);
+            };
+            
+        };
     
     });
 
