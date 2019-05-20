@@ -1531,7 +1531,7 @@ if  (message.channel.id == AnnouncementsChannel && !WebsiteCooldowns.has("news")
 
 };
   
-if  (message.channel.id == AnnouncementsChannel && !WebsiteCooldowns.has("workshop"))  {
+if  (message.channel.id == WorkshopChannel && !WebsiteCooldowns.has("workshop"))  {
       
     WebsiteCooldowns.add("workshop");
     setTimeout(() => {WebsiteCooldowns.delete("workshop")}, 600000);
@@ -1542,30 +1542,26 @@ if  (message.channel.id == AnnouncementsChannel && !WebsiteCooldowns.has("worksh
     .then(async (messages) => {
       
     messages.forEach(m => {
-
-        if  (m.reactions.find(r => r.name !== "🏁"))  {
           
-            if  (m.attachments.size > 0 && m.content.toLowerCase().includes("Name: ") && m.content.toLowerCase().includes("Credit: "))  {
+            if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.attachments.size > 0 && m.content.toLowerCase().includes("name: ") && m.content.toLowerCase().includes("credit: "))  {
               
                 var Name   = m.content.replace("Name: ", "");
                 var Credit = m.content.replace("Credit: ", "");
               
-                var BackgroundString = '<div class="background">  <img src="' + m.attachments[0].url + '"  id="1" width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + Name + '  </font>  <br>  <font size="2" color="lightgray">  ' + Credit + '  </font>  </b> </div>  </div>  </div>';
+                var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '"  id="1" width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + Name + '  </font>  <br>  <font size="2" color="lightgray">  ' + Credit + '  </font>  </b> </div>  </div>  </div>';
 
                 WorkshopList.push(BackgroundString);
             };
-            
-        };
     
     });
 
-    await fs.writeFile('public/workshop.txt', WorkshopList.join("<br><br>"), (err) => {
+    await fs.writeFile('public/workshop.txt', WorkshopList.join(" "), (err) => {
         if (err) console.log(err);
     });    
-    
-    }).catch(error => ErrorBag.add(error));
       
     console.log("The workshop has been updated.");
+    
+    }).catch(error => ErrorBag.add(error));
 
 };
 
