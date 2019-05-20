@@ -501,11 +501,10 @@ var Banners = [
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground366.jpg?1558286878592", NormalPrice, "Sleeping King", "Shrek"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground367.png?1558284675840", NormalPrice, "Gaming Pattern", "Discord"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground368.png?1558284679152", NormalPrice, "Afterthoughts", "Discord"],
-
-    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground369.png?1558378422159", NormalPrice, "Tales of the Borderlands", "Tales from the Borderlands"],
-    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground370.png?1558378420081", NormalPrice, "Deep in the Shadows", "Not credited"],
-    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground371.png?1558378418169", NormalPrice, "Stupid little prick named Rick", "AMC's The Walking Dead"],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground368.png?1558284679152", NormalPrice, "Fallen Kingdom", "Not credited"]
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground369.png?1558378422159", NormalPrice, "Tales of the Borderlands", "Tales from the Borderlands"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground370.png?1558378420081", NormalPrice, "Deep in the Shadows", "Not credited"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground371.png?1558378418169", NormalPrice, "Stupid little prick named Rick", "AMC's The Walking Dead"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground372.png?1558378417357", NormalPrice, "Fallen Kingdom", "Not credited"]
 
 ];
 
