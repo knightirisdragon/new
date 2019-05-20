@@ -883,6 +883,11 @@ function UpdateBackgrounds()  {
     .then(response => response.text()).then((data) => {
        document.getElementById("BackgroundList").innerHTML = data;
     });
+
+    fetch('https://peeky.glitch.me/workshop.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("Workshop").innerHTML = data;
+    });
   
 };
 
@@ -1542,10 +1547,10 @@ if  (message.channel.id == AnnouncementsChannel && !WebsiteCooldowns.has("worksh
           
             if  (m.attachments.size > 0 && m.content.toLowerCase().includes("Name: ") && m.content.toLowerCase().includes("Credit: "))  {
               
-                var Name   = ;
-                var Credit = "";
+                var Name   = m.content.replace("Name: ", "");
+                var Credit = m.content.replace("Credit: ", "");
               
-                var BackgroundString = '<div class="background">  <img src="' + m.attachments[0].url + '"  id="1" width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + background_info[1] + ' Gredit  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>';
+                var BackgroundString = '<div class="background">  <img src="' + m.attachments[0].url + '"  id="1" width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + Name + '  </font>  <br>  <font size="2" color="lightgray">  ' + Credit + '  </font>  </b> </div>  </div>  </div>';
 
                 WorkshopList.push(BackgroundString);
             };
@@ -1560,7 +1565,7 @@ if  (message.channel.id == AnnouncementsChannel && !WebsiteCooldowns.has("worksh
     
     }).catch(error => ErrorBag.add(error));
       
-    console.log("The news list has been updated.");
+    console.log("The workshop has been updated.");
 
 };
 
