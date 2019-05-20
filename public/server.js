@@ -1545,17 +1545,14 @@ if  (message.channel.id == WorkshopChannel && !WebsiteCooldowns.has("workshop"))
           
             if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.attachments.size > 0 && m.content.toLowerCase().includes("name: ") && m.content.toLowerCase().includes("credit: "))  {
               
-                var Name   = m.content.replace("Name: ", "");
-                var Credit = m.content.replace("Credit: ", "");
-              
-                var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '"  id="1" width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + Name + '  </font>  <br>  <font size="2" color="lightgray">  ' + Credit + '  </font>  </b> </div>  </div>  </div>';
+                var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '"  id="1" width="500" height="300" class="background_image">  <br>  <a class="button" href="https://discordapp.com/channels/' + m.guild.id + '/' + m.channel.id + '/' + m.id + '">Vote</a>  </div>';
 
                 WorkshopList.push(BackgroundString);
             };
     
     });
 
-    await fs.writeFile('public/workshop.txt', WorkshopList.join(" "), (err) => {
+    await fs.writeFile('public/workshop.txt', "<div class='workshop'>" + WorkshopList.join(" ") + "</div>", (err) => {
         if (err) console.log(err);
     });    
       
