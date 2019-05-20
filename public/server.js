@@ -1981,6 +1981,16 @@ peeky.on("presenceUpdate", async (oldMember, newMember) => {
 const key = `${newMember.id}`;
 const keySF = `${newMember.guild.id}`;
   
+//Supporter Date
+if  (peeky.userData.has(key))  {
+    
+    var HadRole = oldMember.roles.find(r => r.id == SupporterRole);
+    var HasRole = newMember.roles.find(r => r.id == SupporterRole);
+  
+    if  (!HadRole && HasRole)
+  
+};
+  
 //FUNCTIONS
 if  (peeky.serverData.has(keySF))  {
 
