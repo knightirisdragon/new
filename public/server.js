@@ -1983,7 +1983,11 @@ if  (peeky.userData.has(key))  {
   
     if  (HadRole == null && HasRole)  {
       
-        peeky.userData.set(key, new Date(), "SupporterSince");
+        newMember.user.send(
+        "**You are now a Supporter**"
+        + "\n" + "Thank you so much for deciding to become a Supporter!"   
+        + "\n\n" + "https://tenor.com/view/pepe-rare-dancing-frog-gif-5275840"
+        ).catch(error => ErrorBag.add(error));
     };
   
 };
