@@ -1504,7 +1504,8 @@ if  (!WebsiteCooldowns.has("news"))  {
         var Body   = m.content.split("\n").join("<br>").replace(Header, "");
       
         if  (m.attachments.size > 0)  {
-            m.attachments.array().forEach(a => {
+            console.log(m.attachments)
+            m.attachments.forEach(a => {
 
             Image.push('<br><br>  <img class="newsimage" src="' + a.url + '">');
 
