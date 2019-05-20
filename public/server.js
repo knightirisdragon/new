@@ -1531,14 +1531,18 @@ if  (message.channel.id == AnnouncementsChannel && !WebsiteCooldowns.has("worksh
     WebsiteCooldowns.add("workshop");
     setTimeout(() => {WebsiteCooldowns.delete("workshop")}, 600000);
 
-    var NewsList = [];
+    var WorkshopList = [];
 
-    peeky.channels.get(AnnouncementsChannel).fetchMessages({ limit: 4 })
+    peeky.channels.get(WorkshopChannel).fetchMessages({ limit: 50 })
     .then(async (messages) => {
       
+    messages.filter(message.reactions.find(r => r.name !== "🏁")).forEach(m => {
     
+    
+    
+    });
 
-    await fs.writeFile('public/news.txt', NewsList.join("<br><br>"), (err) => {
+    await fs.writeFile('public/workshop.txt', WorkshopList.join("<br><br>"), (err) => {
         if (err) console.log(err);
     });    
     
