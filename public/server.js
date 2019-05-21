@@ -637,6 +637,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
   
     var   attachment = null;
     const key        = member.user.id;
+    var   Failed     = false;
       
     const canvas = Canvas.createCanvas(500, 95);
     const ctx    = canvas.getContext('2d');
@@ -646,7 +647,10 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     var TheBannerShown = DefaultBackground;
     TheBannerShown = function_GetBackground(key);
 
-    const background = await Canvas.loadImage(TheBannerShown);
+    const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(member.id, DefaultBackground, "Background");});
+      
+    if  (Failed == false)  {
+
     ctx.drawImage(background, 0, 0, canvas.width, 300);  
       
     const AvatarField = await Canvas.loadImage(DarkField);
@@ -722,6 +726,8 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     ctx.drawImage(avatar, 15, 15, 65, 65);
 
     return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+      
+    };
 
 };
 
@@ -1898,10 +1904,8 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
         member.guild.ban(member.id, {  reason: "Triggered by the Welcome Messages function.", days: 0  }).catch(error => ErrorBag.add(error));
         member.send("**You have been automatically banned for having a possible website advertisment in your username.**  \n  Contact the server owner " + member.guild.owner.user.tag + " to get your ban revoked.")
     };
-      
-    channel.startTyping();
+
     await channel.send("", await function_WelcomeMessagesEmbed(member, "join", Detected)).catch(error => ErrorBag.add(error));
-    channel.stopTyping();
     
     console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
       
@@ -1967,10 +1971,8 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
     if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "bw", true).includes(word)))  {
         Detected = true;
     };
-      
-    channel.startTyping();
+
     await channel.send("", await function_WelcomeMessagesEmbed(member, "leave", Detected)).catch(error => ErrorBag.add(error));
-    channel.stopTyping();
     
     console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
       
@@ -4126,6 +4128,13 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
 };
 };
   
+//CustomBackground
+if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "setbackground"))  {
+  
+    if  (
+  
+};
+  
 //SetBackground
 if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "setbackground "))  {
 
@@ -4656,13 +4665,15 @@ if (!ProfileCooldown.has(message.author.id)) {
     var   Failed             = false;
       
     if  (peeky.userData.has(key2))  {
-
-    message.channel.startTyping();
       
     var TheBannerShown = DefaultBackground;
     TheBannerShown = function_GetBackground(key2);
 
-    var background = await Canvas.loadImage(TheBannerShown).catch(error => {message.channel.send("hm"); throw error});
+    var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  message.channel.stopTyping();  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
+      
+    if  (Failed == false)  {
+
+    message.channel.startTyping();
       
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
@@ -4915,6 +4926,8 @@ if (!ProfileCooldown.has(message.author.id)) {
     }).catch(function(err) {  ErrorBag.add(err);  });
 
     message.channel.stopTyping();
+      
+    };
 
     }
     else {
