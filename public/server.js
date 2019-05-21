@@ -2022,9 +2022,9 @@ if  (newMember.roles.has(RedeemRole1))  {
       
     if  (Failed !== true)  {
         peeky.userData.math(key, "+", 1000, "Gredit");
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
 
         peeky.userData.math(key, "+", 1, "Redeemed");
+        peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
         newMember.user.send(
@@ -2041,9 +2041,9 @@ if  (newMember.roles.has(RedeemRole2))  {
       
     if  (Failed !== true)  {
         peeky.userData.math(key, "+", 2000, "Gredit");
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
 
         peeky.userData.math(key, "+", 1, "Redeemed");
+        peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
         newMember.user.send(
@@ -2060,9 +2060,9 @@ if  (newMember.roles.has(RedeemRole3))  {
       
     if  (Failed !== true)  {
         peeky.userData.math(key, "+", 5000, "Gredit");
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
 
         peeky.userData.math(key, "+", 1, "Redeemed");
+        peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
         newMember.user.send(
@@ -2079,9 +2079,9 @@ if  (newMember.roles.has(RedeemRole4))  {
       
     if  (Failed !== true)  {
         peeky.userData.math(key, "+", 10000, "Gredit");
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
 
         peeky.userData.math(key, "+", 1, "Redeemed");
+        peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
         newMember.user.send(
@@ -3988,10 +3988,17 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade
     if  (TheUserWithRole.roles.has(ServerUpgradeRole) && peeky.serverData.get(keySF, "server_upgraded") == false)  {
         TheUserWithRole.removeRole(ServerUpgradeRole).catch(error => {ErrorBag.add(error); Failed = true});
 
-        const embed = {"description": SuccessIcon + " This server is now upgraded!",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      
-        peeky.channels.get(AnnouncementsChannel).send("**" + Function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + Function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + Function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
+        if  (Failed == false)  {
+            const embed = {"description": SuccessIcon + " This server is now upgraded!",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+            peeky.channels.get(AnnouncementsChannel).send("**" + Function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + Function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + Function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
+        };
+    }
+     else 
+    {
+      const embed = {"description": ErrorIcon + " You cannot upgrade this server.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
     }
