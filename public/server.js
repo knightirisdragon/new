@@ -646,7 +646,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     var TheBannerShown = DefaultBackground;
     TheBannerShown = function_GetBackground(key);
 
-    const background = await Canvas.loadImage(TheBannerShown).catch(error => {ErrorBag.add(error);  return false;});
+    const background = await Canvas.loadImage(TheBannerShown);
     ctx.drawImage(background, 0, 0, canvas.width, 300);  
       
     const AvatarField = await Canvas.loadImage(DarkField);
@@ -4662,7 +4662,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     var TheBannerShown = DefaultBackground;
     TheBannerShown = function_GetBackground(key2);
 
-    var background = await Canvas.loadImage(TheBannerShown).catch(error => {ErrorBag.add(error);  return false;  message.channel.stopTyping();});
+    var background = await Canvas.loadImage(TheBannerShown).catch(error => {message.channel.send("hm"); throw error});
       
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
