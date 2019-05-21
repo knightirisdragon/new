@@ -1402,6 +1402,39 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     console.log("The backgrounds have been updated.");
 
 };
+  
+if  (!WebsiteCooldowns.has("workshop"))  {
+      
+    WebsiteCooldowns.add("workshop");
+    setTimeout(() => {WebsiteCooldowns.delete("workshop")}, 600000);
+
+    var WorkshopList = [];
+
+    peeky.channels.get(WorkshopChannel).fetchMessages({ limit: 50 })
+    .then(async (messages) => {
+      
+    messages.forEach(m => {
+          
+            if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.attachments.size > 0 && m.content.toLowerCase().includes("name: ") && m.content.toLowerCase().includes("credit: "))  {
+              
+                var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '"  id="1" width="500" height="300" class="background_image">  <br>  <a class="button" href="https://discordapp.com/channels/' + m.guild.id + '/' + m.channel.id + '/' + m.id + '">Vote</a>  </div>';
+
+                WorkshopList.push(BackgroundString);
+            };
+    
+    });
+      
+    WorkshopList.push(BackgroundString);
+
+    await fs.writeFile('public/workshop.txt', "<div class='workshop'>" + WorkshopList.join(" ") + "</div>", (err) => {
+        if (err) console.log(err);
+    });    
+      
+    console.log("The workshop has been updated.");
+    
+    }).catch(error => ErrorBag.add(error));
+
+};
 
 if  (!WebsiteCooldowns.has("randomsongs"))  {
 
@@ -1524,37 +1557,6 @@ if  (message.channel.id == AnnouncementsChannel && !WebsiteCooldowns.has("news")
     }).catch(error => ErrorBag.add(error));
       
     console.log("The news list has been updated.");
-
-};
-  
-if  (!WebsiteCooldowns.has("workshop"))  {
-      
-    WebsiteCooldowns.add("workshop");
-    setTimeout(() => {WebsiteCooldowns.delete("workshop")}, 600000);
-
-    var WorkshopList = [];
-
-    peeky.channels.get(WorkshopChannel).fetchMessages({ limit: 50 })
-    .then(async (messages) => {
-      
-    messages.forEach(m => {
-          
-            if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.attachments.size > 0 && m.content.toLowerCase().includes("name: ") && m.content.toLowerCase().includes("credit: "))  {
-              
-                var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '"  id="1" width="500" height="300" class="background_image">  <br>  <a class="button" href="https://discordapp.com/channels/' + m.guild.id + '/' + m.channel.id + '/' + m.id + '">Vote</a>  </div>';
-
-                WorkshopList.push(BackgroundString);
-            };
-    
-    });
-
-    await fs.writeFile('public/workshop.txt', "<div class='workshop'>" + WorkshopList.join(" ") + "</div>", (err) => {
-        if (err) console.log(err);
-    });    
-      
-    console.log("The workshop has been updated.");
-    
-    }).catch(error => ErrorBag.add(error));
 
 };
 
