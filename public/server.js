@@ -718,7 +718,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     //Avatar
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
-    const avatar = await Canvas.loadImage(member.user.displayAvatarURL);
+    const avatar = await Canvas.loadImage(member.user.displayAvatarURL.replace("https", "http"));
     ctx.drawImage(avatar, 15, 15, 65, 65);
 
     return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
@@ -1244,7 +1244,7 @@ peeky.on('message', async (message) => {
       //Avatar
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
-	  const avatar = await Canvas.loadImage(message.author.displayAvatarURL);
+	  const avatar = await Canvas.loadImage(message.author.displayAvatarURL.replace("https", "http"));
     ctx.drawImage(avatar, 15, 15, 65, 65);
     
     const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
@@ -4866,7 +4866,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.rect(14, 254, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 29), 30);
   
         //Avatar
-    const avatar = await Canvas.loadImage(SomeoneTagged.displayAvatarURL);
+    const avatar = await Canvas.loadImage(SomeoneTagged.displayAvatarURL.replace("https", "http"));
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
     ctx.drawImage(avatar, 18, 17, 60, 60);
@@ -4929,10 +4929,12 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
     var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
     var Type = "Started";
+    var DeleteMessage = true;
   
     if  (GivenSong == RandomString)  {
         GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
         Type = "Random";
+        DeleteMessage = false;
     };
   
     if  (GivenSong == "playlist" || GivenSong == peeky.userData.get(key, "PlaylistName").toLowerCase())  {
@@ -4940,6 +4942,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
       
         GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
         Type = "Playlist";
+        DeleteMessage = false;
       
     } else {
       const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
@@ -4985,7 +4988,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
             message.channel.stopTyping();
               
-            message.delete().catch(error => ErrorBag.add(error));
+            if  (DeleteMessage == true)  {
+                message.delete().catch(error => ErrorBag.add(error));
+            };
               
             await voiceChannel.join().then(connection => {
 
