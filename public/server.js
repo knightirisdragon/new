@@ -933,6 +933,10 @@ function UpdateServerList()  {
     });
   
 };
+    
+function GetGuildInfo(id)  {
+    
+};
 
 function UpdateStats(text)  {
   
