@@ -111,17 +111,18 @@ const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
 const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw", "https://www.youtube.com/watch?v=N6hF3EaICxk", "https://www.youtube.com/watch?v=NU3aCNQAqwc", "https://www.youtube.com/watch?v=K3Qzzggn--s", "https://www.youtube.com/watch?v=PEBS2jbZce4", "https://www.youtube.com/watch?v=8Vlej7QUGGE", "https://www.youtube.com/watch?v=k92Bgqz-p_8", "https://www.youtube.com/watch?v=R_N15egKj6c", "https://www.youtube.com/watch?v=-WpnPSChVRQ", "https://www.youtube.com/watch?v=ktvTqknDobU", "https://www.youtube.com/watch?v=pXRviuL6vMY", "https://www.youtube.com/watch?v=UprcpdwuwCg", "https://www.youtube.com/watch?v=L3wKzyIN1yk", "https://www.youtube.com/watch?v=PHgc8Q6qTjc", "https://www.youtube.com/watch?v=I-sH53vXP2A", "https://www.youtube.com/watch?v=FTQbiNvZqaY", "https://www.youtube.com/watch?v=1vrEljMfXYo"  ];
 
 //Amounts
-const NormalPrice         = 250;
-const SellPrice           = 50;
-const DescriptionPrice    = 25;
-const FreePrice           = 0;
-const ExpNeeded           = 125; //Times the current level.
-const MaxServers          = 100;
-const AutoDeleteTime      = 250;
-const BackgroundInvLimit  = 25;
-const MaxBW               = 5;
-const InactiveWipe        = 1296000000; //15 Days
-const InactiveDays        = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
+const CustomBackgroundPrice = 1000;
+const NormalPrice           = 250;
+const SellPrice             = 50;
+const DescriptionPrice      = 25;
+const FreePrice             = 0;
+const ExpNeeded             = 125; //Times the current level.
+const MaxServers            = 100;
+const AutoDeleteTime        = 250;
+const BackgroundInvLimit    = 25;
+const MaxBW                 = 5;
+const InactiveWipe          = 1296000000; //15 Days
+const InactiveDays          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 
 //Vote Emotes
 const DefaultUpvote    = "529413730874949632";
@@ -225,6 +226,7 @@ const ErrorMessage7  = [ErrorIcon + " The mentioned user has no profile."];
 const ErrorMessage8  = [ErrorIcon + " Mentions are not allowed for this command."];
 const ErrorMessage9  = [ErrorIcon + " You must enter a valid amount."];
 const ErrorMessage10 = [ErrorIcon + " Make sure the Function's name is all in lowercase."];
+const ErrorMessage11 = [ErrorIcon + " You need to be a Supporter to do that."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge!"];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -4116,7 +4118,6 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
       };
   
 }
-  
   else { 
          const embed = {"description": ErrorIcon + " You cannot buy the default background.", "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -4129,9 +4130,37 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
 };
   
 //CustomBackground
-if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "setbackground"))  {
+if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "custombackground"))  {
   
-    if  (
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {}
+  
+    if  (peeky.userData.get(key, "Gredit") > CustomBackgroundPrice)  {
+    
+    if  (message.attachments.size > 0)  {
+      
+        peeky.userData.math(key, "-", CustomBackgroundPrice, "Gredit");
+        peeky.userData.set(key, message.attachments.array()[0].url.replace("https", "http"), "Background");
+      
+    }
+     else
+    {
+      const embed = {"description": ErrorIcon + " You need to upload a file.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+  
+    }
+     else
+    {
+      const embed = {"description": ErrorMessage1,  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+  
+    }
+     else
+    {
+      const embed = {"description": ErrorMessage11[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
   
 };
   
