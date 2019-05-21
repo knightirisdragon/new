@@ -4622,12 +4622,9 @@ if  (!ProfileCooldown.has(message.author.id)) {
       
     const PeekySupportServer = peeky.guilds.get(SupportServer);
     const TheUserWithRole    = peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id);
-    var BackgroundsAmount    = peeky.userData.get(key2, "Inventory").length;
     var EndString            = "";
     var Badges               = [];
     var BadgesAmount         = null;
-      
-    if  (BackgroundsAmount > BackgroundInvLimit)  {  EndString = " and some more.."  };
 
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(StaffRole))       {  Badges.push(ModeratorEmote + " Staff")  };
     if  (peeky.userData.get(key2, "VeteranBadge") == true)                                               {  Badges.push(VeteranEmote + " Veteran")  };
@@ -4658,8 +4655,10 @@ if  (!ProfileCooldown.has(message.author.id)) {
             Current ++;
             FixedBackgrounds.push(Banners[banner - 1][2] + " (" + banner + ")");
         });
+      
+        if  (FixedBackgrounds.length > BackgroundInvLimit)  {  EndString = " and some more.."  };
 
-        message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**Backgrounds (" + BackgroundsAmount.toLocaleString('en') + ")**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**Badges (" + BadgesAmount + ")**\n" + Badges.join(', ') + ".")
+        message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**Backgrounds (" + FixedBackgrounds.length.toLocaleString('en') + ")**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**Badges (" + BadgesAmount + ")**\n" + Badges.join(', ') + ".")
         .catch(error => ErrorBag.add(error));
       
     }
@@ -4730,12 +4729,14 @@ if (!ProfileCooldown.has(message.author.id)) {
         var HexVersion = TheBannerShown;
     };
 
-    await dominant_color(HexVersion, {format: 'hex'}, function(err, color)  {  
-          if  (color !== "000000")  {
-              ProfileColor = color;
-          } else {
-            ProfileColor = "7289DA";            
+    await dominant_color(HexVersion, {format: 'hex'}, function(err, color)  {
+              
+          ProfileColor = color;
+
+          if  (color == "000000")  {
+              ProfileColor = "7289DA";            
           };
+
     });
       
     //Draw Fields
@@ -4782,8 +4783,14 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 70, 177);
 
     //Backpack String
+    var BackpackSize = peeky.userData.get(key2, "Inventory").length;
+
+    if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
+        BackpackSize ++;
+    };
+      
     ctx.font = "25px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Inventory").length.toLocaleString('en') + " Backgrounds", 70, 222);
+    ctx.fillText("" + BackpackSize.toLocaleString('en') + " Backgrounds", 70, 222);
     
         //Description String
     var text = peeky.userData.get(key2, "Description");
