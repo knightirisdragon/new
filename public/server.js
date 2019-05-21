@@ -1011,7 +1011,7 @@ peeky.on('message', async (message) => {
         Exp: 1,
         Level: 1,
         Chests: 0,
-        Redeemed: 0,
+        UpgradedServers: 0,
       
         //Music
         Playlist: [],
@@ -1167,6 +1167,9 @@ peeky.on('message', async (message) => {
 
         //Fashion
     if  (peeky.userData.get(key, "FashionBadge") == true)  {  BadgeExpAmount += 1;  };
+      
+    BadgeExpAmount    += peeky.userData.get(key, "UpgradedServers");
+    BadgeGreditAmount += peeky.userData.get(key, "UpgradedServers");
       
     peeky.userData.set(key, BadgeGreditAmount, "BadgeGredit");
     peeky.userData.set(key, BadgeExpAmount, "BadgeExp");
