@@ -4660,10 +4660,9 @@ if (!ProfileCooldown.has(message.author.id)) {
     message.channel.startTyping();
       
     var TheBannerShown = DefaultBackground;
-    TheBannerShown = function_GetBackground(key);
+    TheBannerShown = function_GetBackground(key2);
 
-    var background = await Canvas.loadImage(DefaultBackground)//.catch(async error => {ErrorBag.add(error);  Failed = true;});
-    background = await Canvas.loadImage(TheBannerShown).catch(async error => {ErrorBag.add(error)});
+    var background = await Canvas.loadImage(TheBannerShown).catch(error => {return message.channel.send("hm") && ErrorBag.add(error);});
       
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
@@ -4913,7 +4912,7 @@ if (!ProfileCooldown.has(message.author.id)) {
           
         };
 
-    }).catch(function(err) {  ErrorBag.add(err);  });    
+    }).catch(function(err) {  ErrorBag.add(err);  });
 
     message.channel.stopTyping();
 
