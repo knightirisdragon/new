@@ -100,6 +100,7 @@ function Close()  {
     height: 150px;
     display: inline-block;
     text-align: center;
+    margin: 5px;
     color: white;
     transition: transform .25s ease;
     background-image: url('https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground187.png?1548198438043');
@@ -109,7 +110,14 @@ function Close()  {
     transform: scale(0.99);
     cursor: pointer;
 }
-
+  
+.functionlist  {  
+    padding: 10px;
+    overflow: auto;
+    flex-direction: initial;
+    display: flex;      
+}
+  
 </style>
 
 <html lang="en">
@@ -171,6 +179,8 @@ function Close()  {
     </div>
       
     <br><br> <font size="6">Utilities</font>  <br><br>
+      
+    <div class="functionlist">
     
     <div class="function_showcase">
       <div class="centered"> 
@@ -226,6 +236,8 @@ function Close()  {
     <div class="popup" onclick="SM_Popup()">  Server Message  </div>
         
       </div>
+    </div>
+      
     </div>
       
     <br><br> <font size="6">Streaming Utilities</font>  <br><br>
