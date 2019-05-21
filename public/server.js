@@ -4627,7 +4627,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     var Badges               = [];
     var BadgesAmount         = null;
       
-    if  (BackgroundsAmount > BackgroundInvLimit)  {  EndString = " and " + (BackgroundsAmount - BackgroundInvLimit).toLocaleString('en') + " more.."  };
+    if  (BackgroundsAmount > BackgroundInvLimit)  {  EndString = " and some more.."  };
 
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(StaffRole))       {  Badges.push(ModeratorEmote + " Staff")  };
     if  (peeky.userData.get(key2, "VeteranBadge") == true)                                               {  Badges.push(VeteranEmote + " Veteran")  };
@@ -4649,6 +4649,10 @@ if  (!ProfileCooldown.has(message.author.id)) {
       
     var FixedBackgrounds = [];
     var Current = 0;
+      
+        if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
+            FixedBackgrounds.push("Custom (0)");
+        };
 
         peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
             Current ++;
