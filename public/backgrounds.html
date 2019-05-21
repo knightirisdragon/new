@@ -17,11 +17,9 @@
 
 .background_centered {
     background-color: rgba(35, 39, 42, 0.5);
-    border: rgba(35, 39, 42, 0.5) solid;
-    border-radius: 10px;
+    border-left: #7289DA 2px solid;
     padding: 15px;
     position: absolute;
-    opacity: 0.25;
     width: 460px;
     transform: translate(20px, -120%);
 }
@@ -42,11 +40,11 @@
 
 .background_image {
     filter: blur(0px);
-    border-radius: 10px;
+    border-radius: 0px;
 }
 
 .background:hover .background_centered {
-    opacity: 0.9;
+    border-left: #8094dd 4px solid;
     cursor: pointer;
 }
 
@@ -63,7 +61,7 @@
 }
   
 .workshop  {
-    padding: 15px;
+    padding: 10px;
   
     overflow: auto;
     flex-direction: initial; 
@@ -73,14 +71,13 @@
   
 .workshop  .background  {
     background-color: rgba(35, 39, 42, 0.5);
-    border-radius: 5px;
+    border-radius: 0px;
     padding: 10px;
     margin: 5px;
 }
   
 .workshop  a  {
     width: 100%;
-    margin: 5px;
     display: inline-block;
 }
   
@@ -141,7 +138,6 @@ function ChangeSorting(current)  {
     <div class="topnav" id="topnavmenu">
       <b>
       <a class="button" href="https://peeky.glitch.me" rel="noopener noreferrer"><font size="4">Home</font></a>
-      <a class="button" href="server.html" rel="noopener noreferrer"><font size="4">Submit</font></a>
       <a class="button" onclick="ChangeSorting(CurrentSortMode);"><font size="4">Sort List</font></a>
       </b>
     </div>

@@ -129,7 +129,7 @@ a.button:hover {
 .headertext  {
     background-color: #7289DA;
     border: rgba(35, 39, 42, 0.5) 2px solid;
-    border-radius: 15px;
+    border-radius: 5px;
   
     padding: 10px;
     width: 100%;
