@@ -2792,9 +2792,9 @@ if  (!OverviewCooldown.has(message.guild.id))  {
     setTimeout(() => {OverviewCooldown.delete(message.guild.id)}, 10000);
         
     var EnabledAmount = 0;
-    var ServerAmount = 0;
+    var ServerAmount  = 0;
     var ChannelAmount = 0;
-    const Functions = [];
+    const Functions   = [];
   
     var ServerMessage = peeky.serverData.get(keySF, "server_message_bonus_setting");
   
@@ -5028,9 +5028,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
         });
 
         setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, CooldownExpires);
-          
+
     } else {
-      const embed = {"description": ErrorIcon + " I am missing some required permissions in that channel.",  "color": EmbedColor}; 
+      const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -5249,6 +5249,13 @@ if  (message.guild.me.hasPermission("MUTE_MEMBERS"))  {
           const embed = {"description": ErrorMessage3[0],  "color": EmbedColor};  
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
+  
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
       
 }
  else
