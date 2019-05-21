@@ -213,6 +213,7 @@ const CooldownMessage4 = [ErrorIcon + " You are currently on a cooldown for that
 
 const PermissionsMessageError1 = [ErrorIcon + " You are lacking the required permissions do that."];
 const PermissionsMessageError2 = [ErrorIcon + " You need to be the owner of this server to do that."];
+const PermissionsMessageError3 = [ErrorIcon + " I am missing required permissions to do that."];
 
 const ErrorMessage1  = [ErrorIcon + " You need more Gredit to do that."]
 const ErrorMessage2  = [ErrorIcon + " The new description is too large."];
@@ -2339,7 +2340,7 @@ if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
 //Automatic Reactions
 if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
   
-if  (message.guild.me.hasPermission("ADD_REACTIONS") && message.guild.me.hasPermission("EXTERNAL_EMOJIS") && message.attachments.size > 0 && !message.author.bot)  {
+if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS') && message.channel.permissionsFor(peeky.user).has('EXTERNAL_EMOJIS') && message.attachments.size > 0 && !message.author.bot)  {
 
     var ReactionEmoji1 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
     var ReactionEmoji2 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
@@ -2364,7 +2365,7 @@ if  (ReactionEmoji1 && ReactionEmoji2)  {
 //Images Only
 if  (peeky.channelData.get(keyCF, "image_only_bonus") == true)  {
   
-if  (message.author.id !== PeekyId && message.guild.me.hasPermission("MANAGE_MESSAGES"))  {
+if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
 if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.size < 1)  {
 
@@ -2434,7 +2435,7 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
 //Flood Protection
 if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
-if  (peeky.channelData.has(keyCF) && !message.member.permissions.has("MANAGE_MESSAGES") && message.guild.me.hasPermission("MANAGE_ROLES"))  {
+if  (peeky.channelData.has(keyCF) && !message.member.permissions.has('MANAGE_MESSAGES') && message.channel.permissionsFor(peeky.user).has('MANAGE_ROLES'))  {
   
 if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
@@ -2511,7 +2512,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
       if  (SupportersAmount >= 50)  {  EndString = " and " + (SupportersAmount - 50) + " more..."  };
       if  (SupportersAmount == 0)  {  WallList = ["No one."]  };
   
-          await p_channel.fetchMessage(p_message).catch(error => ErrorBag.add(error) && FalseMsgIDs.add(p_message));
+          await p_channel.fetchMessage(p_message).catch(error => {ErrorBag.add(error); FalseMsgIDs.add(p_message)});
       
       if  (!FalseMsgIDs.has(p_message)) {
         
@@ -2612,7 +2613,7 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
 //Banned Words
 if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true)  {
   
-if  (message.author.id !== PeekyId && message.guild.me.hasPermission("MANAGE_MESSAGES"))  {
+if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
     
 if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(keySF, "banned_words_bonus_setting").some(word => Function_RemoveFormatting(message.content.toLowerCase(), "bw", true).includes(word)))  {
 
@@ -2639,7 +2640,7 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(
 //Spoiler Lock
 if  (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true)  {
   
-if  (message.author.id !== PeekyId && message.guild.me.hasPermission("MANAGE_MESSAGES"))  {
+if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
 if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.size > 0 && !message.attachments.array()[0].filename.startsWith("SPOILER_"))  {
 
@@ -5208,6 +5209,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "leave")
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "mute "))  {
 
 if  (message.member.permissions.has("MUTE_MEMBERS")) {
+    
+if  (message.guild.me.hasPermission("MUTE_MEMBERS"))  {
       
     var MentionedMember = message.mentions.members.first();
     var name = peeky.serverData.get(keySF, "muted_role");
@@ -5260,6 +5263,8 @@ if  (message.member.permissions.has("MUTE_MEMBERS")) {
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "unmute "))  {
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
+    
+if  (message.guild.me.hasPermission("MUTE_MEMBERS"))  {
       
     var MentionedMember = message.mentions.members.first();
     var name = peeky.serverData.get(keySF, "muted_role");
@@ -5298,6 +5303,13 @@ if  (message.member.permissions.has("MUTE_MEMBERS"))  {
           const embed = {"description": ErrorMessage3[0],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
+  
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
       
 }
  else
@@ -5312,6 +5324,8 @@ if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "idban "))  {
 
     if  (message.member.permissions.has("BAN_MEMBERS")) {
+    
+    if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
 
         var GivenID = message.content.split(peeky.serverData.get(keySF, "prefix") + "idban ")[1];
         var ValidID = 0;
@@ -5341,6 +5355,13 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "idban "
          const embed = {"description": ErrorIcon + " You must enter a valid user ID.",  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
+      
+    }
+     else
+    {
+     const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
    
 }
  else
@@ -5355,6 +5376,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "idban "
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "ban "))  {
 
 if  (message.member.permissions.has("BAN_MEMBERS")) {
+    
+if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
 
     var MentionedMember = message.mentions.members.first();
           
@@ -5373,6 +5396,13 @@ if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions
       const embed = {"description": ErrorIcon + " You cannot ban that user.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
+  
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
    
 }
  else
@@ -5387,6 +5417,8 @@ if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "purge "))  {
 
     if  (message.member.permissions.has("MANAGE_MESSAGES")) {
+    
+    if  (message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
         var BulkAmount = message.content.split(peeky.serverData.get(keySF, "prefix") + "purge ")[1];
 
@@ -5410,6 +5442,13 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "purge "
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         
         };
+      
+    }
+     else
+    {
+     const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
    
 }
  else
@@ -5424,6 +5463,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "purge "
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "lockdown "))  {
 
 if  (message.member.permissions.has("MANAGE_CHANNELS")) {
+    
+if  (message.guild.me.hasPermission("MANAGE_MESSAGES"))  {
 
     var GivenRole = message.mentions.roles.first();
           
@@ -5451,6 +5492,8 @@ if  (GivenRole && GivenRole.name !== "@everyone") {
   const embed = {"description": ErrorMessage3[0],  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };  
+  
+};
    
 }
  else
