@@ -1524,7 +1524,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
 
 };
   
-if  (message.channel.id == AnnouncementsChannel && !WebsiteCooldowns.has("news"))  {
+if  (!WebsiteCooldowns.has("news"))  {
       
     WebsiteCooldowns.add("news");
     setTimeout(() => {WebsiteCooldowns.delete("news")}, 600000);
