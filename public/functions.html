@@ -4,7 +4,9 @@
 
 function AR_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<font size="5">Automatic Reactions</font>  <br>  Automatically adds default or custom reactions to sent images.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Channel Function</font>  <br>  Ignores: <font color="lightgray">Bots</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle automatic reactions</font>  <br>  Set: <font color="lightgray">p!set automatic reactions [text]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Far.png?1555756975220">';  
+     document.getElementById('description').innerHTML = '<b class="functionname">Automatic Reactions</b>  <br>  <b class="functiondescription">Automatically adds default or custom reactions to sent images.</b>  <br>  <b class="functioncommand">p!toggle automatic reactions</b>  <br>  <b class="functioncommand">p!set automatic reactions [text]</b>  <br><br>  <font class="functionname">Screenshots</font>  <br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Far.png?1555756975220">';  
+
+     //document.getElementById('description').innerHTML = '<font size="5">Automatic Reactions</font>  <br>  Automatically adds default or custom reactions to sent images.  <br><br>  <font size="5">  Information  </font>  <br>  <font size="3">  Type: <font color="lightgray">Channel Function</font>  <br>  Ignores: <font color="lightgray">Bots</font>  <br>  Cooldown: <font color="lightgray">0 Seconds</font>  <br><br>  <font size="5">  Commands  </font>  <br>  Toggle: <font color="lightgray">p!toggle automatic reactions</font>  <br>  Set: <font color="lightgray">p!set automatic reactions [text]</font>  </font>  <br><br>  <font size="5">Screenshots</font>  <br><br>  <img class="demopreview" src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Far.png?1555756975220">';  
 };
   
 function WM_Popup() {
@@ -116,6 +118,53 @@ function Close()  {
     overflow: auto;
     flex-direction: initial;
     display: flex;
+}
+  
+.functionname  {  
+    background-color: rgba(35, 39, 42, 0.75);
+    border-left: #7289DA 2px solid;
+    width: 500px;
+    font-size: 27px;
+    padding: 10px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+  
+.functionname:hover  { 
+    cursor: pointer;
+}
+  
+.functiondescription  {  
+    background-color: rgba(35, 39, 42, 0.5);
+    border-left: #7289DA 2px solid;
+    width: 500px;
+    font-size: 14px;
+    vertical-align: top;
+    padding: 10px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    transition: transform .25s ease;
+}
+  
+.functiondescription:hover  { 
+    cursor: pointer;
+}
+  
+.functioncommand  {  
+    background-color: rgba(35, 39, 42, 0.5);
+    border-left: #7289DA 2px solid;
+    width: 500px;
+    padding: 10px;
+    margin-bottom: 5px;
+    display: inline-block;
+    transition: transform .25s ease;
+}
+  
+.functioncommand:hover  {
+    border-left: #8094dd 4px solid;
+    transform: scale(0.99);
+    cursor: pointer;
 }
   
 </style>
