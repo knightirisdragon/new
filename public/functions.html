@@ -91,19 +91,20 @@ function Close()  {
 <style>
 
 .function_showcase {
+    background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fdarkfield.png?1558421870621');
     border: rgba(35, 39, 42, 0.9) solid;
-    position: relative;
-    cursor: pointer;
-    opacity: 1;
     border-radius: 10px;
-    width: 400px;
-    height: 150px;
-    display: inline-block;
-    text-align: center;
-    margin: 5px;
     color: white;
+    width: 350px;
+    height: 300px;
+    margin: 5px;
+    flex-shrink: 0;
+  
+    text-align: center;
+    position: relative;
+  
+    display: inline-block;
     transition: transform .25s ease;
-    background-image: url('https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground187.png?1548198438043');
 }
 
 .function_showcase:hover {
@@ -112,10 +113,11 @@ function Close()  {
 }
   
 .functionlist  {  
+    background-color: rgba(35, 39, 42, 0.5);
     padding: 10px;
     overflow: auto;
     flex-direction: initial;
-    display: flex;      
+    display: flex;
 }
   
 </style>
@@ -168,7 +170,9 @@ function Close()  {
     <b>
     <center>
       
-    <br><br> <font size="6">Chat Enhancements</font>  <br><br>
+    <br><br> <font class="table_description">Chat Enhancements</font>
+      
+    <div class="functionlist">
 
     <div class="function_showcase">
     <div class="centered"> 
@@ -177,8 +181,10 @@ function Close()  {
         
     </div>
     </div>
+
+    </div>
       
-    <br><br> <font size="6">Utilities</font>  <br><br>
+    <br><br> <font class="table_description">Utilities</font>
       
     <div class="functionlist">
     
@@ -240,7 +246,9 @@ function Close()  {
       
     </div>
       
-    <br><br> <font size="6">Streaming Utilities</font>  <br><br>
+    <br><br> <font class="table_description">Streaming Utilities</font>
+      
+    <div class="functionlist">
     
     <div class="function_showcase">
       <div class="centered"> 
@@ -249,9 +257,12 @@ function Close()  {
         
       </div>
     </div>
-    
       
-    <br><br> <font size="6">Moderation</font>  <br><br>
+    </div>
+
+    <br><br> <font class="table_description">Moderation</font>
+      
+    <div class="functionlist">
     
     <div class="function_showcase">
       <div class="centered">
@@ -293,7 +304,11 @@ function Close()  {
       </div>
     </div>
       
-    <br><br> <font size="6">Other</font>  <br><br>
+    </div>
+      
+    <br><br> <font class="table_description">Other</font>
+      
+    <div class="functionlist">
     
     <div class="function_showcase">
       <div class="centered">
@@ -309,6 +324,8 @@ function Close()  {
     <div class="popup" onclick="N_Popup()">Notifications  </div>
         
       </div>
+    </div>
+      
     </div>
       
     </center>
