@@ -791,6 +791,8 @@ function function_RandomDescription()  {
 function function_GetBackground(key)  {
 
 if  (peeky.userData.has(key))  {
+  
+if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
       
     for  (var i = 0; i < Banners.length; i++) {
        if   (peeky.userData.get(key, "Background") == i + 1) {
@@ -798,6 +800,10 @@ if  (peeky.userData.has(key))  {
             break;
        };
     };
+  
+} else {
+    return peeky.userData.get(key, "IsCustom")
+};
       
 };
   
@@ -931,11 +937,7 @@ function UpdateServerList()  {
     .then(response => response.text()).then((data) => {
        document.getElementById("ServerList").innerHTML = data;
     });
-  
-};
-    
-function GetGuildInfo(id)  {
-    
+
 };
 
 function UpdateStats(text)  {
@@ -1009,6 +1011,7 @@ peeky.on('message', async (message) => {
         DailyRewarded: Date.now(),
 
         Background: 1,
+        IsCustom: false,
         Description: function_RandomDescription(),
         Inventory: [1],
         Gredit: 0,
