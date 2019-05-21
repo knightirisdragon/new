@@ -1976,8 +1976,9 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
 //GUILD MEMBER UPDATE EVENTS
 peeky.on("guildMemberUpdate", async (oldMember, newMember) => {
   
-const key = `${newMember.user.id}`;
-const keySF = `${newMember.guild.id}`;
+const key     = `${newMember.user.id}`;
+const keySF   = `${newMember.guild.id}`;
+var ExpAmount = 100;
   
 //Supporter Date
 if  (keySF == SupportServer)  {
@@ -1998,6 +1999,54 @@ if  (peeky.userData.has(key))  {
   
 };
 };
+  
+//1.000 Gredit
+if  (newMember.roles.has(RedeemRole1))  {
+    newMember.removeRole(RedeemRole1).catch(error => {ErrorBag.add(error); var Failed = true});
+      
+    peeky.userData.math(key, "+", 1000, "Gredit");
+    peeky.userData.math(key, "+", ExpAmount, "Exp");
+
+    peeky.userData.math(key, "+", 1, "Redeemed");
+    peeky.userData.set(key, true, "ContributorBadge");
+
+}; 
+  
+//1.000 Gredit
+if  (newMember.roles.has(RedeemRole2))  {
+    newMember.removeRole(RedeemRole2).catch(error => {ErrorBag.add(error); var Failed = true});
+      
+    peeky.userData.math(key, "+", 2000, "Gredit");
+    peeky.userData.math(key, "+", ExpAmount, "Exp");
+
+    peeky.userData.math(key, "+", 1, "Redeemed");
+    peeky.userData.set(key, true, "ContributorBadge");
+
+}; 
+  
+//1.000 Gredit
+if  (newMember.roles.has(RedeemRole3))  {
+    newMember.removeRole(RedeemRole3).catch(error => {ErrorBag.add(error); var Failed = true});
+      
+    peeky.userData.math(key, "+", 5000, "Gredit");
+    peeky.userData.math(key, "+", ExpAmount, "Exp");
+
+    peeky.userData.math(key, "+", 1, "Redeemed");
+    peeky.userData.set(key, true, "ContributorBadge");
+
+}; 
+  
+//1.000 Gredit
+if  (newMember.roles.has(RedeemRole4))  {
+    newMember.removeRole(RedeemRole4).catch(error => {ErrorBag.add(error); var Failed = true});
+      
+    peeky.userData.math(key, "+", 10000, "Gredit");
+    peeky.userData.math(key, "+", ExpAmount, "Exp");
+
+    peeky.userData.math(key, "+", 1, "Redeemed");
+    peeky.userData.set(key, true, "ContributorBadge");
+
+}; 
 
 });
 
