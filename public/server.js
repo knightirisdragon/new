@@ -59,8 +59,8 @@ const TwitterIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6e
 const RedditIcon    = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Freddit.png?1555575444018";
 const InstagramIcon = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Finstagram.png?1555615973963";
 
-const DarkField  = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2FScreenshot_3.png?1537690815402";
-const LightField = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2FScreenshot_2.png?1537690815259";
+const DarkField  = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fdarkfield.png?1558421870621";
+const LightField = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Flightfield.png?1558421869640";
 
 const DefaultBackground = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground1.jpg?1537872247903";
 const CoinImage         = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542";
@@ -1417,14 +1417,13 @@ if  (!WebsiteCooldowns.has("workshop"))  {
           
             if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.attachments.size > 0 && m.content.toLowerCase().includes("name: ") && m.content.toLowerCase().includes("credit: "))  {
               
-                var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '"  id="1" width="500" height="300" class="background_image">  <br>  <a class="button" href="https://discordapp.com/channels/' + m.guild.id + '/' + m.channel.id + '/' + m.id + '">Vote</a>  </div>';
+                var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500" height="300" class="background_image">  <br>  <a class="button" href="https://discordapp.com/channels/' + m.guild.id + '/' + m.channel.id + '/' + m.id + '">Vote</a>  </div>';
 
-                WorkshopList.push(BackgroundString);
             };
     
     });
       
-    WorkshopList.push(BackgroundString);
+    WorkshopList.push('<div class="background">  <img src="' + DarkField + '" width="500" height="300" class="background_image">  <br>  <a class="button" href="https://peeky.glitch.me/server.html">Submit</a>  </div>');
 
     await fs.writeFile('public/workshop.txt', "<div class='workshop'>" + WorkshopList.join(" ") + "</div>", (err) => {
         if (err) console.log(err);
@@ -1637,7 +1636,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
     };
     });
   
-    const Filler = '<img src="https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2FScreenshot_3.png?1537690815402" width="200px" height="200px" class="stafficon"' + '>';
+    const Filler = '<img src="' + DarkField + '" width="200px" height="200px" class="stafficon"' + '>';
   
     while (DevList.length < 3)  {
         DevList.push(Filler);
