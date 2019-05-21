@@ -1418,6 +1418,7 @@ if  (!WebsiteCooldowns.has("workshop"))  {
             if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.attachments.size > 0 && m.content.toLowerCase().includes("name: ") && m.content.toLowerCase().includes("credit: "))  {
               
                 var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500" height="300" class="background_image">  <br>  <a class="button" href="https://discordapp.com/channels/' + m.guild.id + '/' + m.channel.id + '/' + m.id + '">Vote</a>  </div>';
+                WorkshopList.push(BackgroundString);
 
             };
     
