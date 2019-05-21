@@ -1979,6 +1979,7 @@ peeky.on("guildMemberUpdate", async (oldMember, newMember) => {
 const key     = `${newMember.user.id}`;
 const keySF   = `${newMember.guild.id}`;
 var ExpAmount = 100;
+var Failed    = false;
   
 //Supporter Date
 if  (keySF == SupportServer)  {
@@ -1998,55 +1999,64 @@ if  (peeky.userData.has(key))  {
     };
   
 };
-};
   
 //1.000 Gredit
 if  (newMember.roles.has(RedeemRole1))  {
-    newMember.removeRole(RedeemRole1).catch(error => {ErrorBag.add(error); var Failed = true});
+    newMember.removeRole(RedeemRole1).catch(error => {ErrorBag.add(error); Failed = true});
       
-    peeky.userData.math(key, "+", 1000, "Gredit");
-    peeky.userData.math(key, "+", ExpAmount, "Exp");
+    if  (Failed !== true)  {
+        peeky.userData.math(key, "+", 1000, "Gredit");
+        peeky.userData.math(key, "+", ExpAmount, "Exp");
 
-    peeky.userData.math(key, "+", 1, "Redeemed");
-    peeky.userData.set(key, true, "ContributorBadge");
+        peeky.userData.math(key, "+", 1, "Redeemed");
+        peeky.userData.set(key, true, "ContributorBadge");
+    };
 
 }; 
   
-//1.000 Gredit
+//2.000 Gredit
 if  (newMember.roles.has(RedeemRole2))  {
-    newMember.removeRole(RedeemRole2).catch(error => {ErrorBag.add(error); var Failed = true});
+    newMember.removeRole(RedeemRole2).catch(error => {ErrorBag.add(error); Failed = true});
       
-    peeky.userData.math(key, "+", 2000, "Gredit");
-    peeky.userData.math(key, "+", ExpAmount, "Exp");
+    if  (Failed !== true)  {
+        peeky.userData.math(key, "+", 2000, "Gredit");
+        peeky.userData.math(key, "+", ExpAmount, "Exp");
 
-    peeky.userData.math(key, "+", 1, "Redeemed");
-    peeky.userData.set(key, true, "ContributorBadge");
+        peeky.userData.math(key, "+", 1, "Redeemed");
+        peeky.userData.set(key, true, "ContributorBadge");
+    };
 
 }; 
   
-//1.000 Gredit
+//5.000 Gredit
 if  (newMember.roles.has(RedeemRole3))  {
-    newMember.removeRole(RedeemRole3).catch(error => {ErrorBag.add(error); var Failed = true});
+    newMember.removeRole(RedeemRole3).catch(error => {ErrorBag.add(error); Failed = true});
       
-    peeky.userData.math(key, "+", 5000, "Gredit");
-    peeky.userData.math(key, "+", ExpAmount, "Exp");
+    if  (Failed !== true)  {
+        peeky.userData.math(key, "+", 5000, "Gredit");
+        peeky.userData.math(key, "+", ExpAmount, "Exp");
 
-    peeky.userData.math(key, "+", 1, "Redeemed");
-    peeky.userData.set(key, true, "ContributorBadge");
+        peeky.userData.math(key, "+", 1, "Redeemed");
+        peeky.userData.set(key, true, "ContributorBadge");
+    };
 
 }; 
   
-//1.000 Gredit
+//10.000 Gredit
 if  (newMember.roles.has(RedeemRole4))  {
-    newMember.removeRole(RedeemRole4).catch(error => {ErrorBag.add(error); var Failed = true});
+    newMember.removeRole(RedeemRole4).catch(error => {ErrorBag.add(error); Failed = true});
       
-    peeky.userData.math(key, "+", 10000, "Gredit");
-    peeky.userData.math(key, "+", ExpAmount, "Exp");
+    if  (Failed !== true)  {
+        peeky.userData.math(key, "+", 10000, "Gredit");
+        peeky.userData.math(key, "+", ExpAmount, "Exp");
 
-    peeky.userData.math(key, "+", 1, "Redeemed");
-    peeky.userData.set(key, true, "ContributorBadge");
+        peeky.userData.math(key, "+", 1, "Redeemed");
+        peeky.userData.set(key, true, "ContributorBadge");
+    };
 
 }; 
+
+};
 
 });
 
@@ -3939,111 +3949,21 @@ if  (!ProfileCooldown.has(message.author.id))  {
 
     const PeekySupportServer = peeky.guilds.get(SupportServer);
     const TheUserWithRole    = PeekySupportServer.members.get(message.author.id);
-    var RedeemedAmount       = 0;
-    var ExpAmount            = 100;
-    var ServerUpgraded       = false;
-    var ContributorValid     = true;
-    var InfoMessages = [];
+    var   Failed             = false;
+    var   InfoMessages       = [];
 
     if  (PeekySupportServer.members.get(message.author.id))  {
 
-    //Celebrator Badge (Event)
-    if  (OngoingEvent == true && peeky.userData.get(key, "CelebratorBadge") == false)  {
-        peeky.userData.set(key, true, "CelebratorBadge");
-      
-        RedeemedAmount += 1;
-        ContributorValid = false;
-    };
-
-    //1.000 Gredit
-    if  (TheUserWithRole.roles.has(RedeemRole1))  {
-        TheUserWithRole.removeRole(RedeemRole1).catch(console.error);
-      
-        peeky.userData.math(key, "+", 1000, "Gredit");
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-      
-        RedeemedAmount += 1;
-        ContributorValid = true;
-    }; 
-
-    //2.000 Gredit
-    if  (TheUserWithRole.roles.has(RedeemRole2))  {
-        TheUserWithRole.removeRole(RedeemRole2).catch(console.error);
-      
-        peeky.userData.math(key, "+", 2000, "Gredit");
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-      
-        RedeemedAmount += 1;
-        ContributorValid = true;
-    };
-
-    //5.000 Gredit
-    if  (TheUserWithRole.roles.has(RedeemRole3))  {
-        TheUserWithRole.removeRole(RedeemRole3).catch(console.error);
-      
-        peeky.userData.math(key, "+", 5000, "Gredit");
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-        RedeemedAmount += 1;
-        ContributorValid = true;
-      
-    };
-
-    //10.000 Gredit
-    if  (TheUserWithRole.roles.has(RedeemRole4))  {
-        TheUserWithRole.removeRole(RedeemRole4).catch(console.error);
-      
-        peeky.userData.math(key, "+", 10000, "Gredit");
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-      
-        RedeemedAmount += 1;
-        ContributorValid = true;
-    };
-
-    //Supporter Role
-    if  (TheUserWithRole.roles.has(SupporterRole) && peeky.userData.get(key, "ContributorBadge") == false)  {
-      
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-      
-        RedeemedAmount += 1;  
-        ContributorValid = true;     
-    };
-
     //Server Upgrade
     if  (TheUserWithRole.roles.has(ServerUpgradeRole) && peeky.serverData.get(keySF, "server_upgraded") == false)  {
-        TheUserWithRole.removeRole(ServerUpgradeRole).catch(console.error);
-      
-        peeky.serverData.set(keySF, true, "server_upgraded");
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-      
-        RedeemedAmount += 1;
-        ContributorValid = true;
+        TheUserWithRole.removeRole(ServerUpgradeRole).catch(error => {ErrorBag.add(error); Failed = true});
+
+        const embed = {"description": SuccessIcon + " The server has been upgraded!",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
         peeky.channels.get(AnnouncementsChannel).send("**" + Function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + Function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + Function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
     };
 
-    if  (RedeemedAmount > 0)  {
-      
-        if  (RedeemedAmount == 1)  {  var NumberString = "";  }  else  {  var NumberString = "s";  };
-      
-        if  (ContributorValid == true && peeky.userData.get(key, "ContributorBadge") == false)  {
-
-            peeky.userData.set(key, true, "ContributorBadge");
-            InfoMessages.push(InfoMessage1[0]);
-
-        };
-      
-        peeky.userData.math(key, "+", RedeemedAmount, "Redeemed");
-      
-        var embed = {"description": SuccessIcon + " You have successfully redeemed **" + RedeemedAmount.toLocaleString('en') + " item" + NumberString + "**!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      
-        }
-         else 
-        {
-          const embed = {"description": ErrorIcon + " You don't have any redeemable items.",  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
-      
     }
      else 
     {
