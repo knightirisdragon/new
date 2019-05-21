@@ -2832,7 +2832,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
    );
   
    Functions.push(
-                        "**Functions in " + Function_RemoveFormatting(message.guild.name, "other", true) + ".**" + "\n\n" +
+                        "**Functions in " + Function_RemoveFormatting(message.guild.name, "other", true) + "** (Server Type)" + "\n\n" +
 
                         WM + " **Welcome Messages** " + "\n" + Hollow + " " + "When someone joins this server it will be announced in a channel called `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`." + "\n" +
                         MC + " **Member Counter** " + "\n" + Hollow + " " + "The member counter prefix is `" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
@@ -2853,7 +2853,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
    );
 
    Functions.push(
-                        "**Functions in #­" + Function_RemoveFormatting(message.channel.name, "other", true) + ".**" + "\n\n" +
+                        "**Functions in #­" + Function_RemoveFormatting(message.channel.name, "other", true) + "** (Channel Type)" + "\n\n" +
 
                         AR + " **Automatic Reactions** " + "\n" + Hollow + " " + "The custom reaction names are `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` and `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`." + "\n" +
                         ML + " **Message Log** " + "\n" + Hollow + " " + "Logged messages will be sent to a channel called `#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`." + "\n" +
