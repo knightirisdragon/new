@@ -802,7 +802,7 @@ if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
     };
   
 } else {
-    return peeky.userData.get(key, "IsCustom")
+    return peeky.userData.get(key, "Background");
 };
       
 };
@@ -4652,7 +4652,8 @@ if (!ProfileCooldown.has(message.author.id)) {
     const BadgeYposAmt       = 35;
     var   BadgeAmount        = 0;
     const MaxBadges          = 4;
-    const key2 = SomeoneTagged.id;
+    const key2               = SomeoneTagged.id;
+    var   Failed             = false;
       
     if  (peeky.userData.has(key2))  {
 
@@ -4661,7 +4662,9 @@ if (!ProfileCooldown.has(message.author.id)) {
     var TheBannerShown = DefaultBackground;
     TheBannerShown = function_GetBackground(key);
 
-    const background = await Canvas.loadImage(TheBannerShown);
+    var background = await Canvas.loadImage(DefaultBackground)//.catch(async error => {ErrorBag.add(error);  Failed = true;});
+    background = await Canvas.loadImage(TheBannerShown).catch(async error => {ErrorBag.add(error)});
+      
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     dominant_color(TheBannerShown, {format: 'hex'}, function(err, color){  ProfileColor = color;  });
