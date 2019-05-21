@@ -111,7 +111,7 @@ const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
 const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw", "https://www.youtube.com/watch?v=N6hF3EaICxk", "https://www.youtube.com/watch?v=NU3aCNQAqwc", "https://www.youtube.com/watch?v=K3Qzzggn--s", "https://www.youtube.com/watch?v=PEBS2jbZce4", "https://www.youtube.com/watch?v=8Vlej7QUGGE", "https://www.youtube.com/watch?v=k92Bgqz-p_8", "https://www.youtube.com/watch?v=R_N15egKj6c", "https://www.youtube.com/watch?v=-WpnPSChVRQ", "https://www.youtube.com/watch?v=ktvTqknDobU", "https://www.youtube.com/watch?v=pXRviuL6vMY", "https://www.youtube.com/watch?v=UprcpdwuwCg", "https://www.youtube.com/watch?v=L3wKzyIN1yk", "https://www.youtube.com/watch?v=PHgc8Q6qTjc", "https://www.youtube.com/watch?v=I-sH53vXP2A", "https://www.youtube.com/watch?v=FTQbiNvZqaY", "https://www.youtube.com/watch?v=1vrEljMfXYo"  ];
 
 //Amounts
-const CustomBackgroundPrice = 2500;
+const CustomBackgroundPrice = 1000;
 const NormalPrice           = 250;
 const SellPrice             = 50;
 const DescriptionPrice      = 25;
@@ -4688,7 +4688,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     const ctx           = canvas.getContext('2d');
     var   SomeoneTagged = null;
     const StatsColor    = "lightgray"
-    var   ProfileColor  = "#7289DA";
+    var   ProfileColor  = null;
     
     var MentionedMember = message.mentions.users.first();
     if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.author;  };
@@ -4726,7 +4726,13 @@ if (!ProfileCooldown.has(message.author.id)) {
         var HexVersion = TheBannerShown;
     };
 
-    await dominant_color(HexVersion, {format: 'hex'}, function(err, color)  {  if  (color !== "000000")  {  ProfileColor = color}  ;  });
+    await dominant_color(HexVersion, {format: 'hex'}, function(err, color)  {  
+          if  (color !== "000000")  {
+              ProfileColor = color;
+          } else {
+            ProfileColor = "7289DA";            
+          };
+    });
       
     //Draw Fields
     ctx.globalAlpha = 0.5;
