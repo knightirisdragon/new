@@ -111,7 +111,7 @@ const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
 const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw", "https://www.youtube.com/watch?v=N6hF3EaICxk", "https://www.youtube.com/watch?v=NU3aCNQAqwc", "https://www.youtube.com/watch?v=K3Qzzggn--s", "https://www.youtube.com/watch?v=PEBS2jbZce4", "https://www.youtube.com/watch?v=8Vlej7QUGGE", "https://www.youtube.com/watch?v=k92Bgqz-p_8", "https://www.youtube.com/watch?v=R_N15egKj6c", "https://www.youtube.com/watch?v=-WpnPSChVRQ", "https://www.youtube.com/watch?v=ktvTqknDobU", "https://www.youtube.com/watch?v=pXRviuL6vMY", "https://www.youtube.com/watch?v=UprcpdwuwCg", "https://www.youtube.com/watch?v=L3wKzyIN1yk", "https://www.youtube.com/watch?v=PHgc8Q6qTjc", "https://www.youtube.com/watch?v=I-sH53vXP2A", "https://www.youtube.com/watch?v=FTQbiNvZqaY", "https://www.youtube.com/watch?v=1vrEljMfXYo"  ];
 
 //Amounts
-const CustomBackgroundPrice = 1000;
+const CustomBackgroundPrice = 2500;
 const NormalPrice           = 250;
 const SellPrice             = 50;
 const DescriptionPrice      = 25;
@@ -2006,6 +2006,10 @@ if  (peeky.userData.has(key))  {
     var HasRole = newMember.roles.find(r => r.id == SupporterRole);
   
     if  (HadRole == null && HasRole)  {
+
+        peeky.userData.math(key, "+", 1, "Redeemed");
+        peeky.userData.math(key, "+", ExpAmount, "Exp");
+        peeky.userData.set(key, true, "ContributorBadge");
       
         newMember.user.send(
         "**You are now a Supporter**"
@@ -2022,6 +2026,10 @@ if  (peeky.userData.has(key))  {
     var HasRole = newMember.roles.find(r => r.id == ServerUpgradeRole);
   
     if  (HadRole == null && HasRole)  {
+
+        peeky.userData.math(key, "+", 1, "Redeemed");
+        peeky.userData.math(key, "+", ExpAmount, "Exp");
+        peeky.userData.set(key, true, "ContributorBadge");
       
         newMember.user.send(
         "**You can now ugprade an arbitrary server**"
@@ -4140,6 +4148,9 @@ if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "custom
       
         peeky.userData.math(key, "-", CustomBackgroundPrice, "Gredit");
         peeky.userData.set(key, message.attachments.array()[0].url.replace("https", "http"), "Background");
+
+        const embed = {"description": SuccessIcon + " You have bought a **Custom Background** for **" + CustomBackgroundPrice + " " + GreditIcon + "**.",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     }
      else
