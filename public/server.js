@@ -1984,6 +1984,7 @@ var Failed    = false;
 //Supporter Date
 if  (keySF == SupportServer)  {
 
+//Supporter
 if  (peeky.userData.has(key))  {
     
     var HadRole = oldMember.roles.find(r => r.id == SupporterRole);
@@ -1993,8 +1994,23 @@ if  (peeky.userData.has(key))  {
       
         newMember.user.send(
         "**You are now a Supporter**"
-        + "\n" + "Thank you so much for deciding to become a Supporter!"   
-        + "\n\n" + "https://tenor.com/view/pepe-rare-dancing-frog-gif-5275840"
+        + "\n" + "Thank you for supporting PEEKY!"
+        ).catch(error => ErrorBag.add(error));
+    };
+  
+};
+
+//Server Upgrade
+if  (peeky.userData.has(key))  {
+    
+    var HadRole = oldMember.roles.find(r => r.id == ServerUpgradeRole);
+    var HasRole = newMember.roles.find(r => r.id == ServerUpgradeRole);
+  
+    if  (HadRole == null && HasRole)  {
+      
+        newMember.user.send(
+        "**You can now ugprade an arbitrary server**"
+        + "\n" + "Thank you for supporting PEEKY!"
         ).catch(error => ErrorBag.add(error));
     };
   
@@ -2010,6 +2026,11 @@ if  (newMember.roles.has(RedeemRole1))  {
 
         peeky.userData.math(key, "+", 1, "Redeemed");
         peeky.userData.set(key, true, "ContributorBadge");
+      
+        newMember.user.send(
+        "**1.000 Gredit has been added to your profile**"
+        + "\n" + "Thank you for supporting PEEKY!"
+        ).catch(error => ErrorBag.add(error));
     };
 
 }; 
@@ -2024,6 +2045,11 @@ if  (newMember.roles.has(RedeemRole2))  {
 
         peeky.userData.math(key, "+", 1, "Redeemed");
         peeky.userData.set(key, true, "ContributorBadge");
+      
+        newMember.user.send(
+        "**2.000 Gredit has been added to your profile**"
+        + "\n" + "Thank you for supporting PEEKY!"
+        ).catch(error => ErrorBag.add(error));
     };
 
 }; 
@@ -2038,6 +2064,11 @@ if  (newMember.roles.has(RedeemRole3))  {
 
         peeky.userData.math(key, "+", 1, "Redeemed");
         peeky.userData.set(key, true, "ContributorBadge");
+      
+        newMember.user.send(
+        "**5.000 Gredit has been added to your profile**"
+        + "\n" + "Thank you for supporting PEEKY!"
+        ).catch(error => ErrorBag.add(error));
     };
 
 }; 
@@ -2052,6 +2083,11 @@ if  (newMember.roles.has(RedeemRole4))  {
 
         peeky.userData.math(key, "+", 1, "Redeemed");
         peeky.userData.set(key, true, "ContributorBadge");
+      
+        newMember.user.send(
+        "**10.000 Gredit has been added to your profile**"
+        + "\n" + "Thank you for supporting PEEKY!"
+        ).catch(error => ErrorBag.add(error));
     };
 
 }; 
@@ -3940,17 +3976,11 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length <= MaxBW) 
 //Profile Commands
 
 //Redeem
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "redeem"))  {
-
-if  (!ProfileCooldown.has(message.author.id))  {
-      
-    ProfileCooldown.add(message.author.id);
-    setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade"))  {
 
     const PeekySupportServer = peeky.guilds.get(SupportServer);
     const TheUserWithRole    = PeekySupportServer.members.get(message.author.id);
     var   Failed             = false;
-    var   InfoMessages       = [];
 
     if  (PeekySupportServer.members.get(message.author.id))  {
 
@@ -3958,7 +3988,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     if  (TheUserWithRole.roles.has(ServerUpgradeRole) && peeky.serverData.get(keySF, "server_upgraded") == false)  {
         TheUserWithRole.removeRole(ServerUpgradeRole).catch(error => {ErrorBag.add(error); Failed = true});
 
-        const embed = {"description": SuccessIcon + " The server has been upgraded!",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " This server is now upgraded!",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
         peeky.channels.get(AnnouncementsChannel).send("**" + Function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + Function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + Function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
@@ -3970,13 +4000,6 @@ if  (!ProfileCooldown.has(message.author.id))  {
       const embed = {"description": ErrorIcon + " You have to join PEEKY's support server for that command to work.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-  
-}
- else
-{
-  const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
-  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
   
 };
 
