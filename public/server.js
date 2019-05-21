@@ -4132,7 +4132,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
 //CustomBackground
 if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "custombackground"))  {
   
-    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {}
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {
   
     if  (peeky.userData.get(key, "Gredit") > CustomBackgroundPrice)  {
     
@@ -4151,7 +4151,7 @@ if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "custom
     }
      else
     {
-      const embed = {"description": ErrorMessage1,  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
@@ -4694,9 +4694,8 @@ if (!ProfileCooldown.has(message.author.id)) {
     var   Failed             = false;
       
     if  (peeky.userData.has(key2))  {
-      
-    var TheBannerShown = DefaultBackground;
-    TheBannerShown = function_GetBackground(key2);
+
+    var TheBannerShown = function_GetBackground(key2);
 
     var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  message.channel.stopTyping();  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
       
@@ -4931,9 +4930,17 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.shadowOffsetY = 1;
     ctx.fillText("Level " + peeky.userData.get(key2, "Level").toLocaleString('en'), canvas.width - (canvas.width / 2), 277);
 
-    const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+    if  (isNaN(TheBannerShown) == true)  {
+        var FileName = "SPOILER_peeky";
+        var FileNote = "Hidden because the user has a custom background.";
+    } else  {
+        var FileName = "peeky";
+        var FileNote = "";
+    };
 
-    await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {
+    const attachment = new Discord.Attachment(canvas.toBuffer(), FileName + ".png", { quality: 0.1 });
+      
+    await message.channel.send(FileNote, attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {
 
     if  (!WebsiteCooldowns.has("featuredprofile") && PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(SupporterRole))  {
       
