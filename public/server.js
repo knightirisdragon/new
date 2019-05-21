@@ -4711,12 +4711,22 @@ if (!ProfileCooldown.has(message.author.id)) {
     var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  message.channel.stopTyping();  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
       
     if  (Failed == false)  {
-
-    message.channel.startTyping();
       
-    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    message.channel.startTyping();
 
-    dominant_color(TheBannerShown, {format: 'hex'}, function(err, color){  ProfileColor = color;  });
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    
+    if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
+        var FilePrefix = "SPOILER_";
+        var FileNote   = "Hidden because the user has a custom background.";
+        var HexVersion = TheBannerShown.replace("http", "https");
+    } else  {
+        var FilePrefix = "peeky";
+        var FileNote   = "";
+        var HexVersion = TheBannerShown;
+    };
+
+    await dominant_color(HexVersion, {format: 'hex'}, function(err, color)  {  if  (color !== "000000")  {  ProfileColor = color}  ;  });
       
     //Draw Fields
     ctx.globalAlpha = 0.5;
@@ -4940,14 +4950,6 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.shadowOffsetX = 1; 
     ctx.shadowOffsetY = 1;
     ctx.fillText("Level " + peeky.userData.get(key2, "Level").toLocaleString('en'), canvas.width - (canvas.width / 2), 277);
-
-    if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
-        var FilePrefix = "SPOILER_";
-        var FileNote   = "Hidden because the user has a custom background.";
-    } else  {
-        var FilePrefix = "peeky";
-        var FileNote   = "";
-    };
 
     const attachment = new Discord.Attachment(canvas.toBuffer(), FilePrefix + "peeky.png", { quality: 0.1 });
       
