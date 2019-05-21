@@ -54,8 +54,8 @@ body {
     transition: transform .25s ease;
 }
   
-.textlistitem .purchase,
-.textlistitem .info {
+.textlistitem .first,
+.textlistitem .second {
     background-color: #7289DA;
     border-radius: 5px;
     padding: 7px;
@@ -65,14 +65,14 @@ body {
     display: inline-block;
 }
   
-.textlistitem .purchase {
-    top: 5px;
-    left: 85px;
-}
-  
-.textlistitem .info {
+.textlistitem .first {
     top: 5px;
     left: 5px;
+}
+  
+.textlistitem .second {
+    top: 5px;
+    left: 85px;
 }
 
 .textlistitem  .purchase:hover,
@@ -179,7 +179,13 @@ a.button:hover {
 
 .demo  img {
     background-color: rgba(35, 39, 42, 0.5);
+    border: transparent;
     border-left: #7289DA 2px solid;
+    border-radius: 0px;
+}
+
+.demo  img:hover {
+    border-left: #8094dd 4px solid;
 }
 
 .demopreview  {
