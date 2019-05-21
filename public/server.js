@@ -4097,8 +4097,12 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
     };
       
     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
-    peeky.userData.set(key, i, "Background");
     peeky.userData.get(key, "Inventory").push(i);
+  
+
+    if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
+        peeky.userData.set(key, i, "Background");
+    };
   
     var embed = {"description": SuccessIcon + " You have bought the **" + Banners[i - 1][Banner.Name] + "** background bought for **" + Banners[i - 1][Banner.Price].toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -4213,8 +4217,8 @@ if  (BackgroundToSell !== 1)  {
     peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);  //Remove the background
     peeky.userData.math(key, "+", SellPrice, "Gredit");  //Give money
 
-    if  (BackgroundToSell == peeky.userData.get(key, "Background"))  { //Set default backround if the equipped one was sold.
-
+    if  (BackgroundToSell == peeky.userData.get(key, "Background"))  {
+      
         peeky.userData.set(key, 1, "Background");
 
         const embed = {"description": InfoMessage2[0],  "color": EmbedColor}; 
@@ -4259,9 +4263,12 @@ if  (BackgroundToSell !== 1)  {
       } while (CurrentBackground < MaxBackgrounds);
 
       FullPrice -= SellPrice;
-      peeky.userData.set(key, 1, "Background");
       peeky.userData.set(key, [1], "Inventory");
       peeky.userData.math(key, "+", FullPrice, "Gredit");
+
+      if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
+          peeky.userData.set(key, 1, "Background");
+      };
       
       const embed = {"description": SuccessIcon + " You have sold all your backgrounds for **" + FullPrice.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
