@@ -2015,10 +2015,8 @@ if  (peeky.userData.has(key))  {
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
-        newMember.user.send(
-        "**You are now a Supporter**"
-        + "\n" + "Thank you for supporting PEEKY!"
-        ).catch(error => ErrorBag.add(error));
+        const embed = {"description": SuccessIcon + " **You have been awarded the Supporter status for your purchase!**",  "color": EmbedColor}; 
+        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
 };
@@ -2035,15 +2033,13 @@ if  (peeky.userData.has(key))  {
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
-        newMember.user.send(
-        "**You can now ugprade an arbitrary server**"
-        + "\n" + "Thank you for supporting PEEKY!"
-        ).catch(error => ErrorBag.add(error));
+        const embed = {"description": SuccessIcon + " **You have been awarded a Server Upgrade for your purchase!**",  "color": EmbedColor}; 
+        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
 };
   
-//1.000 Gredit
+//1,000 Gredit
 if  (newMember.roles.has(RedeemRole1))  {
     newMember.removeRole(RedeemRole1).catch(error => {ErrorBag.add(error); Failed = true});
       
@@ -2054,15 +2050,13 @@ if  (newMember.roles.has(RedeemRole1))  {
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
-        newMember.user.send(
-        "**1.000 Gredit has been added to your profile**"
-        + "\n" + "Thank you for supporting PEEKY!"
-        ).catch(error => ErrorBag.add(error));
+        const embed = {"description": SuccessIcon + " **You have been awarded 1,000 " + GreditIcon + " for your purchase!**",  "color": EmbedColor}; 
+        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 }; 
   
-//2.000 Gredit
+//2,000 Gredit
 if  (newMember.roles.has(RedeemRole2))  {
     newMember.removeRole(RedeemRole2).catch(error => {ErrorBag.add(error); Failed = true});
       
@@ -2073,15 +2067,14 @@ if  (newMember.roles.has(RedeemRole2))  {
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
-        newMember.user.send(
-        "**2.000 Gredit has been added to your profile**"
-        + "\n" + "Thank you for supporting PEEKY!"
-        ).catch(error => ErrorBag.add(error));
+        const embed = {"description": SuccessIcon + " **You have been awarded 2,000 " + GreditIcon + " for your purchase!**",  "color": EmbedColor}; 
+        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+
     };
 
 }; 
   
-//5.000 Gredit
+//5,000 Gredit
 if  (newMember.roles.has(RedeemRole3))  {
     newMember.removeRole(RedeemRole3).catch(error => {ErrorBag.add(error); Failed = true});
       
@@ -2092,15 +2085,13 @@ if  (newMember.roles.has(RedeemRole3))  {
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
-        newMember.user.send(
-        "**5.000 Gredit has been added to your profile**"
-        + "\n" + "Thank you for supporting PEEKY!"
-        ).catch(error => ErrorBag.add(error));
+        const embed = {"description": SuccessIcon + " **You have been awarded 5,000 " + GreditIcon + " for your purchase!**",  "color": EmbedColor}; 
+        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 }; 
   
-//10.000 Gredit
+//10,000 Gredit
 if  (newMember.roles.has(RedeemRole4))  {
     newMember.removeRole(RedeemRole4).catch(error => {ErrorBag.add(error); Failed = true});
       
@@ -2111,10 +2102,8 @@ if  (newMember.roles.has(RedeemRole4))  {
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
-        newMember.user.send(
-        "**10.000 Gredit has been added to your profile**"
-        + "\n" + "Thank you for supporting PEEKY!"
-        ).catch(error => ErrorBag.add(error));
+        const embed = {"description": SuccessIcon + " **You have been awarded 10,000 " + GreditIcon + " for your purchase!**",  "color": EmbedColor}; 
+        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 }; 
