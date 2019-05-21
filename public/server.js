@@ -2178,11 +2178,6 @@ if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
 if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 
     if  (!user.bot && reaction.count == 1 && reaction.emoji.name === "📌")  {
-
-    if  (!MessageLogCooldown.has(reaction.message.guild.id))  {
-
-        MessageLogCooldown.add(reaction.message.guild.id);
-        setTimeout(() => {MessageLogCooldown.delete(reaction.message.guild.id)}, 5000);
       
     if (!LoggedMessages.has(reaction.message.id)) {
         
@@ -2267,16 +2262,6 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
           
         };
-
-    }
-     else
-    {
-     reaction.remove(user)
-     .catch(error => ErrorBag.add(error));
-
-     const embed = {"description": CooldownMessage4[0],  "color": EmbedColor}; 
-     reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
-    };
 
     };
 };
