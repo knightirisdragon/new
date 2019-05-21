@@ -3998,7 +3998,7 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length <= MaxBW) 
       
 //Profile Commands
 
-//Redeem
+//Upgrade
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade"))  {
 
     const PeekySupportServer = peeky.guilds.get(SupportServer);
@@ -4149,7 +4149,7 @@ if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "custom
         peeky.userData.math(key, "-", CustomBackgroundPrice, "Gredit");
         peeky.userData.set(key, message.attachments.array()[0].url.replace("https", "http"), "Background");
 
-        const embed = {"description": SuccessIcon + " You have bought a **Custom Background** for **" + CustomBackgroundPrice + " " + GreditIcon + "**.",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have bought a **Custom Background** for **" + CustomBackgroundPrice.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     }
@@ -4941,15 +4941,15 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.shadowOffsetY = 1;
     ctx.fillText("Level " + peeky.userData.get(key2, "Level").toLocaleString('en'), canvas.width - (canvas.width / 2), 277);
 
-    if  (isNaN(TheBannerShown) == true)  {
-        var FileName = "SPOILER_peeky";
-        var FileNote = "Hidden because the user has a custom background.";
+    if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
+        var FilePrefix = "SPOILER_";
+        var FileNote   = "Hidden because the user has a custom background.";
     } else  {
-        var FileName = "peeky";
-        var FileNote = "";
+        var FilePrefix = "peeky";
+        var FileNote   = "";
     };
 
-    const attachment = new Discord.Attachment(canvas.toBuffer(), FileName + ".png", { quality: 0.1 });
+    const attachment = new Discord.Attachment(canvas.toBuffer(), FilePrefix + "peeky.png", { quality: 0.1 });
       
     await message.channel.send(FileNote, attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {
 
