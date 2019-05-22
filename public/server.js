@@ -2050,7 +2050,7 @@ if  (newMember.roles.has(RedeemRole1))  {
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
-        const embed = {"description": SuccessIcon + " You have been awarded 1,000 **" + GreditIcon + "** for your purchase!",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have been awarded **1,000 " + GreditIcon + "** for your purchase!",  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -2067,7 +2067,7 @@ if  (newMember.roles.has(RedeemRole2))  {
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
-        const embed = {"description": SuccessIcon + " You have been awarded 2,000 **" + GreditIcon + "** for your purchase!",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have been awarded **2,000 " + GreditIcon + "** for your purchase!",  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
 
     };
@@ -2085,7 +2085,7 @@ if  (newMember.roles.has(RedeemRole3))  {
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
-        const embed = {"description": SuccessIcon + " You have been awarded 5,000 **" + GreditIcon + "** for your purchase!",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have been awarded **5,000 " + GreditIcon + "** for your purchase!",  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -2102,7 +2102,7 @@ if  (newMember.roles.has(RedeemRole4))  {
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
-        const embed = {"description": SuccessIcon + " You have been awarded 10,000 **" + GreditIcon + "** for your purchase!",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have been awarded **10,000 " + GreditIcon + "** for your purchase!",  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
