@@ -2740,6 +2740,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade
         TheUserWithRole.removeRole(ServerUpgradeRole).catch(error => {ErrorBag.add(error); Failed = true});
 
         if  (Failed == false)  {
+            peeky.userData.math(key, "+", 1, "UpgradedServers");
+          
             const embed = {"description": SuccessIcon + " This server is now upgraded!",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 

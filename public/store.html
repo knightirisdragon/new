@@ -62,9 +62,45 @@
                                                       + "</div>"
     };
     function ServerUpgrade()
-    {
+    {    
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="headertext">Upgrade your favorite Discord server!</b>  <br><br>  <font color="white"><b class="demoitemdesc">Upgraded servers are displayed in the Server List.</b>  <br>  <b class="demoitemdesc">Upgraded servers are almost unaffected by the Auto Wipe system.</b>  <br>  <b class="demoitemdesc">Increased Gredit and Exp gain for everyone in upgraded servers.</b>  <br>  <b class="demoitemdesc">Up to 25 more Gredit from chests for everyone in upgraded servers.</b>  <br>  <b class="demoitemdesc">Upgraded server get a shoutout in the #announcements channel of the Support Server.</b>  <br>  <b class="demoitemdesc">Small but stackable gain bonuses for the user that upgrades servers.</b></font>';
+     document.getElementById('description').innerHTML = '<b class="headertext">Upgrade your favorite Discord server!</b>  <br><br>  '
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_custombackgrounds.png?1558536847863'>"
+                                                      + "<b class='storeheader'>Server List</b>"
+                                                      + "<b class='storesub'>Your server will be displayed in the Server List page with the option to set an invite.</b>"
+                                                      + "</div>"
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_custombackgrounds.png?1558536847863'>"
+                                                      + "<b class='storeheader'>Auto Wipe</b>"
+                                                      + "<b class='storesub'>Upgraded servers will not lose any settings when deleted by the Auto Wipe.</b>"
+                                                      + "</div>"
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_custombackgrounds.png?1558536847863'>"
+                                                      + "<b class='storeheader'>Gain Increase</b>"
+                                                      + "<b class='storesub'>Talking in upgraded servers will increase your gain for Gredit and Exp by 2.</b>"
+                                                      + "</div>"
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051'>"
+                                                      + "<b class='storeheader'>Chest Bonus</b>"
+                                                      + "<b class='storesub'>Everyone in an upgraded server will receive up to 25 Gredit more from chests.</b>"
+                                                      + "</div>"
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_custombackgrounds.png?1558536847863'>"
+                                                      + "<b class='storeheader'>Shoutout</b>"
+                                                      + "<b class='storesub'>The upgraded server gets a shout out in the Support Server.</b>"
+                                                      + "</div>"
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_custombackgrounds.png?1558536847863'>"
+                                                      + "<b class='storeheader'>Stackable Gain Bonus</b>"
+                                                      + "<b class='storesub'>For every server that you upgrade, you will get a bigger gain for Gredit and Exp.</b>"
+                                                      + "</div>"
     };
 
     function Close()
@@ -83,6 +119,7 @@
     width: 100%;
     padding: 15px;
       
+    cursor: pointer;
     position: relative;
     display: inline-block;
 }
