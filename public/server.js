@@ -5019,7 +5019,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     };
   
     if  (GivenSong == "previous" && ChoosingMode == true)  {
-    if  (peeky.serverData.has(keySF, "Link"))  {    
+    if  (peeky.serverData.has(keySF, "Link") && peeky.serverData.get(keySF, "Link") !== "None")  {    
       
         GivenSong = peeky.serverData.get(keySF, "Link");
         DeleteMessage = false;
