@@ -1195,12 +1195,6 @@ peeky.on('message', async (message) => {
     //EVENT DOUBLE EXP
     if  (OngoingEvent == true)  {
         peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");
-      
-        //Supporter Bonus
-        if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {
-            peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");            
-            peeky.userData.math(key, "+", Math.round(Math.random() * BadgeGreditAmount), "Gredit");
-        };
 
     };
 
