@@ -2732,6 +2732,41 @@ if (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eval "))
 
 };
 
+//Upgrade
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade"))  {
+
+    const PeekySupportServer = peeky.guilds.get(SupportServer);
+    const TheUserWithRole    = PeekySupportServer.members.get(message.author.id);
+    var   Failed             = false;
+
+    if  (PeekySupportServer.members.get(message.author.id))  {
+
+    //Server Upgrade
+    if  (TheUserWithRole.roles.has(ServerUpgradeRole) && peeky.serverData.get(keySF, "server_upgraded") == false)  {
+        TheUserWithRole.removeRole(ServerUpgradeRole).catch(error => {ErrorBag.add(error); Failed = true});
+
+        if  (Failed == false)  {
+            const embed = {"description": SuccessIcon + " This server is now upgraded!",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+            peeky.channels.get(AnnouncementsChannel).send("**" + Function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + Function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + Function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
+        };
+    }
+     else 
+    {
+      const embed = {"description": ErrorIcon + " You cannot upgrade this server.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+    }
+     else 
+    {
+      const embed = {"description": ErrorIcon + " You have to join PEEKY's support server for that command to work.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+  
+};
+
 //SetInvite
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "setinvite"))  {
 
@@ -3976,41 +4011,6 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length <= MaxBW) 
       
 //Profile Commands
 
-//Upgrade
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade"))  {
-
-    const PeekySupportServer = peeky.guilds.get(SupportServer);
-    const TheUserWithRole    = PeekySupportServer.members.get(message.author.id);
-    var   Failed             = false;
-
-    if  (PeekySupportServer.members.get(message.author.id))  {
-
-    //Server Upgrade
-    if  (TheUserWithRole.roles.has(ServerUpgradeRole) && peeky.serverData.get(keySF, "server_upgraded") == false)  {
-        TheUserWithRole.removeRole(ServerUpgradeRole).catch(error => {ErrorBag.add(error); Failed = true});
-
-        if  (Failed == false)  {
-            const embed = {"description": SuccessIcon + " This server is now upgraded!",  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-            peeky.channels.get(AnnouncementsChannel).send("**" + Function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + Function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + Function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
-        };
-    }
-     else 
-    {
-      const embed = {"description": ErrorIcon + " You cannot upgrade this server.",  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-
-    }
-     else 
-    {
-      const embed = {"description": ErrorIcon + " You have to join PEEKY's support server for that command to work.",  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-  
-};
-
 //BuyDescription
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "buydescription "))  {
       
@@ -4711,7 +4711,7 @@ if (!ProfileCooldown.has(message.author.id)) {
           ProfileColor = color;
 
           if  (color == "000000")  {
-              ProfileColor = "7289DA";            
+              ProfileColor = "939393";            
           };
 
     });
