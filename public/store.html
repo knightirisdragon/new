@@ -18,9 +18,36 @@
     {
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="headertext">Become a Supporter and unlock cool perks!</b>  <br><br>  '
+
                                                       + "<div class='storecategory'>"
-                                                      + "<img class='storeimage' src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542'>"                                                   
-                                                      + "</div>";
+                                                      + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542'>"
+                                                      + "<b class='storeheader'>Custom Backgrounds</b>"
+                                                      + "<b class='storesub'>Description</b>"
+                                                      + "</div>"
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542'>"
+                                                      + "<b class='storeheader'>Discord Role</b>"
+                                                      + "<b class='storesub'>Description</b>"
+                                                      + "</div>"
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542'>"
+                                                      + "<b class='storeheader'>Discord Role</b>"
+                                                      + "<b class='storesub'>Description</b>"
+                                                      + "</div>"
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542'>"
+                                                      + "<b class='storeheader'>Discord Role</b>"
+                                                      + "<b class='storesub'>Description</b>"
+                                                      + "</div>"
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542'>"
+                                                      + "<b class='storeheader'>Discord Role</b>"
+                                                      + "<b class='storesub'>Description</b>"
+                                                      + "</div>"
     };
     function ServerUpgrade()
     {
@@ -44,20 +71,34 @@
     width: 100%;
     padding: 15px;
       
+    position: relative;
     display: inline-block;
 }
 
-.storeimage  {
-    width: 100px;  
+.demo  img,
+.demo  img:hover {
+    background-color: transparent;
+    width: 75px;  
+    border: transparent;
 }
   
 .storeheader  {
+    font-size: 20px;
+    top: 15px;
+    left: 100px;
   
+    position: absolute;
+    display: inline-block;
 }
 
 .storesub  {
+    bottom: 40px;
+    left: 100px;
   
+    position: absolute;      
+    display: inline-block;
 }
+
 
 </style>
   
