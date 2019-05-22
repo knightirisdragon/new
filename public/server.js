@@ -4166,6 +4166,9 @@ if  (message.content == peeky.serverData.get(keySF, "prefix") + "setbackground "
 if  (peeky.userData.get(key, "Inventory").includes(i))  {
 
     peeky.userData.set(key, i, "Background");
+
+    if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
+    };
   
     const embed = {"description": SuccessIcon + " You have set the **" + Banners[i - 1][Banner.Name] + "** background.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
