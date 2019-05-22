@@ -64,7 +64,7 @@
     function ServerUpgrade()
     {    
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="headertext">Upgrade your favorite Discord server!</b>  <br><br>  '
+     document.getElementById('description').innerHTML = '<b class="headertext">Upgrade your favorite Discord servers!</b>  <br><br>  '
 
                                                       + "<div class='storecategory'>"
                                                       + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_serverlist.png?1558538116110'>"
@@ -87,7 +87,7 @@
                                                       + "<div class='storecategory'>"
                                                       + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051'>"
                                                       + "<b class='storeheader'>Chest Bonus</b>"
-                                                      + "<b class='storesub'>Everyone in an upgraded server will receive up to 25 Gredit more from chests.</b>"
+                                                      + "<b class='storesub'>Everyone in an upgraded server will receive up to 25 more Gredit from chests.</b>"
                                                       + "</div>"
 
                                                       + "<div class='storecategory'>"
@@ -100,6 +100,18 @@
                                                       + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_stackablegainincrease.png?1558538180106'>"
                                                       + "<b class='storeheader'>Stackable Gain Bonus</b>"
                                                       + "<b class='storesub'>For every server that you upgrade, you will get a bigger gain for Gredit and Exp.</b>"
+                                                      + "</div>"
+    };
+
+    function Gredit()
+    {    
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<b class="headertext">Purchase some additional Gredit for your profile!</b>  <br><br>  '
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542'>"
+                                                      + "<b class='storeheader'>Additional Gredit</b>"
+                                                      + "<b class='storesub'>You will instantly receive your additional Gredit that you can use on whatever you want.</b>"
                                                       + "</div>"
     };
 
@@ -118,6 +130,7 @@
     border-left: #7289DA 2px solid;
     width: 100%;
     padding: 15px;
+    margin-bottom: 10px;
       
     cursor: pointer;
     position: relative;
@@ -133,7 +146,7 @@
   
 .storeheader  {
     font-size: 20px;
-    top: 15px;
+    top: 20px;
     left: 100px;
   
     position: absolute;
@@ -141,7 +154,7 @@
 }
 
 .storesub  {
-    bottom: 40px;
+    bottom: 25px;
     left: 100px;
   
     position: absolute;      
@@ -185,7 +198,9 @@
     <div class="listitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_supporter.png?1553799537404');">
     <div class="textlistitem">
     <b>
-    <b class="name">  Supporter  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>  <a class="second" onclick="Supporter()"> More Info </a>  <b class="price">€ 4.99</b>
+    <b class="name">  Supporter  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+    <a class="second" onclick="Supporter()"> More Info </a>
+    <b class="price">€ 4.99</b>
     </b>
     </div>
     </div>
@@ -193,7 +208,9 @@
     <div class="listitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_serverupgrade.png?1553799054471')">
     <div class="textlistitem">
     <b>
-    <b class="name">  Server Upgrade  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>  <a class="second" onclick="ServerUpgrade()"> More Info </a>  <b class="price">€ 2.49</b>
+    <b class="name">  Server Upgrade  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+    <a class="second" onclick="ServerUpgrade()"> More Info </a>
+    <b class="price">€ 2.49</b>
     </b>
     </div>
     </div>
@@ -201,7 +218,9 @@
     <div class="listitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_1000gredit.png?1555191535131')">
     <div class="textlistitem">
     <b>
-    <b class="name">  1,000 Gredit  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>    <b class="price">€ 0.99</b>
+    <b class="name">  1,000 Gredit  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+    <a class="second" onclick="Gredit()"> More Info </a>
+    <b class="price">€ 0.99</b>
     </b>
     </div>
     </div>
@@ -209,7 +228,9 @@
     <div class="listitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_2000gredit.png?1555191535631')">
     <div class="textlistitem">
     <b>
-    <b class="name">  2,000 Gredit  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>    <b class="price">€ 1.99</b>
+    <b class="name">  2,000 Gredit  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+    <a class="second" onclick="Gredit()"> More Info </a>
+    <b class="price">€ 1.99</b>
     </b>
     </div>
     </div>
@@ -217,7 +238,9 @@
     <div class="listitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_5000gredit.png?1555191535348')">
     <div class="textlistitem">
     <b>
-    <b class="name">  5,000 Gredit  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>    <b class="price">€ 4.99</b>
+    <b class="name">  5,000 Gredit  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+    <a class="second" onclick="Gredit()"> More Info </a>
+    <b class="price">€ 4.99</b>
     </b>
     </div>
     </div>
@@ -225,7 +248,9 @@
     <div class="listitem" style="background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fstore_10000gredit.png?1555191535517')">
     <div class="textlistitem">
     <b>
-    <b class="name">  10,000 Gredit  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>    <b class="price">€ 9.99</b>
+    <b class="name">  10,000 Gredit  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+    <a class="second" onclick="Gredit()"> More Info </a>
+    <b class="price">€ 9.99</b>
     </b>
     </div>
     </div>
