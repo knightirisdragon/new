@@ -507,7 +507,10 @@ var Banners = [
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground369.png?1558380799593", NormalPrice, "Tales of the Borderlands", "Tales from the Borderlands"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground370.png?1558380801756", NormalPrice, "Deep in the Shadows", "Not credited"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground371.png?1558378418169", NormalPrice, "Stupid little prick named Rick", "AMC's The Walking Dead"],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground372.png?1558378417357", NormalPrice, "Fallen Kingdom", "Not credited"]
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground372.png?1558378417357", NormalPrice, "Fallen Kingdom", "Not credited"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground373.png?1558547031064", NormalPrice, "Why?", "Just Cause"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground374.png?1558547068957", NormalPrice, "Toy Gang", "To Story 4"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground375.png?1558547070383", NormalPrice, "Mad Lad", "Mad Max"]
 
 ];
 
