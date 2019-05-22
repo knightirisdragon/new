@@ -4164,13 +4164,16 @@ for(var i = 1; i <= Banners.length; i++) {
 if  (message.content == peeky.serverData.get(keySF, "prefix") + "setbackground " + i)  {
 
 if  (peeky.userData.get(key, "Inventory").includes(i))  {
-
-    peeky.userData.set(key, i, "Background");
+  
+    var InfoMessages = [];
 
     if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
+        InfoMessages.push(InfoIcon + " You have lost your custom background.");
     };
+
+    peeky.userData.set(key, i, "Background");
   
-    const embed = {"description": SuccessIcon + " You have set the **" + Banners[i - 1][Banner.Name] + "** background.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " You have set the **" + Banners[i - 1][Banner.Name] + "** background." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
     break;
