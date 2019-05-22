@@ -4527,8 +4527,10 @@ if  (!ProfileCooldown.has(message.author.id))  {
         peeky.userData.get(key2, "Inventory").push(DonatedAmount);
 
         //Set Default Background
-        peeky.userData.set(key, 1, "Background");
-        InfoMessages.push(InfoMessage2[0]);
+        if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
+            peeky.userData.set(key, 1, "Background");
+            InfoMessages.push(InfoMessage2[0]);
+        };
 
         const embed = {"description": SuccessIcon + " You have given the **" + Banners[DonatedAmount - 1][Banner.Name] + "** background to **" + Function_RemoveFormatting(DonatedUser.user.username, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
