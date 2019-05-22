@@ -1077,6 +1077,13 @@ peeky.on('message', async (message) => {
         server_invite: "no_invite",
         prefix: Prefix,
         muted_role: "Muted",
+      
+        Title: "None",
+        Thumbnail: DefaultBackground,
+        Author: "No one",
+        Length: new Date(),
+        Length: new Date(),
+        Link: "No",
 
         welcome_messages_bonus: false,
         welcome_messages_bonus_setting: "user_feed",
@@ -5000,19 +5007,38 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
     var Type = "Started";
     var DeleteMessage = true;
+    var ChoosingMode = true;
   
-    if  (GivenSong == RandomString)  {
+    if  (GivenSong == RandomString && ChoosingMode == true)  {
         GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
         Type = "Random";
         DeleteMessage = false;
+        ChoosingMode = false;
     };
   
-    if  (GivenSong == "playlist" || GivenSong == peeky.userData.get(key, "PlaylistName").toLowerCase())  {
+    if  (GivenSong == "previous" && ChoosingMode == true)  {
+    if  (peeky.serverData.get(keySF, "Link").length > 0)  {
+      
+        GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
+        Type = "Playlist";
+        DeleteMessage = false;
+        ChoosingMode = false;
+      
+    } else {
+      const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            
+      GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+    };
+    };
+  
+    if  ((GivenSong == "playlist" || GivenSong == peeky.userData.get(key, "PlaylistName").toLowerCase()) && ChoosingMode == true)  {
     if  (peeky.userData.get(key, "Playlist").length > 0)  {
       
         GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
         Type = "Playlist";
         DeleteMessage = false;
+        ChoosingMode = false;
       
     } else {
       const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
@@ -5051,6 +5077,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             peeky.serverData.set(keySF, Author, "Author");
             peeky.serverData.set(keySF, LengthDate, "Length");
             peeky.serverData.set(keySF, Started, "Started");
+            peeky.serverData.set(keySF, GivenSong, "Link");
           
             CooldownExpires = (Length * 1000);
 
