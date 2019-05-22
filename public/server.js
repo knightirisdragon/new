@@ -781,6 +781,8 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
                 ctx.fillText("Started playing a random song from " + peeky.users.get(User).username + "'s playlist.", 15, 315);
             }  else if  (Type == "Random")  {
                 ctx.fillText("Started playing a random song.", 15, 315);
+            }  else if  (Type == "Previous")  {
+                ctx.fillText("Started playing the previous song.", 15, 315);
             }  else if  (Type == "Current")  {
                 ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes") + " minutes left.", 15, 315);
             };
@@ -1082,8 +1084,8 @@ peeky.on('message', async (message) => {
         Thumbnail: DefaultBackground,
         Author: "No one",
         Length: new Date(),
-        Length: new Date(),
-        Link: "No",
+        Started: new Date(),
+        Link: "None",
 
         welcome_messages_bonus: false,
         welcome_messages_bonus_setting: "user_feed",
@@ -5017,18 +5019,18 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     };
   
     if  (GivenSong == "previous" && ChoosingMode == true)  {
-    if  (peeky.serverData.get(keySF, "Link").length > 0)  {
+    if  (peeky.serverData.has(keySF, "Link"))  {    
       
-        GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
-        Type = "Playlist";
+        GivenSong = peeky.serverData.get(keySF, "Link");
         DeleteMessage = false;
-        ChoosingMode = false;
-      
+        Type = "Previous";
+        
     } else {
-      const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
+      const embed = {"description": InfoIcon + " Previous song not found, playing a random song.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             
       GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+      Type = "Random";
     };
     };
   
@@ -5045,6 +5047,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             
       GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+      Type = "Random";
     };
     };
       
