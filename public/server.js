@@ -2177,13 +2177,13 @@ if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
 //Vote Kick
 if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
-    if  (reaction.emoji.name == "🚪" && reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting"))  {
+    if  (reaction.emoji.name == "🚪")  {
       
-            var MemberExists = reaction.message.guild.members.find(m => m.id == reaction.message.author.id);
+        var MemberExists = reaction.message.guild.members.find(m => m.id == reaction.message.author.id);
       
-        if  (!reaction.message.member.permissions.has("KICK_MEMBERS"))  {
+        if  (MemberExists && !reaction.message.member.permissions.has("KICK_MEMBERS"))  {
           
-            if  (reaction.message.guild.me.hasPermission("KICK_MEMBERS") && reaction.message.author.user.id !== PeekyId)  {
+            if  (reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting") && MemberExists.user.id !== PeekyId && reaction.message.guild.me.hasPermission("KICK_MEMBERS"))  {
 
                 await reaction.message.member.send("You have been vote kicked from **" + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
