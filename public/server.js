@@ -35,7 +35,6 @@ const node_fetch = require('node-fetch');
 const ErrorBag               = new Set();
 const FailedVoteChecks       = new Set();
 const FalseMsgIDs            = new Set();
-const EventCountdownTimers   = new Set();
 const LoggedMessages         = new Set();
 const ClearedNames           = new Set();
 const QueuedSOSMessages      = new Set();
@@ -49,6 +48,7 @@ const MusicCmdCooldown       = new Set();
 const PeekyCmdCooldown       = new Set();
 const ChannelCooldown        = new Set();  const ChannelCooldownMS   = 10000;
 const RoleCooldown           = new Set();  const RoleCooldownMS      = 10000;
+const EventCountdownCooldown = new Set();
 const MemberCounterCooldown  = new Set();
 const MessageLogCooldown     = new Set();
 const DonorWallCooldown      = new Set();
@@ -2396,14 +2396,14 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.s
 //Event Countdown
 if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
   
-if  (!EventCountdownTimers.has(message.guild.id) && !message.author.bot)  {
-
-    EventCountdownTimers.add(message.guild.id);
-    setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
+if  (!EventCountdownCooldown.has(message.guild.id) && !message.author.bot)  {
 
     var ChannelExists = message.guild.channels.find(c => c.id == peeky.serverData.get(keySF, "event_countdown_bonus_id"));
 
-    if  (ChannelExists && peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
+    if  (ChannelExists)  {
+
+        EventCountdownCooldown.add(message.guild.id);
+        setTimeout(() => {EventCountdownCooldown.delete(message.guild.id)}, 300000);
 
         var TheDate = peeky.serverData.get(keySF, "event_countdown_bonus_setting") - new Date();
         const EndName = "The Countdown has ended.";
@@ -2414,11 +2414,11 @@ if  (!EventCountdownTimers.has(message.guild.id) && !message.author.bot)  {
         var FixedTime = (Math.abs(Time / (1000 * 60 * 60)).toFixed(1));
         var LengthName = "hours";
 
-    if  (FixedTime > 24)  {
-        FixedTime = (Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(1)); LengthName = "days";
+        if  (FixedTime > 24)  {
+            FixedTime = (Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(1)); LengthName = "days";
 
-        if  (FixedTime >= 365)  {
-                FixedTime = "over"; LengthName = "a year";
+            if  (FixedTime >= 365)  {
+                    FixedTime = "over"; LengthName = "a year";
             };
 
         };
@@ -2433,7 +2433,7 @@ if  (!EventCountdownTimers.has(message.guild.id) && !message.author.bot)  {
          console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
         };
 
-        };
+    };
 
 };
 
