@@ -14,6 +14,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script>
+    var Bonus = ("<div class='storecategory'>"
+                + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_custombackgrounds.png?1558536847863'>"
+                + "<b class='storeheader'>Current Purchase Bonus</b>"
+                + "<b class='storesub'>You will be able to purchase a custom background.</b>"
+                + "</div>");
+    
+      
     function Supporter()
     {
      document.getElementById('fulldesc').style.display = "block";
@@ -60,6 +67,9 @@
                                                       + "<b class='storeheader'>Daily Bonus</b>"
                                                       + "<b class='storesub'>You will receive an additional chest every day.</b>"
                                                       + "</div>"
+      
+                                                      + "<br><br>"
+                                                      + Bonus
     };
     function ServerUpgrade()
     {    
