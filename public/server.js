@@ -2179,7 +2179,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
     if  (reaction.emoji.name == "🚪" && reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting"))  {
       
-            var MemberExists = reaction.guild.members.find(m => m.id == reaction.author.id);
+            var MemberExists = reaction.message.guild.members.find(m => m.id == reaction.message.author.id);
       
         if  (!reaction.message.member.permissions.has("KICK_MEMBERS"))  {
           
@@ -2190,7 +2190,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                 reaction.message.guild.members.get(reaction.message.member.user.id).kick({  reason: "Triggered by the Vote Kick function."  }).catch(error => ErrorBag.add(error));    
 
                 const embed = {"description": InfoIcon + " The member **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked.",  "color": EmbedColor};
-                await reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+                reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
 
                 reaction.message.clearReactions().catch(error => ErrorBag.add(error));
 
@@ -2202,7 +2202,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
           reaction.message.clearReactions().catch(error => ErrorBag.add(error));
 
           const embed = {"description": ErrorIcon + " You cannot vote kick that member.",  "color": EmbedColor};
-          await reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
         };
 
     };
