@@ -2889,11 +2889,9 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         FP + " **Flood Protection** " + "\n" + Hollow + " " + "No Setting." + "\n" +
                         EC + " **Event Countdown** " + "\n" + Hollow + " " + "The current timestamp is `" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n" +
                         SM + " **Server Message** " + "\n" + Hollow + " " + "The server message is `" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n" +
-                        VT + " **Vote Kick** " + "\n" + Hollow + " " + "People need `" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes` to get kicked out." + "\n" +
-                        JR + " **Join Role** " + "\n" + Hollow + " " + "Everyone who joins the server gets a role called `@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n"
-   );
-
-   Functions.push(
+                        VT + " **Vote Kick** " + "\n" + Hollow + " " + "People need to get `" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes` on one of their messages to get kicked out." + "\n" +
+                        JR + " **Join Role** " + "\n" + Hollow + " " + "Everyone who joins the server gets a role called `@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n" +
+     
                         SR + " **Streamer Role** " + "\n" + Hollow + " " + "When someone starts streaming, they will get a role called `@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`." + "\n" +
                         N_ + " **Notifications** " + "\n" + Hollow + " " + "No setting."
                         +  "\n­"
@@ -2909,11 +2907,9 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         BW + " **Banned Words** " + "\n" + Hollow + " " + "The banned words in this server are `" + BannedWords + "` (" + peeky.serverData.get(keySF, "banned_words_bonus_setting").length + " / " + MaxBW + ")."
    );
 
-  setInterval(() => {
-      for (i = 0; i < Functions.length; i++) {
-          message.channel.send(Functions[i]).catch(error => ErrorBag.add(error));
-      };
-  }, 1500);
+  for (i = 0; i < Functions.length; i++) {
+      message.channel.send(Functions[i]).catch(error => ErrorBag.add(error));
+  };
   
 }
  else 
@@ -3869,7 +3865,40 @@ if  (FunctioName.startsWith("suspicion alert ")) {
 }
  else
 {
-  const embed = {"description": ErrorMessage3[0],  "color": EmbedColor}; 
+  const embed = {"description": "",  "color": EmbedColor}; 
+  message.channel.send({ embed })
+  .catch(error => ErrorBag.add(error));
+};
+  
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+  
+else
+      
+//Set Vote Kick
+if  (FunctioName.startsWith("vote kick ")) {
+  
+  if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+
+  var VoteAmount = message.content.split(peeky.serverData.get(keySF, "prefix") + "set vote kick ")[1];
+
+  if  (isNaN(VoteAmount) == false && VoteAmount > 0) {
+
+      peeky.serverData.set(keySF, Number(VoteAmount), "vote_kick_bonus_setting");
+
+      const embed = {"description": SuccessIcon + " The **Vote Kick** setting has been set to **" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes**.",  "color": EmbedColor};  
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      
+}
+ else
+{
+  const embed = {"description": ErrorIcon + " ",  "color": EmbedColor}; 
   message.channel.send({ embed })
   .catch(error => ErrorBag.add(error));
 };
