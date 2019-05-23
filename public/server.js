@@ -2395,12 +2395,12 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.s
 
 //Event Countdown
 if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
-  
+
 if  (!EventCountdownCooldown.has(message.guild.id) && !message.author.bot)  {
 
     var ChannelExists = message.guild.channels.find(c => c.id == peeky.serverData.get(keySF, "event_countdown_bonus_id"));
 
-    if  (ChannelExists)  {
+    if  (ChannelExists && ChannelExists.permissionsFor(peeky.user).has('JOIN'))  {
 
         EventCountdownCooldown.add(message.guild.id);
         setTimeout(() => {EventCountdownCooldown.delete(message.guild.id)}, 300000);
