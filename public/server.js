@@ -650,7 +650,9 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     ctx.globalAlpha = 0.75;
       
     var TheBannerShown = DefaultBackground;
-    TheBannerShown = function_GetBackground(key);
+    if  (!member.user.bot)  {
+        TheBannerShown = function_GetBackground(key);
+    };
 
     const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(member.id, DefaultBackground, "Background");});
       
