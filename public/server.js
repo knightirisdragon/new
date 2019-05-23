@@ -651,7 +651,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     ctx.globalAlpha = 0.75;
       
     var TheBannerShown = DefaultBackground;
-    if  (!member.user.bot)  {
+    if  (peeky.userData.has(key))  {
         TheBannerShown = function_GetBackground(key);
     };
 
@@ -696,7 +696,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
   
     ctx.fillText(NameString, 95, 40);
       
-    if  (peeky.userData.has(key) && peeky.userData.has(key, "Description"))  {
+    if  (peeky.userData.has(key))  {
     
     //Description String
     var text = peeky.userData.get(key, "Description");
