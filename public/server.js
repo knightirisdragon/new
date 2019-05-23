@@ -1121,7 +1121,9 @@ peeky.on('message', async (message) => {
         server_upgraded: false,
         event_countdown_bonus: false,
         event_countdown_bonus_setting: 0,
-        event_countdown_bonus_id: 0
+        event_countdown_bonus_id: 0,
+        vote_kick_bonus_bonus: false,
+        vote_kick_bonus_setting: 10,
     });
 
     if  (!message.author.bot && !message.webhookID)  {
@@ -1863,7 +1865,7 @@ if  (!MemberCounterCooldown.has(member.guild.id))  {
 
         var channel = member.guild.channels.find(g => g.id == id);
 
-        if (channel) {
+        if (channel && channel.permissionsFor(peeky.user).has('CONNECT')) {
             channel.setName(Prefix + ": " + member.guild.members.filter(m => !m.user.bot).size).catch(error => ErrorBag.add(error));
 
             console.log("The Member Counter function has been triggered in " + member.guild.name + ".");
@@ -1953,7 +1955,7 @@ if  (!MemberCounterCooldown.has(member.guild.id))  {
 
         var channel = member.guild.channels.find(g => g.id == id);
 
-        if (channel) {
+        if (channel && channel.permissionsFor(peeky.user).has('CONNECT')) {
             channel.setName(Prefix + ": " + member.guild.members.filter(m => !m.user.bot).size).catch(error => ErrorBag.add(error));
 
             console.log("The Member Counter function has been triggered in " + member.guild.name + ".");
@@ -2400,7 +2402,7 @@ if  (!EventCountdownCooldown.has(message.guild.id) && !message.author.bot)  {
 
     var ChannelExists = message.guild.channels.find(c => c.id == peeky.serverData.get(keySF, "event_countdown_bonus_id"));
 
-    if  (ChannelExists && ChannelExists.permissionsFor(peeky.user).has('JOIN'))  {
+    if  (ChannelExists && ChannelExists.permissionsFor(peeky.user).has('CONNECT'))  {
 
         EventCountdownCooldown.add(message.guild.id);
         setTimeout(() => {EventCountdownCooldown.delete(message.guild.id)}, 300000);
