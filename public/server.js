@@ -2183,7 +2183,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
       
         if  (!reaction.message.member.permissions.has("KICK_MEMBERS"))  {
           
-            if  (reaction.message.guild.me.hasPermission("KICK_MEMBERS") && MemberExists && MemberExists.user.id !== PeekyId)  {
+            if  (reaction.message.guild.me.hasPermission("KICK_MEMBERS") && reaction.message.author.user.id !== PeekyId)  {
 
                 await reaction.message.member.send("You have been vote kicked from **" + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
@@ -2199,10 +2199,10 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
             };
  
         } else {
-          reaction.message.clearReactions().catch(error => ErrorBag.add(error));
-
           const embed = {"description": ErrorIcon + " You cannot vote kick that member.",  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+          
+          reaction.message.clearReactions().catch(error => ErrorBag.add(error));
         };
 
     };
