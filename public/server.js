@@ -2183,7 +2183,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
           
             reaction.message.member.send("You have been vote kicked from **" + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
-            reaction.message.guild.members.get(reaction.message.member.user.id).kick({  reason: "Triggered by the Vote Kick function."  });    
+            reaction.message.guild.members.get(reaction.message.member.user.id).kick({  reason: "Triggered by the Vote Kick function."  }).catch(error => ErrorBag.add(error));    
             
             const embed = {"description": InfoIcon + " The member **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked.",  "color": EmbedColor};
             await reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
