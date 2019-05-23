@@ -2855,6 +2855,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
     if (peeky.serverData.get(keySF, "flood_protection_bonus") == true)       { var FP = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var FP = DisabledIcon};
     if (peeky.serverData.get(keySF, "event_countdown_bonus") == true)        { var EC = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var EC = DisabledIcon};
     if (peeky.serverData.get(keySF, "server_message_bonus") == true)         { var SM = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SM = DisabledIcon};
+    if (peeky.serverData.get(keySF, "vote_kick_bonus") == true)              { var VT = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var VT = DisabledIcon};
     if (peeky.serverData.get(keySF, "join_role_bonus") == true)              { var JR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var JR = DisabledIcon};
     if (peeky.serverData.get(keySF, "streamer_role_bonus") == true)          { var SR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SR = DisabledIcon};
     if (peeky.channelData.get(keyCF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
@@ -2888,9 +2889,12 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         FP + " **Flood Protection** " + "\n" + Hollow + " " + "No Setting." + "\n" +
                         EC + " **Event Countdown** " + "\n" + Hollow + " " + "The current timestamp is `" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n" +
                         SM + " **Server Message** " + "\n" + Hollow + " " + "The server message is `" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n" +
-                        JR + " **Join Role** " + "\n" + Hollow + " " + "Everyone who joins the server gets a role called `@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n" +
-                        SR + " **Streamer Role** " + "\n" + Hollow + " " + "When someone starts streaming, they will get a role called `@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`." + "\n" +
+                        VT + " **Vote Kick** " + "\n" + Hollow + " " + "People need `" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes` to get kicked out." + "\n" +
+                        JR + " **Join Role** " + "\n" + Hollow + " " + "Everyone who joins the server gets a role called `@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n"
+   );
 
+   Functions.push(
+                        SR + " **Streamer Role** " + "\n" + Hollow + " " + "When someone starts streaming, they will get a role called `@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`." + "\n" +
                         N_ + " **Notifications** " + "\n" + Hollow + " " + "No setting."
                         +  "\n­"
    );
@@ -2904,10 +2908,12 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         SL + " **Spoiler Lock** " + "\n" + Hollow + " " + "Members can post images freely `" + peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") + " minutes` after joining, unless the setting is 0 minutes." + "\n" +
                         BW + " **Banned Words** " + "\n" + Hollow + " " + "The banned words in this server are `" + BannedWords + "` (" + peeky.serverData.get(keySF, "banned_words_bonus_setting").length + " / " + MaxBW + ")."
    );
-  
-   for (i = 0; i < Functions.length; i++) { 
-       await message.channel.send(Functions[i]).catch(error => ErrorBag.add(error));
-   };
+
+  setInterval(() => {
+      for (i = 0; i < Functions.length; i++) {
+          message.channel.send(Functions[i]).catch(error => ErrorBag.add(error));
+      };
+  }, 1500);
   
 }
  else 
