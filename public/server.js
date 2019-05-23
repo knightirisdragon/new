@@ -50,7 +50,6 @@ const PeekyCmdCooldown       = new Set();
 const ChannelCooldown        = new Set();  const ChannelCooldownMS   = 10000;
 const RoleCooldown           = new Set();  const RoleCooldownMS      = 10000;
 const MemberCounterCooldown  = new Set();
-const EventCountdownCooldown = new Set();
 const MessageLogCooldown     = new Set();
 const DonorWallCooldown      = new Set();
 const ResponseCooldowns      = new Set();  const ResponseCooldownMS = 5000;
@@ -2397,40 +2396,35 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.s
 //Event Countdown
 if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
   
-if  (!EventCountdownCooldown.has(message.guild.id) && !message.author.bot)  {
-  
-if  (!EventCountdownTimers.has(message.guild.id))  {
+if  (!EventCountdownTimers.has(message.guild.id) && !message.author.bot)  {
 
-    setInterval(() => {
+    EventCountdownTimers.add(message.guild.id);
+    setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
 
-        var ChannelExists = message.guild.channels.find(c => c.id == peeky.serverData.get(keySF, "event_countdown_bonus_id"));
+    var ChannelExists = message.guild.channels.find(c => c.id == peeky.serverData.get(keySF, "event_countdown_bonus_id"));
+
+    if  (ChannelExists && peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
+
         var TheDate = peeky.serverData.get(keySF, "event_countdown_bonus_setting") - new Date();
         const EndName = "The Countdown has ended.";
-      
-        EventCountdownTimers.add(message.guild.id);
 
-        if  (ChannelExists)  {
+    if  (peeky.serverData.get(keySF, "event_countdown_bonus_setting") > 0 && TheDate > 0)  {
 
-            EventCountdownCooldown.add(message.guild.id);      
-            setTimeout(() => {EventCountdownCooldown.delete(message.guild.id)}, 300000);
+        var Time = (new Date(peeky.serverData.get(keySF, "event_countdown_bonus_setting")) - Date.now());
+        var FixedTime = (Math.abs(Time / (1000 * 60 * 60)).toFixed(1));
+        var LengthName = "hours";
 
-        if  (peeky.serverData.get(keySF, "event_countdown_bonus_setting") > 0 && TheDate > 0)  {
+    if  (FixedTime > 24)  {
+        FixedTime = (Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(1)); LengthName = "days";
 
-            var Time = (new Date(peeky.serverData.get(keySF, "event_countdown_bonus_setting")) - Date.now());
-            var FixedTime = (Math.abs(Time / (1000 * 60 * 60)).toFixed(1));
-            var LengthName = "hours";
-
-            if  (FixedTime > 24)  {
-                FixedTime = (Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(1)); LengthName = "days";
-
-                if  (FixedTime >= 365)  {
-                    FixedTime = "over"; LengthName = "a year";
-                };
-
+        if  (FixedTime >= 365)  {
+                FixedTime = "over"; LengthName = "a year";
             };
 
-            ChannelExists.setName("Starting in " + FixedTime + " " + LengthName).catch(error => ErrorBag.add(error));
-            console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
+        };
+
+        ChannelExists.setName("Starting in " + FixedTime + " " + LengthName).catch(error => ErrorBag.add(error));
+        console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
 
         }
          else if (ChannelExists.name !== EndName)
@@ -2439,11 +2433,7 @@ if  (!EventCountdownTimers.has(message.guild.id))  {
          console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
         };
 
-        };    
-      
-    }, 300000);
-      
-};
+        };
 
 };
 
