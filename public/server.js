@@ -2175,15 +2175,17 @@ if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reactio
 if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
   
 //Vote Kick
-if  (peeky.channelData.get(keyCF, "vote_kick_bonus") == true) {
+if  (peeky.channelData.get(keySF, "vote_kick_bonus") == true) {
 
-    if  (!user.bot && reaction.emoji.name == "🚪" && reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting"))  {
+    if  (!user.bot && reaction.emoji.name == "🚪" && reaction.filter(m => !m.user.bot).count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting"))  {
       
-        if  (reaction.message.guild.me.hasPermission("KICK_MEMBERS"))  {
+        if  (reaction.message.guild.me.hasPermission("KICK_MEMBERS") && !reaction.member.permissions.has("KICK_MEMBERS"))  {
             reaction.message.guild.members.get(reaction.message.member).kick();    
             
-            const embed = {"description": InfoIcon + " I ha out **" + reaction.message.author.username + "**",  "color": EmbedColor};
-            await message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));           
+            const embed = {"description": InfoIcon + " The member **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked.",  "color": EmbedColor};
+            await reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));     
+
+            console.log("The Vote Kick function has been triggered in " + reaction.message.guild.name + ".");
         };
 
     };
