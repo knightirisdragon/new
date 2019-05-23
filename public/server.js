@@ -2180,6 +2180,9 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
     if  (!user.bot && reaction.emoji.name == "🚪" && reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting"))  {
       
         if  (reaction.message.guild.me.hasPermission("KICK_MEMBERS") && !reaction.message.member.permissions.has("KICK_MEMBERS"))  {
+          
+            reaction.message.member.send("You have been vote kicked from **" + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
+
             reaction.message.guild.members.get(reaction.message.member.user.id).kick({  reason: "Triggered by the Vote Kick function."  });    
             
             const embed = {"description": InfoIcon + " The member **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked.",  "color": EmbedColor};
@@ -2478,6 +2481,8 @@ if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "pref
     const RoleExists = message.guild.roles.find(role => role.name == name);
 
     if  (RoleExists) {
+            
+        message.member.send("You have been muted in **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by the **Flood Protection** function.").catch(error => ErrorBag.add(error));
 
         message.member.addRole(message.member.guild.roles.find(role => role.name == name), "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
       
