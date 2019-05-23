@@ -2181,18 +2181,28 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
       
             var MemberExists = reaction.guild.members.find(m => m.id == reaction.author.id);
       
-        if  (MemberExists && MemberExists.user.id !== PeekyId && reaction.message.guild.me.hasPermission("KICK_MEMBERS") && !reaction.message.member.permissions.has("KICK_MEMBERS"))  {
+        if  (!reaction.message.member.permissions.has("KICK_MEMBERS"))  {
           
-            await reaction.message.member.send("You have been vote kicked from **" + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
+            if  (reaction.message.guild.me.hasPermission("KICK_MEMBERS") && MemberExists && MemberExists.user.id !== PeekyId)  {
 
-            reaction.message.guild.members.get(reaction.message.member.user.id).kick({  reason: "Triggered by the Vote Kick function."  }).catch(error => ErrorBag.add(error));    
-            
-            const embed = {"description": InfoIcon + " The member **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked.",  "color": EmbedColor};
-            await reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
-          
-            reaction.message.clearReactions().catch(error => ErrorBag.add(error));
+                await reaction.message.member.send("You have been vote kicked from **" + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
-            console.log("The Vote Kick function has been triggered in " + reaction.message.guild.name + ".");
+                reaction.message.guild.members.get(reaction.message.member.user.id).kick({  reason: "Triggered by the Vote Kick function."  }).catch(error => ErrorBag.add(error));    
+
+                const embed = {"description": InfoIcon + " The member **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked.",  "color": EmbedColor};
+                await reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+
+                reaction.message.clearReactions().catch(error => ErrorBag.add(error));
+
+                console.log("The Vote Kick function has been triggered in " + reaction.message.guild.name + ".");
+
+            };
+ 
+        } else {
+          reaction.message.clearReactions().catch(error => ErrorBag.add(error));
+
+          const embed = {"description": ErrorIcon + " You cannot vote kick that member.",  "color": EmbedColor};
+          await reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
         };
 
     };
