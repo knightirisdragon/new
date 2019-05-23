@@ -2174,10 +2174,25 @@ if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reactio
 //FUNCTIONS
 if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
   
+//Vote Kick
+if  (peeky.channelData.get(keyCF, "vote_kick_bonus") == true) {
+
+    if  (!user.bot && reaction.emoji.name == "🚪" && reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting"))  {
+      
+        if  (reaction.message.guild.me.hasPermission("KICK_MEMBERS"))  {
+            reaction.message.guild.members.get(reaction.message.member).kick();    
+            
+            const embed = {"description": InfoIcon + " I ha out **" + reaction.message.author.username + "**",  "color": EmbedColor};
+            await message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));           
+        };
+
+    };
+};
+  
 //Message Log
 if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 
-    if  (!user.bot && reaction.count == 1 && reaction.emoji.name === "📌")  {
+    if  (!user.bot && reaction.emoji.name == "📌" && reaction.count == 1)  {
       
     if (!LoggedMessages.has(reaction.message.id)) {
         
@@ -3429,6 +3444,30 @@ if  (FunctioName.startsWith("suspicion alert")) {
   
 else
 
+//Toggle Vote Kick
+if  (FunctioName.startsWith("vote kick")) {
+  
+  if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+        
+    if(peeky.serverData.get(keySF, "vote_kick_bonus") == true) {peeky.serverData.set(keySF, false, "vote_kick_bonus");}
+    else peeky.serverData.set(keySF, true, "vote_kick_bonus");
+      
+    if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Vote Kick** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+  
+else
+
 //Toggle Flood Protection
 if  (FunctioName.startsWith("flood protection")) {
   
@@ -3865,9 +3904,8 @@ if  (FunctioName.startsWith("suspicion alert ")) {
 }
  else
 {
-  const embed = {"description": "",  "color": EmbedColor}; 
-  message.channel.send({ embed })
-  .catch(error => ErrorBag.add(error));
+  const embed = {"description": ErrorMessage9[0],  "color": EmbedColor}; 
+  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
 }
@@ -3898,9 +3936,8 @@ if  (FunctioName.startsWith("vote kick ")) {
 }
  else
 {
-  const embed = {"description": ErrorIcon + " ",  "color": EmbedColor}; 
-  message.channel.send({ embed })
-  .catch(error => ErrorBag.add(error));
+  const embed = {"description": ErrorIcon + " The provided amount must be greater than 1.",  "color": EmbedColor}; 
+  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
 }
