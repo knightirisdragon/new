@@ -2321,6 +2321,8 @@ const keyCF = `${message.channel.id}`;
 const keySF = `${message.guild.id}`;
 
 if  (!message.webhookID)  {
+  
+//MISCELLANEOUS
 
 //BADGES
 if  (!message.author.bot && message.guild.owner !== undefined)  {
