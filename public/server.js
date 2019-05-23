@@ -1607,7 +1607,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
         var StaffTag = [];
         var StaffButton = [];
       
-        StaffButton.push('<a href="https://discordapp.com/channels/@me/' + guildMemberId + '" target="_blank">  <img src=' + DiscordIcon + ' class="staffbutton">  </a>');
+        StaffButton.push('<a href="https://discordapp.com/channels/@me/' + guildMember.user.id + '" target="_blank">  <img src=' + DiscordIcon + ' class="staffbutton">  </a>');
 
         //Vojtěch
         if  (guildMemberId == OwnerId)  {
@@ -1646,10 +1646,6 @@ if  (!WebsiteCooldowns.has("staff"))  {
         //Romulo
         if  (guildMemberId == "136574002125733888")  {
             StaffButton.push('<a href="https://twitter.com/Itsromulo27" target="_blank">  <img src=' + TwitterIcon + ' class="staffbutton">  </a>');
-        }
-         else  
-        {
-            StaffButton.push('...');
         };
       
         var CurrentContact = '<div class="container">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="2"> ' + function_RemoveTags(guildMember.user.username) + '<font size="2" color=#7289DA>#' + guildMember.user.discriminator + '</font>' + '  <br>  ' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '  </font>  <br><br>  ' + StaffButton.join(" ") + '  </b>  </div>';
