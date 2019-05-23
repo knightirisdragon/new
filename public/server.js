@@ -696,7 +696,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
   
     ctx.fillText(NameString, 95, 40);
       
-    if  (peeky.userData.has(key))  {
+    if  (peeky.userData.has(key) && peeky.userData.has(key, "Description"))  {
     
     //Description String
     var text = peeky.userData.get(key, "Description");
