@@ -58,6 +58,7 @@ const ResponseCooldowns      = new Set();  const ResponseCooldownMS = 5000;
 const TwitterIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ftwitter.png?1555574745120";
 const RedditIcon    = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Freddit.png?1555575444018";
 const InstagramIcon = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Finstagram.png?1555615973963";
+const DiscordIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fdiscord.png?1558635704218";
 
 const DarkField  = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fdarkfield.png?1558421870621";
 const LightField = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Flightfield.png?1558421869640";
@@ -1606,7 +1607,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
         var StaffTag = [];
         var StaffButton = [];
       
-        //Twitter > Reddit > Instagram
+        StaffButton.push('<a href="https://discordapp.com/channels/@me/' + guildMemberId + '" target="_blank">  <img src=' + DiscordIcon + ' class="staffbutton">  </a>');
 
         //Vojtěch
         if  (guildMemberId == OwnerId)  {
