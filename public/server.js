@@ -2177,11 +2177,13 @@ if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
 //Vote Kick
 if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
-    if  (!user.bot && reaction.emoji.name == "🚪" && reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting"))  {
+    if  (reaction.emoji.name == "🚪" && reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting"))  {
       
-        if  (reaction.message.guild.me.hasPermission("KICK_MEMBERS") && !reaction.message.member.permissions.has("KICK_MEMBERS"))  {
+            var MemberExists = reaction.guild.members.find(m => m.id == reaction.author.id);
+      
+        if  (MemberExists && MemberExists.user.id !== PeekyId && reaction.message.guild.me.hasPermission("KICK_MEMBERS") && !reaction.message.member.permissions.has("KICK_MEMBERS"))  {
           
-            reaction.message.member.send("You have been vote kicked from **" + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
+            await reaction.message.member.send("You have been vote kicked from **" + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
             reaction.message.guild.members.get(reaction.message.member.user.id).kick({  reason: "Triggered by the Vote Kick function."  }).catch(error => ErrorBag.add(error));    
             
