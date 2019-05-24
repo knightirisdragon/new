@@ -4232,7 +4232,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
     if  (peeky.userData.get(key, "HorderBadge") == false && InventorySize >= 10)  {
     
         InfoMessages.push(InfoMessage1[0]);
-        peeky.userData.set(key, true, "HordeBadge");
+        peeky.userData.set(key, true, "HorderBadge");
       
     };
       
