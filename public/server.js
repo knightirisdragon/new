@@ -2144,28 +2144,31 @@ if  (peeky.serverData.has(keySF))  {
 
 //Streamer Role
 if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
+  
+    if  (newMember.user.bot)  {
 
-    var HasRole = newMember.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
-    var GuildRole = newMember.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
-
+    const member = newMember;
+    var HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
+    var GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
+  
     if  (newMember.presence.game !== null && newMember.presence.game.streaming == true)  {
       
     if  (!HasRole)  {
-
          newMember.addRole(GuildRole).catch(error => ErrorBag.add(error));
-
+        
+         console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
     };
     
-    }   else if  (newMember.presence.game !== null && newMember.presence.game.streaming == false)  {
+    }  else  { 
       
-        if  (HasRole)  {
-            
-            newMember.removeRole(GuildRole).catch(error => ErrorBag.add(error));
-          
-        };
-        
+       if  (HasRole)  {
+           member.removeRole(GuildRole).catch(error => ErrorBag.add(error));
+       };
+
     };
   
+    };
+      
 };
   
 };
