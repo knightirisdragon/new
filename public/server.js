@@ -63,7 +63,7 @@ const DiscordIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6e
 const DarkField  = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fdarkfield.png?1558421870621";
 const LightField = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Flightfield.png?1558421869640";
 
-const DefaultBackground = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground1.jpg?1537872247903";
+const DefaultBackground = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground1.png?1558721841453";  //"http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground1.jpg?1537872247903";
 const PrismPattern      = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern_assets.png?1554545063162";
 const CoinImage         = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542";
 const ExpImage          = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_xp.png?1541260284097";
@@ -92,6 +92,7 @@ const PartyImage        = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602
 
 const DefaultFont = "Verdana";
 const Dark        = "#36393E";
+const LessDark    = "#3f3f3f";
 const Light       = "#424549";
 const Blurple     = "#7289DA";
 
@@ -239,7 +240,7 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 var Banner = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3  };
 var Banners = [
 
-    [DefaultBackground, FreePrice, "Blue fog", "Not credited"], //Default
+    [DefaultBackground, FreePrice, "Carbon", "Steam"], //Default
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground2.jpg?1537950866619", NormalPrice, "Welcome to NYC", "The Division"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground3.jpg?1535302285990", NormalPrice, "Henry the knight", "Not credited"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground4.jpg?1535333614451", NormalPrice, "Fallout's garage", "Fallout 4"],
@@ -1319,8 +1320,6 @@ peeky.on('message', async (message) => {
     });
 
     toRemoveGuilds.forEach(data => {
-
-    if  (data.GuildID !== "493048757286600716")  {  //Emoji Storage Server
       
         var ChosenGuild = peeky.guilds.get(data.GuildID);
 
@@ -1334,8 +1333,6 @@ peeky.on('message', async (message) => {
         }  else  {
            console.log("I have left a guild it because it was inactive but also ugpraded.");        
         }
-      
-    };
 
     });
       
@@ -4842,7 +4839,7 @@ if (!ProfileCooldown.has(message.author.id)) {
           ProfileColor = color;
 
           if  (color == "000000")  {
-              ProfileColor = "939393";            
+              ProfileColor = LessDark.replace("#", "");            
           };
 
     });
