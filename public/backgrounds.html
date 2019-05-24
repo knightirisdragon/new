@@ -83,6 +83,20 @@
   
 <script>
   
+  function myFunction() {
+        // get the OUTER html of the element you want to copy
+        var text = document.getElementById('myInput').outerHTML;
+
+        // put that outerHTML into another textbox for copying
+        var tempTextbox = document.getElementById('copyingText');
+        tempTextbox.value = text;
+
+        tempTextbox.focus();
+        tempTextbox.select();
+        
+        document.execCommand("Copy");
+  };
+  
 var CurrentSortMode = "old";
 var MaxSortingModes = 4;
   
@@ -114,7 +128,7 @@ function ChangeSorting(current)  {
         document.getElementById("sort_random").style.display = "block";
         document.getElementById("sort_featured").style.display = "none";
       
-        document.getElementById("sort_mode").innerHTML = "Sorting: Random (3/" + MaxSortingModes + ")";
+        document.getElementById("sort_mode").innerHTML = "Sorting: Shuffled (3/" + MaxSortingModes + ")";
     } else if (current == "featured") {
         CurrentSortMode = "new";
         document.getElementById("sort_new").style.display = "none";
