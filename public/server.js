@@ -2181,6 +2181,8 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
       
         var MemberExists = reaction.message.guild.members.find(m => m.id == reaction.message.author.id);
       
+        if  (MemberExists.user.id !== PeekyId)  {
+      
         if  (MemberExists && !reaction.message.member.permissions.has("KICK_MEMBERS"))  {
           
             if  (reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting") && MemberExists.user.id !== PeekyId && reaction.message.guild.me.hasPermission("KICK_MEMBERS"))  {
@@ -2191,7 +2193,10 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
                 reaction.message.clearReactions().catch(error => ErrorBag.add(error));
               
-                if  (peeky.serverData.get(keySF, "notifications") == true)  { 
+                if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(reaction.message.guild.id))  { 
+         
+                    ResponseCooldowns.add(reaction.message.guild.id);
+                    setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id)}, ResponseCooldownMS);
 
                     const embed = {"description": InfoIcon + " The member **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked.",  "color": EmbedColor};
                     reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
@@ -2203,7 +2208,14 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
             };
  
         } else {
-          const embed = {"description": ErrorIcon + " You cannot vote kick that member.",  "color": EmbedColor};
+          const embed = {"description": ErrorIcon + " You cannot issue a vote kick against **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**.",  "color": EmbedColor};
+          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+          
+          reaction.message.clearReactions().catch(error => ErrorBag.add(error));
+        };
+ 
+        } else {
+          const embed = {"description": ErrorIcon + " Why do you hate me so much?",  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
           
           reaction.message.clearReactions().catch(error => ErrorBag.add(error));
@@ -2502,7 +2514,10 @@ if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "pref
 
         message.member.addRole(message.member.guild.roles.find(role => role.name == name), "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
       
-        if  (peeky.serverData.get(keySF, "notifications") == true)  {
+        if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id))  {
+         
+            ResponseCooldowns.add(message.guild.id);
+            setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
             
             const embed = {"description": InfoIcon + " I have muted **" + message.member.user.username + "** because of the **Flood Protection** function.",  "color": EmbedColor};
             await message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));  
