@@ -513,7 +513,11 @@ var Banners = [
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground372.png?1558378417357", NormalPrice, "Fallen Kingdom", "Not credited"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground373.png?1558547031064", NormalPrice, "Why?", "Just Cause"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground374.png?1558547068957", NormalPrice, "Toy Gang", "To Story 4"],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground375.png?1558547070383", NormalPrice, "Mad Lad", "Mad Max"]
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground375.png?1558547070383", NormalPrice, "Mad Lad", "Mad Max"],
+  
+    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground376.png?1558720636512", NormalPrice, "Abyss", "Not credited"],
+    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground377.png?1558720636079", NormalPrice, "Nowadays Rick", "Not credited"],
+    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground778.png?1558720637241", NormalPrice, "Point blank", "Not credited"]
 
 ];
 
@@ -3090,7 +3094,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error))
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error))
-          await channel.send("**" + message.guild.name + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\nPreparing the Wall. Check back in under 15 minutes!").catch(error => ErrorBag.add(error)).then(m => peeky.serverData.set(keySF, m.id, "donor_wall_bonus_id"));
+          await channel.send("**" + message.guild.name + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\nPreparing the Wall. Check back in under a few minutes!").catch(error => {ErrorBag.add(error);}).then(m => peeky.serverData.set(keySF, m.id, "donor_wall_bonus_id"));
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Classification Wall** function.");
