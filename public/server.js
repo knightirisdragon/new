@@ -3030,7 +3030,7 @@ if  (FunctioName.startsWith("welcome messages")) {
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => m.delete(1000)).catch(error => ErrorBag.add(error));
+          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Welcome Messages** function.");
@@ -3046,7 +3046,7 @@ if  (FunctioName.startsWith("welcome messages")) {
     }
      else
     {
-     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => m.delete(1000)).catch(error => ErrorBag.add(error));
+     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
     };
       
     if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
@@ -3105,7 +3105,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     }
      else
     {
-     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => m.delete(1000)).catch(error => ErrorBag.add(error));
+     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
     };
 
     if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
@@ -3257,7 +3257,7 @@ if  (FunctioName.startsWith("message log")) {
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => m.delete(1000)).catch(error => ErrorBag.add(error));
+          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Message Log** function.")
@@ -3273,7 +3273,7 @@ if  (FunctioName.startsWith("message log")) {
     }
      else
     {
-     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => m.delete(1000)).catch(error => ErrorBag.add(error));
+     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
     };
       
     if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
