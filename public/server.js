@@ -2200,7 +2200,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                     ResponseCooldowns.add(reaction.message.guild.id);
                     setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id)}, ResponseCooldownMS);
 
-                    const embed = {"description": InfoIcon + " The member **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked.",  "color": EmbedColor};
+                    const embed = {"description": InfoIcon + " The member **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked with **" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes**.",  "color": EmbedColor};
                     reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
                 };
@@ -2380,17 +2380,17 @@ if  (!message.webhookID)  {
 //BADGES
 if  (!message.author.bot && message.guild.owner !== undefined)  {
   
-//Publisher Badge
-if  (message.channel.id == WorkshopChannel && message.attachments.size == 1 && message.content.toLowerCase().includes("name:") && message.content.toLowerCase().includes("credit:"))  {
-    if  (peeky.userData.has(key) && peeky.userData.get(key, "PublisherBadge") == false)  {
-        peeky.userData.set(key, true, "PublisherBadge");
+    //Publisher Badge
+    if  (message.channel.id == WorkshopChannel && message.attachments.size == 1 && message.content.toLowerCase().includes("name:") && message.content.toLowerCase().includes("credit:"))  {
+        if  (peeky.userData.has(key) && peeky.userData.get(key, "PublisherBadge") == false)  {
+            peeky.userData.set(key, true, "PublisherBadge");
+        };
     };
-};
 
-//Ownership Badge
-if  (peeky.userData.get(key, "OwnershipBadge") == false && message.author.id == message.guild.owner.user.id)  {
-    peeky.userData.set(key, true, "OwnershipBadge");
-};
+    //Ownership Badge
+    if  (peeky.userData.get(key, "OwnershipBadge") == false && message.author.id == message.guild.owner.user.id)  {
+        peeky.userData.set(key, true, "OwnershipBadge");
+    };
   
 };
   
@@ -2653,16 +2653,14 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
                 
           if  (Amount == BadAmount || NewNick.length == Spaces) {
             
-              message.member.setNickname(ClearedPrefix + " (" + Math.random().toString(36).substr(2, 6) + ")", "Triggered by the Clear Nicknames function.")
-              .catch(error => ErrorBag.add(error));
+              message.member.setNickname(ClearedPrefix + " (" + Math.random().toString(36).substr(2, 6) + ")", "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
                 
               console.log("The Clear Nicknames function has been triggered in " + message.guild.name + "."); 
 
           }
            else
           {
-           message.member.setNickname(NewNick, "Triggered by the Clear Nicknames function.")
-           .catch(error => ErrorBag.add(error));
+           message.member.setNickname(NewNick, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
                 
            console.log("The Clear Nicknames function has been triggered in " + message.guild.name + ".");      
           };
@@ -3150,7 +3148,7 @@ if  (FunctioName.startsWith("join role")) {
     
     message.guild.createRole({
     name: name,
-    color: "#7289da"
+    color: Blurple
     });
       
     InfoMessages.push(InfoIcon + " Created a role called **" + name + "** with the default Permissions for the **Join Role** function.");
@@ -5800,8 +5798,8 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 
         message.guild.createRole({
             name: MutedRole,
-            color: "#7289da"
-        });
+            color: 
+Blrrpee        });
 
         InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "** with the default Permissions.");
 
@@ -5833,66 +5831,6 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 };
 
 };
-
-//LogChannel
-/*if  (message.content.startsWith(Prefix + "logchannel "))  {
-  
-if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
-
-if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
-
-    var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "logchannel ")[1];
-    var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
-    var ChannelExists = message.guild.channels.find(channel => channel.name == FixedChannelName);
-    var InfoMessages = [];
-  
-    if  (!ChannelExists && message.guild.me.hasPermission("MANAGE_CHANNELS")) {
-
-    if  (!ChannelCooldown.has(message.guild.id)) {
-
-        ChannelCooldown.add(message.guild.id);
-        setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);    
-      
-        message.guild.createChannel(FixedChannelName, {
-            type: 'text'
-        })
-        .then(async function (channel)  {
-              await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  READ_MESSAGES: false  }).catch(error => ErrorBag.add(error))
-              await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  READ_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-              await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => m.delete(1000)).catch(error => ErrorBag.add(error));
-        }).catch(function(err) {  ErrorBag.add(err);  });
-
-        InfoMessages.push(InfoIcon + " Created a channel called **#­" + FixedChannelName + "**.");
-
-        }
-         else
-        {
-         InfoMessages.push(CooldownMessage3[0]);
-        };
-
-    };
-
-    peeky.serverData.set(keySF, FixedChannelName, "mod_channel");
-
-    const embed = {"description": SuccessIcon + " The server's log channel is now called **#­" + FixedChannelName + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
-    await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-}
- else
-{
- const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-
-}
- else
-{      
-  const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
-  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-
-};*/
-
 
   
 };
