@@ -5218,7 +5218,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               
             const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id)
               
-            const embed = {"description": InfoIcon + " The song has now finished with " + Listeners.length + " listeners.",  "color": EmbedColor}; 
+            const embed = {"description": InfoIcon + " The song has now finished with **" + Listeners.length + " listeners**.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
               
             if  (Listeners.length >= 5)  {
