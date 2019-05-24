@@ -2203,6 +2203,14 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                     const embed = {"description": InfoIcon + " The member **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked.",  "color": EmbedColor};
                     reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
+                    var ModChannel = reaction.message.guild.channels.find(channel => channel.name == peeky.serverData.get(keySF, "mod_channel"));
+                    if  (ModChannel)  {
+                      
+                        const embed = {"description": "**Vote Kick** \n ",  "color": EmbedColor};
+                        ModChannel.send({ embed }).catch(error => ErrorBag.add(error));
+                    
+                    };
+                  
                 };
 
                 console.log("The Vote Kick function has been triggered in " + reaction.message.guild.name + ".");
@@ -5844,10 +5852,10 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 
     var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "logchannel ")[1];
     var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
-    var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
+    var ChannelExists = message.guild.channels.find(channel => channel.name == FixedChannelName);
     var InfoMessages = [];
   
-    if  (!RoleExist && message.guild.me.hasPermission("MANAGE_CHANNELS")) {
+    if  (!ChannelExists && message.guild.me.hasPermission("MANAGE_CHANNELS")) {
 
     if  (!ChannelCooldown.has(message.guild.id)) {
 
@@ -5858,11 +5866,12 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
             type: 'text'
         })
         .then(async function (channel)  {
-              await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  VIEW_MESSAGES: false  }).catch(error => ErrorBag.add(error))
+              await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  READ_MESSAGES: false  }).catch(error => ErrorBag.add(error))
+              await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  READ_MESSAGES: true  }).catch(error => ErrorBag.add(error));
               await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => m.delete(1000)).catch(error => ErrorBag.add(error));
         }).catch(function(err) {  ErrorBag.add(err);  });
 
-        InfoMessages.push(InfoIcon + " Created a channel called **" + FixedChannelName + "**.");
+        InfoMessages.push(InfoIcon + " Created a channel called **#­" + FixedChannelName + "**.");
 
         }
          else
@@ -5874,7 +5883,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 
     peeky.serverData.set(keySF, FixedChannelName, "mod_channel");
 
-    const embed = {"description": SuccessIcon + " The server's log channel is now called **@­" + FixedChannelName + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    const embed = {"description": SuccessIcon + " The server's log channel is now called **#­" + FixedChannelName + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
