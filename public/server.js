@@ -5428,8 +5428,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
 
 };
 
-//Leave
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "leave"))  {
+//Skip
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))  {
 
     if  (message.member.voiceChannel && message.member.voiceChannel.members.find(m => m.id == PeekyId))  {
 
