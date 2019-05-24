@@ -5792,7 +5792,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
     var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
     var InfoMessages = [];
   
-    if  (!RoleExist) {
+    if  (!RoleExist && message.guild.me.hasPermission("MANAGE_ROLES")) {
 
     if  (!RoleCooldown.has(message.guild.id)) {
 
@@ -5809,7 +5809,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
         }
          else
         {
-         InfoMessages.push(CooldownMessage3);
+         InfoMessages.push(CooldownMessage3[0]);
         };
 
     };
@@ -5844,9 +5844,37 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 
     var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "logchannel ")[1];
     var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
-    peeky.serverData.set(keySF, FixedChannelName, "welcome_messages_bonus_setting");
+    var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
+    var InfoMessages = [];
+  
+    if  (!RoleExist && message.guild.me.hasPermission("MANAGE_CHANNELS")) {
 
-    const embed = {"description": SuccessIcon + " The server's log channel is now called **@­" + MutedRole + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    if  (!ChannelCooldown.has(message.guild.id)) {
+
+        ChannelCooldown.add(message.guild.id);
+        setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);    
+      
+        message.guild.createChannel(FixedChannelName, {
+            type: 'text'
+        })
+        .then(async function (channel)  {
+              await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  VIEW_MESSAGES: false  }).catch(error => ErrorBag.add(error))
+              await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => m.delete(1000)).catch(error => ErrorBag.add(error));
+        }).catch(function(err) {  ErrorBag.add(err);  });
+
+        InfoMessages.push(InfoIcon + " Created a channel called **" + FixedChannelName + "**.");
+
+        }
+         else
+        {
+         InfoMessages.push(CooldownMessage3[0]);
+        };
+
+    };
+
+    peeky.serverData.set(keySF, FixedChannelName, "mod_channel");
+
+    const embed = {"description": SuccessIcon + " The server's log channel is now called **@­" + FixedChannelName + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
