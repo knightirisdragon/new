@@ -514,7 +514,6 @@ var Banners = [
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground373.png?1558547031064", NormalPrice, "Why?", "Just Cause"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground374.png?1558547068957", NormalPrice, "Toy Gang", "To Story 4"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground375.png?1558547070383", NormalPrice, "Mad Lad", "Mad Max"],
-  
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground376.png?1558720636512", NormalPrice, "Abyss", "Not credited"],
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground377.png?1558720636079", NormalPrice, "Nowadays Rick", "Not credited"],
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground778.png?1558720637241", NormalPrice, "Point blank", "Not credited"]
