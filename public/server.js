@@ -64,6 +64,7 @@ const DarkField  = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2
 const LightField = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Flightfield.png?1558421869640";
 
 const DefaultBackground = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground1.jpg?1537872247903";
+const PrismPattern      = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern_assets.png?1554545063162";
 const CoinImage         = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542";
 const ExpImage          = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_xp.png?1541260284097";
 const LevelImage        = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_level.png?1541260281702";
@@ -92,6 +93,7 @@ const PartyImage        = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602
 const DefaultFont = "Verdana";
 const Dark        = "#36393E";
 const Light       = "#424549";
+const Blurple     = "#7289DA";
 
 //Config
 const OngoingEvent         = false;
@@ -749,16 +751,16 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             const canvas = Canvas.createCanvas(500, 370);
             const ctx = canvas.getContext('2d');
 
-            const background = await Canvas.loadImage("https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern_assets.png?1554545063162");
+            const background = await Canvas.loadImage(PrismPattern);
             ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-            ctx.globalAlpha = 0.5;
-            ctx.fillStyle = "#7289DA";
+            /*ctx.globalAlpha = 0.5;
             ctx.fillRect(5, 5, canvas.width - 10, canvas.height - 10);
 
-            ctx.stroke();
+            ctx.stroke();*/
 
-            ctx.globalAlpha = 0.75;
+            ctx.fillStyle = Dark;
+            ctx.globalAlpha = 1;
             ctx.fillRect(10, 10, canvas.width - 20, 270);
 
             ctx.stroke();
@@ -779,13 +781,13 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             //Header
             ctx.font = "15px " + DefaultFont;
             if  (Type == "Started")  {
-                ctx.fillText("Started playing " + Author + "'s song.", 15, 310);
+                ctx.fillText(peeky.users.get(User).username + " has requested " + Author + "'s song.", 15, 310);
             }  else if  (Type == "Playlist")  {
-                ctx.fillText("Started playing a random song from " + peeky.users.get(User).username + "'s playlist.", 15, 310);
+                ctx.fillText(peeky.users.get(User).username + " has requested a song from their playlist.", 15, 310);
             }  else if  (Type == "Random")  {
-                ctx.fillText("Started playing a random song.", 15, 310);
+                ctx.fillText(peeky.users.get(User).username + " has requested a random song.", 15, 310);
             }  else if  (Type == "Previous")  {
-                ctx.fillText("Started playing the previous song.", 15, 310);
+                ctx.fillText(peeky.users.get(User).username + " has requested the previous song.", 15, 310);
             }  else if  (Type == "Current")  {
                 ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes") + " minutes left.", 15, 310);
             };
@@ -1212,7 +1214,6 @@ peeky.on('message', async (message) => {
     //EVENT DOUBLE EXP
     if  (OngoingEvent == true)  {
         peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");
-
     };
 
     };
