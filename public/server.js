@@ -5319,9 +5319,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
       
     if  (!MusicCmdCooldown.has(message.author.id))  {
 
-        MusicCmdCooldown.add(message.author.id);
+    /*    MusicCmdCooldown.add(message.author.id);
         setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 5000);
-
+*/
     var PlaylistAction = message.content.split(peeky.serverData.get(keySF, "prefix") + "playlist")[1];
   
     if  (PlaylistAction.startsWith(" add "))  {
@@ -5369,10 +5369,12 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
 
         var BackgroundIndex = peeky.userData.get(key, "Playlist").indexOf(PlaylistRequest);
 
-        peeky.userData.get(key, "Playlist").splice(PlaylistRequest, 1);  //Remove the background
+        peeky.userData.get(key, "Playlist").splice(BackgroundIndex, 1);  //Remove the background
 
         const embed = {"description": SuccessIcon + " The song has been removed from your playlist.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          
+        console.log(peeky.userData.get(key, "Playlist") + " /// " + BackgroundIndex);
           
         } else {
           const embed = {"description": ErrorIcon + " That song is not in your playlist.",  "color": EmbedColor}; 
