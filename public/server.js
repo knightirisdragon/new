@@ -749,17 +749,17 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             const canvas = Canvas.createCanvas(500, 370);
             const ctx = canvas.getContext('2d');
 
-            const background = await Canvas.loadImage(Thumbnail);
+            const background = await Canvas.loadImage("https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern_assets.png?1554545063162");
             ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-            ctx.globalAlpha = 0.25;
+            ctx.globalAlpha = 0.5;
             ctx.fillStyle = "#7289DA";
             ctx.fillRect(5, 5, canvas.width - 10, canvas.height - 10);
 
             ctx.stroke();
 
             ctx.globalAlpha = 0.75;
-            ctx.fillRect(5, 5, canvas.width - 10, 280);
+            ctx.fillRect(10, 10, canvas.width - 20, 270);
 
             ctx.stroke();
 
@@ -779,15 +779,15 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             //Header
             ctx.font = "15px " + DefaultFont;
             if  (Type == "Started")  {
-                ctx.fillText("Started playing " + Author + "'s song.", 15, 315);
+                ctx.fillText("Started playing " + Author + "'s song.", 15, 310);
             }  else if  (Type == "Playlist")  {
-                ctx.fillText("Started playing a random song from " + peeky.users.get(User).username + "'s playlist.", 15, 315);
+                ctx.fillText("Started playing a random song from " + peeky.users.get(User).username + "'s playlist.", 15, 310);
             }  else if  (Type == "Random")  {
-                ctx.fillText("Started playing a random song.", 15, 315);
+                ctx.fillText("Started playing a random song.", 15, 310);
             }  else if  (Type == "Previous")  {
-                ctx.fillText("Started playing the previous song.", 15, 315);
+                ctx.fillText("Started playing the previous song.", 15, 310);
             }  else if  (Type == "Current")  {
-                ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes") + " minutes left.", 15, 315);
+                ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes") + " minutes left.", 15, 310);
             };
 
             //Song Name
