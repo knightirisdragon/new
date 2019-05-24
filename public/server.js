@@ -2924,13 +2924,12 @@ if  (!OverviewCooldown.has(message.guild.id))  {
 
    Functions.push(
                         "**For more instructions on how to work with PEEKY's functions, visit one of the pages below.**" + "\n" +
-                        "https://peeky.glitch.me/functions.html or https://peeky.glitch.me/tutorials.html."  + "\n­"
-   );
-
-   Functions.push(
+                        "https://peeky.glitch.me/functions.html or https://peeky.glitch.me/tutorials.html."  + "\n\n" +
+     
                         "**Server Information**" + "\n\n" +
                         WhiteSquare + " **Prefix**" + "\n" + Hollow + " " + "This server's prefix is `" + peeky.serverData.get(keySF, "prefix") + "`." + "\n" +
-                        WhiteSquare + " **Mute Role**" + "\n" + Hollow + " " + "This server's mute role is called `" + peeky.serverData.get(keySF, "muted_role") + "`." + "\n­"
+                        WhiteSquare + " **Log Channel**" + "\n" + Hollow + " " + "This server's log channel is `#­" + peeky.serverData.get(keySF, "mod_channel") + "`." + "\n" +
+                        WhiteSquare + " **Mute Role**" + "\n" + Hollow + " " + "This server's mute role is called `@­" + peeky.serverData.get(keySF, "muted_role") + "`." + "\n­"
    );
   
    Functions.push(
@@ -3652,7 +3651,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "set "))
     var FunctioName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set ")[1];
       
 //Set Welcome Messages
-if  (FunctioName.startsWith("welcome messages ")) {
+if  (FunctioName.startsWith("welcome messages "))  {
   
   if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
   
@@ -3660,7 +3659,7 @@ if  (FunctioName.startsWith("welcome messages ")) {
 
   var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set welcome messages ")[1];
   var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
-  peeky.serverData.set(keySF, FixedChannelName.toLowerCase(), "welcome_messages_bonus_setting");
+  peeky.serverData.set(keySF, FixedChannelName, "welcome_messages_bonus_setting");
 
       
   const embed = {"description": SuccessIcon + " The **Welcome Messages** setting has been set to **#­" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting")+ "**.",  "color": EmbedColor}; 
@@ -4004,7 +4003,7 @@ if  (FunctioName.startsWith("message log ")) {
   var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set message log ")[1];
   var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
 
-  peeky.serverData.set(keySF, FixedChannelName.toLowerCase(), "message_log_bonus_setting");
+  peeky.serverData.set(keySF, FixedChannelName, "message_log_bonus_setting");
 
   const embed = {"description": SuccessIcon + " The **Message Log** setting has been set to **#­" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "**.",  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5756,14 +5755,22 @@ if  (GivenRole && GivenRole.name !== "@everyone") {
 if  (message.content.startsWith(Prefix + "prefix "))  {
 
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+
+if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
   
     var NewPrefix = message.content.split(Prefix + "prefix ")[1].toLowerCase();
   
     peeky.serverData.set(keySF, NewPrefix, "prefix");
   
     const embed = {"description": SuccessIcon + " The server prefix is now **" + NewPrefix + "**.",  "color": EmbedColor}; 
-    await message.channel.send({ embed })
-    .catch(error => ErrorBag.add(error));
+    await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  
+}
+ else
+{
+ const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
   
 }
  else
@@ -5777,6 +5784,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 if  (message.content.startsWith(Prefix + "muterole "))  {
 
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+
+if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
   
     var MutedRole = message.content.split(Prefix + "mutedrole ")[1];
     var FixedMutedRole = Function_RemoveFormatting(MutedRole, "muted_role", true);
@@ -5807,8 +5816,15 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 
     peeky.serverData.set(keySF, MutedRole, "muted_role");
   
-    const embed = {"description": SuccessIcon + " The server's mute role is now called **@­" + MutedRole + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};     await message.channel.send({ embed })
-    .catch(error => ErrorBag.add(error));
+    const embed = {"description": SuccessIcon + " The server's mute role is now called **@­" + MutedRole + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+ else
+{
+ const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
 
 }
  else
@@ -5816,7 +5832,40 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
   const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
+
 };
+
+//LogChannel
+if  (message.content.startsWith(Prefix + "logchannel "))  {
+  
+if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+
+if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
+
+    var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "logchannel ")[1];
+    var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
+    peeky.serverData.set(keySF, FixedChannelName, "welcome_messages_bonus_setting");
+
+    const embed = {"description": SuccessIcon + " The server's log channel is now called **@­" + MutedRole + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+ else
+{
+ const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+ else
+{      
+  const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+};
+
+
   
 };
 };  
