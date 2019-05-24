@@ -1065,6 +1065,7 @@ peeky.on('message', async (message) => {
         PublisherBadge: false,
         PartyBadge: false,
         HorderBadge: false,
+        PainterBadge: false,
       
         BadgeGredit: 0,
         BadgeExp: 0,
@@ -1211,6 +1212,9 @@ peeky.on('message', async (message) => {
       
         //Charity
     if  (peeky.userData.get(key, "CharityBadge") == true)  {  BadgeGreditAmount += 1;  };
+
+        //Painter
+    if  (peeky.userData.get(key, "PainterBadge") == true)  {  BadgeExpAmount += 1;  };
 
         //Fashion
     if  (peeky.userData.get(key, "FashionBadge") == true)  {  BadgeExpAmount += 1;  };
@@ -4266,11 +4270,20 @@ if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "custom
     if  (peeky.userData.get(key, "Gredit") > CustomBackgroundPrice)  {
     
     if  (message.attachments.size > 0)  {
+  
+        var InfoMessages = [];
+  
+        if  (peeky.userData.get(key, "PainterBadge") == false)  {
+
+            InfoMessages.push(InfoMessage1[0]);
+            peeky.userData.set(key, true, "PainterBadge");
+
+        };
       
         peeky.userData.math(key, "-", CustomBackgroundPrice, "Gredit");
         peeky.userData.set(key, message.attachments.array()[0].url.replace("https", "http"), "Background");
 
-        const embed = {"description": SuccessIcon + " You have bought a **Custom Background** for **" + CustomBackgroundPrice.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have bought a **Custom Background** for **" + CustomBackgroundPrice.toLocaleString('en') + " " + GreditIcon + "**." + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     }
@@ -5064,6 +5077,13 @@ if (!ProfileCooldown.has(message.author.id)) {
     const charity_icon = await Canvas.loadImage(CharityImage);
     if  (peeky.userData.get(key2, "CharityBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
     ctx.drawImage(charity_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    };
+
+        //PainterIcon
+    if  (BadgeAmount < MaxBadges)  {
+    const painter_icon = await Canvas.loadImage(PainterImage);
+    if  (peeky.userData.get(key2, "PainterBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(painter_icon, (canvas.width - 48), BadgeYpos, 30, 30);
     };
 
         //Fashion Icon
