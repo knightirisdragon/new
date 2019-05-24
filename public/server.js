@@ -749,7 +749,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             const canvas = Canvas.createCanvas(500, 370);
             const ctx = canvas.getContext('2d');
 
-            const background = await Canvas.loadImage(DefaultBackground);
+            const background = await Canvas.loadImage(Thumbnail);
             ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
             ctx.globalAlpha = 0.25;
@@ -1023,8 +1023,8 @@ peeky.on('message', async (message) => {
       
     peeky.userData.ensure(key , {
         UserID: message.author.id,
-        lastSeen: Date.now(),
-        DailyRewarded: Date.now(),
+        lastSeen: new Date(),
+        DailyRewarded: new Date(),
 
         Background: 1,
         IsCustom: false,
