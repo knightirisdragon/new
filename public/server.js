@@ -2199,7 +2199,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                     setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id)}, ResponseCooldownMS);
 
                     const embed = {"description": InfoIcon + " The member **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked.",  "color": EmbedColor};
-                    reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+                    reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
                 };
 
@@ -2209,14 +2209,14 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
  
         } else {
           const embed = {"description": ErrorIcon + " You cannot issue a vote kick against **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**.",  "color": EmbedColor};
-          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
           reaction.message.clearReactions().catch(error => ErrorBag.add(error));
         };
  
         } else {
           const embed = {"description": ErrorIcon + " Why do you hate me so much?",  "color": EmbedColor};
-          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
           reaction.message.clearReactions().catch(error => ErrorBag.add(error));
         };
@@ -2293,7 +2293,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
             if  (peeky.serverData.get(keySF, "notifications") == true)  {
                   
                 const embed = {"description": InfoIcon + " I have logged **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**'s message at **" + Function_RemoveFormatting(user.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
-                reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+                reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
             };
 
@@ -2309,7 +2309,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
           reaction.remove(user).catch(error => ErrorBag.add(error));
             
           const embed = {"description": ErrorIcon + " That message was already logged.",  "color": EmbedColor}; 
-          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
         };
 
@@ -2322,6 +2322,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 
 //MESSAGE EVENTS
 peeky.on('message', async (message) => {
+  
   
 if  (message.channel.type == "dm")  {
 if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !message.webhookID && message.content.toLowerCase() !== "accept")  {
@@ -2434,7 +2435,7 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.s
         setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
 
         const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s message because of the **Images Only** function.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
     };
 
@@ -2520,7 +2521,7 @@ if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "pref
             setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
             
             const embed = {"description": InfoIcon + " I have muted **" + message.member.user.username + "** because of the **Flood Protection** function.",  "color": EmbedColor};
-            await message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));  
+            await message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))}); 
 
         };
 
@@ -2644,7 +2645,7 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
           if  (peeky.serverData.get(keySF, "notifications") == true)  {
             
               const embed = {"description": InfoIcon + " I have cleared **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s because of the **Clear Nicknames** function.",  "color": EmbedColor};
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
             
               };
                 
@@ -2689,7 +2690,7 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(
          setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
        
          const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s message because of the **Banned Words** function.",  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
      };
 
@@ -2718,7 +2719,7 @@ if  ((((new Date() - new Date(message.member.joinedAt)) / 60000) < peeky.serverD
          setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
        
          const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s message because of the **Spoiler Lock** function.",  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => m.id >= 1 && m.delete(10000).catch(error => ErrorBag.add(error)));
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
      };
 
@@ -5324,7 +5325,21 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
     var PlaylistAction = message.content.split(peeky.serverData.get(keySF, "prefix") + "playlist")[1];
   
     if  (PlaylistAction.startsWith(" add "))  {
+      
         var PlaylistRequest = PlaylistAction.replace(" add ", "");
+      
+    if  (PlaylistRequest == "current")  {
+
+        if  (CurrentlyPlaying.has(message.guild.id) && peeky.serverData.get(keySF, "Link") !== "None")  {
+          
+            peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
+
+            const embed = {"description": SuccessIcon + " Added the current song to your playlist.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));                
+              
+        };
+            
+    } else
       
     if  (!PlaylistRequest.includes("?list="))  {
       
