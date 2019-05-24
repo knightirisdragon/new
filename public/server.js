@@ -1084,6 +1084,7 @@ peeky.on('message', async (message) => {
         server_invite: "no_invite",
         prefix: Prefix,
         muted_role: "Muted",
+        mod_channel: "moderation_log",
       
         Title: "None",
         Thumbnail: DefaultBackground,
