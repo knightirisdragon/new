@@ -2487,7 +2487,7 @@ if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "pref
     const LastMsgDate    = peeky.channelData.get(keyCF, "flood_protection_bonus_lastdate");
     const ThisMsgDate    = Date.now();
 
-    if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 750)) || (message.content == LastMsgContent && message.author.id == LastMsgUser))  {
+    if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent && message.author.id == LastMsgUser))  {
 
     const name       = peeky.serverData.get(keySF, "muted_role");
     const RoleExists = message.guild.roles.find(role => role.name == name);
