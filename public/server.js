@@ -90,6 +90,7 @@ const PollerImage       = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602
 const PublisherImage    = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpublisher.png?1555782065115";
 const PartyImage        = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fparty.png?1558040749323";
 const HorderImage       = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fhorder.png?1558727721673";
+const PainterImage      = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpainter.png?1558728694985";
 
 const DefaultFont = "Verdana";
 const Dark        = "#36393E";
@@ -152,6 +153,7 @@ const PollerEmote       = "<:poller:570845554758778880>";
 const PublisherEmote    = "<:publisher:569215883109466143>";
 const PartyEmote        = "<:party:578689336116248618>";
 const HorderEmote       = "<:horder:581571252070776844>";
+const PainterEmote      = "<:painter:581575158855368724>";
 
 //Other Emotes
 const ErrorIcon    = "<:peeky_error:529412267343872031>";
@@ -4205,6 +4207,13 @@ if  (i !== 1) {
 if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
   
     var InfoMessages = [];
+    var InventorySize = peeky.userData.get(key, "Inventory").length;
+
+    if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
+        peeky.userData.set(key, i, "Background");
+    }   else  {
+        InventorySize ++;
+    };
   
     if  (peeky.userData.get(key, "FashionBadge") == false)  {
     
@@ -4213,19 +4222,15 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
       
     };
   
-    if  (peeky.userData.get(key, "HorderBadge") == false && )  {
+    if  (peeky.userData.get(key, "HorderBadge") == false && InventorySize >= 10)  {
     
         InfoMessages.push(InfoMessage1[0]);
-        peeky.userData.set(key, true, "FashionBadge");
+        peeky.userData.set(key, true, "HordeBadge");
       
     };
       
     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
     peeky.userData.get(key, "Inventory").push(i);
-
-    if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
-        peeky.userData.set(key, i, "Background");
-    };
   
     var embed = {"description": SuccessIcon + " You have bought the **" + Banners[i - 1][Banner.Name] + "** background bought for **" + Banners[i - 1][Banner.Price].toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
