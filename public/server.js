@@ -2203,14 +2203,6 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                     const embed = {"description": InfoIcon + " The member **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked.",  "color": EmbedColor};
                     reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
-                    var ModChannel = reaction.message.guild.channels.find(channel => channel.name == peeky.serverData.get(keySF, "mod_channel"));
-                    if  (ModChannel)  {
-                      
-                        const embed = {"description": "**Vote Kick** \n ",  "color": EmbedColor};
-                        ModChannel.send({ embed }).catch(error => ErrorBag.add(error));
-                    
-                    };
-                  
                 };
 
                 console.log("The Vote Kick function has been triggered in " + reaction.message.guild.name + ".");
@@ -2936,12 +2928,11 @@ if  (!OverviewCooldown.has(message.guild.id))  {
      
                         "**Server Information**" + "\n\n" +
                         WhiteSquare + " **Prefix**" + "\n" + Hollow + " " + "This server's prefix is `" + peeky.serverData.get(keySF, "prefix") + "`." + "\n" +
-                        WhiteSquare + " **Log Channel**" + "\n" + Hollow + " " + "This server's log channel is `#­" + peeky.serverData.get(keySF, "mod_channel") + "`." + "\n" +
                         WhiteSquare + " **Mute Role**" + "\n" + Hollow + " " + "This server's mute role is called `@­" + peeky.serverData.get(keySF, "muted_role") + "`." + "\n­"
    );
   
    Functions.push(
-                        "**Functions in " + Function_RemoveFormatting(message.guild.name, "other", true) + "** (Server Type)" + "\n\n" +
+                        "**Server functions in " + Function_RemoveFormatting(message.guild.name, "other", true) + "**" + "\n\n" +
 
                         WM + " **Welcome Messages** " + "\n" + Hollow + " " + "When someone joins this server it will be announced in a channel called `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`." + "\n" +
                         MC + " **Member Counter** " + "\n" + Hollow + " " + "The member counter prefix is `" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
@@ -2963,7 +2954,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
    );
 
    Functions.push(
-                        "**Functions in #­" + Function_RemoveFormatting(message.channel.name, "other", true) + "** (Channel Type)" + "\n\n" +
+                        "**Channel functions in #­" + Function_RemoveFormatting(message.channel.name, "other", true) + "**" + "\n\n" +
 
                         AR + " **Automatic Reactions** " + "\n" + Hollow + " " + "The custom reaction names are `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` and `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`." + "\n" +
                         ML + " **Message Log** " + "\n" + Hollow + " " + "Logged messages will be sent to a channel called `#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`." + "\n" +
@@ -5844,7 +5835,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 };
 
 //LogChannel
-if  (message.content.startsWith(Prefix + "logchannel "))  {
+/*if  (message.content.startsWith(Prefix + "logchannel "))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
@@ -5900,7 +5891,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
-};
+};*/
 
 
   
