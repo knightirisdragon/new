@@ -89,6 +89,7 @@ const CelebratorImage   = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602
 const PollerImage       = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpoller.png?1556170526097";
 const PublisherImage    = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpublisher.png?1555782065115";
 const PartyImage        = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fparty.png?1558040749323";
+const HorderImage       = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fhorder.png?1558727721673";
 
 const DefaultFont = "Verdana";
 const Dark        = "#36393E";
@@ -150,6 +151,7 @@ const CelebratorEmote   = "<:celebrator:563812757787508746>";
 const PollerEmote       = "<:poller:570845554758778880>";
 const PublisherEmote    = "<:publisher:569215883109466143>";
 const PartyEmote        = "<:party:578689336116248618>";
+const HorderEmote       = "<:horder:581571252070776844>";
 
 //Other Emotes
 const ErrorIcon    = "<:peeky_error:529412267343872031>";
@@ -1060,6 +1062,7 @@ peeky.on('message', async (message) => {
         PollerBadge: false,
         PublisherBadge: false,
         PartyBadge: false,
+        HorderBadge: false,
       
         BadgeGredit: 0,
         BadgeExp: 0,
@@ -1197,6 +1200,9 @@ peeky.on('message', async (message) => {
       
         //Ownership
     if  (peeky.userData.get(key, "OwnershipBadge") == true)  {  BadgeExpAmount += 1;  };
+      
+        //Horder
+    if  (peeky.userData.get(key, "HorderBadge") == true)  {  BadgeGreditAmount += 1;  };
       
         //Gambler
     if  (peeky.userData.get(key, "GamblerBadge") >= 10)  {  BadgeGreditAmount += 1;  };
@@ -4206,10 +4212,16 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
         peeky.userData.set(key, true, "FashionBadge");
       
     };
+  
+    if  (peeky.userData.get(key, "HorderBadge") == false && )  {
+    
+        InfoMessages.push(InfoMessage1[0]);
+        peeky.userData.set(key, true, "FashionBadge");
+      
+    };
       
     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
     peeky.userData.get(key, "Inventory").push(i);
-  
 
     if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
         peeky.userData.set(key, i, "Background");
@@ -4754,6 +4766,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (peeky.userData.get(key2, "PublisherBadge") == true)                                             {  Badges.push(PublisherEmote + " Publisher")  };
     if  (peeky.userData.get(key2, "PartyBadge") == true)                                                 {  Badges.push(PartyEmote + " Party")  };
     if  (peeky.userData.get(key2, "OwnershipBadge") == true)                                             {  Badges.push(OwnershipEmote + " Ownership")  };
+    if  (peeky.userData.get(key2, "HorderBadge") == true)                                                {  Badges.push(HorderEmote + " Horder")  };
     if  (peeky.userData.get(key2, "GamblerBadge") >= 10)                                                 {  Badges.push(GamblerEmote + " Gambler")  };
     if  (peeky.userData.get(key2, "CharityBadge") == true)                                               {  Badges.push(CharityEmote + " Charity")  };
     if  (peeky.userData.get(key2, "FashionBadge") == true)                                               {  Badges.push(FashionEmote + " Fashion")  };
@@ -5025,6 +5038,13 @@ if (!ProfileCooldown.has(message.author.id)) {
     const gambler_icon = await Canvas.loadImage(OwnershipImage);
     if  (peeky.userData.get(key2, "OwnershipBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
     ctx.drawImage(gambler_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    };
+
+        //Horder Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const horder_icon = await Canvas.loadImage(HorderImage);
+    if  (peeky.userData.get(key2, "HorderBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(horder_icon, (canvas.width - 48), BadgeYpos, 30, 30);
     };
 
         //Gambler Icon
