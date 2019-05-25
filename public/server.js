@@ -1767,7 +1767,8 @@ if  (peeky.guilds.size <= MaxServers)  {
                      + "\n\n**If you are not sure about what to do, consider these options:**"
                      + "\n" + " - "+ "Visit https://peeky.glitch.me/tutorials.html for some tutorials." 
                      + "\n" + " - " + "Send me a question and I'll send it to my owner and then he'll add you."
-                     + "\n" + " - " + "Join my Support Server and discuss your problem with other users.").catch(error => ErrorBag.add(error));
+                     + "\n" + " - " + "Join my Support Server and discuss your problem with other users."
+                     + "\n" + " - " + "Use the Help command to see more options.").catch(error => ErrorBag.add(error));
   
     let channelID;
     let channels = guild.channels;
@@ -1781,7 +1782,7 @@ if  (peeky.guilds.size <= MaxServers)  {
     };
 
     let channel = peeky.channels.get(guild.systemChannelID || channelID);
-    channel.send("**Thank you for adding me to your server!**\nI've sent you some informations about me, so you won't feel lost!")
+    channel.send("**Thank you for adding me to " + Function_RemoveFormatting(guild.name, "other", true) + "!**\nI've sent you some informations about me, so you won't feel lost!")
     .catch(error => ErrorBag.add(error));
 
 }
