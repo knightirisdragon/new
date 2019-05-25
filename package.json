@@ -9,6 +9,7 @@
     "node-opus": "^0.3.1",
     "ytdl-core": "^0.29.2",
     "ytdl-core-discord": "^1.0.3",
+    "node-lyrics": "^1.0.0",
     "canvas": "^2.5.0",
     "canvas-node": "^0.3.20",
     "dominant-color": "^0.0.1",

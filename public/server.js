@@ -14,6 +14,7 @@ const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 const ytdl_discord  = require('ytdl-core-discord');
 const ytdl          = require('ytdl-core');
 const opus          = require('node-opus');
+const lyrics        = require('node-lyrics');
 
 //CANVAS
 const Canvas       = require('canvas');
@@ -2878,7 +2879,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade
 //EventReward
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eventreward"))  {
   
-    if  (OngoingEvent == true && peeky.userData.get(key, "CelebratorBadge" == false))  {
+    if  (OngoingEvent == true && peeky.userData.get(key, "CelebratorBadge") == false)  {
+      
+        peeky.userData.set(key, true, "CelebratorBadge");
       
         const embed = {"description": SuccessIcon + " **You have received the special Celebrator badge!**",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
