@@ -2448,15 +2448,15 @@ if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS') && message.
     var ReactionEmoji2 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
     
 if  (ReactionEmoji1 && ReactionEmoji2)  {
-     await message.react(ReactionEmoji1).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
-     await message.react(ReactionEmoji2).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
-    
+     await message.react(ReactionEmoji1).catch(error => ErrorBag.add(error));
+     await message.react(ReactionEmoji2).catch(error => ErrorBag.add(error));
+
      console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
     }
      else
     { 
-     await message.react(DefaultUpvote).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
-     await message.react(DefaultDownvote).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
+     await message.react(DefaultUpvote).catch(error => ErrorBag.add(error));
+     await message.react(DefaultDownvote).catch(error => ErrorBag.add(error));
     
      console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
     };
@@ -2871,6 +2871,18 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade
     {
       const embed = {"description": ErrorIcon + " You have to join PEEKY's support server for that command to work.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+  
+};
+
+//EventReward
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eventreward"))  {
+  
+    if  (OngoingEvent == true && peeky.userData.get(key, "CelebratorBadge" == false))  {
+      
+        const embed = {"description": SuccessIcon + " **You have received the special Celebrator badge!**",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      
     };
   
 };
