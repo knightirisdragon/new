@@ -994,7 +994,6 @@ fetch('https://peeky.glitch.me/staff.txt')
 
 peeky.on('ready', () => {
 
-    //Announce Connection
 	  console.log('Ready.');
 
     //DDB
