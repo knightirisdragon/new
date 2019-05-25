@@ -523,7 +523,7 @@ var Banners = [
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground377.png?1558720636079", NormalPrice, "Nowadays Rick", "Not credited"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground778.png?1558720637241", NormalPrice, "Point blank", "Not credited"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground779.png?1558776983235", NormalPrice, "Abstract Pattern", "Not credited"],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground780.png?1558777299744", NormalPrice, "Spirit Tower", "Not credited"]
+    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground379.png?1558783135708", NormalPrice, "Spirit Tower", "Not credited"]
 
 ];
 
