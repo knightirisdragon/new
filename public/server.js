@@ -2067,7 +2067,6 @@ if  (newMember.roles.has(RedeemRole1))  {
     if  (Failed !== true)  {
         peeky.userData.math(key, "+", 1000, "Gredit");
 
-        peeky.userData.math(key, "+", 1, "Redeemed");
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
@@ -2084,7 +2083,6 @@ if  (newMember.roles.has(RedeemRole2))  {
     if  (Failed !== true)  {
         peeky.userData.math(key, "+", 2000, "Gredit");
 
-        peeky.userData.math(key, "+", 1, "Redeemed");
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
@@ -2094,7 +2092,7 @@ if  (newMember.roles.has(RedeemRole2))  {
     };
 
 }; 
-  
+
 //5,000 Gredit
 if  (newMember.roles.has(RedeemRole3))  {
     newMember.removeRole(RedeemRole3).catch(error => {ErrorBag.add(error); Failed = true});
@@ -2102,7 +2100,6 @@ if  (newMember.roles.has(RedeemRole3))  {
     if  (Failed !== true)  {
         peeky.userData.math(key, "+", 5000, "Gredit");
 
-        peeky.userData.math(key, "+", 1, "Redeemed");
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
@@ -2119,7 +2116,6 @@ if  (newMember.roles.has(RedeemRole4))  {
     if  (Failed !== true)  {
         peeky.userData.math(key, "+", 10000, "Gredit");
 
-        peeky.userData.math(key, "+", 1, "Redeemed");
         peeky.userData.math(key, "+", ExpAmount, "Exp");
         peeky.userData.set(key, true, "ContributorBadge");
       
