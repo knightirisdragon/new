@@ -2934,20 +2934,8 @@ if  (!OverviewCooldown.has(message.guild.id))  {
     var ServerMessage = peeky.serverData.get(keySF, "server_message_bonus_setting");
   
     var FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
-    var EndString = "";
-    /*if  (FixedArray.length < 1)  {  
-      
-        FixedArray = "none";  
-      
-    } else {
   
-    if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length > 5)  {
-        EndString = "...";
-        FixedArray = FixedArray.slice(0, 5);
-    };
-    FixedArray = FixedArray.join(", ");*/
-      
-    };
+    if  (FixedArray.length < 1)  {  FixedArray = "none";  }  else  {  FixedArray = FixedArray.join(", ");  };
         
     if (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)   { var AR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var AR = DisabledIcon};
     if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)       { var WM = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var WM = DisabledIcon};
@@ -2983,7 +2971,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         MC + " **Member Counter** " + "\n" + Hollow + " " + "The member counter prefix is `" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
                         CN + " **Clear Nicknames** " + "\n" + Hollow + " " + "The full cleared nickname prefix is `" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n" +
                         CW + " **Classification Wall** " + "\n" + Hollow + " " + "The role name is `@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` and the channel name is `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n" +
-                        SA + " **Suspicion Alert** " + "\n" + Hollow + " " + "The server owner will be alerted when someone with `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans` joins the server." + "\n"
+                        SA + " **Suspicion Alert** " + "\n" + Hollow + " " + "The server owner will be alerted when someone with `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans` or more joins the server." + "\n"
    );
 
    Functions.push(
@@ -3005,7 +2993,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         ML + " **Message Log** " + "\n" + Hollow + " " + "Logged messages will be sent to a channel called `#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`." + "\n" +
                         IO + " **Images Only** " + "\n" + Hollow + " " + "No setting." + "\n" +
                         SL + " **Spoiler Lock** " + "\n" + Hollow + " " + "Members can post images freely `" + peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") + " minutes` after joining, unless the setting is 0 minutes." + "\n" +
-                        BW + " **Banned Words** " + "\n" + Hollow + " " + "The banned words in this server are `" + FixedArray + EndString + "`."
+                        BW + " **Banned Words** " + "\n" + Hollow + " " + "The banned words in this server are `" + FixedArray + "`."
    );
 
   for (i = 0; i < Functions.length; i++) {
@@ -4147,18 +4135,20 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWo
     var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set banned words ")[1].slice(0, 20).toLowerCase(), "other", true);
     peeky.serverData.get(keySF, "banned_words_bonus_setting").push(ReceivedArray);
   
-    if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length > 5)  {
+    /*if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length > 5)  {
         var EndString = " and some more.."
         var FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting").slice(0, 5);
-    } else {  var EndString = "";  FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");  };
+    } else {  var EndString = "";  FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");  };*/
 
+    var EndString = "";  FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
+  
     const embed = {"description": SuccessIcon + " The **Banned Words** setting has been set to **" + FixedArray.join("**, **") + EndString + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
  else
 {
- const embed = {"description": ErrorIcon + " The banned words setting is full.",  "color": EmbedColor}; 
+ const embed = {"description": ErrorIcon + " The setting for the **Banned Words** function is full.",  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
