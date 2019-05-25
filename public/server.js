@@ -110,7 +110,7 @@ const EmojiStorage         = "493048757286600716";
 
 //Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
-const blacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg"  ];
+const blacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com",   ];
 const whitelistedSymbols  = [  "a", "á", "b", "c", "č", "d", "ď", "e", "é", "ě", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "ň", "o", "ó", "p", "q", "r", "ř", "s", "š", "t", "u", "ů", "ú", "v", "w", "x", "y", "ý", "z", "ž", "0", "1", "2", "3", "4", "6", "5", "7", "8", "9", "_", "-", " ", ",", ".", "'", '"', "(", ")", "[", "]"  ];
 const DefaultDescriptions = [  "I'm very busy and important.", "I sip water quite slowly.", "Battery low, I'm scared.", "I have a car for each day of the month.", "I make up a dream in my head before I go to bed.", "My life is a green screen.", "I don't believe in showers.", "Certified troublemaker.", "I'm a Bacon Guru.", "Smarter than a 5th grader.", "I took an arrow to the knee.", "Pikachu chooses me.", "I'm real, I hope my followers are too.", "I have invincible minions.", "Is this water dry?", "I yell at inanimate objects.", "I sneak drinks into movie theatres.", "I hide my sweat well.", "I unleashed the zombie apocalypse.", "I'm a very mysterious person.", "I am so funny.", "I slapped a chicken once.", "I don't know what alt-tab does.", "Hitting things to make them work.", "I put fries into my straw.", "I walk faster when I see a creepy van.", "More than meets the eye.", "I draw on fogged up windows.", "Born at a very young age."  ];
 const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
@@ -126,7 +126,7 @@ const ExpNeeded             = 125; //Times the current level.
 const MaxServers            = 100;
 const AutoDeleteTime        = 250;
 const BackgroundInvLimit    = 25;
-const MaxBW                 = 5;
+const MaxBW                 = 10;
 const InactiveWipe          = 1296000000; //15 Days
 const InactiveDays          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 
@@ -4088,7 +4088,7 @@ if  (FunctioName.startsWith("clear nicknames ")) {
 else
       
 //Set Server Message
-if  (FunctioName.startsWith("server message ")) {
+if  (FunctioName.startsWith("server message "))  {
 
   if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
    
@@ -4122,7 +4122,7 @@ if  (FunctioName.startsWith("server message ")) {
 else
  
 //Set Banned Words
-if  (FunctioName.startsWith("banned words ")) {
+if  (FunctioName.startsWith("banned words "))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
@@ -4139,7 +4139,7 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length <= MaxBW) 
     }
      else
     {
-     const embed = {"description": ErrorIcon + " Limit reached, clearing the list of the **Banned Words** function.",  "color": EmbedColor};
+     const embed = {"description": InfoIcon + " Limit reached, clearing the list of the **Banned Words** function.",  "color": EmbedColor};
      message.channel.send({ embed })
      .catch(error => ErrorBag.add(error));
       
