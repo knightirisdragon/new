@@ -2164,7 +2164,7 @@ if  (peeky.serverData.has(keySF))  {
 //Streamer Role
 if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
   
-    if  (newMember.user.bot)  {
+    if  (!newMember.user.bot)  {
 
     const member = newMember;
     var HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
@@ -2966,7 +2966,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
    Functions.push(
                         "**Server functions in " + Function_RemoveFormatting(message.guild.name, "other", true) + "**" + "\n\n" +
 
-                        WM + " **Welcome Messages** " + "\n" + Hollow + " " + "When someone joins this server it will be announced in a channel called `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`." + "\n" +
+                        WM + " **Welcome Messages** " + "\n" + Hollow + " " + "When someone joins or leaves this server it will be announced in a channel called `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`." + "\n" +
                         MC + " **Member Counter** " + "\n" + Hollow + " " + "The member counter prefix is `" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
                         CN + " **Clear Nicknames** " + "\n" + Hollow + " " + "The full cleared nickname prefix is `" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n" +
                         CW + " **Classification Wall** " + "\n" + Hollow + " " + "The role name is `@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` and the channel name is `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n" +
