@@ -2337,7 +2337,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
   
             if  (peeky.serverData.get(keySF, "notifications") == true)  {
                   
-                const embed = {"description": InfoIcon + " **" + Function_RemoveFormatting(user.username, "other", true) + "** has logged **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**'s message.'",  "color": EmbedColor}; 
+                const embed = {"description": InfoIcon + " **" + Function_RemoveFormatting(user.username, "other", true) + "** has logged **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**'s message.",  "color": EmbedColor}; 
                 reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
             };
@@ -2688,7 +2688,7 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
                    
           if  (peeky.serverData.get(keySF, "notifications") == true)  {
             
-              const embed = {"description": InfoIcon + " I have cleared **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s name of ",  "color": EmbedColor};
+              const embed = {"description": InfoIcon + " I have cleared **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s name of fancy letters.",  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
             
               };
@@ -2731,7 +2731,7 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(
          ResponseCooldowns.add(message.guild.id);
          setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
        
-         const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s message because of the **Banned Words** function.",  "color": EmbedColor}; 
+         const embed = {"description": InfoIcon + " You cannot say that in here, **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
      };
@@ -2760,7 +2760,7 @@ if  ((((new Date() - new Date(message.member.joinedAt)) / 60000) < peeky.serverD
          ResponseCooldowns.add(message.guild.id);
          setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
        
-         const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s message because of the **Spoiler Lock** function.",  "color": EmbedColor}; 
+         const embed = {"description": InfoIcon + " You have to mark your image as a spoiler, **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
      };
@@ -5786,10 +5786,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "purge "
 
         if  (isNaN(BulkAmount) == false && BulkAmount > 0 && BulkAmount <= 100) {
 
-        await message.delete()
-        .catch(error => ErrorBag.add(error))
-        message.channel.bulkDelete(BulkAmount)
-        .catch(error => ErrorBag.add(error))
+        await message.delete().catch(error => ErrorBag.add(error))
+        message.channel.bulkDelete(BulkAmount).catch(error => ErrorBag.add(error))
         .then(() => {
           
         const embed = {"description":  SuccessIcon + " I have purged **" + BulkAmount + " messages** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
@@ -5826,27 +5824,20 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "lockdow
 
 if  (message.member.permissions.has("MANAGE_CHANNELS")) {
     
-if  (message.guild.me.hasPermission("MANAGE_MESSAGES"))  {
+if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
 
     var GivenRole = message.mentions.roles.first();
           
 if  (GivenRole && GivenRole.name !== "@everyone") {
   
     const embed = {"description": SuccessIcon + " The channel is now locked down for everyone except **@­" + Function_RemoveFormatting(GivenRole.name, "other", true) + "**.",  "color": EmbedColor}; 
-    await message.channel.send({ embed })
-    .catch(error => ErrorBag.add(error));
+    await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
-    message.channel.setName(message.channel.name + "_locked", ["Locked by @" + message.author.tag + "."])
-    .catch(error => ErrorBag.add(error));
+    message.channel.setName(message.channel.name + "_locked", ["Locked by @" + message.author.tag + "."]).catch(error => ErrorBag.add(error));
     
-    message.channel.overwritePermissions(message.guild.roles.find(r => r.name == "@everyone"), {  SEND_MESSAGES: false  })
-    .catch(error => ErrorBag.add(error));
-    
-    message.channel.overwritePermissions(message.guild.roles.find(r => r.id == GivenRole.id), {  SEND_MESSAGES: true  })
-    .catch(error => ErrorBag.add(error));
-    
-    message.channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  })
-    .catch(error => ErrorBag.add(error));
+    message.channel.overwritePermissions(message.guild.roles.find(r => r.name == "@everyone"), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
+    message.channel.overwritePermissions(message.guild.roles.find(r => r.id == GivenRole.id), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+    message.channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
 
 }
  else
@@ -5855,6 +5846,11 @@ if  (GivenRole && GivenRole.name !== "@everyone") {
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };  
   
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
    
 }
