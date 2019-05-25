@@ -2240,6 +2240,11 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
                 console.log("The Vote Kick function has been triggered in " + reaction.message.guild.name + ".");
 
+            } else if (reaction.count == 1)  {
+              
+              const embed = {"description": InfoIcon + " The user **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has started a vote kick against **.",  "color": EmbedColor};
+              reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+              
             };
  
         } else {
