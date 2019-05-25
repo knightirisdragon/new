@@ -457,7 +457,7 @@ th, td {
     position: fixed;
     left: 0%;
     bottom: 0%;
-    z-index: 100;
+    z-index: 99;
     width: 20%;
     height: 100%;
 }
