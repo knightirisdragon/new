@@ -284,7 +284,7 @@ var Banners = [
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground38.png?1539546582730", NormalPrice, "Counter attack", "Not credited"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground39.jpg?1539623688927", NormalPrice, "For the horde", "Not credited"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground40.jpg?1539879968743", NormalPrice, "Cool ferrets", "Not credited"],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground41.png?1539871005171", NormalPrice, "You right now", "Not credited"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground41.png?1558777240101", NormalPrice, "You right now", "Not credited"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground42.jpg?1539871005083", NormalPrice, "Father and daughter", "Dishnored 2"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground43.jpg?1539885633665", NormalPrice, "Lighten up forest", "Not credited"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground44.jpg?1539885633627", NormalPrice, "Chill lake", "Not credited"],
@@ -519,9 +519,11 @@ var Banners = [
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground373.png?1558547031064", NormalPrice, "Why?", "Just Cause"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground374.png?1558547068957", NormalPrice, "Toy Gang", "To Story 4"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground375.png?1558547070383", NormalPrice, "Mad Lad", "Mad Max"],
-    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground376.png?1558720636512", NormalPrice, "Abyss", "Not credited"],
-    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground377.png?1558720636079", NormalPrice, "Nowadays Rick", "Not credited"],
-    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground778.png?1558720637241", NormalPrice, "Point blank", "Not credited"]
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground376.png?1558720636512", NormalPrice, "Abyss", "Not credited"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground377.png?1558720636079", NormalPrice, "Nowadays Rick", "Not credited"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground778.png?1558720637241", NormalPrice, "Point blank", "Not credited"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground779.png?1558776983235", NormalPrice, "Abstract Pattern", "Not credited"],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground780.png?1558777299744", NormalPrice, "Spirit Tower", "Not credited"]
 
 ];
 
