@@ -1018,7 +1018,6 @@ peeky.on('debug', (error) => {
 //Fixes
 process.on('uncaughtException', function (err) {  ErrorBag.add(err)  });
 peeky.on('error', function (err)  {  ErrorBag.add(err) });
-//peeky.on('debug', console.log);
 
 //Stats System
 peeky.on('message', async (message) => {
@@ -2016,10 +2015,11 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
 //GUILD MEMBER UPDATE EVENTS
 peeky.on("guildMemberUpdate", async (oldMember, newMember) => {
   
-const key     = `${newMember.user.id}`;
-const keySF   = `${newMember.guild.id}`;
-var ExpAmount = 100;
-var Failed    = false;
+const key        = `${newMember.user.id}`;
+const keySF      = `${newMember.guild.id}`;
+var ExpAmount    = 100;
+var Failed       = false;
+var InfoMessages = [];
   
 //Supporter Date
 if  (keySF == SupportServer)  {
@@ -2034,9 +2034,13 @@ if  (peeky.userData.has(key))  {
 
         peeky.userData.math(key, "+", 1, "Redeemed");
         peeky.userData.math(key, "+", ExpAmount, "Exp");
-        peeky.userData.set(key, true, "ContributorBadge");
       
-        const embed = {"description": SuccessIcon + " You have been awarded the **Supporter status** for your purchase!",  "color": EmbedColor}; 
+        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+            peeky.userData.set(key, true, "ContributorBadge");
+            InfoMessages.push(InfoMessage1[0]);
+        };
+      
+        const embed = {"description": SuccessIcon + " You have been awarded the **Supporter status** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
@@ -2052,9 +2056,13 @@ if  (peeky.userData.has(key))  {
 
         peeky.userData.math(key, "+", 1, "Redeemed");
         peeky.userData.math(key, "+", ExpAmount, "Exp");
-        peeky.userData.set(key, true, "ContributorBadge");
       
-        const embed = {"description": SuccessIcon + " You have been awarded a **Server Upgrade** for your purchase!",  "color": EmbedColor}; 
+        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+            peeky.userData.set(key, true, "ContributorBadge");
+            InfoMessages.push(InfoMessage1[0]);
+        };
+
+        const embed = {"description": SuccessIcon + " You have been awarded a **Server Upgrade** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
@@ -2068,9 +2076,13 @@ if  (newMember.roles.has(RedeemRole1))  {
         peeky.userData.math(key, "+", 1000, "Gredit");
 
         peeky.userData.math(key, "+", ExpAmount, "Exp");
-        peeky.userData.set(key, true, "ContributorBadge");
       
-        const embed = {"description": SuccessIcon + " You have been awarded **1,000 " + GreditIcon + "** for your purchase!",  "color": EmbedColor}; 
+        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+            peeky.userData.set(key, true, "ContributorBadge");
+            InfoMessages.push(InfoMessage1[0]);
+        };
+      
+        const embed = {"description": SuccessIcon + " You have been awarded **1,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -2084,9 +2096,13 @@ if  (newMember.roles.has(RedeemRole2))  {
         peeky.userData.math(key, "+", 2000, "Gredit");
 
         peeky.userData.math(key, "+", ExpAmount, "Exp");
-        peeky.userData.set(key, true, "ContributorBadge");
       
-        const embed = {"description": SuccessIcon + " You have been awarded **2,000 " + GreditIcon + "** for your purchase!",  "color": EmbedColor}; 
+        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+            peeky.userData.set(key, true, "ContributorBadge");
+            InfoMessages.push(InfoMessage1[0]);
+        };
+      
+        const embed = {"description": SuccessIcon + " You have been awarded **2,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
 
     };
@@ -2101,9 +2117,13 @@ if  (newMember.roles.has(RedeemRole3))  {
         peeky.userData.math(key, "+", 5000, "Gredit");
 
         peeky.userData.math(key, "+", ExpAmount, "Exp");
-        peeky.userData.set(key, true, "ContributorBadge");
       
-        const embed = {"description": SuccessIcon + " You have been awarded **5,000 " + GreditIcon + "** for your purchase!",  "color": EmbedColor}; 
+        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+            peeky.userData.set(key, true, "ContributorBadge");
+            InfoMessages.push(InfoMessage1[0]);
+        };
+      
+        const embed = {"description": SuccessIcon + " You have been awarded **5,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -2117,9 +2137,13 @@ if  (newMember.roles.has(RedeemRole4))  {
         peeky.userData.math(key, "+", 10000, "Gredit");
 
         peeky.userData.math(key, "+", ExpAmount, "Exp");
-        peeky.userData.set(key, true, "ContributorBadge");
       
-        const embed = {"description": SuccessIcon + " You have been awarded **10,000 " + GreditIcon + "** for your purchase!",  "color": EmbedColor}; 
+        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+            peeky.userData.set(key, true, "ContributorBadge");
+            InfoMessages.push(InfoMessage1[0]);
+        };
+      
+        const embed = {"description": SuccessIcon + " You have been awarded **10,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
