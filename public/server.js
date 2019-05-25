@@ -1037,7 +1037,6 @@ peeky.on('message', async (message) => {
         DailyRewarded: new Date(),
 
         Background: 1,
-        IsCustom: false,
         Description: function_RandomDescription(),
         Inventory: [1],
         Gredit: 0,
@@ -2258,6 +2257,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
         };
 
     };
+
 };
   
 //Message Log
@@ -2265,10 +2265,10 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 
     if  (!user.bot && reaction.emoji.name == "📌" && reaction.count == 1)  {
       
-    if (!LoggedMessages.has(reaction.message.id)) {
+    if  (!LoggedMessages.has(reaction.message.id)) {
         
-       LoggedMessages.add(reaction.message.id);
-       var image = "none";   
+        LoggedMessages.add(reaction.message.id);
+        var image = "none";   
 
     var name    = peeky.serverData.get(keySF, "message_log_bonus_setting");
     var Channel = reaction.message.guild.channels.find(channel => channel.name == name);
@@ -2358,7 +2358,6 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 
 //MESSAGE EVENTS
 peeky.on('message', async (message) => {
-  
   
 if  (message.channel.type == "dm")  {
 if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !message.webhookID && message.content.toLowerCase() !== "accept")  {
