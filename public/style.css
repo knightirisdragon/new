@@ -155,6 +155,7 @@ a.button:hover {
     left: 13%;
     bottom: 8.25%;
     position: fixed;
+    cursor: pointer;
     z-index: 99;
     overflow: scroll;
 }
