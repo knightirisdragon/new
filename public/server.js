@@ -2933,7 +2933,21 @@ if  (!OverviewCooldown.has(message.guild.id))  {
   
     var ServerMessage = peeky.serverData.get(keySF, "server_message_bonus_setting");
   
-    if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length > 0)  {  var BannedWords = peeky.serverData.get(keySF, "banned_words_bonus_setting").join(", ")  }  else  {  var BannedWords = "none"  };
+    var FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
+    var EndString = "";
+    /*if  (FixedArray.length < 1)  {  
+      
+        FixedArray = "none";  
+      
+    } else {
+  
+    if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length > 5)  {
+        EndString = "...";
+        FixedArray = FixedArray.slice(0, 5);
+    };
+    FixedArray = FixedArray.join(", ");*/
+      
+    };
         
     if (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)   { var AR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var AR = DisabledIcon};
     if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)       { var WM = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var WM = DisabledIcon};
@@ -2991,7 +3005,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         ML + " **Message Log** " + "\n" + Hollow + " " + "Logged messages will be sent to a channel called `#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`." + "\n" +
                         IO + " **Images Only** " + "\n" + Hollow + " " + "No setting." + "\n" +
                         SL + " **Spoiler Lock** " + "\n" + Hollow + " " + "Members can post images freely `" + peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") + " minutes` after joining, unless the setting is 0 minutes." + "\n" +
-                        BW + " **Banned Words** " + "\n" + Hollow + " " + "The banned words in this server are `" + BannedWords + "`."
+                        BW + " **Banned Words** " + "\n" + Hollow + " " + "The banned words in this server are `" + FixedArray + EndString + "`."
    );
 
   for (i = 0; i < Functions.length; i++) {
@@ -4133,9 +4147,12 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWo
     var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set banned words ")[1].slice(0, 20).toLowerCase(), "other", true);
     peeky.serverData.get(keySF, "banned_words_bonus_setting").push(ReceivedArray);
   
-    if  (FixedBackgrounds.length > 5)  {  var EndString = " and some more.."  } else {};
+    if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length > 5)  {
+        var EndString = " and some more.."
+        var FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting").slice(0, 5);
+    } else {  var EndString = "";  FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");  };
 
-    const embed = {"description": SuccessIcon + " The **Banned Words** setting has been set to **" + peeky.serverData.get(keySF, "banned_words_bonus_setting").join("**, **") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " The **Banned Words** setting has been set to **" + FixedArray.join("**, **") + EndString + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
