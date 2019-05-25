@@ -2032,7 +2032,6 @@ if  (peeky.userData.has(key))  {
   
     if  (HadRole == null && HasRole)  {
 
-        peeky.userData.math(key, "+", 1, "Redeemed");
         peeky.userData.math(key, "+", ExpAmount, "Exp");
       
         if  (peeky.userData.get(key, "ContributorBadge") == false)  {
@@ -2054,7 +2053,6 @@ if  (peeky.userData.has(key))  {
   
     if  (HadRole == null && HasRole)  {
 
-        peeky.userData.math(key, "+", 1, "Redeemed");
         peeky.userData.math(key, "+", ExpAmount, "Exp");
       
         if  (peeky.userData.get(key, "ContributorBadge") == false)  {
