@@ -2800,12 +2800,11 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))
   
 //Get
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "get "))  {
-    message.channel.send("`" + Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get", true) + "`")
-    .catch(error => ErrorBag.add(error));
+    message.channel.send("`" + Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get", true) + "`").catch(error => ErrorBag.add(error));
 };
 
 //Eval
-if (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eval ")) {
+if (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eval "))  {
     
     if (message.author.id == OwnerId) {
        
