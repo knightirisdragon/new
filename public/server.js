@@ -126,6 +126,7 @@ const ExpNeeded             = 125; //Times the current level.
 const MaxServers            = 100;
 const AutoDeleteTime        = 250;
 const BackgroundInvLimit    = 25;
+const BannedWordsLimit      = 10;
 const InactiveWipe          = 1296000000; //15 Days
 const InactiveDays          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 
@@ -4126,12 +4127,23 @@ if  (FunctioName.startsWith("banned words "))  {
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+  
+if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWordsLimit)  {
 
     var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set banned words ")[1].slice(0, 20).toLowerCase(), "other", true);
     peeky.serverData.get(keySF, "banned_words_bonus_setting").push(ReceivedArray);
+  
+    if  (FixedBackgrounds.length > 5)  {  var EndString = " and some more.."  } else {};
 
     const embed = {"description": SuccessIcon + " The **Banned Words** setting has been set to **" + peeky.serverData.get(keySF, "banned_words_bonus_setting").join("**, **") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  
+}
+ else
+{
+ const embed = {"description": ErrorIcon + " The banned words setting is full.",  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
 
 };
   
@@ -5887,8 +5899,8 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 
         message.guild.createRole({
             name: MutedRole,
-            color: 
-Blrrpee        });
+            color: "#943148"
+       });
 
         InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "** with the default Permissions.");
 
