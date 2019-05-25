@@ -133,7 +133,8 @@
     #InvBtn, 
     #InvBtn2 ,
     #InvBtn3,
-    #InvId4  {
+    #InvBtn4,
+    #InvBtn5  {
     width: 100%;      
     }
       
@@ -196,65 +197,20 @@
     <script src="/server.js" defer></script>
     
     <script>
-      
-    function EventInfo()
-    {    
-     document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="headertext">Upgrade your favorite Discord servers!</b>  <br><br>  '
-
-                                                      + "<div class='storecategory'>"
-                                                      + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_serverlist.png?1558538116110'>"
-                                                      + "<b class='storeheader'>Server List</b>"
-                                                      + "<b class='storesub'>Upgraded servers will be displayed in the Server List page with the option to set an invite.</b>"
-                                                      + "</div>"
-
-                                                      + "<div class='storecategory'>"
-                                                      + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_autowipe.png?1558538116364'>"
-                                                      + "<b class='storeheader'>Auto Wipe</b>"
-                                                      + "<b class='storesub'>Upgraded servers will not lose any settings when removed by the Auto Wipe.</b>"
-                                                      + "</div>"
-
-                                                      + "<div class='storecategory'>"
-                                                      + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_gainboost.png?1558538115818'>"
-                                                      + "<b class='storeheader'>Gain Increase</b>"
-                                                      + "<b class='storesub'>Talking in upgraded servers will increase gain for Gredit and Exp by 2.</b>"
-                                                      + "</div>"
-
-                                                      + "<div class='storecategory'>"
-                                                      + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051'>"
-                                                      + "<b class='storeheader'>Chest Bonus</b>"
-                                                      + "<b class='storesub'>Opening chests in an upgraded servers can give up to 25 Gredit more.</b>"
-                                                      + "</div>"
-
-                                                      + "<div class='storecategory'>"
-                                                      + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_shoutout.png?1558538117165'>"
-                                                      + "<b class='storeheader'>Shoutout</b>"
-                                                      + "<b class='storesub'>Upgraded servers get a shoutout in the Support Server.</b>"
-                                                      + "</div>"
-
-                                                      + "<div class='storecategory'>"
-                                                      + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_stackablegainincrease.png?1558538180106'>"
-                                                      + "<b class='storeheader'>Stackable Gain Bonus</b>"
-                                                      + "<b class='storesub'>For every server that you upgrade, you will get a bigger gain for Gredit and Exp.</b>"
-                                                      + "</div>"
-    };
-    
-    function Close()  {
-        document.getElementById('fulldesc').style.display = "none";
-    };
     
     </script>
 
   </head> 
   
-<body onload="Close(); UpdateStats(); UpdateFeaturedProfile();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+<body onload="UpdateStats(); UpdateFeaturedProfile();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
   
 <b>
 
 <div class="sidenav">
  
-<a href="https://peeky.glitch.me/"><img src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855" width="100%" class="peeky_icon"><div id="ServerCount">
-      </div>
+<a href="https://peeky.glitch.me/"><img src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855" width="100%" class="peeky_icon"></a>
+  
+      <div id="ServerCount"></div>
 
       <br>
 
@@ -331,12 +287,6 @@
       <br><br></div>
 
 </div>
-    
-    <div class="demo" id="fulldesc">
-    <b><center>  <font size="2"><a id="descbutton" onclick="Close();"> X </a></font>  </center></b>
-    <b id="description">Item Description</b>
-    <br><br>
-    </div>
 
 <div class="subbody">
 
@@ -392,7 +342,7 @@
     <br>
 
     <a style="margin-bottom:5px;" class="button" id="InvBtn" href="invite.html" rel="noopener noreferrer"><font size="4">Add PEEKY to your Server</font></a>
-    <a class="button" id="InvBtn2" href="server.html" rel="noopener noreferrer"><font size="4">Join the Support Server</font></a>
+    <a style="margin-bottom:5px;" class="button" id="InvBtn2" href="server.html" rel="noopener noreferrer"><font size="4">Join the Support Server</font></a>
   
 </div>
   
@@ -417,7 +367,7 @@
 <font size="7" class="headertext">News Feed</font>  <br><br>
   
 <div id="News"></div>  <br><br>
-<a class="button" id="InvId4" href="https://peeky.glitch.me/server.html">View all</a>
+<a class="button" id="InvBtn4" href="https://peeky.glitch.me/server.html">View all</a>
 </div> 
   
 <br>
