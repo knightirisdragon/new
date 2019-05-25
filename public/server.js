@@ -1622,7 +1622,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
         var StaffTag = [];
         var StaffButton = [];
       
-        StaffButton.push('<a href="https://discordapp.com/channels/@me/' + guildMember.user.id + '" target="_blank">  <img src=' + DiscordIcon + ' class="staffbutton">  </a>');
+        //  StaffButton.push('<a href="https://discordapp.com/channels/@me/' + guildMember.user.id + '" target="_blank">  <img src=' + DiscordIcon + ' class="staffbutton">  </a>');
 
         //Vojtěch
         if  (guildMemberId == OwnerId)  {
@@ -4186,7 +4186,7 @@ if  (NewDescription !== RandomString)  {
   
 if  (NewLinesCount < 2)  {
   
-    const embed = {"description": SuccessIcon + " You have bought the description for **" + UpdatedAmount.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " You have bought a new description for **" + UpdatedAmount.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     peeky.userData.set(key, NewDescription, "Description");
