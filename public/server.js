@@ -2228,12 +2228,9 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
                 reaction.message.clearReactions().catch(error => ErrorBag.add(error));
               
-                if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(reaction.message.guild.id))  { 
-         
-                    ResponseCooldowns.add(reaction.message.guild.id);
-                    setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id)}, ResponseCooldownMS);
+                if  (peeky.serverData.get(keySF, "notifications") == true)  {
 
-                    const embed = {"description": InfoIcon + " The member **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked with **" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes**.",  "color": EmbedColor};
+                    const embed = {"description": InfoIcon + " **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has been vote kicked with **" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes**.",  "color": EmbedColor};
                     reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
                 };
@@ -2241,21 +2238,28 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                 console.log("The Vote Kick function has been triggered in " + reaction.message.guild.name + ".");
 
             } else if (reaction.count == 1)  {
+
+              if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(reaction.message.guild.id))  {
+         
+                  ResponseCooldowns.add(reaction.message.guild.id);
+                  setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id)}, ResponseCooldownMS);
               
-              const embed = {"description": InfoIcon + " The user **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "** has started a vote kick against **.",  "color": EmbedColor};
-              reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+                  const embed = {"description": InfoIcon + " **" + Function_RemoveFormatting(user.username, "other", true) + "** has started a vote kick against **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**.",  "color": EmbedColor};
+                  reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+                
+              };
               
             };
  
         } else {
-          const embed = {"description": ErrorIcon + " You cannot issue a vote kick against **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**.",  "color": EmbedColor};
+          const embed = {"description": ErrorIcon + " You cannot start a vote kick against that user, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
           reaction.message.clearReactions().catch(error => ErrorBag.add(error));
         };
  
         } else {
-          const embed = {"description": ErrorIcon + " Why do you hate me so much?",  "color": EmbedColor};
+          const embed = {"description": ErrorIcon + " Why do you hate me so much, **" + Function_RemoveFormatting(user.username, "other", true) + "**?",  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
           reaction.message.clearReactions().catch(error => ErrorBag.add(error));
@@ -2333,7 +2337,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
   
             if  (peeky.serverData.get(keySF, "notifications") == true)  {
                   
-                const embed = {"description": InfoIcon + " I have logged **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**'s message at **" + Function_RemoveFormatting(user.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                const embed = {"description": InfoIcon + " **" + Function_RemoveFormatting(user.username, "other", true) + "** has logged **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**'s message.'",  "color": EmbedColor}; 
                 reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
             };
@@ -2349,7 +2353,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
         {
           reaction.remove(user).catch(error => ErrorBag.add(error));
             
-          const embed = {"description": ErrorIcon + " That message was already logged.",  "color": EmbedColor}; 
+          const embed = {"description": ErrorIcon + " That message was already logged, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
         };
@@ -2474,7 +2478,7 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.s
         ResponseCooldowns.add(message.guild.id);
         setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
 
-        const embed = {"description": InfoIcon + " I have deleted **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s message because of the **Images Only** function.",  "color": EmbedColor}; 
+        const embed = {"description": InfoIcon + " You can only send images in this channel, **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
     };
@@ -2684,7 +2688,7 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
                    
           if  (peeky.serverData.get(keySF, "notifications") == true)  {
             
-              const embed = {"description": InfoIcon + " I have cleared **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s because of the **Clear Nicknames** function.",  "color": EmbedColor};
+              const embed = {"description": InfoIcon + " I have cleared **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s name of ",  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
             
               };
