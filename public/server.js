@@ -126,7 +126,6 @@ const ExpNeeded             = 125; //Times the current level.
 const MaxServers            = 100;
 const AutoDeleteTime        = 250;
 const BackgroundInvLimit    = 25;
-const MaxBW                 = 10;
 const InactiveWipe          = 1296000000; //15 Days
 const InactiveDays          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 
@@ -2991,7 +2990,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         ML + " **Message Log** " + "\n" + Hollow + " " + "Logged messages will be sent to a channel called `#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`." + "\n" +
                         IO + " **Images Only** " + "\n" + Hollow + " " + "No setting." + "\n" +
                         SL + " **Spoiler Lock** " + "\n" + Hollow + " " + "Members can post images freely `" + peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") + " minutes` after joining, unless the setting is 0 minutes." + "\n" +
-                        BW + " **Banned Words** " + "\n" + Hollow + " " + "The banned words in this server are `" + BannedWords + "` (" + peeky.serverData.get(keySF, "banned_words_bonus_setting").length + " / " + MaxBW + ")."
+                        BW + " **Banned Words** " + "\n" + Hollow + " " + "The banned words in this server are `" + BannedWords + "`."
    );
 
   for (i = 0; i < Functions.length; i++) {
@@ -4130,21 +4129,9 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 
     var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set banned words ")[1].slice(0, 20).toLowerCase(), "other", true);
     peeky.serverData.get(keySF, "banned_words_bonus_setting").push(ReceivedArray);
-  
-if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length <= MaxBW) {
 
-     const embed = {"description": SuccessIcon + " The **Banned Words** setting has been set to **" + peeky.serverData.get(keySF, "banned_words_bonus_setting").join("**, **") + "**.",  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      
-    }
-     else
-    {
-     const embed = {"description": InfoIcon + " Limit reached, clearing the list of the **Banned Words** function.",  "color": EmbedColor};
-     message.channel.send({ embed })
-     .catch(error => ErrorBag.add(error));
-      
-     peeky.serverData.set(keySF, [], "banned_words_bonus_setting");
-    };
+    const embed = {"description": SuccessIcon + " The **Banned Words** setting has been set to **" + peeky.serverData.get(keySF, "banned_words_bonus_setting").join("**, **") + "**.",  "color": EmbedColor}; 
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 };
   
@@ -4163,6 +4150,42 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length <= MaxBW) 
 };
   
 }; //END
+
+//CLEAR COMMANDS
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "clear "))  {
+  
+    var FunctioName = message.content.split(peeky.serverData.get(keySF, "prefix") + "clear ")[1];
+ 
+//Clear Banned Words
+if  (FunctioName.startsWith("banned words"))  {
+  
+if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+
+if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+      
+     peeky.serverData.set(keySF, [], "banned_words_bonus_setting");
+  
+     const embed = {"description": SuccessIcon + " Cleared the setting for the **Banned Words** function.",  "color": EmbedColor};
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+
+};
+  
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+ else
+{
+ const embed = {"description": ErrorMessage10[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+};
       
 //Profile Commands
 
