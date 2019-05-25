@@ -1791,10 +1791,10 @@ if  (peeky.guilds.size <= MaxServers)  {
   guild.leave().catch(error => ErrorBag.add(error));
 };
 
+});
+
 peeky.on("channelDelete", async (channel) => {
 const keyCF = `${channel.id}`;
-  
-console.log("nice")
 
 if  (peeky.channelData.has(keyCF))  {
     console.log("I have wiped the settings of a channel because it got deleted.");
@@ -1803,15 +1803,13 @@ if  (peeky.channelData.has(keyCF))  {
 
 });
 
-peeky.on("guildBanAdd", guild, user => {
+peeky.on("guildBanAdd", async (guild, user) => {
 const key = `${user.id}`;
 
 //Add Global Ban
 if  (peeky.userData.has(key))  {
     peeky.userData.math(key, "+", 1, "Bans");
 };
-
-});
 
 });
 //END
