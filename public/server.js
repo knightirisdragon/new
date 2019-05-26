@@ -2238,10 +2238,10 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
             } else if (reaction.count == 1)  {
 
-              if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(reaction.message.guild.id))  {
+              if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(reaction.message.guild.id + "VK"))  {
          
-                  ResponseCooldowns.add(reaction.message.guild.id);
-                  setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id)}, ResponseCooldownMS);
+                  ResponseCooldowns.add(reaction.message.guild.id + "VK");
+                  setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id + "VK")}, ResponseCooldownMS);
               
                   const embed = {"description": InfoIcon + " **" + Function_RemoveFormatting(user.username, "other", true) + "** has started a vote kick against **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**.",  "color": EmbedColor};
                   reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
@@ -2538,7 +2538,7 @@ if  (!EventCountdownCooldown.has(message.guild.id) && !message.author.bot)  {
 //Flood Protection
 if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
-if  (peeky.channelData.has(keyCF) && !message.member.permissions.has('MANAGE_MESSAGES') && message.channel.permissionsFor(peeky.user).has('MANAGE_ROLES'))  {
+if  (peeky.channelData.has(keyCF) && !message.member.permissions.has('MANAGE_MESSAGES') && message.guild.me.hasPermission('MANAGE_ROLES'))  {
   
 if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
