@@ -4301,6 +4301,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
   
     var InfoMessages = [];
     var InventorySize = peeky.userData.get(key, "Inventory").length;
+    var i = Number(i);
 
     if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
         peeky.userData.set(key, i, "Background");
@@ -4323,7 +4324,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
     };
       
     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
-    peeky.userData.get(key, "Inventory").push(Number(i);
+    peeky.userData.get(key, "Inventory").push(i);
   
     var embed = {"description": SuccessIcon + " You have bought the **" + Banners[i - 1][Banner.Name] + "** background bought for **" + Banners[i - 1][Banner.Price].toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -4408,6 +4409,7 @@ if  (message.content == peeky.serverData.get(keySF, "prefix") + "setbackground "
 if  (peeky.userData.get(key, "Inventory").includes(i))  {
   
     var InfoMessages = [];
+    var i = Number(i);
   
     if  (peeky.userData.get(key, "FashionBadge") == false)  {
 
@@ -4445,23 +4447,24 @@ if  (peeky.userData.get(key, "Inventory").includes(i))  {
 //SellBackground
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "sellbackground "))  {
   
-    var BackgroundToSell = message.content.split(peeky.serverData.get(keySF, "prefix") + "sellbackground ")[1];  
+    var i = message.content.split(peeky.serverData.get(keySF, "prefix") + "sellbackground ")[1];  
   
-if  (BackgroundToSell !== AllString)  {
+if  (i !== AllString)  {
   
-if  (isNaN(BackgroundToSell) == false)  {  BackgroundToSell = Number(BackgroundToSell)  };
+if  (isNaN(i) == false)  {  i = Number(i)  };
   
-if  (peeky.userData.get(key, "Inventory").includes(BackgroundToSell))  {
+if  (peeky.userData.get(key, "Inventory").includes(i))  {
   
-if  (BackgroundToSell !== 1)  {
+if  (i !== 1)  {
   
-    var BackgroundIndex = peeky.userData.get(key, "Inventory").indexOf(BackgroundToSell);
-    var FinalPrice      = Math.round(Banners[BackgroundToSell - 1][Banner.Price] / SellMultiplier);
+    var i = Number(i);
+    var BackgroundIndex  = peeky.userData.get(key, "Inventory").indexOf(i);
+    var FinalPrice       = Math.round(Banners[i - 1][Banner.Price] / SellMultiplier);
   
     peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
-    peeky.userData.math(key, "+", Banners[BackgroundToSell - 1][Banner.Price], "Gredit");
+    peeky.userData.math(key, "+", Banners[i - 1][Banner.Price], "Gredit");
 
-    if  (BackgroundToSell == peeky.userData.get(key, "Background"))  {
+    if  (i == peeky.userData.get(key, "Background"))  {
       
         peeky.userData.set(key, 1, "Background");
 
@@ -4470,7 +4473,7 @@ if  (BackgroundToSell !== 1)  {
 
     };
 
-      const embed = {"description": SuccessIcon + " You have sold the **" + Banners[BackgroundToSell - 1][Banner.Name] + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
+      const embed = {"description": SuccessIcon + " You have sold the **" + Banners[i - 1][Banner.Name] + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
     }
@@ -4737,7 +4740,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         };
 
         peeky.userData.math(key, "-", DonatedAmount, "Gredit");
-        peeky.userData.math(key2, "+", Number(DonatedAmount), "Gredit");
+        peeky.userData.math(key2, "+", DonatedAmount, "Gredit");
   
         const embed = {"description": SuccessIcon + " You have given **" + DonatedAmount.toLocaleString('en') + " " + GreditIcon + "** to **" + Function_RemoveFormatting(DonatedUser.user.username, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
@@ -4756,7 +4759,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         if  (peeky.userData.get(key, "Chests") >= DonatedAmount)  {
 
         peeky.userData.math(key, "-", DonatedAmount, "Chests");
-        peeky.userData.math(key2, "+", Number(DonatedAmount), "Chests");
+        peeky.userData.math(key2, "+", DonatedAmount, "Chests");
   
         const embed = {"description": SuccessIcon + " You have given **" + DonatedAmount.toLocaleString('en') + " " + ChestIcon + "** to **" + Function_RemoveFormatting(DonatedUser.user.username, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
