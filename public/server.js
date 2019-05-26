@@ -526,7 +526,10 @@ var Banners = [
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground281.png?1558874631584", NormalPrice, "Isaac's nightmare", "not credited"],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground282.png?1558874666863", NormalPrice, "Spiritual butterflies", "Judith Haddad"],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground283.png?1558877694122", 10000, "Golden", "Not credited"],
-    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground284.png?1558874673658", NormalPrice, "World war zombies", "World War Z"]
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground284.png?1558874673658", NormalPrice, "World war zombies", "World War Z"],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground285.png?1558888970896", 450, "Morning", "Not credited"],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground286.png?1558888974600", 475, "Zoink", "Not credited"],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground287.png?1558888976922", NormalPrice, "Paladin", "Not credited"]
 
 ];
 
@@ -4236,12 +4239,12 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "buydesc
       
     var NewDescription = message.content.split(peeky.serverData.get(keySF, "prefix") + "buydescription ")[1];
 
-    var UpdatedAmount = DescriptionPrice;
+    var UpdatedAmount = NewDescription.length;
     var NewLinesCount = 0;
     var MaxLines = "\n";
     var str = NewDescription;
   
-    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {  UpdatedAmount = 0;  };
+if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {  UpdatedAmount = 0;  };
 
     for(var i = NewLinesCount = 0; i<str.length; NewLinesCount+=+(MaxLines===str[i++]));
         
