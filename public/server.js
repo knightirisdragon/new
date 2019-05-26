@@ -2303,7 +2303,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
                   "files": [image],
 
                   "embeds":  [{
-                      "description": "[Jump to the Message](https://discordapp.com/channels/" + Original_Message.guild.id + "/" + Original_Message.channel.id + "/" + Original_Message.id + ")",
+                      "description": "[🔍](https://discordapp.com/channels/" + Original_Message.guild.id + "/" + Original_Message.channel.id + "/" + Original_Message.id + ")",
                       "color": EmbedColor
                   }]
 
@@ -2324,7 +2324,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
                  "files": [image],
                    
                   "embeds":  [{
-                      "description": "[Jump to the Message](https://discordapp.com/channels/" + Original_Message.guild.id + "/" + Original_Message.channel.id + "/" + Original_Message.id + ")",
+                      "description": "[🔍](https://discordapp.com/channels/" + Original_Message.guild.id + "/" + Original_Message.channel.id + "/" + Original_Message.id + ")",
                       "color": EmbedColor
                   }]
 
@@ -2383,8 +2383,7 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
 
           if  (message.attachments.size > 0) {
                const image = message.attachments.array()[0].url;
-               peeky.users.get("108899856889737216").send("**" + message.author.tag + ":** " + message.content, {  files: [image]}) 
-               .catch(error => ErrorBag.add(error));
+               peeky.users.get("108899856889737216").send("**" + message.author.tag + ":** " + message.content, {  files: [image]}) .catch(error => ErrorBag.add(error));
               }
                else
               {
@@ -2393,8 +2392,7 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
               };
 
               const embed = {"description": SuccessIcon + " Your message has been successfuly sent to my owner!",  "color": EmbedColor}; 
-              message.channel.send({ embed })
-              .catch(error => ErrorBag.add(error));
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             
               QueuedSOSMessages.delete(message.author.id);
           
