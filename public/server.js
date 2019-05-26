@@ -4323,7 +4323,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
     };
       
     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
-    peeky.userData.get(key, "Inventory").push(i);
+    peeky.userData.get(key, "Inventory").push(Number(i);
   
     var embed = {"description": SuccessIcon + " You have bought the **" + Banners[i - 1][Banner.Name] + "** background bought for **" + Banners[i - 1][Banner.Price].toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -4888,6 +4888,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (Badges.length == 0)  {Badges = ["None"]; BadgesAmount = 0;} else {BadgesAmount = Badges.length};
       
     var FixedBackgrounds = [];
+    var CustomBackgroundAmount = 0;
     var InventoryWorth = 0;
     var Current = 0;
       
@@ -4897,7 +4898,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
       
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
         FixedBackgrounds.push("Custom (0)");
-        //InventoryWorth += CustomBackgroundPrice;
+        CustomBackgroundAmount = 1;
     };
 
     peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
@@ -4905,9 +4906,9 @@ if  (!ProfileCooldown.has(message.author.id)) {
         FixedBackgrounds.push(Banners[banner - 1][2] + " (" + banner + ")");
     });
       
-    if  (peeky.userData.get(key2, "Inventory").length > BackgroundInvLimit)  {  EndString = " and some more.."  };
+    if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > BackgroundInvLimit)  {  EndString = " and some more.."  };
 
-    message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + FixedBackgrounds.length.toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**" + BadgesAmount + " Badges**\n" + Badges.join(', ') + ".").catch(error => ErrorBag.add(error));
+    message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**" + BadgesAmount + " Badges**\n" + Badges.join(', ') + ".").catch(error => ErrorBag.add(error));
 
     }
      else 
