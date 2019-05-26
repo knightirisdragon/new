@@ -14,7 +14,6 @@ const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 const ytdl_discord  = require('ytdl-core-discord');
 const ytdl          = require('ytdl-core');
 const opus          = require('node-opus');
-const lyrics        = require('node-lyrics');
 
 //CANVAS
 const Canvas       = require('canvas');
@@ -2473,10 +2472,10 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.s
 
     message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
   
-    if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id))  {
+    if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "IO"))  {
         
-        ResponseCooldowns.add(message.guild.id);
-        setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
+        ResponseCooldowns.add(message.guild.id + "IO");
+        setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "IO")}, ResponseCooldownMS);
 
         const embed = {"description": InfoIcon + " You can only send images in this channel, **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
@@ -2559,10 +2558,10 @@ if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "pref
 
         message.member.addRole(message.member.guild.roles.find(role => role.name == name), "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
       
-        if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id))  {
+        if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "FP"))  {
          
-            ResponseCooldowns.add(message.guild.id);
-            setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
+            ResponseCooldowns.add(message.guild.id + "FP");
+            setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "FP")}, ResponseCooldownMS);
             
             const embed = {"description": InfoIcon + " I have muted **" + message.member.user.username + "** because of the **Flood Protection** function.",  "color": EmbedColor};
             await message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))}); 
@@ -2726,10 +2725,10 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(
 
      message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
   
-     if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id))  {
+     if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "BW"))  {
          
-         ResponseCooldowns.add(message.guild.id);
-         setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
+         ResponseCooldowns.add(message.guild.id + "BW");
+         setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "BW")}, ResponseCooldownMS);
        
          const embed = {"description": InfoIcon + " You cannot say that in here, **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
@@ -2755,10 +2754,10 @@ if  ((((new Date() - new Date(message.member.joinedAt)) / 60000) < peeky.serverD
 
      message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
   
-     if   (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id))  {
+     if   (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "SO"))  {
          
-         ResponseCooldowns.add(message.guild.id);
-         setTimeout(() => {ResponseCooldowns.delete(message.guild.id)}, ResponseCooldownMS);
+         ResponseCooldowns.add(message.guild.id + "SO");
+         setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SO")}, ResponseCooldownMS);
        
          const embed = {"description": InfoIcon + " You have to mark your image as a spoiler, **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
