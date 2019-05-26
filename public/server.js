@@ -523,10 +523,10 @@ var Banners = [
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground278.png?1558783748699", NormalPrice, "Point blank", "Not credited"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground279.png?1558783759802", NormalPrice, "Abstract Pattern", "Not credited"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground280.png?1558783770529", NormalPrice, "Spirit Tower", "Not credited"],
-    ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground281.png?1558874631584", NormalPrice, "Isaac's Nightmare", "not credited"],
-    ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground282.png?1558874666863", NormalPrice, "Spiritual Butterflies", "Judith Haddad"],
-    ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground283.png?1558874670869", 10000, "Golden", "Not credited"],
-    ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground284.png?1558874673658", NormalPrice, "World War Zombies", "World War Z"]
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground281.png?1558874631584", NormalPrice, "Isaac's Nightmare", "not credited"],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground282.png?1558874666863", NormalPrice, "Spiritual Butterflies", "Judith Haddad"],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground283.png?1558877694122", 10000, "Golden", "Not credited"],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground284.png?1558874673658", NormalPrice, "World War Zombies", "World War Z"]
 
 ];
 
