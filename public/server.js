@@ -115,14 +115,13 @@ const blacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch
 const whitelistedSymbols  = [  "a", "á", "b", "c", "č", "d", "ď", "e", "é", "ě", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "ň", "o", "ó", "p", "q", "r", "ř", "s", "š", "t", "u", "ů", "ú", "v", "w", "x", "y", "ý", "z", "ž", "0", "1", "2", "3", "4", "6", "5", "7", "8", "9", "_", "-", " ", ",", ".", "'", '"', "(", ")", "[", "]"  ];
 const DefaultDescriptions = [  "I'm very busy and important.", "I sip water quite slowly.", "Battery low, I'm scared.", "I have a car for each day of the month.", "I make up a dream in my head before I go to bed.", "My life is a green screen.", "I don't believe in showers.", "Certified troublemaker.", "I'm a Bacon Guru.", "Smarter than a 5th grader.", "I took an arrow to the knee.", "Pikachu chooses me.", "I'm real, I hope my followers are too.", "I have invincible minions.", "Is this water dry?", "I yell at inanimate objects.", "I sneak drinks into movie theatres.", "I hide my sweat well.", "I unleashed the zombie apocalypse.", "I'm a very mysterious person.", "I am so funny.", "I slapped a chicken once.", "I don't know what alt-tab does.", "Hitting things to make them work.", "I put fries into my straw.", "I walk faster when I see a creepy van.", "More than meets the eye.", "I draw on fogged up windows.", "Born at a very young age."  ];
 const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
-const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw", "https://www.youtube.com/watch?v=N6hF3EaICxk", "https://www.youtube.com/watch?v=NU3aCNQAqwc", "https://www.youtube.com/watch?v=K3Qzzggn--s", "https://www.youtube.com/watch?v=PEBS2jbZce4", "https://www.youtube.com/watch?v=8Vlej7QUGGE", "https://www.youtube.com/watch?v=k92Bgqz-p_8", "https://www.youtube.com/watch?v=R_N15egKj6c", "https://www.youtube.com/watch?v=-WpnPSChVRQ", "https://www.youtube.com/watch?v=ktvTqknDobU", "https://www.youtube.com/watch?v=pXRviuL6vMY", "https://www.youtube.com/watch?v=UprcpdwuwCg", "https://www.youtube.com/watch?v=L3wKzyIN1yk", "https://www.youtube.com/watch?v=PHgc8Q6qTjc", "https://www.youtube.com/watch?v=I-sH53vXP2A", "https://www.youtube.com/watch?v=FTQbiNvZqaY", "https://www.youtube.com/watch?v=1vrEljMfXYo", "https://www.youtube.com/watch?v=V5XOwWOAQBQ", "https://www.youtube.com/watch?v=bl0e5DrYLyY", "https://www.youtube.com/watch?v=jjjaU5kQV8k", "https://www.youtube.com/watch?v=dQw4w9WgXcQ", "https://www.youtube.com/watch?v=P5QbkjnCvl4", "https://www.youtube.com/watch?v=i7fnlJ60RO8", "https://www.youtube.com/watch?v=oY9m2sHQwLs", "https://www.youtube.com/watch?v=eVTXPUF4Oz4", "https://www.youtube.com/watch?v=fPO76Jlnz6c", "https://www.youtube.com/watch?v=PVjiKRfKpPI"  ];
+const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw", "https://www.youtube.com/watch?v=N6hF3EaICxk", "https://www.youtube.com/watch?v=NU3aCNQAqwc", "https://www.youtube.com/watch?v=K3Qzzggn--s", "https://www.youtube.com/watch?v=PEBS2jbZce4", "https://www.youtube.com/watch?v=8Vlej7QUGGE", "https://www.youtube.com/watch?v=k92Bgqz-p_8", "https://www.youtube.com/watch?v=R_N15egKj6c", "https://www.youtube.com/watch?v=-WpnPSChVRQ", "https://www.youtube.com/watch?v=ktvTqknDobU", "https://www.youtube.com/watch?v=pXRviuL6vMY", "https://www.youtube.com/watch?v=UprcpdwuwCg", "https://www.youtube.com/watch?v=L3wKzyIN1yk", "https://www.youtube.com/watch?v=PHgc8Q6qTjc", "https://www.youtube.com/watch?v=I-sH53vXP2A", "https://www.youtube.com/watch?v=FTQbiNvZqaY", "https://www.youtube.com/watch?v=1vrEljMfXYo", "https://www.youtube.com/watch?v=V5XOwWOAQBQ", "https://www.youtube.com/watch?v=bl0e5DrYLyY", "https://www.youtube.com/watch?v=jjjaU5kQV8k", "https://www.youtube.com/watch?v=dQw4w9WgXcQ", "https://www.youtube.com/watch?v=P5QbkjnCvl4", "https://www.youtube.com/watch?v=i7fnlJ60RO8", "https://www.youtube.com/watch?v=oY9m2sHQwLs", "https://www.youtube.com/watch?v=eVTXPUF4Oz4", "https://www.youtube.com/watch?v=fPO76Jlnz6c", "https://www.youtube.com/watch?v=PVjiKRfKpPI", "https://www.youtube.com/watch?v=DKL4X0PZz7M"  ];
 
 //Amounts
 const CustomBackgroundPrice = 1000;
 const NormalPrice           = 250;
-const SellPrice             = 50;
 const DescriptionPrice      = 25;
-const FreePrice             = 0;
+const sellMultiplier        = 2.5;
 const ExpNeeded             = 125; //Times the current level.
 const MaxServers            = 100;
 const AutoDeleteTime        = 250;
@@ -245,7 +244,7 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 var Banner = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3  };
 var Banners = [
 
-    [DefaultBackground, FreePrice, "Default", "Steam"], //Default
+    [DefaultBackground, 0, "Default", "Steam"], //Default
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground2.jpg?1537950866619", NormalPrice, "Welcome to NYC", "The Division"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground3.jpg?1535302285990", NormalPrice, "Henry the knight", "Not credited"],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground4.jpg?1535333614451", NormalPrice, "Fallout's garage", "Fallout 4"],
@@ -4446,9 +4445,10 @@ if  (peeky.userData.get(key, "Inventory").includes(BackgroundToSell))  {
 if  (BackgroundToSell !== 1)  {
   
     var BackgroundIndex = peeky.userData.get(key, "Inventory").indexOf(BackgroundToSell);
+    var FinalPrice      = Math.round(Banners[BackgroundToSell - 1][Banner.Price] / sellMultiplier);
   
-    peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);  //Remove the background
-    peeky.userData.math(key, "+", SellPrice, "Gredit");  //Give money
+    peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
+    peeky.userData.math(key, "+", Banners[BackgroundToSell - 1][Banner.Price], "Gredit");
 
     if  (BackgroundToSell == peeky.userData.get(key, "Background"))  {
       
@@ -4459,7 +4459,7 @@ if  (BackgroundToSell !== 1)  {
 
     };
 
-      const embed = {"description": SuccessIcon + " You have sold the **" + Banners[BackgroundToSell - 1][Banner.Name] + "** background for **" + SellPrice.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
+      const embed = {"description": SuccessIcon + " You have sold the **" + Banners[BackgroundToSell - 1][Banner.Name] + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
     }
@@ -4486,16 +4486,16 @@ if  (BackgroundToSell !== 1)  {
       ProfileCooldown.add(message.author.id);
       setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
     
+      var MaxBackgrounds    = peeky.userData.get(key, "Inventory").length;
       var CurrentBackground = 0;
-      var MaxBackgrounds = peeky.userData.get(key, "Inventory").length;
-      var FullPrice = 0;
+      var FullPrice         = 0;
     
       do {
-        FullPrice += SellPrice;
+        FullPrice += Math.round(Banners[CurrentBackground][Banner.Price] / sellMultiplier);
         CurrentBackground ++;
       } while (CurrentBackground < MaxBackgrounds);
 
-      FullPrice -= SellPrice;
+      FullPrice -= Math.round(Banners[CurrentBackground][Banner.Price] / sellMultiplier);
       peeky.userData.set(key, [1], "Inventory");
       peeky.userData.math(key, "+", FullPrice, "Gredit");
 
