@@ -18,7 +18,7 @@ const opus          = require('node-opus');
 //CANVAS
 const Canvas       = require('canvas');
 const request      = require('request');
-var dominant_color = require('dominant-color');
+const dominant_color = require('dominant-color');
 
 //ENMAP
 const Enmap = require("enmap");
