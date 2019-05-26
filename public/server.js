@@ -524,7 +524,7 @@ var Banners = [
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground279.png?1558783759802", NormalPrice, "Abstract pattern", "Not credited"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground280.png?1558783770529", 450, "Spirit tower", "Not credited"],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground281.png?1558874631584", NormalPrice, "Isaac's nightmare", "not credited"],
-    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground282.png?1558874666863", NormalPrice, "Spiritual butterflies", "Judith Haddad"],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground282.png?1558874666863", 475, "Spiritual butterflies", "Judith Haddad"],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground283.png?1558877694122", 10000, "Golden", "Not credited"],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground284.png?1558874673658", NormalPrice, "World war zombies", "World War Z"],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground285.png?1558888970896", 450, "Morning", "Not credited"],
@@ -4891,7 +4891,6 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (Badges.length == 0)  {Badges = ["None"]; BadgesAmount = 0;} else {BadgesAmount = Badges.length};
       
     var FixedBackgrounds = [];
-    var CustomBackgroundAmount = 0;
     var InventoryWorth = 0;
     var Current = 0;
       
@@ -4901,8 +4900,8 @@ if  (!ProfileCooldown.has(message.author.id)) {
       
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
         FixedBackgrounds.push("Custom (0)");
-        CustomBackgroundAmount = 1;
-    };
+        var CustomBackgroundAmount = 1;
+    } else {  var CustomBackgroundAmount = 0;  };
 
     peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
         Current ++;
@@ -5025,14 +5024,12 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 70, 177);
 
     //Backpack String
-    var BackpackSize = peeky.userData.get(key2, "Inventory").length;
-
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
-        BackpackSize ++;
-    };
+        var CustomBackgroundAmount = 1;
+    } else {  var CustomBackgroundAmount = 0;  };
       
     ctx.font = "25px " + DefaultFont;
-    ctx.fillText("" + BackpackSize.toLocaleString('en') + " Backgrounds", 70, 222);
+    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 70, 222);
     
         //Description String
     var text = peeky.userData.get(key2, "Description");
