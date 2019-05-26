@@ -4405,6 +4405,13 @@ if  (message.content == peeky.serverData.get(keySF, "prefix") + "setbackground "
 if  (peeky.userData.get(key, "Inventory").includes(i))  {
   
     var InfoMessages = [];
+  
+    if  (peeky.userData.get(key, "FashionBadge") == false)  {
+
+        InfoMessages.push(InfoMessage1[0]);
+        peeky.userData.set(key, true, "FashionBadge");    
+
+    };
 
     if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
         InfoMessages.push(InfoIcon + " You have lost your custom background.");
