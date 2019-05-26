@@ -120,7 +120,7 @@ const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw", "h
 const CustomBackgroundPrice = 1000;
 const NormalPrice           = 500;
 const DescriptionPrice      = 25;
-const sellMultiplier        = 2.5;
+const SellMultiplier        = 2.5;
 const ExpNeeded             = 125; //Times the current level.
 const MaxServers            = 100;
 const AutoDeleteTime        = 250;
@@ -4446,7 +4446,7 @@ if  (peeky.userData.get(key, "Inventory").includes(BackgroundToSell))  {
 if  (BackgroundToSell !== 1)  {
   
     var BackgroundIndex = peeky.userData.get(key, "Inventory").indexOf(BackgroundToSell);
-    var FinalPrice      = Math.round(Banners[BackgroundToSell - 1][Banner.Price] / sellMultiplier);
+    var FinalPrice      = Math.round(Banners[BackgroundToSell - 1][Banner.Price] / SellMultiplier);
   
     peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
     peeky.userData.math(key, "+", Banners[BackgroundToSell - 1][Banner.Price], "Gredit");
@@ -4492,11 +4492,11 @@ if  (BackgroundToSell !== 1)  {
       var FullPrice         = 0;
     
       do {
-        FullPrice += Math.round(Banners[CurrentBackground][Banner.Price] / sellMultiplier);
+        FullPrice += Math.round(Banners[CurrentBackground][Banner.Price] / SellMultiplier);
         CurrentBackground ++;
       } while (CurrentBackground < MaxBackgrounds);
 
-      FullPrice -= Math.round(Banners[CurrentBackground][Banner.Price] / sellMultiplier);
+      FullPrice -= Math.round(Banners[CurrentBackground][Banner.Price] / SellMultiplier);
       peeky.userData.set(key, [1], "Inventory");
       peeky.userData.math(key, "+", FullPrice, "Gredit");
 
@@ -4878,22 +4878,27 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (Badges.length == 0)  {Badges = ["None"]; BadgesAmount = 0;} else {BadgesAmount = Badges.length};
       
     var FixedBackgrounds = [];
+    var InventoryWorth = 0;
     var Current = 0;
       
-        if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
-            FixedBackgrounds.push("Custom (0)");
-        };
-
-        peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
-            Current ++;
-            FixedBackgrounds.push(Banners[banner - 1][2] + " (" + banner + ")");
-        });
+    peeky.userData.get(key2, "Inventory").forEach(banner => {
+        InventoryWorth += Banners[banner - 1][1] / SellMultiplier;
+    });
       
-        if  (FixedBackgrounds.length > BackgroundInvLimit)  {  EndString = " and some more.."  };
+    if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
+        FixedBackgrounds.push("Custom (0)");
+        InventoryWorth += CustomBackgroundPrice;
+    };
 
-        message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**Backgrounds (" + FixedBackgrounds.length.toLocaleString('en') + ")**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**Badges (" + BadgesAmount + ")**\n" + Badges.join(', ') + ".")
-        .catch(error => ErrorBag.add(error));
+    peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
+        Current ++;
+        FixedBackgrounds.push(Banners[banner - 1][2] + " (" + banner + ")");
+    });
       
+    if  (FixedBackgrounds.length > BackgroundInvLimit)  {  EndString = " and some more.."  };
+
+    message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + FixedBackgrounds.length.toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**" + BadgesAmount + " Badges**\n" + Badges.join(', ') + ".").catch(error => ErrorBag.add(error));
+
     }
      else 
     {
