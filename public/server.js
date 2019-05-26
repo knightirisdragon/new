@@ -118,7 +118,7 @@ const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw", "h
 
 //Amounts
 const CustomBackgroundPrice = 1000;
-const NormalPrice           = 250;
+const NormalPrice           = 500;
 const DescriptionPrice      = 25;
 const sellMultiplier        = 2.5;
 const ExpNeeded             = 125; //Times the current level.
@@ -522,7 +522,12 @@ var Banners = [
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground277.png?1558783726173", NormalPrice, "Nowadays Rick", "Rick Astley"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground278.png?1558783748699", NormalPrice, "Point blank", "Not credited"],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground279.png?1558783759802", NormalPrice, "Abstract Pattern", "Not credited"],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground280.png?1558783770529", NormalPrice, "Spirit Tower", "Not credited"]
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground280.png?1558783770529", NormalPrice, "Spirit Tower", "Not credited"],
+  
+    ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground281.png?1558874631584", NormalPrice, "Isaac's Nightmare", "not credited"],
+    ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground282.png?1558874666863", NormalPrice, "Spiritual Butterflies", "Judith Haddad"],
+    ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground283.png?1558874670869", 10000, "Golden", "Not credited"],
+    ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground284.png?1558874673658", NormalPrice, "World War Zombies", "World War Z"]
 
 ];
 
@@ -1426,7 +1431,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
 
           Current ++;
       
-          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  id="1" width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + background_info[1] + ' Gredit  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>';
+          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  id="1" width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + background_info[1].toLocaleString('en') + ' Gredit  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>';
     
           BackgroundList.push(BackgroundString);
 
@@ -1457,7 +1462,7 @@ if  (!WebsiteCooldowns.has("workshop"))  {
       
     messages.forEach(m => {
           
-            if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.attachments.size > 0 && m.content.toLowerCase().includes("name: ") && m.content.toLowerCase().includes("credit: ") && m.content.toLowerCase().includes("prices: "))  {
+            if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.attachments.size > 0 && m.content.toLowerCase().includes("name: ") && m.content.toLowerCase().includes("credit: ") && m.content.toLowerCase().includes("price: "))  {
               
                 var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500" height="300" class="background_image">  <br>  <a class="button" href="https://discordapp.com/channels/' + m.guild.id + '/' + m.channel.id + '/' + m.id + '">Vote</a>  </div>';
                 WorkshopList.push(BackgroundString);
@@ -2420,7 +2425,7 @@ if  (!message.webhookID)  {
 if  (!message.author.bot && message.guild.owner !== undefined)  {
   
     //Publisher Badge
-    if  (message.channel.id == WorkshopChannel && message.attachments.size == 1 && message.content.toLowerCase().includes("name:") && message.content.toLowerCase().includes("credit:"))  {
+    if  (message.channel.id == WorkshopChannel && message.attachments.size == 1 && message.content.toLowerCase().includes("name:") && message.content.toLowerCase().includes("credit:") && message.content.toLowerCase().includes("price:"))  {
         if  (peeky.userData.has(key) && peeky.userData.get(key, "PublisherBadge") == false)  {
             peeky.userData.set(key, true, "PublisherBadge");
         };
