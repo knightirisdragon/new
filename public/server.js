@@ -4302,12 +4302,17 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
     var InfoMessages = [];
     var InventorySize = peeky.userData.get(key, "Inventory").length;
     var i = Number(i);
+  
+    if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
+        var CustomBackgroundAmount = 1;
+    } else {  var CustomBackgroundAmount = 0;  };
 
     if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
         peeky.userData.set(key, i, "Background");
     }   else  {
         InventorySize ++;
     };
+  
   
     if  (peeky.userData.get(key, "FashionBadge") == false)  {
     
@@ -4316,7 +4321,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
       
     };
   
-    if  (peeky.userData.get(key, "HorderBadge") == false && InventorySize >= 10)  {
+    if  (peeky.userData.get(key, "HorderBadge") == false && (InventorySize + CustomBackgroundAmount) >= 10)  {
     
         InfoMessages.push(InfoMessage1[0]);
         peeky.userData.set(key, true, "HorderBadge");
