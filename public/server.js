@@ -235,7 +235,7 @@ const ErrorMessage9  = [ErrorIcon + " You must enter a valid amount."];
 const ErrorMessage10 = [ErrorIcon + " Make sure the Function's name is all in lowercase."];
 const ErrorMessage11 = [ErrorIcon + " You need to be a Supporter to do that."];
 
-const InfoMessage1 = [InfoIcon + " You have earned a new badge!"];
+const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
 //RESPONSE MESSAGES
 
@@ -4887,7 +4887,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
       
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
         FixedBackgrounds.push("Custom (0)");
-        InventoryWorth += CustomBackgroundPrice;
+        //InventoryWorth += CustomBackgroundPrice;
     };
 
     peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
