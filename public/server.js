@@ -2555,7 +2555,7 @@ if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "pref
 
     if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent && message.author.id == LastMsgUser))  {
       
-    if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length >= 3)  {
+    if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length >= 2)  {
 
     const name       = peeky.serverData.get(keySF, "muted_role");
     const RoleExists = message.guild.roles.find(role => role.name == name);
