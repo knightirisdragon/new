@@ -2578,7 +2578,7 @@ if  (!ServerTrialCooldown.has("cooldown"))  {
     setTimeout(() => {ServerTrialCooldown.delete("cooldown")}, 300000);
     
     var filtered = peeky.serverData.filter( p => p.server_trial_bonus == true );
-    var ValidGuilds = function_ShuffleArray(filtered.map(i => i.GuildID).slice(0, 5));
+    var ValidGuilds = function_ShuffleArray(filtered.map(i => i.GuildID).slice(0, 10));
 
     ValidGuilds.forEach(g => {
   
@@ -2588,19 +2588,21 @@ if  (!ServerTrialCooldown.has("cooldown"))  {
         
     if  (Guild.me.hasPermission('KICK_MEMBERS'))  {
 
-        var OnTrial = function_ShuffleArray((Guild.members.filter(m => !m.user.bot && !m.user.bot.permissions.has('MANAGE_GUILD') && m.roles.find(r => r.name == "Trial")).map(m => m)).slice(0, 5));
+        var OnTrial = function_ShuffleArray((Guild.members.filter(m => !m.user.bot && !m.user.bot.permissions.has('MANAGE_GUILD') && m.roles.find(r => r.name == "Trial")).map(m => m)).slice(0, 10));
         var TrialTime = peeky.serverData.get(keySF, "server_trial_bonus_setting");
       
         OnTrial.forEach(async m => {
-      
-                console.log(m.user.username + " " + TrialTime);
         
             if  (new Date() - m.joinedAt >= (TrialTime * 60 * 1000))  {
               
+                setTimeout(async () => {
+                  
                 await m.send("Your trial on **" + Function_RemoveFormatting(Guild.name, "other", true) + "** has ended.").catch(error => ErrorBag.add(error));  
                 m.kick({  reason: "Triggered by the Server Trial function."  }).catch(error => ErrorBag.add(error));
 
-                console.log("The Server Trial function has been triggered in " + message.guild.name + ".");
+                console.log("The Server Trial function has been triggered in " + m.guild.name + ".");                
+                  
+                }, 10000)
               
             };
           
