@@ -5525,6 +5525,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
             dispatcher.on('end', async reason => {
               
+            clearTimeout(peeky.serverData.get(keySF, "MusicSessionId"));
             CurrentlyPlaying.delete(message.guild.id);
             voiceChannel.leave();
               
@@ -5561,13 +5562,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         });
       
-        var id = setTimeout(function(){
-          CurrentlyPlaying.delete(message.guild.id)
+        var id = setTimeout(function()  {
+            peeky.serverData.set(keySF, id, "MusicSessionId");
+            CurrentlyPlaying.delete(message.guild.id);
         }, CooldownExpires);
-
-clearTimeout(id);
-
-        setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, CooldownExpires);
 
     } else {
       const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
