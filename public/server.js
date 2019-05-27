@@ -5527,20 +5527,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const stream = ytdl(GivenSong);
             const dispatcher = connection.playStream(stream);
 
-            /*             
-            clearTimeout(peeky.serverData.get(keySF, "MusicSessionId"));
-              
-            var id = setTimeout(function()  {
-                peeky.serverData.set(keySF, id, "MusicSessionId");
-                CurrentlyPlaying.delete(message.guild.id);
-                message.channel.send("debug").catch(error => ErrorBag.add(error));
-            }, CooldownExpires);*/
-
             dispatcher.on('end', async reason => {
               
-            /*clearTimeout(peeky.serverData.get(keySF, "MusicSessionId"));
-            CurrentlyPlaying.delete(message.guild.id);*/
-              
+            CurrentlyPlaying.delete(message.guild.id);
             voiceChannel.leave();
               
             /* if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && message.guild.members.get(PeekyId).nickname !== null)  {
@@ -5754,10 +5743,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
 //Skip
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))  {
 
-    if  (message.member.voiceChannel && message.member.voiceChannel.members.find(m => m.id == PeekyId))  {
+    if  (message.member.voiceChannel && CurrentlyPlaying.has(message.guild.id))  {
 
         message.member.voiceChannel.leave();
-        message.channel.stopTyping();
         CurrentlyPlaying.delete(message.guild.id);
       
     } else {
