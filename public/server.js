@@ -5514,8 +5514,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
             message.channel.stopTyping();
               
-            if  (message.guild.members.get(PeekyId).nickname == null)  {
-                message.guild.members.get(PeekyId).setNickname("Playing: " + Title.slice(0, 20));
+            if  (message.guild.me.hasPermission("CHANGE_NICKNAME"))  {
+                message.guild.me.setNickname("Playing: " + Title.slice(0, 20));
             };
               
             if  (DeleteMessage == true)  {
@@ -5533,8 +5533,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             CurrentlyPlaying.delete(message.guild.id);
             voiceChannel.leave();
               
-            if  (message.guild.members.get(PeekyId).nickname !== null)  {
-                message.guild.members.get(PeekyId).setNickname(null);
+            if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && message.guild.members.get(PeekyId).nickname !== null)  {
+                message.guild.me.setNickname(null);
             };
               
             const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id)
