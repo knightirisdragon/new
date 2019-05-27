@@ -5560,6 +5560,12 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const embed = {"description": ErrorIcon + " Failed to get the YouTube video.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         });
+      
+        var id = setTimeout(function(){
+          CurrentlyPlaying.delete(message.guild.id)
+        }, CooldownExpires);
+
+clearTimeout(id);
 
         setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, CooldownExpires);
 
