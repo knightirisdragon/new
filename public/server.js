@@ -2569,7 +2569,7 @@ if  (!ServerTrialCooldown.has("cooldown"))  {
     ServerTrialCooldown.add("cooldown");
     setTimeout(() => {ServerTrialCooldown.delete("cooldown")}, 300000);
     
-    var filtered = peeky.serverData.filter( p => p.flood_protection_bonus == true );
+    var filtered = peeky.serverData.filter( p => p.server_trial_bonus == true );
     var ValidGuilds = function_ShuffleArray(filtered.map(i => i.GuildID)).slice(0, 5);
 
     ValidGuilds.forEach(g => {
@@ -2577,14 +2577,15 @@ if  (!ServerTrialCooldown.has("cooldown"))  {
     if  (peeky.guilds.has(g))  { 
         
         var Guild = peeky.guilds.get(g);
-        var OnTrial = function_ShuffleArray((Guild.members.filter(m => m.roles.find(r => r.name == "Trial")).map(m => m))).slice(0, 2);
-        var TrialTime = peeky.serverData.get(keySF, "server_trial_bonus_setting");
         
     if  (Guild.me.hasPermission('KICK_MEMBERS'))  {
+
+        var OnTrial = function_ShuffleArray((Guild.members.filter(m => m.roles.find(r => r.name == "Trial")).map(m => m))).slice(0, 2);
+        var TrialTime = peeky.serverData.get(keySF, "server_trial_bonus_setting");
       
         OnTrial.forEach(async m => {
         
-            if  (new Date() - TrialTime <= TrialTime)  {
+            if  (new Date() - m.joinedAt <= TrialTime)  {
               
                 await m.send("Your trial on **" + Function_RemoveFormatting(Guild.name, "other", true) + "** has ended.").catch(error => ErrorBag.add(error));  
                 m.kick({  reason: "Triggered by the Server Trial function."  }).catch(error => ErrorBag.add(error));   
@@ -3668,7 +3669,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 else
 
 //Toggle Streamer Role
-if  (FunctioName.startsWith("streamer role")) {
+if  (FunctioName.startsWith("streamer role"))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
         
@@ -3701,13 +3702,66 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
      else
     {
      const embed = {"description": CooldownMessage3[0],  "color": EmbedColor}; 
-     message.channel.send({ embed })
-     .catch(error => ErrorBag.add(error));
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
     };
       
     if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
     const embed = {"description": SuccessIcon + " The **Streamer Role** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+  
+else
+
+//Toggle Server Trial
+if  (FunctioName.startsWith("server trial"))  {
+  
+if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+        
+    const guild = message.guild;
+    var name = "Trial";
+    var role = guild.roles.find(c=> c.name == name);
+
+    if(peeky.serverData.get(keySF, "server_trial_bonus") == true) {peeky.serverData.set(keySF, false, "server_trial_bonus");}
+    else peeky.serverData.set(keySF, true, "server_trial_bonus");
+      
+    if (!role) {
+
+    if  (!RoleCooldown.has(message.guild.id)) {
+      
+    //Permission Checking
+    if(message.guild.me.hasPermission("MANAGE_ROLES")) {
+
+    RoleCooldown.add(message.guild.id);
+    setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
+      
+    message.guild.createRole({
+    name: name,
+    color: "#d3d3d3"
+    });
+      
+    InfoMessages.push(InfoIcon + " Created a role called **" + name + "** with the default Permissions for the **Server server_trial** function.");
+
+    };
+    }
+     else
+    {
+     const embed = {"description": CooldownMessage3[0],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+    };
+      
+    if  (peeky.serverData.get(keySF, "server_trial_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Server Trial** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     
@@ -4051,6 +4105,42 @@ if  (FunctioName.startsWith("spoiler lock "))  {
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   };
 
+};
+
+}
+  
+else
+      
+//Set Server Trial
+if  (FunctioName.startsWith("server trial "))  {
+  
+  if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+    
+  if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
+    
+      var GivenMinutes = message.content.split(peeky.serverData.get(keySF, "prefix") + "set server trial ")[1];
+
+      if  (!isNaN(GivenMinutes) && GivenMinutes > 0)   {
+
+          peeky.serverData.set(keySF, GivenMinutes, "server_trial_bonus_setting");
+
+          const embed = {"description": SuccessIcon + " The **Server Trial** setting has been set to **" + GivenMinutes + "**.",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+      }
+       else
+      {
+        const embed = {"description": ErrorMessage9[0],  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      };
+
+  }
+   else
+  {
+    const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  };
+
 }
  else
 {
@@ -4235,11 +4325,6 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWo
 
     var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set banned words ")[1].slice(0, 20).toLowerCase(), "other", true);
     peeky.serverData.get(keySF, "banned_words_bonus_setting").push(ReceivedArray);
-  
-    /*if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length > 5)  {
-        var EndString = " and some more.."
-        var FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting").slice(0, 5);
-    } else {  var EndString = "";  FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");  };*/
 
     var EndString = "";  FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
   
