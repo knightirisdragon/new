@@ -9,7 +9,7 @@ dependencies:
   enmap: 4.8.7
   express: 4.16.4
   node-fetch: 2.6.0
-  node-opus: 0.3.1
+  node-opus: 0.3.2
   parse-ms: 2.0.0
   request: 2.88.0
   require.js: 1.0.0
@@ -869,6 +869,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-TghvYc72wlMGMVMluVo9WRJc0mB8KxxF/gZ4YYFy7V2ZQX9l7rgbPg7vjS9mt6U5HXODVFVI2bOduCzwOMv/lw==
+  /nan/2.14.0:
+    dev: false
+    resolution:
+      integrity: sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
   /needle/2.2.4:
     dependencies:
       debug: 2.6.9
@@ -892,11 +896,11 @@ packages:
       node: 4.x || >=6.0.0
     resolution:
       integrity: sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
-  /node-opus/0.3.1:
+  /node-opus/0.3.2:
     dependencies:
       bindings: 1.2.1
       commander: 2.20.0
-      nan: 2.13.2
+      nan: 2.14.0
     dev: false
     engines:
       node: '>=5.10.0'
@@ -904,7 +908,7 @@ packages:
       ogg-packet: 1.0.1
     requiresBuild: true
     resolution:
-      integrity: sha512-1Cb8OvHhdDspVfeKMjEgbedJabyE1Ib6OcN2BMEsRCU7FIsciuBpOErcie3y0qTf83nclPAY+kBU3Oj+U+oRlQ==
+      integrity: sha512-o7hKgNncfbgF1j25lCK7cPqs9DEMroP3LWW0BMb/Ismc33cXo7LcaLqS0+/VV+NOotIy43fb7juLg6akflzBEw==
   /node-pre-gyp/0.11.0:
     dependencies:
       detect-libc: 1.0.3
@@ -1143,7 +1147,7 @@ packages:
     dependencies:
       bindings: 1.5.0
       debug: 2.6.9
-      nan: 2.13.2
+      nan: 2.14.0
     dev: false
     optional: true
     requiresBuild: true
@@ -1521,12 +1525,12 @@ specifiers:
   canvas-node: ^0.3.20
   dblapi.js: ^2.3.0
   ddblapi.js: ^1.0.0
-  discord.js: ^11.5.0-dev
+  discord.js: 11.5.0
   dominant-color: ^0.0.1
   enmap: ^4.8.6
   express: ^4.16.4
   node-fetch: ^2.6.0
-  node-opus: ^0.3.1
+  node-opus: ^0.3.2
   parse-ms: ^2.0.0
   request: ^2.88.0
   require.js: ^1.0.0

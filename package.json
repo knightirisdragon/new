@@ -3,10 +3,10 @@
     "start": "node public/server.js"
   },
   "dependencies": {
-    "discord.js": "^11.5.0-dev",
+    "discord.js": "11.5.0",
     "dblapi.js": "^2.3.0",
     "ddblapi.js": "^1.0.0",
-    "node-opus": "^0.3.1",
+    "node-opus": "^0.3.2",
     "ytdl-core": "^0.29.2",
     "ytdl-core-discord": "^1.0.3",
     "canvas": "^2.5.0",
