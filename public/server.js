@@ -2580,7 +2580,7 @@ if  (!ServerTrialCooldown.has("cooldown"))  {
         
     if  (Guild.me.hasPermission('KICK_MEMBERS'))  {
 
-        var OnTrial = function_ShuffleArray((Guild.members.filter(m => m.roles.find(r => r.name == "Trial")).map(m => m)).slice(0, 4));
+        var OnTrial = function_ShuffleArray((Guild.members.filter(m => m.roles.find(r => r.name == "Trial")).map(m => m)).slice(0, 5));
         var TrialTime = peeky.serverData.get(keySF, "server_trial_bonus_setting");
       
         OnTrial.forEach(async m => {
@@ -3054,6 +3054,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
     if (peeky.serverData.get(keySF, "server_message_bonus") == true)         { var SM = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SM = DisabledIcon};
     if (peeky.serverData.get(keySF, "vote_kick_bonus") == true)              { var VT = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var VT = DisabledIcon};
     if (peeky.serverData.get(keySF, "join_role_bonus") == true)              { var JR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var JR = DisabledIcon};
+    if (peeky.serverData.get(keySF, "server_trial_bonus") == true)           { var ST = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var JR = DisabledIcon};
     if (peeky.serverData.get(keySF, "streamer_role_bonus") == true)          { var SR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SR = DisabledIcon};
     if (peeky.channelData.get(keyCF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
     if (peeky.channelData.get(keyCF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
@@ -3077,7 +3078,9 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         MC + " **Member Counter** " + "\n" + Hollow + " " + "The member counter prefix is `" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
                         CN + " **Clear Nicknames** " + "\n" + Hollow + " " + "The full cleared nickname prefix is `" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n" +
                         CW + " **Classification Wall** " + "\n" + Hollow + " " + "The role name is `@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` and the channel name is `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n" +
-                        SA + " **Suspicion Alert** " + "\n" + Hollow + " " + "The server owner will be alerted when someone with `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans` or more joins the server." + "\n"
+                        SA + " **Suspicion Alert** " + "\n" + Hollow + " " + "The server owner will be alerted when someone with `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans` or more joins the server." + "\n" +
+                        ST + " **Server Trial** " + "\n" + Hollow + " " + "Members have about `" + peeky.serverData.get(keySF, "server_message_bonus_setting") + " minutes` before their trial expires."
+   
    );
 
    Functions.push(
@@ -4092,7 +4095,7 @@ if  (FunctioName.startsWith("spoiler lock "))  {
         
           if  (GivenMinutes == 0)  {GivenMinutes = "never"}  else  {GivenMinutes = GivenMinutes + " minutes"}
 
-          const embed = {"description": SuccessIcon + " The **Spoiler Lock** setting has been set to **" + GivenMinutes + "**.",  "color": EmbedColor}; 
+          const embed = {"description": SuccessIcon + " The **Spoiler Lock** setting has been set to **" + GivenMinutes + " minutes**.",  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
       }
@@ -4128,7 +4131,7 @@ if  (FunctioName.startsWith("server trial "))  {
 
           peeky.serverData.set(keySF, GivenMinutes, "server_trial_bonus_setting");
 
-          const embed = {"description": SuccessIcon + " The **Server Trial** setting has been set to **" + GivenMinutes + "**.",  "color": EmbedColor}; 
+          const embed = {"description": SuccessIcon + " The **Server Trial** setting has been set to **" + GivenMinutes + " minutes**.",  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
       }
