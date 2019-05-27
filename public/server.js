@@ -2561,14 +2561,23 @@ if  (!EventCountdownCooldown.has(message.guild.id) && !message.author.bot)  {
 
 };
 
-//Servre Trial
+//Server Trial
 if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
 
 if  (!ServerTrialCooldown.has("cooldown"))  {
 
     ServerTrialCooldown.add("cooldown");
     setTimeout(() => {ServerTrialCooldown.delete("cooldown")}, 300000);
-  
+    
+    const filtered = peeky.serverData.filter( p => p.flood_protection_bonus == true );
+
+    var ValidGuilds = filtered.map(i => i.GuildID)
+
+    ValidGuilds.forEach(g => {
+    if(peeky.guilds.has(g)){
+    console.log(peeky.guilds.get(g).members.filter(m => m.roles.find(r => r.name == "Developers")).map(m => m.user.id))
+    };
+    });
     
 
 };
