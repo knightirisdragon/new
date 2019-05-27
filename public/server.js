@@ -4326,7 +4326,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
     if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
         var CustomBackgroundAmount = 1;
     } else {  var CustomBackgroundAmount = 0;  };
-  
+
     if  (peeky.userData.get(key, "HorderBadge") == false && (peeky.userData.get(key, "Inventory").length + CustomBackgroundAmount) >= 10)  {
     
         InfoMessages.push(InfoMessage1[0]);
@@ -5476,9 +5476,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
       
     if  (!MusicCmdCooldown.has(message.author.id))  {
 
-    /*    MusicCmdCooldown.add(message.author.id);
-        setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 5000);
-*/
     var PlaylistAction = message.content.split(peeky.serverData.get(keySF, "prefix") + "playlist")[1];
   
     if  (PlaylistAction.startsWith(" add "))  {
