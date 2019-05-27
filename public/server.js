@@ -5514,6 +5514,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
             message.channel.stopTyping();
               
+            if  (message.guild.members.get(PeekyId).nickname == null)  {
+                message.guild.members.get(PeekyId).setNickname("Playing: " + Title.slice(0, 20));
+            };
+              
             if  (DeleteMessage == true)  {
                 message.delete().catch(error => ErrorBag.add(error));
             };
@@ -5528,6 +5532,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             clearTimeout(peeky.serverData.get(keySF, "MusicSessionId"));
             CurrentlyPlaying.delete(message.guild.id);
             voiceChannel.leave();
+              
+            if  (message.guild.members.get(PeekyId).nickname !== null)  {
+                message.guild.members.get(PeekyId).setNickname(null);
+            };
               
             const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id)
               
@@ -5561,6 +5569,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const embed = {"description": ErrorIcon + " Failed to get the YouTube video.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         });
+              
+        clearTimeout(peeky.serverData.get(keySF, "MusicSessionId"));
       
         var id = setTimeout(function()  {
             peeky.serverData.set(keySF, id, "MusicSessionId");
