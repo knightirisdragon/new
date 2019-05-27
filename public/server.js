@@ -49,6 +49,7 @@ const MusicCmdCooldown       = new Set();
 const PeekyCmdCooldown       = new Set();
 const ChannelCooldown        = new Set();  const ChannelCooldownMS   = 10000;
 const RoleCooldown           = new Set();  const RoleCooldownMS      = 10000;
+const ServerTrialCooldown    = new Set();
 const EventCountdownCooldown = new Set();
 const MemberCounterCooldown  = new Set();
 const MessageLogCooldown     = new Set();
@@ -1833,7 +1834,7 @@ const keySF = `${member.guild.id}`;
 if (member.user.id !== PeekyId && peeky.serverData.has(keySF)) {
   
 //Server Message
-if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user.bot) {
+if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user.bot)  {
       
     member.send((peeky.serverData.get(keySF, "server_message_bonus_setting")).replace(GuildNameTag, Function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym))
     .catch(error => ErrorBag.add(error));
@@ -1841,7 +1842,7 @@ if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user
 };
 
 //Suspicion Alert
-if (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.user.bot) {
+if (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.user.bot)  {
       
       var owner      = member.guild.owner.user.id;
       var Year       = null;
@@ -1872,7 +1873,7 @@ if (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.user
 };
     
 //Member Counter (JOIN)
-if (peeky.serverData.get(keySF, "member_counter_bonus") == true) {
+if (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
   
 if  (!MemberCounterCooldown.has(member.guild.id))  {
 
@@ -1898,7 +1899,7 @@ if  (!MemberCounterCooldown.has(member.guild.id))  {
 };
     
 //Join Role
-if (peeky.serverData.get(keySF, "join_role_bonus") == true) {
+if (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
   
     //Permission Checking
   if  (member.guild.me.hasPermission("MANAGE_ROLES")) {
@@ -1916,19 +1917,17 @@ if (peeky.serverData.get(keySF, "join_role_bonus") == true) {
 
 };
     
-//
-if (peeky.serverData.get(keySF, "join_role_bonus") == true) {
+//Server Trial
+if (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
   
     //Permission Checking
   if  (member.guild.me.hasPermission("MANAGE_ROLES")) {
       
-      var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
+      var name = "Trial";
       var RoleExist = member.guild.roles.find(role => role.name == name);
 
       if  (RoleExist) {
-          member.addRole(RoleExist, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
-
-          console.log("The Join Role function has been triggered in " + member.guild.name + ".");
+          member.addRole(RoleExist, "Triggered by the Server Trial function.").catch(error => ErrorBag.add(error));;
       };
 
   };
@@ -1936,7 +1935,7 @@ if (peeky.serverData.get(keySF, "join_role_bonus") == true) {
 };
 
 //Welcome Messages Function
-if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
+if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
   
     //Permission Checking
     if(member.guild.me.hasPermission("SEND_MESSAGES")) {
@@ -2557,6 +2556,20 @@ if  (!EventCountdownCooldown.has(message.guild.id) && !message.author.bot)  {
         };
 
     };
+
+};
+
+};
+
+//Servre Trial
+if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
+
+if  (!ServerTrialCooldown.has("cooldown"))  {
+
+    ServerTrialCooldown.add("cooldown");
+    setTimeout(() => {ServerTrialCooldown.delete("cooldown")}, 300000);
+  
+    
 
 };
 
