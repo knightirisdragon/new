@@ -1143,6 +1143,8 @@ peeky.on('message', async (message) => {
         event_countdown_bonus_id: 0,
         vote_kick_bonus_bonus: false,
         vote_kick_bonus_setting: 10,
+        server_trial_bonus_bonus: false,
+        server_trial_bonus_setting: 60,
     });
 
     if  (!message.author.bot && !message.webhookID)  {
@@ -1896,6 +1898,25 @@ if  (!MemberCounterCooldown.has(member.guild.id))  {
 };
     
 //Join Role
+if (peeky.serverData.get(keySF, "join_role_bonus") == true) {
+  
+    //Permission Checking
+  if  (member.guild.me.hasPermission("MANAGE_ROLES")) {
+      
+      var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
+      var RoleExist = member.guild.roles.find(role => role.name == name);
+
+      if  (RoleExist) {
+          member.addRole(RoleExist, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
+
+          console.log("The Join Role function has been triggered in " + member.guild.name + ".");
+      };
+
+  };
+
+};
+    
+//
 if (peeky.serverData.get(keySF, "join_role_bonus") == true) {
   
     //Permission Checking
