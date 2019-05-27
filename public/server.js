@@ -5523,9 +5523,17 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             };
               
             await voiceChannel.join().then(connection => {
+              
+            clearTimeout(peeky.serverData.get(keySF, "MusicSessionId"));
 
             const stream = ytdl(GivenSong);
             const dispatcher = connection.playStream(stream);
+
+            var id = setTimeout(function()  {
+                peeky.serverData.set(keySF, id, "MusicSessionId");
+                CurrentlyPlaying.delete(message.guild.id);
+                message.channel.send("debug").catch(error => ErrorBag.add(error));
+            }, CooldownExpires);
 
             dispatcher.on('end', async reason => {
               
@@ -5569,14 +5577,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             const embed = {"description": ErrorIcon + " Failed to get the YouTube video.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         });
-              
-        clearTimeout(peeky.serverData.get(keySF, "MusicSessionId"));
-      
-        var id = setTimeout(function()  {
-            peeky.serverData.set(keySF, id, "MusicSessionId");
-            CurrentlyPlaying.delete(message.guild.id);
-            message.channel.send("debug").catch(error => ErrorBag.add(error));
-        }, CooldownExpires);
 
     } else {
       const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
