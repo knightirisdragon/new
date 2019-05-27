@@ -2587,7 +2587,7 @@ if  (!ServerTrialCooldown.has("cooldown"))  {
       
                 console.log(m.user.username + " " + TrialTime);
         
-            if  (new Date() - m.joinedAt >= (TrialTime * 1000))  {
+            if  (new Date() - m.joinedAt >= (TrialTime * 60 * 1000))  {
               
                 await m.send("Your trial on **" + Function_RemoveFormatting(Guild.name, "other", true) + "** has ended.").catch(error => ErrorBag.add(error));  
                 m.kick({  reason: "Triggered by the Server Trial function."  }).catch(error => ErrorBag.add(error));

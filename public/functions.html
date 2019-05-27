@@ -57,6 +57,11 @@ function VT_Popup() {
      document.getElementById('description').innerHTML = '<b class="functionname">Vote Kick</b>  <br>  <b class="functiondescription">Everytime a message gets the 🚪 reaction enough times and the message author does not have the KICK_MEMBERS permissions, the message author will get kicked from the server.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle vote kick</b>  <br>  <b class="functioncommand">p!set vote kick [number]</b>' + Note; 
 };
   
+function ST_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<b class="functionname">Server Trial</b>  <br>  <b class="functiondescription">Gives a specific role to anyone that joins your server and unless the role has been removed, the member will get kicked out after a arbitrary amount of minutes.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">Indefinite</b>  ' + Commands + '  <b class="functioncommand">p!toggle server trial</b>  <br>  <b class="functioncommand">p!set server trial [time minutes]</b>' + Note;
+};
+  
 function JR_Popup() {
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="functionname">Join Role</b>  <br>  <b class="functiondescription">Gives a specific role to anyone who joins your server.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle join role</b>  <br>  <b class="functioncommand">p!set join role [role name]</b>' + Note;
@@ -79,7 +84,7 @@ function IO_Popup() {
 
 function SL_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Spoiler Lock</b>  <br>  <b class="functiondescription">Deletes any non-spoiler images that were sent by new or untrusted members.</b>  ' + Ignores + '  <b class="functioncommand">New members and members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle spoiler lock</b>  <br>  <b class="functioncommand">p!set spoiler lock [number]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Spoiler Lock</b>  <br>  <b class="functiondescription">Deletes any non-spoiler images that were sent by new or untrusted members.</b>  ' + Ignores + '  <b class="functioncommand">New members and members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle spoiler lock</b>  <br>  <b class="functioncommand">p!set spoiler lock [time minutes]</b>' + Note;
 };
 
 function BW_Popup() {
@@ -271,6 +276,14 @@ function Close()  {
       <div class="centered">
         
     <div class="popup" onclick="SM_Popup()">  Server Message  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="ST_Popup()">  Server Trial  </div>
         
       </div>
     </div>
