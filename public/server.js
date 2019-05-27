@@ -35,6 +35,7 @@ const node_fetch = require('node-fetch');
 const ErrorBag               = new Set();
 const FailedVoteChecks       = new Set();
 const FalseMsgIDs            = new Set();
+const FloodProtectionStrikes = new Set();
 const LoggedMessages         = new Set();
 const ClearedNames           = new Set();
 const QueuedSOSMessages      = new Set();
@@ -2553,6 +2554,8 @@ if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "pref
     const ThisMsgDate    = Date.now();
 
     if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent && message.author.id == LastMsgUser))  {
+      
+    if  (FloodProtectionStrikes.has())  {
 
     const name       = peeky.serverData.get(keySF, "muted_role");
     const RoleExists = message.guild.roles.find(role => role.name == name);
@@ -2575,6 +2578,12 @@ if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "pref
 
         console.log("The Flood Protection function has been triggered in " + message.guild.name + ".");
 
+    };
+      
+    }
+     else
+    {
+    
     };
 
     };
