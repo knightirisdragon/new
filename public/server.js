@@ -31,11 +31,11 @@ const fs         = require('fs');
 const ms         = require('parse-ms');
 const node_fetch = require('node-fetch');
 
-//Sets
+//Sets and arrays
 const ErrorBag               = new Set();
 const FailedVoteChecks       = new Set();
 const FalseMsgIDs            = new Set();
-const FloodProtectionStrikes = new Set();
+const FloodProtectionStrikes = [];
 const LoggedMessages         = new Set();
 const ClearedNames           = new Set();
 const QueuedSOSMessages      = new Set();
@@ -2555,7 +2555,7 @@ if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "pref
 
     if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent && message.author.id == LastMsgUser))  {
       
-    if  (FloodProtectionStrikes.has())  {
+    if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length >= 3)  {
 
     const name       = peeky.serverData.get(keySF, "muted_role");
     const RoleExists = message.guild.roles.find(role => role.name == name);
@@ -2583,7 +2583,12 @@ if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "pref
     }
      else
     {
-    
+     FloodProtectionStrikes.push(message.author.id);
+     
+     setTimeout(() => {
+         FloodProtectionStrikes.splice(peeky.userData.get(key, "Inventory").indexOf(i), 1);
+     }, 30000); 
+
     };
 
     };
