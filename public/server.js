@@ -2580,7 +2580,7 @@ if  (!ServerTrialCooldown.has("cooldown"))  {
         
     if  (Guild.me.hasPermission('KICK_MEMBERS'))  {
 
-        var OnTrial = function_ShuffleArray((Guild.members.filter(m => m.roles.find(r => r.name == "Trial")).map(m => m)).slice(0, 5));
+        var OnTrial = function_ShuffleArray((Guild.members.filter(m => !m.user.bot && !m.user.bot.permissions.has('MANAGE_GUILD') && m.roles.find(r => r.name == "Trial")).map(m => m)).slice(0, 5));
         var TrialTime = peeky.serverData.get(keySF, "server_trial_bonus_setting");
       
         OnTrial.forEach(async m => {
