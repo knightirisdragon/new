@@ -5523,22 +5523,24 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             };
               
             await voiceChannel.join().then(connection => {
-              
-            clearTimeout(peeky.serverData.get(keySF, "MusicSessionId"));
 
             const stream = ytdl(GivenSong);
             const dispatcher = connection.playStream(stream);
 
+            /*             
+            clearTimeout(peeky.serverData.get(keySF, "MusicSessionId"));
+              
             var id = setTimeout(function()  {
                 peeky.serverData.set(keySF, id, "MusicSessionId");
                 CurrentlyPlaying.delete(message.guild.id);
                 message.channel.send("debug").catch(error => ErrorBag.add(error));
-            }, CooldownExpires);
+            }, CooldownExpires);*/
 
             dispatcher.on('end', async reason => {
               
-            clearTimeout(peeky.serverData.get(keySF, "MusicSessionId"));
-            CurrentlyPlaying.delete(message.guild.id);
+            /*clearTimeout(peeky.serverData.get(keySF, "MusicSessionId"));
+            CurrentlyPlaying.delete(message.guild.id);*/
+              
             voiceChannel.leave();
               
             /* if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && message.guild.members.get(PeekyId).nickname !== null)  {
