@@ -2569,16 +2569,34 @@ if  (!ServerTrialCooldown.has("cooldown"))  {
     ServerTrialCooldown.add("cooldown");
     setTimeout(() => {ServerTrialCooldown.delete("cooldown")}, 300000);
     
-    const filtered = peeky.serverData.filter( p => p.flood_protection_bonus == true );
-
-    var ValidGuilds = filtered.map(i => i.GuildID)
+    var filtered = peeky.serverData.filter( p => p.flood_protection_bonus == true );
+    var ValidGuilds = function_ShuffleArray(filtered.map(i => i.GuildID)).slice(0, 5);
 
     ValidGuilds.forEach(g => {
-    if(peeky.guilds.has(g)){
-    console.log(peeky.guilds.get(g).members.filter(m => m.roles.find(r => r.name == "Developers")).map(m => m.user.id))
+  
+    if  (peeky.guilds.has(g))  { 
+        
+        var Guild = peeky.guilds.get(g);
+        var OnTrial = function_ShuffleArray((Guild.members.filter(m => m.roles.find(r => r.name == "Trial")).map(m => m))).slice(0, 2);
+        var TrialTime = peeky.serverData.get(keySF, "server_trial_bonus_setting");
+        
+    if  (Guild.me.hasPermission('KICK_MEMBERS'))  {
+      
+        OnTrial.forEach(async m => {
+        
+            if  (new Date() - TrialTime <= TrialTime)  {
+              
+                await m.send("Your trial on **" + Function_RemoveFormatting(Guild.name, "other", true) + "** has ended.").catch(error => ErrorBag.add(error));  
+                m.kick({  reason: "Triggered by the Server Trial function."  }).catch(error => ErrorBag.add(error));   
+              
+            };
+          
+        });
     };
+      
+    };
+      
     });
-    
 
 };
 
@@ -2587,7 +2605,7 @@ if  (!ServerTrialCooldown.has("cooldown"))  {
 //Flood Protection
 if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
-if  (peeky.channelData.has(keyCF) && !message.member.permissions.has('MANAGE_MESSAGES') && message.guild.me.hasPermission('MANAGE_ROLES'))  {
+if  (!message.member.permissions.has('MANAGE_MESSAGES') && message.guild.me.hasPermission('MANAGE_ROLES'))  {
   
 if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
