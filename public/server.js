@@ -2621,7 +2621,7 @@ if  (!ServerTrialCooldown.has("cooldown"))  {
       
         OnTrial.forEach(async m => {
         
-            if  (KickedAmount <= 10)  {
+            if  (KickedAmount <= 5)  {
 
                 if  (new Date() - m.joinedAt >= (TrialTime * 60 * 1000))  {
 
