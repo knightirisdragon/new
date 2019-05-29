@@ -541,7 +541,8 @@ var Banners = [
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground292.png?1558986693656", 375, "Distant island", "Not credited"],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground293.png?1558987597972", 50, "Pink red", "No one"],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground294.png?1558987600482", 50, "Dye blue", "No one"],
-    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground295.png?1558987601832", 50, "Colorblind orange", "No one"]
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground295.png?1558987601832", 50, "Colorblind orange", "No one"],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground296.png?1559103056756", 475, "Robotic warfare", "Sarahhamyied"]
 
 ];
 
@@ -2904,15 +2905,15 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "get "))
 };
   
 //Get
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "info"))  {
+/*if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "info"))  {
     
     message.channel.send(
       "You have joined Discord on **" + function_DateFormat(message.author.createdAt) + "**." + "\n"
-    + "The owner of this server has joined Discord on **" + function_DateFormat(message.guild.owner.user.createdAt) + "**."
+    + "The owner of this server has joined Discord on **" + function_DateFormat(message.guild.owner.user.createdAt) + "**." + "\n"
     + "This server was created on **" + function_DateFormat(message.guild.createdAt) + "**."
     ).catch(error => ErrorBag.add(error));
   
-};
+};*/
 
 //Eval
 if (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eval "))  {
