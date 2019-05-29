@@ -2037,7 +2037,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
     
     if (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES')) {
       
-    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "bw", true).includes(word)))  {
+    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "other", true).includes(word)))  {
         Detected = true;
     };
 
@@ -2084,6 +2084,8 @@ if  (peeky.userData.has(key))  {
       
         const embed = {"description": SuccessIcon + " You have been awarded the **Supporter status** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+      
+        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username.toLowerCase(), "other", true) + "** has purchased **Supporter**.").catch(error => ErrorBag.add(error));
     };
   
 };
@@ -2106,7 +2108,7 @@ if  (peeky.userData.has(key))  {
         const embed = {"description": SuccessIcon + " You have been awarded a **Server Upgrade** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
       
-        peeky.channels.get(PurchaseLog).send(" **User** has purchased **Server Upgrade**.").catch(error => ErrorBag.add(error));
+        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username.toLowerCase(), "other", true) + "** has purchased **Server Upgrade**.").catch(error => ErrorBag.add(error));
     };
   
 };
@@ -2127,6 +2129,8 @@ if  (newMember.roles.has(RedeemRole1))  {
       
         const embed = {"description": SuccessIcon + " You have been awarded **1,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+      
+        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username.toLowerCase(), "other", true) + "** has purchased **1,000 Gredit**.").catch(error => ErrorBag.add(error));
     };
 
 }; 
@@ -2147,6 +2151,8 @@ if  (newMember.roles.has(RedeemRole2))  {
       
         const embed = {"description": SuccessIcon + " You have been awarded **2,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+      
+        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username.toLowerCase(), "other", true) + "** has purchased **2,000 Gredit**.").catch(error => ErrorBag.add(error));
 
     };
 
@@ -2168,6 +2174,8 @@ if  (newMember.roles.has(RedeemRole3))  {
       
         const embed = {"description": SuccessIcon + " You have been awarded **5,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+      
+        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username.toLowerCase(), "other", true) + "** has purchased **5,000 Gredit**.").catch(error => ErrorBag.add(error));
     };
 
 }; 
@@ -2188,6 +2196,8 @@ if  (newMember.roles.has(RedeemRole4))  {
       
         const embed = {"description": SuccessIcon + " You have been awarded **10,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+      
+        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username.toLowerCase(), "other", true) + "** has purchased **10,000 Gredit**.").catch(error => ErrorBag.add(error));
     };
 
 }; 
