@@ -440,7 +440,7 @@ var Banners = [
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground190.png?1548787620678", NormalPrice, "The hat", "Telltale's The Walking Dead", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground191.png?1549491879583", 250, "Retribution", "SpectreGames", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground192.png?1550519837303", NormalPrice, "Sunset view", "Not credited", undefined],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground193.png?1550954101975", 300, "OwOcnic", "SickWheeny Nick", undefined],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground193.png?1550954101975", 300, "OwOcnic", "SickWheeny Nick", `298551254978789378`],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground194.png?1551123539987", NormalPrice, "Daze", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground195.jpg?1551209003330", 350, "Real view", "vojtěch Jílovec", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground196.png?1551481112722", NormalPrice, "Revolution", "Homefront Revolution", undefined],
@@ -4534,6 +4534,10 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
         InfoMessages.push(InfoMessage1[0]);
         peeky.userData.set(key, true, "MinerBadge");
       
+    };
+  
+    if  (Banners[i - 1][Banner.RevenueID] !== undefined)  {
+        peeky.userData.math(Banners[i - 1][Banner.RevenueID], "-", (Banners[i - 1][Banner.Price] / SellMultiplier), "Gredit");
     };
       
     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
