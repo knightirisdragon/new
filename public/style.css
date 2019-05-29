@@ -9,6 +9,14 @@ body {
   a  {color: white; text-decoration: none;}
   img  {border-radius: 15px; cursor: pointer;}
 
+.item_header  {
+    background-color: rgba(35, 39, 42, 0.9);
+    width: 100%;
+    padding: 10px;
+    position: relative;
+    display: inline-block;
+}
+
 .listitem  {
     background-color: #7289DA;
     border: rgba(35, 39, 42, 1) 2px solid;
@@ -258,7 +266,6 @@ a.button:hover {
     border-radius: 5px;
 }
 
-.tutorial_item_header,
 .table_description {
     width: 100%;
     padding: 10px;
