@@ -4826,7 +4826,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
 
     let cooldown     = 8.64e+7;
     let lastDaily    = peeky.userData.get(key, "DailyRewarded");
-    var HasVoted     = false;
     var VotesCounted = 0;
     var InfoMessages = [];
 
@@ -4858,15 +4857,19 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
     });
 
     //Vote DDBL
-    await ddbl.hasVoted24(message.author.id).then(VotedState => {
-
-    if  (VotedState == true)  {
-        InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DDB today.");
-
-        peeky.userData.math(key, "+", 1, "Chests");
-        VotesCounted ++;
-    };
+    ddbl.getVotes()
+    .then(AllVotes => {
       
+        var Now = new Date();
+        AllVotes.filter(i => i.id == "109036350002458624" && Now - new Date(i.timestamp) <= 86400000);
+
+        if  (AllVotes.length > 0 == true)  {
+            InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DDB today.");
+
+            peeky.userData.math(key, "+", 1, "Chests");
+            VotesCounted ++;
+        };
+                  
     });
 
     //Event Reward
