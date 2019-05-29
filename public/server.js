@@ -245,7 +245,7 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 //RESPONSE MESSAGES
 
 //Banner List
-var Banner = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3  };
+var Banner = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
 var Banners = [
 
     [DefaultBackground, 0, "Default", "Steam"], //Default
