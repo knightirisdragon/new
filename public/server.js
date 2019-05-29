@@ -2902,6 +2902,17 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "get "))  {
     message.channel.send("`" + Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get", true) + "`").catch(error => ErrorBag.add(error));
 };
+  
+//Get
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "info"))  {
+    
+    message.channel.send(
+      "You have joined Discord on **" + function_DateFormat(message.author.createdAt) + "**." + "\n"
+    + "The owner of this server has joined Discord on **" + function_DateFormat(message.guild.owner.user.createdAt) + "**."
+    + "This server was created on **" + function_DateFormat(message.guild.createdAt) + "**."
+    ).catch(error => ErrorBag.add(error));
+  
+};
 
 //Eval
 if (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eval "))  {
