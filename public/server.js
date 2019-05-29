@@ -1643,8 +1643,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
       
     WebsiteCooldowns.add("staff");
     setTimeout(() => {WebsiteCooldowns.delete("staff")}, 600000);
-        
-    var HelperList = [];
+
     var DevList    = [];
     var ModList    = [];
 
@@ -1700,10 +1699,6 @@ if  (!WebsiteCooldowns.has("staff"))  {
         if  (guildMember.roles.has("574255080069398543"))  {
             DevList.push(CurrentContact);
         };
-      
-        if  (guildMember.roles.has("574255146968809494"))  {
-            HelperList.push(CurrentContact);
-        };
     
         if  (guildMember.roles.has("574255771840282625"))  {
             ModList.push(CurrentContact);
@@ -1711,24 +1706,8 @@ if  (!WebsiteCooldowns.has("staff"))  {
 
     };
     });
-  
-    /*const Filler = '<img class="filler" src="' + DarkField + '"' + '>';
-  
-    var FillterAmount = 5;
-  
-    while (DevList.length < FillterAmount)  {
-        DevList.push(Filler);
-    };
-  
-    while (HelperList.length < FillterAmount)  {
-        HelperList.push(Filler);
-    };
-  
-    while (ModList.length < FillterAmount)  {
-        ModList.push(Filler);
-    };*/
 
-    await fs.writeFile('public/staff.txt', '<font size="4">Developers</font>  <br>  <font size="2">These are the people that work on PEEKY to make him the best possible Discord bot that it is today.</font>  <br><br>  <div class="staffroom">  ' + DevList.join(" ") + '  </div>  <br><br>  <font size="4">Helpers</font>  <br>  <font size="2">These are the people that can help you fix some PEEKY related issues.</font>  <br><br>  <div class="staffroom">  ' + HelperList.join(" ") + '  </div>  <br><br>  <font size="4">Moderators</font>  <br>  <font size="2">These are the people that moderate the Support Server to keep it safe.</font>  <br><br>  <div class="staffroom">  ' + ModList.join(" ") + '  </div>', (err) => {
+    await fs.writeFile('public/staff.txt', '<font size="5" class="tutorial_item_header">Developers</font>  <br>  <div class="staffroom">  ' + DevList.join(" ") + '  </div>  <br>  <font size="5" class="tutorial_item_header">Moderators</font>  <br>  <div class="staffroom">  ' + ModList.join(" ") + '  </div>', (err) => {
         if (err) console.log(err);
     });
       
