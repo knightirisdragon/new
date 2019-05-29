@@ -281,7 +281,7 @@ var Banners = [
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground31.jpg?1537815016132", 400, "Red pattern", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground32.jpg?1537950866063", NormalPrice, "Close Cry", "Far Cry 4", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground33.jpg?1537950866386", NormalPrice, "Dark knight", "Not credited", undefined],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground34.jpg?1539510881741", NormalPrice, "Orc genocide", "Vojtěch Jílovec", undefined],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground34.jpg?1539510881741", NormalPrice, "Orc genocide", "Vojtěch Jílovec", `108899856889737216`],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground35.jpg?1539518504422", 350, "Village raid", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground36.jpg?1539518559631", NormalPrice, "M e m e ­ H o u s e", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground37.png?1539543378623", NormalPrice, "Supply royale", "Player Unknown's Battle Royale", undefined],
@@ -295,7 +295,7 @@ var Banners = [
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground45.jpg?1539885635308", NormalPrice, "Fire forest", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground46.jpg?1540021324998", 350, "Pepe's sky", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground47.jpg?1540027329670", NormalPrice, "Lost world", "Fornite", undefined],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground48.jpg?1540033276474", 200, "Dragon slayer", "Vojtěch Jílovec", undefined],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground48.jpg?1540033276474", 200, "Dragon slayer", "Vojtěch Jílovec", `108899856889737216`],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground49.jpg?1540033274127", NormalPrice, "Rush through a village", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground50.png?1540650384768", 100, "USSR", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground51.jpg?1540107026526", NormalPrice, "Lizard Wizard", "Not credited", undefined],
@@ -439,7 +439,7 @@ var Banners = [
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground189.png?1548787581218", 300, "End stronghold", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground190.png?1548787620678", NormalPrice, "The hat", "Telltale's The Walking Dead", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground191.png?1549491879583", 250, "Retribution", "SpectreGames", undefined],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground192.png?1550519837303", NormalPrice, "Sunset view", "Not credited", undefined],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground192.png?1550519837303", NormalPrice, "Sunset view", "Vojtěch Jílovec", `108899856889737216`],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground193.png?1550954101975", 300, "OwOcnic", "SickWheeny Nick", `298551254978789378`],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground194.png?1551123539987", NormalPrice, "Daze", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground195.jpg?1551209003330", 350, "Real view", "vojtěch Jílovec", undefined],
@@ -452,11 +452,11 @@ var Banners = [
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground202.png?1552129513754", NormalPrice, "Freedome", "Grand Theft Auto Online", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground203.png?1552129515227", NormalPrice, "This is it Chief", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground204.png?1552129516913", NormalPrice, "Boy", "God of War", undefined],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground205.png?1552138972456", 275, "PEEKY's old pals", "Not credited", undefined],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground206.png?1552138978087", 250, "XXL Plushies", "Vojtěch Jílovec", undefined],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground205.png?1552138972456", 275, "PEEKY's old pals", "Vojtěch Jílovec", `108899856889737216`],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground206.png?1552138978087", 250, "XXL Plushies", "Vojtěch Jílovec", `108899856889737216`],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground207.png?1552151256169", NormalPrice, "Jackpot!", "Devil May Cry 5", undefined],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground208.png?1552233925577", 150, "Pixelvince", "Pixelvince", undefined],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground209.png?1552752810447", 200, "FeelsGoodMom", "Vojtěch Jílovec", undefined],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground208.png?1552233925577", 150, "Pixelvince", "Pixelvince", `354617102394720266`],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground209.png?1552752810447", 200, "FeelsGoodMom", "Vojtěch Jílovec", `108899856889737216`],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground210.png?1552809489475", 400, "Airsoft", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground211.png?1552809489603", 400, "Orange pattern", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground212.png?1552809503603", NormalPrice, "In the battlefield", "Battlefield 1", undefined],
@@ -478,7 +478,7 @@ var Banners = [
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground228.png?1555231021661", 450, "Welcome to Vietnam", "Rising Storm 2 Vietnam", undefined],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground229.png?1555231025303", NormalPrice, "Devil trigger", "Devil May Cry 5", undefined],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground230.png?1555231029488", 325, "Villager camp", "Minecraft", undefined],
-    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground231.png?1555690400218", 100, "King sheep", "Vojtěch Jílovec", undefined],
+    ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground231.png?1555690400218", 100, "King sheep", "Vojtěch Jílovec", `108899856889737216`],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground232.png?1555690405127", 425, "Contagion", "Contagion", undefined],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground233.png?1555690407657", NormalPrice, "Notre Dame", "Assassins Creed Unity", undefined],
     ["http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground234.png?1555758393410", NormalPrice, "Phantom's force", "Roblox", undefined],
@@ -1452,8 +1452,14 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     Banners.forEach(background_info => {
 
           Current ++;
+
+          if  (background_info[4] !== undefined)  {
+              var RevenueString = "<br>  Revenue Enabled";              
+          } else {
+            var RevenueString = "";
+          };
       
-          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  id="1" width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + background_info[1].toLocaleString('en') + ' Gredit  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>';
+          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  id="1" width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + background_info[1].toLocaleString('en') + ' Gredit  ' + RevenueString + '  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>';
     
           BackgroundList.push(BackgroundString);
 
@@ -4536,7 +4542,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
       
     };
   
-    if  (Banners[i - 1][Banner.RevenueID] !== undefined)  {
+    if  (Banners[i - 1][Banner.RevenueID] !== undefined && peeky.userData.has(Banners[i - 1][Banner.RevenueID]))  {
         peeky.userData.math(Banners[i - 1][Banner.RevenueID], "-", (Banners[i - 1][Banner.Price] / SellMultiplier), "Gredit");
     };
       
