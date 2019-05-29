@@ -108,8 +108,9 @@ const OwnerId              = "108899856889737216";
 const PeekyId              = "482945063282802698";
 const SupportServer        = "319891596772638744";
 const AnnouncementsChannel = "346710479407808524";
-const WorkshopChannel      = "501130667078189066";
 const EmojiStorage         = "493048757286600716";
+const WorkshopChannel      = "501130667078189066";
+const PurchaseLog          = "583339225001492501";
 
 //Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
@@ -2104,6 +2105,8 @@ if  (peeky.userData.has(key))  {
 
         const embed = {"description": SuccessIcon + " You have been awarded a **Server Upgrade** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+      
+        peeky.channels.get(PurchaseLog).send(" **User** has purchased **Server Upgrade**.").catch(error => ErrorBag.add(error));
     };
   
 };
@@ -2588,8 +2591,10 @@ if  (!ServerTrialCooldown.has("cooldown"))  {
     var ValidGuilds = function_ShuffleArray(filtered.map(i => i.GuildID));
 
     ValidGuilds.forEach(g => {
-  
-    if  (peeky.guilds.has(g))  { 
+
+        var KickedAmount = 0;
+
+    if  (peeky.guilds.has(g))  {
         
         var Guild = peeky.guilds.get(g);
         
@@ -2600,24 +2605,30 @@ if  (!ServerTrialCooldown.has("cooldown"))  {
       
         OnTrial.forEach(async m => {
         
-            if  (new Date() - m.joinedAt >= (TrialTime * 60 * 1000))  {
-              
-                setTimeout(async () => {
-                  
-                await m.send("Your trial on **" + Function_RemoveFormatting(Guild.name, "other", true) + "** has ended.").catch(error => ErrorBag.add(error));  
-                m.kick({  reason: "Triggered by the Server Trial function."  }).catch(error => ErrorBag.add(error));
+            if  (KickedAmount <= 10)  {
 
-                console.log("The Server Trial function has been triggered in " + m.guild.name + ".");                
-                  
-                }, 10000)
-              
+                if  (new Date() - m.joinedAt >= (TrialTime * 60 * 1000))  {
+
+                    setTimeout(async () => {
+
+                    await m.send("Your trial on **" + Function_RemoveFormatting(Guild.name, "other", true) + "** has ended.").catch(error => ErrorBag.add(error));  
+                    m.kick({  reason: "Triggered by the Server Trial function."  }).catch(error => ErrorBag.add(error));
+
+                    KickedAmount ++;
+
+                    console.log("The Server Trial function has been triggered in " + m.guild.name + ".");                
+
+                    }, 5000);
+
+                };
+
             };
           
         });
     };
       
     };
-      
+
     });
 
 };
@@ -2636,7 +2647,7 @@ if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "pref
     const LastMsgDate    = peeky.channelData.get(keyCF, "flood_protection_bonus_lastdate");
     const ThisMsgDate    = Date.now();
 
-    if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent && message.author.id == LastMsgUser))  {
+    if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent))  {
       
     if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length >= 2)  {
 
