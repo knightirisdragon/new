@@ -543,7 +543,7 @@ var Banners = [
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground293.png?1558987597972", 50, "Pink red", "No one", undefined],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground294.png?1558987600482", 50, "Dye blue", "No one", undefined],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground295.png?1558987601832", 50, "Colorblind orange", "No one", undefined],
-    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground296.png?1559103056756", 475, "Robotic warfare", "Sarahhamyied", undefined]
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground296.png?1559103056756", NormalPrice, "Robotic warfare", "Sarahhamyied", undefined]
 
 ];
 
@@ -4514,9 +4514,13 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
         peeky.userData.set(key, true, "MinerBadge");
       
     };
-  
-    if  (Banners[i - 1][Banner.RevenueID] !== undefined && peeky.userData.has(Banners[i - 1][Banner.RevenueID]) && message.author.id !== Banners[i - 1][Banner.RevenueID])  {
-        peeky.userData.math(Banners[i - 1][Banner.RevenueID], "-", (Banners[i - 1][Banner.Price] / SellMultiplier), "Gredit");
+
+    var RevenueID = Banners[i - 1][Banner.RevenueID];
+    if  (RevenueID !== undefined && peeky.userData.has(RevenueID) && message.author.id !== RevenueID)  {
+        peeky.userData.math(RevenueID, "-", (Banners[i - 1][Banner.Price] / SellMultiplier), "Gredit");
+        if  (peeky.users.has(RevenueID))  {
+            InfoMessages.push(InfoIcon + " Your purchase has generated **" + Banners[i - 1][Banner.Price].toLocaleString('en') + " " + GreditIcon + "** of revenue for **" + Function_RemoveFormatting(peeky.users.get(RevenueID).username, "other", true) + "**.");
+        };
     };
       
     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
