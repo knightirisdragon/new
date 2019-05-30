@@ -1707,7 +1707,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
             StaffButton.push('<a href="https://twitter.com/Itsromulo27" target="_blank">  <img src=' + TwitterIcon + ' class="staffbutton">  </a>');
         };
       
-        var CurrentContact = '<div class="container">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="2"> ' + function_RemoveTags(guildMember.user.username) + '<font size="2" color=#7289DA>#' + guildMember.user.discriminator + '</font>' + '  <br>  <font size="1">  ' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '  </font>  <br><br>  ' + StaffButton.join(" ") + '  </b>  </div>';
+        var CurrentContact = '<div class="container">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="2"> ' + function_RemoveTags(guildMember.user.username) + '<font size="2" color=#7289DA>#' + guildMember.user.discriminator + '</font>' + '  <br>  <font size="1">  ' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '  </font>  </font>  <br><br>  ' + StaffButton.join(" ") + '  </b>  </div>';
 
         if  (guildMember.roles.has("574255080069398543"))  {
             DevList.push(CurrentContact);
