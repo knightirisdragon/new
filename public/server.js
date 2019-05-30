@@ -4492,6 +4492,8 @@ if  (message.content == peeky.serverData.get(keySF, "prefix") + "buybackground "
   
 if  (i !== 1) {
   
+if  (!peeky.userData.get(key, "Inventory").includes(i))  {
+  
 if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
   
     var InfoMessages = [];
@@ -4519,7 +4521,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
     if  (RevenueID !== undefined && peeky.userData.has(RevenueID) && message.author.id !== RevenueID)  {
         peeky.userData.math(RevenueID, "-", (Banners[i - 1][Banner.Price] / SellMultiplier), "Gredit");
         if  (peeky.users.has(RevenueID))  {
-            InfoMessages.push(InfoIcon + " Your purchase has generated **" + Banners[i - 1][Banner.Price].toLocaleString('en') + " " + GreditIcon + "** of revenue for **" + Function_RemoveFormatting(peeky.users.get(RevenueID).username, "other", true) + "**.");
+            InfoMessages.push(InfoIcon + " Your purchase has generated **" + (Banners[i - 1][Banner.Price] / SellMultiplier).toLocaleString('en') + " " + GreditIcon + "** of revenue for **" + Function_RemoveFormatting(peeky.users.get(RevenueID).username, "other", true) + "**.");
         };
     };
       
@@ -4542,6 +4544,14 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
   
 }
   else { 
+         const embed = {"description": ErrorIcon + " You already own that background.", "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+         break;
+      };
+  
+}
+  else { 
          const embed = {"description": ErrorIcon + " You cannot buy the default background.", "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -4550,6 +4560,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
 
 };
 };
+
 };
   
 //CustomBackground
