@@ -5813,13 +5813,20 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
 //Skip
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))  {
 
-    if  (message.member.voiceChannel && CurrentlyPlaying.has(message.guild.id))  {
+    if  (message.member.voiceChannel)  {
+      
+    if  (CurrentlyPlaying.has(message.guild.id))  {
 
         message.member.voiceChannel.leave();
         CurrentlyPlaying.delete(message.guild.id);
       
     } else {
-      const embed = {"description": ErrorIcon + " We need to share a voice channel.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " I am not playing anything.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+      
+    } else {
+      const embed = {"description": ErrorIcon + " You need to join a voice channel.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
