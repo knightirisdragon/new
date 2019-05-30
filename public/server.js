@@ -239,6 +239,7 @@ const ErrorMessage8  = [ErrorIcon + " Mentions are not allowed for this command.
 const ErrorMessage9  = [ErrorIcon + " You must enter a valid amount."];
 const ErrorMessage10 = [ErrorIcon + " Make sure the Function's name is all in lowercase."];
 const ErrorMessage11 = [ErrorIcon + " You need to be a Supporter to do that."];
+const ErrorMessage12 = [ErrorIcon + " There are no songs currently playing."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -5720,6 +5721,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
             const embed = {"description": SuccessIcon + " Added the current song to your playlist.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));                
               
+        } else {
+          const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
             
     } else
@@ -5821,7 +5825,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
         CurrentlyPlaying.delete(message.guild.id);
       
     } else {
-      const embed = {"description": ErrorIcon + " I am not playing anything.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
       
