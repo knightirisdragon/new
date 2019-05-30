@@ -4531,11 +4531,9 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
     };
 
     var RevenueID = Banners[i - 1][Banner.RevenueID];
-    if  (RevenueID !== undefined && peeky.userData.has(RevenueID) && message.author.id !== RevenueID)  {
+    if  (RevenueID !== undefined && peeky.userData.has(RevenueID) && message.author.id !== RevenueID && peeky.users.has(RevenueID))  {
         peeky.userData.math(RevenueID, "-", (Banners[i - 1][Banner.Price] / SellMultiplier), "Gredit");
-        if  (peeky.users.has(RevenueID))  {
             InfoMessages.push(InfoIcon + " Your purchase has generated **" + (Banners[i - 1][Banner.Price] / SellMultiplier).toLocaleString('en') + " " + GreditIcon + "** of revenue for **" + Function_RemoveFormatting(peeky.users.get(RevenueID).username, "other", true) + "**.");
-        };
     };
       
     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
