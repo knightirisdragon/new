@@ -4496,7 +4496,7 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
 
     for(var i = NewLinesCount = 0; i<str.length; NewLinesCount+=+(MaxLines===str[i++]));
         
-if  (peeky.userData.get(key, "Gredit") >= DescriptionPrice)  {
+if  (peeky.userData.get(key, "Gredit") >= UpdatedAmount)  {
   
 if  (NewDescription !== RandomString)  {
   
