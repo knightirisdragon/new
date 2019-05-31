@@ -5712,7 +5712,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
       
     if  (!MusicCmdCooldown.has(message.author.id))  {
 
-    if  (CurrentlyPlaying.has(message.guild.id))  {  //if  (message.member.voiceChannel && message.member.voiceChannel.members.find(m => m.id == PeekyId))  {
+    if  (CurrentlyPlaying.has(message.guild.id))  {
       
         MusicCmdCooldown.add(message.author.id);
         setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 5000);
@@ -5855,12 +5855,12 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
 //Skip
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))  {
 
-    if  (message.member.voiceChannel)  {
+    if  (message.member.voiceChannel && message.member.voiceChannel.members.filter(m => m.user.id == PeekyId).map(i => i.id).length > 0)  {
       
     if  (CurrentlyPlaying.has(message.guild.id))  {
-
-        message.member.voiceChannel.leave();
+      
         CurrentlyPlaying.delete(message.guild.id);
+        message.member.voiceChannel.leave();
       
     } else {
       const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
@@ -5868,7 +5868,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
     };
       
     } else {
-      const embed = {"description": ErrorIcon + " You need to join a voice channel.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " We need to be in the same voice channel.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
