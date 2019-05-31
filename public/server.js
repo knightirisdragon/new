@@ -870,6 +870,21 @@ if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
   
 };
 
+function function_DetectLink(string)  {
+
+  if  (string.length > 0)  {
+    
+      if  (string.match(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g) !== null)  {
+          return true;
+        
+      } else {
+          return false;
+      };
+    
+  };
+  
+};
+
 //Date Format
 function function_DateFormat(value)  {
       
@@ -2510,7 +2525,7 @@ if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
 //Automatic Reactions
 if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
   
-    if  ((message.attachments.size > 0 || message.content.match(/(https?:\/\/[^\s]+)/g)) == message.content && !message.author.bot)  {
+    if  ((message.attachments.size > 0 || function_DetectLink(message.content) == true) && !message.author.bot)  {
 
     if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS') && message.channel.permissionsFor(peeky.user).has('EXTERNAL_EMOJIS'))  {
 
@@ -2881,29 +2896,32 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(
 //Spoiler Lock
 if  (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true)  {
   
-if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+    if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
-if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.size > 0 && !message.attachments.array()[0].filename.startsWith("SPOILER_"))  {
+        if  (!message.member.permissions.has("MANAGE_MESSAGES"))  {
 
-if  ((((new Date() - new Date(message.member.joinedAt)) / 60000) < peeky.serverData.get(keySF, "spoiler_lock_bonus_setting")) || peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") == 0)  {
+            if  ((message.attachments.size > 0 && !message.attachments.array()[0].filename.startsWith("SPOILER_")) || function_DetectLink(message.content) == true)  {
 
-     message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
-  
-     if   (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "SO"))  {
-         
-         ResponseCooldowns.add(message.guild.id + "SO");
-         setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SO")}, ResponseCooldownMS);
-       
-         const embed = {"description": InfoIcon + " You have to mark your image as a spoiler, **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+                if  ((((new Date() - new Date(message.member.joinedAt)) / 60000) < peeky.serverData.get(keySF, "spoiler_lock_bonus_setting")) || peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") == 0)  {
 
-     };
+                     message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
 
-     console.log("The Spoiler Lock function has been triggered in " + message.guild.name + ".");
-  
-};
-};
-};
+                     if   (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "SO"))  {
+
+                         ResponseCooldowns.add(message.guild.id + "SO");
+                         setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SO")}, ResponseCooldownMS);
+
+                         const embed = {"description": InfoIcon + " You have to mark your image as a spoiler, **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
+                         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+
+                     };
+
+                     console.log("The Spoiler Lock function has been triggered in " + message.guild.name + ".");
+
+                };
+            };
+        };
+    };
 };
   
 };
