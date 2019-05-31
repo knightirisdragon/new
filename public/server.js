@@ -1482,7 +1482,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
               var Fillers = 0;
               while (Fillers < 99)  {
               	    Fillers ++;
-                    FeaturedList.push('<div class="filler">  <img src="' + Dark + '"  width="500" height="300" class="background_image">  </div>')
+                    FeaturedList.push('<div class="filler">  <img src="' + DarkField + '"  width="500" height="300" class="background_image">  </div>')
               };
                 
           };
@@ -1490,7 +1490,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     });
 
 
-    await fs.writeFile('public/backgrounds.txt', "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>", (err) => {
+    await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>", (err) => {
         if (err) console.log(err);
     });
 
