@@ -4925,8 +4925,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
     });
 
     //Vote DDBL
-    ddbl.getVotes()
-    .then(AllVotes => {
+    ddbl.getVotes().then(AllVotes => {
       
         var Now = new Date();
         AllVotes.filter(i => i.id == "109036350002458624" && Now - new Date(i.timestamp) <= 86400000);
