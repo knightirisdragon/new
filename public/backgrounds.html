@@ -24,6 +24,7 @@
     transform: translate(20px, -120%);
 }
 
+.filler,
 .background {
     display: inline-block;
     text-align: left;
@@ -31,6 +32,7 @@
     transition: transform .25s ease;
 }
 
+.filler:hover,
 .background:hover {
     position: relative;
     transform: scale(1.01);
@@ -97,24 +99,24 @@
         document.execCommand("Copy");
   };
   
-var CurrentSortMode = "new";
+var CurrentSortMode = "old";
 var MaxSortingModes = 4;
   
 function ChangeSorting(current)  {
 
     /*document.documentElement.scrollTop = 650;
     document.body.scrollTop = 650;*/
-
-   if (current == "old") {
-        CurrentSortMode = "random";
+  
+    if  (current == "new")  {
+        CurrentSortMode = "old";
         document.getElementById("sort_new").style.display = "block";
         document.getElementById("sort_old").style.display = "none";
         document.getElementById("sort_random").style.display = "none";
         document.getElementById("sort_featured").style.display = "none";
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Newest (1/" + MaxSortingModes + ")";
-    } else if  (current == "new")  {
-        CurrentSortMode = "old";
+    } else if (current == "old") {
+        CurrentSortMode = "random";
         document.getElementById("sort_new").style.display = "none";
         document.getElementById("sort_old").style.display = "block";
         document.getElementById("sort_random").style.display = "none";

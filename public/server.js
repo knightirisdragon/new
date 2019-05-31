@@ -1472,12 +1472,19 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
             var RevenueString = "";
           };
       
-          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  id="1" width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + background_info[1].toLocaleString('en') + ' Gredit  ' + RevenueString + '  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>';
+          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + background_info[1].toLocaleString('en') + ' Gredit  ' + RevenueString + '  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>';
     
           BackgroundList.push(BackgroundString);
 
           if  (Current == peeky.userData.get(OwnerId, "Background"))  {
               FeaturedList.push(BackgroundString);
+            
+              var Fillers = 0;
+              while (Fillers < 99)  {
+              	    Fillers ++;
+                    FeaturedList.push('<div class="filler">  <img src="' + Dark + '"  width="500" height="300" class="background_image">  </div>')
+              };
+                
           };
     
     });
@@ -1492,7 +1499,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
 };
   
 if  (!WebsiteCooldowns.has("workshop"))  {
-      
+
     WebsiteCooldowns.add("workshop");
     setTimeout(() => {WebsiteCooldowns.delete("workshop")}, 600000);
 
