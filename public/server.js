@@ -1698,6 +1698,11 @@ if  (!WebsiteCooldowns.has("staff"))  {
             StaffButton.push('<a href="https://www.reddit.com/user/Nixenn" target="_blank">  <img src=' + RedditIcon + ' class="staffbutton">  </a>');
         } else
       
+        //Kud
+        if  (guildMemberId == "475364627002425344")  {
+            StaffButton.push('<a href="https://www.reddit.com/user/st-kud" target="_blank">  <img src=' + RedditIcon + ' class="staffbutton">  </a>');
+        } else
+      
         //Sabi
         if  (guildMemberId == "180090347421040640")  {
             StaffButton.push('<a href="https://www.reddit.com/user/Sabinyan" target="_blank">  <img src=' + RedditIcon + ' class="staffbutton">  </a>');
