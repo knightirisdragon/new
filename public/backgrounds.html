@@ -54,7 +54,7 @@
     cursor: pointer;
 }
   
-#sort_new,
+#sort_old,
 #sort_featured,
 #sort_random {
     display: none;  
@@ -97,30 +97,30 @@
         document.execCommand("Copy");
   };
   
-var CurrentSortMode = "old";
+var CurrentSortMode = "new";
 var MaxSortingModes = 4;
   
 function ChangeSorting(current)  {
 
     /*document.documentElement.scrollTop = 650;
     document.body.scrollTop = 650;*/
-  
-    if  (current == "new")  {
-        CurrentSortMode = "old";
-        document.getElementById("sort_new").style.display = "none";
-        document.getElementById("sort_old").style.display = "block";
-        document.getElementById("sort_random").style.display = "none";
-        document.getElementById("sort_featured").style.display = "none";
-      
-        document.getElementById("sort_mode").innerHTML = "Sorting: Oldest (1/" + MaxSortingModes + ")";
-    } else if (current == "old") {
+
+   if (current == "old") {
         CurrentSortMode = "random";
         document.getElementById("sort_new").style.display = "block";
         document.getElementById("sort_old").style.display = "none";
         document.getElementById("sort_random").style.display = "none";
         document.getElementById("sort_featured").style.display = "none";
       
-        document.getElementById("sort_mode").innerHTML = "Sorting: Newest (2/" + MaxSortingModes + ")";
+        document.getElementById("sort_mode").innerHTML = "Sorting: Newest (1/" + MaxSortingModes + ")";
+    } else if  (current == "new")  {
+        CurrentSortMode = "old";
+        document.getElementById("sort_new").style.display = "none";
+        document.getElementById("sort_old").style.display = "block";
+        document.getElementById("sort_random").style.display = "none";
+        document.getElementById("sort_featured").style.display = "none";
+      
+        document.getElementById("sort_mode").innerHTML = "Sorting: Oldest (2/" + MaxSortingModes + ")";
     } else if (current == "random") {
         CurrentSortMode = "featured";
         document.getElementById("sort_new").style.display = "none";
@@ -174,7 +174,7 @@ function ChangeSorting(current)  {
 
     <center><b><font size="7" class="headertext">Approved Backgrounds</font>  <br><br>
     <font size="4">This is the list of all the approved backgrounds.</font>  <br>
-    <font size="2"><b id="sort_mode">Sorting: Oldest (1/4)</b></font></b>
+    <font size="2"><b id="sort_mode">Sorting: Newest (1/4)</b></font></b>
     </center>
   
 <br><br>

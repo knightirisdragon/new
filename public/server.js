@@ -553,6 +553,10 @@ var Banners = [
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground302.png?1559234599790", NormalPrice, "Atom apocalypse", "Atom", undefined],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground303.png?1559234617296", NormalPrice, "Wondering bear", "Samorost 3", undefined],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground304.png?1559234625544", 475, "Hidden peace", "Indivisible", undefined],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground305.png?1559274593485", 75, "Blurple", "No one", undefined],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground306.png?1559274595817", 250, "Wall of flesh", "Doom", undefined],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground307.png?1559274597356", 400, "Wearing gold", "PAYDAY 2", undefined],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground308.png?1559274598337", 375, "Modernized", "Call of Duty Modern Warfare", undefined],
 
 ];
 
@@ -1479,7 +1483,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     });
 
 
-    await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>", (err) => {
+    await fs.writeFile('public/backgrounds.txt', "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>", (err) => {
         if (err) console.log(err);
     });
 
