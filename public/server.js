@@ -2510,7 +2510,7 @@ if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
 //Automatic Reactions
 if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
   
-    if  ((message.attachments.size > 0 || message.content.includes(/(https?:\/\/[^\s]+)/g)) && !message.author.bot)  {
+    if  ((message.attachments.size > 0 || message.content.match(/(https?:\/\/[^\s]+)/g)) == message.content && !message.author.bot)  {
 
     if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS') && message.channel.permissionsFor(peeky.user).has('EXTERNAL_EMOJIS'))  {
 
