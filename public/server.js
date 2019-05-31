@@ -1512,7 +1512,7 @@ if  (!WebsiteCooldowns.has("workshop"))  {
           
             if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.attachments.size > 0 && m.content.toLowerCase().includes("name: ") && m.content.toLowerCase().includes("credit: ") && m.content.toLowerCase().includes("price: "))  {
               
-                var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500" height="300" class="background_image">  <br>  <a class="button" href="https://discordapp.com/channels/' + m.guild.id + '/' + m.channel.id + '/' + m.id + '">Vote</a>  </div>';
+                var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500" height="300" class="background_image">  <br>  <a class="button" href="' + m.url + '">Vote</a>  </div>';
                 WorkshopList.push(BackgroundString);
 
             };
@@ -2376,7 +2376,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
                   "files": [image],
 
                   "embeds":  [{
-                      "description": "[🔍](https://discordapp.com/channels/" + Original_Message.guild.id + "/" + Original_Message.channel.id + "/" + Original_Message.id + ")",
+                      "description": "[🔍](" + reaction.message.url + ")",
                       "color": EmbedColor
                   }]
 
@@ -2397,7 +2397,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
                  "files": [image],
                    
                   "embeds":  [{
-                      "description": "[🔍](https://discordapp.com/channels/" + Original_Message.guild.id + "/" + Original_Message.channel.id + "/" + Original_Message.id + ")",
+                      "description": "[🔍](" + reaction.message.url + ")",
                       "color": EmbedColor
                   }]
 
@@ -2512,7 +2512,7 @@ if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
 //Automatic Reactions
 if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
   
-if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS') && message.channel.permissionsFor(peeky.user).has('EXTERNAL_EMOJIS') && message.attachments.size > 0 && !message.author.bot)  {
+if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS') && message.channel.permissionsFor(peeky.user).has('EXTERNAL_EMOJIS') && message.attachments.size > 0 && message.embeds.length > 0 && !message.author.bot)  {
 
     var ReactionEmoji1 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
     var ReactionEmoji2 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
