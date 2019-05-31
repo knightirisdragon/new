@@ -2510,26 +2510,31 @@ if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
 //Automatic Reactions
 if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
   
-if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS') && message.channel.permissionsFor(peeky.user).has('EXTERNAL_EMOJIS') && message.attachments.size > 0 && message.embeds.length > 0 && !message.author.bot)  {
+    if  ((message.attachments.size > 0 || message.content.includes(/(https?:\/\/[^\s]+)/g)) && !message.author.bot)  {
 
-    var ReactionEmoji1 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
-    var ReactionEmoji2 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
-    
-if  (ReactionEmoji1 && ReactionEmoji2)  {
-     await message.react(ReactionEmoji1).catch(error => ErrorBag.add(error));
-     await message.react(ReactionEmoji2).catch(error => ErrorBag.add(error));
+    if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS') && message.channel.permissionsFor(peeky.user).has('EXTERNAL_EMOJIS'))  {
 
-     console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
-    }
-     else
-    { 
-     await message.react(DefaultUpvote).catch(error => ErrorBag.add(error));
-     await message.react(DefaultDownvote).catch(error => ErrorBag.add(error));
-    
-     console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
+        var ReactionEmoji1 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
+        var ReactionEmoji2 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
+
+    if  (ReactionEmoji1 && ReactionEmoji2)  {
+         await message.react(ReactionEmoji1).catch(error => ErrorBag.add(error));
+         await message.react(ReactionEmoji2).catch(error => ErrorBag.add(error));
+
+         console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
+        }
+         else
+        { 
+         await message.react(DefaultUpvote).catch(error => ErrorBag.add(error));
+         await message.react(DefaultDownvote).catch(error => ErrorBag.add(error));
+
+         console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
+        };
+
+        };
+
     };
 
-    };
 };
   
 //Images Only
