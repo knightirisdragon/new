@@ -1646,7 +1646,7 @@ if  (!WebsiteCooldowns.has("news"))  {
             });
         };
 
-        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", false) + '  </b>  <br>  <b class="newsauthor">  Posted by <font color="#7289DA">' + m.author.tag + '</font> on <font color="#7289DA">' + function_DateFormat(m.createdAt) + '</font>.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", false) + '  </b>  ' + PrefixImage + Image.join(" ") + '  <br><br><br>  <a class="button" href="https://discordapp.com/channels/' + SupportServer + '/' + AnnouncementsChannel + '/' + m.id + '">Open in Discord</a>  </div>');
+        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", false) + '  </b>  <br>  <b class="newsauthor">  Posted by <font color="#7289DA">' + m.author.tag + '</font> on <font color="#7289DA">' + function_DateFormat(m.createdAt) + '</font>.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", false) + '  </b>  ' + PrefixImage + Image.join(" ") + '  <br><br><br>  <a class="button" href="' + m.url + '">Open in Discord</a>  </div>');
     });
 
     await fs.writeFile('public/news.txt', NewsList.join("<br><br>"), (err) => {
@@ -1672,8 +1672,6 @@ if  (!WebsiteCooldowns.has("staff"))  {
       
         var StaffTag = [];
         var StaffButton = [];
-      
-        //  StaffButton.push('<a href="https://discordapp.com/channels/@me/' + guildMember.user.id + '" target="_blank">  <img src=' + DiscordIcon + ' class="staffbutton">  </a>');
 
         //Vojtěch
         if  (guildMemberId == OwnerId)  {
