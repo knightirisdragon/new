@@ -553,11 +553,12 @@ var Banners = [
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground304.png?1559234625544", 475, "Hidden peace", "Indivisible", undefined],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground305.png?1559274593485", 75, "Blurple", "No one", undefined],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground306.png?1559274595817", 250, "Wall of flesh", "Doom", undefined],
-    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground307.png?1559274597356", 400, "Wearing gold", "PAYDAY 2", undefined],
-    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground308.png?1559274598337", 375, "Modernized", "Call of Duty Modern Warfare", undefined],
-    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground309.png?1559312632224", 425, "Intermission", "Prey", undefined],
-    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground310.png?1559312635724", 450, "Street war", "Battlefield 3", undefined],
-    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground311.png?1559326557864", 400, "Just joking", "Not credited", undefined]
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground307.png?1559274597356", 475, "Wearing gold", "PAYDAY 2", undefined],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground308.png?1559274598337", 475, "Modernized", "Call of Duty Modern Warfare", undefined],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground309.png?1559312632224", 500, "Intermission", "Prey", undefined],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground310.png?1559312635724", 500, "Street war", "Battlefield 3", undefined],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground311.png?1559326557864", 350, "Just joking", "Not credited", undefined],
+    ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground312.jpg?1559331433267", 450, "Oiled Down", "Not credited", undefined]
 
 ];
 
@@ -6052,7 +6053,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "idban "
 //Ban
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "ban "))  {
 
-if  (message.member.permissions.has("BAN_MEMBERS")) {
+if  (message.member.permissions.has("BAN_MEMBERS"))  {
     
 if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
 
@@ -6093,7 +6094,7 @@ if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions
 //purge
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "purge "))  {
 
-    if  (message.member.permissions.has("MANAGE_MESSAGES")) {
+    if  (message.member.permissions.has("MANAGE_MESSAGES"))  {
     
     if  (message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
