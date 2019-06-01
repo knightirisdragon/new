@@ -37,6 +37,7 @@ const FailedVoteChecks       = new Set();
 const FalseMsgIDs            = new Set();
 const FloodProtectionStrikes = [];
 const LoggedMessages         = new Set();
+const CurrentlyStreaming     = new Set();
 const ClearedNames           = new Set();
 const QueuedSOSMessages      = new Set();
 const CurrentlyPlaying       = new Set();
@@ -2265,25 +2266,54 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
   
     if  (!newMember.user.bot)  {
 
-    const member = newMember;
-    var HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
-    var GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
-  
-    if  (newMember.presence.game !== null && newMember.presence.game.streaming == true)  {
-      
-    if  (!HasRole)  {
-         newMember.addRole(GuildRole).catch(error => ErrorBag.add(error));
-        
-         console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
-    };
-    
-    }  else  { 
-      
-       if  (HasRole)  {
-           member.removeRole(GuildRole).catch(error => ErrorBag.add(error));
-       };
+        const member = newMember;
+        var HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
+        var GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
 
+        if  (newMember.presence.game !== null && newMember.presence.game.streaming == true)  {
+
+        if  (!HasRole)  {
+             newMember.addRole(GuildRole).catch(error => ErrorBag.add(error));
+
+             console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
+        };
+
+        }  else  { 
+
+           if  (HasRole)  {
+               member.removeRole(GuildRole).catch(error => ErrorBag.add(error));
+           };
+
+        };
+  
     };
+      
+};
+
+//Stream Announcements
+if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {
+  
+    if  (!newMember.user.bot)  {
+
+        const member = newMember;
+
+        if  (newMember.presence.game !== null && newMember.presence.game.streaming == true)  {
+
+        if  (!CurrentlyStreaming.has(member.user.id))  {
+            CurrentlyStreaming.add(member.user.id);
+          
+          
+
+            console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
+        };
+
+        }  else  { 
+
+           if  (CurrentlyStreaming.has(member.user.id))  {
+               CurrentlyStreaming.delete(member.user.id);
+           };
+
+        };
   
     };
       
