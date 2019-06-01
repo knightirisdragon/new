@@ -1066,10 +1066,6 @@ peeky.on('disconnect', () => {
 	  console.log('Disconnected.');
 });
 
-peeky.on('debug', (error) => {
-	  console.log(error);
-});
-
 //Fixes
 process.on('uncaughtException', function (err) {  ErrorBag.add(err)  });
 peeky.on('error', function (err)  {  ErrorBag.add(err) });
