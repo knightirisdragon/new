@@ -238,6 +238,7 @@ const ErrorMessage9  = [ErrorIcon + " You must enter a valid amount."];
 const ErrorMessage10 = [ErrorIcon + " Make sure the Function's name is all in lowercase."];
 const ErrorMessage11 = [ErrorIcon + " You need to be a Supporter to do that."];
 const ErrorMessage12 = [ErrorIcon + " There are no songs currently playing."];
+const ErrorMessage13 = [ErrorIcon + " Something went wrong."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -5664,8 +5665,12 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
                
             });
 
+            }).catch(error => { 
+                const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                ErrorBag.add(error);
             });
-              
+
             } else {
               const embed = {"description": ErrorIcon + " You cannot play livestreams or songs longer than 1 hour.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5888,7 +5893,7 @@ if  (message.guild.me.hasPermission("MUTE_MEMBERS"))  {
     var RoleExists = message.guild.roles.find(role => role.name == name);
 
     if  (MentionedMember) {
-  
+
     if  (RoleExists) {
       
     if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
@@ -5896,7 +5901,11 @@ if  (message.guild.me.hasPermission("MUTE_MEMBERS"))  {
         MentionedMember.user.send("You have been muted in **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
           
         var Failed = false;
-        MentionedMember.addRole(message.member.guild.roles.find(role => role.name == name), "Muted by " + message.author.tag + ".").catch(error => {ErrorBag.add(error); Failed = true;});
+        await MentionedMember.addRole(message.member.guild.roles.find(role => role.name == name), "Muted by " + message.author.tag + ".").catch(error => { 
+            const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            ErrorBag.add(error); Failed = true;
+        });
 
         if  (Failed == false)  {
             const embed = {"description": SuccessIcon + " I have muted **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
@@ -5959,10 +5968,17 @@ if  (message.guild.me.hasPermission("MUTE_MEMBERS"))  {
 
         MentionedMember.user.send("You have been unmuted in **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
-        const embed = {"description": SuccessIcon + " I have unmuted **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-          
-        MentionedMember.removeRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => ErrorBag.add(error));
+        Failed = true;
+        MentionedMember.removeRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => { 
+            const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            ErrorBag.add(error); Failed = true;
+        });
+
+        if  (Failed == false)  {
+            const embed = {"description": SuccessIcon + " I have unmuted **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
 
         }
          else
