@@ -5651,7 +5651,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             CurrentlyPlaying.delete(message.guild.id);
             voiceChannel.leave();
               
-            /* if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && message.guild.members.get(PeekyId).nickname !== null)  {
+            /* if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && message.guild.me.nickname !== null)  {
                 message.guild.me.setNickname(null);
             };*/
               
@@ -5874,7 +5874,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
     if  (CurrentlyPlaying.has(message.guild.id))  {
       
         CurrentlyPlaying.delete(message.guild.id);
-        message.member.voiceChannel.leave().catch(error => ErrorBag.add(error));
+        message.member.voiceChannel.leave();
       
     } else {
       const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
