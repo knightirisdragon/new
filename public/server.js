@@ -4161,7 +4161,7 @@ if  (FunctioName.startsWith("event countdown ")) {
   
 else
       
-//Spoiler Lock Countdown
+//Set Spoiler Lock
 if  (FunctioName.startsWith("spoiler lock "))  {
   
   if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
@@ -4176,7 +4176,7 @@ if  (FunctioName.startsWith("spoiler lock "))  {
         
           if  (GivenMinutes == 0)  {GivenMinutes = "never"}  else  {GivenMinutes = GivenMinutes + " minutes"}
 
-          const embed = {"description": SuccessIcon + " The **Spoiler Lock** setting has been set to **" + GivenMinutes + " minutes**.",  "color": EmbedColor}; 
+          const embed = {"description": SuccessIcon + " The **Spoiler Lock** setting has been set to **" + GivenMinutes + "**.",  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
       }
