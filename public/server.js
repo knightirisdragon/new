@@ -5215,7 +5215,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
   
     //Permission Checking
-    if(message.guild.me.hasPermission("ATTACH_FILES")) {
+    if  (message.guild.me.hasPermission("ATTACH_FILES"))  {
       
     const canvas        = Canvas.createCanvas(500, 300);
     const ctx           = canvas.getContext('2d');
@@ -5539,7 +5539,12 @@ if (!ProfileCooldown.has(message.author.id)) {
            const embed = {"description": ErrorMessage7[0],  "color": EmbedColor}; 
            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
          };
+      
+    } else {
+      const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
+  
     }
     else {
           const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
