@@ -239,7 +239,7 @@ const ErrorMessage9  = [ErrorIcon + " You must enter a valid amount."];
 const ErrorMessage10 = [ErrorIcon + " Make sure the Function's name is all in lowercase."];
 const ErrorMessage11 = [ErrorIcon + " You need to be a Supporter to do that."];
 const ErrorMessage12 = [ErrorIcon + " There are no songs currently playing."];
-const ErrorMessage13 = [ErrorIcon + " Something has gone wrong."];
+const ErrorMessage13 = [ErrorIcon + " Something has gone unexpectedly wrong."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -2003,7 +2003,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
     
     if (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES')) {
       
-    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "other", true).includes(word)))  {
+    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "other", false).includes(word)))  {
         Detected = true;
     };
 
@@ -3295,7 +3295,7 @@ if  (FunctioName.startsWith("welcome messages")) {
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Welcome Messages** function.");
@@ -3311,7 +3311,7 @@ if  (FunctioName.startsWith("welcome messages")) {
     }
      else
     {
-     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     };
       
     if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
@@ -3361,7 +3361,7 @@ if  (FunctioName.startsWith("classification wall")) {
     }
      else
     {
-     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     };
 
     if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
@@ -3473,7 +3473,7 @@ if  (FunctioName.startsWith("message log"))  {
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Message Log** function.")
@@ -3489,7 +3489,7 @@ if  (FunctioName.startsWith("message log"))  {
     }
      else
     {
-     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     };
       
     if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
@@ -3525,7 +3525,7 @@ if  (FunctioName.startsWith("stream announcements"))  {
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Stream Announcements** function.")
@@ -3542,7 +3542,7 @@ if  (FunctioName.startsWith("stream announcements"))  {
     }
      else
     {
-     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     };
       
     if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
