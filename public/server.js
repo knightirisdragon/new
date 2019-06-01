@@ -238,7 +238,7 @@ const ErrorMessage9  = [ErrorIcon + " You must enter a valid amount."];
 const ErrorMessage10 = [ErrorIcon + " Make sure the Function's name is all in lowercase."];
 const ErrorMessage11 = [ErrorIcon + " You need to be a Supporter to do that."];
 const ErrorMessage12 = [ErrorIcon + " There are no songs currently playing."];
-const ErrorMessage13 = [ErrorIcon + " Something went wrong."];
+const ErrorMessage13 = [ErrorIcon + " Something has gone wrong."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -2004,7 +2004,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
       
     if  (Detected == true)  {
         member.guild.ban(member.id, {  reason: "Triggered by the Welcome Messages function.", days: 0  }).catch(error => ErrorBag.add(error));
-        member.send("**You have been automatically banned for having a possible website advertisment in your username.**  \n  Contact the server owner " + member.guild.owner.user.tag + " to get your ban revoked.")
+        member.send("**You have been automatically banned for having a possible website advertisment in your username.**  \n  Contact the server owner " + member.guild.owner.user.tag + " to get your ban revoked.").catch(error => ErrorBag.add(error));
     };
 
     await channel.send("", await function_WelcomeMessagesEmbed(member, "join", Detected)).catch(error => ErrorBag.add(error));
@@ -5593,7 +5593,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 
     if  (message.member.voiceChannel)  {
 
-        var CooldownExpires = 300000;
         const voiceChannel  = message.member.voiceChannel;
     
     if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT') && voiceChannel.permissionsFor(peeky.user).has('SPEAK'))  {
@@ -5609,6 +5608,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
           
             if  (Length <= 3600000 && Length > 0)  {
               
+            await voiceChannel.join().then(async connection => {
+              
             await CurrentlyPlaying.add(message.guild.id);
           
             peeky.serverData.set(keySF, Title, "Title");
@@ -5617,12 +5618,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             peeky.serverData.set(keySF, LengthDate, "Length");
             peeky.serverData.set(keySF, Started, "Started");
             peeky.serverData.set(keySF, GivenSong, "Link");
-          
-            CooldownExpires = (Length * 1000);
-
-            message.channel.startTyping();
-            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
-            message.channel.stopTyping();
               
             /*if  (message.guild.me.hasPermission("CHANGE_NICKNAME"))  {
                 message.guild.me.setNickname("Playing: " + Title.slice(0, 20));
@@ -5630,9 +5625,11 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               
             if  (DeleteMessage == true)  {
                 message.delete().catch(error => ErrorBag.add(error));
-            };
-              
-            await voiceChannel.join().then(connection => {
+            };            
+
+            message.channel.startTyping();
+            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
+            message.channel.stopTyping();
 
             const stream = ytdl(GivenSong);
             const dispatcher = connection.playStream(stream);
@@ -5886,7 +5883,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "mute ")
 
 if  (message.member.permissions.has("MUTE_MEMBERS")) {
     
-if  (message.guild.me.hasPermission("MUTE_MEMBERS"))  {
+if  (message.guild.me.hasPermission("MUTE_MEMBERS") && message.guild.me.hasPermission("MANAGE_ROLES"))  {
       
     var MentionedMember = message.mentions.members.first();
     var name = peeky.serverData.get(keySF, "muted_role");
@@ -5954,7 +5951,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "unmute 
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
     
-if  (message.guild.me.hasPermission("MUTE_MEMBERS"))  {
+if  (message.guild.me.hasPermission("MUTE_MEMBERS") && message.guild.me.hasPermission("MANAGE_ROLES"))  {
       
     var MentionedMember = message.mentions.members.first();
     var name = peeky.serverData.get(keySF, "muted_role");
@@ -5969,7 +5966,7 @@ if  (message.guild.me.hasPermission("MUTE_MEMBERS"))  {
         MentionedMember.user.send("You have been unmuted in **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
         Failed = true;
-        MentionedMember.removeRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => { 
+        await MentionedMember.removeRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => { 
             const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             ErrorBag.add(error); Failed = true;
