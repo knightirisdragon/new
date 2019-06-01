@@ -2003,7 +2003,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
     
     if (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES')) {
       
-    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "bw", true).includes(word)))  {
+    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), blacklistedWebsites, true).includes(word)))  {
         Detected = true;
     };
 
@@ -3527,7 +3527,7 @@ if  (FunctioName.startsWith("message log"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
       
-    await message.guild.createChannel(name, 'text', [], "Channel created by @" + message.author.tag + " through a function.")
+    await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
@@ -3575,8 +3575,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     var name = peeky.serverData.get(keySF, "stream_announcements_bonus_setting");
     var channel = guild.channels.find(c=> c.name == name);
 
-    if(peeky.channelData.get(keySF, "stream_announcements_bonus") == true) {peeky.channelData.set(keySF, false, "stream_announcements_bonus");}
-    else peeky.channelData.set(keySF, true, "stream_announcements_bonus");
+    if(peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {peeky.serverData.set(keySF, false, "stream_announcements_bonus");}
+    else peeky.serverData.set(keySF, true, "stream_announcements_bonus");
       
     //Channel Creating    
     if (!channel) {
@@ -3588,7 +3588,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
       
-    await message.guild.createChannel(name, 'text', [], "Channel created by @" + message.author.tag + " through a function.")
+    await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
@@ -3612,8 +3612,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
      channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
     };
       
-    if  (peeky.channelData.get(keySF, "message_log_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Message Log** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Stream Announcements** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -4555,7 +4555,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
   
 if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWordsLimit)  {
 
-    var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set banned words ")[1].slice(0, 20).toLowerCase(), "other", true);
+    var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set banned words ")[1].toLowerCase(), "other", true);
     peeky.serverData.get(keySF, "banned_words_bonus_setting").push(ReceivedArray);
 
     var EndString = "";  FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");

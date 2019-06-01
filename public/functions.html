@@ -37,6 +37,11 @@ function SA_Popup() {
      document.getElementById('description').innerHTML = '<b class="functionname">Suspicion Alert</b>  <br>  <b class="functiondescription">Sends the server owner a warning about users that are suspicious joining the server.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle suspicion alert</b>  <br>  <b class="functioncommand">p!set suspicion alert [amount]</b>' + Note; 
 };
 
+function SA2_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<b class="functionname">Stream Announcements</b>  <br>  <b class="functiondescription">Sends a message to a specific channel everytime that someone goes live streaming.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle stream announcements</b>  <br>  <b class="functioncommand">p!set stream announcements [channel name]</b>' + Note; 
+};
+
 function FP_Popup() {
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="functionname">Flood Protection</b>  <br>  <b class="functiondescription">Mutes potentional userbots, spammers and raiders to prevent the chat from being flooded.</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle flood protection</b>' + Note;
@@ -69,7 +74,7 @@ function JR_Popup() {
 
 function SR_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Streamer Role</b>  <br>  <b class="functiondescription">Gives a role to anyone who goes live.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle streamer role</b>  <br>  <b class="functioncommand">p!set streamer role [role name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Streamer Role</b>  <br>  <b class="functiondescription">Gives a role to anyone that starts live streaming.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle streamer role</b>  <br>  <b class="functioncommand">p!set streamer role [role name]</b>' + Note;
 };
 
 function ML_Popup() {
@@ -331,6 +336,14 @@ function Close()  {
     <br><br> <font class="table_description">Streaming Utilities</font>
       
     <div class="functionlist">
+    
+    <div class="function_showcase">
+      <div class="centered"> 
+        
+    <div class="popup" onclick="SA2_Popup()">  Stream Announcements  </div>
+        
+      </div>
+    </div>
     
     <div class="function_showcase">
       <div class="centered"> 
