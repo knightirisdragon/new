@@ -4034,6 +4034,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 //SET COMMANDS
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "set "))  {
   
+if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+  
     var FunctioName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set ")[1];
       
 //Set Welcome Messages
@@ -4312,8 +4314,6 @@ else
       
 //Set Server Trial
 if  (FunctioName.startsWith("server trial "))  {
-  
-  if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
   if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
     
@@ -4341,20 +4341,11 @@ if  (FunctioName.startsWith("server trial "))  {
   };
 
 }
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-
-}
   
 else
       
 //Set Suspicion Alert
 if  (FunctioName.startsWith("suspicion alert ")) {
-  
-  if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
   var BanAmount = message.content.split(peeky.serverData.get(keySF, "prefix") + "set suspicion alert ")[1];
 
@@ -4371,13 +4362,6 @@ if  (FunctioName.startsWith("suspicion alert ")) {
   const embed = {"description": ErrorMessage9[0],  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
-  
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
   
@@ -4385,8 +4369,6 @@ else
       
 //Set Vote Kick
 if  (FunctioName.startsWith("vote kick ")) {
-  
-  if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
   var VoteAmount = message.content.split(peeky.serverData.get(keySF, "prefix") + "set vote kick ")[1];
 
@@ -4403,13 +4385,6 @@ if  (FunctioName.startsWith("vote kick ")) {
   const embed = {"description": ErrorIcon + " The provided amount must be greater than 1.",  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
-  
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
   
@@ -4417,8 +4392,6 @@ else
 
 //Set Message Log
 if  (FunctioName.startsWith("message log "))  {
-  
-  if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
   
   if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
     
@@ -4436,13 +4409,6 @@ if  (FunctioName.startsWith("message log "))  {
     const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   };
-  
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
   
@@ -4450,8 +4416,6 @@ else
 
 //Set Message Log
 if  (FunctioName.startsWith("stream announcements "))  {
-  
-  if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
   
   if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
     
@@ -4469,22 +4433,13 @@ if  (FunctioName.startsWith("stream announcements "))  {
     const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   };
-  
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
   
 else
 
 //Set Clear Nicknames
-if  (FunctioName.startsWith("clear nicknames ")) {
-  
-  if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+if  (FunctioName.startsWith("clear nicknames "))  {
   
   if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
    
@@ -4500,13 +4455,6 @@ if  (FunctioName.startsWith("clear nicknames ")) {
     const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   };
-  
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
   
@@ -4514,8 +4462,6 @@ else
       
 //Set Server Message
 if  (FunctioName.startsWith("server message "))  {
-
-  if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
    
   var ServerMessageContent = message.content.split(peeky.serverData.get(keySF, "prefix") + "set server message ")[1];
   var ServerMessagePreview = ServerMessageContent;
@@ -4534,13 +4480,6 @@ if  (FunctioName.startsWith("server message "))  {
 
       const embed = {"description": SuccessIcon + " The **Server Message** setting has been set to **" + ServerMessagePreview + FixedMsgEnd + "**." + TagString,  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
   
@@ -4548,8 +4487,6 @@ else
  
 //Set Banned Words
 if  (FunctioName.startsWith("banned words "))  {
-  
-if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
@@ -4571,18 +4508,18 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWo
 };
 
 };
-  
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
  else
 {
  const embed = {"description": ErrorMessage10[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+  
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
@@ -4592,11 +4529,11 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWo
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "clear "))  {
   
     var FunctioName = message.content.split(peeky.serverData.get(keySF, "prefix") + "clear ")[1];
+  
+if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
  
 //Clear Banned Words
 if  (FunctioName.startsWith("banned words"))  {
-  
-if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
       
@@ -4607,18 +4544,18 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 
 
 };
-  
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
  else
 {
  const embed = {"description": ErrorMessage10[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+  
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
