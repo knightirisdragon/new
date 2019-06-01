@@ -2957,7 +2957,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "get "))
     message.channel.send("`" + Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get", true) + "`").catch(error => ErrorBag.add(error));
 };
   
-//Get
+//Userinfo
 /*if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "info"))  {
     
     message.channel.send(
@@ -5894,11 +5894,14 @@ if  (message.guild.me.hasPermission("MUTE_MEMBERS"))  {
     if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
 
         MentionedMember.user.send("You have been muted in **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
-
-        const embed = {"description": SuccessIcon + " I have muted **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           
-        MentionedMember.addRole(message.member.guild.roles.find(role => role.name == name), "Muted by " + message.author.tag + ".").catch(error => ErrorBag.add(error));
+        var Failed = false;
+        MentionedMember.addRole(message.member.guild.roles.find(role => role.name == name), "Muted by " + message.author.tag + ".").catch(error => {ErrorBag.add(error); Failed = true;});
+
+        if  (Failed == false)  {
+            const embed = {"description": SuccessIcon + " I have muted **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
 
         }
          else
