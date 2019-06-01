@@ -2301,8 +2301,9 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {
 
         if  (!CurrentlyStreaming.has(member.user.id))  {
             CurrentlyStreaming.add(member.user.id);
-          
-          
+
+            const embed = {"description": "**" + Function_RemoveFormatting(member.user.username, "other", true) + " has started streaming " + Function_RemoveFormatting(member.user.presence.game.name, "other", true) + " on Twitch!**" + "\n" + "Go take a look at: " + member.user.presence.game.url,  "color": 6570404};
+            peeky.channels.get("516206997956329472").send({ embed }).catch(error => ErrorBag.add(error));
 
             console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
         };
