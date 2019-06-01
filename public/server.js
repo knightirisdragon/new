@@ -5912,7 +5912,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
       
     if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
           
-        var Failed = true;
+        var Failed = false;
         await MentionedMember.removeRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => { 
             const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5980,7 +5980,7 @@ if  (message.guild.me.hasPermission("MUTE_MEMBERS") && message.guild.me.hasPermi
       
     if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
 
-        var Failed = true;
+        var Failed = false;
         await MentionedMember.removeRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => { 
             const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -6041,25 +6041,20 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "idban "
         var GivenID = message.content.split(peeky.serverData.get(keySF, "prefix") + "idban ")[1];
         var ValidID = 0;
 
-        await peeky.fetchUser(GivenID, true)
-        .catch(error => ErrorBag.add(error) && ValidID++);
+        await peeky.fetchUser(GivenID, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
       
         if  (ValidID == 0) {
-          
+
         if  (!message.guild.members.find(m => m.id == GivenID))  {
 
-            var Failed = true;
+            var Failed = false;
             await message.guild.ban(GivenID, {  reason: "ID Banned by " + message.author.tag + ".", days: 0  }).catch(error => { 
-                const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                ErrorBag.add(error); Failed = true;
+                  const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                  ErrorBag.add(error); Failed = true;
             });
 
             if  (Failed == false)  {
-                await message.guild.ban(GivenID, {  reason: "ID Banned by " + message.author.tag + ".", days: 0  }).catch(error => { 
-                const embed = {"description": ErrorMessage13[0],  "color": EmbedColor};  message.channel.send({ embed }).catch(error => ErrorBag.add(error));  return;
-                });
-
                 const embed = {"description": SuccessIcon + " I have ID banned **" + Function_RemoveFormatting(peeky.users.get(GivenID).username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -6104,13 +6099,20 @@ if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
     var MentionedMember = message.mentions.members.first();
           
 if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS")) {
-  
-    await MentionedMember.user.send("You have been banned from **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
-    const embed = {"description": SuccessIcon + " I have banned **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-    message.guild.ban(MentionedMember, { reason: "Banned by " + message.author.tag + ".", days: 0  }).catch(error => ErrorBag.add(error));
+    var Failed = false;
+    await message.guild.ban(GivenID, {  reason: "ID Banned by " + message.author.tag + ".", days: 0  }).catch(error => { 
+          const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          ErrorBag.add(error); Failed = true;
+    });
+
+    if  (Failed == false)  {
+        message.guild.ban(MentionedMember, { reason: "Banned by " + message.author.tag + ".", days: 0  }).catch(error => ErrorBag.add(error));
+      
+        const embed = {"description": SuccessIcon + " I have banned **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
     }
      else
@@ -6146,14 +6148,15 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "purge "
 
         if  (isNaN(BulkAmount) == false && BulkAmount > 0 && BulkAmount <= 100) {
 
-        await message.delete().catch(error => ErrorBag.add(error))
-        message.channel.bulkDelete(BulkAmount).catch(error => ErrorBag.add(error))
-        .then(() => {
+            await message.delete().catch(error => ErrorBag.add(error));
+
+            message.channel.bulkDelete(BulkAmount).catch(error => ErrorBag.add(error)).then(() => {
+
+            const embed = {"description":  SuccessIcon + " I have purged **" + BulkAmount + " messages** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+            });
           
-        const embed = {"description":  SuccessIcon + " I have purged **" + BulkAmount + " messages** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      
-        });
         }
          else
         {
