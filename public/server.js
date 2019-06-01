@@ -2298,21 +2298,21 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {
         const member = newMember;
 
         if  (newMember.presence.game !== null && newMember.presence.game.streaming == true)  {
+                console.log("2");
 
-        if  (!CurrentlyStreaming.has(member.user.id))  {
-            CurrentlyStreaming.add(member.user.id);
+            if  (oldMember.presence.game == null && oldMember.presence.game.streaming == true)  {
+                var AlreadyStreaming = true;
+                console.log("3");
+            };
+          
+            if  (AlreadyStreaming !== true)  {
+                console.log("4");
+              
+                const embed = {"description": "**" + Function_RemoveFormatting(member.user.username, "other", true) + " has started streaming " + Function_RemoveFormatting(member.user.presence.game.name, "other", true) + " on Twitch!**" + "\n" + "Go take a look at: " + member.user.presence.game.url,  "color": 6570404};
+                peeky.channels.get("516206997956329472").send({ embed }).catch(error => ErrorBag.add(error));
 
-            const embed = {"description": "**" + Function_RemoveFormatting(member.user.username, "other", true) + " has started streaming " + Function_RemoveFormatting(member.user.presence.game.name, "other", true) + " on Twitch!**" + "\n" + "Go take a look at: " + member.user.presence.game.url,  "color": 6570404};
-            peeky.channels.get("516206997956329472").send({ embed }).catch(error => ErrorBag.add(error));
-
-            console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
-        };
-
-        }  else  { 
-
-           if  (CurrentlyStreaming.has(member.user.id))  {
-               CurrentlyStreaming.delete(member.user.id);
-           };
+                console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
+            };
 
         };
   
