@@ -2001,10 +2001,20 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
     if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "bw", true).includes(word)))  {
         Detected = true;
     };
-      
+
     if  (Detected == true)  {
-        member.guild.ban(member.id, {  reason: "Triggered by the Welcome Messages function.", days: 0  }).catch(error => ErrorBag.add(error));
-        member.send("**You have been automatically banned for having a possible website advertisment in your username.**  \n  Contact the server owner " + member.guild.owner.user.tag + " to get your ban revoked.").catch(error => ErrorBag.add(error));
+
+        var Failed = false;
+      
+        await member.guild.ban(member.id, {  reason: "Triggered by the Welcome Messages function.", days: 0  }).catch(error => {
+              ErrorBag.add(error);
+              var Failed = true;
+        });
+
+        if  (Failed == true)  {
+            member.send("**You have been automatically banned for having a possible website advertisment in your username.**  \n  Contact the server owner " + member.guild.owner.user.tag + " to get your ban revoked.").catch(error => ErrorBag.add(error));
+        };
+
     };
 
     await channel.send("", await function_WelcomeMessagesEmbed(member, "join", Detected)).catch(error => ErrorBag.add(error));
@@ -5758,7 +5768,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
           
             peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
 
-            const embed = {"description": SuccessIcon + " Added the current song to your playlist.",  "color": EmbedColor}; 
+            const embed = {"description": SuccessIcon + " Added the current song to your **" + peeky.userData.get(key, "PlaylistName") + "** playlist.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));                
               
         } else {
@@ -5774,7 +5784,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
           
             peeky.userData.get(key, "Playlist").push(PlaylistRequest);
 
-            const embed = {"description": SuccessIcon + " Added the song to your playlist.",  "color": EmbedColor}; 
+            const embed = {"description": SuccessIcon + " Added the song to your **" + peeky.userData.get(key, "PlaylistName") + "** playlist.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           
         } else {
