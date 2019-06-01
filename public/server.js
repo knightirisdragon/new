@@ -560,8 +560,8 @@ var Banners = [
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground310.png?1559312635724", 500, "Street war", "Battlefield 3", undefined],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground311.png?1559326557864", 350, "Just joking", "Not credited", undefined],
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground312.jpg?1559331433267", 450, "Oiled Down", "Not credited", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground313.png", 500, "Servant", "Dark Souls 2", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground314.png", 500, "Lara Croft", "Shadow of the Tomb Raider", undefined]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground313.png", 500, "Lara Croft", "Shadow of the Tomb Raider", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground314.png", 500, "Servant", "Dark Souls 2", undefined],
 
 ];
 
@@ -5062,7 +5062,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         peeky.userData.get(key2, "Inventory").push(DonatedAmount);
 
         //Set Default Background
-        if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
+        if  (isNaN(peeky.userData.get(key, "Background")) == false && peeky.userData.get(key, "Background") == DonatedAmount)  {
             peeky.userData.set(key, 1, "Background");
             InfoMessages.push(InfoMessage2[0]);
         };
@@ -5906,8 +5906,6 @@ if  (message.guild.me.hasPermission("MUTE_MEMBERS") && message.guild.me.hasPermi
     if  (RoleExists) {
       
     if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
-
-        MentionedMember.user.send("You have been muted in **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
           
         var Failed = false;
         await MentionedMember.addRole(message.member.guild.roles.find(role => role.name == name), "Muted by " + message.author.tag + ".").catch(error => { 
@@ -5917,6 +5915,8 @@ if  (message.guild.me.hasPermission("MUTE_MEMBERS") && message.guild.me.hasPermi
         });
 
         if  (Failed == false)  {
+            MentionedMember.user.send("You have been muted in **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
+          
             const embed = {"description": SuccessIcon + " I have muted **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
@@ -5975,8 +5975,6 @@ if  (message.guild.me.hasPermission("MUTE_MEMBERS") && message.guild.me.hasPermi
       
     if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
 
-        MentionedMember.user.send("You have been unmuted in **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
-
         Failed = true;
         await MentionedMember.removeRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => { 
             const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
@@ -5985,6 +5983,8 @@ if  (message.guild.me.hasPermission("MUTE_MEMBERS") && message.guild.me.hasPermi
         });
 
         if  (Failed == false)  {
+            MentionedMember.user.send("You have been unmuted in **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
+          
             const embed = {"description": SuccessIcon + " I have unmuted **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
