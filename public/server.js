@@ -2297,7 +2297,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {
 
         const member = newMember;
 
-        if  (member.presence.game !== null && member.presence.game.streaming == true)  {
+        if  (newMember.presence.game !== null && member.presence.game.streaming == true)  {
 
             if  (oldMember.presence.game == null && oldMember.presence.game.streaming == true)  {
                 var AlreadyStreaming = true;
