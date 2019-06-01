@@ -1193,6 +1193,8 @@ peeky.on('message', async (message) => {
         vote_kick_bonus_setting: 10,
         server_trial_bonus_bonus: false,
         server_trial_bonus_setting: 60,
+        stream_announcements_bonus: false,
+        stream_announcements_bonus_setting: "twitch"
     });
 
     if  (!message.author.bot && !message.webhookID)  {
@@ -3183,6 +3185,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
     if (peeky.serverData.get(keySF, "join_role_bonus") == true)              { var JR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var JR = DisabledIcon};
     if (peeky.serverData.get(keySF, "server_trial_bonus") == true)           { var ST = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var ST = DisabledIcon};
     if (peeky.serverData.get(keySF, "streamer_role_bonus") == true)          { var SR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SR = DisabledIcon};
+    if (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)   { var SA2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA2 = DisabledIcon};
     if (peeky.channelData.get(keyCF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
     if (peeky.channelData.get(keyCF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
     if (peeky.channelData.get(keyCF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
@@ -3206,7 +3209,8 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         CN + " **Clear Nicknames** " + "\n" + Hollow + " " + "The full cleared nickname prefix is `" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n" +
                         CW + " **Classification Wall** " + "\n" + Hollow + " " + "The role name is `@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` and the channel name is `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n" +
                         SA + " **Suspicion Alert** " + "\n" + Hollow + " " + "The server owner will be alerted when someone with `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans` or more joins the server." + "\n" +
-                        ST + " **Server Trial** " + "\n" + Hollow + " " + "Members have about `" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes` before their trial expires."
+                        ST + " **Server Trial** " + "\n" + Hollow + " " + "Members have about `" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes` before their trial expires." + "\n" +
+                        SA2 + " **Stream Announcements** " + "\n" + Hollow + " " + "Streams will be announced in the `#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "` channel."
    
    );
 
@@ -3216,7 +3220,6 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         SM + " **Server Message** " + "\n" + Hollow + " " + "The server message is `" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n" +
                         VT + " **Vote Kick** " + "\n" + Hollow + " " + "People need to get `" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes` on one of their messages to get kicked out." + "\n" +
                         JR + " **Join Role** " + "\n" + Hollow + " " + "Everyone who joins the server gets a role called `@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n" +
-     
                         SR + " **Streamer Role** " + "\n" + Hollow + " " + "When someone starts streaming, they will get a role called `@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`." + "\n" +
                         N_ + " **Notifications** " + "\n" + Hollow + " " + "No setting."
                         +  "\n­"
@@ -3566,7 +3569,7 @@ else
 //Toggle Stream Announcements
 if  (FunctioName.startsWith("stream announcements"))  {
   
-  if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
   
     const guild = message.guild;
     var name = peeky.serverData.get(keySF, "stream_announcements_bonus_setting");
@@ -3580,7 +3583,7 @@ if  (FunctioName.startsWith("stream announcements"))  {
 
     if  (!ChannelCooldown.has(message.guild.id)) {
 
-    if(message.guild.me.hasPermission("MANAGE_CHANNELS")) {
+    if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
 
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
@@ -3595,6 +3598,7 @@ if  (FunctioName.startsWith("stream announcements"))  {
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Stream Announcements** function.")
     
     };
+
     }
      else
     {
@@ -4412,7 +4416,7 @@ if  (FunctioName.startsWith("vote kick ")) {
 else
 
 //Set Message Log
-if  (FunctioName.startsWith("message log ")) {
+if  (FunctioName.startsWith("message log "))  {
   
   if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
   
@@ -4424,6 +4428,39 @@ if  (FunctioName.startsWith("message log ")) {
   peeky.serverData.set(keySF, FixedChannelName, "message_log_bonus_setting");
 
   const embed = {"description": SuccessIcon + " The **Message Log** setting has been set to **#­" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "**.",  "color": EmbedColor}; 
+  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+  }
+   else
+  {
+    const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  };
+  
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+  
+else
+
+//Set Message Log
+if  (FunctioName.startsWith("stream announcements "))  {
+  
+  if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+  
+  if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
+    
+  var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set tream announcements ")[1];
+  var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
+
+  peeky.serverData.set(keySF, FixedChannelName, "stream_announcements_bonus_setting");
+
+  const embed = {"description": SuccessIcon + " The **Stream Announcements** setting has been set to **#­" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "**.",  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
   }
