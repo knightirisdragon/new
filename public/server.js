@@ -2277,7 +2277,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
         if  (!HasRole)  {
              newMember.addRole(GuildRole).catch(error => ErrorBag.add(error));
 
-             console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
+             console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
         };
 
         }  else  { 
@@ -4455,7 +4455,7 @@ if  (FunctioName.startsWith("stream announcements "))  {
   
   if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
     
-  var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set tream announcements ")[1];
+  var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set stream announcements ")[1];
   var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
 
   peeky.serverData.set(keySF, FixedChannelName, "stream_announcements_bonus_setting");
