@@ -2302,13 +2302,13 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {
       
             if  (newMember.presence.game !== null && newMember.presence.game.streaming == true)  {
 
-                if  (oldMember.presence.game == null && oldMember.presence.game.streaming == true)  {
+                if  (oldMember.presence.game !== null && oldMember.presence.game.streaming == true)  {
                     var AlreadyStreaming = true;
                 };
 
                 if  (AlreadyStreaming !== true)  {
 
-                    const embed = {"description": "**" + Function_RemoveFormatting(member.user.username, "other", true) + " has started streaming " + Function_RemoveFormatting(member.user.presence.game.name, "other", true) + " on Twitch!**" + "\n" + "You can watch them at " + member.user.presence.game.url + ".",  "color": 6570404};
+                    const embed = {"description": "**" + Function_RemoveFormatting(member.user.username, "other", true) + " has started streaming " + Function_RemoveFormatting(member.user.presence.game.name, "other", true) + " on Twitch!**" + "\n" + member.user.presence.game.url,  "color": 6570404};
                     Channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                     console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
@@ -3503,7 +3503,7 @@ if  (FunctioName.startsWith("server message")) {
 else
    
 //Toggle Message Log
-if  (FunctioName.startsWith("message log")) {
+if  (FunctioName.startsWith("message log"))  {
   
   if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
   
@@ -3548,6 +3548,67 @@ if  (FunctioName.startsWith("message log")) {
     };
       
     if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Message Log** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+  
+else
+   
+//Toggle Stream Announcements
+if  (FunctioName.startsWith("stream announcements"))  {
+  
+  if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+  
+    const guild = message.guild;
+    var name = peeky.serverData.get(keySF, "stream_announcements_bonus_setting");
+    var channel = guild.channels.find(c=> c.name == name);
+
+    if(peeky.channelData.get(keySF, "stream_announcements_bonus") == true) {peeky.channelData.set(keySF, false, "stream_announcements_bonus");}
+    else peeky.channelData.set(keySF, true, "stream_announcements_bonus");
+      
+    //Channel Creating    
+    if (!channel) {
+
+    if  (!ChannelCooldown.has(message.guild.id)) {
+
+    if(message.guild.me.hasPermission("MANAGE_CHANNELS")) {
+
+    ChannelCooldown.add(message.guild.id);
+    setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
+      
+    await message.guild.createChannel(name, 'text', [], "Channel created by @" + message.author.tag + " through a function.")
+    .then(async function (channel)  {
+          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
+          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+    }).catch(function(err) {  ErrorBag.add(err);  });
+      
+    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Stream Announcements** function.")
+    
+    };
+    }
+     else
+    {
+     const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
+     message.channel.send({ embed })
+     .catch(error => ErrorBag.add(error));
+    };
+    }
+     else
+    {
+     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+    };
+      
+    if  (peeky.channelData.get(keySF, "message_log_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
     const embed = {"description": SuccessIcon + " The **Message Log** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -3623,7 +3684,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 else
       
 //Toggle Event Countdown
-if  (FunctioName.startsWith("event countdown")) {
+if  (FunctioName.startsWith("event countdown"))  {
 
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
   
