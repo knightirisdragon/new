@@ -2267,8 +2267,8 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
     if  (!newMember.user.bot)  {
 
         const member = newMember;
-        var HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
-        var GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
+        var   HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
+        var   GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
 
         if  (newMember.presence.game !== null && newMember.presence.game.streaming == true)  {
 
@@ -2296,22 +2296,27 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {
     if  (!newMember.user.bot)  {
 
         const member = newMember;
+        var   Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));    
 
-        if  (newMember.presence.game !== null && member.presence.game.streaming == true)  {
+        if  (Channel)  {
+      
+            if  (newMember.presence.game !== null && newMember.presence.game.streaming == true)  {
 
-            if  (oldMember.presence.game == null && oldMember.presence.game.streaming == true)  {
-                var AlreadyStreaming = true;
-            } else {console.log("1")};
+                if  (oldMember.presence.game == null && oldMember.presence.game.streaming == true)  {
+                    var AlreadyStreaming = true;
+                };
+
+                if  (AlreadyStreaming !== true)  {
+
+                    const embed = {"description": "**" + Function_RemoveFormatting(member.user.username, "other", true) + " has started streaming " + Function_RemoveFormatting(member.user.presence.game.name, "other", true) + " on Twitch!**" + "\n" + "You can watch them at " + member.user.presence.game.url + ".",  "color": 6570404};
+                    Channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                    console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
+                };
+
+            };
           
-            if  (AlreadyStreaming !== true)  {
-              
-                const embed = {"description": "**" + Function_RemoveFormatting(member.user.username, "other", true) + " has started streaming " + Function_RemoveFormatting(member.user.presence.game.name, "other", true) + " on Twitch!**" + "\n" + "You can watch them at " + member.user.presence.game.url + ".",  "color": 6570404};
-                peeky.channels.get("516206997956329472").send({ embed }).catch(error => ErrorBag.add(error));
-
-                console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
-            } else {console.log("2")};
-
-        } else {console.log("3")};
+        };
   
     };
       
