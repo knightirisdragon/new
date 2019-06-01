@@ -4930,7 +4930,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
     ddbl.getVotes().then(AllVotes => {
       
         var Now = new Date();
-        AllVotes.filter(i => i.id == "109036350002458624" && Now - new Date(i.timestamp) <= 86400000);
+        AllVotes.filter(i => i.id == message.author.id && Now - new Date(i.timestamp) <= 86400000);
 
         if  (AllVotes.length > 0 == true)  {
             InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DDB today.");
