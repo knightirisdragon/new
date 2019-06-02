@@ -1282,17 +1282,6 @@ peeky.on('message', async (message) => {
       
     peeky.userData.set(key, BadgeGreditAmount, "BadgeGredit");
     peeky.userData.set(key, BadgeExpAmount, "BadgeExp");
-      
-    //LEVEL 99
-    if  (peeky.userData.get(key, "Level") == 99)  {
-        peeky.userData.math(key, BadgeGreditAmount, "+", BadgeExpAmount, "BadgeGredit");
-        peeky.userData.set(key, 0, "Exp");
-        peeky.userData.set(key, 0, "BadgeExp");
-    } else
-    if  (peeky.userData.get(key, "Level") > 99)  {
-        peeky.userData.set(key, 0, "Exp");
-        peeky.userData.set(key, 99, "Level");
-    };
 
     peeky.userData.math(key, "+", Math.round(Math.random() * BadgeGreditAmount), "Gredit");
     peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");
@@ -5159,6 +5148,8 @@ if (!ProfileCooldown.has(message.author.id)) {
       
     ctx.fillStyle = "white";
     ctx.textAlign = "left";
+      
+    if (text.includes("\n")) {  y_position = 45;  };
         
     ctx.fillText(peeky.userData.get(key2, "Description"), 83, y_position);
       
