@@ -5033,7 +5033,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
 
 };
 
-//XAXA
+//Profile
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "profile"))  {
   
 if (!ProfileCooldown.has(message.author.id)) {
@@ -5082,7 +5082,7 @@ if (!ProfileCooldown.has(message.author.id)) {
 
     });
       
-    var layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile%20layout.png");
+    var layout = await Canvas.loadImage("https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile%20layout.png");
     ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
     //Draw Events
@@ -5102,11 +5102,11 @@ if (!ProfileCooldown.has(message.author.id)) {
       
     //Coins String
     ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Gredit").toLocaleString('en') + " Gredit", 35, 85);
+    ctx.fillText("" + peeky.userData.get(key2, "Gredit").toLocaleString('en') + " Gredit", 40, 105);
       
     //Chests String
     ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 35, 120);
+    ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 40, 140);
 
     //Backpack String
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
@@ -5114,7 +5114,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     } else {  var CustomBackgroundAmount = 0;  };
       
     ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 35, 155);
+    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 40, 175);
     
         //Description String
     var text = peeky.userData.get(key2, "Description");
@@ -5130,8 +5130,6 @@ if (!ProfileCooldown.has(message.author.id)) {
       
     ctx.fillStyle = "white";
     ctx.textAlign = "left";
-      
-    if (text.includes("\n")) {  y_position = 60;  };
         
     ctx.fillText(peeky.userData.get(key2, "Description"), 83, y_position);
       
