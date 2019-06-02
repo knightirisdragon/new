@@ -2318,7 +2318,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                     CurrentlyStreaming.add(newMember.user.id);
                     setTimeout(() => {CurrentlyStreaming.delete(newMember.user.id)}, 300000);
 
-                    const embed = {"description": "**" + Function_RemoveFormatting(member.user.username, "other", true) + " has started streaming " + Function_RemoveFormatting(member.user.presence.game.name, "other", true) + " on Twitch!**" + "\n" + member.user.presence.game.url,  "color": 6570404};
+                    const embed = {"description": "**" + Function_RemoveFormatting(member.user.username, "other", true) + " has started streaming " + Function_RemoveFormatting(member.user.presence.game.name, "other", true) + " on Twitch!**" + "\n" + member.user.presence.game.url,  "color": 6570404,  "image": {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbranding.jpg"  }};
                     Channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                     console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
