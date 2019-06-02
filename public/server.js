@@ -5033,7 +5033,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
 
 };
 
-//Profile
+//XAXA
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "profile"))  {
   
 if (!ProfileCooldown.has(message.author.id)) {
@@ -5057,10 +5057,6 @@ if (!ProfileCooldown.has(message.author.id)) {
     const ProfileName        = SomeoneTagged.username;
     const PeekySupportServer = peeky.guilds.get(SupportServer);
     const TheUserWithRole    = peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id);
-    var   BadgeYpos          = 64;
-    const BadgeYposAmt       = 35;
-    var   BadgeAmount        = 0;
-    const MaxBadges          = 4;
     const key2               = SomeoneTagged.id;
     var   Failed             = false;
       
@@ -5100,9 +5096,9 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.shadowOffsetY = 1;
     ctx.globalAlpha = 1;
 
-    //Tag String
-    ctx.font = "30px " + DefaultFont;
-    ctx.fillText(ProfileName, 95, 40);
+    //Name String
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText(ProfileName, 85, 20);
       
     //Coins String
     ctx.font = "25px " + DefaultFont;
@@ -5122,22 +5118,22 @@ if (!ProfileCooldown.has(message.author.id)) {
     
         //Description String
     var text = peeky.userData.get(key2, "Description");
-    var fontsize = 18;
-    var y_position = 75;
+    var fontsize = 14;
+    var y_position = 50;
 
     do {
 
          fontsize--;
          ctx.font=fontsize+"px " + DefaultFont;
        
-       } while  (ctx.measureText(text).width > (canvas.width - 95));
+       } while  (ctx.measureText(text).width > (canvas.width - 85));
       
     ctx.fillStyle = "white";
     ctx.textAlign = "left";
       
     if (text.includes("\n")) {  y_position = 60;  };
         
-    ctx.fillText(peeky.userData.get(key2, "Description"), 95, y_position);
+    ctx.fillText(peeky.userData.get(key2, "Description"), 85, y_position);
       
     //Draw Images
       
@@ -5158,138 +5154,142 @@ if (!ProfileCooldown.has(message.author.id)) {
     const progress_bar_background = await Canvas.loadImage(LightField);
       
     //Badges
+    var   BadgeXpos          = 225;
+    const BadgeXposAmt       = 35;
+    var   BadgeAmount        = 0;
+    const MaxBadges          = 10;
 
         //PEEKY Staff Icon
     if  (BadgeAmount < MaxBadges)  {
     const moderator_icon = await Canvas.loadImage(ModeratorImage);
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(StaffRole))  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(moderator_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(moderator_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Veteran Icon
     if  (BadgeAmount < MaxBadges)  {
     const veteran_icon = await Canvas.loadImage(VeteranImage);
-    if  (peeky.userData.get(key2, "VeteranBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(veteran_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    if  (peeky.userData.get(key2, "VeteranBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(veteran_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Supporter Icon
     if  (BadgeAmount < MaxBadges)  {
     const supporter_icon = await Canvas.loadImage(SupporterImage);
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(SupporterRole))  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(supporter_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(supporter_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Bug Hunter Icon
     if  (BadgeAmount < MaxBadges)  {
     const bughunter_icon = await Canvas.loadImage(BugCHunterImage);
     if  (peeky.userData.get(key2, "BugHunterBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(bughunter_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(bughunter_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Contributor Icon
     if  (BadgeAmount < MaxBadges)  {
     const contributor_icon = await Canvas.loadImage(ContributorImage);
     if  (peeky.userData.get(key2, "ContributorBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(contributor_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(contributor_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Celebrator Icon
     if  (BadgeAmount < MaxBadges)  {
     const celebrator_icon = await Canvas.loadImage(CelebratorImage);
     if  (peeky.userData.get(key2, "CelebratorBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(celebrator_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(celebrator_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Movie Nighter Icon
     if  (BadgeAmount < MaxBadges)  {
     const movienighter_icon = await Canvas.loadImage(MovieNighterImage);
     if  (peeky.userData.get(key2, "MovieNighterBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(movienighter_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(movienighter_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Medallist Icon
     if  (BadgeAmount < MaxBadges)  {
     const medalist_icon = await Canvas.loadImage(MedallistImage);
     if  (peeky.userData.get(key2, "MedallistBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(medalist_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(medalist_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Party Icon
     if  (BadgeAmount < MaxBadges)  {
     const publisher_icon = await Canvas.loadImage(PartyImage);
     if  (peeky.userData.get(key2, "PartyBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(publisher_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(publisher_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Poller Icon
     if  (BadgeAmount < MaxBadges)  {
     const poller_icon = await Canvas.loadImage(PollerImage);
     if  (peeky.userData.get(key2, "PollerBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(poller_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(poller_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Voter Icon
     if  (BadgeAmount < MaxBadges)  {
     const voter_icon = await Canvas.loadImage(VoterImage);
     if  (peeky.userData.get(key2, "VoterBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(voter_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(voter_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Publisher Icon
     if  (BadgeAmount < MaxBadges)  {
     const publisher_icon = await Canvas.loadImage(PublisherImage);
     if  (peeky.userData.get(key2, "PublisherBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(publisher_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(publisher_icon, (canvas.width - 48), 225, 30, 30);
     };
       
         //Ownership Icon
     if  (BadgeAmount < MaxBadges)  {
     const gambler_icon = await Canvas.loadImage(OwnershipImage);
     if  (peeky.userData.get(key2, "OwnershipBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(gambler_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(gambler_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Horder Icon
     if  (BadgeAmount < MaxBadges)  {
     const horder_icon = await Canvas.loadImage(HorderImage);
     if  (peeky.userData.get(key2, "HorderBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(horder_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(horder_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Miner Icon
     if  (BadgeAmount < MaxBadges)  {
     const miner_icon = await Canvas.loadImage(HorderImage);
     if  (peeky.userData.get(key2, "MinerBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(miner_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(miner_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Gambler Icon
     if  (BadgeAmount < MaxBadges)  {
     const gambler_icon = await Canvas.loadImage(GamblerImage);
     if  (peeky.userData.get(key2, "GamblerBadge") >= 10)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(gambler_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(gambler_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Charity Icon
     if  (BadgeAmount < MaxBadges)  {
     const charity_icon = await Canvas.loadImage(CharityImage);
     if  (peeky.userData.get(key2, "CharityBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(charity_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(charity_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //PainterIcon
     if  (BadgeAmount < MaxBadges)  {
     const painter_icon = await Canvas.loadImage(PainterImage);
     if  (peeky.userData.get(key2, "PainterBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(painter_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(painter_icon, (canvas.width - 48), 225, 30, 30);
     };
 
         //Fashion Icon
     if  (BadgeAmount < MaxBadges)  {
     const fashion_icon = await Canvas.loadImage(FashionImage);
     if  (peeky.userData.get(key2, "FashionBadge") == true)  {  ctx.globalAlpha = 1; BadgeYpos += BadgeYposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(fashion_icon, (canvas.width - 48), BadgeYpos, 30, 30);
+    ctx.drawImage(fashion_icon, (canvas.width - 48), 225, 30, 30);
     };
 
     ctx.shadowOffsetX = 0; 
@@ -5297,7 +5297,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.globalAlpha = 1;
 
     ctx.fillStyle = "#" + ProfileColor;
-    ctx.fillRect(69, 250, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 30), 30); //Body
+    ctx.fillRect(69, 255, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 70), 30); //Body
   
         //Avatar
     const avatar = await Canvas.loadImage(SomeoneTagged.displayAvatarURL.replace("https", "http"));
