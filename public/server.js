@@ -5086,25 +5086,8 @@ if (!ProfileCooldown.has(message.author.id)) {
 
     });
       
-    //Draw Fields
-    ctx.globalAlpha = 0.5;
-
-    ctx.fillStyle = Light;
-    ctx.fillRect(10, 10, (canvas.width - 20), 75); //Avatar
-    ctx.fillRect(10, 250, canvas.width - 20, 40); //Lvl Background
-    ctx.fillStyle = Dark;
-    ctx.fillRect(10, 90, (canvas.width - 70), 155); //Currencies
-    ctx.fillRect((canvas.width - 55), 90, 45, 155); //Badges
-    
-    ctx.beginPath();
-    ctx.lineWidth = 2;
-    ctx.globalAlpha = 1;
-    ctx.strokeStyle = Dark;
-      
-    ctx.rect(9, 9, (canvas.width - 20), 75); //Avatar
-    ctx.rect(9, 249, canvas.width - 20, 40); //Lvl Background
-    ctx.rect(9, 89, (canvas.width - 70), 155); //Currencies
-    ctx.rect((canvas.width - 56), 89, 45, 155); //Badges
+    var layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile%20layout.png");
+    ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
     //Draw Events
       
@@ -5314,17 +5297,13 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.globalAlpha = 1;
 
     ctx.fillStyle = "#" + ProfileColor;
-    ctx.fillRect(15, 255, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 30), 30); //Body
-    ctx.rect(14, 254, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 29), 30);
+    ctx.fillRect(69, 250, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 30), 30); //Body
   
         //Avatar
     const avatar = await Canvas.loadImage(SomeoneTagged.displayAvatarURL.replace("https", "http"));
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
-    ctx.drawImage(avatar, 18, 17, 60, 60);
-    ctx.rect(17, 16, 61, 61);
-
-    ctx.stroke();
+    ctx.drawImage(avatar, 6, 6, 65, 65);
 
     //Exp Text
     ctx.font = "22px " + DefaultFont;
@@ -5332,7 +5311,8 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.fillStyle = "white";
     ctx.shadowOffsetX = 1; 
     ctx.shadowOffsetY = 1;
-    ctx.fillText("Level " + peeky.userData.get(key2, "Level").toLocaleString('en'), canvas.width - (canvas.width / 2), 277);
+    ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
+    ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
 
     const attachment = new Discord.Attachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
       
