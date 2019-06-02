@@ -5088,7 +5088,7 @@ if (!ProfileCooldown.has(message.author.id)) {
 
     });
       
-    var layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout.png");
+    var layout = await Canvas.loadImage("https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout_2.png");
     ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
     //Draw Events
@@ -5103,8 +5103,8 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.globalAlpha = 1;
 
     //Name String
-    ctx.font = "15px " + DefaultFont;
-    ctx.fillText(ProfileName, 82, 22);
+    ctx.font = "17px " + DefaultFont;
+    ctx.fillText(ProfileName, 82, 24);
       
     //Coins String
     ctx.font = "15px " + DefaultFont;
@@ -5125,7 +5125,7 @@ if (!ProfileCooldown.has(message.author.id)) {
         //Description String
     var text = peeky.userData.get(key2, "Description");
     var fontsize = 15;
-    var y_position = 45;
+    var y_position = 47;
 
     do {
 
