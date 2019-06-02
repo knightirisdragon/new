@@ -2298,10 +2298,10 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
 };
 
 //Stream Announcements
-if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {
+if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
   
-    if  (!newMember.user.bot)  {
-
+    if  (!newMember.user.bot && !CurrentlyStreaming.has(newMember.user.id))  {
+      
         const member  = newMember;
         var   Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));    
 
@@ -2313,10 +2313,10 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {
                     var AlreadyStreaming = true;
                 };
 
-                if  (AlreadyStreaming !== true && !CurrentlyStreaming.has(member.user.id))  {
+                if  (AlreadyStreaming !== true)  {
                   
-                    CurrentlyStreaming.add(member.user.id);
-                    setTimeout(() => {CurrentlyStreaming.delete(member.user.id)}, 300000);
+                    CurrentlyStreaming.add(newMember.user.id);
+                    setTimeout(() => {CurrentlyStreaming.delete(newMember.user.id)}, 300000);
 
                     const embed = {"description": "**" + Function_RemoveFormatting(member.user.username, "other", true) + " has started streaming " + Function_RemoveFormatting(member.user.presence.game.name, "other", true) + " on Twitch!**" + "\n" + member.user.presence.game.url,  "color": 6570404};
                     Channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -2325,7 +2325,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {
                 };
 
             };
-          
+  
         };
   
     };
