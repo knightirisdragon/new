@@ -5082,7 +5082,7 @@ if (!ProfileCooldown.has(message.author.id)) {
 
     });
       
-    var layout = await Canvas.loadImage("https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile%20layout.png");
+    var layout = await Canvas.loadImage("https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Flayout%20profile.png");
     ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
     //Draw Events
@@ -5296,7 +5296,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.globalAlpha = 1;
 
     ctx.fillStyle = "#" + ProfileColor;
-    ctx.fillRect(69.25, 252, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 70), 30); //Body
+    ctx.fillRect(64, 253, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 70), 26); //Body
   
         //Avatar
     const avatar = await Canvas.loadImage(SomeoneTagged.displayAvatarURL.replace("https", "http"));
