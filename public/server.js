@@ -2271,7 +2271,7 @@ if  (peeky.serverData.has(keySF))  {
 //Streamer Role
 if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
   
-    if  (!newMember.user.bot)  {
+    if  (!newMember.user.bot && !CurrentlyStreaming.has(newMember.user.id))  {
 
         const member = newMember;
         var   HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
@@ -2281,6 +2281,9 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
 
         if  (!HasRole)  {
              newMember.addRole(GuildRole).catch(error => ErrorBag.add(error));
+                  
+             CurrentlyStreaming.add(newMember.user.id);
+             setTimeout(() => {CurrentlyStreaming.delete(newMember.user.id)}, 300000);
 
              console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
         };
@@ -2317,8 +2320,8 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                   
                     CurrentlyStreaming.add(newMember.user.id);
                     setTimeout(() => {CurrentlyStreaming.delete(newMember.user.id)}, 300000);
-
-                    const embed = {"description": "**" + Function_RemoveFormatting(member.user.username, "other", true) + " has started streaming " + Function_RemoveFormatting(member.user.presence.game.name, "other", true) + " on Twitch!**" + "\n" + member.user.presence.game.url,  "color": 6570404,  "image": {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbranding.jpg"  }};
+                  
+                    const embed = {  "description": "**" + Function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on Twitch!** \n\n **Name:** ROBLOX Crusade \n **Link:** https://www.twitch.tv/vojtech_jilovec \n\n ­",  "color": 6570404,  "image": {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fheader.jpg"  },  "author": {  "name": Function_RemoveFormatting(member.user.username, "other", true),  "icon_url": "https://cdn.discordapp.com/embed/avatars/0.png"  }  };
                     Channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                     console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
