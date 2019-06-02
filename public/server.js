@@ -1462,6 +1462,14 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
      Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This profile will get wiped in " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days") + " days if they do not come back.  </font></b>  </div>");
     };
       
+    var Fillers = 50 - (Leaderboard.length + LeaderboardTop.length);
+
+    while (Fillers > 0)  {
+          Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>EMPTY PROFILE  <br>  <font size='2'>  Your profile will show up here once you get the Fashion badge.  </font></b>  </div>");
+          Fillers -= 1;
+          console.log(Leaderboard)
+    };
+      
     };
 
     await fs.writeFile('public/leaderboard.txt', "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for a special badge! </b>  </div> </center>" + Leaderboard.join("<br><br>"), (err) => {
