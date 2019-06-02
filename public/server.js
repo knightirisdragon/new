@@ -5458,7 +5458,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             message.channel.stopTyping();
               
             if  (message.guild.me.hasPermission("CHANGE_NICKNAME"))  {
-                message.guild.me.setNickname("Playing: " + Title.slice(0, 20));
+                await message.guild.me.setNickname("PLAYING: " + Function_RemoveFormatting(Title, "other", true).slice(0, 22));
             };
 
             const stream = ytdl(GivenSong);
