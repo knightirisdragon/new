@@ -1282,6 +1282,17 @@ peeky.on('message', async (message) => {
       
     peeky.userData.set(key, BadgeGreditAmount, "BadgeGredit");
     peeky.userData.set(key, BadgeExpAmount, "BadgeExp");
+      
+    //LEVEL 99
+    if  (peeky.userData.get(key, "Level") == 99)  {
+        peeky.userData.math(key, BadgeGreditAmount, "+", BadgeExpAmount, "BadgeGredit");
+        peeky.userData.set(key, 0, "Exp");
+        peeky.userData.set(key, 0, "BadgeExp");
+    } else
+    if  (peeky.userData.get(key, "Level") > 99)  {
+        peeky.userData.set(key, 0, "Exp");
+        peeky.userData.set(key, 99, "Level");
+    };
 
     peeky.userData.math(key, "+", Math.round(Math.random() * BadgeGreditAmount), "Gredit");
     peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");
@@ -4745,7 +4756,7 @@ if  (peeky.userData.get(key, "Chests") >= 1)  {
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily"))  {
 
     let cooldown     = 8.64e+7;
-    let lastDaily    = 0; //peeky.userData.get(key, "DailyRewarded");
+    let lastDaily    = peeky.userData.get(key, "DailyRewarded");
     var InfoMessages = [];
     var CountedVotes = 0;
 
@@ -4775,8 +4786,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
         peeky.userData.math(key, "+", 1, "Chests");
         CountedVotes ++;
       
-        peeky.userData.set(key, true, "VoterBadge");
-      
     };
 
     });
@@ -4789,13 +4798,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
 
         if  (AllVotes.length > 0 == true)  {
           
-            console.log(AllVotes)
-          
             InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DDB today.");
 
             peeky.userData.math(key, "+", 1, "Chests");
             CountedVotes ++;
-            peeky.userData.set(key, true, "VoterBadge");
 
         };
                   
@@ -4813,8 +4819,14 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
         InfoMessages.push(InfoIcon + " Added a bonus reward for being a Supporter.");   
     };
 
-    InfoMessages.push(InfoIcon + " Vote for me using the **" + peeky.serverData.get(keySF, "prefix") + "help** command to get some bonuses!");
-    console.log(InfoMessages);
+    if  (CountedVotes == 0)  {
+        InfoMessages.push(InfoIcon + " Vote for me using the **" + peeky.serverData.get(keySF, "prefix") + "help** command to get more rewards!");
+    } else {
+      if  (peeky.userData.get(key, "VoterBadge") == false)  {
+          peeky.userData.set(key, true, "VoterBadge");       
+          InfoMessages.push(InfoMessage1[0]);
+      };    
+    };
       
     const embed = {"description": InfoMessages.join("\n\n"),  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
