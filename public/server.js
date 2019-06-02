@@ -4745,7 +4745,7 @@ if  (peeky.userData.get(key, "Chests") >= 1)  {
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily"))  {
 
     let cooldown     = 8.64e+7;
-    let lastDaily    = peeky.userData.get(key, "DailyRewarded");
+    let lastDaily    = 0; //peeky.userData.get(key, "DailyRewarded");
     var VotesCounted = 0;
     var InfoMessages = [];
 
@@ -4765,7 +4765,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
     peeky.userData.math(key, "+", 1, "Chests");
       
     //Vote DBL
-    dbl.hasVoted(message.author.id).then(VotedState => {
+    dbl.hasVoted(message.author.id).then(async VotedState => {
 
     if  (VotedState == true)  {
         InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DB today.");
@@ -4773,8 +4773,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
         peeky.userData.math(key, "+", 1, "Chests");
         VotesCounted ++;
     };
-
-    });
 
     //Vote DDBL
     ddbl.getVotes().then(AllVotes => {
@@ -4810,7 +4808,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
     };
       
     const embed = {"description": InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-    await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+    });
 
     };
 
