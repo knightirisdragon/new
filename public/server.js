@@ -1992,7 +1992,7 @@ if (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
 
 };
 
-//Welcome Messages Function
+//Welcome Messages
 if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
   
     //Permission Checking
@@ -2074,7 +2074,7 @@ if  (!MemberCounterCooldown.has(member.guild.id))  {
 };
 };
     
-//Welcome Messages Function
+//Welcome Messages
 if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
   
     //Permission Checking
@@ -5309,7 +5309,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     const avatar = await Canvas.loadImage(SomeoneTagged.displayAvatarURL.replace("https", "http"));
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
-    ctx.drawImage(avatar, 6, 6, 65, 65);
+    ctx.drawImage(avatar, 6, 6, 64, 64);
 
     //Exp Text
     ctx.font = "22px " + DefaultFont;
