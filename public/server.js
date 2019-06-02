@@ -5457,8 +5457,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
             message.channel.stopTyping();
               
-            if  (message.guild.me.hasPermission("CHANGE_NICKNAME"))  {
-                await message.guild.me.setNickname("PLAYING: " + Function_RemoveFormatting(Title, "other", true).slice(0, 22));
+            if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
+                await message.guild.me.setNickname("🎵 " + Function_RemoveFormatting(Title, "other", true).slice(0, 24) + " 🎵");
             };
 
             const stream = ytdl(GivenSong);
@@ -5687,7 +5687,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
 //Skip
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))  {
 
-    if  (message.member.voiceChannel && message.member.voiceChannel.members.filter(m => m.user.id == PeekyId).map(i => i.id).length > 0)  {
+    //if  (message.member.voiceChannel && message.member.voiceChannel.members.filter(m => m.user.id == PeekyId).map(i => i.id).length > 0)  {
       
     if  (CurrentlyPlaying.has(message.guild.id))  {
       
@@ -5699,10 +5699,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
       
-    } else {
+    /*} else {
       const embed = {"description": ErrorIcon + " We need to be in the same voice channel.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
+    };*/
 
 };
 
