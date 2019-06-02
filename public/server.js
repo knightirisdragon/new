@@ -5183,7 +5183,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     if  (BadgeAmount < MaxBadges)  {
     const supporter_icon = await Canvas.loadImage(SupporterImage);
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(SupporterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(supporter_icon, BadgeXpos, BadgeYpos, 30, 30);
+    ctx.drawImage(supporter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
     };
 
         //Bug Hunter Icon
