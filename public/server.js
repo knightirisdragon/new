@@ -4746,8 +4746,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
 
     let cooldown     = 8.64e+7;
     let lastDaily    = 0; //peeky.userData.get(key, "DailyRewarded");
-    var VotesCounted = 0;
     var InfoMessages = [];
+    var CountedVotes = 0;
 
     if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
       
@@ -4759,32 +4759,44 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
     } else {
       
     peeky.userData.set(key, Date.now(), "DailyRewarded");
+    peeky.userData.set(key, 0, "VotesToday");
       
     //Reward
     InfoMessages.push(SuccessIcon + " Here's your daily reward!");
     peeky.userData.math(key, "+", 1, "Chests");
       
     //Vote DBL
-    dbl.hasVoted(message.author.id).then(async VotedState => {
+    await dbl.hasVoted(message.author.id).then(async VotedState => {
 
     if  (VotedState == true)  {
         InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DB today.");
+        console.log(InfoMessages);
 
         peeky.userData.math(key, "+", 1, "Chests");
-        VotesCounted ++;
+        CountedVotes ++;
+      
+        peeky.userData.set(key, true, "VoterBadge");
+      
     };
 
+    });
+
     //Vote DDBL
-    ddbl.getVotes().then(AllVotes => {
+    await ddbl.getVotes().then(AllVotes => {
       
         var Now = new Date();
-        AllVotes.filter(i => i.id == message.author.id && Now - new Date(i.timestamp) <= 86400000);
+        AllVotes = AllVotes.filter(i => i.id == message.author.id && Now - new Date(i.timestamp) <= 86400000);
 
         if  (AllVotes.length > 0 == true)  {
+          
+            console.log(AllVotes)
+          
             InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DDB today.");
 
             peeky.userData.math(key, "+", 1, "Chests");
-            VotesCounted ++;
+            CountedVotes ++;
+            peeky.userData.set(key, true, "VoterBadge");
+
         };
                   
     });
@@ -4800,17 +4812,12 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
         peeky.userData.math(key, "+", 1, "Chests");
         InfoMessages.push(InfoIcon + " Added a bonus reward for being a Supporter.");   
     };
-    
-    if  (VotesCounted == 0)  {
-        InfoMessages.push(InfoIcon + " Vote for me using the **" + peeky.serverData.get(keySF, "prefix") + "help** command to get some bonuses!");
-    } else {
-        peeky.userData.set(key, true, "VoterBadge");
-    };
+
+    InfoMessages.push(InfoIcon + " Vote for me using the **" + peeky.serverData.get(keySF, "prefix") + "help** command to get some bonuses!");
+    console.log(InfoMessages);
       
     const embed = {"description": InfoMessages.join("\n\n"),  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-    });
 
     };
 
