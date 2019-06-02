@@ -1417,7 +1417,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     //Update leadeboard
     var filtered         = peeky.userData.filter( p => p.Gredit && p.FashionBadge == true ).array();
     var sorted           = filtered.sort((a, b) => b.Gredit - a.Gredit);
-    const top            = sorted.splice(0, 20);
+    const top            = sorted.splice(0, 50);
     var currentplace     = 0;
     var CurrentID        = 0;
     var GotBadge         = false;
