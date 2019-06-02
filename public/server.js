@@ -5098,27 +5098,27 @@ if (!ProfileCooldown.has(message.author.id)) {
 
     //Name String
     ctx.font = "15px " + DefaultFont;
-    ctx.fillText(ProfileName, 85, 20);
+    ctx.fillText(ProfileName, 82, 22);
       
     //Coins String
-    ctx.font = "25px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Gredit").toLocaleString('en') + " Gredit", 70, 132);
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Gredit").toLocaleString('en') + " Gredit", 35, 85);
       
     //Chests String
-    ctx.font = "25px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 70, 177);
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 35, 120);
 
     //Backpack String
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
         var CustomBackgroundAmount = 1;
     } else {  var CustomBackgroundAmount = 0;  };
       
-    ctx.font = "25px " + DefaultFont;
-    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 70, 222);
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 35, 155);
     
         //Description String
     var text = peeky.userData.get(key2, "Description");
-    var fontsize = 14;
+    var fontsize = 15;
     var y_position = 45;
 
     do {
@@ -5139,15 +5139,15 @@ if (!ProfileCooldown.has(message.author.id)) {
       
         //Coin Icon
     const coin_icon = await Canvas.loadImage(CoinImage);
-    ctx.drawImage(coin_icon, 20, 105, 35, 35);
+    ctx.drawImage(coin_icon, 5, 85, 27, 27);
       
         //Chest Icon
     const chest_icon = await Canvas.loadImage(ChestImage);
-    ctx.drawImage(chest_icon, 20, 150, 35, 35);
+    ctx.drawImage(chest_icon, 5, 120, 27, 27);
 
         //Backpack Icon
     const backpack_icon = await Canvas.loadImage(BackpackImage);
-    ctx.drawImage(backpack_icon, 20, 195, 35, 35);
+    ctx.drawImage(backpack_icon, 5, 155, 27, 27);
 
         //Progress Bar
     const progress_bar = await Canvas.loadImage(XPImage);
@@ -5155,7 +5155,7 @@ if (!ProfileCooldown.has(message.author.id)) {
       
     //Badges
     var   BadgeYpos    = 199;
-    var   BadgeXpos    = -27;
+    var   BadgeXpos    = -28;
     const BadgeXposAmt = 35;
     var   BadgeAmount  = 0;
     const MaxBadges    = 14;
@@ -5298,7 +5298,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.globalAlpha = 1;
 
     ctx.fillStyle = "#" + ProfileColor;
-    ctx.fillRect(69, 255, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 70), 30); //Body
+    ctx.fillRect(69.25, 252, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 70), 30); //Body
   
         //Avatar
     const avatar = await Canvas.loadImage(SomeoneTagged.displayAvatarURL.replace("https", "http"));
