@@ -4557,7 +4557,8 @@ if  (peeky.userData.get(key, "Inventory").includes(i))  {
 //SellBackground
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "sellbackground "))  {
   
-    var i = message.content.split(peeky.serverData.get(keySF, "prefix") + "sellbackground ")[1];  
+    var i = message.content.split(peeky.serverData.get(keySF, "prefix") + "sellbackground ")[1]; 
+    var InfoMessages = []; 
   
 if  (i !== AllString)  {
   
@@ -4577,13 +4578,11 @@ if  (i !== 1)  {
     if  (i == peeky.userData.get(key, "Background"))  {
       
         peeky.userData.set(key, 1, "Background");
-
-        const embed = {"description": InfoMessage2[0],  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        InfoMessages.push(InfoMessage2[0]);
 
     };
 
-      const embed = {"description": SuccessIcon + " You have sold the **" + Banners[i - 1][Banner.Name] + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
+      const embed = {"description": SuccessIcon + " You have sold the **" + Banners[i - 1][Banner.Name] + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
     }
@@ -4623,9 +4622,10 @@ if  (i !== 1)  {
 
       if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
           peeky.userData.set(key, 1, "Background");
+          InfoMessages.push(InfoMessage2[0]);
       };
       
-      const embed = {"description": SuccessIcon + " You have sold all your backgrounds for **" + FullPrice.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
+      const embed = {"description": SuccessIcon + " You have sold all your backgrounds for **" + FullPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     
   }
