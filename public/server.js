@@ -783,7 +783,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
     const avatar = await Canvas.loadImage(member.user.displayAvatarURL.replace("https", "http"));
-    ctx.drawImage(avatar, 9, 7, 81, 81);
+    ctx.drawImage(avatar, 9, 7, 82, 82);
 
     return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
       
