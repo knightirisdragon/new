@@ -5108,11 +5108,11 @@ if (!ProfileCooldown.has(message.author.id)) {
       
     //Coins String
     ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Gredit").toLocaleString('en') + " Gredit", 40, 105);
+    ctx.fillText("" + peeky.userData.get(key2, "Gredit").toLocaleString('en') + " Gredit", 45, 105);
       
     //Chests String
     ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 40, 140);
+    ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 45, 140);
 
     //Backpack String
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
@@ -5120,7 +5120,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     } else {  var CustomBackgroundAmount = 0;  };
       
     ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 40, 175);
+    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 45, 175);
     
         //Description String
     var text = peeky.userData.get(key2, "Description");
@@ -5143,15 +5143,15 @@ if (!ProfileCooldown.has(message.author.id)) {
       
         //Coin Icon
     const coin_icon = await Canvas.loadImage(CoinImage);
-    ctx.drawImage(coin_icon, 5, 85, 27, 27);
+    ctx.drawImage(coin_icon, 10, 85, 27, 27);
       
         //Chest Icon
     const chest_icon = await Canvas.loadImage(ChestImage);
-    ctx.drawImage(chest_icon, 5, 120, 27, 27);
+    ctx.drawImage(chest_icon, 10, 120, 27, 27);
 
         //Backpack Icon
     const backpack_icon = await Canvas.loadImage(BackpackImage);
-    ctx.drawImage(backpack_icon, 5, 155, 27, 27);
+    ctx.drawImage(backpack_icon, 10, 155, 27, 27);
 
         //Progress Bar
     const progress_bar = await Canvas.loadImage(XPImage);
