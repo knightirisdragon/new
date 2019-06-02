@@ -5090,7 +5090,7 @@ if (!ProfileCooldown.has(message.author.id)) {
 
     });
       
-    var layout = await Canvas.loadImage("https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Flayout%20profile.png");
+    var layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Flayout%20profile.png");
     ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
     //Draw Events
