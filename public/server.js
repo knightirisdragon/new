@@ -1724,11 +1724,6 @@ if  (!WebsiteCooldowns.has("staff"))  {
             StaffButton.push('<a href="https://www.reddit.com/user/Nixenn" target="_blank">  <img src=' + RedditIcon + ' class="staffbutton">  </a>');
         } else
       
-        //Kud
-        if  (guildMemberId == "475364627002425344")  {
-            StaffButton.push('<a href="https://www.reddit.com/user/st-kud" target="_blank">  <img src=' + RedditIcon + ' class="staffbutton">  </a>');
-        } else
-      
         //Sabi
         if  (guildMemberId == "180090347421040640")  {
             StaffButton.push('<a href="https://www.reddit.com/user/Sabinyan" target="_blank">  <img src=' + RedditIcon + ' class="staffbutton">  </a>');
@@ -1738,16 +1733,6 @@ if  (!WebsiteCooldowns.has("staff"))  {
         if  (guildMemberId == "351314991028371457")  {
             StaffButton.push('<a href="https://twitter.com/vraagtekenss" target="_blank">  <img src=' + TwitterIcon + ' class="staffbutton">  </a>');
             StaffButton.push('<a href="https://www.instagram.com/vraagtekenss/" target="_blank">  <img src=' + InstagramIcon + ' class="staffbutton">  </a>');
-        } else
-      
-        //Bem
-        if  (guildMemberId == "449356613145460738")  {
-            StaffButton.push('<a href="https://twitter.com/utrabem" target="_blank">  <img src=' + TwitterIcon + ' class="staffbutton">  </a>');
-        } else
-      
-        //Romulo
-        if  (guildMemberId == "136574002125733888")  {
-            StaffButton.push('<a href="https://twitter.com/Itsromulo27" target="_blank">  <img src=' + TwitterIcon + ' class="staffbutton">  </a>');
         };
       
         var CurrentContact = '<div class="container">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="2"> ' + function_RemoveTags(guildMember.user.username) + '<font size="2" color=#7289DA>#' + guildMember.user.discriminator + '</font>' + '  <br>  <font size="1">  ' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '  </font>  </font>  <br><br>  ' + StaffButton.join(" ") + '  </b>  </div>';
@@ -1887,8 +1872,9 @@ if  (peeky.userData.has(key))  {
 //MEMBER JOINED EVENTS
 peeky.on('guildMemberAdd', async (member) => {
   
-const key = `${member.user.id}`;
-const keySF = `${member.guild.id}`;
+const key    = `${member.user.id}`;
+const keySF  = `${member.guild.id}`;
+var   Failed = false;
   
 if (member.user.id !== PeekyId && peeky.serverData.has(keySF)) {
   
@@ -2013,8 +1999,6 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
     };
 
     if  (Detected == true)  {
-
-        var Failed = false;
       
         await member.guild.ban(member.id, {  reason: "Triggered by the Welcome Messages function.", days: 0  }).catch(error => {
               ErrorBag.add(error);
@@ -2557,9 +2541,10 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
 {
 
 //SOME VARIABLES
-const key = `${message.author.id}`;
-const keyCF = `${message.channel.id}`;
-const keySF = `${message.guild.id}`;
+const key    = `${message.author.id}`;
+const keyCF  = `${message.channel.id}`;
+const keySF  = `${message.guild.id}`;
+var   Failed = false;
 
 if  (!message.webhookID)  {
 
@@ -5738,8 +5723,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
     if  (RoleExists) {
       
     if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
-          
-        var Failed = false;
+
         await MentionedMember.addRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => {
             const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5807,7 +5791,6 @@ if  (message.guild.me.hasPermission("MUTE_MEMBERS") && message.guild.me.hasPermi
       
     if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
 
-        var Failed = false;
         await MentionedMember.removeRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => { 
             const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5874,7 +5857,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "idban "
 
         if  (!message.guild.members.find(m => m.id == GivenID))  {
 
-            var Failed = false;
             await message.guild.ban(GivenID, {  reason: "ID Banned by " + message.author.tag + ".", days: 0  }).catch(error => { 
                   const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5927,7 +5909,6 @@ if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
           
 if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS")) {
 
-    var Failed = false;
     await message.guild.ban(GivenID, {  reason: "ID Banned by " + message.author.tag + ".", days: 0  }).catch(error => { 
           const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
