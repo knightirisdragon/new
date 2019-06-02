@@ -5449,9 +5449,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             peeky.serverData.set(keySF, Started, "Started");
             peeky.serverData.set(keySF, GivenSong, "Link");
               
-            /*if  (message.guild.me.hasPermission("CHANGE_NICKNAME"))  {
+            if  (message.guild.me.hasPermission("CHANGE_NICKNAME"))  {
                 message.guild.me.setNickname("Playing: " + Title.slice(0, 20));
-            };*/
+            };
               
             if  (DeleteMessage == true)  {
                 message.delete().catch(error => ErrorBag.add(error));
@@ -5469,9 +5469,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             CurrentlyPlaying.delete(message.guild.id);
             voiceChannel.leave();
               
-            /* if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && message.guild.me.nickname !== null)  {
+            if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && message.guild.me.nickname !== null)  {
                 message.guild.me.setNickname(null);
-            };*/
+            };
               
             const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id)
               
