@@ -1538,12 +1538,12 @@ if  (!WebsiteCooldowns.has("workshop"))  {
       
     messages.forEach(m => {
           
-            if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.attachments.size > 0 && m.content.toLowerCase().includes("name: ") && m.content.toLowerCase().includes("credit: ") && m.content.toLowerCase().includes("price: "))  {
-              
-                var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500" height="300" class="background_image">  <br>  <a class="button" href="' + m.url + '">Vote</a>  </div>';
-                WorkshopList.push(BackgroundString);
+        if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.attachments.size > 0 && m.content.toLowerCase().includes("name: ") && m.content.toLowerCase().includes("credit: ") && m.content.toLowerCase().includes("price: "))  {
+        
+            var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500" height="300" class="background_image">  <br>  <a class="button" href="' + m.url + '">Vote</a>  </div>';
+            WorkshopList.push(BackgroundString);
 
-            };
+        };
     
     });
       
