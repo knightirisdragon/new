@@ -5107,8 +5107,8 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.globalAlpha = 1;
 
     //Name String
-    ctx.font = "17px " + DefaultFont;
-    ctx.fillText(ProfileName, 82, 24);
+    ctx.font = "19px " + DefaultFont;
+    ctx.fillText(ProfileName, 83, 25);
       
     //Coins String
     ctx.font = "15px " + DefaultFont;
@@ -5128,15 +5128,15 @@ if (!ProfileCooldown.has(message.author.id)) {
     
         //Description String
     var text = peeky.userData.get(key2, "Description");
-    var fontsize = 15;
-    var y_position = 47;
+    var fontsize = 16;
+    var y_position = 50;
 
     do {
 
          fontsize--;
          ctx.font=fontsize+"px " + DefaultFont;
        
-       } while  (ctx.measureText(text).width > (canvas.width - 85));
+       } while  (ctx.measureText(text).width > (canvas.width - 83));
       
     ctx.fillStyle = "white";
     ctx.textAlign = "left";
