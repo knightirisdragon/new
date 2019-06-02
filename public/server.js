@@ -5367,7 +5367,7 @@ if (!ProfileCooldown.has(message.author.id)) {
 
 //Music Commands
 
-//Play
+//Play 
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play "))  {
   
     if  (!CurrentlyPlaying.has(message.guild.id))  {
@@ -5458,7 +5458,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             message.channel.stopTyping();
               
             if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
-                await message.guild.me.setNickname("🎵 " + Function_RemoveFormatting(Title, "other", true).slice(0, 24) + " 🎵");
+                await message.guild.me.setNickname("🎵 " + Function_RemoveFormatting(Title, "other", true).slice(0, 20) + " 🎵");
             };
 
             const stream = ytdl(GivenSong);
@@ -5469,7 +5469,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             CurrentlyPlaying.delete(message.guild.id);
             voiceChannel.leave();
               
-            if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && message.guild.me.nickname !== null)  {
+            if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 "))))  {
                 message.guild.me.setNickname(null);
             };
               
