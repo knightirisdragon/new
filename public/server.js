@@ -2089,7 +2089,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
     
     if (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES')) {
       
-    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "other", true).includes(word)))  {
+    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "other", false).includes(word)))  {
         Detected = true;
     };
 
@@ -4615,10 +4615,7 @@ if  (i !== 1)  {
       var FullPrice         = 0;
     
       peeky.userData.get(key, "Inventory").forEach(i => {
-          console.log(Banners[i]);
-          console.log(i);
-          console.log(peeky.userData.get(key, "Inventory"))
-          FullPrice += Math.round(Banners[i][Banner.Price] / SellMultiplier);        
+          FullPrice += Math.round(Banners[i - 1][Banner.Price] / SellMultiplier);        
       });
 
       peeky.userData.set(key, [1], "Inventory");
