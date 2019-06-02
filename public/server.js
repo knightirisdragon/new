@@ -4614,12 +4614,13 @@ if  (i !== 1)  {
       var CurrentBackground = 0;
       var FullPrice         = 0;
     
-      do {
-        FullPrice += Math.round(Banners[CurrentBackground][Banner.Price] / SellMultiplier);
-        CurrentBackground ++;
-      } while (CurrentBackground < MaxBackgrounds);
+      peeky.userData.get(key, "Inventory").forEach(i => {
+          console.log(Banners[i]);
+          console.log(i);
+          console.log(peeky.userData.get(key, "Inventory"))
+          FullPrice += Math.round(Banners[i][Banner.Price] / SellMultiplier);        
+      });
 
-      FullPrice -= Math.round(Banners[CurrentBackground][Banner.Price] / SellMultiplier);
       peeky.userData.set(key, [1], "Inventory");
       peeky.userData.math(key, "+", FullPrice, "Gredit");
 
