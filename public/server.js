@@ -689,8 +689,8 @@ function function_RemoveTags(text)  {
       return text.replace(/(<([^>]+)>)/ig, "");
 };
 
-//CANVAS: Welcome Messages embed TEST
-async function function_WelcomeMessagesEmbedTEST(member, type, detected)  {
+//CANVAS: Welcome Messages embed
+async function function_WelcomeMessagesEmbed(member, type, detected)  {
   
     var   attachment = null;
     const key        = member.user.id;
@@ -724,17 +724,17 @@ async function function_WelcomeMessagesEmbedTEST(member, type, detected)  {
     //Draw Events
       
     //Joined String
-    ctx.font = "25px " + DefaultFont;
+    ctx.font = "20px " + DefaultFont;
     ctx.textAlign = "right";
     ctx.fillStyle = "white";
 
     if  (type == "join")  {  ctx.fillStyle = "lightgreen";  }  
     else if (type == "leave")  {  ctx.fillStyle = "pink";  };
 
-    ctx.fillText("●", canvas.width - 5, 20);
+    ctx.fillText("●", canvas.width - 5, 18);
       
     //Name String
-    ctx.font = "30px " + DefaultFont;
+    ctx.font = "25px " + DefaultFont;
     ctx.fillStyle = "white";
     ctx.textAlign = "left";
   
@@ -746,7 +746,7 @@ async function function_WelcomeMessagesEmbedTEST(member, type, detected)  {
         var NameString = peeky.users.get(key).username;
     };
   
-    ctx.fillText(NameString, 95, 40);
+    ctx.fillText(NameString, 125, 40);
       
     if  (peeky.userData.has(key))  {
     
@@ -759,132 +759,31 @@ async function function_WelcomeMessagesEmbedTEST(member, type, detected)  {
          fontsize--;
          ctx.font=fontsize+"px " + DefaultFont;
        
-       } while  (ctx.measureText(text).width > (canvas.width - 95));
+       } while  (ctx.measureText(text).width > (canvas.width - 125));
       
     if (text.includes("\n")) {
                               y_position = 62.5;
                              };
         
     ctx.fillStyle = "white";
-    ctx.fillText(peeky.userData.get(key, "Description"), 95, y_position);
+    ctx.fillText(peeky.userData.get(key, "Description"), 125, y_position);
     }
     else if (!member.user.bot) {
     ctx.font = "18px " + DefaultFont;
     ctx.fillStyle = "pink";
-    ctx.fillText("No Profile" , 95, 75);
+    ctx.fillText("No Profile" , 125, 75);
     }
     else {
     ctx.font = "18px " + DefaultFont;
     ctx.fillStyle = "lightblue";
-    ctx.fillText("Bot" , 95, 75);
+    ctx.fillText("Bot" , 125, 75);
     };
 
     //Avatar
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
     const avatar = await Canvas.loadImage(member.user.displayAvatarURL.replace("https", "http"));
-    ctx.drawImage(avatar, 10, 10, 80, 6805);
-
-    return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
-      
-    };
-
-};
-
-//CANVAS: Welcome Messages embed
-async function function_WelcomeMessagesEmbed(member, type, detected)  {
-  
-    var   attachment = null;
-    const key        = member.user.id;
-    var   Failed     = false;
-      
-    const canvas = Canvas.createCanvas(500, 95);
-    const ctx    = canvas.getContext('2d');
-      
-    ctx.globalAlpha = 0.75;
-      
-    var TheBannerShown = DefaultBackground;
-    if  (peeky.userData.has(key))  {
-        TheBannerShown = function_GetBackground(key);
-    };
-
-    const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(member.id, DefaultBackground, "Background");});
-      
-    if  (Failed == false)  {
-
-    ctx.drawImage(background, 0, 0, canvas.width, 300);  
-      
-    const AvatarField = await Canvas.loadImage(DarkField);
-    ctx.drawImage(AvatarField, 10, 10, 75, 75); //Avatar Background
-
-    ctx.shadowColor = "black";
-    ctx.shadowOffsetX = 1; 
-    ctx.shadowOffsetY = 1;
-    ctx.globalAlpha = 1;
-      
-    //Draw Events
-      
-    //Joined String
-    ctx.font = "25px " + DefaultFont;
-    ctx.textAlign = "right";
-    ctx.fillStyle = "white";
-
-    if  (type == "join")  {  ctx.fillStyle = "lightgreen";  }  
-    else if (type == "leave")  {  ctx.fillStyle = "pink";  };
-
-    ctx.fillText("●", canvas.width - 5, 20);
-      
-    //Name String
-    ctx.font = "30px " + DefaultFont;
-    ctx.fillStyle = "white";
-    ctx.textAlign = "left";
-  
-    if  (detected == true)  {
-        ctx.fillStyle = "pink";
-        var NameString = "Censored";    
-    } else {
-        ctx.fillStyle = "white";
-        var NameString = peeky.users.get(key).username;
-    };
-  
-    ctx.fillText(NameString, 95, 40);
-      
-    if  (peeky.userData.has(key))  {
-    
-    //Description String
-    var text = peeky.userData.get(key, "Description");
-    var fontsize=18;
-    var y_position = 75;
-
-    do {
-         fontsize--;
-         ctx.font=fontsize+"px " + DefaultFont;
-       
-       } while  (ctx.measureText(text).width > (canvas.width - 95));
-      
-    if (text.includes("\n")) {
-                              y_position = 62.5;
-                             };
-        
-    ctx.fillStyle = "white";
-    ctx.fillText(peeky.userData.get(key, "Description"), 95, y_position);
-    }
-    else if (!member.user.bot) {
-    ctx.font = "18px " + DefaultFont;
-    ctx.fillStyle = "pink";
-    ctx.fillText("No Profile" , 95, 75);
-    }
-    else {
-    ctx.font = "18px " + DefaultFont;
-    ctx.fillStyle = "lightblue";
-    ctx.fillText("Bot" , 95, 75);
-    };
-
-    //Avatar
-    ctx.shadowOffsetX = 0; 
-    ctx.shadowOffsetY = 0;
-    const avatar = await Canvas.loadImage(member.user.displayAvatarURL.replace("https", "http"));
-    ctx.drawImage(avatar, 15, 15, 65, 65);
+    ctx.drawImage(avatar, 9, 7, 81, 81);
 
     return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
       
@@ -2128,11 +2027,7 @@ if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
 
     };
 
-    if  (member.guild.id !== SupportServer)  {
-        await channel.send("", await function_WelcomeMessagesEmbed(member, "join", Detected)).catch(error => ErrorBag.add(error));
-    } else { 
-        await channel.send("", await function_WelcomeMessagesEmbedTEST(member, "join", Detected)).catch(error => ErrorBag.add(error));
-    };
+    await channel.send("", await function_WelcomeMessagesEmbed(member, "join", Detected)).catch(error => ErrorBag.add(error));
     
     console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
       
