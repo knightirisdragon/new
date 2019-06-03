@@ -710,11 +710,10 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
       
     if  (Failed == false)  {
 
-    ctx.drawImage(background, 0, 0, canvas.width, 300); 
-      
+    ctx.drawImage(background, 0, 0, canvas.width, 300);       
     
-    const Layout = await Canvas.loadImage("https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fwelcome_messages_layout_2.png");
-    ctx.drawImage(Layout, 0, 0, canvas.width, canvas.height);
+    const layout = await Canvas.loadImage("https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fwelcome_messages_layout_2.png");
+    ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
     ctx.shadowColor = "black";
     ctx.shadowOffsetX = 1; 
@@ -1321,8 +1320,8 @@ peeky.on('message', async (message) => {
     const background = await Canvas.loadImage(TheBannerShown);
     ctx.drawImage(background, 0, 0, canvas.width, 300);  
       
-    const AvatarField = await Canvas.loadImage(DarkField);
-    ctx.drawImage(AvatarField, 10, 10, 75, 75); //Avatar Background
+    const layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Flevel_up_layout.png");
+    ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
       
     //Setting
     ctx.shadowColor = "black";
@@ -1334,20 +1333,20 @@ peeky.on('message', async (message) => {
     //Draw Events
       
         //Name String
-    ctx.font = "30px " + DefaultFont;
+    ctx.font = "25px " + DefaultFont;
     ctx.fillStyle = "white";
-    ctx.fillText(ProfileName, 95, 40);
+    ctx.fillText(ProfileName, 125, 40);
     
         //Level Up String
-    ctx.font = "20px " + DefaultFont;
+    ctx.font = "18px " + DefaultFont;
     ctx.fillStyle = "lightgreen";
-    ctx.fillText("Has leveled up to Level " + peeky.userData.get(key, "Level") + "!", 95, 75);
+    ctx.fillText("Has leveled up to Level " + peeky.userData.get(key, "Level") + "!", 125, 75);
     
       //Avatar
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
-	  const avatar = await Canvas.loadImage(message.author.displayAvatarURL.replace("https", "http"));
-    ctx.drawImage(avatar, 15, 15, 65, 65);
+    const avatar = await Canvas.loadImage(message.author.displayAvatarURL.replace("https", "http"));
+    ctx.drawImage(avatar, 9, 7, 82, 82);
     
     const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
       
