@@ -2268,7 +2268,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
              CurrentlyStreaming.add(newMember.user.id + "SR");
              setTimeout(() => {CurrentlyStreaming.delete(newMember.user.id + "SR")}, 300000);
 
-             console.log("The Stream Role function has been triggered in " + member.guild.name + ".");
+             console.log("The Streamer Role function has been triggered in " + member.guild.name + ".");
         };
 
         }  else  { 
@@ -5301,7 +5301,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.shadowOffsetY = 0;
 
     ctx.fillStyle = "#" + ProfileColor;
-    ctx.fillRect(64, 253, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 70), 26); //Body
+    ctx.fillRect(64, 253, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 128), 26); //Body
   
         //Avatar
     const avatar = await Canvas.loadImage(SomeoneTagged.displayAvatarURL.replace("https", "http"));
