@@ -5455,7 +5455,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             message.channel.stopTyping();
               
             if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
-                await message.guild.me.setNickname("🎵 " + Function_RemoveFormatting(Title, "other", true).slice(0, 20) + " 🎵");
+                await message.guild.me.setNickname("🎵 " + "Playing in " + Function_RemoveFormatting(voiceChannel.name, "other", false).slice(0, 14) + " 🎵");
             };
 
             const stream = ytdl(GivenSong);
