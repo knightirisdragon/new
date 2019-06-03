@@ -4754,7 +4754,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
 
     if  (VotedState == true)  {
         InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DB today.");
-        console.log(InfoMessages);
 
         peeky.userData.math(key, "+", 1, "Chests");
         CountedVotes ++;
