@@ -5683,23 +5683,16 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
 
 //Skip
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))  {
-
-    //if  (message.member.voiceChannel && message.member.voiceChannel.members.filter(m => m.user.id == PeekyId).map(i => i.id).length > 0)  {
       
-    if  (CurrentlyPlaying.has(message.guild.id))  {
+    if  (CurrentlyPlaying.has(message.guild.id) && message.guild.me.voiceChannel !== null)  {
       
         CurrentlyPlaying.delete(message.guild.id);
-        message.member.voiceChannel.leave();
+        message.guild.me.voiceChannel.leave();
       
     } else {
       const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-      
-    /*} else {
-      const embed = {"description": ErrorIcon + " We need to be in the same voice channel.",  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };*/
 
 };
 
