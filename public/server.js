@@ -2254,7 +2254,7 @@ if  (peeky.serverData.has(keySF))  {
 //Streamer Role
 if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
   
-    if  (!newMember.user.bot && !CurrentlyStreaming.has(newMember.user.id + "SR"))  {
+    if  (!newMember.user.bot)  {
 
         const member = newMember;
         var   HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
@@ -2262,7 +2262,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
 
         if  (newMember.presence.game !== null && newMember.presence.game.streaming == true)  {
 
-        if  (!HasRole)  {
+        if  (!HasRole && !CurrentlyStreaming.has(newMember.user.id + "SR"))  {
              newMember.addRole(GuildRole).catch(error => ErrorBag.add(error));
                   
              CurrentlyStreaming.add(newMember.user.id + "SR");
