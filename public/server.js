@@ -2304,7 +2304,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                     CurrentlyStreaming.add(newMember.user.id + "SA2");
                     setTimeout(() => {CurrentlyStreaming.delete(newMember.user.id + "SA2")}, 300000);
                   
-                    const embed = {  "description": "­ \n **Name:** " + member.presence.game.name + " \n **Link:** https://www.twitch.tv/vojtech_jilovec \n\n ­",  "color": 6570404,  "image": {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fheader.jpg"  },  "author": {  "name": Function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on Twitch!",  "icon_url": member.user.displayAvatarURL  }  };
+                    const embed = {  "description": "­ \n **Name:** " + member.presence.game.name + " \n **Link:** " + member.presence.game.url + " \n\n ­",  "color": 6570404,  "image": {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fheader.jpg"  },  "author": {  "name": Function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on Twitch!",  "icon_url": member.user.displayAvatarURL  }  };
                     Channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                     console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
