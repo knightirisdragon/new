@@ -2146,11 +2146,23 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
     if  (peeky.serverData.has(keySF, "role_saver_array"))  {
 
         var SavedRoles  = peeky.serverData.get(keySF, "role_saver_array");
-
-        if  (SavedRoles.indexOf(member.user.id) < 0) {  await SavedRoles.push(member.user.id)  };
-        var MemberIndex = SavedRoles.indexOf(member.user.id);
+        var MemberIndex = -1;
       
-        SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name == "@everyone").map(r => r.id);
+        await SavedRoles.forEach(current => {
+          
+            if  (current[0] == member.user.id)  {
+              
+                MemberIndex = current //.indexOf(member.user.id);
+              
+            };
+          
+        });
+
+        if  (MemberIndex < 0)  {
+            SavedRoles.push([member.user.id, member.roles.filter(r => r.name !== "@everyone").map(r => r.id)])
+        } else {
+            SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name !== "@everyone").map(r => r.id);
+        };
       
     };
 
