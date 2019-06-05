@@ -1190,7 +1190,9 @@ peeky.on('message', async (message) => {
         server_trial_bonus_bonus: false,
         server_trial_bonus_setting: 60,
         stream_announcements_bonus: false,
-        stream_announcements_bonus_setting: "twitch"
+        stream_announcements_bonus_setting: "twitch",
+        role_saver_bonus: false,
+        role_saver_array: []
     });
 
     if  (!message.author.bot && !message.webhookID)  {
@@ -2144,9 +2146,11 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
     if  (peeky.serverData.has(keySF, "role_saver_array"))  {
 
         var SavedRoles  = peeky.serverData.get(keySF, "role_saver_array");
+
+        if  (SavedRoles.indexOf(member.user.id) < 0) {  await SavedRoles.push(member.user.id)  };
         var MemberIndex = SavedRoles.indexOf(member.user.id);
       
-        SavedRoles[MemberIndex][1]
+        SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name == "@everyone").map(r => r.id);
       
     };
 
