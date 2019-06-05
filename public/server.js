@@ -3009,8 +3009,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "about")
   
     const embed = {
                   "description": "**Reaction Menu**" + "\n\n" +
-                                 "**[1] Website** - Backgrounds, leaderboard, commands, etc..." +
-                                 "**[2] Help** - Support Server,",
+                                 "**[1] About** - Backgrounds, leaderboard, commands and so on." + "\n" +
+                                 "**[2] Help** - Support Server, Bot Invite, etc..." + "\n" + 
+                                 "**[3] Support** - Backgrounds, leaderboard, commands, etc..." + "\n" +
+                                 "**[4] Exit** - Will exit this menu.",
                   "color": 7506394
     };
   
