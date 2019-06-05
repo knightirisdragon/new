@@ -1946,7 +1946,7 @@ if  (!MemberCounterCooldown.has(member.guild.id))  {
 if (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
   
     //Permission Checking
-  if  (member.guild.me.hasPermission("MANAGE_ROLES")) {
+  if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
       
       var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
       var RoleExist = member.guild.roles.find(role => role.name == name);
@@ -1955,6 +1955,26 @@ if (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
           member.addRole(RoleExist, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
 
           console.log("The Join Role function has been triggered in " + member.guild.name + ".");
+      };
+
+  };
+
+};
+    
+//Role Saver
+if (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
+  
+    //Permission Checking
+  if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
+      
+      var SavedRoles = peeky.serverData.get(keySF, "saved_roles");
+    
+      if  (SavedRoles !== undefined)  {
+          SavedRoles.forEach(current => {
+            
+              if  (current[0] == member.user.id)  {};
+            
+          });  
       };
 
   };
