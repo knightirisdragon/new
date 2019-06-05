@@ -2341,8 +2341,9 @@ if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
   
 //Help Commands
   
-if  (reaction.emoji.name == "🚪" && peeky.userData.get(key, "HelpID") == reaction.message.id)  {
-    console.log("LULW");
+if  (reaction.emoji.name == "1⃣" && peeky.userData.has(key, "HelpID") && peeky.userData.get(key, "HelpID") == reaction.message.id)  {
+    message.embeds[0].fields[0] = "Some much like";
+    message.edit(new Discord.RichEmbed(message.embeds[0]));
 };
 
   
@@ -2992,16 +2993,28 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))
     const VoteLink = "https://divinediscordbots.com/bot/482945063282802698/vote";
     const ReviewsLink = "https://discordapps.dev/en-GB/bots/482945063282802698";
 
-    const embed = {
+    /*const embed = {
                   "description": "**Website** [[View]](https://peeky.glitch.me/)\nYou can visit the website to vote, read tutorials, view the leaderboard and anything PEEKY related." + 
                                  "\n\n**Store** [[View]](https://peeky.glitch.me/store.html)\nYou can support PEEKY by purchasing some items from the store." +
                                  "\n\n**Support Server** [[View]](https://peeky.glitch.me/server.html)\nYou can join the Support Server for updates about PEEKY and other important stuff." +
                                 "\n\n**Bot Invite** [[View]](https://peeky.glitch.me/invite.html)\nYou can invite PEEKY and get all his features for free and fast.",
                   "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
                   "color": 7506394
+    };*/
+  
+    const embed = {
+                  "description": "testing the new help command RN.",
+                  "color": 7506394
     };
   
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(async m =>  {
+        await peeky.userData.set(key, m.id, "HelpID");
+
+        await m.react("1⃣").catch(error => ErrorBag.add(error));
+        await m.react("2⃣").catch(error => ErrorBag.add(error));
+        await m.react("3⃣").catch(error => ErrorBag.add(error));
+        await m.react("4⃣").catch(error => ErrorBag.add(error));
+    });
 
 };
   
