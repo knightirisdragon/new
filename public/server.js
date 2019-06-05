@@ -2335,8 +2335,18 @@ if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reactio
     };
 };
 
-//FUNCTIONS
 if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
+  
+//COMMANDS
+  
+//Help Commands
+  
+if  (reaction.emoji.name == "🚪" && peeky.userData.get(key, "HelpID") == reaction.message.id)  {
+    console.log("LULW");
+};
+
+  
+//FUNCTIONS
   
 //Vote Kick
 if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
