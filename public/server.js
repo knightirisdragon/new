@@ -1988,6 +1988,8 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
                   });
                 
                   member.setRoles(ValidRoles).catch(error => ErrorBag.add(error));
+    
+                  console.log("The Role Saver function has been triggered in " + member.guild.name + ".");
                 
               };
             
@@ -2146,14 +2148,13 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
     if  (peeky.serverData.has(keySF, "role_saver_array"))  {
 
         var SavedRoles  = peeky.serverData.get(keySF, "role_saver_array");
+        var MemberIndex = SavedRoles.findIndex(i => i[0] == member.user.id);
       
-        if  (SavedRoles.filter(i => i[0] == member.user.id).length > 0)  {
-          
-            var MemberIndex = SavedRoles
-          
+        if  (MemberIndex >= 0)  {
+            SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name !== "@everyone").map(r => r.id);
+        } else {
+          SavedRoles.push([member.user.id, member.roles.filter(r => r.name !== "@everyone").map(r => r.id)]);
         };
-        
-        SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name !== "@everyone").map(r => r.id);
       
     };
 
@@ -3426,7 +3427,7 @@ if  (FunctioName.startsWith("classification wall")) {
 else
    
 //Toggle Join role
-if  (FunctioName.startsWith("join role")) {
+if  (FunctioName.startsWith("join role"))  {
     
     const guild = message.guild;
     var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
@@ -3463,7 +3464,22 @@ if  (FunctioName.startsWith("join role")) {
     };
       
     if  (peeky.serverData.get(keySF, "join_role_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-     const embed = {"description": SuccessIcon + " The **Join role** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " The **Join role** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+   
+//Toggle Role Saver
+if  (FunctioName.startsWith("role saver"))  {
+    
+    if(peeky.serverData.get(keySF, "role_saver_bonus") == true) {peeky.serverData.set(keySF, false, "role_saver_bonus");}
+    else peeky.serverData.set(keySF, true, "role_saver_bonus");
+      
+    if  (peeky.serverData.get(keySF, "role_saver_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Role Saver** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
