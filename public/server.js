@@ -2337,24 +2337,6 @@ if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reactio
 
 if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
   
-//COMMANDS
-  
-//Help Commands
-  
-if  (reaction.emoji.name == "1⃣" && peeky.userData.has(key, "HelpID") && peeky.userData.get(key, "HelpID") == reaction.message.id)  {
-     const newEmbed = new Discord.RichEmbed({
-                  "description": "**Website** [[Open]](https://peeky.glitch.me/)\nYou can visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related." + 
-                                 "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + "?buyer=" + reaction.message.author.id + ")\nYou can support PEEKY by purchasing some neat items from the store!" +
-                                 "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\nYou can join the Support Server for important announcements, assistance with the bot, giveaways and much more!" +
-                                "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\nYou can add PEEKY to your server and get all the features for free and under a minute!",
-                  "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
-                  "color": 7506394
-    });
-  
-    reaction.message.edit(newEmbed);
-};
-
-  
 //FUNCTIONS
   
 //Vote Kick
@@ -2995,35 +2977,19 @@ if  (message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && message.
   
 //Misc. Commands
 
-//About
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "about"))  {
+//Help
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))  {
 
-    /*const embed = {
-                  "description": "**Website** [[View]](https://peeky.glitch.me/)\nYou can visit the website to vote, read tutorials, view the leaderboard and anything PEEKY related." + 
-                                 "\n\n**Store** [[View]](https://peeky.glitch.me/store.html)\nYou can support PEEKY by purchasing some items from the store." +
-                                 "\n\n**Support Server** [[View]](https://peeky.glitch.me/server.html)\nYou can join the Support Server for updates about PEEKY and other important stuff." +
-                                "\n\n**Bot Invite** [[View]](https://peeky.glitch.me/invite.html)\nYou can invite PEEKY and get all his features for free and fast.",
-                  "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
-                  "color": 7506394
-    };*/
-  
     const embed = {
-                  "description": "**Reaction Menu**" + "\n\n" +
-                                 "**[1] About** - Backgrounds, leaderboard, commands and so on." + "\n" +
-                                 "**[2] Help** - Support Server, Bot Invite, etc..." + "\n" + 
-                                 "**[3] Support** - Backgrounds, leaderboard, commands, etc..." + "\n" +
-                                 "**[4] Exit** - Will exit this menu.",
-                  "color": 7506394
-    };
-  
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(async m =>  {
-        await peeky.userData.set(key, m.id, "HelpID");
+                    "description": "**Website** [[Open]](https://peeky.glitch.me/)\nYou can visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related." + 
+                                   "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + "?buyer=" + message.author.id + ")\nYou can support PEEKY by purchasing some neat items from the store!" +
+                                   "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\nYou can join the Support Server for important announcements, assistance with the bot, giveaways and much more!" +
+                                  "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\nYou can add PEEKY to your server and get all the features for free and under a minute!",
+                    "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
+                    "color": 7506394
+      };
 
-        await m.react("1⃣").catch(error => ErrorBag.add(error));
-        await m.react("2⃣").catch(error => ErrorBag.add(error));
-        await m.react("3⃣").catch(error => ErrorBag.add(error));
-        await m.react("4⃣").catch(error => ErrorBag.add(error));
-    });
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 };
   
