@@ -1962,17 +1962,32 @@ if (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
 };
     
 //Role Saver
-if (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
+if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
   
     //Permission Checking
   if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
-      
-      var SavedRoles = peeky.serverData.get(keySF, "saved_roles");
     
-      if  (SavedRoles !== undefined)  {
+      if  (peeky.serverData.has(keySF, "role_saver_array"))  {
+      
+          var SavedRoles = peeky.serverData.get(keySF, "role_saver_array");
+        
           SavedRoles.forEach(current => {
             
-              if  (current[0] == member.user.id)  {};
+              if  (current[0] == member.user.id)  {
+                
+                  const ValidRoles = [];
+                
+                  current[1].forEach(role => {
+                      
+                    if  (member.guild.roles.find(r => r.id == role))  {
+                        ValidRoles.push(role);
+                    };                  
+                    
+                  });
+                
+                  member.setRoles(ValidRoles).catch(error => ErrorBag.add(error));
+                
+              };
             
           });  
       };
@@ -1991,7 +2006,7 @@ if (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
       var RoleExist = member.guild.roles.find(role => role.name == name);
 
       if  (RoleExist) {
-          member.addRole(RoleExist, "Triggered by the Server Trial function.").catch(error => ErrorBag.add(error));;
+          member.addRole(RoleExist, "Triggered by the Server Trial function.").catch(error => ErrorBag.add(error));
       };
 
   };
@@ -2116,9 +2131,26 @@ peeky.on("guildMemberUpdate", async (oldMember, newMember) => {
   
 const key        = `${newMember.user.id}`;
 const keySF      = `${newMember.guild.id}`;
+const member     = newMember
 var ExpAmount    = 100;
 var Failed       = false;
 var InfoMessages = [];
+  
+//FUNCTIONS
+    
+//Role Saver
+if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
+  
+    if  (peeky.serverData.has(keySF, "role_saver_array"))  {
+
+        var SavedRoles  = peeky.serverData.get(keySF, "role_saver_array");
+        var MemberIndex = SavedRoles.indexOf(member.user.id);
+      
+        SavedRoles[MemberIndex][1]
+      
+    };
+
+};
   
 //Supporter Date
 if  (keySF == SupportServer)  {
