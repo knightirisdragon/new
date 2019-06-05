@@ -2342,8 +2342,16 @@ if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
 //Help Commands
   
 if  (reaction.emoji.name == "1⃣" && peeky.userData.has(key, "HelpID") && peeky.userData.get(key, "HelpID") == reaction.message.id)  {
-    message.embeds[0].fields[0] = "Some much like";
-    message.edit(new Discord.RichEmbed(message.embeds[0]));
+     const newEmbed = new Discord.RichEmbed({
+                  "description": "**Website** [[Open]](https://peeky.glitch.me/)\nYou can visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related." + 
+                                 "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + "?buyer=" + reaction.message.author.id + ")\nYou can support PEEKY by purchasing some neat items from the store!" +
+                                 "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\nYou can join the Support Server for important announcements, assistance with the bot, giveaways and much more!" +
+                                "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\nYou can add PEEKY to your server and get all the features for free and under a minute!",
+                  "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
+                  "color": 7506394
+    });
+  
+    reaction.message.edit(newEmbed);
 };
 
   
@@ -2987,11 +2995,8 @@ if  (message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && message.
   
 //Misc. Commands
 
-//Help
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))  {
-
-    const VoteLink = "https://divinediscordbots.com/bot/482945063282802698/vote";
-    const ReviewsLink = "https://discordapps.dev/en-GB/bots/482945063282802698";
+//About
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "about"))  {
 
     /*const embed = {
                   "description": "**Website** [[View]](https://peeky.glitch.me/)\nYou can visit the website to vote, read tutorials, view the leaderboard and anything PEEKY related." + 
@@ -3003,7 +3008,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))
     };*/
   
     const embed = {
-                  "description": "testing the new help command RN.",
+                  "description": "**Reaction Menu**" + "\n\n" +
+                                 "**[1] Website** - Backgrounds, leaderboard, commands, etc..." +
+                                 "**[2] Help** - Support Server,",
                   "color": 7506394
     };
   
