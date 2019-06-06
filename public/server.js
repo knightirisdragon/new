@@ -1369,12 +1369,13 @@ peeky.on('message', async (message) => {
     if  (!WebsiteCooldowns.has("autowipe"))  {
       
     WebsiteCooldowns.add("autowipe");
-    setTimeout(() => {WebsiteCooldowns.delete("autowipe")}, 3600000);   
+    //setTimeout(() => {WebsiteCooldowns.delete("autowipe")}, 3600000);
+    //Cooldown disabled because of possible memory leaks.
 
     const rightNow = Date.now();
 
     //Profiles
-    var filtered = peeky.userData.filter( p => p.UserID && p.lastSeen );
+    var filtered = function_ShuffleArray(peeky.userData.filter( p => p.UserID && p.lastSeen && p.FashionBadge == false ));
     var toRemoveProfiles = filtered.filter(data => {
           return (rightNow - InactiveWipe > data.lastSeen);
     });
@@ -1407,7 +1408,7 @@ peeky.on('message', async (message) => {
 
     });
       
-    console.log("The Auto Wipe has just occurred.");
+    //console.log("The Auto Wipe has just occurred.");
     
     };
 
