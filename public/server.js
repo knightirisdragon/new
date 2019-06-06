@@ -937,12 +937,6 @@ function function_TimeLeft(value, type)  {
 function function_NumarizeArray(array, brackets)  {
 
 var Current = 0; var List = [];
-  
-/*if  (brackets == undefined)  {
-    var Brackets = "";
-} else {
-  Brackets = brackets;
-};*/
 
 array.forEach(i => {
     Current ++;
@@ -2893,9 +2887,9 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
           DonorWallCooldown.add(message.guild.id);
           setTimeout(() => {DonorWallCooldown.delete(message.guild.id)}, 300000);
 
-          peeky.channels.get(p_channel.id).fetchMessage(p_message)
-          .then(m => m.edit("**" + Function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString)
-          .catch(error => ErrorBag.add(error)));
+          peeky.channels.get(p_channel.id).fetchMessage(p_message).then(m => {
+              m.edit("**" + Function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error))
+          });
 
           console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
         
