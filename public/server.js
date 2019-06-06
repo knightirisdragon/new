@@ -5452,6 +5452,8 @@ if (!ProfileCooldown.has(message.author.id)) {
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play "))  {
   
     if  (!CurrentlyPlaying.has(message.guild.id))  {
+      
+        await CurrentlyPlaying.add(message.guild.id);
 
     var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
     var Type = "Started";
@@ -5520,8 +5522,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             if  (Length <= 3600000 && Length > 0)  {
               
             await voiceChannel.join().then(async connection => {
-              
-            await CurrentlyPlaying.add(message.guild.id);
           
             peeky.serverData.set(keySF, Title, "Title");
             peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
@@ -5768,7 +5768,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
 //Skip
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))  {
       
-    if  (CurrentlyPlaying.has(message.guild.id) && message.guild.me.voiceChannel !== null)  {
+    if  (CurrentlyPlaying.has(message.guild.id) && message.guild.me.voiceChannel)  {
       
         CurrentlyPlaying.delete(message.guild.id);
         message.guild.me.voiceChannel.leave();
