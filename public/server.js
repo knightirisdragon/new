@@ -5240,7 +5240,7 @@ if (!ProfileCooldown.has(message.author.id)) {
       
     //Badges
     var   BadgeYpos    = 201.5;
-    var   BadgeXpos    = -27;
+    var   BadgeXpos    = -26;
     const BadgeXposAmt = 35;
     var   BadgeAmount  = 0;
     const MaxBadges    = 14;
