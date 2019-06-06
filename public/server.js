@@ -937,15 +937,16 @@ function function_TimeLeft(value, type)  {
 function function_NumarizeArray(array, brackets)  {
 
 var Current = 0; var List = [];
-if  (brackets == undefined)  {
+  
+/*if  (brackets == undefined)  {
     var Brackets = "";
 } else {
   Brackets = brackets;
-};
+};*/
 
 array.forEach(i => {
     Current ++;
-    List.push(Current + ". " + Brackets[0] + i + Brackets[1] + "\n");
+    List.push(Current + ". " + brackets[0] + i + brackets[1] + "\n");
 });
   
 return List.join("");
