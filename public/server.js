@@ -5768,10 +5768,13 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
 //Skip
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))  {
       
-    if  (CurrentlyPlaying.has(message.guild.id) && message.guild.me.voiceChannel)  {
+    if  (CurrentlyPlaying.has(message.guild.id))  {
       
         CurrentlyPlaying.delete(message.guild.id);
-        message.guild.me.voiceChannel.leave();
+      
+        if  (message.guild.me.voiceChannel)  {
+            message.guild.me.voiceChannel.leave().catch(error => ErrorBag.add(error));
+        };
       
     } else {
       const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
