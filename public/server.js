@@ -1369,26 +1369,33 @@ peeky.on('message', async (message) => {
     if  (!WebsiteCooldowns.has("autowipe"))  {
       
     WebsiteCooldowns.add("autowipe");
-    //setTimeout(() => {WebsiteCooldowns.delete("autowipe")}, 3600000);
-    //Cooldown disabled because of possible memory leaks.
+
+    setTimeout(() => {WebsiteCooldowns.delete("autowipe")}, 3600000);
+    //Cooldown disabled for profiles because of possible memory leaks.
 
     const rightNow = Date.now();
-
+      
     //Profiles
-    var filtered = function_ShuffleArray(peeky.userData.filter( p => p.UserID && p.lastSeen && p.FashionBadge == false ));
-    var toRemoveProfiles = filtered.filter(data => {
-          return (rightNow - InactiveWipe > data.lastSeen);
-    });
-  
-    toRemoveProfiles.forEach(data => {
-        console.log("I have wiped a profile because it was inactive.");
-        peeky.userData.delete(`${data.UserID}`);
-    });
+    if  (!WebsiteCooldowns.has("autowipe-profiles"))  {
+        
+        WebsiteCooldowns.add("autowipe-profiles");
+
+        var filtered = function_ShuffleArray(peeky.userData.filter( p => p.UserID && p.lastSeen && p.FashionBadge == false ));
+        var toRemoveProfiles = filtered.filter(data => {
+            return (rightNow - InactiveWipe > data.lastSeen);
+        });
+
+        toRemoveProfiles.forEach(data => {
+            console.log("I have wiped a profile because it was inactive.");
+            peeky.userData.delete(`${data.UserID}`);
+        });
+
+    };
   
     //Guilds
     var filtered = peeky.serverData.filter( p => p.GuildID && p.GuildID !== EmojiStorage && p.lastSeen );
     var toRemoveGuilds = filtered.filter(data => {
-          return rightNow - InactiveWipe > data.lastSeen;
+        return rightNow - InactiveWipe > data.lastSeen;
     });
 
     toRemoveGuilds.forEach(data => {
