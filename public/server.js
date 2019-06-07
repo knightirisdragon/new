@@ -580,8 +580,8 @@ function Function_RemoveFormatting(text, type, sliced)  {
 
     if  (FixedText !== "")  {
       
-        if  (FixedText.length > 75)  {
-            FixedText = FixedText.slice(0, 75) + "...";
+        if  (FixedText.length > 35)  {
+            FixedText = FixedText.slice(0, 35) + "...";
         };
 
         return FixedText;
@@ -2441,7 +2441,7 @@ if  (reaction.message.id == peeky.userData.get(key, "OverviewID"))  {
             });
 
             reaction.message.edit(newEmbed).catch(error => ErrorBag.add(error));
-            reaction.remove().catch(error => ErrorBag.add(error));
+            reaction.remove(user).catch(error => ErrorBag.add(error));
 
         } else 
         if  (reaction.emoji.name == "2⃣")  {
@@ -2449,18 +2449,18 @@ if  (reaction.message.id == peeky.userData.get(key, "OverviewID"))  {
             const newEmbed = new Discord.RichEmbed({
               description: "**Server functions in " + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "** `1/2`" + "\n\n" +
 
-                            WM + " **Welcome Messages** " + "\n" + SettingsIcon + " " + "Leaving and joining members will be documented in a channel called `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`." + "\n" +
+                            WM + " **Welcome Messages** " + "\n" + SettingsIcon + " " + "Member activity will be announced in the `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + " channel`." + "\n" +
                             MC + " **Member Counter** " + "\n" + SettingsIcon + " " + "The member counter prefix is `" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
                             CN + " **Clear Nicknames** " + "\n" + SettingsIcon + " " + "The full cleared nickname prefix is `" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n" +
                             CW + " **Classification Wall** " + "\n" + SettingsIcon + " " + "The role name is `@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` and the channel name is `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n" +
-                            SA + " **Suspicion Alert** " + "\n" + SettingsIcon + " " + "The server owner will be alerted when someone with `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans` or more joins the server." + "\n" +
+                            SA + " **Suspicion Alert** " + "\n" + SettingsIcon + " " + "Having `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans` or more is considered suspicious." + "\n" +
                             ST + " **Server Trial** " + "\n" + SettingsIcon + " " + "Members have about `" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes` before their trial expires." + "\n" +
                             SA2 + " **Stream Announcements** " + "\n" + SettingsIcon + " " + "Streams will be announced in the `#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "` channel." + "\n" +
                             FP + " **Flood Protection** " + "\n" + SettingsIcon + " " + "No Setting."
             });
 
             reaction.message.edit(newEmbed).catch(error => ErrorBag.add(error));
-            reaction.remove().catch(error => ErrorBag.add(error));
+            reaction.remove(user).catch(error => ErrorBag.add(error));
 
         } else 
         if  (reaction.emoji.name == "3⃣")  {
@@ -2478,7 +2478,7 @@ if  (reaction.message.id == peeky.userData.get(key, "OverviewID"))  {
             });
 
             reaction.message.edit(newEmbed).catch(error => ErrorBag.add(error));
-            reaction.remove().catch(error => ErrorBag.add(error));
+            reaction.remove(user).catch(error => ErrorBag.add(error));
 
         } else 
         if  (reaction.emoji.name == "4⃣")  {
@@ -2489,12 +2489,12 @@ if  (reaction.message.id == peeky.userData.get(key, "OverviewID"))  {
                             AR + " **Automatic Reactions** " + "\n" + SettingsIcon + " " + "The custom reaction names are `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` and `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`." + "\n" +
                             ML + " **Message Log** " + "\n" + SettingsIcon + " " + "Logged messages will be sent to a channel called `#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`." + "\n" +
                             IO + " **Images Only** " + "\n" + SettingsIcon + " " + "No setting." + "\n" +
-                            SL + " **Spoiler Lock** " + "\n" + SettingsIcon + " " + "Members can post images freely `" + peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") + " minutes` after joining, unless the setting is 0 minutes." + "\n" +
+                            SL + " **Spoiler Lock** " + "\n" + SettingsIcon + " " + "Members can post images freely `" + peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") + " minutes`." + "\n" +
                             BW + " **Banned Words** " + "\n" + SettingsIcon + " " + "The banned words in this server are `" + FixedArray + "`."
             });
 
             reaction.message.edit(newEmbed).catch(error => ErrorBag.add(error));
-            reaction.remove().catch(error => ErrorBag.add(error));
+            reaction.remove(user).catch(error => ErrorBag.add(error));
 
         };
       
