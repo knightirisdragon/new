@@ -115,6 +115,7 @@ const PurchaseLog          = "583339225001492501";
 
 //Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
+const NumberEmojis        = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const blacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const whitelistedSymbols  = [  "a", "á", "b", "c", "č", "d", "ď", "e", "é", "ě", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "ň", "o", "ó", "p", "q", "r", "ř", "s", "š", "t", "u", "ů", "ú", "v", "w", "x", "y", "ý", "z", "ž", "0", "1", "2", "3", "4", "6", "5", "7", "8", "9", "_", "-", " ", ",", ".", "'", '"', "(", ")", "[", "]"  ];
 const DefaultDescriptions = [  "I'm very busy and important.", "I sip water quite slowly.", "Battery low, I'm scared.", "I have a car for each day of the month.", "I make up a dream in my head before I go to bed.", "My life is a green screen.", "I don't believe in showers.", "Certified troublemaker.", "I'm a Bacon Guru.", "Smarter than a 5th grader.", "I took an arrow to the knee.", "Pikachu chooses me.", "I'm real, I hope my followers are too.", "I have invincible minions.", "Is this water dry?", "I yell at inanimate objects.", "I sneak drinks into movie theatres.", "I hide my sweat well.", "I unleashed the zombie apocalypse.", "I'm a very mysterious person.", "I am so funny.", "I slapped a chicken once.", "I don't know what alt-tab does.", "Hitting things to make them work.", "I put fries into my straw.", "I walk faster when I see a creepy van.", "More than meets the eye.", "I draw on fogged up windows.", "Born at a very young age."  ];
@@ -1365,10 +1366,8 @@ peeky.on('message', async (message) => {
     if  (!WebsiteCooldowns.has("autowipe"))  {
       
     WebsiteCooldowns.add("autowipe");
-
     setTimeout(() => {WebsiteCooldowns.delete("autowipe")}, 3600000);
-    //Cooldown disabled for profiles because of possible memory leaks.
-
+  
     const rightNow = Date.now();
   
     //Guilds
@@ -1395,23 +1394,15 @@ peeky.on('message', async (message) => {
     });
       
     //Profiles
-    if  (!WebsiteCooldowns.has("autowipe-profiles"))  {
-        
-        WebsiteCooldowns.add("autowipe-profiles");
+    var filtered = function_ShuffleArray(peeky.userData.filter( p => p.UserID && p.lastSeen && p.FashionBadge == false ));
+    var toRemoveProfiles = filtered.filter(data => {
+       return (rightNow - InactiveWipe > data.lastSeen);
+    });
 
-        var filtered = function_ShuffleArray(peeky.userData.filter( p => p.UserID && p.lastSeen && p.FashionBadge == false ));
-        var toRemoveProfiles = filtered.filter(data => {
-            return (rightNow - InactiveWipe > data.lastSeen);
-        });
-
-        toRemoveProfiles.forEach(data => {
-            console.log("I have wiped a profile because it was inactive.");
-            peeky.userData.delete(`${data.UserID}`);
-        });
-
-    };
-      
-    //console.log("The Auto Wipe has just occurred.");
+    toRemoveProfiles.forEach(data => {
+        console.log("I have wiped a profile because it was inactive.");
+        peeky.userData.delete(`${data.UserID}`);
+    });
     
     };
 
