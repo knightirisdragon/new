@@ -2897,20 +2897,26 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
         ClearedNames.add(message.author.tag);
 
         var Username = message.author.username.toLowerCase().toString();
-        var NewNickname = Username.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789]/g)
-      
-        if  (NewNickname == null) {
-            NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
-        } else {
+        var NewNickname = Username.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789 ]/g)
+        
+        if  (NewNickname !== null) {
             NewNickname = NewNickname.join("");
         };
-
-        message.member.setNickname(NewNickname, {reason: "Triggered by the Clear Nicknames function."}).catch(error => ErrorBag.add(error));
-       
-        const embed = {"description": InfoIcon + " I have cleared **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s nickname of fancy letters.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
       
-        console.log("The Clear Nicknames function has been triggered in " + message.guild.name + ".");
+        if  (Username !== NewNickname)  {
+          
+            if  (NewNickname == null)  {
+                NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
+            };
+
+            message.member.setNickname(NewNickname, {reason: "Triggered by the Clear Nicknames function."}).catch(error => ErrorBag.add(error));
+
+            const embed = {"description": InfoIcon + " I have cleared **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s nickname of fancy letters.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+
+            console.log("The Clear Nicknames function has been triggered in " + message.guild.name + ".");
+          
+        };
 
     };
     };
