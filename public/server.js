@@ -580,8 +580,8 @@ function Function_RemoveFormatting(text, type, sliced)  {
 
     if  (FixedText !== "")  {
       
-        if  (FixedText.length > 50)  {
-            FixedText = FixedText.slice(0, 25) + "...";
+        if  (FixedText.length > 45)  {
+            FixedText = FixedText.slice(0, 45) + "...";
         };
 
         return FixedText;
@@ -2398,7 +2398,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         var ServerMessage = peeky.serverData.get(keySF, "server_message_bonus_setting");
 
         var FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
-        if  (FixedArray.length < 1)  {  FixedArray = "none";  }  else  {  FixedArray = FixedArray.join(", ");  };
+        if  (FixedArray.length < 1)  {  FixedArray = "none";  }  else  {  FixedArray = FixedArray.join("` `");  };
 
         var GivenMinutes = peeky.serverData.get(keySF, "spoiler_lock_bonus_setting");
         if  (GivenMinutes == 0)  {GivenMinutes = "never"}  else  {GivenMinutes = GivenMinutes + " minutes"}
@@ -2447,7 +2447,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 MC + " **Member Counter** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
                                 CN + " **Clear Nicknames** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n" +
                                 CW + " **Classification Wall** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n" +
-                                SA + " **Suspicion Alert** " + "\n" + Hollow + " " + "Having `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n" +
+                                SA + " **Suspicion Alert** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n" +
                                 ST + " **Server Trial** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes`" + "\n" +
                                 SA2 + " **Stream Announcements** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`." + "\n" +
                                 FP + " **Flood Protection** " + "\n" + Hollow + " " + "No Setting.",
