@@ -2850,7 +2850,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
     if  (Role && Channel)  {
 
     if  (!DonorWallCooldown.has(message.guild.id))  {
-      
+
         DonorWallCooldown.add(message.guild.id);
         setTimeout(() => {DonorWallCooldown.delete(message.guild.id)}, 300000);
 
@@ -2858,44 +2858,32 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
         if  (guildMember.roles.has(Role.id))  {
         if  (guildMember.user.bot)                                {  Tag = BotTag;  };
         if  (guildMember.user.id == message.guild.owner.user.id)  {  Tag = OwnerTag;  };
-             WallList.push(Function_RemoveFormatting(guildMember.user.username, "cw", true) +  "#" + guildMember.user.discriminator + " " + Tag);
-             Tag = "";
+            WallList.push(Function_RemoveFormatting(guildMember.user.username, "cw", true) +  "#" + guildMember.user.discriminator + " " + Tag);
+            Tag = "";
         };
         });
 
-       const SupportersAmount = WallList.length;
+        const SupportersAmount = WallList.length;
 
-       if  (SupportersAmount >= 50)  {  EndString = " and " + (SupportersAmount - 50) + " more..."  };
-       if  (SupportersAmount == 0)  {  WallList = ["No one."]  };
+        if  (SupportersAmount >= 50)  {  EndString = " and " + (SupportersAmount - 50) + " more..."  };
+        if  (SupportersAmount == 0)  {  WallList = ["No one."]  };
 
-       Channel.fetchMessages({ limit: 1 }).then(messages => {
+        Channel.fetchMessages({ limit: 1 }).then(messages => {
 
-        if  (messages[0].id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
-          
-            messages[0].edit("**" + Function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error));
-            
+        var Message = messages.array()[0];
+
+        if  (Message.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
+
+            Message.edit("**" + Function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error));
+
             console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
-          
+
         };
-         
-       /*var FilteredMessages = messages.filter(m => m.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"));
-         
-           console.log("1")
 
-       if  (FilteredMessages.length > 0) {
-         
-           console.log("2")
+        }).catch(error => ErrorBag.add(error));
 
-           FilteredMessages[0].edit("**" + Function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error));
-
-           console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
-
-       };   */  
-
-       }).catch(error => ErrorBag.add(error));
-
-    };
-    };
+      };
+      };
   
 };
   
@@ -2914,10 +2902,13 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
         if  (NewNickname == null) {
             NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
         } else {
-            NewNickname.join("");
+            NewNickname = NewNickname.join("");
         };
 
         message.member.setNickname(NewNickname, {reason: "Triggered by the Clear Nicknames function."}).catch(error => ErrorBag.add(error));
+       
+        const embed = {"description": InfoIcon + " I have cleared **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s nickname of fancy letters.",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
       
         console.log("The Clear Nicknames function has been triggered in " + message.guild.name + ".");
 
