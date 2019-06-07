@@ -2900,16 +2900,17 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
 
         ClearedNames.add(message.author.tag);
 
-        var Username = message.author.username.toLowerCase();
-        Username = Username.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789]/g);
+        var Username = message.author.username.toLowerCase().toString();
+        var NewNickname = Username.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789]/g)
       
-        if  (Username == null) {
-            Username = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
+        if  (NewNickname == null) {
+            NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
         } else {
-            Username.join("");
+            NewNickname = NewNickname.join("");
         };
       
-        message.member.setNickname(Username, {reason: "Triggered by the Clear Nicknames function."}).catch(error => ErrorBag.add(error));
+        console.log(NewNickname)
+        message.member.setNickname(NewNickname, {reason: "Triggered by the Clear Nicknames function."}).catch(error => ErrorBag.add(error));
       
         console.log("The Clear Nicknames function has been triggered in " + message.guild.name + ".");
 
