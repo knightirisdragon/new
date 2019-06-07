@@ -1188,11 +1188,7 @@ peeky.on('message', async (message) => {
         stream_announcements_bonus: false,
         stream_announcements_bonus_setting: "twitch",
         role_saver_bonus: false,
-        role_saver_array: [],
-        reaction_roles_bonus: false,
-        reaction_roles_bonus_id: null,
-        reaction_roles_bonus_channel: "roles",
-        reaction_roles_bonus_setting: []
+        role_saver_array: []
     });
 
     if  (!message.author.bot && !message.webhookID)  {
@@ -2890,53 +2886,6 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
       };
   
 };
-      
-//Reaction Roles
-if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
-
-    const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == peeky.serverData.get(keySF, "reaction_roles_bonus_channel"));
-
-    if  (Channel)  {
-
-    if  (!DonorWallCooldown.has(message.guild.id))  {
-
-        DonorWallCooldown.add(message.guild.id);
-        setTimeout(() => {DonorWallCooldown.delete(message.guild.id)}, 300000);
-
-        const RolesList = [];
-        const FilteredList = [];
-        var Current = 0;
-
-        RolesList.forEach(role => {
-          
-            var Role = message.guild.roles.find(r => r.id == role);
-
-            if  (Role)  {
-
-                FilteredList.push(NumberEmojis[Current] + " " + Role.name);
-
-            };
-          
-        });
-
-        Channel.fetchMessages({ limit: 1 }).then(messages => {
-
-        var Message = messages.array()[0];
-
-        if  (Message.id == peeky.serverData.get(keySF, "reaction_roles_bonus_id"))  {
-
-            Message.edit("**" + Function_RemoveFormatting(message.guild.name, "other", true) + "'s Reaction Roles:**\n\n" + FilteredList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error));
-
-            console.log("The Reactions Roles function has been triggered in " + message.guild.name + ".");
-
-        };
-
-        }).catch(error => ErrorBag.add(error));
-
-      };
-      };
-  
-};
   
 //Clear Nicknames
 if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
@@ -3401,55 +3350,6 @@ if  (FunctioName.startsWith("classification wall"))  {
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Classification Wall** function.");
-
-    };
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-    }
-     else
-    {
-     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
-    };
-
-    if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Classification Wall** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-    
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-}
-  
-else   
-//Toggle Reaction Roles
-if  (FunctioName.startsWith("reaction roles"))  {
-    
-    const channel = peeky.guilds.get(message.guild.id).channels.find(channel => channel.name == peeky.serverData.get(keySF, "reaction_roles_bonus_channel"));
-    const name = peeky.serverData.get(keySF, "donor_wall_bonus_channel");
-
-    if(peeky.serverData.get(keySF, "donor_wall_bonus") == true) {  peeky.serverData.set(keySF, false, "donor_wall_bonus");  }
-    else peeky.serverData.set(keySF, true, "donor_wall_bonus");
-  
-    //Channel Creating    
-    if (!channel) {
-      
-    if  (!ChannelCooldown.has(message.guild.id)) {
-
-    if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
-
-    ChannelCooldown.add(message.guild.id);
-    setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
-      
-    await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
-    .then(async function (channel)  {
-          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error))
-          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error))
-          await channel.send("**" + message.guild.name + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\nPreparing the menu. Check back in under a few minutes!").catch(error => {ErrorBag.add(error);}).then(m => peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id"));
-    }).catch(function(err) {  ErrorBag.add(err);  });
-      
-    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Reaction Roles** function.");
 
     };
     }
@@ -4097,33 +3997,7 @@ if  (FunctioName.startsWith("classification wall "))  {
     };
 
 }
-  
-else
-      
-//Set Reaction Roles
-if  (FunctioName.startsWith("classification wall "))  {
 
-    if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
-
-    if  (peeky.serverData.get(keySF, "reaction_roles_bonus_setting").length < 5)  {
-
-          var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set reaction roles ")[1].toLowerCase(), "other", true);
-          peeky.serverData.get(keySF, "reaction_roles_bonus_setting").push(ReceivedArray);
-
-          var EndString = "";  FixedArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
-
-          const embed = {"description": SuccessIcon + " The **Reaction Roles** setting has been set to **" + FixedArray.join("**, **") + EndString + "**.",  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-      }
-       else
-      {
-       const embed = {"description": ErrorIcon + " The setting for the **Banned Words** function is full.",  "color": EmbedColor}; 
-       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      };
-
-}
-  
 else
       
 //Set Member Counter
