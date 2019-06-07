@@ -2906,7 +2906,8 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
         if  (NewNickname == null) {
             NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
         } else {
-            NewNickname = NewNickname.join("");
+            NewNickname = 
+              NewNickname.join("");
         };
       
         console.log(NewNickname)
