@@ -1081,6 +1081,7 @@ peeky.on('message', async (message) => {
       
     peeky.userData.ensure(key , {
         UserID: message.author.id,
+        OverviewID: null,
         lastSeen: new Date(),
         DailyRewarded: new Date(),
 
@@ -3212,7 +3213,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         WhiteSquare + " **Mute Role**" + "\n" + SettingsIcon + " " + "This server's mute role is called `@­" + peeky.serverData.get(keySF, "muted_role") + "`." + "\n­"
    );
   
-   Functions.push(
+   /*Functions.push(
                         "**Server functions in " + Function_RemoveFormatting(message.guild.name, "other", true) + "**" + "\n\n" +
 
                         WM + " **Welcome Messages** " + "\n" + SettingsIcon + " " + "Leaving and joining members will be documented in a channel called `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`." + "\n" +
@@ -3241,12 +3242,20 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         IO + " **Images Only** " + "\n" + SettingsIcon + " " + "No setting." + "\n" +
                         SL + " **Spoiler Lock** " + "\n" + SettingsIcon + " " + "Members can post images freely `" + peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") + " minutes` after joining, unless the setting is 0 minutes." + "\n" +
                         BW + " **Banned Words** " + "\n" + SettingsIcon + " " + "The banned words in this server are `" + FixedArray + "`."
-   );
+   );*/
 
-  for (i = 0; i < Functions.length; i++) {
-      const embed = {"description": Functions[i],  "color": EmbedColor}; 
-      message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
-  };
+  //for (i = 0; i < Functions.length; i++) {
+      const embed = {"description": "",  "color": EmbedColor}; 
+      await message.channel.send({  embed  }).catch(error => {ErrorBag.add(error);}).then(async m => {
+            
+            await m.react("1⃣").catch(error => {ErrorBag.add(error)});
+            await m.react("2⃣").catch(error => {ErrorBag.add(error)});
+            await m.react("3⃣").catch(error => {ErrorBag.add(error)});
+            await m.react("4⃣").catch(error => {ErrorBag.add(error)});
+            peeky.userData.set(key, m.id, "OverviewID");
+            
+      }).catch(error => {ErrorBag.add(error)});
+  //};
   
 }
  else 
