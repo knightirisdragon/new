@@ -2841,50 +2841,58 @@ if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "pref
 //Classification Wall
 if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 
+    const Role    = peeky.guilds.get(message.guild.id).roles.find(r => r.name == peeky.serverData.get(keySF, "donor_wall_bonus_setting"));
+    const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
+    var WallList = [];
+    var EndString = "";
+    var Tag       = "";
+
+    if  (Role && Channel)  {
+
     if  (!DonorWallCooldown.has(message.guild.id))  {
       
         DonorWallCooldown.add(message.guild.id);
+        setTimeout(() => {DonorWallCooldown.delete(message.guild.id)}, 300000);
 
-        const Role    = peeky.guilds.get(message.guild.id).roles.find(r => r.name == peeky.serverData.get(keySF, "donor_wall_bonus_setting"));
-        const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
-        var WallList = [];
-        var EndString = "";
-        var Tag       = "";
-
-        if  (Role && Channel)  {
-
-         peeky.guilds.get(message.guild.id).members.forEach(function(guildMember, guildMemberId) {
-         if  (guildMember.roles.has(Role.id))  {
-         if  (guildMember.user.bot)                                {  Tag = BotTag;  };
-         if  (guildMember.user.id == message.guild.owner.user.id)  {  Tag = OwnerTag;  };
+        peeky.guilds.get(message.guild.id).members.forEach(function(guildMember, guildMemberId) {
+        if  (guildMember.roles.has(Role.id))  {
+        if  (guildMember.user.bot)                                {  Tag = BotTag;  };
+        if  (guildMember.user.id == message.guild.owner.user.id)  {  Tag = OwnerTag;  };
              WallList.push(Function_RemoveFormatting(guildMember.user.username, "cw", true) +  "#" + guildMember.user.discriminator + " " + Tag);
              Tag = "";
-         };
-         });
+        };
+        });
 
-        const SupportersAmount = WallList.length;
+       const SupportersAmount = WallList.length;
 
-        if  (SupportersAmount >= 50)  {  EndString = " and " + (SupportersAmount - 50) + " more..."  };
-        if  (SupportersAmount == 0)  {  WallList = ["No one."]  };
+       if  (SupportersAmount >= 50)  {  EndString = " and " + (SupportersAmount - 50) + " more..."  };
+       if  (SupportersAmount == 0)  {  WallList = ["No one."]  };
 
-        Channel.fetchMessages({ limit: 10 }).then(messages => {
+       Channel.fetchMessages({ limit: 1 }).then(messages => {
 
-        var FilteredMessages = messages.filter(m => m.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"));
-
-            console.log(FilteredMessages)
-
-        if  (FilteredMessages.length > 0) {
-
-            console.log(FilteredMessages[0])
-            console.log(messages)
-
-            FilteredMessages[0].edit("**" + Function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error));
-
+        if  (messages[0].id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
+          
+            messages[0].edit("**" + Function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error));
+            
             console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
+          
+        };
+         
+       /*var FilteredMessages = messages.filter(m => m.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"));
+         
+           console.log("1")
 
-        };     
+       if  (FilteredMessages.length > 0) {
+         
+           console.log("2")
 
-        }).catch(error => ErrorBag.add(error));
+           FilteredMessages[0].edit("**" + Function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error));
+
+           console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
+
+       };   */  
+
+       }).catch(error => ErrorBag.add(error));
 
     };
     };
@@ -2906,11 +2914,9 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
         if  (NewNickname == null) {
             NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
         } else {
-            NewNickname = 
-              NewNickname.join("");
+            NewNickname.join("");
         };
-      
-        console.log(NewNickname)
+
         message.member.setNickname(NewNickname, {reason: "Triggered by the Clear Nicknames function."}).catch(error => ErrorBag.add(error));
       
         console.log("The Clear Nicknames function has been triggered in " + message.guild.name + ".");
