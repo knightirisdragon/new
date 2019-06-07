@@ -1170,7 +1170,6 @@ peeky.on('message', async (message) => {
         suspicion_alert_bonus: false,
         suspicion_alert_bonus_setting: 10,
         flood_protection_bonus: false,
-        flood_protection_bonus_setting: "Muted", //Unused
         donor_wall_bonus_setting: "Moderator",
         donor_wall_bonus: false,
         donor_wall_bonus_id: null,
