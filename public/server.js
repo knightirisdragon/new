@@ -3093,7 +3093,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eventre
       
         peeky.userData.set(key, true, "CelebratorBadge");
       
-        const embed = {"description": SuccessIcon + " **You have received the special Celebrator badge!**",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have received the special **Celebrator** badge!",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     };
@@ -3463,7 +3463,7 @@ if  (FunctioName.startsWith("server message")) {
 }
   
 else
-   
+
 //Toggle Message Log
 if  (FunctioName.startsWith("message log"))  {
   
