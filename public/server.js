@@ -2996,7 +2996,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))
                     "description": "**Website** [[Open]](https://peeky.glitch.me/)\nYou can visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related." + 
                                    "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + "?buyer=" + message.author.id + ")\nYou can support PEEKY by purchasing some neat items from the store!" +
                                    "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\nYou can join the Support Server for important announcements, assistance with the bot, giveaways and much more!" +
-                                  "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\nYou can add PEEKY to your server and get all the features for free and under a minute!",
+                                   "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\nYou can add PEEKY to your server and get all the features for free and under a minute!",
                     "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
                     "color": 7506394
       };
@@ -3011,15 +3011,20 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "get "))
 };
   
 //ServerInfo
-/*if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "server"))  {
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "server"))  {
     
-    message.channel.send(
-      "You have joined Discord on **" + function_DateFormat(message.author.createdAt) + "**." + "\n"
-    + "The owner of this server has joined Discord on **" + function_DateFormat(message.guild.owner.user.createdAt) + "**." + "\n"
-    + "This server was created on **" + function_DateFormat(message.guild.createdAt) + "**."
-    ).catch(error => ErrorBag.add(error));
+    const embed = {
+                    "description": "**" + message.guild.name + "'s Server Info**" + "\n\n" +
+                                   "**Created:** " + function_DateFormat(message.guild.createdAt) + "\n" +
+                                   "**Owner:** " + Function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "\n" +
+                                   "**Upgraded:** " + peeky.serverData.get(keySF, "server_upgraded") + "\n" +
+                                   "**Members:** " + message.guild.members.filter(m => !m.user.bot).size,
+                    "color": 7506394
+    };
+
+    message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
   
-};*/
+};
 
 //Eval
 if (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eval "))  {
@@ -3200,9 +3205,9 @@ if  (!OverviewCooldown.has(message.guild.id))  {
 
    Functions.push(
                         "**For more instructions on how to work with PEEKY's functions, visit one of the pages below.**" + "\n" +
-                        "https://peeky.glitch.me/functions.html or https://peeky.glitch.me/tutorials.html."  + "\n\n" +
+                        "https://peeky.glitch.me/functions.html, https://peeky.glitch.me/commands.html or https://peeky.glitch.me/tutorials.html."  + "\n\n" +
      
-                        "**Server Information**" + "\n\n" +
+                        "**Server Settings**" + "\n\n" +
                         WhiteSquare + " **Prefix**" + "\n" + SettingsIcon + " " + "This server's prefix is `" + peeky.serverData.get(keySF, "prefix") + "`." + "\n" +
                         WhiteSquare + " **Mute Role**" + "\n" + SettingsIcon + " " + "This server's mute role is called `@­" + peeky.serverData.get(keySF, "muted_role") + "`." + "\n­"
    );
