@@ -580,8 +580,8 @@ function Function_RemoveFormatting(text, type, sliced)  {
 
     if  (FixedText !== "")  {
       
-        if  (FixedText.length > 50)  {
-            FixedText = FixedText.slice(0, 50) + "...";
+        if  (FixedText.length > 25)  {
+            FixedText = FixedText.slice(0, 25) + "...";
         };
 
         return FixedText;
@@ -1831,7 +1831,7 @@ if  (peeky.guilds.size <= MaxServers)  {
     };
 
     let channel = peeky.channels.get(guild.systemChannelID || channelID);
-    channel.send("**Thank you for adding me to " + Function_RemoveFormatting(guild.name, "other", true) + "!**\nI've sent you some informations about me, so you won't feel lost!")
+    channel.send("**Thank you for adding me to " + Function_RemoveFormatting(guild.name, "other", true) + "!**\nBe sure to visit my website by typing **")
     .catch(error => ErrorBag.add(error));
 
 }
@@ -2398,8 +2398,11 @@ if  (peeky.userData.has(key) && peeky.channelData.has(keyCF) && peeky.serverData
 //Overview Pages
 if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userData.get(key, "OverviewID"))  {
   
-    if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES') && reaction.message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
-        
+    if  (!OverviewCooldown.has(user.id) &&reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES') && reaction.message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+         
+        OverviewCooldown.add(user.id);
+        setTimeout(() => {OverviewCooldown.delete(user.id)}, 5000);
+
         var EnabledAmount = 0;
         var ServerAmount  = 0;
         var ChannelAmount = 0;
@@ -2477,7 +2480,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 RS + " **Role Saver** " + "\n" + Hollow + " " + "No Setting." + "\n" +
                                 EC + " **Event Countdown** " + "\n" + Hollow + " " + "The current timestamp is `" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n" +
                                 SM + " **Server Message** " + "\n" + Hollow + " " + "The server message is `" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n" +
-                                VT + " **Vote Kick** " + "\n" + Hollow + " " + "People need to get `" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes` on one of their messages to get kicked out." + "\n" +
+                                VT + " **Vote Kick** " + "\n" + Hollow + " " + "People need to get `" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes` to get kicked out." + "\n" +
                                 JR + " **Join Role** " + "\n" + Hollow + " " + "Everyone who joins the server gets a role called `@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n" +
                                 SR + " **Streamer Role** " + "\n" + Hollow + " " + "Streaming members get the `@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "` role." + "\n" +
                                 N_ + " **Notifications** " + "\n" + Hollow + " " + "No setting.",
@@ -2494,11 +2497,11 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.RichEmbed({
                   description: "**Channel functions in #­" + Function_RemoveFormatting(reaction.message.channel.name, "other", true) + "**" + "\n\n" +
 
-                                AR + " **Automatic Reactions** " + "\n" + Hollow + " " + "The custom reaction are `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` and `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`." + "\n" +
-                                ML + " **Message Log** " + "\n" + Hollow + " " + "Logged messages will get sent to the `#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "` channel." + "\n" +
+                                AR + " **Automatic Reactions** " + "\n" + Hollow + " " + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:`, `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n" +
+                                ML + " **Message Log** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`" + "\n" +
                                 IO + " **Images Only** " + "\n" + Hollow + " " + "No setting." + "\n" +
-                                SL + " **Spoiler Lock** " + "\n" + Hollow + " " + "Members can post images freely `" + GivenMinutes + "` after joining." + "\n" +
-                                BW + " **Banned Words** " + "\n" + Hollow + " " + "The banned words in this server are `" + FixedArray + "`.",
+                                SL + " **Spoiler Lock** " + "\n" + Hollow + " " + "`" + GivenMinutes + "`" + "\n" +
+                                BW + " **Banned Words** " + "\n" + Hollow + " " + "`" + FixedArray + "`.",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
