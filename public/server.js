@@ -2438,8 +2438,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
 
             const newEmbed = new Discord.RichEmbed({
                   description: "**Server Settings**" + "\n\n" +
-                                WhiteSquare + " **Prefix**" + "\n" + SettingsIcon + " " + "This server's prefix is `" + peeky.serverData.get(keySF, "prefix") + "`." + "\n" +
-                                WhiteSquare + " **Mute Role**" + "\n" + SettingsIcon + " " + "This server's mute role is called `@­" + peeky.serverData.get(keySF, "muted_role") + "`.",
+                                SettingsIcon + " **Prefix**" + "\n" + Hollow + " " + "This server's prefix is `" + peeky.serverData.get(keySF, "prefix") + "`." + "\n" +
+                                SettingsIcon + " **Mute Role**" + "\n" + Hollow + " " + "This server's mute role is called `@­" + peeky.serverData.get(keySF, "muted_role") + "`.",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -2453,14 +2453,14 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.RichEmbed({
                   description: "**Server functions in " + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "** ­ `Page 1/2`" + "\n\n" +
 
-                                WM + " **Welcome Messages** " + "\n" + SettingsIcon + " " + "Member activity will be announced in the `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + " channel`." + "\n" +
-                                MC + " **Member Counter** " + "\n" + SettingsIcon + " " + "The member counter prefix is `" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
-                                CN + " **Clear Nicknames** " + "\n" + SettingsIcon + " " + "The full cleared nickname prefix is `" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n" +
-                                CW + " **Classification Wall** " + "\n" + SettingsIcon + " " + "The role name is `@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` and the channel name is `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n" +
-                                SA + " **Suspicion Alert** " + "\n" + SettingsIcon + " " + "Having `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans` or more is considered suspicious." + "\n" +
-                                ST + " **Server Trial** " + "\n" + SettingsIcon + " " + "Members have about `" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes` before their trial expires." + "\n" +
-                                SA2 + " **Stream Announcements** " + "\n" + SettingsIcon + " " + "Streams will be announced in the `#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "` channel." + "\n" +
-                                FP + " **Flood Protection** " + "\n" + SettingsIcon + " " + "No Setting.",
+                                WM + " **Welcome Messages** " + "\n" + Hollow + " " + "Member activity will be announced in the `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "` channel." + "\n" +
+                                MC + " **Member Counter** " + "\n" + Hollow + " " + "The member counter prefix is `" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
+                                CN + " **Clear Nicknames** " + "\n" + Hollow + " " + "The full cleared nickname prefix is `" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n" +
+                                CW + " **Classification Wall** " + "\n" + Hollow + " " + "The role is `@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` and the channel is `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n" +
+                                SA + " **Suspicion Alert** " + "\n" + Hollow + " " + "Having `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans` or more is considered suspicious." + "\n" +
+                                ST + " **Server Trial** " + "\n" + Hollow + " " + "Members have about `" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes` before their trial expires." + "\n" +
+                                SA2 + " **Stream Announcements** " + "\n" + Hollow + " " + "Streams will be announced in the `#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "` channel." + "\n" +
+                                FP + " **Flood Protection** " + "\n" + Hollow + " " + "No Setting.",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -2474,13 +2474,13 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Server functions in " + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "** ­  `Page 2/2`" + "\n\n" +
 
-                                RS + " **Role Saver** " + "\n" + SettingsIcon + " " + "No Setting." + "\n" +
-                                EC + " **Event Countdown** " + "\n" + SettingsIcon + " " + "The current timestamp is `" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n" +
-                                SM + " **Server Message** " + "\n" + SettingsIcon + " " + "The server message is `" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n" +
-                                VT + " **Vote Kick** " + "\n" + SettingsIcon + " " + "People need to get `" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes` on one of their messages to get kicked out." + "\n" +
-                                JR + " **Join Role** " + "\n" + SettingsIcon + " " + "Everyone who joins the server gets a role called `@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n" +
-                                SR + " **Streamer Role** " + "\n" + SettingsIcon + " " + "When someone starts streaming, they will get a role called `@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`." + "\n" +
-                                N_ + " **Notifications** " + "\n" + SettingsIcon + " " + "No setting.",
+                                RS + " **Role Saver** " + "\n" + Hollow + " " + "No Setting." + "\n" +
+                                EC + " **Event Countdown** " + "\n" + Hollow + " " + "The current timestamp is `" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n" +
+                                SM + " **Server Message** " + "\n" + Hollow + " " + "The server message is `" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n" +
+                                VT + " **Vote Kick** " + "\n" + Hollow + " " + "People need to get `" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes` on one of their messages to get kicked out." + "\n" +
+                                JR + " **Join Role** " + "\n" + Hollow + " " + "Everyone who joins the server gets a role called `@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n" +
+                                SR + " **Streamer Role** " + "\n" + Hollow + " " + "Streaming members get the `@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "` role." + "\n" +
+                                N_ + " **Notifications** " + "\n" + Hollow + " " + "No setting.",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -2494,11 +2494,11 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.RichEmbed({
                   description: "**Channel functions in #­" + Function_RemoveFormatting(reaction.message.channel.name, "other", true) + "**" + "\n\n" +
 
-                                AR + " **Automatic Reactions** " + "\n" + SettingsIcon + " " + "The custom reaction names are `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` and `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`." + "\n" +
-                                ML + " **Message Log** " + "\n" + SettingsIcon + " " + "Logged messages will get sent to the `#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "` channel." + "\n" +
-                                IO + " **Images Only** " + "\n" + SettingsIcon + " " + "No setting." + "\n" +
-                                SL + " **Spoiler Lock** " + "\n" + SettingsIcon + " " + "Members can post images freely `" + GivenMinutes + "` after joining." + "\n" +
-                                BW + " **Banned Words** " + "\n" + SettingsIcon + " " + "The banned words in this server are `" + FixedArray + "`.",
+                                AR + " **Automatic Reactions** " + "\n" + Hollow + " " + "The custom reaction are `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` and `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`." + "\n" +
+                                ML + " **Message Log** " + "\n" + Hollow + " " + "Logged messages will get sent to the `#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "` channel." + "\n" +
+                                IO + " **Images Only** " + "\n" + Hollow + " " + "No setting." + "\n" +
+                                SL + " **Spoiler Lock** " + "\n" + Hollow + " " + "Members can post images freely `" + GivenMinutes + "` after joining." + "\n" +
+                                BW + " **Banned Words** " + "\n" + Hollow + " " + "The banned words in this server are `" + FixedArray + "`.",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
