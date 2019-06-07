@@ -3245,7 +3245,7 @@ if  (!OverviewCooldown.has(message.guild.id))  {
    );*/
 
   //for (i = 0; i < Functions.length; i++) {
-      const embed = {"description": "",  "color": EmbedColor}; 
+      const embed = {"description": "**Overview Menu**" + "\n\n" + "1⃣ Server Settings" + "\n\n" + "2⃣ Server Functions `[1/2]`" + "\n\n" + "3⃣ Server Functions `[2/2]`" + "\n\n" + "4⃣ Channel Functions",  "color": EmbedColor}; 
       await message.channel.send({  embed  }).catch(error => {ErrorBag.add(error);}).then(async m => {
             
             await m.react("1⃣").catch(error => {ErrorBag.add(error)});
