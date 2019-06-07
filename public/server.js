@@ -3204,8 +3204,8 @@ if  (!OverviewCooldown.has(message.guild.id))  {
     if (peeky.serverData.get(keySF, "notifications") == true)                { var N_ = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var N_ = DisabledIcon};
 
    Functions.push(
-                        "**For more instructions on how to work with PEEKY's functions, visit one of the pages below.**" + "\n" +
-                        "https://peeky.glitch.me/functions.html, https://peeky.glitch.me/commands.html or https://peeky.glitch.me/tutorials.html."  + "\n\n" +
+                        /*"**For more instructions on how to work with PEEKY's functions, visit one of the pages below.**" + "\n" +
+                        "https://peeky.glitch.me/functions.html, https://peeky.glitch.me/commands.html or https://peeky.glitch.me/tutorials.html."  + "\n\n" +*/
      
                         "**Server Settings**" + "\n\n" +
                         WhiteSquare + " **Prefix**" + "\n" + SettingsIcon + " " + "This server's prefix is `" + peeky.serverData.get(keySF, "prefix") + "`." + "\n" +
@@ -3215,17 +3215,13 @@ if  (!OverviewCooldown.has(message.guild.id))  {
    Functions.push(
                         "**Server functions in " + Function_RemoveFormatting(message.guild.name, "other", true) + "**" + "\n\n" +
 
-                        WM + " **Welcome Messages** " + "\n" + SettingsIcon + " " + "When someone joins or leaves this server it will be announced in a channel called `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`." + "\n" +
+                        WM + " **Welcome Messages** " + "\n" + SettingsIcon + " " + "Leaving and joining members will be documented in a channel called `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`." + "\n" +
                         MC + " **Member Counter** " + "\n" + SettingsIcon + " " + "The member counter prefix is `" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
                         CN + " **Clear Nicknames** " + "\n" + SettingsIcon + " " + "The full cleared nickname prefix is `" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n" +
                         CW + " **Classification Wall** " + "\n" + SettingsIcon + " " + "The role name is `@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` and the channel name is `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n" +
                         SA + " **Suspicion Alert** " + "\n" + SettingsIcon + " " + "The server owner will be alerted when someone with `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans` or more joins the server." + "\n" +
                         ST + " **Server Trial** " + "\n" + SettingsIcon + " " + "Members have about `" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes` before their trial expires." + "\n" +
-                        SA2 + " **Stream Announcements** " + "\n" + SettingsIcon + " " + "Streams will be announced in the `#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "` channel."
-   
-   );
-
-   Functions.push(
+                        SA2 + " **Stream Announcements** " + "\n" + SettingsIcon + " " + "Streams will be announced in the `#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "` channel." + "\n" +
                         FP + " **Flood Protection** " + "\n" + SettingsIcon + " " + "No Setting." + "\n" +
                         RS + " **Role Saver** " + "\n" + SettingsIcon + " " + "No Setting." + "\n" +
                         EC + " **Event Countdown** " + "\n" + SettingsIcon + " " + "The current timestamp is `" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n" +
@@ -3248,7 +3244,8 @@ if  (!OverviewCooldown.has(message.guild.id))  {
    );
 
   for (i = 0; i < Functions.length; i++) {
-      message.channel.send(Functions[i]).catch(error => ErrorBag.add(error));
+      const embed = {"description": Functions[i],  "color": EmbedColor}; 
+      message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
   };
   
 }
