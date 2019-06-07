@@ -2886,6 +2886,53 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
       };
   
 };
+      
+//Reaction Roles
+if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
+
+    const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == peeky.serverData.get(keySF, "reaction_roles_bonus_channel"));
+
+    if  (Channel)  {
+
+    if  (!DonorWallCooldown.has(message.guild.id))  {
+
+        DonorWallCooldown.add(message.guild.id);
+        setTimeout(() => {DonorWallCooldown.delete(message.guild.id)}, 300000);
+
+        const RolesList = [];
+        const FilteredList = [];
+        var Current = 0;
+
+        RolesList.forEach(role => {
+          
+        var Role = message.guild.roles.find(r => r.id == role);
+          
+        if  (Role)  {
+            
+            FilteredList.push(NumberEmojis[Current] + " " + Role.name);
+            
+        };
+          
+        });
+
+        Channel.fetchMessages({ limit: 1 }).then(messages => {
+
+        var Message = messages.array()[0];
+
+        if  (Message.id == peeky.serverData.get(keySF, "reaction_roles_bonus_id"))  {
+
+            Message.edit("**" + Function_RemoveFormatting(message.guild.name, "other", true) + "'s Reaction Roles:**\n\n" + FilteredList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error));
+
+            console.log("The Reactions Roles function has been triggered in " + message.guild.name + ".");
+
+        };
+
+        }).catch(error => ErrorBag.add(error));
+
+      };
+      };
+  
+};
   
 //Clear Nicknames
 if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
