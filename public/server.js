@@ -2844,13 +2844,10 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
     const p_role           = peeky.guilds.get(message.guild.id).roles.find(r => r.name == peeky.serverData.get(keySF, "donor_wall_bonus_setting"));
     const p_channel        = peeky.guilds.get(message.guild.id).channels.find(channel => channel.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
     var WallList           = peeky.serverData.get(keySF, "donor_wall_bonus_array");
-    const p_message        = peeky.serverData.get(keySF, "donor_wall_bonus_id");
     var EndString          = "";
     var Tag                = "";
   
     WallList = [];
-
-    if  (p_message !== null) {
       
     if  (p_role && p_channel)   {
 
@@ -2869,21 +2866,17 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 
       if  (SupportersAmount >= 50)  {  EndString = " and " + (SupportersAmount - 50) + " more..."  };
       if  (SupportersAmount == 0)  {  WallList = ["No one."]  };
-  
-          await p_channel.fetchMessage(p_message).catch(error => {ErrorBag.add(error); FalseMsgIDs.add(p_message)});
       
-      if  (!FalseMsgIDs.has(p_message)) {
+      p_channel.fetchMessages({ limit: 5 }).then(messages => {
         
-          DonorWallCooldown.add(message.guild.id);
-          setTimeout(() => {DonorWallCooldown.delete(message.guild.id)}, 300000);
-
-          peeky.channels.get(p_channel.id).fetchMessage(p_message).then(m => {
-              m.edit("**" + Function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error))
-          });
-
-          console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
+      messages = messages.filter(m => m.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"));
         
-      };
+      if  (messages.length > 0) {
+        
+        
+      }     
+        
+      });
 
     };
     };
