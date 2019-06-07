@@ -2900,14 +2900,19 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
 
         ClearedNames.add(message.author.tag);
 
-        var UserID = message.author.id;
-        var IsTrue = false;
-        var Username = message.author.username;
-        var ClearedPrefix = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting");
+        var Username = message.author.username.toLowerCase();
+        Username = Username.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789]/g);
+      
+        if  (Username == null) {
+            Username = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
+        } else {
+            Username.join("");
+        };
+      
+        message.member.setNickname(Username, {reason: "Triggered by the Clear Nicknames function."}).catch(error => ErrorBag.add(error));
+      
+        console.log("The Clear Nicknames function has been triggered in " + message.guild.name + ".");
 
-        Nickname = Nickname.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789]/g);
-
-    };
     };
     };
 
