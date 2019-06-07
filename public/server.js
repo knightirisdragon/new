@@ -171,6 +171,7 @@ const GreditIcon   = "<:gredit:558673809343774720>";
 const ChestIcon    = "<:chest:561511603305185280>";
 const EnabledIcon  = "<:enabled:538295053940948993>";
 const DisabledIcon = "<:disabled:538295054431813662>";
+const SettingsIcon = "<:settings:586612320839532573>";
 
 //Role IDs
 const StaffRole         = "494429609874685983";
@@ -3202,43 +3203,43 @@ if  (!OverviewCooldown.has(message.guild.id))  {
                         "https://peeky.glitch.me/functions.html or https://peeky.glitch.me/tutorials.html."  + "\n\n" +
      
                         "**Server Information**" + "\n\n" +
-                        WhiteSquare + " **Prefix**" + "\n" + Hollow + " " + "This server's prefix is `" + peeky.serverData.get(keySF, "prefix") + "`." + "\n" +
-                        WhiteSquare + " **Mute Role**" + "\n" + Hollow + " " + "This server's mute role is called `@­" + peeky.serverData.get(keySF, "muted_role") + "`." + "\n­"
+                        WhiteSquare + " **Prefix**" + "\n" + SettingsIcon + " " + "This server's prefix is `" + peeky.serverData.get(keySF, "prefix") + "`." + "\n" +
+                        WhiteSquare + " **Mute Role**" + "\n" + SettingsIcon + " " + "This server's mute role is called `@­" + peeky.serverData.get(keySF, "muted_role") + "`." + "\n­"
    );
   
    Functions.push(
                         "**Server functions in " + Function_RemoveFormatting(message.guild.name, "other", true) + "**" + "\n\n" +
 
-                        WM + " **Welcome Messages** " + "\n" + Hollow + " " + "When someone joins or leaves this server it will be announced in a channel called `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`." + "\n" +
-                        MC + " **Member Counter** " + "\n" + Hollow + " " + "The member counter prefix is `" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
-                        CN + " **Clear Nicknames** " + "\n" + Hollow + " " + "The full cleared nickname prefix is `" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n" +
-                        CW + " **Classification Wall** " + "\n" + Hollow + " " + "The role name is `@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` and the channel name is `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n" +
-                        SA + " **Suspicion Alert** " + "\n" + Hollow + " " + "The server owner will be alerted when someone with `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans` or more joins the server." + "\n" +
-                        ST + " **Server Trial** " + "\n" + Hollow + " " + "Members have about `" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes` before their trial expires." + "\n" +
-                        SA2 + " **Stream Announcements** " + "\n" + Hollow + " " + "Streams will be announced in the `#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "` channel."
+                        WM + " **Welcome Messages** " + "\n" + SettingsIcon + " " + "When someone joins or leaves this server it will be announced in a channel called `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`." + "\n" +
+                        MC + " **Member Counter** " + "\n" + SettingsIcon + " " + "The member counter prefix is `" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
+                        CN + " **Clear Nicknames** " + "\n" + SettingsIcon + " " + "The full cleared nickname prefix is `" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n" +
+                        CW + " **Classification Wall** " + "\n" + SettingsIcon + " " + "The role name is `@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` and the channel name is `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n" +
+                        SA + " **Suspicion Alert** " + "\n" + SettingsIcon + " " + "The server owner will be alerted when someone with `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans` or more joins the server." + "\n" +
+                        ST + " **Server Trial** " + "\n" + SettingsIcon + " " + "Members have about `" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes` before their trial expires." + "\n" +
+                        SA2 + " **Stream Announcements** " + "\n" + SettingsIcon + " " + "Streams will be announced in the `#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "` channel."
    
    );
 
    Functions.push(
-                        FP + " **Flood Protection** " + "\n" + Hollow + " " + "No Setting." + "\n" +
-                        RS + " **Role Saver** " + "\n" + Hollow + " " + "No Setting." + "\n" +
-                        EC + " **Event Countdown** " + "\n" + Hollow + " " + "The current timestamp is `" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n" +
-                        SM + " **Server Message** " + "\n" + Hollow + " " + "The server message is `" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n" +
-                        VT + " **Vote Kick** " + "\n" + Hollow + " " + "People need to get `" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes` on one of their messages to get kicked out." + "\n" +
-                        JR + " **Join Role** " + "\n" + Hollow + " " + "Everyone who joins the server gets a role called `@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n" +
-                        SR + " **Streamer Role** " + "\n" + Hollow + " " + "When someone starts streaming, they will get a role called `@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`." + "\n" +
-                        N_ + " **Notifications** " + "\n" + Hollow + " " + "No setting."
+                        FP + " **Flood Protection** " + "\n" + SettingsIcon + " " + "No Setting." + "\n" +
+                        RS + " **Role Saver** " + "\n" + SettingsIcon + " " + "No Setting." + "\n" +
+                        EC + " **Event Countdown** " + "\n" + SettingsIcon + " " + "The current timestamp is `" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n" +
+                        SM + " **Server Message** " + "\n" + SettingsIcon + " " + "The server message is `" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n" +
+                        VT + " **Vote Kick** " + "\n" + SettingsIcon + " " + "People need to get `" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes` on one of their messages to get kicked out." + "\n" +
+                        JR + " **Join Role** " + "\n" + SettingsIcon + " " + "Everyone who joins the server gets a role called `@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n" +
+                        SR + " **Streamer Role** " + "\n" + SettingsIcon + " " + "When someone starts streaming, they will get a role called `@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`." + "\n" +
+                        N_ + " **Notifications** " + "\n" + SettingsIcon + " " + "No setting."
                         +  "\n­"
    );
 
    Functions.push(
                         "**Channel functions in #­" + Function_RemoveFormatting(message.channel.name, "other", true) + "**" + "\n\n" +
 
-                        AR + " **Automatic Reactions** " + "\n" + Hollow + " " + "The custom reaction names are `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` and `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`." + "\n" +
-                        ML + " **Message Log** " + "\n" + Hollow + " " + "Logged messages will be sent to a channel called `#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`." + "\n" +
-                        IO + " **Images Only** " + "\n" + Hollow + " " + "No setting." + "\n" +
-                        SL + " **Spoiler Lock** " + "\n" + Hollow + " " + "Members can post images freely `" + peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") + " minutes` after joining, unless the setting is 0 minutes." + "\n" +
-                        BW + " **Banned Words** " + "\n" + Hollow + " " + "The banned words in this server are `" + FixedArray + "`."
+                        AR + " **Automatic Reactions** " + "\n" + SettingsIcon + " " + "The custom reaction names are `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` and `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`." + "\n" +
+                        ML + " **Message Log** " + "\n" + SettingsIcon + " " + "Logged messages will be sent to a channel called `#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`." + "\n" +
+                        IO + " **Images Only** " + "\n" + SettingsIcon + " " + "No setting." + "\n" +
+                        SL + " **Spoiler Lock** " + "\n" + SettingsIcon + " " + "Members can post images freely `" + peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") + " minutes` after joining, unless the setting is 0 minutes." + "\n" +
+                        BW + " **Banned Words** " + "\n" + SettingsIcon + " " + "The banned words in this server are `" + FixedArray + "`."
    );
 
   for (i = 0; i < Functions.length; i++) {
