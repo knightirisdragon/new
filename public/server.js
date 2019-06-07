@@ -580,7 +580,7 @@ function Function_RemoveFormatting(text, type, sliced)  {
 
     if  (FixedText !== "")  {
       
-        if  (FixedText.length > 25)  {
+        if  (FixedText.length > 50)  {
             FixedText = FixedText.slice(0, 25) + "...";
         };
 
@@ -1805,19 +1805,6 @@ peeky.on("guildCreate", async (guild) =>  {
 const keySF = `${guild.id}`;
   
 if  (peeky.guilds.size <= MaxServers)  {
-    
-    if  (peeky.serverData.has(keySF))  {
-        var HelpCommand = peeky.serverData.get(keySF, "prefix") + "help";
-    } else  {
-        var HelpCommand = Prefix + "help";
-    };
-
-    guild.owner.send("**Thank you for inviting me to " + Function_RemoveFormatting(guild.name, "other", true) + "**!"
-                     + "\n\n**If you are not sure about what to do, consider these options:**"
-                     + "\n" + " - "+ "Visit https://peeky.glitch.me/tutorials.html for some tutorials." 
-                     + "\n" + " - " + "Send me a question and I'll send it to my owner and then he'll add you."
-                     + "\n" + " - " + "Join my Support Server and discuss your problem with other users."
-                     + "\n" + " - " + "Use the Help command to see more options.").catch(error => ErrorBag.add(error));
   
     let channelID;
     let channels = guild.channels;
@@ -1831,7 +1818,7 @@ if  (peeky.guilds.size <= MaxServers)  {
     };
 
     let channel = peeky.channels.get(guild.systemChannelID || channelID);
-    channel.send("**Thank you for adding me to " + Function_RemoveFormatting(guild.name, "other", true) + "!**\nBe sure to visit my website by typing **")
+    channel.send("**Thank you for adding me to " + Function_RemoveFormatting(guild.name, "other", true) + "!**\nBe sure to visit my website by typing **" + peeky.serverData.get(keySF, "prefix") + "help**!")
     .catch(error => ErrorBag.add(error));
 
 }
@@ -2456,13 +2443,13 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.RichEmbed({
                   description: "**Server functions in " + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "** ­ `Page 1/2`" + "\n\n" +
 
-                                WM + " **Welcome Messages** " + "\n" + Hollow + " " + "Member activity will be announced in the `#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "` channel." + "\n" +
-                                MC + " **Member Counter** " + "\n" + Hollow + " " + "The member counter prefix is `" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
-                                CN + " **Clear Nicknames** " + "\n" + Hollow + " " + "The full cleared nickname prefix is `" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n" +
-                                CW + " **Classification Wall** " + "\n" + Hollow + " " + "The role is `@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` and the channel is `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n" +
-                                SA + " **Suspicion Alert** " + "\n" + Hollow + " " + "Having `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans` or more is considered suspicious." + "\n" +
-                                ST + " **Server Trial** " + "\n" + Hollow + " " + "Members have about `" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes` before their trial expires." + "\n" +
-                                SA2 + " **Stream Announcements** " + "\n" + Hollow + " " + "Streams will be announced in the `#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "` channel." + "\n" +
+                                WM + " **Welcome Messages** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`" + "\n" +
+                                MC + " **Member Counter** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n" +
+                                CN + " **Clear Nicknames** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n" +
+                                CW + " **Classification Wall** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n" +
+                                SA + " **Suspicion Alert** " + "\n" + Hollow + " " + "Having `" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n" +
+                                ST + " **Server Trial** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes`" + "\n" +
+                                SA2 + " **Stream Announcements** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`." + "\n" +
                                 FP + " **Flood Protection** " + "\n" + Hollow + " " + "No Setting.",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
@@ -2478,11 +2465,11 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                   description:  "**Server functions in " + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "** ­  `Page 2/2`" + "\n\n" +
 
                                 RS + " **Role Saver** " + "\n" + Hollow + " " + "No Setting." + "\n" +
-                                EC + " **Event Countdown** " + "\n" + Hollow + " " + "The current timestamp is `" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n" +
-                                SM + " **Server Message** " + "\n" + Hollow + " " + "The server message is `" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n" +
-                                VT + " **Vote Kick** " + "\n" + Hollow + " " + "People need to get `" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes` to get kicked out." + "\n" +
-                                JR + " **Join Role** " + "\n" + Hollow + " " + "Everyone who joins the server gets a role called `@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n" +
-                                SR + " **Streamer Role** " + "\n" + Hollow + " " + "Streaming members get the `@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "` role." + "\n" +
+                                EC + " **Event Countdown** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n" +
+                                SM + " **Server Message** " + "\n" + Hollow + " " + "`" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n" +
+                                VT + " **Vote Kick** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n" +
+                                JR + " **Join Role** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n" +
+                                SR + " **Streamer Role** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`" + "\n" +
                                 N_ + " **Notifications** " + "\n" + Hollow + " " + "No setting.",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
@@ -2497,7 +2484,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.RichEmbed({
                   description: "**Channel functions in #­" + Function_RemoveFormatting(reaction.message.channel.name, "other", true) + "**" + "\n\n" +
 
-                                AR + " **Automatic Reactions** " + "\n" + Hollow + " " + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:`, `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n" +
+                                AR + " **Automatic Reactions** " + "\n" + Hollow + " " + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n" +
                                 ML + " **Message Log** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`" + "\n" +
                                 IO + " **Images Only** " + "\n" + Hollow + " " + "No setting." + "\n" +
                                 SL + " **Spoiler Lock** " + "\n" + Hollow + " " + "`" + GivenMinutes + "`" + "\n" +
