@@ -580,8 +580,8 @@ function Function_RemoveFormatting(text, type, sliced)  {
 
     if  (FixedText !== "")  {
       
-        if  (FixedText.length > 35)  {
-            FixedText = FixedText.slice(0, 35) + "...";
+        if  (FixedText.length > 50)  {
+            FixedText = FixedText.slice(0, 50) + "...";
         };
 
         return FixedText;
@@ -2440,7 +2440,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                   description: "**Server Settings**" + "\n\n" +
                                 WhiteSquare + " **Prefix**" + "\n" + SettingsIcon + " " + "This server's prefix is `" + peeky.serverData.get(keySF, "prefix") + "`." + "\n" +
                                 WhiteSquare + " **Mute Role**" + "\n" + SettingsIcon + " " + "This server's mute role is called `@­" + peeky.serverData.get(keySF, "muted_role") + "`.",
-                  color: EmbedColor
+                  color: EmbedColor,
+                  image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
             reaction.message.edit(newEmbed).catch(error => ErrorBag.add(error));
@@ -2460,7 +2461,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 ST + " **Server Trial** " + "\n" + SettingsIcon + " " + "Members have about `" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes` before their trial expires." + "\n" +
                                 SA2 + " **Stream Announcements** " + "\n" + SettingsIcon + " " + "Streams will be announced in the `#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "` channel." + "\n" +
                                 FP + " **Flood Protection** " + "\n" + SettingsIcon + " " + "No Setting.",
-                  color: EmbedColor
+                  color: EmbedColor,
+                  image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
             reaction.message.edit(newEmbed).catch(error => ErrorBag.add(error));
@@ -2479,7 +2481,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 JR + " **Join Role** " + "\n" + SettingsIcon + " " + "Everyone who joins the server gets a role called `@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n" +
                                 SR + " **Streamer Role** " + "\n" + SettingsIcon + " " + "When someone starts streaming, they will get a role called `@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`." + "\n" +
                                 N_ + " **Notifications** " + "\n" + SettingsIcon + " " + "No setting.",
-                  color: EmbedColor
+                  color: EmbedColor,
+                  image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
             reaction.message.edit(newEmbed).catch(error => ErrorBag.add(error));
@@ -2496,7 +2499,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 IO + " **Images Only** " + "\n" + SettingsIcon + " " + "No setting." + "\n" +
                                 SL + " **Spoiler Lock** " + "\n" + SettingsIcon + " " + "Members can post images freely `" + GivenMinutes + "` after joining." + "\n" +
                                 BW + " **Banned Words** " + "\n" + SettingsIcon + " " + "The banned words in this server are `" + FixedArray + "`.",
-                  color: EmbedColor
+                  color: EmbedColor,
+                  image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
             reaction.message.edit(newEmbed).catch(error => ErrorBag.add(error));
