@@ -2432,7 +2432,9 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 ST + " **Server Trial** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes`" + "\n\n" +
                                 SA2 + " **Stream Announcements** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`." + "\n\n" +
                                 FP + " **Flood Protection** " + "\n" + Hollow + " " + "No Setting." + "\n\n" +
-                                RS + " **Role Saver** " + "\n" + Hollow + " " + "No Setting.",
+                                RS + " **Role Saver** " + "\n" + Hollow + " " + "No Setting."
+                  description:  EC + " **Event Countdown** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n\n" +
+                                SM + " **Server Message** " + "\n" + Hollow + " " + "`" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n\n" +,
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -2444,8 +2446,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "3⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  EC + " **Event Countdown** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n\n" +
-                                SM + " **Server Message** " + "\n" + Hollow + " " + "`" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n\n" +
                                 VT + " **Vote Kick** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 JR + " **Join Role** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n\n" +
                                 SR + " **Streamer Role** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`" + "\n\n" +
