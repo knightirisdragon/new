@@ -121,14 +121,17 @@ function Loaded()  {
   
     var Recommended = document.getElementsByClassName('recommended');
   
-    for (var i = 0; i < Essentials.length; i++)  {
+    for (var i = 0; i < Recommended.length; i++)  {
         Recommended[i].innerHTML = "Recommended";
     };
   
     var Original = document.getElementsByClassName('original');
   
-    for (var i = 0; i < Essentials.length; i++)  {
+    console.log(Original.length)
+  
+    for (var i = 0; i < Original.length; i++)  {
         Original[i].innerHTML = "Original";
+        console.log(i);
     };
     
 };
@@ -300,7 +303,7 @@ function Loaded()  {
     <div class="centered"> 
         
     <div class="popup" onclick="AR_Popup()">  Automatic Reactions  </div>
-    <br>  <b class="recommended"></b>
+    <br>  <b class="recommended"></b>  <b class="original"></b>
         
     </div>
     </div>
@@ -381,6 +384,7 @@ function Loaded()  {
       <div class="centered">
         
     <div class="popup" onclick="EC_Popup()">  Event Countdown  </div>
+    <br>  <b class="original"></b>
         
       </div>
     </div>
@@ -389,6 +393,7 @@ function Loaded()  {
       <div class="centered">
         
     <div class="popup" onclick="CW_Popup()">  Classification Wall  </div>
+    <br>  <b class="original"></b>
         
       </div>
     </div>
@@ -425,7 +430,7 @@ function Loaded()  {
       <div class="centered">
         
     <div class="popup" onclick="VT_Popup()">  Vote Kick  </div>
-    <br>  <b class="recommended"></b>
+    <br>  <b class="recommended"></b>  <b class="original"></b>
         
       </div>
     </div>
@@ -442,7 +447,7 @@ function Loaded()  {
       <div class="centered">
         
     <div class="popup" onclick="SL_Popup()">  Spoiler Lock  </div>
-    <br>  <b class="recommended"></b>
+    <br>  <b class="recommended"></b>  <b class="original"></b>
         
       </div>
     </div>
@@ -459,6 +464,7 @@ function Loaded()  {
       <div class="centered">
         
     <div class="popup" onclick="CN_Popup()">  Clear Nicknames  </div>
+    <br>  <b class="original"></b>
         
       </div>
     </div>
@@ -481,6 +487,7 @@ function Loaded()  {
       <div class="centered">
         
     <div class="popup" onclick="IO_Popup()">  Images Only  </div>
+    <br>  <b class="original"></b>
         
       </div>
     </div>
