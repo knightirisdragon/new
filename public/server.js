@@ -1459,7 +1459,8 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     }
      else
     {
-     Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This profile will get wiped in " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days") + " days if they do not come back.  </font></b>  </div>");
+     Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This user's profile is currently unavailable to PEEKY.  </font></b>  </div>");
+     //Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This profile will get wiped in " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days") + " days if they do not come back.  </font></b>  </div>");
     };
       
     };
@@ -2432,9 +2433,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 ST + " **Server Trial** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes`" + "\n\n" +
                                 SA2 + " **Stream Announcements** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`." + "\n\n" +
                                 FP + " **Flood Protection** " + "\n" + Hollow + " " + "No Setting." + "\n\n" +
-                                RS + " **Role Saver** " + "\n" + Hollow + " " + "No Setting."
-                  description:  EC + " **Event Countdown** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n\n" +
-                                SM + " **Server Message** " + "\n" + Hollow + " " + "`" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n\n" +,
+                                RS + " **Role Saver** " + "\n" + Hollow + " " + "No Setting." + "\n\n" +
+                                EC + " **Event Countdown** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`.",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -2446,6 +2446,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "3⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
+                  description:  SM + " **Server Message** " + "\n" + Hollow + " " + "`" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n\n" +
                                 VT + " **Vote Kick** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 JR + " **Join Role** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n\n" +
                                 SR + " **Streamer Role** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`" + "\n\n" +
@@ -3096,22 +3097,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))
 //Get
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "get "))  {
     message.channel.send("`" + Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get", true) + "`").catch(error => ErrorBag.add(error));
-};
-  
-//ServerInfo
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "server"))  {
-    
-    const embed = {
-                    "description": "**" + message.guild.name + "'s Server Info**" + "\n\n" +
-                                   "**Created:** " + function_DateFormat(message.guild.createdAt) + "\n" +
-                                   "**Owner:** " + Function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "\n" +
-                                   "**Upgraded:** " + peeky.serverData.get(keySF, "server_upgraded") + "\n" +
-                                   "**Members:** " + message.guild.members.filter(m => !m.user.bot).size,
-                    "color": 7506394
-    };
-
-    message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
-  
 };
 
 //Eval
