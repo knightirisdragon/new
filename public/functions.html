@@ -110,6 +110,15 @@ function N_Popup() {
 function Close()  {
     document.getElementById('fulldesc').style.display = "none";
 };
+    
+function Loaded()  {
+    var Essentials = document.getElementsByClassName('essentials');
+  
+    for (var i = 0; i < Essentials.length; i++) {
+        Essentials[i].innerHTML = "<br> Essentials";
+    };
+    
+};
   
 </script>
 
@@ -199,6 +208,10 @@ function Close()  {
     cursor: pointer;
 }
   
+.essentials  {
+
+}
+  
 </style>
 
 <html lang="en">
@@ -219,7 +232,7 @@ function Close()  {
 
   </head>
   
-<body onload="Close()" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+<body onload="Close(); Loaded();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
 
 <center>
     
@@ -278,6 +291,7 @@ function Close()  {
       <div class="centered"> 
 
     <div class="popup" onclick="WM_Popup()">  Welcome Messages  </div>
+    <b class="essentials"></b>
 
     </div>
     </div>
@@ -302,6 +316,7 @@ function Close()  {
       <div class="centered"> 
         
     <div class="popup" onclick="RS_Popup()">  Role Saver  </div>
+    <b class="essentials"></b>
         
       </div>
     </div>
@@ -310,6 +325,7 @@ function Close()  {
       <div class="centered"> 
         
     <div class="popup" onclick="JR_Popup()">  Join Role  </div>
+    <b class="essentials"></b>
         
       </div>
     </div>
@@ -376,6 +392,7 @@ function Close()  {
       <div class="centered">
         
     <div class="popup" onclick="VT_Popup()">  Vote Kick  </div>
+    <b class="essentials"></b>
         
       </div>
     </div>
@@ -392,6 +409,7 @@ function Close()  {
       <div class="centered">
         
     <div class="popup" onclick="SL_Popup()">  Spoiler Lock  </div>
+    <b class="essentials"></b>
         
       </div>
     </div>
