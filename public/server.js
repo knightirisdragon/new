@@ -2410,23 +2410,20 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "1⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description: "**Server Settings**" + "\n\n" +
-                                SettingsIcon + " **Prefix**" + "\n" + Hollow + " " + "This server's prefix is `" + peeky.serverData.get(keySF, "prefix") + "`." + "\n\n" +
+                  description:  SettingsIcon + " **Prefix**" + "\n" + Hollow + " " + "This server's prefix is `" + peeky.serverData.get(keySF, "prefix") + "`." + "\n\n" +
                                 SettingsIcon + " **Mute Role**" + "\n" + Hollow + " " + "This server's mute role is called `@­" + peeky.serverData.get(keySF, "muted_role") + "`.",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
-            reaction.message.edit(newEmbed).catch(error => ErrorBag.add(error));
+            reaction.message.edit("**Server Settings**", newEmbed).catch(error => ErrorBag.add(error));
             reaction.remove(user).catch(error => ErrorBag.add(error));
 
         } else 
         if  (reaction.emoji.name == "2⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description: "**Server functions in " + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "** ­ `Page 1/2`" + "\n\n" +
-
-                                WM + " **Welcome Messages** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`" + "\n\n" +
+                  description:  WM + " **Welcome Messages** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`" + "\n\n" +
                                 MC + " **Member Counter** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n\n" +
                                 CN + " **Clear Nicknames** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n\n" +
                                 CW + " **Classification Wall** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n\n" +
@@ -2439,16 +2436,14 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
-            reaction.message.edit(newEmbed).catch(error => ErrorBag.add(error));
+            reaction.message.edit("**Server functions in " + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "** ­ `Page 1/2`", newEmbed).catch(error => ErrorBag.add(error));
             reaction.remove(user).catch(error => ErrorBag.add(error));
 
         } else 
         if  (reaction.emoji.name == "3⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  "**Server functions in " + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "** ­  `Page 2/2`" + "\n\n" +
-
-                                EC + " **Event Countdown** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n\n" +
+                  description:  EC + " **Event Countdown** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`." + "\n\n" +
                                 SM + " **Server Message** " + "\n" + Hollow + " " + "`" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n\n" +
                                 VT + " **Vote Kick** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 JR + " **Join Role** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n\n" +
@@ -2458,25 +2453,23 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
-            reaction.message.edit(newEmbed).catch(error => ErrorBag.add(error));
+            reaction.message.edit("**Server functions in " + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "** ­  `Page 2/2`", newEmbed).catch(error => ErrorBag.add(error));
             reaction.remove(user).catch(error => ErrorBag.add(error));
 
         } else 
         if  (reaction.emoji.name == "4⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description: "**Channel functions in #­" + Function_RemoveFormatting(reaction.message.channel.name, "other", true) + "**" + "\n\n" +
-
-                                AR + " **Automatic Reactions** " + "\n" + Hollow + " " + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
+                  description:  AR + " **Automatic Reactions** " + "\n" + Hollow + " " + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
                                 ML + " **Message Log** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`" + "\n\n" +
                                 IO + " **Images Only** " + "\n" + Hollow + " " + "No setting." + "\n\n" +
                                 SL + " **Spoiler Lock** " + "\n" + Hollow + " " + "`" + GivenMinutes + "`" + "\n\n" +
-                                BW + " **Banned Words** " + "\n" + Hollow + " " + "`" + FixedArray + "`.",
+                                BW + " **Banned Words** " + "\n" + Hollow + " " + "`" + FixedArray + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
-            reaction.message.edit(newEmbed).catch(error => ErrorBag.add(error));
+            reaction.message.edit("**Channel functions in #­" + Function_RemoveFormatting(reaction.message.channel.name, "other", true) + "**", newEmbed).catch(error => ErrorBag.add(error));
             reaction.remove(user).catch(error => ErrorBag.add(error));
 
         };
