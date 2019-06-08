@@ -566,7 +566,11 @@ var Banners = [
     ["http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground312.jpg?1559331433267", 450, "Oiled Down", "Not credited", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground313.png", 500, "Lara Croft", "Shadow of the Tomb Raider", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground314.png", 500, "Servant", "Dark Souls 2", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground315.png", 400, "Bean Gansta", "Killer Bean Animation", undefined]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground315.png", 400, "Bean Gansta", "Killer Bean Animation", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground316.png?v=1559999276673", 375, "Deer sighting", "Luboš Houska", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground317.png?v=1559999302765", 450, "This... is... Minecraft!", "Not credited", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground318.png?v=1559999314369", 500, "Futuristic police", "Not credited", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground319.png?v=1559999328518", 425, "Impacted", "Vojtěch Jílovec", `108899856889737216`]
 
 ];
 
