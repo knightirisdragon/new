@@ -2410,8 +2410,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "1⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  SettingsIcon + " **Prefix**" + "\n" + Hollow + " " + "This server's prefix is `" + peeky.serverData.get(keySF, "prefix") + "`." + "\n\n" +
-                                SettingsIcon + " **Mute Role**" + "\n" + Hollow + " " + "This server's mute role is called `@­" + peeky.serverData.get(keySF, "muted_role") + "`.",
+                  description:  SettingsIcon + " **Prefix**" + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "prefix") + "`" + "\n\n" +
+                                SettingsIcon + " **Mute Role**" + "\n" + Hollow + " " + "`@­" + peeky.serverData.get(keySF, "muted_role") + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -2436,7 +2436,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
-            reaction.message.edit("**Server functions in " + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "** ­ `Page 1/2`", newEmbed).catch(error => ErrorBag.add(error));
+            reaction.message.edit("**Server functions** `Page 1/2`", newEmbed).catch(error => ErrorBag.add(error));
             reaction.remove(user).catch(error => ErrorBag.add(error));
 
         } else 
@@ -2453,7 +2453,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
-            reaction.message.edit("**Server functions in " + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "** ­  `Page 2/2`", newEmbed).catch(error => ErrorBag.add(error));
+            reaction.message.edit("**Server functions** `Page 2/2`", newEmbed).catch(error => ErrorBag.add(error));
             reaction.remove(user).catch(error => ErrorBag.add(error));
 
         } else 
@@ -2469,7 +2469,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
-            reaction.message.edit("**Channel functions in #­" + Function_RemoveFormatting(reaction.message.channel.name, "other", true) + "**", newEmbed).catch(error => ErrorBag.add(error));
+            reaction.message.edit("**Channel functions**", newEmbed).catch(error => ErrorBag.add(error));
             reaction.remove(user).catch(error => ErrorBag.add(error));
 
         };
