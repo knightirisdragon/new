@@ -112,10 +112,23 @@ function Close()  {
 };
     
 function Loaded()  {
+  
     var Essentials = document.getElementsByClassName('essentials');
   
-    for (var i = 0; i < Essentials.length; i++) {
-        Essentials[i].innerHTML = "<br> Essentials";
+    for (var i = 0; i < Essentials.length; i++)  {
+        Essentials[i].innerHTML = "Essentials";
+    };
+  
+    var Recommended = document.getElementsByClassName('recommended');
+  
+    for (var i = 0; i < Essentials.length; i++)  {
+        Recommended[i].innerHTML = "Recommended";
+    };
+  
+    var Original = document.getElementsByClassName('original');
+  
+    for (var i = 0; i < Essentials.length; i++)  {
+        Original[i].innerHTML = "Original";
     };
     
 };
@@ -208,8 +221,26 @@ function Loaded()  {
     cursor: pointer;
 }
   
+.recommended,
+.original,
 .essentials  {
-
+    border-radius: 5px;
+    font-size: 10px;
+    padding: 5px;
+    margin-top: 10px;
+    display: inline-block;
+}
+  
+.essentials  {
+    background-color: #6441A4;    
+}
+  
+.recommended  {
+    background-color: #CD853F;    
+}
+  
+.original  {
+    background-color: grey;    
 }
   
 </style>
@@ -269,6 +300,7 @@ function Loaded()  {
     <div class="centered"> 
         
     <div class="popup" onclick="AR_Popup()">  Automatic Reactions  </div>
+    <br>  <b class="recommended"></b>
         
     </div>
     </div>
@@ -291,7 +323,7 @@ function Loaded()  {
       <div class="centered"> 
 
     <div class="popup" onclick="WM_Popup()">  Welcome Messages  </div>
-    <b class="essentials"></b>
+    <br>  <b class="essentials"></b>
 
     </div>
     </div>
@@ -308,6 +340,7 @@ function Loaded()  {
       <div class="centered">
         
     <div class="popup" onclick="ST_Popup()">  Server Trial  </div>
+    <br>  <b class="original"></b>
         
       </div>
     </div>
@@ -316,7 +349,7 @@ function Loaded()  {
       <div class="centered"> 
         
     <div class="popup" onclick="RS_Popup()">  Role Saver  </div>
-    <b class="essentials"></b>
+    <br>  <b class="essentials"></b>
         
       </div>
     </div>
@@ -325,7 +358,7 @@ function Loaded()  {
       <div class="centered"> 
         
     <div class="popup" onclick="JR_Popup()">  Join Role  </div>
-    <b class="essentials"></b>
+    <br>  <b class="essentials"></b>
         
       </div>
     </div>
@@ -392,7 +425,7 @@ function Loaded()  {
       <div class="centered">
         
     <div class="popup" onclick="VT_Popup()">  Vote Kick  </div>
-    <b class="essentials"></b>
+    <br>  <b class="recommended"></b>
         
       </div>
     </div>
@@ -409,7 +442,7 @@ function Loaded()  {
       <div class="centered">
         
     <div class="popup" onclick="SL_Popup()">  Spoiler Lock  </div>
-    <b class="essentials"></b>
+    <br>  <b class="recommended"></b>
         
       </div>
     </div>

@@ -1804,28 +1804,11 @@ peeky.on("guildCreate", async (guild) =>  {
 
 const keySF = `${guild.id}`;
   
-if  (peeky.guilds.size <= MaxServers)  {
+if  (peeky.guilds.size > MaxServers)  {
   
-    let channelID;
-    let channels = guild.channels;
-    
-    channelLoop:
-    for (let c of channels) {  let channelType = c[1].type;
-        if (channelType === "text") {
-           channelID = c[0];
-           break channelLoop;
-        };
-    };
+    guild.owner.user.send("I have left your server because there are no open server slots.").catch(error => ErrorBag.add(error));
+    guild.leave().catch(error => ErrorBag.add(error));
 
-    let channel = peeky.channels.get(guild.systemChannelID || channelID);
-    channel.send("**Thank you for adding me to " + Function_RemoveFormatting(guild.name, "other", true) + "!**\nBe sure to visit my website by typing **" + peeky.serverData.get(keySF, "prefix") + "help**!")
-    .catch(error => ErrorBag.add(error));
-
-}
- else 
-{
-  guild.owner.user.send("I have left your server because there are no open server slots.").catch(error => ErrorBag.add(error));
-  guild.leave().catch(error => ErrorBag.add(error));
 };
 
 });
