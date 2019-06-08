@@ -30,6 +30,7 @@ peeky.channelData = new Enmap({name: "channelData"});
 const fs         = require('fs');
 const ms         = require('parse-ms');
 const node_fetch = require('node-fetch');
+const https      = require('https');
 
 //Sets and arrays
 const ErrorBag               = new Set();
