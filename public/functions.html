@@ -1,5 +1,108 @@
 <!DOCTYPE html>
 
+<style>
+
+.function_showcase {
+    background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fdarkfield.png?1558421870621');
+    border-left: #7289DA 2px solid;
+    color: white;
+    width: 375px;
+    height: 150px;
+    margin: 5px;
+    flex-shrink: 0;
+  
+    text-align: center;
+    position: relative;
+  
+    display: inline-block;
+    transition: transform .25s ease;
+}
+
+.function_showcase:hover {
+    cursor: pointer;
+}
+  
+.functionlist  {  
+    background-color: rgba(35, 39, 42, 0.5);
+    padding: 10px;
+    overflow: auto;
+    flex-direction: initial;
+    display: flex;
+}
+  
+.functionname  {  
+    background-color: rgba(35, 39, 42, 0);
+    border-left: #7289DA 2px solid;
+    width: 1000px;
+    font-size: 27px;
+    padding: 10px;
+    display: inline-block;
+}
+  
+.functionname:hover  { 
+    cursor: pointer;
+}
+  
+.functiondescription  {  
+    background-color: rgba(35, 39, 42, 0);
+    border-left: #7289DA 2px solid;
+    width: 1000px;
+    font-size: 14px;
+    vertical-align: top;
+    padding: 10px;
+    margin-bottom: 15px;
+    display: inline-block;
+    transition: transform .25s ease;
+}
+  
+.functiondescription:hover  { 
+    cursor: pointer;
+}
+  
+.functioncommand  {  
+    background-color: rgba(35, 39, 42, 0);
+    border-left: #7289DA 2px solid;
+    width: 1000px;
+    padding: 10px;
+    display: inline-block;
+    transition: transform .25s ease;
+}
+  
+.functioncommand:hover  {
+    cursor: pointer;
+}
+  
+.functionnote  {  
+    background-color: rgba(35, 39, 42, 0);
+    border-left: #7289DA 2px solid;
+    width: 1000px;
+    font-size: 15px;
+    padding: 10px;
+    margin-top: 10px;
+    display: inline-block;
+}
+  
+.functionnote:hover  { 
+    cursor: pointer;
+}
+  
+</style>
+
+<html lang="en">
+<head>
+    <title>PEEKY's Functions</title>
+    <link rel="icon" href="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2-1.png.png?1553621395208">
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1024">
+    
+    <link rel="stylesheet" href="/style.css">
+    <script src="/server.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
 <script>
   
 var Note = "";  //"<br>  <b class='functionnote'>  <font size='3'>  Use the Overview command to show:  </font>  <br><br>  - The function's current state  <br>  - The function's function type  <br>  - The function's setting value and setting description  </b>";
@@ -110,138 +213,10 @@ function N_Popup() {
 function Close()  {
     document.getElementById('fulldesc').style.display = "none";
 };
-    
-function Loaded()  {
-  
-    var Essentials = document.getElementsByClassName('essentials');
-  
-    for (var i = 0; i < Essentials.length; i++)  {
-        Essentials[i].innerHTML = "Essentials";
-    };
-  
-    var Recommended = document.getElementsByClassName('recommended');
-  
-    for (var i = 0; i < Recommended.length; i++)  {
-        Recommended[i].innerHTML = "Recommended";
-    };
-  
-    var Original = document.getElementsByClassName('original');
-  
-    console.log(Original.length)
-  
-    for (var i = 0; i < Original.length; i++)  {
-        Original[i].innerHTML = "Original";
-        console.log(i);
-    };
-    
-};
   
 </script>
-
-<style>
-
-.function_showcase {
-    background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fdarkfield.png?1558421870621');
-    border-left: #7289DA 2px solid;
-    color: white;
-    width: 375px;
-    height: 150px;
-    margin: 5px;
-    flex-shrink: 0;
   
-    text-align: center;
-    position: relative;
-  
-    display: inline-block;
-    transition: transform .25s ease;
-}
-
-.function_showcase:hover {
-    cursor: pointer;
-}
-  
-.functionlist  {  
-    background-color: rgba(35, 39, 42, 0.5);
-    padding: 10px;
-    overflow: auto;
-    flex-direction: initial;
-    display: flex;
-}
-  
-.functionname  {  
-    background-color: rgba(35, 39, 42, 0);
-    border-left: #7289DA 2px solid;
-    width: 1000px;
-    font-size: 27px;
-    padding: 10px;
-    display: inline-block;
-}
-  
-.functionname:hover  { 
-    cursor: pointer;
-}
-  
-.functiondescription  {  
-    background-color: rgba(35, 39, 42, 0);
-    border-left: #7289DA 2px solid;
-    width: 1000px;
-    font-size: 14px;
-    vertical-align: top;
-    padding: 10px;
-    margin-bottom: 15px;
-    display: inline-block;
-    transition: transform .25s ease;
-}
-  
-.functiondescription:hover  { 
-    cursor: pointer;
-}
-  
-.functioncommand  {  
-    background-color: rgba(35, 39, 42, 0);
-    border-left: #7289DA 2px solid;
-    width: 1000px;
-    padding: 10px;
-    display: inline-block;
-    transition: transform .25s ease;
-}
-  
-.functioncommand:hover  {
-    cursor: pointer;
-}
-  
-.functionnote  {  
-    background-color: rgba(35, 39, 42, 0);
-    border-left: #7289DA 2px solid;
-    width: 1000px;
-    font-size: 15px;
-    padding: 10px;
-    margin-top: 10px;
-    display: inline-block;
-}
-  
-.functionnote:hover  { 
-    cursor: pointer;
-}
-  
-</style>
-
-<html lang="en">
-  <head>
-    <title>PEEKY's Functions</title>
-    <link rel="icon" href="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2-1.png.png?1553621395208">
-    
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=1024">
-    
-    <link rel="stylesheet" href="/style.css">
-    <script src="/server.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  </head>
-  
-<body onload="Close(); Loaded();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+<body onload="Close();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
 
 <center>
     
