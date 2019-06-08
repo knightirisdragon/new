@@ -1550,7 +1550,7 @@ if  (!WebsiteCooldowns.has("workshop"))  {
     
     });
       
-    WorkshopList.push('<div class="background">  <img src="' + DarkField + '" width="500" height="300" class="background_image">  <br>  <a class="button" href="https://peeky.glitch.me/server.html">Submit</a>  </div>');
+    WorkshopList.push('<div class="background">  <img src="' + DarkField + '" width="500" height="300" class="background_image">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + messages.content.split("\n")[0] + '  </font>  </b>  </div>  </div>');
 
     await fs.writeFile('public/workshop.txt', "<div class='workshop'>" + WorkshopList.join(" ") + "</div>", (err) => {
         if (err) console.log(err);
