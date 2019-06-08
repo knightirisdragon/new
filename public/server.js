@@ -1503,7 +1503,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
             var RevenueString = "";
           };
       
-          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + background_info[1].toLocaleString('en') + ' Gredit  ' + RevenueString + '  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>';
+          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + background_info[1].toLocaleString('en') + ' Gredit  ' + RevenueString + '  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b>  </div>  </div>';
     
           BackgroundList.push(BackgroundString);
 
@@ -1513,7 +1513,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
               var Fillers = 0;
               while (Fillers < 99)  {
               	    Fillers ++;
-                    FeaturedList.push('<div class="filler">  <img src="' + DarkField + '"  width="500" height="300" class="background_image">  </div>')
+                    FeaturedList.push('<div class="filler">  <img src="' + DarkField + '"  width="500" height="300" class="background_image">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + m.contet.split + '  </font>  </b>  </div>  </div>')
               };
                 
           };
@@ -1543,14 +1543,14 @@ if  (!WebsiteCooldowns.has("workshop"))  {
           
         if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.attachments.size > 0 && m.content.toLowerCase().includes("name: ") && m.content.toLowerCase().includes("credit: ") && m.content.toLowerCase().includes("price: "))  {
         
-            var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500" height="300" class="background_image">  <br>  <a class="button" href="' + m.url + '">Vote</a>  </div>';
+            var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500" height="300" class="background_image">  ' + /*<br>  <a class="button" href="' + m.url + '">Vote</a>*/'  </div>';
             WorkshopList.push(BackgroundString);
 
         };
     
     });
       
-    WorkshopList.push('<div class="background">  <img src="' + DarkField + '" width="500" height="300" class="background_image">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + messages.content.split("\n")[0] + '  </font>  </b>  </div>  </div>');
+    WorkshopList.push('<div class="background">  <img src="' + DarkField + '" width="500" height="300" class="background_image">  <br>  <a class="button" href="https://peeky.glitch.me/server.html">Submit</a>  </div>');
 
     await fs.writeFile('public/workshop.txt', "<div class='workshop'>" + WorkshopList.join(" ") + "</div>", (err) => {
         if (err) console.log(err);
