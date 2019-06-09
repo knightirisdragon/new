@@ -1816,10 +1816,23 @@ if  (peeky.guilds.size > MaxServers)  {
     guild.leave().catch(error => ErrorBag.add(error));
 
 } else {
-  
-  if  (guild.roles.find(r =>r.name == peeky.user.username) && guild.me.)
-  
-};
+        
+  setTimeout(function() {
+
+      if  (guild.me.hasPermission("MANAGE_ROLES"))  {
+
+          var PeekyRole = guild.roles.find(r => r.name == peeky.user.username);
+
+          if  (PeekyRole)  {
+              PeekyRole.setColor(Blurple).catch(error => ErrorBag.add(error));
+
+          } else console.log("xd")
+
+      } else console.log("dx")
+
+    }, 10000)
+
+  };
 
 });
 
@@ -2044,7 +2057,7 @@ peeky.on("guildMemberRemove", async (member) => {
 const key = `${member.user.id}`;
 const keySF = `${member.guild.id}`;
 
-if (member.user.id !== PeekyId && peeky.serverData.has(keySF)) {
+if (member.user.id !== PeekyId && peeky.serverData.has(keySF))  {
     
 //Member Counter (LEFT)
 if (peeky.serverData.get(keySF, "member_counter_bonus") == true) {
@@ -2111,12 +2124,10 @@ peeky.on("guildMemberUpdate", async (oldMember, newMember) => {
   
 const key        = `${newMember.user.id}`;
 const keySF      = `${newMember.guild.id}`;
-const member     = newMember
-var ExpAmount    = 100;
-var Failed       = false;
-var InfoMessages = [];
+const member     = newMember;
   
 //FUNCTIONS
+if (member.user.id !== PeekyId && peeky.serverData.has(keySF))  {
     
 //Role Saver
 if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
@@ -2138,6 +2149,10 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
   
 //Supporter Date
 if  (keySF == SupportServer)  {
+
+var ExpAmount    = 100;
+var Failed       = false;
+var InfoMessages = [];
 
 //Supporter
 if  (peeky.userData.has(key))  {
@@ -2275,7 +2290,8 @@ if  (newMember.roles.has(RedeemRole4))  {
 }; 
 
 };
-
+  
+};
 });
 
 //PRESENCE UPDATE EVENTS
