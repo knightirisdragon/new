@@ -1815,7 +1815,7 @@ if  (peeky.guilds.size > MaxServers)  {
     guild.owner.user.send("I have left your server because there are no open server slots.").catch(error => ErrorBag.add(error));
     guild.leave().catch(error => ErrorBag.add(error));
 
-} else {
+}; /*else {
         
   setTimeout(function() {
 
@@ -1833,7 +1833,7 @@ if  (peeky.guilds.size > MaxServers)  {
 
   }, 10000)
 
-  };
+  };*/
 
 });
 
@@ -2315,11 +2315,11 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
 
         if  (newMember.presence.game !== null && newMember.presence.game.streaming == true)  {
 
-        if  (!HasRole && !CurrentlyStreaming.has(newMember.user.id + "SR"))  {
+        if  (!HasRole && !CurrentlyStreaming.has(newMember.user.id + newMember.guild.id + "SR"))  {
              newMember.addRole(GuildRole).catch(error => ErrorBag.add(error));
                   
-             CurrentlyStreaming.add(newMember.user.id + "SR");
-             setTimeout(() => {CurrentlyStreaming.delete(newMember.user.id + "SR")}, 300000);
+             CurrentlyStreaming.add(newMember.user.id + newMember.guild.id + "SR");
+             setTimeout(() => {CurrentlyStreaming.delete(newMember.user.id + newMember.guild.id + "SR")}, 300000);
 
              console.log("The Streamer Role function has been triggered in " + member.guild.name + ".");
         };
@@ -2339,7 +2339,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
 //Stream Announcements
 if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
   
-    if  (!newMember.user.bot && !CurrentlyStreaming.has(newMember.user.id + "SA2"))  {
+    if  (!newMember.user.bot && !CurrentlyStreaming.has(newMember.user.id + newMember.guild.id + "SA2"))  {
       
         const member  = newMember;
         var   Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));    
@@ -2354,8 +2354,8 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
                 if  (AlreadyStreaming !== true)  {
                   
-                    CurrentlyStreaming.add(newMember.user.id + "SA2");
-                    setTimeout(() => {CurrentlyStreaming.delete(newMember.user.id + "SA2")}, 300000);
+                    CurrentlyStreaming.add(newMember.user.id + newMember.guild.id + "SA2");
+                    setTimeout(() => {CurrentlyStreaming.delete(newMember.user.id + newMember.guild.id + "SA2")}, 300000);
                   
                     const embed = {  "description": "­ \n **Name:** " + member.presence.game.name + " \n **Link:** " + member.presence.game.url + " \n\n ­",  "color": 6570404,  "image": {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fheader.jpg"  },  "author": {  "name": Function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on Twitch!",  "icon_url": member.user.displayAvatarURL  }  };
                     Channel.send({ embed }).catch(error => ErrorBag.add(error));
