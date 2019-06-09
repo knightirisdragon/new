@@ -3191,7 +3191,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eventre
 
 //SetInvite
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "setinvite"))  {
-
+  
 if  (!SetInviteCooldown.has(message.guild.id))  {
 
     SetInviteCooldown.add(message.guild.id);
