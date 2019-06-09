@@ -1824,13 +1824,14 @@ if  (peeky.guilds.size > MaxServers)  {
           var PeekyRole = guild.roles.find(r => r.name == peeky.user.username);
 
           if  (PeekyRole)  {
-              PeekyRole.setColor(Blurple).catch(error => ErrorBag.add(error));
+              PeekyRole.setColor('#FF0000', {reason: "PEEKY's favorite color."}).catch(error => ErrorBag.add(error));
+              console.log("Dx")
 
           } else console.log("xd")
 
       } else console.log("dx")
 
-    }, 10000)
+  }, 10000)
 
   };
 
