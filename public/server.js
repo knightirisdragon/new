@@ -1817,7 +1817,7 @@ if  (peeky.guilds.size > MaxServers)  {
 
 }; /*else {
         
-  setTimeout(function() {
+  setTimeout(function()  {
 
       if  (guild.me.hasPermission("MANAGE_ROLES"))  {
 
