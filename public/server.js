@@ -570,7 +570,12 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground316.png?v=1559999276673", 375, "Deer sighting", "Luboš Houska", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground317.png?v=1559999302765", 450, "This... is... Minecraft!", "Not credited", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground318.png?v=1559999314369", 500, "Futuristic police", "Not credited", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground319.png?v=1559999328518", 425, "Impacted", "Vojtěch Jílovec", `108899856889737216`]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground319.png?v=1559999328518", 425, "Impacted", "Vojtěch Jílovec", `108899856889737216`],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground320.png?v=1560087604377", 500, "Consumption", "Black Mirror", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground321.png?v=1560087605507", 500, "Going dark", "Call of Duty Modern Warfare", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground322.png?v=1560087608782", 425, "Extraction", "The Division", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground323.png?v=1560087610295", 400, "The rune", "Deltarune", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground324.png?v=1560087614558", 425, "Jungle crysis", "Crysis", undefined]
 
 ];
 
