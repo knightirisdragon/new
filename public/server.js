@@ -1815,6 +1815,10 @@ if  (peeky.guilds.size > MaxServers)  {
     guild.owner.user.send("I have left your server because there are no open server slots.").catch(error => ErrorBag.add(error));
     guild.leave().catch(error => ErrorBag.add(error));
 
+} else {
+  
+  if  (guild.roles.find(r =>r.name == peeky.user.username) && guild.me.)
+  
 };
 
 });
