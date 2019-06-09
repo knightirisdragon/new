@@ -16,10 +16,8 @@ const ytdl          = require('ytdl-core');
 const opus          = require('node-opus');
 
 //CANVAS
-const { registerFont, createCanvas } = require('canvas');
-registerFont('https://fonts.googleapis.com/css?family=Roboto&display=swap', { family: 'Roboto' });
-
-const request      = require('request');
+const Canvas         = require('canvas');
+const request        = require('request');
 const dominant_color = require('dominant-color');
 
 //ENMAP
@@ -28,7 +26,7 @@ peeky.userData = new Enmap({name: "userData"});
 peeky.serverData = new Enmap({name: "serverData"});
 peeky.channelData = new Enmap({name: "channelData"});
 
-//OTHER
+//MISC.
 const fs         = require('fs');
 const ms         = require('parse-ms');
 const node_fetch = require('node-fetch');
@@ -99,7 +97,7 @@ const HorderImage       = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602
 const PainterImage      = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpainter.png?1558728694985";
 const MinerImage        = "http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2FMiner.png?1559015350668";
 
-const DefaultFont = "Roboto";//"Verdana";
+const DefaultFont = "Verdana";//"Verdana";
 const Dark        = "#36393E";
 const LessDark    = "#3f3f3f";
 const Light       = "#424549";
