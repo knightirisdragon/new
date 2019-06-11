@@ -576,8 +576,8 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground322.png?v=1560087608782", 425, "Extraction", "The Division", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground323.png?v=1560087610295", 400, "The rune", "Deltarune", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground324.png?v=1560087614558", 425, "Jungle crysis", "Crysis", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground323.png?v=1560087610295", 50, "", "", ``],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground324.png?v=1560087614558", 50, "", "", undefined]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground325.png?v=1560280962628", 50, "Skin from Fortnite", "Jameskii", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground326.jpg?v=1560281017823", 50, "Grass", "WHASonYT", `339177677326123018`]
 
 ];
 
@@ -1504,7 +1504,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
 
           Current ++;
 
-          if  (background_info[4] !== undefined)  {
+          if  (background_info[4] !== undefined && peeky.userData.has(background_info[4]))  {
               var RevenueString = "<br>  Revenue Enabled";              
           } else {
             var RevenueString = "";
