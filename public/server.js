@@ -3135,7 +3135,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "serveri
     var List = [];
 
     if  (message.guild.roles.find(r => r.name.toLowerCase().includes("moderator")))  {
-    message.guild.members.filter(m => m.roles.find(r => r.name.toLowerCase().includes("moderator"))).map(m => m.user.tag).forEach(i => {
+    message.guild.members.filter(m => m.roles.find(r => Function_RemoveFormatting(r.name.toLowerCase(), "other", false).includes("moderator"))).map(m => m.user.tag).forEach(i => {
       
         if  (!List.includes("moderator"))  {
             List.push(Function_RemoveFormatting(i, "other", false));
@@ -3144,7 +3144,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "serveri
     });
     } else
     if  (message.guild.roles.find(r => r.name.toLowerCase().includes("admin")))  {
-    message.guild.members.filter(m => m.roles.find(r => r.name.toLowerCase().includes("admin"))).map(m => m.user.tag).forEach(i => {
+    message.guild.members.filter(m => m.roles.find(r => Function_RemoveFormatting(r.name.toLowerCase(), "other", false).includes("admin"))).map(m => m.user.tag).forEach(i => {
       
         if  (!List.includes("admin"))  {
             List.push(Function_RemoveFormatting(i, "other", false));
@@ -3153,7 +3153,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "serveri
     });
     } else
     if  (message.guild.roles.find(r => r.name.toLowerCase().includes("helper")))  {
-    message.guild.members.filter(m => m.roles.find(r => r.name.toLowerCase().includes("helper"))).map(m => m.user.tag).forEach(i => {
+    message.guild.members.filter(m => m.roles.find(r => Function_RemoveFormatting(r.name.toLowerCase(), "other", false).includes("helper"))).map(m => m.user.tag).forEach(i => {
       
         if  (!List.includes("helper"))  {
             List.push(Function_RemoveFormatting(i, "other", false));
@@ -3162,7 +3162,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "serveri
     });
     } else
     if  (message.guild.roles.find(r => r.name.toLowerCase().includes("staff")))  {
-    message.guild.members.filter(m => m.roles.find(r => Function_RemoveFormatting(message.guild.owner.user.tag, "other", false).includes("staff"))).map(m => m.user.tag).forEach(i => {
+    message.guild.members.filter(m => m.roles.find(r => Function_RemoveFormatting(r.name.toLowerCase(), "other", false).includes("staff"))).map(m => m.user.tag).forEach(i => {
       
         if  (!List.includes("staff"))  {
             List.push(Function_RemoveFormatting(i, "other", false));
@@ -3175,7 +3175,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "serveri
     List.push(Function_RemoveFormatting(message.guild.owner.user.tag, "other", false));
     };
   
-    const embed = {"description": "**Server Staff:** \n\n **" + List.join("**,\n**") + "**." + "**Emojis:** \n\n ",  "color": EmbedColor}; 
+    const embed = {"description": "**Server Staff:** \n\n **" + List.join("**,\n**") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     
   
