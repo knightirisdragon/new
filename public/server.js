@@ -4627,7 +4627,7 @@ if  (peeky.userData.get(key, "Inventory").includes(i))  {
     var InfoMessages = [];
     var i = Number(i);
   
-    if  (peeky.userData.get(key, "FashionBadge") == false)  {
+    if  (peeky.userData.get(key, "FashionBadge") == false && i !== 1)  {
 
         InfoMessages.push(InfoMessage1[0]);
         peeky.userData.set(key, true, "FashionBadge");    
