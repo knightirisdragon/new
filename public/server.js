@@ -2578,7 +2578,9 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 
     if  (!user.bot && reaction.emoji.name == "📌" && reaction.count == 1)  {
       
-    if  (!LoggedMessages.has(reaction.message.id)) {
+    if  (!LoggedMessages.has(reaction.message.id))  {
+      
+    if  (!reaction.message.content.includes("@everyone") && !reaction.message.content.includes("@here"))  {
         
         LoggedMessages.add(reaction.message.id);
         var image = "none";   
@@ -2651,6 +2653,16 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
     };
               
             reaction.remove(user).catch(error => ErrorBag.add(error));
+            
+        }
+         else
+        {
+          reaction.remove(user).catch(error => ErrorBag.add(error));
+            
+          const embed = {"description": ErrorIcon + " I cannot log messages with the Everyone and Here mentions, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
+          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+          
+        };
             
         }
          else
@@ -4618,7 +4630,7 @@ if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "custom
 //SetBackground
 if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "setbackground "))  {
 
-for(var i = 1; i <= Banners.length; i++) {
+for (var i = 1; i <= Banners.length; i++) {
   
 if  (message.content == peeky.serverData.get(keySF, "prefix") + "setbackground " + i)  {
 
