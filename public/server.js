@@ -3128,6 +3128,54 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "get "))  {
     message.channel.send("`" + Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get", true) + "`").catch(error => ErrorBag.add(error));
 };
+  
+//ServerInfo
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "serverinfo"))  {
+  
+    var List = [];
+
+    if  (message.guild.roles.find(r => r.name.toLowerCase().includes("moderator")))  {
+    message.guild.members.filter(m => m.roles.find(r => r.name.toLowerCase().includes("moderator"))).map(m => m.user.tag).forEach(i => {
+      
+        if  (List.includes("moderator"))  {
+            List.push(i);
+        };
+      
+    });
+    } else
+    if  (message.guild.roles.find(r => r.name.toLowerCase().includes("admin")))  {
+    message.guild.members.filter(m => m.roles.find(r => r.name.toLowerCase().includes("admin"))).map(m => m.user.tag).forEach(i => {
+      
+        if  (List.includes("admin"))  {
+            List.push(i);
+        };
+      
+    });
+    } else
+    if  (message.guild.roles.find(r => r.name.toLowerCase().includes("helper")))  {
+    message.guild.members.filter(m => m.roles.find(r => r.name.toLowerCase().includes("helper"))).map(m => m.user.tag).forEach(i => {
+      
+        if  (List.includes("helper"))  {
+            List.push(i);
+        };
+      
+    });
+    } else
+    if  (message.guild.roles.find(r => r.name.toLowerCase().includes("staff")))  {
+    message.guild.members.filter(m => m.roles.find(r => r.name.toLowerCase().includes("staff"))).map(m => m.user.tag).forEach(i => {
+      
+        if  (List.includes("staff"))  {
+            List.push(i);
+        };
+      
+    });
+    };
+
+    if (List.includes(message.guild.owner.user.tag) == false) {
+    List.push(message.guild.owner.user.tag)
+};
+  
+};
 
 //Eval
 if (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eval "))  {
