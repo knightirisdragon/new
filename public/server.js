@@ -191,7 +191,6 @@ const GuildVerificationTag = "[GuildLevel]";
 const GuildAcronymTag      = "[GuildAcronym]";
 
 //Strings
-const AutoDeleteMsg = "This message is supposed to get automatically deleted.";
 const AllString     = "all";
 const RandomString  = "random";
 const BadFormat     = "invalid";
@@ -1136,75 +1135,6 @@ peeky.on('message', async (message) => {
 
     };
 
-    peeky.channelData.ensure(keyCF , {
-        ChannelID: message.channel.id,
-
-        automatic_reactions_bonus: false,
-        image_only_bonus: false,
-        message_log_bonus: false,
-        banned_words_bonus: false,
-        spoiler_only_bonus: false,
-        flood_protection_bonus_lastdate: null,
-        flood_protection_bonus_lastuser: null,
-        flood_protection_bonus_lastmsg: null
-    });
-      
-    peeky.serverData.ensure(keySF , {
-        GuildID: message.guild.id,
-        lastSeen: Date.now(),
-        server_invite: "no_invite",
-        prefix: Prefix,
-        muted_role: "Muted",
-        mod_channel: "moderation_log",
-      
-        Title: "None",
-        Thumbnail: DefaultBackground,
-        Author: "No one",
-        Length: new Date(),
-        Started: new Date(),
-        Link: "None",
-
-        welcome_messages_bonus: false,
-        welcome_messages_bonus_setting: "user_feed",
-        join_role_bonus: false,
-        join_role_bonus_setting: "Member",
-        streamer_role_bonus: false,
-        streamer_role_bonus_setting: "Streamer",
-        automatic_reactions_bonus_setting: "peeky",
-        server_message_bonus: false,
-        image_only_bonus_setting: 0,
-        server_message_bonus_setting: "Welcome to **" + GuildNameTag + "**!",
-        notification_bonus: false,
-        message_log_bonus_setting: "message_log",
-        member_counter_bonus: false,
-        member_counter_bonus_setting: "Members",
-        member_counter_bonus_id: null,
-        clear_nicknames_bonus: false,
-        clear_nicknames_bonus_setting: "Cleared Nickname",
-        suspicion_alert_bonus: false,
-        suspicion_alert_bonus_setting: 10,
-        flood_protection_bonus: false,
-        donor_wall_bonus_setting: "Moderator",
-        donor_wall_bonus: false,
-        donor_wall_bonus_id: null,
-        donor_wall_bonus_channel: "moderators",
-        donor_wall_bonus_array: [],
-        banned_words_bonus_setting: [],
-        spoiler_lock_bonus_setting: 0,
-        server_upgraded: false,
-        event_countdown_bonus: false,
-        event_countdown_bonus_setting: 0,
-        event_countdown_bonus_id: 0,
-        vote_kick_bonus_bonus: false,
-        vote_kick_bonus_setting: 10,
-        server_trial_bonus_bonus: false,
-        server_trial_bonus_setting: 60,
-        stream_announcements_bonus: false,
-        stream_announcements_bonus_setting: "twitch",
-        role_saver_bonus: false,
-        role_saver_array: []
-    });
-
     if  (!message.author.bot && !message.webhookID)  {
       
     //Add Stats
@@ -1822,25 +1752,83 @@ if  (peeky.guilds.size > MaxServers)  {
     guild.owner.user.send("I have left your server because there are no open server slots.").catch(error => ErrorBag.add(error));
     guild.leave().catch(error => ErrorBag.add(error));
 
-}; /*else {
-        
-  setTimeout(function()  {
+} else {
+      
+    peeky.serverData.ensure(keySF , {
+        GuildID: guild.id,
+        lastSeen: Date.now(),
+        server_invite: "no_invite",
+        prefix: Prefix,
+        muted_role: "Muted",
+        mod_channel: "moderation_log",
+      
+        Title: "None",
+        Thumbnail: DefaultBackground,
+        Author: "No one",
+        Length: new Date(),
+        Started: new Date(),
+        Link: "None",
 
-      if  (guild.me.hasPermission("MANAGE_ROLES"))  {
+        welcome_messages_bonus: false,
+        welcome_messages_bonus_setting: "user_feed",
+        join_role_bonus: false,
+        join_role_bonus_setting: "Member",
+        streamer_role_bonus: false,
+        streamer_role_bonus_setting: "Streamer",
+        automatic_reactions_bonus_setting: "peeky",
+        server_message_bonus: false,
+        image_only_bonus_setting: 0,
+        server_message_bonus_setting: "Welcome to **" + GuildNameTag + "**!",
+        notification_bonus: false,
+        message_log_bonus_setting: "message_log",
+        member_counter_bonus: false,
+        member_counter_bonus_setting: "Members",
+        member_counter_bonus_id: null,
+        clear_nicknames_bonus: false,
+        clear_nicknames_bonus_setting: "Cleared Nickname",
+        suspicion_alert_bonus: false,
+        suspicion_alert_bonus_setting: 10,
+        flood_protection_bonus: false,
+        donor_wall_bonus_setting: "Moderator",
+        donor_wall_bonus: false,
+        donor_wall_bonus_id: null,
+        donor_wall_bonus_channel: "moderators",
+        donor_wall_bonus_array: [],
+        banned_words_bonus_setting: [],
+        spoiler_lock_bonus_setting: 0,
+        server_upgraded: false,
+        event_countdown_bonus: false,
+        event_countdown_bonus_setting: 0,
+        event_countdown_bonus_id: 0,
+        vote_kick_bonus_bonus: false,
+        vote_kick_bonus_setting: 10,
+        server_trial_bonus_bonus: false,
+        server_trial_bonus_setting: 60,
+        stream_announcements_bonus: false,
+        stream_announcements_bonus_setting: "twitch",
+        role_saver_bonus: false,
+        role_saver_array: []
+    });
+  
+};
 
-          var PeekyRole = guild.roles.find(r => r.name == peeky.user.username);
+});
 
-          if  (PeekyRole)  {
-              PeekyRole.setColor('#FF0000', {reason: "PEEKY's favorite color."}).catch(error => ErrorBag.add(error));
-              console.log("Dx")
+peeky.on("channelCreate", async (channel) => {
+const keyCF = `${channel.id}`;
 
-          } else console.log("xd")
+    peeky.channelData.ensure(keyCF , {
+        ChannelID: channel.id,
 
-      } else console.log("dx")
-
-  }, 10000)
-
-  };*/
+        automatic_reactions_bonus: false,
+        image_only_bonus: false,
+        message_log_bonus: false,
+        banned_words_bonus: false,
+        spoiler_only_bonus: false,
+        flood_protection_bonus_lastdate: null,
+        flood_protection_bonus_lastuser: null,
+        flood_protection_bonus_lastmsg: null
+    });
 
 });
 
@@ -3407,7 +3395,6 @@ if  (FunctioName.startsWith("welcome messages")) {
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Welcome Messages** function.");
@@ -3420,10 +3407,6 @@ if  (FunctioName.startsWith("welcome messages")) {
      message.channel.send({ embed })
      .catch(error => ErrorBag.add(error));
     };
-    }
-     else
-    {
-     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     };
       
     if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
@@ -3470,10 +3453,6 @@ if  (FunctioName.startsWith("classification wall"))  {
      const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-    }
-     else
-    {
-     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     };
 
     if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
@@ -3600,7 +3579,6 @@ if  (FunctioName.startsWith("message log"))  {
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Message Log** function.")
@@ -3613,10 +3591,6 @@ if  (FunctioName.startsWith("message log"))  {
      message.channel.send({ embed })
      .catch(error => ErrorBag.add(error));
     };
-    }
-     else
-    {
-     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     };
       
     if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
@@ -3652,7 +3626,6 @@ if  (FunctioName.startsWith("stream announcements"))  {
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-          await channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Stream Announcements** function.")
@@ -3666,10 +3639,6 @@ if  (FunctioName.startsWith("stream announcements"))  {
      message.channel.send({ embed })
      .catch(error => ErrorBag.add(error));
     };
-    }
-     else
-    {
-     channel.send(AutoDeleteMsg).catch(error => ErrorBag.add(error)).then(m => {m.delete(1000).catch(error => ErrorBag.add(error))});
     };
       
     if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
