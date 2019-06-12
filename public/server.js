@@ -5554,7 +5554,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             };            
 
             message.channel.startTyping();
-            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
+            await message.channel.send("**Fullscreen:** " + "<https://discordapp.com/channels/" + message.guild.id + "/" + message.guild.me.voiceChannel.id + ">", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
             message.channel.stopTyping();
               
             if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
@@ -5644,7 +5644,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
       
     if  (!MusicCmdCooldown.has(message.author.id))  {
 
-    if  (CurrentlyPlaying.has(message.guild.id))  {
+    if  (CurrentlyPlaying.has(message.guild.id) && message.guild.me.voiceChannel)  {
       
         MusicCmdCooldown.add(message.author.id);
         setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 5000);
@@ -5660,7 +5660,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
         message.channel.stopTyping();
         
     } else {
-      const embed = {"description": ErrorIcon + " We need to share a voice channel.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };  
 
@@ -5792,7 +5792,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
         CurrentlyPlaying.delete(message.guild.id);
       
         if  (message.guild.me.voiceChannel)  {
-            message.guild.me.voiceChannel.leave().catch(error => ErrorBag.add(error));
+            message.guild.me.voiceChannel.leave();
         };
       
     } else {
