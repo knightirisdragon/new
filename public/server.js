@@ -5554,7 +5554,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             };            
 
             message.channel.startTyping();
-            await message.channel.send("**Fullscreen:** " + "<https://discordapp.com/channels/" + message.guild.id + "/" + message.guild.me.voiceChannel.id + ">", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
+            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
             message.channel.stopTyping();
               
             if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
