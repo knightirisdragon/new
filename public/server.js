@@ -2747,13 +2747,13 @@ if  (!message.author.bot && message.guild.owner !== undefined)  {
 };
   
 //SUPPORT SERVER
-/*
+
 //Workshop
 if  (message.channel.id == WorkshopChannel)  {
 
 if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.size < 1)  {
   
-if  (message.content.includes("Name: ") && message.content.includes("Credit: ") && message.content.includes("Price: "))
+if  (message.content.includes("Name: ") && message.content.includes("Credit: ") && message.content.includes("Price: "))  {
 
     message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
 
@@ -2763,7 +2763,8 @@ if  (message.content.includes("Name: ") && message.content.includes("Credit: ") 
 };
 
 };
-*/
+
+};
   
 //FUNCTIONS
 if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
