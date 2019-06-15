@@ -87,23 +87,15 @@
 </style>
   
 <script>
-  
-  function myFunction() {
-        // get the OUTER html of the element you want to copy
-        var text = document.getElementById('myInput').outerHTML;
 
-        // put that outerHTML into another textbox for copying
-        var tempTextbox = document.getElementById('copyingText');
-        tempTextbox.value = text;
-
-        tempTextbox.focus();
-        tempTextbox.select();
-        
-        document.execCommand("Copy");
-  };
-  
 var CurrentSortMode = "old";
 var MaxSortingModes = 5;
+  
+function Loaded()  {
+
+  document.getElementById("sort_mode").innerHTML = "Sorting: Newest (1/" + MaxSortingModes + ")";
+  
+};
   
 function ChangeSorting(current)  {
 
@@ -161,7 +153,7 @@ function ChangeSorting(current)  {
   
 </script>
   
-<body onload="UpdateBackgrounds();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+<body onload="UpdateBackgrounds(); Loaded();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
 
 <center>
     
@@ -193,7 +185,7 @@ function ChangeSorting(current)  {
 
     <center><b><font size="7" class="headertext">Approved Backgrounds</font>  <br><br>
     <font size="4">This is the list of all the approved backgrounds.</font>  <br>
-    <font size="2"><b id="sort_mode">Sorting: Newest (1/5)</b></font></b>
+    <font size="2"><b id="sort_mode"></b></font></b>
     </center>
   
 <br><br>
