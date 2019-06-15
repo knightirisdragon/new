@@ -121,15 +121,6 @@ function ChangeSorting(current)  {
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Oldest (2/" + MaxSortingModes + ")";
     } else if (current == "random") {
-        CurrentSortMode = "featured";
-        document.getElementById("sort_new").style.display = "none";
-        document.getElementById("sort_old").style.display = "none";
-        document.getElementById("sort_random").style.display = "block";
-        document.getElementById("sort_featured").style.display = "none";
-        document.getElementById("sort_cheap").style.display = "none";
-      
-        document.getElementById("sort_mode").innerHTML = "Sorting: Shuffled (3/" + MaxSortingModes + ")";
-    } else if (current == "featured") {
         CurrentSortMode = "cheap";
         document.getElementById("sort_new").style.display = "none";
         document.getElementById("sort_old").style.display = "none";
@@ -137,8 +128,17 @@ function ChangeSorting(current)  {
         document.getElementById("sort_featured").style.display = "none";
         document.getElementById("sort_cheap").style.display = "block";
       
-        document.getElementById("sort_mode").innerHTML = "Sorting: Cheap (4/" + MaxSortingModes + ")";
+        document.getElementById("sort_mode").innerHTML = "Sorting: Cheap (3/" + MaxSortingModes + ")";
     } else if (current == "cheap") {
+        CurrentSortMode = "shuffled";
+        document.getElementById("sort_new").style.display = "none";
+        document.getElementById("sort_old").style.display = "none";
+        document.getElementById("sort_random").style.display = "block";
+        document.getElementById("sort_featured").style.display = "none";
+        document.getElementById("sort_cheap").style.display = "none";
+      
+        document.getElementById("sort_mode").innerHTML = "Sorting: Shuffled (4/" + MaxSortingModes + ")";
+    } else if (current == "shuffled") {
         CurrentSortMode = "new";
         document.getElementById("sort_new").style.display = "none";
         document.getElementById("sort_old").style.display = "none";
