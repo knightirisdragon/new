@@ -2746,6 +2746,25 @@ if  (!message.author.bot && message.guild.owner !== undefined)  {
   
 };
   
+//SUPPORT SERVER
+/*
+//Workshop
+if  (message.channel.id == WorkshopChannel)  {
+
+if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.size < 1)  {
+  
+if  (message.content.includes("Name: ") && message.content.includes("Credit: ") && message.content.includes("Price: "))
+
+    message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
+
+    const embed = {"description": InfoIcon + " Visit the website for info about the Workshop, **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+
+};
+
+};
+*/
+  
 //FUNCTIONS
 if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
   
