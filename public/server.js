@@ -1493,14 +1493,14 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
               CheapBackgrounds.push(BackgroundString);
           };
 
-          if  (background_info[3] !== undefined  )  {
+          if  (background_info[4] !== undefined  )  {
               RevenueBackgrounds.push(BackgroundString);
           };
     
     });
 
 
-    await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>" + "<div id='sort_cheap'> " + CheapBackgrounds.join(" ") + " </div>" + "<div id='sort_revenue'> " + RevenueBackgrounds.join(" ") + " </div>", (err) => {
+    await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>" + "<div id='sort_cheap'> " + CheapBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_revenue'> " + RevenueBackgrounds.reverse().join(" ") + " </div>", (err) => {
         if (err) console.log(err);
     });
 
