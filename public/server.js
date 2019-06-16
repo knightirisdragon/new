@@ -201,7 +201,7 @@ const SettingsIcon = "<:settings:586612320839532573>";
 //Role IDs
 const StaffRole         = "494429609874685983";
 const SupporterRole     = "504740473185894400";
-const BoosterRole       = "0";
+const BoosterRole       = "589783851329650690";
 const ServerUpgradeRole = "549190337437106176";
 const RedeemRole1       = "505491936401162270";  //1000 Gredit
 const RedeemRole2       = "527197436746268704";  //2000 Gredit
@@ -5315,6 +5315,13 @@ if (!ProfileCooldown.has(message.author.id)) {
     if  (BadgeAmount < MaxBadges)  {
     const supporter_icon = await Canvas.loadImage(SupporterImage);
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(SupporterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(supporter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+        //Booster Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const supporter_icon = await Canvas.loadImage(BoosterImage);
+    if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(BoosterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
     ctx.drawImage(supporter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
     };
 
