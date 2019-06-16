@@ -1458,7 +1458,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
                 
           };
 
-          if  (background_info[1] <= 150)  {
+          if  (background_info[1] <= 150 && Current !== 1)  {
               CheapBackgrounds.push(BackgroundString);
           };
     
