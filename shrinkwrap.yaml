@@ -1,5 +1,6 @@
 dependencies:
   better-sqlite-pool: 0.2.2
+  botlist.space: 3.2.1
   canvas: 2.5.0
   canvas-node: 0.3.23
   dblapi.js: 2.3.0
@@ -175,6 +176,13 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-dhEPs72UPbDnAQJ9ZKMNTP6ptJaionhP5cBb541nXPlW60Jepo9RV/a4fX4XWW9CuFNK22krhrj1+rgzifNCsw==
+  /botlist.space/3.2.1:
+    dependencies:
+      snekfetch: 4.0.4
+      ws: 6.2.1
+    dev: false
+    resolution:
+      integrity: sha512-Osh8Onw4CFHYIciFO4txEnLBRg9RLi5nV37ggYMie//WOlA1GsUK3uLfXG8d/gwzx+UFRoeRt+lxbNlG/kpIAA==
   /brace-expansion/1.1.11:
     dependencies:
       balanced-match: 1.0.0
@@ -1283,6 +1291,11 @@ packages:
     dev: false
     resolution:
       integrity: sha512-NjxjITIj04Ffqid5lqr7XdgwM7X61c/Dns073Ly170bPQHLm6jkmelye/eglS++1nfTWktpP6Y2bFXjdPlQqdw==
+  /snekfetch/4.0.4:
+    deprecated: use node-fetch instead
+    dev: false
+    resolution:
+      integrity: sha512-dyycG9fvwtSJqKPfMVOpXt+60qvMGe7vWLwOJDiSJaiAx+hs2EnFChG2bXCWn7ulz+zGzrHdN9/yeEb0YqEPww==
   /sqlite3/4.0.8:
     dependencies:
       nan: 2.13.2
@@ -1526,6 +1539,7 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   better-sqlite-pool: ^0.2.2
+  botlist.space: ^3.1.6
   canvas: ^2.5.0
   canvas-node: ^0.3.20
   dblapi.js: ^2.3.0

@@ -4,11 +4,15 @@ const peeky   = new Discord.Client();
 
 //DDBL
 const { ddblAPI } = require('ddblapi.js');
-const ddbl = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
+const ddbl        = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
 
 //DBL
 const DBL = require("dblapi.js");
 const dbl = new DBL(process.env.DBL_TOKEN, peeky);
+
+//BTS
+const BotList = require('botlist.space');
+const bts     = new BotList.Client({ id: "482945063282802698", botToken: process.env.BTS_TOKEN });
 
 //MUSIC
 const ytdl_discord = require('ytdl-core-discord');
