@@ -20,8 +20,7 @@
     "require.js": "^1.0.0",
     "node-fetch": "^2.6.0",
     "parse-ms": "^2.0.0",
-    "https": "^1.0.0",
-    "better-sqlite3": "^5.4.0"
+    "https": "^1.0.0"
   },
   "engines": {
     "node": "8"
