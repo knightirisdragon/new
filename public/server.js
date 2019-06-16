@@ -96,6 +96,7 @@ const PartyImage        = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602
 const HorderImage       = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fhorder.png?1558727721673";
 const PainterImage      = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpainter.png?1558728694985";
 const MinerImage        = "http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2FMiner.png?1559015350668";
+const BoosterImage      = "http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2FBooster.png?v=1560685395043";
 
 const DefaultFont = "Verdana";//"Verdana";
 const Dark        = "#36393E";
@@ -181,6 +182,7 @@ const PartyEmote        = "<:party:578689336116248618>";
 const HorderEmote       = "<:horder:581571252070776844>";
 const PainterEmote      = "<:painter:581575158855368724>";
 const MinerEmote        = "<:miner:582777441592934410>";
+const BoosterEmote      = "<:booster:589781680903028746>";
 
 //Other Emotes
 const ErrorIcon    = "<:peeky_error:529412267343872031>";
@@ -199,6 +201,7 @@ const SettingsIcon = "<:settings:586612320839532573>";
 //Role IDs
 const StaffRole         = "494429609874685983";
 const SupporterRole     = "504740473185894400";
+const BoosterRole       = "0";
 const ServerUpgradeRole = "549190337437106176";
 const RedeemRole1       = "505491936401162270";  //1000 Gredit
 const RedeemRole2       = "527197436746268704";  //2000 Gredit
@@ -1193,6 +1196,9 @@ peeky.on('message', async (message) => {
 
         //Supporter
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {  BadgeGreditAmount += 2;  };
+
+        //Booster
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {  BadgeGreditAmount += 2;  };
 
         //Bug Hunter
     if  (peeky.userData.get(key, "BugHunterBadge") == true)  {  BadgeExpAmount += 2;  };
@@ -4378,7 +4384,7 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWo
     var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set banned words ")[1].toLowerCase(), "other", true);
     peeky.serverData.get(keySF, "banned_words_bonus_setting").push(ReceivedArray);
 
-    var EndString = "";  FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
+    var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
   
     const embed = {"description": SuccessIcon + " The **Banned Words** setting has been set to **" + FixedArray.join("**, **") + EndString + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5107,6 +5113,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(StaffRole))       {  Badges.push(ModeratorEmote + " Staff")  };
     if  (peeky.userData.get(key2, "VeteranBadge") == true)                                               {  Badges.push(VeteranEmote + " Veteran")  };
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(SupporterRole))   {  Badges.push(SupporterEmote + " Supporter")  };
+    if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(BoosterRole))     {  Badges.push(BoosterEmote + " Booster")  };
     if  (peeky.userData.get(key2, "BugHunterBadge") == true)                                             {  Badges.push(BugHunterEmote + " Bug Hunter")  };
     if  (peeky.userData.get(key2, "ContributorBadge") == true)                                           {  Badges.push(ContributorEmote + " Contributor")  };
     if  (peeky.userData.get(key2, "CelebratorBadge") == true)                                            {  Badges.push(CelebratorEmote + " Celebrator")  };
