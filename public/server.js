@@ -4,7 +4,7 @@ const peeky   = new Discord.Client();
 
 //DDBL
 const { ddblAPI } = require('ddblapi.js');
-const ddbl        = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
+const ddbl = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
 
 //DBL
 const DBL = require("dblapi.js");
