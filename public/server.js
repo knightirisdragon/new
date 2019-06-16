@@ -873,7 +873,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             if  (Type == "Started")  {
                 ctx.fillText(peeky.users.get(User).username + " has requested " + Author + "'s song.", 15, 310);
             }  else if  (Type == "Playlist")  {
-                ctx.fillText(peeky.users.get(User).username + " has requested a song from their playlist.", 15, 310);
+                ctx.fillText(peeky.users.get(User).username + " has requested a random song from their playlist.", 15, 310);
             }  else if  (Type == "Random")  {
                 ctx.fillText(peeky.users.get(User).username + " has requested a random song.", 15, 310);
             }  else if  (Type == "Previous")  {
@@ -5510,8 +5510,6 @@ if (!ProfileCooldown.has(message.author.id)) {
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play "))  {
   
     if  (!CurrentlyPlaying.has(message.guild.id))  {
-      
-        await CurrentlyPlaying.add(message.guild.id);
 
     var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
     var Type = "Started";
@@ -5580,6 +5578,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             if  (Length <= 3600000 && Length > 0)  {
               
             await voiceChannel.join().then(async connection => {
+
+            await CurrentlyPlaying.add(message.guild.id);
           
             peeky.serverData.set(keySF, Title, "Title");
             peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
