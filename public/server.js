@@ -96,7 +96,7 @@ const PartyImage        = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602
 const HorderImage       = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fhorder.png?1558727721673";
 const PainterImage      = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpainter.png?1558728694985";
 const MinerImage        = "http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2FMiner.png?1559015350668";
-const BoosterImage      = "http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2FBooster.png?v=1560685395043";
+const BoosterImage      = "http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbooster.png?v=1560686316852";
 
 const DefaultFont = "Verdana";//"Verdana";
 const Dark        = "#36393E";
@@ -182,7 +182,7 @@ const PartyEmote        = "<:party:578689336116248618>";
 const HorderEmote       = "<:horder:581571252070776844>";
 const PainterEmote      = "<:painter:581575158855368724>";
 const MinerEmote        = "<:miner:582777441592934410>";
-const BoosterEmote      = "<:booster:589781680903028746>";
+const BoosterEmote      = "<:booster:589786301759488050>";
 
 //Other Emotes
 const ErrorIcon    = "<:peeky_error:529412267343872031>";
@@ -2188,6 +2188,29 @@ if  (peeky.userData.has(key))  {
     
     var HadRole = oldMember.roles.find(r => r.id == SupporterRole);
     var HasRole = newMember.roles.find(r => r.id == SupporterRole);
+  
+    if  (HadRole == null && HasRole)  {
+
+        peeky.userData.math(key, "+", ExpAmount, "Exp");
+      
+        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+            peeky.userData.set(key, true, "ContributorBadge");
+            InfoMessages.push(InfoMessage1[0]);
+        };
+      
+        const embed = {"description": SuccessIcon + " You have been awarded the **Supporter status** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+      
+        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **Supporter**.").catch(error => ErrorBag.add(error));
+    };
+  
+};
+
+//Booster
+if  (peeky.userData.has(key))  {
+    
+    var HadRole = oldMember.roles.find(r => r.id == BoosterRole);
+    var HasRole = newMember.roles.find(r => r.id == BoosterRole);
   
     if  (HadRole == null && HasRole)  {
 
