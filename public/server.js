@@ -120,6 +120,8 @@ const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thur
 const NumberEmojis        = [  "1⃣", "2⃣", "3⃣", "4⃣", "5⃣"  ];
 const blacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const whitelistedSymbols  = [  "a", "á", "b", "c", "č", "d", "ď", "e", "é", "ě", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "ň", "o", "ó", "p", "q", "r", "ř", "s", "š", "t", "u", "ů", "ú", "v", "w", "x", "y", "ý", "z", "ž", "0", "1", "2", "3", "4", "6", "5", "7", "8", "9", "_", "-", " ", ",", ".", "'", '"', "(", ")", "[", "]"  ];
+const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
+
 const DefaultDescriptions = [  "I'm very busy and important.", "I sip water quite slowly.", "Battery low, I'm scared.",
                                "I have a car for each day of the month.", "I make up a dream in my head before I go to bed.", "My life is a green screen.",
                                "I don't believe in showers.", "Certified troublemaker.", "I'm a Bacon Guru.",
@@ -131,7 +133,11 @@ const DefaultDescriptions = [  "I'm very busy and important.", "I sip water quit
                                "I put fries into my straw.", "I walk faster when I see a creepy van.", "More than meets the eye.",
                                "I draw on fogged up windows.", "Born at a very young age."
                             ];
-const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
+const RandomAvatars       = [  "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_1.png?v=1560717936708",
+                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_3.png?v=1560717937123",
+                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_2.png?v=1560717937510",
+                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_4.png?v=1560717938003"
+                            ];
 const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw", "https://www.youtube.com/watch?v=N6hF3EaICxk", "https://www.youtube.com/watch?v=NU3aCNQAqwc", 
                                "https://www.youtube.com/watch?v=K3Qzzggn--s", "https://www.youtube.com/watch?v=PEBS2jbZce4", "https://www.youtube.com/watch?v=8Vlej7QUGGE", 
                                "https://www.youtube.com/watch?v=k92Bgqz-p_8", "https://www.youtube.com/watch?v=R_N15egKj6c", "https://www.youtube.com/watch?v=-WpnPSChVRQ",
