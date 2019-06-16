@@ -134,9 +134,9 @@ const DefaultDescriptions = [  "I'm very busy and important.", "I sip water quit
                                "I draw on fogged up windows.", "Born at a very young age."
                             ];
 const RandomAvatars       = [  "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_1.png?v=1560717936708",
-                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_3.png?v=1560717937123",
                                "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_2.png?v=1560717937510",
-                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_4.png?v=1560717938003"
+                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_3.png?v=1560717937123",
+                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_4.png?v=1560718338997"
                             ];
 const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw", "https://www.youtube.com/watch?v=N6hF3EaICxk", "https://www.youtube.com/watch?v=NU3aCNQAqwc", 
                                "https://www.youtube.com/watch?v=K3Qzzggn--s", "https://www.youtube.com/watch?v=PEBS2jbZce4", "https://www.youtube.com/watch?v=8Vlej7QUGGE", 
@@ -1100,6 +1100,10 @@ peeky.on('ready', () => {
     //DB
     dbl.postStats(peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to DB.") && ErrorBag.add(err));
   
+    setTimeout(() => {
+        peeky.user.setAvatar(RandomAvatars[Math.floor(Math.random()*RandomAvatars.length)]).catch(error => ErrorBag.add(error));
+    }, 7200000);
+  
 });
 
 peeky.on('reconnecting', () => {
@@ -1330,8 +1334,7 @@ peeky.on('message', async (message) => {
     
     const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
       
-    message.channel.send("", attachment)
-    .catch(error => ErrorBag.add(error));
+    message.channel.send("", attachment).catch(error => ErrorBag.add(error));
       
     message.channel.stopTyping();
             
