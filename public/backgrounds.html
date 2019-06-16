@@ -61,6 +61,7 @@
 #sort_old,
 #sort_featured,
 #sort_cheap,
+#sort_revenue,
 #sort_random {
     display: none;  
 }
@@ -89,7 +90,7 @@
 <script>
 
 var CurrentSortMode = "old";
-var MaxSortingModes = 5;
+var MaxSortingModes = 6;
   
 function Loaded()  {
 
@@ -109,6 +110,7 @@ function ChangeSorting(current)  {
         document.getElementById("sort_random").style.display = "none";
         document.getElementById("sort_featured").style.display = "none";
         document.getElementById("sort_cheap").style.display = "none";
+        document.getElementById("sort_revenue").style.display = "none";
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Newest (1/" + MaxSortingModes + ")";
     } else if (current == "old") {
@@ -118,6 +120,7 @@ function ChangeSorting(current)  {
         document.getElementById("sort_random").style.display = "none";
         document.getElementById("sort_featured").style.display = "none";
         document.getElementById("sort_cheap").style.display = "none";
+        document.getElementById("sort_revenue").style.display = "none";
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Oldest (2/" + MaxSortingModes + ")";
     } else if (current == "random") {
@@ -127,15 +130,27 @@ function ChangeSorting(current)  {
         document.getElementById("sort_random").style.display = "none";
         document.getElementById("sort_featured").style.display = "none";
         document.getElementById("sort_cheap").style.display = "block";
+        document.getElementById("sort_revenue").style.display = "none";
       
-        document.getElementById("sort_mode").innerHTML = "Sorting: Cheap (3/" + MaxSortingModes + ")";
+        document.getElementById("sort_mode").innerHTML = "Sorting: Under 200 Gredit (3/" + MaxSortingModes + ")";
     } else if (current == "cheap") {
+        CurrentSortMode = "revenue";
+        document.getElementById("sort_new").style.display = "none";
+        document.getElementById("sort_old").style.display = "none";
+        document.getElementById("sort_random").style.display = "none";
+        document.getElementById("sort_featured").style.display = "none";
+        document.getElementById("sort_cheap").style.display = "none";
+        document.getElementById("sort_revenue").style.display = "block";
+      
+        document.getElementById("sort_mode").innerHTML = "Sorting: Shuffled (4/" + MaxSortingModes + ")";
+    } else if (current == "revenue") {
         CurrentSortMode = "shuffled";
         document.getElementById("sort_new").style.display = "none";
         document.getElementById("sort_old").style.display = "none";
         document.getElementById("sort_random").style.display = "block";
         document.getElementById("sort_featured").style.display = "none";
         document.getElementById("sort_cheap").style.display = "none";
+        document.getElementById("sort_revenue").style.display = "none";
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Shuffled (4/" + MaxSortingModes + ")";
     } else if (current == "shuffled") {
@@ -145,6 +160,7 @@ function ChangeSorting(current)  {
         document.getElementById("sort_random").style.display = "none";
         document.getElementById("sort_featured").style.display = "block";
         document.getElementById("sort_cheap").style.display = "none";
+        document.getElementById("sort_revenue").style.display = "none";
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Featured (5/" + MaxSortingModes + ")";
     }

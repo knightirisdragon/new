@@ -1458,10 +1458,11 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     WebsiteCooldowns.add("backgrounds");
     setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 600000);
 
-    const BackgroundList   = [];
-    const FeaturedList     = [];
-    const CheapBackgrounds = [];
-    var   Current          = 0;
+    const BackgroundList     = [];
+    const FeaturedList       = [];
+    const CheapBackgrounds   = [];
+    const RevenueBackgrounds = [];
+    var   Current            = 0;
 
     Banners.forEach(background_info => {
 
@@ -1488,14 +1489,18 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
                 
           };
 
-          if  (background_info[1] <= 150 && Current !== 1)  {
+          if  (background_info[1] <= 200 && Current !== 1)  {
               CheapBackgrounds.push(BackgroundString);
+          };
+
+          if  (background_info[3] !== undefined  )  {
+              RevenueBackgrounds.push(BackgroundString);
           };
     
     });
 
 
-    await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>" + "<div id='sort_cheap'> " + CheapBackgrounds.join(" ") + " </div>", (err) => {
+    await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>" + "<div id='sort_cheap'> " + CheapBackgrounds.join(" ") + " </div>" + "<div id='sort_revenue'> " + RevenueBackgrounds.join(" ") + " </div>", (err) => {
         if (err) console.log(err);
     });
 
