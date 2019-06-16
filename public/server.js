@@ -2206,29 +2206,6 @@ if  (peeky.userData.has(key))  {
   
 };
 
-//Booster
-if  (peeky.userData.has(key))  {
-    
-    var HadRole = oldMember.roles.find(r => r.id == BoosterRole);
-    var HasRole = newMember.roles.find(r => r.id == BoosterRole);
-  
-    if  (HadRole == null && HasRole)  {
-
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-      
-        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-            peeky.userData.set(key, true, "ContributorBadge");
-            InfoMessages.push(InfoMessage1[0]);
-        };
-      
-        const embed = {"description": SuccessIcon + " You have been awarded the **Supporter status** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
-      
-        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **Supporter**.").catch(error => ErrorBag.add(error));
-    };
-  
-};
-
 //Server Upgrade
 if  (peeky.userData.has(key))  {
     
