@@ -1,0 +1,15 @@
+{
+"default_prefix": "!p",  
+"server_limit": 100, 
+"event_status": false,
+  
+"autowipe_time"": false,
+  
+"custom_background": false,
+"sell_multiplier": 2.5,
+"exp_multiplier": 125,
+"exp_multiplier": 125,
+"exp_multiplier": 125,
+"exp_multiplier": 125,
+"exp_multiplier": 125
+}

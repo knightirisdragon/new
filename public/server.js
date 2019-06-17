@@ -105,15 +105,15 @@ const Light       = "#424549";
 const Blurple     = "#7289DA";
 
 //Config
-const OngoingEvent         = false;
-const Prefix               = "p!";
-const OwnerId              = "108899856889737216";
-const PeekyId              = "482945063282802698";
-const SupportServer        = "319891596772638744";
-const AnnouncementsChannel = "346710479407808524";
-const EmojiStorage         = "493048757286600716";
-const WorkshopChannel      = "501130667078189066";
-const PurchaseLog          = "583339225001492501";
+const Config = require("./config.json");
+const OngoingEvent          = Config.event_status;
+const Prefix                = Config.default_prefix;
+const CustomBackgroundPrice = 1000;
+const SellMultiplier        = 2.5;
+const ExpNeeded             = 125; //Times the current level.
+const MaxServers            = 100;
+const InactiveWipe          = 1296000000; //15 Days
+const InactiveDays          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 
 //Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
@@ -153,18 +153,6 @@ const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw", "h
                                "https://www.youtube.com/watch?v=G_Nl5xDNXIs", "https://www.youtube.com/watch?v=t_q1SDzeCqo", "https://www.youtube.com/watch?v=hbrpmQ09juQ",
                                "https://www.youtube.com/watch?v=YWN81V7ojOE", "https://www.youtube.com/watch?v=pcSLtIYLbLQ", "https://www.youtube.com/watch?v=6okxuiiHx2w"
                             ];
-
-//Amounts
-const CustomBackgroundPrice = 1000;
-const SellMultiplier        = 2.5;
-const ExpNeeded             = 125; //Times the current level.
-const MaxServers            = 100;
-const AutoDeleteTime        = 250;
-const BackgroundInvLimit    = 25;
-const BannedWordsLimit      = 10;
-const GameRolesLimit        = 10;
-const InactiveWipe          = 1296000000; //15 Days
-const InactiveDays          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 
 //Vote Emotes
 const DefaultUpvote    = "529413730874949632";
@@ -217,6 +205,15 @@ const RedeemRole2       = "527197436746268704";  //2000 Gredit
 const RedeemRole3       = "536142807702831104";  //5000 Gredit
 const RedeemRole4       = "536142889189638155";  //10000 Gredit
 
+//Other IDs
+const OwnerId              = "108899856889737216";
+const PeekyId              = "482945063282802698";
+const SupportServer        = "319891596772638744";
+const AnnouncementsChannel = "346710479407808524";
+const EmojiStorage         = "493048757286600716";
+const WorkshopChannel      = "501130667078189066";
+const PurchaseLog          = "583339225001492501";
+
 //Server Message Tags
 const GuildNameTag         = "[GuildName]";
 const GuildSizeTag         = "[GuildSize]";
@@ -230,8 +227,10 @@ const RandomString  = "random";
 const BadFormat     = "invalid";
 
 //Other Variables
-var   allowed    = "true";  //String because HTML.
 const EmbedColor = 3093047;
+const BackgroundInvLimit    = 25;
+const BannedWordsLimit      = 10;
+const GameRolesLimit        = 10;
 
 //WEBSITE
 const http    = require('http');
