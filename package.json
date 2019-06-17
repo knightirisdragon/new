@@ -6,6 +6,7 @@
     "discord.js": "^11.5.1",
     "dblapi.js": "^2.3.0",
     "ddblapi.js": "^1.0.0",
+    "botlist.space": "^3.2.1",
     "node-opus": "^0.3.2",
     "ytdl-core": "^0.29.2",
     "ytdl-core-discord": "^1.0.3",
