@@ -12,7 +12,7 @@ const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 
 //BLS
 const BotList = require('botlist.space');
-//const bls     = new BotList.Client({ id: "482945063282802698", botToken: process.env.BLS_TOKEN });
+const bls     = new BotList({ id: "482945063282802698", botToken: process.env.BLS_TOKEN });
 
 //MUSIC
 const ytdl_discord = require('ytdl-core-discord');
@@ -4955,6 +4955,23 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
         if  (AllVotes.length > 0 == true)  {
           
             InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DDB today.");
+
+            peeky.userData.math(key, "+", 1, "Chests");
+            CountedVotes ++;
+
+        };
+                  
+    });
+
+    //Vote BLS
+    await bls.getUpvotes().then(AllVotes => {
+      
+        var Now = new Date();
+        AllVotes = AllVotes.filter(i => i.user.id == message.author.id && Now - new Date(i.timestamp) <= 86400000);
+
+        if  (AllVotes.length > 0 == true)  {
+          
+            InfoMessages.push(InfoIcon + " Added a bonus reward for voting on BLS today.");
 
             peeky.userData.math(key, "+", 1, "Chests");
             CountedVotes ++;
