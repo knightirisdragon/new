@@ -221,6 +221,7 @@ const GuildAcronymTag      = "[GuildAcronym]";
 const AllString     = "all";
 const RandomString  = "random";
 const BadFormat     = "invalid";
+const Exclusive     = "Exclusive";
 
 //Other Variables
 const DefaultFont        = "Verdana";
@@ -615,8 +616,9 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground328.png?v=1560283108264", 475, "Commander Lilith", "Borderlands 2", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground329.png?v=1560716844287", 350 , "Pet fox", "Vojttěch Jílovec", `108899856889737216`],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground330.png?v=1560703323947", 500, "Nuke", "Counter Strike Global Offensive", undefined],
-    ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground331.png?v=1560768909337", 200, "Creeper Buddy", "Not credited", undefined],
-    ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground332.png?v=1560768910957", 500, "Flare Abyss", "The Division", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground331.png?v=1560768909337", 200, "Creeper Buddy", "Not credited", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground332.png?v=1560768910957", 500, "Flare Abyss", "The Division", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_1.png?v=1560717936708", Exclusive, "TEST", "TEST", undefined]
 
 ];
 
@@ -1490,12 +1492,11 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
           };
       
           var FixedPrice = background_info[1];
-          if  (isNaN(FixedPrice))  {
-              FixedPrice = FixedPrice.toLocaleString('en');
+          if  (FixedPrice !== Exclusive)  {
+              FixedPrice = FixedPrice.toLocaleString('en') + " Gredit";
           };
-          FixedPrice = FixedPrice + " Gredit";
       
-          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + FixedPrice + ' Gredit  ' + RevenueString + '  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>';
+          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + FixedPrice + ' ' + RevenueString + '  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>';
     
           BackgroundList.push(BackgroundString);
 
@@ -1540,16 +1541,10 @@ if  (!WebsiteCooldowns.has("workshop"))  {
     .then(async (messages) => {
       
     messages.forEach(m => {
-      
-        var FixedPrice = m.content.split("\n")[2].replace("Price: ", "");
-        if  (isNaN(FixedPrice))  {
-            FixedPrice = FixedPrice.toLocaleString('en');
-        };
-        FixedPrice = FixedPrice + " Gredit";
           
         if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.reactions.find(r => r.emoji.id == DefaultUpvote) && m.reactions.find(r => r.emoji.id == DefaultDownvote) && m.attachments.size > 0 && m.content.includes("Name: ") && m.content.includes("Credit: ") && m.content.includes("Price: "))  {
         
-            var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500" height="300" class="background_image">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + m.content.split("\n")[0].replace("Name: ", "") + '  </font>  <br>  <font size="2" color="lightgray">  ' + m.content.split("\n")[1].replace("Credit: ", "") + '  </font>  <br><br>  <font size="2">  ~ ' + FixedPrice + ' </font>  <br>  <font size="1" color="lightgreen">  ' + (m.reactions.find(r => r.emoji.id == DefaultUpvote).count - 1) + '  Upvotes</font>  <font size="1">🞄</font>  <font size="1" color="pink">  ' + (m.reactions.find(r => r.emoji.id == DefaultDownvote).count - 1) + '  Downvotes</font>   </b>  </div>  </div>';
+            var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500" height="300" class="background_image">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + m.content.split("\n")[0].replace("Name: ", "") + '  </font>  <br>  <font size="2" color="lightgray">  ' + m.content.split("\n")[1].replace("Credit: ", "") + '  </font>  <br><br>  <font size="2">  ~ ' + m.content.split("\n")[2].replace("Price: ", "").toLocaleString('en') + ' Gredit </font>  <br>  <font size="1" color="lightgreen">  ' + (m.reactions.find(r => r.emoji.id == DefaultUpvote).count - 1) + '  Upvotes</font>  <font size="1">🞄</font>  <font size="1" color="pink">  ' + (m.reactions.find(r => r.emoji.id == DefaultDownvote).count - 1) + '  Downvotes</font>   </b>  </div>  </div>';
             WorkshopList.push(BackgroundString);
 
         };
@@ -4577,7 +4572,7 @@ for(var i = 1; i <= Banners.length; i++) {
   
 if  (message.content == peeky.serverData.get(keySF, "prefix") + "buybackground " + i)  {
   
-if  (i !== 1 && i[2] > 0) {
+if  (i !== 1 && i[2] !== Exclusive)  {
   
 if  (!peeky.userData.get(key, "Inventory").includes(i))  {
   
@@ -4754,26 +4749,26 @@ if  (peeky.userData.get(key, "Inventory").includes(i))  {
   
 if  (i !== 1)  {
   
-    var i = Number(i);
     var BackgroundIndex  = peeky.userData.get(key, "Inventory").indexOf(i);
-    var FinalPrice       = Math.round(Banners[i - 1][Banner.Price] / SellMultiplier);
+    var FinalPrice       = Banners[i - 1][Banner.Price];
+    var i                = Number(i);
   
     if  (isNaN(FinalPrice))  {
         FinalPrice = 0;
+    } else {
+        FinalPrice = Math.round(FinalPrice / SellMultiplier);
     };
 
-        peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
-        peeky.userData.math(key, "+", FinalPrice, "Gredit");
+    peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
+    peeky.userData.math(key, "+", FinalPrice, "Gredit");
 
-        if  (i == peeky.userData.get(key, "Background"))  {
+    if  (i == peeky.userData.get(key, "Background"))  {
+        peeky.userData.set(key, 1, "Background");
+        InfoMessages.push(InfoMessage2[0]);
+    };
 
-            peeky.userData.set(key, 1, "Background");
-            InfoMessages.push(InfoMessage2[0]);
-
-        };
-
-        const embed = {"description": SuccessIcon + " You have sold the **" + Banners[i - 1][Banner.Name] + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    const embed = {"description": SuccessIcon + " You have sold the **" + Banners[i - 1][Banner.Name] + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
     }
      else
