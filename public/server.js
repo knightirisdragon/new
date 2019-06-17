@@ -1476,13 +1476,14 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     WebsiteCooldowns.add("backgrounds");
     setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 600000);
 
-    const BackgroundList       = [];
-    const FeaturedList         = [];
-    const CheapBackgrounds     = [];
-    const RevenueBackgrounds   = [];
-    const ExclusiveBackgrounds = [];
-    var   Current              = 0;            
-    var   Fillers              = 0;
+    const BackgroundList            = [];
+    const FeaturedList              = [];
+    const CheapBackgrounds          = [];
+    const RevenueBackgrounds        = [];
+    var ExclusiveBackgrounds        = [];
+    var AddToExclusiveBackgrounds   = [];
+    var   Current                   = 0;            
+    var   Fillers                   = 0;
 
     Banners.forEach(background_info => {
 
@@ -1526,18 +1527,19 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
           };
 
           if  (background_info[1] == Exclusive)  {
-              ExclusiveBackgrounds.push(BackgroundString);
+              AddToExclusiveBackgrounds.push(BackgroundString);
           };
     
     });
 
-    Fillers = 100 - ExclusiveBackgrounds.length;
-    if  (ExclusiveBackgrounds.length < 100)  {
+    Fillers = 100 - AddToExclusiveBackgrounds.length;
+    if  (AddToExclusiveBackgrounds.length < 100)  {
         while (Fillers > 0)  {
             Fillers --;
             ExclusiveBackgrounds.push('<div class="filler">  <img src="' + DarkField + '"  width="500" height="300" class="background_image">  </div>')
         };
     };
+    ExclusiveBackgrounds.push(AddToExclusiveBackgrounds);
 
     await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>" + "<div id='sort_cheap'> " + CheapBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_revenue'> " + RevenueBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_exclusive'> " + ExclusiveBackgrounds.reverse().join(" ") + " </div>", (err) => {
         if (err) console.log(err);
@@ -5245,7 +5247,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
 
     peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
         Current ++;
-        FixedBackgrounds.push(Banners[banner - 1][2] + " (" + banner + ")");
+        FixedBackgrounds.push(Banners[banner - 1][2] + " `" + banner + "`");
     });
       
     if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > BackgroundInvLimit)  {  EndString = " and some more.."  };

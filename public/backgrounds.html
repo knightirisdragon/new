@@ -147,7 +147,7 @@ function ChangeSorting(current)  {
         document.getElementById("sort_revenue").style.display = "block";
         document.getElementById("sort_exclusive").style.display = "none";
       
-        document.getElementById("sort_mode").innerHTML = "Sorting: Exclusive (4/" + MaxSortingModes + ")";
+        document.getElementById("sort_mode").innerHTML = "Sorting: Revenue Enabled (4/" + MaxSortingModes + ")";
     } else if (current == "exclusive") {
         CurrentSortMode = "revenue";
         document.getElementById("sort_new").style.display = "none";
@@ -158,7 +158,7 @@ function ChangeSorting(current)  {
         document.getElementById("sort_revenue").style.display = "none";
         document.getElementById("sort_exclusive").style.display = "block";
       
-        document.getElementById("sort_mode").innerHTML = "Sorting: Revenue Enabled (5/" + MaxSortingModes + ")";
+        document.getElementById("sort_mode").innerHTML = "Sorting: Exclusive (5/" + MaxSortingModes + ")";
     } else if (current == "revenue") {
         CurrentSortMode = "shuffled";
         document.getElementById("sort_new").style.display = "none";
