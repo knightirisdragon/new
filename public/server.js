@@ -2425,13 +2425,16 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
       
     if  (member.guild.me.hasPermission('MANAGE_ROLES'))  {
       
-        var   Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
+        var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
       
         peeky.serverData.get(keySF, "game_roles_bonus_setting").forEach(GameName => {
 
-        var GameName = GameName.toLowerCase();
-        var HasRole = member.roles.find(r => r.name == GameName);
+        var GameName  = GameName.toLowerCase();
+        var HasRole   = member.roles.find(r => r.name == GameName);
+        var HasExists = member.guild.roles.find(r => r.name == GameName);
 
+        if  (HasExists)  {
+          
         if  (member.presence.game.name == GameName)  {
 
             if  (!HasRole)  {
@@ -2446,6 +2449,16 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
           };
 
         };
+      
+        } else {
+          
+          member.guild.createRole({
+              name: GameName,
+              color: Blurple
+          }).catch(error => ErrorBag.add(error));
+          
+        };
+          
           
         });
       
@@ -3583,7 +3596,7 @@ if  (FunctioName.startsWith("join role"))  {
     message.guild.createRole({
     name: name,
     color: Blurple
-    });
+    }).catch(error => ErrorBag.add(error));
       
     InfoMessages.push(InfoIcon + " Created a role called **" + name + "** with the default Permissions for the **Join Role** function.");
 
@@ -3859,6 +3872,21 @@ if  (FunctioName.startsWith("notifications")) {
 }
   
 else
+  
+//Toggle Notifications
+if  (FunctioName.startsWith("game roles")) {
+        
+    if(peeky.serverData.get(keySF, "game_roles_bonus") == true) {peeky.serverData.set(keySF, false, "game_roles_bonus")}
+    else peeky.serverData.set(keySF, true, "game_roles_bonus");
+
+    if  (peeky.serverData.get(keySF, "game_roles_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Game Roles** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
 
 //Toggle Clear Nicknames
 if  (FunctioName.startsWith("clear nicknames")) {
@@ -3945,7 +3973,7 @@ if  (FunctioName.startsWith("streamer role"))  {
     message.guild.createRole({
     name: name,
     color: "#6441A4"
-    });
+    }).catch(error => ErrorBag.add(error));
       
     InfoMessages.push(InfoIcon + " Created a role called **" + name + "** with the default Permissions for the **Streamer Role** function.");
 
@@ -3990,7 +4018,7 @@ if  (FunctioName.startsWith("server trial"))  {
     message.guild.createRole({
     name: name,
     color: "#d3d3d3"
-    });
+    }).catch(error => ErrorBag.add(error));
       
     InfoMessages.push(InfoIcon + " Created a role called **" + name + "** with the default Permissions for the **Server server_trial** function.");
 
@@ -4366,7 +4394,7 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWo
 else
  
 //Set Game Roles
-if  (FunctioName.startsWith("game roles  "))  {
+if  (FunctioName.startsWith("game roles "))  {
   
 if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < BannedWordsLimit)  {
 
@@ -6229,7 +6257,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
         message.guild.createRole({
             name: MutedRole,
             color: "#943148"
-       });
+       }).catch(error => ErrorBag.add(error));
 
         InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "** with the default Permissions.");
 
