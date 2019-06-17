@@ -1107,7 +1107,7 @@ peeky.on('ready', () => {
     //DB
     dbl.postStats(peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to DB.") && ErrorBag.add(err));
   
-    setTimeout(() => {
+    setInterval(() => {
         peeky.user.setAvatar(RandomAvatars[Math.floor(Math.random()*RandomAvatars.length)]).catch(error => ErrorBag.add(error));
         console.log("Avatar changed.")
     }, 7200000);
