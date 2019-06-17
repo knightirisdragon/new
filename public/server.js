@@ -11,8 +11,8 @@ const DBL = require("dblapi.js");
 const dbl = new DBL(process.env.DBL_TOKEN, peeky);
 
 //BLS
-const BotList = require('botlist.space');
-const client = new BotList.Client({ id: "482945063282802698", botToken: process.env.BLS_TOKEN });
+//const BotList = require('botlist.space');
+//const bls = new BotList.Client({ id: "482945063282802698", botToken: process.env.BLS_TOKEN });
 
 //MUSIC
 const ytdl_discord = require('ytdl-core-discord');
