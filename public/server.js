@@ -161,6 +161,7 @@ const MaxServers            = 100;
 const AutoDeleteTime        = 250;
 const BackgroundInvLimit    = 25;
 const BannedWordsLimit      = 10;
+const GameRolesLimit        = 10;
 const InactiveWipe          = 1296000000; //15 Days
 const InactiveDays          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 
@@ -2429,16 +2430,16 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
       
         peeky.serverData.get(keySF, "game_roles_bonus_setting").forEach(GameName => {
 
-        var GameName  = GameName.toLowerCase();
-        var HasRole   = member.roles.find(r => r.name == GameName);
-        var HasExists = member.guild.roles.find(r => r.name == GameName);
+        var GameName   = GameName.toLowerCase();
+        var HasRole    = member.roles.find(r => r.name.toLowerCase() == GameName);
+        var RoleExists = member.guild.roles.find(r => r.name.toLowerCase() == GameName);
 
-        if  (HasExists)  {
+        if  (RoleExists)  {
           
         if  (member.presence.game.name.toLowerCase() == GameName)  {
 
             if  (!HasRole)  {
-                member.addRole(HasRole).catch(error => ErrorBag.add(error));
+                member.addRole(RoleExists).catch(error => ErrorBag.add(error));
                 console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
             };   
 
@@ -2448,7 +2449,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
         } else { 
 
           if  (HasRole)  {
-                member.removeRole(HasRole).catch(error => ErrorBag.add(error));
+                member.removeRole(RoleExists).catch(error => ErrorBag.add(error));
           };
 
         };
@@ -4405,9 +4406,9 @@ else
 //Set Game Roles
 if  (FunctioName.startsWith("game roles "))  {
   
-if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < BannedWordsLimit)  {
+if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < GameRolesLimit)  {
 
-    var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set game roles ")[1].toLowerCase(), "other", true);
+    var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set game roles ")[1], "other", true);
     peeky.serverData.get(keySF, "game_roles_bonus_setting").push(ReceivedArray);
 
     var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "game_roles_bonus_setting");
