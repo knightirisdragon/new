@@ -137,7 +137,8 @@ const RandomAvatars       = [  "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-b
                                "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_2.png?v=1560717937510",
                                "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_3.png?v=1560717937123",
                                "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_4.png?v=1560718338997",
-                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_5.png?v=1560719175930"
+                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_5.png?v=1560719175930",
+                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_6.png?v=1560761852352"
                             ];
 const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw", "https://www.youtube.com/watch?v=N6hF3EaICxk", "https://www.youtube.com/watch?v=NU3aCNQAqwc", 
                                "https://www.youtube.com/watch?v=K3Qzzggn--s", "https://www.youtube.com/watch?v=PEBS2jbZce4", "https://www.youtube.com/watch?v=8Vlej7QUGGE", 
@@ -1094,7 +1095,7 @@ fetch('https://peeky.glitch.me/staff.txt')
 
 peeky.on('ready', () => {
 
-	  console.log('Ready.');
+	  console.log("Ready.");
 
     //DDB
     ddbl.postStats(peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to DDB.") && ErrorBag.add(err));
@@ -1104,6 +1105,7 @@ peeky.on('ready', () => {
   
     setTimeout(() => {
         peeky.user.setAvatar(RandomAvatars[Math.floor(Math.random()*RandomAvatars.length)]).catch(error => ErrorBag.add(error));
+        console.log("Avatar changed.")
     }, 7200000);
   
 });
