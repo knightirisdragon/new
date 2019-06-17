@@ -1137,7 +1137,7 @@ peeky.on('message', async (message) => {
         UserID: message.author.id,
         OverviewID: null,
         lastSeen: new Date(),
-        DailyRewarded: new Date(),
+        DailyRewarded: 0,
 
         Background: 1,
         Description: function_RandomDescription(),
