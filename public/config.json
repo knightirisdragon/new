@@ -1,5 +1,5 @@
 {
-"default_prefix": "!p",  
+"default_prefix": "p!",  
 "server_limit": 100, 
 
 "event_status": false,
