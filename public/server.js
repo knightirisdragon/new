@@ -233,6 +233,7 @@ const EmbedColor         = 3093047;
 const BackgroundInvLimit = 25;
 const BannedWordsLimit   = 10;
 const GameRolesLimit     = 10;
+const AutoDeleteTime     = 250;
 
 //WEBSITE
 const http    = require('http');
@@ -618,7 +619,7 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground330.png?v=1560703323947", 500, "Nuke", "Counter Strike Global Offensive", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground331.png?v=1560768909337", 200, "Creeper Buddy", "Not credited", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground332.png?v=1560768910957", 500, "Flare Abyss", "The Division", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_1.png?v=1560717936708", Exclusive, "TEST", "TEST", undefined]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground333.png?v=1560777175191", Exclusive, "First Year", "Vojtěch Jílovec", undefined]
 
 ];
 
@@ -1492,7 +1493,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
           };
       
           var FixedPrice    = background_info[1];
-          var CommandString = "Cannot buy"
+          var CommandString = Prefix + 'setbackground ' + Current;
 
           if  (FixedPrice !== Exclusive)  {
               FixedPrice    = FixedPrice.toLocaleString('en') + " Gredit";
@@ -3392,8 +3393,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eventre
     if  (OngoingEvent == true && peeky.userData.get(key, "CelebratorBadge") == false)  {
       
         peeky.userData.set(key, true, "CelebratorBadge");
+        peeky.userData.get(key, true, "Inventory").push(333);
       
-        const embed = {"description": SuccessIcon + " You have received the special **Celebrator** badge!",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have received the event rewards!",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     };
@@ -4946,7 +4948,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
     peeky.userData.set(key, 0, "VotesToday");
       
     //Reward
-    InfoMessages.push(SuccessIcon + " Here's your daily reward!");
+    InfoMessages.push(SuccessIcon + " Here's your daily reward, a chest!");
     peeky.userData.math(key, "+", 1, "Chests");
       
     //Vote DBL
