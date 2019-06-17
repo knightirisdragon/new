@@ -4572,7 +4572,7 @@ for(var i = 1; i <= Banners.length; i++) {
   
 if  (message.content == peeky.serverData.get(keySF, "prefix") + "buybackground " + i)  {
   
-if  (i !== 1 && i[2] !== Exclusive)  {
+if  ((i !== 1) && (Banners[i - 1][Banner.Price] !== Exclusive))  {
   
 if  (!peeky.userData.get(key, "Inventory").includes(i))  {
   
@@ -4615,12 +4615,12 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
   
 }
   
-  else { 
-         const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-         break;
-      };
+else {
+      const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  
+      break;
+};
   
 }
   else { 
@@ -4628,7 +4628,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
          break;
-      };
+};
   
 }
   else { 
@@ -4636,7 +4636,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
          break;
-      };
+};
 
 };
 };
@@ -4753,7 +4753,7 @@ if  (i !== 1)  {
     var FinalPrice       = Banners[i - 1][Banner.Price];
     var i                = Number(i);
   
-    if  (isNaN(FinalPrice))  {
+    if  (FinalPrice = Exclusive)  {
         FinalPrice = 0;
     } else {
         FinalPrice = Math.round(FinalPrice / SellMultiplier);
@@ -5225,7 +5225,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
         var CustomBackgroundAmount = 1;
     } else {  var CustomBackgroundAmount = 0;  };
 
-    peeky.userData.get(key2, "Inventory").filter(i => i[1] > 0).slice(0, BackgroundInvLimit).forEach(banner => {
+    peeky.userData.get(key2, "Inventory").filter(i => i[1] !== Exclusive).slice(0, BackgroundInvLimit).forEach(banner => {
         Current ++;
         FixedBackgrounds.push(Banners[banner - 1][2] + " (" + banner + ")");
     });
