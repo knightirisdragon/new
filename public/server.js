@@ -98,26 +98,19 @@ const PainterImage      = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602
 const MinerImage        = "http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2FMiner.png?1559015350668";
 const BoosterImage      = "http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbooster.png?v=1560691400942";
 
-const DefaultFont = "Verdana";//"Verdana";
-const Dark        = "#36393E";
-const LessDark    = "#3f3f3f";
-const Light       = "#424549";
-const Blurple     = "#7289DA";
-
 //Config
-const Config = require("./config.json");
+const Config                = require("./config.json");
 const OngoingEvent          = Config.event_status;
 const Prefix                = Config.default_prefix;
-const CustomBackgroundPrice = 1000;
-const SellMultiplier        = 2.5;
-const ExpNeeded             = 125; //Times the current level.
-const MaxServers            = 100;
-const InactiveWipe          = 1296000000; //15 Days
+const CustomBackgroundPrice = Config.custom_background;
+const SellMultiplier        = Config.sell_multiplier;
+const ExpNeeded             = Config.exp_multiplier;
+const MaxServers            = Config.server_limit;
+const InactiveWipe          = Config.autowipe_time;
 const InactiveDays          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 
 //Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
-const NumberEmojis        = [  "1⃣", "2⃣", "3⃣", "4⃣", "5⃣"  ];
 const blacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const whitelistedSymbols  = [  "a", "á", "b", "c", "č", "d", "ď", "e", "é", "ě", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "ň", "o", "ó", "p", "q", "r", "ř", "s", "š", "t", "u", "ů", "ú", "v", "w", "x", "y", "ý", "z", "ž", "0", "1", "2", "3", "4", "6", "5", "7", "8", "9", "_", "-", " ", ",", ".", "'", '"', "(", ")", "[", "]"  ];
 const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
@@ -137,8 +130,7 @@ const RandomAvatars       = [  "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-b
                                "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_2.png?v=1560717937510",
                                "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_3.png?v=1560717937123",
                                "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_4.png?v=1560718338997",
-                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_5.png?v=1560719175930",
-                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_6.png?v=1560761852352"
+                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_5.png?v=1560719175930"
                             ];
 const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw", "https://www.youtube.com/watch?v=N6hF3EaICxk", "https://www.youtube.com/watch?v=NU3aCNQAqwc", 
                                "https://www.youtube.com/watch?v=K3Qzzggn--s", "https://www.youtube.com/watch?v=PEBS2jbZce4", "https://www.youtube.com/watch?v=8Vlej7QUGGE", 
@@ -227,10 +219,15 @@ const RandomString  = "random";
 const BadFormat     = "invalid";
 
 //Other Variables
-const EmbedColor = 3093047;
-const BackgroundInvLimit    = 25;
-const BannedWordsLimit      = 10;
-const GameRolesLimit        = 10;
+const DefaultFont        = "Verdana";
+const Dark               = "#36393E";
+const LessDark           = "#3f3f3f";
+const Light              = "#424549";
+const Blurple            = "#7289DA";
+const EmbedColor         = 3093047;
+const BackgroundInvLimit = 25;
+const BannedWordsLimit   = 10;
+const GameRolesLimit     = 10;
 
 //WEBSITE
 const http    = require('http');
