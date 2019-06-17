@@ -1857,7 +1857,9 @@ if  (peeky.guilds.size > MaxServers)  {
         stream_announcements_bonus: false,
         stream_announcements_bonus_setting: "twitch",
         role_saver_bonus: false,
-        role_saver_array: []
+        role_saver_array: [],
+        game_roles_bonus: false,
+        game_roles_bonus_setting: []
     });
   
 };
@@ -2411,6 +2413,41 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
             };
   
         };
+  
+    };
+      
+};
+
+//Game Roles
+if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
+  
+    if  (!newMember.user.bot && newMember.presence.game !== null)  {
+      
+    if  ()
+      
+        const member  = newMember;
+        var   Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
+      
+        peeky.serverData.get(keySF, "game_roles_bonus_setting").forEach(GameName => {
+          
+        var HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
+          
+        if  (member.presence.game.name == GameName)  {
+
+            if  (!HasRole)  {
+                member.addRole(GuildRole).catch(error => ErrorBag.add(error));
+                console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
+            };            
+
+        } else { 
+
+            if  (HasRole)  {
+                member.removeRole(GuildRole).catch(error => ErrorBag.add(error));
+            };
+
+        };
+          
+        });
   
     };
       
