@@ -2357,18 +2357,18 @@ const member  = newMember;
 //Streamer Role
 if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
   
-    if  (!newMember.user.bot)  {
+    if  (!member.user.bot)  {
 
         var   HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
         var   GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
 
-        if  (newMember.presence.game !== null && newMember.presence.game.streaming == true)  {
+        if  (member.presence.game !== null && member.presence.game.streaming == true)  {
 
-        if  (!HasRole && !CurrentlyStreaming.has(newMember.user.id + newMember.guild.id + "SR"))  {
-             newMember.addRole(GuildRole).catch(error => ErrorBag.add(error));
+        if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
+             member.addRole(GuildRole).catch(error => ErrorBag.add(error));
                   
-             CurrentlyStreaming.add(newMember.user.id + newMember.guild.id + "SR");
-             setTimeout(() => {CurrentlyStreaming.delete(newMember.user.id + newMember.guild.id + "SR")}, 300000);
+             CurrentlyStreaming.add(member.user.id + member.guild.id + "SR");
+             setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 300000);
 
              console.log("The Streamer Role function has been triggered in " + member.guild.name + ".");
         };
@@ -2388,13 +2388,13 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
 //Stream Announcements
 if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
   
-    if  (!newMember.user.bot && !CurrentlyStreaming.has(newMember.user.id + newMember.guild.id + "SA2"))  {
+    if  (!member.user.bot && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SA2"))  {
 
         var   Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));    
 
         if  (Channel)  {
       
-            if  (newMember.presence.game !== null && newMember.presence.game.streaming == true)  {
+            if  (member.presence.game !== null && member.presence.game.streaming == true)  {
 
                 if  (oldMember.presence.game !== null && oldMember.presence.game.streaming == true)  {
                     var AlreadyStreaming = true;
@@ -2402,8 +2402,8 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
                 if  (AlreadyStreaming !== true)  {
                   
-                    CurrentlyStreaming.add(newMember.user.id + newMember.guild.id + "SA2");
-                    setTimeout(() => {CurrentlyStreaming.delete(newMember.user.id + newMember.guild.id + "SA2")}, 300000);
+                    CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
+                    setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 300000);
                   
                     const embed = {  "description": "­ \n **Name:** " + member.presence.game.name + " \n **Link:** " + member.presence.game.url + " \n\n ­",  "color": 6570404,  "image": {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fheader.jpg"  },  "author": {  "name": Function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on Twitch!",  "icon_url": member.user.displayAvatarURL  }  };
                     Channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -2422,7 +2422,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 //Game Roles
 if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
   
-    if  (!newMember.user.bot && newMember.presence.game !== null && !RoleCooldown.has(member.guild.id + member.user.id))  {
+    if  (!member.user.bot && member.presence.game !== null && !RoleCooldown.has(member.guild.id + member.user.id))  {
 
     if  (member.guild.me.hasPermission('MANAGE_ROLES'))  {
       
