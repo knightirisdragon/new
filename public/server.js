@@ -2351,12 +2351,13 @@ const keySF = `${newMember.guild.id}`;
 //FUNCTIONS
 if  (peeky.serverData.has(keySF))  {
 
+const member  = newMember;
+
 //Streamer Role
 if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
   
     if  (!newMember.user.bot)  {
 
-        const member = newMember;
         var   HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
         var   GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
 
@@ -2387,8 +2388,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
 if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
   
     if  (!newMember.user.bot && !CurrentlyStreaming.has(newMember.user.id + newMember.guild.id + "SA2"))  {
-      
-        const member  = newMember;
+
         var   Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));    
 
         if  (Channel)  {
@@ -2423,32 +2423,33 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
   
     if  (!newMember.user.bot && newMember.presence.game !== null)  {
       
-    if  ()
+    if  (member.guild.me.hasPermission('MANAGE_ROLES'))  {
       
-        const member  = newMember;
         var   Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
       
         peeky.serverData.get(keySF, "game_roles_bonus_setting").forEach(GameName => {
-          
-        var HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
-          
-        if  (member.presence.game.name == GameName)  {
 
-            if  (!HasRole)  {
-                member.addRole(GuildRole).catch(error => ErrorBag.add(error));
-                console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
-            };            
+        var HasRole = member.roles.find(r => r.name == GameName);
 
-        } else { 
+            if  (member.presence.game.name == GameName)  {
 
-            if  (HasRole)  {
-                member.removeRole(GuildRole).catch(error => ErrorBag.add(error));
+                if  (!HasRole)  {
+                    member.addRole(GuildRole).catch(error => ErrorBag.add(error));
+                    console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
+                };            
+
+            } else { 
+
+                if  (HasRole)  {
+                    member.removeRole(GuildRole).catch(error => ErrorBag.add(error));
+                };
+
             };
-
-        };
           
         });
-  
+      
+  }  
+      
     };
       
 };
@@ -4055,8 +4056,6 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
       
 //Set Welcome Messages
 if  (FunctioName.startsWith("welcome messages "))  {
-  
-  if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
 
   var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set welcome messages ")[1];
   var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
@@ -4065,14 +4064,6 @@ if  (FunctioName.startsWith("welcome messages "))  {
       
   const embed = {"description": SuccessIcon + " The **Welcome Messages** setting has been set to **#­" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting")+ "**.",  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-
-  }
-   else
-  {
-   const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
-   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  };
   
 }
   
@@ -4335,8 +4326,6 @@ else
 
 //Set Message Log
 if  (FunctioName.startsWith("message log "))  {
-  
-  if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
     
   var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set message log ")[1];
   var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
@@ -4346,21 +4335,12 @@ if  (FunctioName.startsWith("message log "))  {
   const embed = {"description": SuccessIcon + " The **Message Log** setting has been set to **#­" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "**.",  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-  }
-   else
-  {
-    const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  };
-
 }
   
 else
 
 //Set Message Log
 if  (FunctioName.startsWith("stream announcements "))  {
-  
-  if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
     
   var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set stream announcements ")[1];
   var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
@@ -4370,34 +4350,18 @@ if  (FunctioName.startsWith("stream announcements "))  {
   const embed = {"description": SuccessIcon + " The **Stream Announcements** setting has been set to **#­" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "**.",  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-  }
-   else
-  {
-    const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  };
-
 }
   
 else
 
 //Set Clear Nicknames
 if  (FunctioName.startsWith("clear nicknames "))  {
-  
-  if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
    
   var NewSetting = message.content.split(peeky.serverData.get(keySF, "prefix") + "set clear nicknames ")[1];
   peeky.serverData.set(keySF, Function_RemoveFormatting(NewSetting, "other"), "clear_nicknames_bonus_setting", true);
 
   const embed = {"description": SuccessIcon + " The **Clear Nicknames** setting has been set to **" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "**.",  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-  }
-   else
-  {
-    const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  };
 
 }
   
@@ -4430,8 +4394,6 @@ else
  
 //Set Banned Words
 if  (FunctioName.startsWith("banned words "))  {
-
-if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
 if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWordsLimit)  {
 
@@ -4450,6 +4412,28 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWo
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
+}
+  
+else
+ 
+//Set Game Roles
+if  (FunctioName.startsWith("game roles  "))  {
+  
+if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < BannedWordsLimit)  {
+
+    var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set game roles ")[1], "other", true);
+    peeky.serverData.get(keySF, "game_roles_bonus_setting").push(ReceivedArray);
+
+    var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "game_roles_bonus_setting");
+  
+    const embed = {"description": SuccessIcon + " The **Game Roles** setting has been set to **" + FixedArray.join("**, **") + EndString + "**.",  "color": EmbedColor}; 
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  
+}
+ else
+{
+ const embed = {"description": ErrorIcon + " The setting for the **Game Roles** function is full.",  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 }
@@ -4458,7 +4442,7 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWo
  const embed = {"description": ErrorMessage10[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
-  
+
 }
  else
 {
@@ -4474,24 +4458,39 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "clear "
     var FunctioName = message.content.split(peeky.serverData.get(keySF, "prefix") + "clear ")[1];
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+
+if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
  
 //Clear Banned Words
 if  (FunctioName.startsWith("banned words"))  {
-
-if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
       
      peeky.serverData.set(keySF, [], "banned_words_bonus_setting");
   
      const embed = {"description": SuccessIcon + " Cleared the setting for the **Banned Words** function.",  "color": EmbedColor};
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
+}
 
-};
+else
+  
+if  (FunctioName.startsWith("banned words"))  {
+      
+     peeky.serverData.set(keySF, [], "banned_words_bonus_setting");
+  
+     const embed = {"description": SuccessIcon + " Cleared the setting for the **Banned Words** function.",  "color": EmbedColor};
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
  else
 {
  const embed = {"description": ErrorMessage10[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+ else
+{
+ const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
