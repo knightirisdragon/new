@@ -2421,8 +2421,8 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 //Game Roles
 if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
   
-    if  (!newMember.user.bot && newMember.presence.game !== null)  {
-      
+    if  (!newMember.user.bot && newMember.presence.game !== null && !RoleCooldown.has(member.guild.id + member.user.id))  {
+
     if  (member.guild.me.hasPermission('MANAGE_ROLES'))  {
       
         var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
@@ -2435,27 +2435,36 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 
         if  (HasExists)  {
           
-        if  (member.presence.game.name == GameName)  {
+        if  (member.presence.game.name.toLowerCase() == GameName)  {
 
             if  (!HasRole)  {
-                member.addRole(GuildRole).catch(error => ErrorBag.add(error));
+                member.addRole(HasRole).catch(error => ErrorBag.add(error));
                 console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
-            };            
+            };   
+
+            RoleCooldown.add(member.guild.id + member.user.id);
+            setTimeout(() => {RoleCooldown.delete(member.guild.id + member.user.id)}, RoleCooldownMS);         
 
         } else { 
 
           if  (HasRole)  {
-                member.removeRole(GuildRole).catch(error => ErrorBag.add(error));
+                member.removeRole(HasRole).catch(error => ErrorBag.add(error));
           };
 
         };
       
         } else {
           
-          member.guild.createRole({
-              name: GameName,
-              color: Blurple
-          }).catch(error => ErrorBag.add(error));
+          if  (!RoleCooldown.has(member.guild.id))  {
+
+              member.guild.createRole({
+              name: GameName
+              }).catch(error => ErrorBag.add(error));
+
+              RoleCooldown.add(member.guild.id);
+              setTimeout(() => {RoleCooldown.delete(member.guild.id)}, RoleCooldownMS);
+
+          };
           
         };
           
