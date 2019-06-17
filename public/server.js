@@ -1491,12 +1491,15 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
             var RevenueString = "";
           };
       
-          var FixedPrice = background_info[1];
+          var FixedPrice    = background_info[1];
+          var CommandString = "Cannot buy"
+
           if  (FixedPrice !== Exclusive)  {
-              FixedPrice = FixedPrice.toLocaleString('en') + " Gredit";
+              FixedPrice    = FixedPrice.toLocaleString('en') + " Gredit";
+              CommandString = Prefix + 'buybackground ' + Current;
           };
       
-          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + FixedPrice + ' ' + RevenueString + '  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>';
+          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + FixedPrice + ' ' + RevenueString + '  </font>  <br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
     
           BackgroundList.push(BackgroundString);
 
