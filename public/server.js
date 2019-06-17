@@ -4787,7 +4787,7 @@ if  (i !== 1)  {
 }
  else
 {
-  if  (peeky.userData.get(key, "Inventory").filter(i => i[1] > 0).length > 1)  {
+  if  (peeky.userData.get(key, "Inventory").filter(i => Banners[i - 1][Banner.Price] !== Exclusive).length > 1)  {
   
   if (!ProfileCooldown.has(message.author.id)) {
       
@@ -4798,7 +4798,7 @@ if  (i !== 1)  {
       var CurrentBackground = 0;
       var FullPrice         = 0;
     
-      peeky.userData.get(key, "Inventory").filter(i => i[1] > 0).forEach(i => {
+      peeky.userData.get(key, "Inventory").filter(i => Banners[i - 1][Banner.Price] !== Exclusive).forEach(i => {
           FullPrice += Math.round(Banners[i - 1][Banner.Price] / SellMultiplier);        
       });
 
@@ -5216,7 +5216,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     var InventoryWorth = 0;
     var Current = 0;
       
-    peeky.userData.get(key2, "Inventory").forEach(banner => {
+    peeky.userData.get(key2, "Inventory").filter(i => Banners[i - 1][Banner.Price] !== Exclusive).forEach(banner => {
         InventoryWorth += Banners[banner - 1][1] / SellMultiplier;
     });
       
@@ -5225,7 +5225,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
         var CustomBackgroundAmount = 1;
     } else {  var CustomBackgroundAmount = 0;  };
 
-    peeky.userData.get(key2, "Inventory").filter(i => i[1] !== Exclusive).slice(0, BackgroundInvLimit).forEach(banner => {
+    peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
         Current ++;
         FixedBackgrounds.push(Banners[banner - 1][2] + " (" + banner + ")");
     });
