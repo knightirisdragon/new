@@ -1476,11 +1476,13 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     WebsiteCooldowns.add("backgrounds");
     setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 600000);
 
-    const BackgroundList     = [];
-    const FeaturedList       = [];
-    const CheapBackgrounds   = [];
-    const RevenueBackgrounds = [];
-    var   Current            = 0;
+    const BackgroundList       = [];
+    const FeaturedList         = [];
+    const CheapBackgrounds     = [];
+    const RevenueBackgrounds   = [];
+    const ExclusiveBackgrounds = [];
+    var   Current              = 0;            
+    var   Fillers              = 0;
 
     Banners.forEach(background_info => {
 
@@ -1506,8 +1508,8 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
 
           if  (Current == peeky.userData.get(OwnerId, "Background"))  {
               FeaturedList.push(BackgroundString);
-            
-              var Fillers = 0;
+
+              Fillers = 0;
               while (Fillers < 99)  {
               	    Fillers ++;
                     FeaturedList.push('<div class="filler">  <img src="' + DarkField + '"  width="500" height="300" class="background_image">  </div>')
@@ -1519,14 +1521,25 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
               CheapBackgrounds.push(BackgroundString);
           };
 
-          if  (background_info[4] !== undefined  )  {
+          if  (background_info[4] !== undefined)  {
               RevenueBackgrounds.push(BackgroundString);
+          };
+
+          if  (background_info[1] == Exclusive)  {
+              ExclusiveBackgrounds.push(BackgroundString);
           };
     
     });
 
+    Fillers = 100 - ExclusiveBackgrounds.length;
+    if  (ExclusiveBackgrounds.length < 100)  {
+        while (Fillers > 0)  {
+            Fillers --;
+            ExclusiveBackgrounds.push('<div class="filler">  <img src="' + DarkField + '"  width="500" height="300" class="background_image">  </div>')
+        };
+    };
 
-    await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>" + "<div id='sort_cheap'> " + CheapBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_revenue'> " + RevenueBackgrounds.reverse().join(" ") + " </div>", (err) => {
+    await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>" + "<div id='sort_cheap'> " + CheapBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_revenue'> " + RevenueBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_exclusive'> " + ExclusiveBackgrounds.reverse().join(" ") + " </div>", (err) => {
         if (err) console.log(err);
     });
 
