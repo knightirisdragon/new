@@ -1493,6 +1493,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
           if  (isNaN(FixedPrice))  {
               FixedPrice = FixedPrice.toLocaleString('en');
           };
+          FixedPrice = FixedPrice + " Gredit";
       
           var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + FixedPrice + ' Gredit  ' + RevenueString + '  </font>  <br>  <font size="1" color="lightgray"> ' + Prefix + 'buybackground ' + Current + '</font></b> </div>  </div>  </div>';
     
@@ -1544,10 +1545,11 @@ if  (!WebsiteCooldowns.has("workshop"))  {
         if  (isNaN(FixedPrice))  {
             FixedPrice = FixedPrice.toLocaleString('en');
         };
+        FixedPrice = FixedPrice + " Gredit";
           
         if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.reactions.find(r => r.emoji.id == DefaultUpvote) && m.reactions.find(r => r.emoji.id == DefaultDownvote) && m.attachments.size > 0 && m.content.includes("Name: ") && m.content.includes("Credit: ") && m.content.includes("Price: "))  {
         
-            var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500" height="300" class="background_image">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + m.content.split("\n")[0].replace("Name: ", "") + '  </font>  <br>  <font size="2" color="lightgray">  ' + m.content.split("\n")[1].replace("Credit: ", "") + '  </font>  <br><br>  <font size="2">  ~ ' + FixedPrice + ' Gredit  </font>  <br>  <font size="1" color="lightgreen">  ' + (m.reactions.find(r => r.emoji.id == DefaultUpvote).count - 1) + '  Upvotes</font>  <font size="1">🞄</font>  <font size="1" color="pink">  ' + (m.reactions.find(r => r.emoji.id == DefaultDownvote).count - 1) + '  Downvotes</font>   </b>  </div>  </div>';
+            var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500" height="300" class="background_image">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + m.content.split("\n")[0].replace("Name: ", "") + '  </font>  <br>  <font size="2" color="lightgray">  ' + m.content.split("\n")[1].replace("Credit: ", "") + '  </font>  <br><br>  <font size="2">  ~ ' + FixedPrice + ' </font>  <br>  <font size="1" color="lightgreen">  ' + (m.reactions.find(r => r.emoji.id == DefaultUpvote).count - 1) + '  Upvotes</font>  <font size="1">🞄</font>  <font size="1" color="pink">  ' + (m.reactions.find(r => r.emoji.id == DefaultDownvote).count - 1) + '  Downvotes</font>   </b>  </div>  </div>';
             WorkshopList.push(BackgroundString);
 
         };
@@ -4575,7 +4577,7 @@ for(var i = 1; i <= Banners.length; i++) {
   
 if  (message.content == peeky.serverData.get(keySF, "prefix") + "buybackground " + i)  {
   
-if  (i !== 1) {
+if  (i !== 1 && i[2] > 0) {
   
 if  (!peeky.userData.get(key, "Inventory").includes(i))  {
   
@@ -4635,7 +4637,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
   
 }
   else { 
-         const embed = {"description": ErrorIcon + " You cannot buy the default background.", "color": EmbedColor}; 
+         const embed = {"description": ErrorIcon + " You cannot buy the default and exclusive backgrounds.", "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
          break;
@@ -4756,23 +4758,27 @@ if  (i !== 1)  {
     var BackgroundIndex  = peeky.userData.get(key, "Inventory").indexOf(i);
     var FinalPrice       = Math.round(Banners[i - 1][Banner.Price] / SellMultiplier);
   
-    peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
-    peeky.userData.math(key, "+", Banners[i - 1][Banner.Price], "Gredit");
-
-    if  (i == peeky.userData.get(key, "Background"))  {
-      
-        peeky.userData.set(key, 1, "Background");
-        InfoMessages.push(InfoMessage2[0]);
-
+    if  (isNaN(FinalPrice))  {
+        FinalPrice = 0;
     };
 
-      const embed = {"description": SuccessIcon + " You have sold the **" + Banners[i - 1][Banner.Name] + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
+        peeky.userData.math(key, "+", FinalPrice, "Gredit");
+
+        if  (i == peeky.userData.get(key, "Background"))  {
+
+            peeky.userData.set(key, 1, "Background");
+            InfoMessages.push(InfoMessage2[0]);
+
+        };
+
+        const embed = {"description": SuccessIcon + " You have sold the **" + Banners[i - 1][Banner.Name] + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
     }
      else
     {
-      const embed = {"description": ErrorIcon + " You cannot sell the default background.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " You cannot sell the default and exclusive backgrounds.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -4786,7 +4792,7 @@ if  (i !== 1)  {
 }
  else
 {
-  if  (peeky.userData.get(key, "Inventory").length > 1)  {
+  if  (peeky.userData.get(key, "Inventory").filter(i => i[1] > 0).length > 1)  {
   
   if (!ProfileCooldown.has(message.author.id)) {
       
@@ -4797,7 +4803,7 @@ if  (i !== 1)  {
       var CurrentBackground = 0;
       var FullPrice         = 0;
     
-      peeky.userData.get(key, "Inventory").forEach(i => {
+      peeky.userData.get(key, "Inventory").filter(i => i[1] > 0).forEach(i => {
           FullPrice += Math.round(Banners[i - 1][Banner.Price] / SellMultiplier);        
       });
 
@@ -5095,7 +5101,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
           
         if  (peeky.userData.get(key, "Inventory").includes(DonatedAmount))  {
           
-        if  (DonatedAmount !== 1)  {
+        if  (DonatedAmount !== 1 && DonatedAmount > 0)  {
 
         var BackgroundIndex = peeky.userData.get(key, "Inventory").indexOf(DonatedAmount);
 
@@ -5114,7 +5120,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         }
          else
         {
-         const embed = {"description": ErrorIcon + " You cannot gift the default background.",  "color": EmbedColor}; 
+         const embed = {"description": ErrorIcon + " You cannot gift the default and exclusive backgrounds.",  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
@@ -5224,7 +5230,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
         var CustomBackgroundAmount = 1;
     } else {  var CustomBackgroundAmount = 0;  };
 
-    peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
+    peeky.userData.get(key2, "Inventory").filter(i => i[1] > 0).slice(0, BackgroundInvLimit).forEach(banner => {
         Current ++;
         FixedBackgrounds.push(Banners[banner - 1][2] + " (" + banner + ")");
     });
