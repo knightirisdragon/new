@@ -2877,8 +2877,8 @@ peeky.on("messageDelete", async (message) => {
 if  (message)  {
   
 //Workshop Response
-if  (message.channel.id == WorkshopChannel && message.author.id !== PeekyId)  {
-    const embed = {"description": ErrorIcon + " Your submission in the Workshop has been removed.",  "color": EmbedColor}; 
+if  (message.channel.id == WorkshopChannel && message.author.id == OwnerId)  {
+    const embed = {"description": ErrorIcon + " Your submission in the Workshop has been denied.",  "color": EmbedColor}; 
     message.author.send({ embed }).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
 };
   
