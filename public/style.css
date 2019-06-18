@@ -253,7 +253,7 @@ a.button:hover {
 }
 
 .peeky_icon:hover  {
-    transform: scale(0.95);
+    transform: scale(0.99);
 }
 
 .thumbnail  {
@@ -330,11 +330,10 @@ th, td {
 }
 
 .line {
-    padding: 2px;
+    padding: 1px;
     width: 100%;
-    right: 5px;
-    background-color: rgba(114, 137, 218, 0.5);
-    border-radius: 25px;
+    background-color: rgba(114, 137, 218, 1);
+    border-radius: 50px;
 
 }
 

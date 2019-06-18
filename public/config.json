@@ -7,5 +7,7 @@
   
 "custom_background": 1000,
 "sell_multiplier": 2.5,
-"exp_multiplier": 125
+"exp_multiplier": 125,
+  
+"short_description": "PEEKY is a fancy Discord bot that comes with alot of functions, a music player, moderation commands and a rich profile system!"
 }
