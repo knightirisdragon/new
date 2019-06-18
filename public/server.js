@@ -119,40 +119,80 @@ const blacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch
 const whitelistedSymbols  = [  "a", "á", "b", "c", "č", "d", "ď", "e", "é", "ě", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "ň", "o", "ó", "p", "q", "r", "ř", "s", "š", "t", "u", "ů", "ú", "v", "w", "x", "y", "ý", "z", "ž", "0", "1", "2", "3", "4", "6", "5", "7", "8", "9", "_", "-", " ", ",", ".", "'", '"', "(", ")", "[", "]"  ];
 const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
 
-const DefaultDescriptions = [  "I'm very busy and important.", "I sip water quite slowly.", "Battery low, I'm scared.",
-                               "I have a car for each day of the month.", "I make up a dream in my head before I go to bed.", "My life is a green screen.",
-                               "I don't believe in showers.", "Certified troublemaker.", "I'm a Bacon Guru.",
-                               "Smarter than a 5th grader.", "I took an arrow to the knee.", "Pikachu chooses me.",
-                               "I'm real, I hope my followers are too.", "I have invincible minions.", "Is this water dry?",
-                               "I yell at inanimate objects.", "I sneak drinks into movie theatres.", "I hide my sweat well.",
-                               "I unleashed the zombie apocalypse.", "I'm a very mysterious person.", "I am so funny.",
-                               "I slapped a chicken once.", "I don't know what alt-tab does.", "Hitting things to make them work.",
-                               "I put fries into my straw.", "I walk faster when I see a creepy van.", "More than meets the eye.",
-                               "I draw on fogged up windows.", "Born at a very young age."
+const DefaultDescriptions = [  "I'm very busy and important.",
+                               "I sip water quite slowly.",
+                               "Battery low, I'm scared.",
+                               "I have a car for each day of the month.",
+                               "I make up a dream in my head before I go to bed.", "My life is a green screen.",
+                               "I don't believe in showers.",
+                               "Certified troublemaker.",
+                               "I'm a Bacon Guru.",
+                               "Smarter than a 5th grader.",
+                               "I took an arrow to the knee.",
+                               "Pikachu chooses me.",
+                               "I'm real, I hope my followers are too.",
+                               "I have invincible minions.",
+                               "Is this water dry?",
+                               "I yell at inanimate objects.",
+                               "I sneak drinks into movie theatres.",
+                               "I hide my sweat well.",
+                               "I unleashed the zombie apocalypse.",
+                               "I'm a very mysterious person.",
+                               "I am so funny.",
+                               "I slapped a chicken once.",
+                               "I don't know what alt-tab does.",
+                               "Hitting things to make them work.",
+                               "I put fries into my straw.",
+                               "I walk faster when I see a creepy van.",
+                               "More than meets the eye.",
+                               "I draw on fogged up windows.",
+                               "Born at a very young age."
                             ];
 const RandomAvatars       = [  "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_1.png?v=1560717936708",
                                "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_2.png?v=1560717937510",
-                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_3.png?v=1560717937123",
-                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_4.png?v=1560718338997",
-                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_5.png?v=1560719175930"
+                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_3.png?v=1560717937123"
                             ];
-const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw", "https://www.youtube.com/watch?v=N6hF3EaICxk", "https://www.youtube.com/watch?v=NU3aCNQAqwc", 
-                               "https://www.youtube.com/watch?v=K3Qzzggn--s", "https://www.youtube.com/watch?v=PEBS2jbZce4", "https://www.youtube.com/watch?v=8Vlej7QUGGE", 
-                               "https://www.youtube.com/watch?v=k92Bgqz-p_8", "https://www.youtube.com/watch?v=R_N15egKj6c", "https://www.youtube.com/watch?v=-WpnPSChVRQ",
-                               "https://www.youtube.com/watch?v=ktvTqknDobU", "https://www.youtube.com/watch?v=pXRviuL6vMY", "https://www.youtube.com/watch?v=UprcpdwuwCg",
-                               "https://www.youtube.com/watch?v=L3wKzyIN1yk", "https://www.youtube.com/watch?v=PHgc8Q6qTjc", "https://www.youtube.com/watch?v=I-sH53vXP2A",
-                               "https://www.youtube.com/watch?v=FTQbiNvZqaY", "https://www.youtube.com/watch?v=1vrEljMfXYo", "https://www.youtube.com/watch?v=V5XOwWOAQBQ",
-                               "https://www.youtube.com/watch?v=bl0e5DrYLyY", "https://www.youtube.com/watch?v=jjjaU5kQV8k", "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                               "https://www.youtube.com/watch?v=P5QbkjnCvl4", "https://www.youtube.com/watch?v=i7fnlJ60RO8", "https://www.youtube.com/watch?v=oY9m2sHQwLs",
-                               "https://www.youtube.com/watch?v=eVTXPUF4Oz4", "https://www.youtube.com/watch?v=fPO76Jlnz6c", "https://www.youtube.com/watch?v=PVjiKRfKpPI",
-                               "https://www.youtube.com/watch?v=DKL4X0PZz7M", "https://www.youtube.com/watch?v=gUcisIlT7sM", "https://www.youtube.com/watch?v=ytWz0qVvBZ0",
-                               "https://www.youtube.com/watch?v=G_Nl5xDNXIs", "https://www.youtube.com/watch?v=t_q1SDzeCqo", "https://www.youtube.com/watch?v=hbrpmQ09juQ",
-                               "https://www.youtube.com/watch?v=YWN81V7ojOE", "https://www.youtube.com/watch?v=pcSLtIYLbLQ", "https://www.youtube.com/watch?v=6okxuiiHx2w"
+const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw",
+                               "https://www.youtube.com/watch?v=N6hF3EaICxk",
+                               "https://www.youtube.com/watch?v=NU3aCNQAqwc", 
+                               "https://www.youtube.com/watch?v=K3Qzzggn--s",
+                               "https://www.youtube.com/watch?v=PEBS2jbZce4",
+                               "https://www.youtube.com/watch?v=8Vlej7QUGGE", 
+                               "https://www.youtube.com/watch?v=k92Bgqz-p_8",
+                               "https://www.youtube.com/watch?v=R_N15egKj6c",
+                               "https://www.youtube.com/watch?v=-WpnPSChVRQ",
+                               "https://www.youtube.com/watch?v=ktvTqknDobU",
+                               "https://www.youtube.com/watch?v=pXRviuL6vMY",
+                               "https://www.youtube.com/watch?v=UprcpdwuwCg",
+                               "https://www.youtube.com/watch?v=L3wKzyIN1yk",
+                               "https://www.youtube.com/watch?v=PHgc8Q6qTjc",
+                               "https://www.youtube.com/watch?v=I-sH53vXP2A",
+                               "https://www.youtube.com/watch?v=FTQbiNvZqaY",
+                               "https://www.youtube.com/watch?v=1vrEljMfXYo",
+                               "https://www.youtube.com/watch?v=V5XOwWOAQBQ",
+                               "https://www.youtube.com/watch?v=bl0e5DrYLyY",
+                               "https://www.youtube.com/watch?v=jjjaU5kQV8k",
+                               "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                               "https://www.youtube.com/watch?v=P5QbkjnCvl4",
+                               "https://www.youtube.com/watch?v=i7fnlJ60RO8",
+                               "https://www.youtube.com/watch?v=oY9m2sHQwLs",
+                               "https://www.youtube.com/watch?v=eVTXPUF4Oz4",
+                               "https://www.youtube.com/watch?v=fPO76Jlnz6c",
+                               "https://www.youtube.com/watch?v=PVjiKRfKpPI",
+                               "https://www.youtube.com/watch?v=DKL4X0PZz7M",
+                               "https://www.youtube.com/watch?v=gUcisIlT7sM",
+                               "https://www.youtube.com/watch?v=ytWz0qVvBZ0",
+                               "https://www.youtube.com/watch?v=G_Nl5xDNXIs",
+                               "https://www.youtube.com/watch?v=t_q1SDzeCqo",
+                               "https://www.youtube.com/watch?v=hbrpmQ09juQ",
+                               "https://www.youtube.com/watch?v=YWN81V7ojOE",
+                               "https://www.youtube.com/watch?v=pcSLtIYLbLQ",
+                               "https://www.youtube.com/watch?v=6okxuiiHx2w"
                             ];
 
 //Vote Emotes
-const DefaultUpvote    = "529413730874949632";
-const DefaultDownvote  = "529413312862093322";
+const DefaultUpvote   = "529413730874949632";
+const DefaultDownvote = "529413312862093322";
 
 //Badge Emotes
 const PeekyStaffEmote   = "<:peekystaff:540036337739366400>";
