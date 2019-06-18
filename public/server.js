@@ -5177,7 +5177,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
           
         if  (peeky.userData.get(key, "Inventory").includes(DonatedAmount))  {
           
-        if  (DonatedAmount !== 1 && DonatedAmount > 0)  {
+        if  (DonatedAmount !== 1 && DonatedAmount !== Exclusive)  {
 
         var BackgroundIndex = peeky.userData.get(key, "Inventory").indexOf(DonatedAmount);
 
