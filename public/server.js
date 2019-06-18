@@ -93,7 +93,7 @@ const FashionImage      = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873
 const OwnershipImage    = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fownership.png?1551641363134";
 const MedallistImage    = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fmedallist.png?1556137409939";
 const MovieNighterImage = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmovienighter.png?1553099659112";
-const CelebratorImage   = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fcelebrator.png?1554493808779";
+const CelebratorImage   = "http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fcelebrator.png?v=1560844023018";
 const PollerImage       = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpoller.png?1556170526097";
 const PublisherImage    = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpublisher.png?1555782065115";
 const PartyImage        = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fparty.png?1558040749323";
@@ -208,7 +208,7 @@ const VoterEmote        = "<:voter:551429736463859762>";
 const OwnershipEmote    = "<:ownership:551848929730232351>";
 const MedallistEmote    = "<:medallist:570706340901683220>";
 const MovieNighterEmote = "<:movienighter:557968105494675456>";
-const CelebratorEmote   = "<:celebrator:563812757787508746>";
+const CelebratorEmote   = "<:celebrator:590447227013562368>";
 const PollerEmote       = "<:poller:570845554758778880>";
 const PublisherEmote    = "<:publisher:569215883109466143>";
 const PartyEmote        = "<:party:578689336116248618>";
