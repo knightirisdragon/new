@@ -2866,6 +2866,19 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
   
 });
 
+//MESSAGE  DELETE EVENTS
+peeky.on("messageDelete", async (message) => {
+if  (message)  {
+  
+//Workshop
+if  (message.channel.id == WorkshopChannel)  {
+          const embed = {"description": InfoIcon + " Your submission in the `#workshop` channel has been removed.",  "color": EmbedColor}; 
+          message.author.send({ embed }).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
+};
+  
+};
+});
+
 //MESSAGE EVENTS
 peeky.on('message', async (message) => {
   
