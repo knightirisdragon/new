@@ -2574,7 +2574,7 @@ if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reactio
 };
   
 //Workshop Response
-if  (reaction.message.channel.id == WorkshopChannel && reaction.message.author.id !== PeekyId)  {
+if  (reaction.message.channel.id == WorkshopChannel && reaction.emoji.name == "🏁" && reaction.message.author.id == OwnerId)  {
     const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted!",  "color": EmbedColor}; 
     reaction.message.author.send({ embed }).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
 };
@@ -2877,7 +2877,7 @@ peeky.on("messageDelete", async (message) => {
 if  (message)  {
   
 //Workshop Response
-if  (message.channel.id == WorkshopChannel && message.author.id == OwnerId)  {
+if  (message.channel.id == WorkshopChannel && message.author.id !== PeekyId)  {
     const embed = {"description": ErrorIcon + " Your submission in the Workshop has been denied.",  "color": EmbedColor}; 
     message.author.send({ embed }).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
 };
