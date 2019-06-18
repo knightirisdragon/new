@@ -327,14 +327,14 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 var Banner = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
 var Banners = [
 
-    [DefaultBackground, Exclusive, "Default", "Steam", undefined], //Default
+    [DefaultBackground, 0, "Default", "Steam", undefined], //Default
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground2.jpg?1537950866619", 475, "Welcome to NYC", "The Division", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground3.jpg?1535302285990", 400, "Henry the knight", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground4.jpg?1535333614451", 425, "Fallout's garage", "Fallout 4", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground5.jpg?1537816491802", 375, "Encounter with Stalkers", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground6.jpg?1535285894346", 275, "The Whalers", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground7.jpg?1535290804866", 400, "Mysterious Man", "Not credited", undefined],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground8.jpg?1537816628115", 425, "Escape of noobs", "Roblox", undefined],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground8.jpg?1537816628115", 425, "Escape of noobs", "ROBLOX", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground9.jpg?1537888709532", 375, "The last crusade", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground10.jpg?1535334052918", 450, "The last of them", "The Last of Us", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground11.jpg?1535334267005", 400, "Birch Forest", "Minecraft", undefined],
@@ -661,7 +661,7 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground332.png?v=1560768910957", 500, "Flare Abyss", "The Division", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground333.png?v=1560777175191", Exclusive, "First Year", "Vojtěch Jílovec", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground334.png?v=1560779898774", 450, "Hype beast", "Counter Strike Global Offensive ", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground335.png?v=1560779904859", 425, "Roblox gang", "Roblox", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground335.png?v=1560779904859", 425, "Roblox gang", "ROBLOX", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground336.png?v=1560779909615", 400, "Sanctuary leader ", "Joji", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground337.png?v=1560779912403", 350, "Raven buds", "Not credited", undefined]
 
@@ -1580,7 +1580,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     
     });
 
-    AddToExclusiveBackgrounds = AddToExclusiveBackgrounds.reverse();
+    AddToExclusiveBackgrounds.reverse();
     Fillers = 100 - AddToExclusiveBackgrounds.length;
     if  (AddToExclusiveBackgrounds.length < 100)  {
         while (Fillers > 0)  {
@@ -1606,8 +1606,7 @@ if  (!WebsiteCooldowns.has("workshop"))  {
 
     var WorkshopList = [];
 
-    peeky.channels.get(WorkshopChannel).fetchMessages({ limit: 50 })
-    .then(async (messages) => {
+    peeky.channels.get(WorkshopChannel).fetchMessages({ limit: 50 }).then(async (messages) => {
       
     messages.forEach(m => {
           
@@ -4702,29 +4701,25 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
   
     break;
   
-}
+} else {
+  const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
+  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
-else {
-      const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-      break;
+  break;
 };
   
-}
-  else { 
-         const embed = {"description": ErrorIcon + " You already own that background.", "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+} else { 
+  const embed = {"description": ErrorIcon + " You already own that background.", "color": EmbedColor}; 
+  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-         break;
+  break;
 };
   
-}
-  else { 
-         const embed = {"description": ErrorIcon + " You cannot buy the default and exclusive backgrounds.", "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+} else {
+  const embed = {"description": ErrorIcon + " You cannot buy the default and exclusive backgrounds.", "color": EmbedColor}; 
+  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-         break;
+  break;
 };
 
 };
@@ -4862,7 +4857,7 @@ if  (i !== 1)  {
     }
      else
     {
-      const embed = {"description": ErrorIcon + " You cannot sell the default and exclusive backgrounds.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " You cannot sell the default background.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -5185,7 +5180,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
           
         if  (peeky.userData.get(key, "Inventory").includes(DonatedAmount))  {
           
-        if  (DonatedAmount !== 1 && DonatedAmount !== Exclusive)  {
+        if  ((DonatedAmount !== 1) && (DonatedAmount !== Exclusive))  {
 
         var BackgroundIndex = peeky.userData.get(key, "Inventory").indexOf(DonatedAmount);
 
@@ -5199,7 +5194,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         };
 
         const embed = {"description": SuccessIcon + " You have given the **" + Banners[DonatedAmount - 1][Banner.Name] + "** background to **" + Function_RemoveFormatting(DonatedUser.user.username, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
          else
