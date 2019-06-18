@@ -2501,11 +2501,9 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 //Game Roles
 if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
   
-    if  (!member.user.bot && member.presence.game !== null && !RoleCooldown.has(member.guild.id + member.user.id))  {
+    if  (!member.user.bot)  {
 
     if  (member.guild.me.hasPermission('MANAGE_ROLES'))  {
-      
-        var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
       
         peeky.serverData.get(keySF, "game_roles_bonus_setting").forEach(GameName => {
 
@@ -2515,9 +2513,9 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 
         if  (RoleExists)  {
           
-        if  (member.presence.game.name.toLowerCase() == GameName)  {
+        if  (member.presence.game !== null && member.presence.game.name.toLowerCase() == GameName)  {
 
-            if  (!HasRole)  {
+            if  (!HasRole && !RoleCooldown.has(member.guild.id + member.user.id))  {
                 member.addRole(RoleExists).catch(error => ErrorBag.add(error));
                 console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
             };   
