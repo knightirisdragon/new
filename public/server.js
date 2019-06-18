@@ -1669,7 +1669,7 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
         var CurrentUser = peeky.users.get(data.UserID);
   
         if  (peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
-            var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size + " members</font>";
+            var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
         }  else  {
             var ServerInfo = "<font size='2' color='pink'>No Invite</font>";    
         };
@@ -5455,7 +5455,7 @@ if (!ProfileCooldown.has(message.author.id)) {
       
     //Badges
     var   BadgeYpos    = 201.5;
-    var   BadgeXpos    = -25;
+    var   BadgeXpos    = -25.5;
     const BadgeXposAmt = 35;
     var   BadgeAmount  = 0;
     const MaxBadges    = 14;
