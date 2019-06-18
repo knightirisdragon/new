@@ -2572,6 +2572,12 @@ if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reactio
         peeky.userData.set(key, true, "PollerBadge");
     };
 };
+  
+//Workshop Response
+if  (reaction.message.channel.id == WorkshopChannel && reaction.message.author.id !== PeekyId)  {
+    const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted!",  "color": EmbedColor}; 
+    reaction.message.author.send({ embed }).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
+};
 
 if  (peeky.userData.has(key) && peeky.channelData.has(keyCF) && peeky.serverData.has(keySF) && reaction.message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
   
@@ -2870,9 +2876,9 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 peeky.on("messageDelete", async (message) => {
 if  (message)  {
   
-//Workshop
+//Workshop Response
 if  (message.channel.id == WorkshopChannel && message.author.id !== PeekyId)  {
-    const embed = {"description": InfoIcon + " Your submission in the Workshop has been removed.",  "color": EmbedColor}; 
+    const embed = {"description": ErrorIcon + " Your submission in the Workshop has been removed.",  "color": EmbedColor}; 
     message.author.send({ embed }).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
 };
   
