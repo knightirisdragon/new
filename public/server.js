@@ -2872,8 +2872,8 @@ if  (message)  {
   
 //Workshop
 if  (message.channel.id == WorkshopChannel)  {
-          const embed = {"description": InfoIcon + " Your submission in the `#workshop` channel has been removed.",  "color": EmbedColor}; 
-          message.author.send({ embed }).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
+    const embed = {"description": InfoIcon + " Your submission in the Workshop has been removed.",  "color": EmbedColor}; 
+    message.author.send({ embed }).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
 };
   
 };
