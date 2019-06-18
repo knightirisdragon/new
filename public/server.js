@@ -327,7 +327,7 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 var Banner = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
 var Banners = [
 
-    [DefaultBackground, Exclusiv, "Default", "Steam", undefined], //Default
+    [DefaultBackground, Exclusive, "Default", "Steam", undefined], //Default
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground2.jpg?1537950866619", 475, "Welcome to NYC", "The Division", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground3.jpg?1535302285990", 400, "Henry the knight", "Not credited", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground4.jpg?1535333614451", 425, "Fallout's garage", "Fallout 4", undefined],
@@ -1580,6 +1580,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     
     });
 
+    AddToExclusiveBackgrounds = AddToExclusiveBackgrounds.reverse();
     Fillers = 100 - AddToExclusiveBackgrounds.length;
     if  (AddToExclusiveBackgrounds.length < 100)  {
         while (Fillers > 0)  {
@@ -1587,6 +1588,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
             ExclusiveBackgrounds.push('<div class="filler">  <img src="' + DarkField + '"  width="500" height="300" class="background_image">  </div>')
         };
     };
+    AddToExclusiveBackgrounds = AddToExclusiveBackgrounds.join(" ");
     ExclusiveBackgrounds.push(AddToExclusiveBackgrounds);
 
     await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>" + "<div id='sort_cheap'> " + CheapBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_revenue'> " + RevenueBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_exclusive'> " + ExclusiveBackgrounds.reverse().join(" ") + " </div>", (err) => {
