@@ -1511,7 +1511,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
           Fillers -= 1;
     };
 
-    await fs.writeFile('public/leaderboard.txt', "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for a special badge! </b>  </div> </center>" + Leaderboard.join("<br><br>") + "  <br><br>  " + FillersList.join("<br><br>"), (err) => {
+    await fs.writeFile('public/leaderboard.txt', "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>") + "  <br><br>  " + FillersList.join("<br><br>"), (err) => {
         if (err) console.log(err);
     });
 
