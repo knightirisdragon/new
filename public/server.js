@@ -1047,6 +1047,7 @@ return List.join("");
 
 };
 
+//Shuffle Array
 function function_ShuffleArray(array) {
     var j, x, i;
     for (i = array.length - 1; i > 0; i--) {
