@@ -188,7 +188,8 @@ const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw",
                                "https://www.youtube.com/watch?v=hbrpmQ09juQ",
                                "https://www.youtube.com/watch?v=YWN81V7ojOE",
                                "https://www.youtube.com/watch?v=pcSLtIYLbLQ",
-                               "https://www.youtube.com/watch?v=6okxuiiHx2w"
+                               "https://www.youtube.com/watch?v=6okxuiiHx2w",
+                               "https://www.youtube.com/watch?v=NqpnbSFprB4"
                             ];
 
 //Vote Emotes
