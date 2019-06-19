@@ -115,6 +115,7 @@ const InactiveDays          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 
 //Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
+const MarkedUsers         = [  "251634374972276736"  ];
 const blacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const whitelistedSymbols  = [  "a", "á", "b", "c", "č", "d", "ď", "e", "é", "ě", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "ň", "o", "ó", "p", "q", "r", "ř", "s", "š", "t", "u", "ů", "ú", "v", "w", "x", "y", "ý", "z", "ž", "0", "1", "2", "3", "4", "6", "5", "7", "8", "9", "_", "-", " ", ",", ".", "'", '"', "(", ")", "[", "]"  ];
 const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
@@ -6010,7 +6011,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
 //Mute
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "mute "))  {
 
-if  (message.member.permissions.has("MUTE_MEMBERS")) {
+if  (message.member.permissions.has("MUTE_MEMBERS"))  {
     
 if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
       
@@ -6079,7 +6080,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "unmute 
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
     
-if  (message.guild.me.hasPermission("MUTE_MEMBERS") && message.guild.me.hasPermission("MANAGE_ROLES"))  {
+if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
       
     var MentionedMember = message.mentions.members.first();
     var name = peeky.serverData.get(keySF, "muted_role");
