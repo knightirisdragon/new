@@ -3468,15 +3468,17 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade
   
 };
 
-//EventReward
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eventreward"))  {
+//EventRewards
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eventrewards"))  {
   
     if  (OngoingEvent == true && peeky.userData.get(key, "CelebratorBadge") == false)  {
       
         peeky.userData.set(key, true, "CelebratorBadge");
         peeky.userData.get(key, true, "Inventory").push(333);
       
-        const embed = {"description": SuccessIcon + " You have received the event rewards!",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have received the event rewards!"
+                                      + "\n\n" + InfoIcon + " The **" + Banners[333 - 1][2] + "** background."
+                                      + "\n\n" + InfoIcon + " The **Celebrator** badge.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     };
