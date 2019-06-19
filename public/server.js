@@ -1784,11 +1784,6 @@ if  (!WebsiteCooldowns.has("staff"))  {
             StaffButton.push('<a href="https://www.reddit.com/user/MrArmy_" target="_blank">  <img src=' + RedditIcon + ' class="staffbutton">  </a>');
         } else
 
-        //Bersekr21
-        if  (guildMemberId == "266579411162103808")  {
-            StaffButton.push('<a href="https://twitter.com/Bersekr21" target="_blank">  <img src=' + TwitterIcon + ' class="staffbutton">  </a>');
-        } else
-
         //Nixen
         if  (guildMemberId == "244160350889443338")  {
             StaffButton.push('<a href="https://twitter.com/NixenFin" target="_blank">  <img src=' + TwitterIcon + ' class="staffbutton">  </a>');
@@ -2016,7 +2011,7 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
     //Account created less than 30 days ago
     if  (new Date() - new Date(member.user.createdAt) <= 2592000000 )  {
         Suspicions ++;
-        String.push("Created their account in the last 30 days.");
+        String.push("Account created less than 30 days ago.");
     };
 
     //Account has alot of logged bans
