@@ -1096,15 +1096,6 @@ function UpdateSupporters()  {
   
 };
 
-function UpdateFeaturedProfile ()  {
-
-    fetch('https://peeky.glitch.me/featured_profile.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("FeaturedProfile").innerHTML = data;
-    });
-
-};
-
 function UpdateLeaderboard()  {
 
     fetch('https://peeky.glitch.me/leaderboard.txt')
@@ -1124,7 +1115,7 @@ function UpdateServerList()  {
 
 };
 
-function UpdateStats(text)  {
+function UpdateHome(text)  {
   
 fetch('https://peeky.glitch.me/stats.txt')
 .then(response => response.text()).then((data) => {
@@ -1145,6 +1136,11 @@ fetch('https://peeky.glitch.me/staff.txt')
 .then(response => response.text()).then((data) => {
    document.getElementById("StaffList").innerHTML = data;
 });
+
+fetch('https://peeky.glitch.me/featured_profile.txt')
+.then(response => response.text()).then((data) => {
+   document.getElementById("FeaturedProfile").innerHTML = data;
+});
   
 };
 
@@ -1161,8 +1157,10 @@ peeky.on('ready', () => {
     //BLS
     bls.postServerCount(peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to BLS.") && ErrorBag.add(err));
   
+    //User Setting Updating
     setInterval(() => {
         peeky.user.setAvatar(RandomAvatars[Math.floor(Math.random()*RandomAvatars.length)]).catch(error => ErrorBag.add(error));
+        peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
         console.log("Avatar changed.")
     }, 7200000);
   
