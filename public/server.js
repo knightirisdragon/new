@@ -2006,38 +2006,42 @@ if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user
 };
 
 //Suspicion Alert
-if (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.user.bot)  {
+if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.user.bot)  {
       
-      var owner      = member.guild.owner.user.id;
-      var Year       = null;
-      var Month      = null;
-      var Suspicions = 0;
-      var String     = [];
-      const BanLimit = peeky.serverData.get(keySF, "suspicion_alert_bonus_setting");
+    var owner      = member.guild.owner.user.id;
+    var Suspicions = 0;
+    var String     = [];
+    const BanLimit = peeky.serverData.get(keySF, "suspicion_alert_bonus_setting");
   
-        if  (new Date() - new Date(member.user.createdAt) <= 2592000000 )  {
-            Suspicions ++;
-            String.push("Created their account in the last 30 days.");
-        };
+    //Account created less than 30 days ago
+    if  (new Date() - new Date(member.user.createdAt) <= 2592000000 )  {
+        Suspicions ++;
+        String.push("Created their account in the last 30 days.");
+    };
 
-        if  (peeky.userData.has(key) && peeky.userData.get(key, "Bans") >= BanLimit)  {
-            Suspicions ++;
-            String.push("Banned more than " + peeky.userData.get(key, "Bans") + " times in other servers.");
-        };
+    //Account has alot of logged bans
+    if  (peeky.userData.has(key) && peeky.userData.get(key, "Bans") >= BanLimit)  {
+        Suspicions ++;
+        String.push("Banned more than " + peeky.userData.get(key, "Bans") + " times in other servers.");
+    };
+  
+    //Account is marked
+    MarkedUsers.forEach(i => {
+    if  (i == member.user.id)  {
+        Suspicions ++;
+        String.push("Manually marked as potentially dangerous to your server.");
+    };
+    });
 
-        if  (Suspicions > 0) {
-        
-            peeky.users.get(owner).send("**Someone suspicious has joined " + Function_RemoveFormatting(member.guild.name, "other", true) + "!**\nBe aware of this user but don't ban them just because you've got this message!\n\n**User:** " + Function_RemoveFormatting(member.user.tag, "other", true) + " (<@" + member.user.id + ">)\n**Suspicions:** " + (String.join(" / ") + "\n­"))
-            .catch(error => ErrorBag.add(error));
-            
-            console.log("The Suspicion Alert function has been triggered in " + member.guild.name + ".");
-        
-        };
+    if  (Suspicions > 0)  {
+        peeky.users.get(owner).send("**Someone suspicious has joined " + Function_RemoveFormatting(member.guild.name, "other", true) + "!**\nBe aware of this user but don't ban them just because you've got this message!\n\n**User:** " + Function_RemoveFormatting(member.user.tag, "other", true) + " (<@" + member.user.id + ">)\n**Suspicions:** " + (String.join(" / ") + "\n­")).catch(error => ErrorBag.add(error));   
+        console.log("The Suspicion Alert function has been triggered in " + member.guild.name + ".");
+    };
   
 };
     
 //Member Counter (JOIN)
-if (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
+if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
   
 if  (!MemberCounterCooldown.has(member.guild.id))  {
 
@@ -2063,21 +2067,21 @@ if  (!MemberCounterCooldown.has(member.guild.id))  {
 };
     
 //Join Role
-if (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
+if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
   
     //Permission Checking
-  if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
+    if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
       
-      var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
-      var RoleExist = member.guild.roles.find(role => role.name == name);
+        var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
+        var RoleExist = member.guild.roles.find(role => role.name == name);
 
-      if  (RoleExist) {
-          member.addRole(RoleExist, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
+        if  (RoleExist) {
+            member.addRole(RoleExist, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
 
-          console.log("The Join Role function has been triggered in " + member.guild.name + ".");
-      };
+            console.log("The Join Role function has been triggered in " + member.guild.name + ".");
+        };
 
-  };
+    };
 
 };
     
@@ -2119,24 +2123,24 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
 };
     
 //Server Trial
-if (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
-  
-    //Permission Checking
-  if  (member.guild.me.hasPermission("MANAGE_ROLES")) {
-      
-      var name = "Trial";
-      var RoleExist = member.guild.roles.find(role => role.name == name);
+if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
 
-      if  (RoleExist) {
-          member.addRole(RoleExist, "Triggered by the Server Trial function.").catch(error => ErrorBag.add(error));
-      };
+      //Permission Checking
+    if  (member.guild.me.hasPermission("MANAGE_ROLES")) {
 
-  };
+        var name = "Trial";
+        var RoleExist = member.guild.roles.find(role => role.name == name);
+
+        if  (RoleExist) {
+            member.addRole(RoleExist, "Triggered by the Server Trial function.").catch(error => ErrorBag.add(error));
+        };
+
+    };
 
 };
 
 //Welcome Messages
-if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
+if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
   
     //Permission Checking
     if(member.guild.me.hasPermission("SEND_MESSAGES")) {
@@ -2189,7 +2193,7 @@ const keySF = `${member.guild.id}`;
 if (member.user.id !== PeekyId && peeky.serverData.has(keySF))  {
     
 //Member Counter (LEFT)
-if (peeky.serverData.get(keySF, "member_counter_bonus") == true) {
+if  (peeky.serverData.get(keySF, "member_counter_bonus") == true) {
 
 if  (!MemberCounterCooldown.has(member.guild.id))  {
 
@@ -2216,7 +2220,7 @@ if  (!MemberCounterCooldown.has(member.guild.id))  {
 };
     
 //Welcome Messages
-if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {
+if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
   
     //Permission Checking
     if(member.guild.me.hasPermission("SEND_MESSAGES")) {
@@ -2435,7 +2439,7 @@ if  (peeky.serverData.has(keySF))  {
 const member  = newMember;
 
 //Streamer Role
-if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {
+if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
   
     if  (!member.user.bot)  {
 
@@ -2651,10 +2655,10 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 CW + " **Classification Wall** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n\n" +
                                 SA + " **Suspicion Alert** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
                                 ST + " **Server Trial** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes`" + "\n\n" +
-                                SA2 + " **Stream Announcements** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`." + "\n\n" +
+                                SA2 + " **Stream Announcements** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
                                 FP + " **Flood Protection** " + "\n" + Hollow + " " + "No Setting." + "\n\n" +
                                 RS + " **Role Saver** " + "\n" + Hollow + " " + "No Setting." + "\n\n" +
-                                EC + " **Event Countdown** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`.",
+                                EC + " **Event Countdown** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -2666,12 +2670,12 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "3⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  SM + " **Server Message** " + "\n" + Hollow + " " + "`" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n\n" +
-                                VT + " **Vote Kick** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
-                                GR + " **Game Roles** " + "\n" + Hollow + " " + "`" + GRArray + "`." + "\n\n" +
-                                JR + " **Join Role** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`." + "\n\n" +
-                                SR + " **Streamer Role** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`" + "\n\n" +
-                                N_ + " **Notifications** " + "\n" + Hollow + " " + "No setting.",
+                  description:  SM + " **Server Message** " + "\n" + "" + " " + "`" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n\n" +
+                                VT + " **Vote Kick** " + "\n" + "" + " " + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
+                                GR + " **Game Roles** " + "\n" + "" + " " + "`" + GRArray + "`" + "\n\n" +
+                                JR + " **Join Role** " + "\n" + "" + " " + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
+                                SR + " **Streamer Role** " + "\n" + "" + " " + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`" + "\n\n" +
+                                N_ + " **Notifications** " + "\n" + "" + " " + "No setting",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
