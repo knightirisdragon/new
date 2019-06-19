@@ -3477,7 +3477,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eventre
         peeky.userData.get(key, true, "Inventory").push(333);
       
         const embed = {"description": SuccessIcon + " You have received the event rewards!"
-                                      + "\n\n" + InfoIcon + " The **" + Banners[333 - 1][2] + "** background."
+                                      + "\n\n" + InfoIcon + " The **" + Banners[333 - 1][Banner.Name] + "** background."
                                       + "\n\n" + InfoIcon + " The **Celebrator** badge.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
@@ -5301,7 +5301,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     var Current = 0;
       
     peeky.userData.get(key2, "Inventory").filter(i => Banners[i - 1][Banner.Price] !== Exclusive).forEach(banner => {
-        InventoryWorth += Banners[banner - 1][1] / SellMultiplier;
+        InventoryWorth += Banners[banner - 1][Banner.Price] / SellMultiplier;
     });
       
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
@@ -5311,7 +5311,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
 
     peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
         Current ++;
-        FixedBackgrounds.push(Banners[banner - 1][2] + " `" + banner + "`");
+        FixedBackgrounds.push(Banners[banner - 1][Banner.Name] + " `" + banner + "`");
     });
       
     if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > BackgroundInvLimit)  {  EndString = " and some more.."  };
