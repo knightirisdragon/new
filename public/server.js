@@ -679,8 +679,8 @@ function Function_RemoveFormatting(text, type, sliced)  {
 
     if  (FixedText !== "")  {
       
-        if  (FixedText.length > 45)  {
-            FixedText = FixedText.slice(0, 45) + "...";
+        if  (FixedText.length > 100)  {
+            FixedText = FixedText.slice(0, 100) + "...";
         };
 
         return FixedText;
@@ -2636,8 +2636,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "1⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  SettingsIcon + " **Prefix**" + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "prefix") + "`" + "\n\n" +
-                                SettingsIcon + " **Mute Role**" + "\n" + Hollow + " " + "`@­" + peeky.serverData.get(keySF, "muted_role") + "`",
+                  description:  "**Prefix** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "prefix") + "`" + "\n\n" +
+                                "**Mute Role** " + SettingsIcon + "\n" + "`@­" + peeky.serverData.get(keySF, "muted_role") + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -2649,16 +2649,16 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "2⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  WM + " **Welcome Messages** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`" + "\n\n" +
-                                MC + " **Member Counter** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`." + "\n\n" +
-                                CN + " **Clear Nicknames** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`." + "\n\n" +
-                                CW + " **Classification Wall** " + "\n" + Hollow + " " + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n\n" +
-                                SA + " **Suspicion Alert** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
-                                ST + " **Server Trial** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes`" + "\n\n" +
-                                SA2 + " **Stream Announcements** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
-                                FP + " **Flood Protection** " + "\n" + Hollow + " " + "No Setting." + "\n\n" +
-                                RS + " **Role Saver** " + "\n" + Hollow + " " + "No Setting." + "\n\n" +
-                                EC + " **Event Countdown** " + "\n" + Hollow + " " + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`",
+                  description:  "**Welcome Messages** " + WM + "\n" + "`#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`" + "\n\n" +
+                                "**Member Counter** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`" + "\n\n" +
+                                "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
+                                "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n\n" +
+                                "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
+                                "**Server Trial** " + ST + "\n" + "`" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes`" + "\n\n" +
+                                "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
+                                "**Flood Protection** " + FP + "\n" + "No Setting." + "\n\n" +
+                                "**Role Saver** " + RS + "\n" + "No Setting." + "\n\n" +
+                                "**Event Countdown** " + EC + "\n" + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -2670,12 +2670,12 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "3⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  SM + " **Server Message** " + "\n" + "" + " " + "`" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`." + "\n\n" +
-                                VT + " **Vote Kick** " + "\n" + "" + " " + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
-                                GR + " **Game Roles** " + "\n" + "" + " " + "`" + GRArray + "`" + "\n\n" +
-                                JR + " **Join Role** " + "\n" + "" + " " + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
-                                SR + " **Streamer Role** " + "\n" + "" + " " + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`" + "\n\n" +
-                                N_ + " **Notifications** " + "\n" + "" + " " + "No setting",
+                  description:  "**Server Message** " + SM + "\n" + "`" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`" + "\n\n" +
+                                "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
+                                "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
+                                "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
+                                "**Streamer Role** " + SR + "\n" + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`" + "\n\n" +
+                                "**Notifications** " + N_ + "\n" + "No setting",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -2687,11 +2687,11 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "4⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  AR + " **Automatic Reactions** " + "\n" + Hollow + " " + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
-                                ML + " **Message Log** " + "\n" + Hollow + " " + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`" + "\n\n" +
-                                IO + " **Images Only** " + "\n" + Hollow + " " + "No setting." + "\n\n" +
-                                SL + " **Spoiler Lock** " + "\n" + Hollow + " " + "`" + GivenMinutes + "`" + "\n\n" +
-                                BW + " **Banned Words** " + "\n" + Hollow + " " + "`" + BWArray + "`",
+                  description:  "**Automatic Reactions** " + AR + "\n" + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
+                                "**Message Log** " + ML + "\n" + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`" + "\n\n" +
+                                "**Images Only** " + IO + "\n" + "No setting." + "\n\n" +
+                                "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`" + "\n\n" +
+                                "**Banned Words** " + BW + "\n" + "`" + BWArray + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
