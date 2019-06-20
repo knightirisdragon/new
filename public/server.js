@@ -2521,13 +2521,13 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
           
         if  (member.presence.game !== null && member.presence.game.name.toLowerCase() == GameName)  {
 
-            if  (!HasRole && !RoleCooldown.has(member.guild.id + member.user.id))  {
+            if  (!HasRole && !RoleCooldown.has(member.user.id + member.guild.id))  {
                 member.addRole(RoleExists).catch(error => ErrorBag.add(error));
                 console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
             };   
 
-            RoleCooldown.add(member.guild.id + member.user.id);
-            setTimeout(() => {RoleCooldown.delete(member.guild.id + member.user.id)}, RoleCooldownMS);         
+            RoleCooldown.add(member.user.id + member.guild.id);
+            setTimeout(() => {RoleCooldown.delete(member.user.id + member.guild.id)}, RoleCooldownMS);         
 
         } else { 
 
@@ -5785,7 +5785,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             message.channel.stopTyping();
               
             if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
-                await message.guild.me.setNickname("🎵 " + "Playing in " + Function_RemoveFormatting(voiceChannel.name, "other", false).slice(0, 14) + " 🎵");
+                message.guild.me.setNickname("🎵 " + "Playing in " + Function_RemoveFormatting(voiceChannel.name, "other", false).slice(0, 14) + " 🎵");
             };
 
             const stream = ytdl(GivenSong);
