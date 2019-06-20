@@ -1267,10 +1267,10 @@ peeky.on('message', async (message) => {
     if  (peeky.userData.get(key, "VeteranBadge") == true)  {  BadgeExpAmount += 2;  };
 
         //Supporter
-    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {  BadgeGreditAmount += 2;  };
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  };
 
         //Booster
-    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {  BadgeGreditAmount += 2;  };
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  };
 
         //Bug Hunter
     if  (peeky.userData.get(key, "BugHunterBadge") == true)  {  BadgeExpAmount += 2;  };
@@ -5637,11 +5637,13 @@ if (!ProfileCooldown.has(message.author.id)) {
         WebsiteCooldowns.add("featuredprofile");
 
         var FeaturedDate = new Date();
-        var data = "<font size='4'>" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s profile got featured on " + function_DateFormat(FeaturedDate) + '.</font>  <br>  <font size="2">Use the Profile command as a Supporter every 30 minutes to have your profile featured.</font>  <br><br>  <img src="' + m.attachments.array()[0].url + '" class="featuredprofile">';
+        var data = "<font size='4'>" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s profile got featured on " + function_DateFormat(FeaturedDate) + '.</font>  <br><br>  <img src="' + m.attachments.array()[0].url + '" class="featuredprofile">';
 
         fs.writeFile('public/featured_profile.txt', data, (err) => {
             if (err) console.log(err); 
         });
+      
+        console.log("The featured profile has been updated.");
     
         setTimeout(() => {
             WebsiteCooldowns.delete("featuredprofile")
