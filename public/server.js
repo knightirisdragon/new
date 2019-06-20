@@ -2437,6 +2437,8 @@ const member  = newMember;
 
 //Streamer Role
 if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
+
+    if  (member.guild.me.hasPermission('MANAGE_ROLES'))  {
   
     if  (!member.user.bot)  {
 
@@ -2462,6 +2464,8 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
 
         };
   
+    };
+
     };
       
 };
