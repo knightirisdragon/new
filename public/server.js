@@ -2781,7 +2781,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
     var name                    = peeky.serverData.get(keySF, "message_log_bonus_setting");
     var Channel                 = reaction.message.guild.channels.find(channel => channel.name == name);
     const OriginalMessage       = reaction.message;
-    const OriginalMessageEdited = OriginalMessage.content.replace((/(<@(!?)\d+)(>)/));
+    const OriginalMessageEdited = OriginalMessage.content//.replace((/(<@(!?)\d+)(>)/));
     var ImageDetected           = false;
       
     if  (Channel && reaction.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))  {
@@ -2790,20 +2790,16 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
             
         Channel.fetchWebhooks().then(webhook =>  {
             
-        var FoundHook = webhook.find(w => w.name == "PEEKY");
+        var FoundHook = webhook.find(w => w.name == peeky.user.username);
 
         if  (!FoundHook)  {
 
-            Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL).catch(error => ErrorBag.add(error))
-            .then(Webhook => {
-            
-            if  (ImageDetected == true)  {
+            Channel.createWebhook(peeky.user.username, peeky.user.displayAvatarURL).catch(error => ErrorBag.add(error)).then(Webhook => {
 
-                Webhook.send(OriginalMessage.content.replace((/(<@(!?)\d+)(>)/), "Mention") + "\n­", {
+                Webhook.send(OriginalMessageEdited + "\n­", {
 
                 "username": OriginalMessage.author.tag,
                 "avatarURL": OriginalMessage.author.displayAvatarURL,
-                "files": [image],
 
                 "embeds":  [{
                     "description": "[🔍](" + reaction.message.url + ")",
@@ -2812,33 +2808,28 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 
                 }).catch(error => ErrorBag.add(error));
 
-            } else {
-
-              Webhook.send(OriginalMessageEdited + "\n­", {
-
-              "username": OriginalMessage.author.tag,
-              "avatarURL": OriginalMessage.author.displayAvatarURL,
-
-              "embeds":  [{
-                  "description": "[🔍](" + reaction.message.url + ")",
-                  "color": EmbedColor
-              }]
-
-              }).catch(error => ErrorBag.add(error));
-              
-            };
-
             });
 
         }
          else
         {
-            
-        var Webhook = webhook.find(w => w.name == "PEEKY");
+
+            FoundHook.send(OriginalMessageEdited + "\n­", {
+
+            "username": OriginalMessage.author.tag,
+            "avatarURL": OriginalMessage.author.displayAvatarURL,
+            "files": [image],
+
+            "embeds":  [{
+                "description": "[🔍](" + reaction.message.url + ")",
+                "color": EmbedColor
+            }]
+
+            }).catch(error => ErrorBag.add(error));
             
         if  (ImageDetected == true)  {
 
-            Webhook.send(OriginalMessageEdited + "\n­", {
+            FoundHook.send(OriginalMessageEdited + "\n­", {
 
             "username": OriginalMessage.author.tag,
             "avatarURL": OriginalMessage.author.displayAvatarURL,
@@ -2853,7 +2844,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 
         } else {
 
-          Webhook.send(OriginalMessage, "Mention") + "\n­", {
+          FoundHook.send(OriginalMessage + "\n­", {
 
           "username": OriginalMessage.author.tag,
           "avatarURL": OriginalMessage.author.displayAvatarURL,
@@ -2863,7 +2854,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
               "color": EmbedColor
           }]
 
-          }.catch(error => ErrorBag.add(error));
+          }).catch(error => ErrorBag.add(error));
 
           };
 
