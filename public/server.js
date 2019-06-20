@@ -1390,7 +1390,7 @@ peeky.on('message', async (message) => {
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
     const avatar = await Canvas.loadImage(message.author.displayAvatarURL.replace("https", "http"));
-    ctx.drawImage(avatar, 9, 7, 82, 82);
+    ctx.drawImage(avatar, 7, 7, 82, 82);
     
     const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
       
