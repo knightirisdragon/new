@@ -2846,27 +2846,27 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 
     };
               
-            reaction.remove(user).catch(error => ErrorBag.add(error));
+    reaction.remove(user).catch(error => ErrorBag.add(error));
             
-        }
-         else
-        {
-          reaction.remove(user).catch(error => ErrorBag.add(error));
+    }
+     else
+    {
+      reaction.remove(user).catch(error => ErrorBag.add(error));
+        
+      const embed = {"description": ErrorIcon + " I cannot log messages with the Everyone and Here mentions, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
+      reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+      
+    };
             
-          const embed = {"description": ErrorIcon + " I cannot log messages with the Everyone and Here mentions, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
-          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+    }
+     else
+    {
+      reaction.remove(user).catch(error => ErrorBag.add(error));
+            
+      const embed = {"description": ErrorIcon + " That message was already logged, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
+      reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
-        };
-            
-        }
-         else
-        {
-          reaction.remove(user).catch(error => ErrorBag.add(error));
-            
-          const embed = {"description": ErrorIcon + " That message was already logged, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
-          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
-          
-        };
+    };
 
     };
 };
