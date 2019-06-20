@@ -2786,7 +2786,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
       
     if  (Channel && reaction.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))  {
 
-    if  (reaction.message.attachments.size > 0) {  image = reaction.message.attachments.array()[0].url;  var Separator = "\n­"  }  else  {  image = "https://cdn.discordapp.com/attachments/471346376089927700/508681498271154198/unknown.png";  var Separator = ""  }; 
+    if  (reaction.message.attachments.size > 0) {  image = reaction.message.attachments.array()[0].url;  var Separator = "\n\n­"  }  else  {  image = "https://cdn.discordapp.com/attachments/471346376089927700/508681498271154198/unknown.png";  var Separator = ""  }; 
             
         Channel.fetchWebhooks()
         .then(webhook =>  {
