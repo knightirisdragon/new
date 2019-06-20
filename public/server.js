@@ -2502,10 +2502,10 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
 //Game Roles
 if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
-  
-    if  (!member.user.bot)  {
 
     if  (member.guild.me.hasPermission('MANAGE_ROLES'))  {
+  
+    if  (!member.user.bot)  {
       
         peeky.serverData.get(keySF, "game_roles_bonus_setting").forEach(GameName => {
 
@@ -2551,7 +2551,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
           
         });
       
-  }  
+    };
       
     };
       
