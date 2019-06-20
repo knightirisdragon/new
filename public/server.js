@@ -2779,9 +2779,10 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
         LoggedMessages.add(reaction.message.id);
         var image = "none";   
 
-    var name    = peeky.serverData.get(keySF, "message_log_bonus_setting");
-    var Channel = reaction.message.guild.channels.find(channel => channel.name == name);
-    var Original_Message = reaction.message;
+    var name                    = peeky.serverData.get(keySF, "message_log_bonus_setting");
+    var Channel                 = reaction.message.guild.channels.find(channel => channel.name == name);
+    const OriginalMessage       = reaction.message;
+    const OriginalMessageEdited = OriginalMessage.content.replace((/(<@(!?)\d+)(>)/), "user");
       
     if  (Channel && reaction.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))  {
 
@@ -2797,10 +2798,10 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
                   Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL).catch(error => ErrorBag.add(error))
                   .then(Webhook => {
 
-                  Webhook.send(Original_Message.content + "\n­", {
+                  Webhook.send(OriginalMessageEdited + "­", {
 
-                  "username": Original_Message.author.tag,
-                  "avatarURL": Original_Message.author.displayAvatarURL,
+                  "username": OriginalMessage.author.tag,
+                  "avatarURL": OriginalMessage.author.displayAvatarURL,
                   "files": [image],
 
                   "embeds":  [{
@@ -2818,10 +2819,10 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
             
                  var Webhook = webhook.find(w => w.name == "PEEKY");
                   
-                 Webhook.send(Original_Message.content + "\n­", {
+                 Webhook.send(OriginalMessageEdited.content + "­", {
 
-                 "username": Original_Message.author.tag,
-                 "avatarURL": Original_Message.author.displayAvatarURL,
+                 "username": OriginalMessage.author.tag,
+                 "avatarURL": OriginalMessage.author.displayAvatarURL,
                  "files": [image],
                    
                   "embeds":  [{
