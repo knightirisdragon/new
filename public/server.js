@@ -2780,8 +2780,8 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
         
         LoggedMessages.add(reaction.message.id);
          
-        MessageLogCooldown.add(reaction.message.author.id);
-        setTimeout(() => {MessageLogCooldown.delete(reaction.message.author.id)}, 2500);
+        MessageLogCooldown.add(user.id);
+        setTimeout(() => {MessageLogCooldown.delete(user.id)}, 30000);
 
         var   name                  = peeky.serverData.get(keySF, "message_log_bonus_setting");
         var   Channel               = reaction.message.guild.channels.find(channel => channel.name == name);
@@ -2791,7 +2791,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
       
     if  (Channel && reaction.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))  {
 
-    if  (reaction.message.attachments.size > 0) {  image = reaction.message.attachments.array()[0].url;  var Separator = "\n\n­"  }  else  {  image = "https://cdn.discordapp.com/attachments/471346376089927700/508681498271154198/unknown.png";  var Separator = ""  }; 
+    if  (reaction.message.attachments.size > 0)  {  image = reaction.message.attachments.array()[0].url;  }  else  {  image = "https://cdn.discordapp.com/attachments/471346376089927700/508681498271154198/unknown.png";  }; 
             
         Channel.fetchWebhooks().then(webhook =>  {
             
@@ -2851,7 +2851,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 
     };
               
-            reaction.remove(user).catch(error => ErrorBag.add(error));
+        reaction.remove(user).catch(error => ErrorBag.add(error));
             
         }
          else
@@ -2868,7 +2868,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
         {
           reaction.remove(user).catch(error => ErrorBag.add(error));
             
-          const embed = {"description": CooldownMessage1,  "color": EmbedColor}; 
+          const embed = {"description": CooldownMessage4[0],  "color": EmbedColor}; 
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
         };
