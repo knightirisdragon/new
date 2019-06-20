@@ -2779,10 +2779,10 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
         LoggedMessages.add(reaction.message.id);
         var image = "none";   
 
-    var name                    = peeky.serverData.get(keySF, "message_log_bonus_setting");
-    var Channel                 = reaction.message.guild.channels.find(channel => channel.name == name);
+    var   name                  = peeky.serverData.get(keySF, "message_log_bonus_setting");
+    var   Channel               = reaction.message.guild.channels.find(channel => channel.name == name);
     const OriginalMessage       = reaction.message;
-    const OriginalMessageEdited = OriginalMessage.content.replace((/(<@(!?)\d+)(>)/), "user");
+    const OriginalMessageEdited = OriginalMessage.content.replace((/(<@((!)?)\d+)(>)/), "Someone");
       
     if  (Channel && reaction.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))  {
 
@@ -2819,7 +2819,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
             
                  var Webhook = webhook.find(w => w.name == "PEEKY");
                   
-                 Webhook.send(OriginalMessageEdited.content + "­", {
+                 Webhook.send(OriginalMessageEdited + "­", {
 
                  "username": OriginalMessage.author.tag,
                  "avatarURL": OriginalMessage.author.displayAvatarURL,
