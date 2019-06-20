@@ -2776,73 +2776,78 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
       
     if  (!reaction.message.content.includes("@everyone") && !reaction.message.content.includes("@here"))  {
         
-        LoggedMessages.add(reaction.message.id);
-        var image = "none";   
+    LoggedMessages.add(reaction.message.id);
 
     var name    = peeky.serverData.get(keySF, "message_log_bonus_setting");
     var Channel = reaction.message.guild.channels.find(channel => channel.name == name);
-    var Original_Message = reaction.message;
+    var Original_Message = reaction.message.replace((/(<@(!?)\d+)(>)/), "Mention");
+    var ImageDetected = false;
       
     if  (Channel && reaction.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))  {
 
-    if  (reaction.message.attachments.size > 0) {  image = reaction.message.attachments.array()[0].url;  }  else  {  image = "https://cdn.discordapp.com/attachments/471346376089927700/508681498271154198/unknown.png";  }; 
+    if  (reaction.message.attachments.size > 0) {  var image = reaction.message.attachments.array()[0].url;  }  else  {  ImageDetected = true;  }; 
+      
+        if  (ImageDetected == true)  {
+          
             
-        Channel.fetchWebhooks()
-        .then(webhook =>  {
+          
+        };
             
-              var FoundHook = webhook.find(w => w.name == "PEEKY");
-
-              if  (!FoundHook)  {
-
-                  Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL).catch(error => ErrorBag.add(error))
-                  .then(Webhook => {
-
-                  Webhook.send(Original_Message.content + "\n­", {
-
-                  "username": Original_Message.author.tag,
-                  "avatarURL": Original_Message.author.displayAvatarURL,
-                  "files": [image],
-
-                  "embeds":  [{
-                      "description": "[🔍](" + reaction.message.url + ")",
-                      "color": EmbedColor
-                  }]
-
-                  }).catch(error => ErrorBag.add(error));
-
-                  });
-
-              }
-               else
-              {
+        Channel.fetchWebhooks().then(webhook =>  {
             
-                 var Webhook = webhook.find(w => w.name == "PEEKY");
-                  
-                 Webhook.send(Original_Message.content + "\n­", {
+        var FoundHook = webhook.find(w => w.name == "PEEKY");
 
-                 "username": Original_Message.author.tag,
-                 "avatarURL": Original_Message.author.displayAvatarURL,
-                 "files": [image],
-                   
-                  "embeds":  [{
-                      "description": "[🔍](" + reaction.message.url + ")",
-                      "color": EmbedColor
-                  }]
+        if  (!FoundHook)  {
 
-                 }).catch(error => ErrorBag.add(error));
+            Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL).catch(error => ErrorBag.add(error))
+            .then(Webhook => {
 
-              };
-            
+            Webhook.send(Original_Message.content + "\n­", {
+
+            "username": Original_Message.author.tag,
+            "avatarURL": Original_Message.author.displayAvatarURL,
+            "files": [image],
+
+            "embeds":  [{
+                "description": "[🔍](" + reaction.message.url + ")",
+                "color": EmbedColor
+            }]
+
+            }).catch(error => ErrorBag.add(error));
+
             });
-  
-            if  (peeky.serverData.get(keySF, "notifications") == true)  {
-                  
-                const embed = {"description": InfoIcon + " **" + Function_RemoveFormatting(user.username, "other", true) + "** has logged **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**'s message.",  "color": EmbedColor}; 
-                reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
-                  
-            };
 
-            console.log("The Message Log function has been triggered in " + reaction.message.guild.name + ".");
+        }
+         else
+        {
+            
+        var Webhook = webhook.find(w => w.name == "PEEKY");
+                  
+        Webhook.send(Original_Message.content + "\n­", {
+
+        "username": Original_Message.author.tag,
+        "avatarURL": Original_Message.author.displayAvatarURL,
+        "files": [image],
+                   
+        "embeds":  [{
+          "description": "[🔍](" + reaction.message.url + ")",
+          "color": EmbedColor
+        }]
+
+        }).catch(error => ErrorBag.add(error));
+
+        };
+            
+        });
+  
+        if  (peeky.serverData.get(keySF, "notifications") == true)  {
+                  
+            const embed = {"description": InfoIcon + " **" + Function_RemoveFormatting(user.username, "other", true) + "** has logged **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**'s message.",  "color": EmbedColor}; 
+            reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+                  
+        };
+
+        console.log("The Message Log function has been triggered in " + reaction.message.guild.name + ".");
 
     };
               
