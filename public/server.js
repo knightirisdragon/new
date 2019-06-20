@@ -2589,7 +2589,7 @@ if  (peeky.userData.has(key) && peeky.channelData.has(keyCF) && peeky.serverData
 //Overview Pages
 if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userData.get(key, "OverviewID"))  {
   
-    if  (!OverviewCooldown.has(user.id) &&reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES') && reaction.message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+    if  (!OverviewCooldown.has(user.id))  {
          
         OverviewCooldown.add(user.id);
         setTimeout(() => {OverviewCooldown.delete(user.id)}, 2500);
@@ -5849,7 +5849,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
     };
       
     } else {
-      const embed = {"description": ErrorIcon + " You must cannot play a video playlist.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " You cannot play a YouTube playlist.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
       
