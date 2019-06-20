@@ -2778,20 +2778,15 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
         
     LoggedMessages.add(reaction.message.id);
 
-    var name    = peeky.serverData.get(keySF, "message_log_bonus_setting");
-    var Channel = reaction.message.guild.channels.find(channel => channel.name == name);
-    var Original_Message = reaction.message.replace((/(<@(!?)\d+)(>)/), "Mention");
-    var ImageDetected = false;
+    var name                    = peeky.serverData.get(keySF, "message_log_bonus_setting");
+    var Channel                 = reaction.message.guild.channels.find(channel => channel.name == name);
+    const OriginalMessage       = reaction.message;
+    const OriginalMessageEdited = OriginalMessage.content.replace((/(<@(!?)\d+)(>)/));
+    var ImageDetected           = false;
       
     if  (Channel && reaction.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))  {
 
     if  (reaction.message.attachments.size > 0) {  var image = reaction.message.attachments.array()[0].url;  }  else  {  ImageDetected = true;  }; 
-      
-        if  (ImageDetected == true)  {
-          
-            
-          
-        };
             
         Channel.fetchWebhooks().then(webhook =>  {
             
@@ -2801,11 +2796,52 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 
             Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL).catch(error => ErrorBag.add(error))
             .then(Webhook => {
+            
+            if  (ImageDetected == true)  {
 
-            Webhook.send(Original_Message.content + "\n­", {
+                Webhook.send(OriginalMessage.content.replace((/(<@(!?)\d+)(>)/), "Mention") + "\n­", {
 
-            "username": Original_Message.author.tag,
-            "avatarURL": Original_Message.author.displayAvatarURL,
+                "username": OriginalMessage.author.tag,
+                "avatarURL": OriginalMessage.author.displayAvatarURL,
+                "files": [image],
+
+                "embeds":  [{
+                    "description": "[🔍](" + reaction.message.url + ")",
+                    "color": EmbedColor
+                }]
+
+                }).catch(error => ErrorBag.add(error));
+
+            } else {
+
+              Webhook.send(OriginalMessageEdited + "\n­", {
+
+              "username": OriginalMessage.author.tag,
+              "avatarURL": OriginalMessage.author.displayAvatarURL,
+
+              "embeds":  [{
+                  "description": "[🔍](" + reaction.message.url + ")",
+                  "color": EmbedColor
+              }]
+
+              }).catch(error => ErrorBag.add(error));
+              
+            };
+
+            });
+
+        }
+         else
+        {
+            
+        var Webhook = webhook.find(w => w.name == "PEEKY");
+            
+        if  (ImageDetected == true)  {
+
+            Webhook.send(OriginalMessageEdited + "\n­", {
+
+            "username": OriginalMessage.author.tag,
+            "avatarURL": OriginalMessage.author.displayAvatarURL,
             "files": [image],
 
             "embeds":  [{
@@ -2815,26 +2851,21 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 
             }).catch(error => ErrorBag.add(error));
 
-            });
+        } else {
 
-        }
-         else
-        {
-            
-        var Webhook = webhook.find(w => w.name == "PEEKY");
-                  
-        Webhook.send(Original_Message.content + "\n­", {
+          Webhook.send(OriginalMessage, "Mention") + "\n­", {
 
-        "username": Original_Message.author.tag,
-        "avatarURL": Original_Message.author.displayAvatarURL,
-        "files": [image],
-                   
-        "embeds":  [{
-          "description": "[🔍](" + reaction.message.url + ")",
-          "color": EmbedColor
-        }]
+          "username": OriginalMessage.author.tag,
+          "avatarURL": OriginalMessage.author.displayAvatarURL,
 
-        }).catch(error => ErrorBag.add(error));
+          "embeds":  [{
+              "description": "[🔍](" + reaction.message.url + ")",
+              "color": EmbedColor
+          }]
+
+          }.catch(error => ErrorBag.add(error));
+
+          };
 
         };
             
