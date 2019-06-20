@@ -2774,22 +2774,26 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
       
     if  (!LoggedMessages.has(reaction.message.id))  {
       
+    if  (!MessageLogCooldown.has(reaction.message.author.id))  {
+      
     if  (!reaction.message.content.includes("@everyone") && !reaction.message.content.includes("@here") && reaction.message.mentions.users.size == 0)  {
         
         LoggedMessages.add(reaction.message.id);
-        var image = "none";   
+         
+        MessageLogCooldown.add(reaction.message.author.id);
+        setTimeout(() => {MessageLogCooldown.delete(reaction.message.author.id)}, 2500);
 
-    var   name                  = peeky.serverData.get(keySF, "message_log_bonus_setting");
-    var   Channel               = reaction.message.guild.channels.find(channel => channel.name == name);
-    const OriginalMessage       = reaction.message;
-    const OriginalMessageEdited = OriginalMessage.content//.replace((/(<@((!)?)\d+)(>)/), "Someone");
+        var   name                  = peeky.serverData.get(keySF, "message_log_bonus_setting");
+        var   Channel               = reaction.message.guild.channels.find(channel => channel.name == name);
+        const OriginalMessage       = reaction.message;
+        const OriginalMessageEdited = OriginalMessage.content//.replace((/(<@((!)?)\d+)(>)/), "Someone");
+        var   image                 = "none";   
       
     if  (Channel && reaction.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))  {
 
     if  (reaction.message.attachments.size > 0) {  image = reaction.message.attachments.array()[0].url;  var Separator = "\n\n­"  }  else  {  image = "https://cdn.discordapp.com/attachments/471346376089927700/508681498271154198/unknown.png";  var Separator = ""  }; 
             
-        Channel.fetchWebhooks()
-        .then(webhook =>  {
+        Channel.fetchWebhooks().then(webhook =>  {
             
               var FoundHook = webhook.find(w => w.name == "PEEKY");
 
@@ -2798,7 +2802,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
                   Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL).catch(error => ErrorBag.add(error))
                   .then(Webhook => {
 
-                  Webhook.send(OriginalMessageEdited + "­", {
+                  Webhook.send(OriginalMessageEdited + "\n­", {
 
                   "username": OriginalMessage.author.tag,
                   "avatarURL": OriginalMessage.author.displayAvatarURL,
@@ -2819,7 +2823,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
             
                  var Webhook = webhook.find(w => w.name == "PEEKY");
 
-                 Webhook.send(OriginalMessageEdited + "­", {
+                 Webhook.send(OriginalMessageEdited + "\n­", {
 
                  "username": OriginalMessage.author.tag,
                  "avatarURL": OriginalMessage.author.displayAvatarURL,
@@ -2864,6 +2868,16 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
         {
           reaction.remove(user).catch(error => ErrorBag.add(error));
             
+          const embed = {"description": CooldownMessage1,  "color": EmbedColor}; 
+          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+          
+        };
+            
+        }
+         else
+        {
+          reaction.remove(user).catch(error => ErrorBag.add(error));
+            
           const embed = {"description": ErrorIcon + " That message was already logged, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
@@ -2896,15 +2910,14 @@ if  (message.channel.type == "dm")  {
 if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !message.webhookID && message.content.toLowerCase() !== "accept")  {
 
         const embed = {"description": InfoIcon + " Do you want to send your message to PEEKY's owner?\n" + Hollow + " Type **Accept** in under 30 seconds if you do.",  "color": EmbedColor}; 
-        message.channel.send({ embed })
-        .then(() => {
+        message.channel.send({ embed }).then(() => {
+          
           QueuedSOSMessages.add(message.author.id);
           message.channel.awaitMessages(response => response.content.toLowerCase() == "accept", {
             max: 1,
             time: 30000,
             errors: ['time'],
-          })
-          .then((collected) => {
+          }).then((collected) => {
 
           if  (message.attachments.size > 0) {
                const image = message.attachments.array()[0].url;
