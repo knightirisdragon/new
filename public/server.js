@@ -2774,7 +2774,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
       
     if  (!LoggedMessages.has(reaction.message.id))  {
       
-    if  (!reaction.message.content.includes("@everyone") && !reaction.message.content.includes("@here"))  {
+    if  (!reaction.message.content.includes("@everyone") && !reaction.message.content.includes("@here") && reaction.message.mentions.users.size == 0)  {
         
         LoggedMessages.add(reaction.message.id);
         var image = "none";   
@@ -2782,7 +2782,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
     var   name                  = peeky.serverData.get(keySF, "message_log_bonus_setting");
     var   Channel               = reaction.message.guild.channels.find(channel => channel.name == name);
     const OriginalMessage       = reaction.message;
-    const OriginalMessageEdited = OriginalMessage.content.replace((/(<@((!)?)\d+)(>)/), "Someone");
+    const OriginalMessageEdited = OriginalMessage.content//.replace((/(<@((!)?)\d+)(>)/), "Someone");
       
     if  (Channel && reaction.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))  {
 
@@ -2854,7 +2854,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
         {
           reaction.remove(user).catch(error => ErrorBag.add(error));
             
-          const embed = {"description": ErrorIcon + " I cannot log messages with the Everyone and Here mentions, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
+          const embed = {"description": ErrorIcon + " I cannot log messages with mentions, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
         };
