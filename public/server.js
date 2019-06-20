@@ -818,7 +818,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
 
     ctx.drawImage(background, 0, 0, canvas.width, 300);       
     
-    const layout = await Canvas.loadImage("https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fwelcome_messages_layout_2.png");
+    const layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fwelcome_messages_layout_3.png?v=1561018982206");
     ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
     ctx.shadowColor = "black";
@@ -888,7 +888,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
     const avatar = await Canvas.loadImage(member.user.displayAvatarURL.replace("https", "http"));
-    ctx.drawImage(avatar, 9, 7, 82, 82);
+    ctx.drawImage(avatar, 7, 7, 82, 82);
 
     return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
       
@@ -1364,7 +1364,7 @@ peeky.on('message', async (message) => {
     const background = await Canvas.loadImage(TheBannerShown);
     ctx.drawImage(background, 0, 0, canvas.width, 300);  
       
-    const layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Flevel_up_layout.png");
+    const layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Flevel_up_layout_2.png?v=1561018982613");
     ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
       
     //Setting
