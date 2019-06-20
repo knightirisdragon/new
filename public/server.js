@@ -2776,124 +2776,97 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
       
     if  (!reaction.message.content.includes("@everyone") && !reaction.message.content.includes("@here"))  {
         
-    LoggedMessages.add(reaction.message.id);
+        LoggedMessages.add(reaction.message.id);
+        var image = "none";   
 
-    var name                    = peeky.serverData.get(keySF, "message_log_bonus_setting");
-    var Channel                 = reaction.message.guild.channels.find(channel => channel.name == name);
-    const OriginalMessage       = reaction.message;
-    const OriginalMessageEdited = OriginalMessage.content//.replace((/(<@(!?)\d+)(>)/));
-    var ImageDetected           = false;
+    var name    = peeky.serverData.get(keySF, "message_log_bonus_setting");
+    var Channel = reaction.message.guild.channels.find(channel => channel.name == name);
+    var Original_Message = reaction.message;
       
     if  (Channel && reaction.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))  {
 
-    if  (reaction.message.attachments.size > 0) {  var image = reaction.message.attachments.array()[0].url;  }  else  {  ImageDetected = true;  }; 
+    if  (reaction.message.attachments.size > 0) {  image = reaction.message.attachments.array()[0].url;  }  else  {  image = "https://cdn.discordapp.com/attachments/471346376089927700/508681498271154198/unknown.png";  }; 
             
-        Channel.fetchWebhooks().then(webhook =>  {
+        Channel.fetchWebhooks()
+        .then(webhook =>  {
             
-        var FoundHook = webhook.find(w => w.name == peeky.user.username);
+              var FoundHook = webhook.find(w => w.name == "PEEKY");
 
-        if  (!FoundHook)  {
+              if  (!FoundHook)  {
 
-            Channel.createWebhook(peeky.user.username, peeky.user.displayAvatarURL).catch(error => ErrorBag.add(error)).then(Webhook => {
+                  Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL).catch(error => ErrorBag.add(error))
+                  .then(Webhook => {
 
-                Webhook.send(OriginalMessageEdited + "\n­", {
+                  Webhook.send(Original_Message.content + "\n­", {
 
-                "username": OriginalMessage.author.tag,
-                "avatarURL": OriginalMessage.author.displayAvatarURL,
+                  "username": Original_Message.author.tag,
+                  "avatarURL": Original_Message.author.displayAvatarURL,
+                  "files": [image],
 
-                "embeds":  [{
-                    "description": "[🔍](" + reaction.message.url + ")",
-                    "color": EmbedColor
-                }]
+                  "embeds":  [{
+                      "description": "[🔍](" + reaction.message.url + ")",
+                      "color": EmbedColor
+                  }]
 
-                }).catch(error => ErrorBag.add(error));
+                  }).catch(error => ErrorBag.add(error));
 
+                  });
+
+              }
+               else
+              {
+            
+                 var Webhook = webhook.find(w => w.name == "PEEKY");
+                  
+                 Webhook.send(Original_Message.content + "\n­", {
+
+                 "username": Original_Message.author.tag,
+                 "avatarURL": Original_Message.author.displayAvatarURL,
+                 "files": [image],
+                   
+                  "embeds":  [{
+                      "description": "[🔍](" + reaction.message.url + ")",
+                      "color": EmbedColor
+                  }]
+
+                 }).catch(error => ErrorBag.add(error));
+
+              };
+            
             });
-
-        }
-         else
-        {
-
-            FoundHook.send(OriginalMessageEdited + "\n­", {
-
-            "username": OriginalMessage.author.tag,
-            "avatarURL": OriginalMessage.author.displayAvatarURL,
-            "files": [image],
-
-            "embeds":  [{
-                "description": "[🔍](" + reaction.message.url + ")",
-                "color": EmbedColor
-            }]
-
-            }).catch(error => ErrorBag.add(error));
-            
-        if  (ImageDetected == true)  {
-
-            FoundHook.send(OriginalMessageEdited + "\n­", {
-
-            "username": OriginalMessage.author.tag,
-            "avatarURL": OriginalMessage.author.displayAvatarURL,
-            "files": [image],
-
-            "embeds":  [{
-                "description": "[🔍](" + reaction.message.url + ")",
-                "color": EmbedColor
-            }]
-
-            }).catch(error => ErrorBag.add(error));
-
-        } else {
-
-          FoundHook.send(OriginalMessage + "\n­", {
-
-          "username": OriginalMessage.author.tag,
-          "avatarURL": OriginalMessage.author.displayAvatarURL,
-
-          "embeds":  [{
-              "description": "[🔍](" + reaction.message.url + ")",
-              "color": EmbedColor
-          }]
-
-          }).catch(error => ErrorBag.add(error));
-
-          };
-
-        };
-            
-        });
   
-        if  (peeky.serverData.get(keySF, "notifications") == true)  {
+            if  (peeky.serverData.get(keySF, "notifications") == true)  {
                   
-            const embed = {"description": InfoIcon + " **" + Function_RemoveFormatting(user.username, "other", true) + "** has logged **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**'s message.",  "color": EmbedColor}; 
-            reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+                const embed = {"description": InfoIcon + " **" + Function_RemoveFormatting(user.username, "other", true) + "** has logged **" + Function_RemoveFormatting(reaction.message.author.username, "other", true) + "**'s message.",  "color": EmbedColor}; 
+                reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
-        };
+            };
 
-        console.log("The Message Log function has been triggered in " + reaction.message.guild.name + ".");
+            console.log("The Message Log function has been triggered in " + reaction.message.guild.name + ".");
 
     };
               
-    reaction.remove(user).catch(error => ErrorBag.add(error));
+            reaction.remove(user).catch(error => ErrorBag.add(error));
             
-    }
-     else
-    {
-      reaction.remove(user).catch(error => ErrorBag.add(error));
-        
-      const embed = {"description": ErrorIcon + " I cannot log messages with the Everyone and Here mentions, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
-      reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
-      
-    };
+        }
+         else
+        {
+          reaction.remove(user).catch(error => ErrorBag.add(error));
             
-    }
-     else
-    {
-      reaction.remove(user).catch(error => ErrorBag.add(error));
-            
-      const embed = {"description": ErrorIcon + " That message was already logged, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
-      reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+          const embed = {"description": ErrorIcon + " I cannot log messages with the Everyone and Here mentions, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
+          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
-    };
+        };
+            
+        }
+         else
+        {
+          reaction.remove(user).catch(error => ErrorBag.add(error));
+            
+          const embed = {"description": ErrorIcon + " That message was already logged, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
+          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+          
+        };
 
     };
 };
