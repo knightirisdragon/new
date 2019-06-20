@@ -2774,7 +2774,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
       
     if  (!LoggedMessages.has(reaction.message.id))  {
       
-    //if  (!reaction.message.content.includes("@everyone") && !reaction.message.content.includes("@here") && reaction.message.mentions.users.size == 0)  {
+    if  (!reaction.message.content.includes("@everyone") && !reaction.message.content.includes("@here") && reaction.message.mentions.users.size == 0)  {
         
         LoggedMessages.add(reaction.message.id);
         var image = "none";   
@@ -2798,17 +2798,15 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
                   Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL).catch(error => ErrorBag.add(error))
                   .then(Webhook => {
 
-                  Webhook.send(reaction.message.url, {
+                  Webhook.send(OriginalMessageEdited + "­", {
 
                   "username": OriginalMessage.author.tag,
                   "avatarURL": OriginalMessage.author.displayAvatarURL,
+                  "files": [image],
 
                   "embeds":  [{
-                      "description": OriginalMessageEdited + "­" + Separator,
-                      "color": EmbedColor,
-                      "image": {
-                        "url": image
-                      },
+                      "description": "[🔍](" + reaction.message.url + ")",
+                      "color": EmbedColor
                   }]
 
                   }).catch(error => ErrorBag.add(error));
@@ -2820,19 +2818,17 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
               {
             
                  var Webhook = webhook.find(w => w.name == "PEEKY");
-                  
-                 Webhook.send(reaction.message.url, {
+
+                 Webhook.send(OriginalMessageEdited + "­", {
 
                  "username": OriginalMessage.author.tag,
                  "avatarURL": OriginalMessage.author.displayAvatarURL,
-                   
-                  "embeds":  [{
-                      "description": OriginalMessageEdited + "­" + Separator,
-                      "color": EmbedColor,
-                      "image": {
-                        "url": image
-                      },
-                  }]
+                 "files": [image],
+
+                 "embeds":  [{
+                     "description": "[🔍](" + reaction.message.url + ")",
+                     "color": EmbedColor
+                 }]
 
                  }).catch(error => ErrorBag.add(error));
 
@@ -2853,7 +2849,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
               
             reaction.remove(user).catch(error => ErrorBag.add(error));
             
-        /*}
+        }
          else
         {
           reaction.remove(user).catch(error => ErrorBag.add(error));
@@ -2861,7 +2857,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
           const embed = {"description": ErrorIcon + " I cannot log messages with mentions, **" + Function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
-        };*/
+        };
             
         }
          else
