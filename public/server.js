@@ -1945,20 +1945,21 @@ if  (peeky.guilds.size > MaxServers)  {
 });
 
 peeky.on("channelCreate", async (channel) => {
+
 const keyCF = `${channel.id}`;
 
-    peeky.channelData.ensure(keyCF , {
-        ChannelID: channel.id,
+peeky.channelData.ensure(keyCF , {
+    ChannelID: channel.id,
 
-        automatic_reactions_bonus: false,
-        image_only_bonus: false,
-        message_log_bonus: false,
-        banned_words_bonus: false,
-        spoiler_only_bonus: false,
-        flood_protection_bonus_lastdate: null,
-        flood_protection_bonus_lastuser: null,
-        flood_protection_bonus_lastmsg: null
-    });
+    automatic_reactions_bonus: false,
+    image_only_bonus: false,
+    message_log_bonus: false,
+    banned_words_bonus: false,
+    spoiler_only_bonus: false,
+    flood_protection_bonus_lastdate: null,
+    flood_protection_bonus_lastuser: null,
+    flood_protection_bonus_lastmsg: null
+});
 
 });
 
@@ -1975,7 +1976,7 @@ if  (peeky.channelData.has(keyCF))  {
 peeky.on("guildBanAdd", async (guild, user) => {
 const key = `${user.id}`;
 
-//Add Global Ban
+//Log the ban
 if  (peeky.userData.has(key))  {
     peeky.userData.math(key, "+", 1, "Bans");
 };
@@ -2190,7 +2191,7 @@ const keySF = `${member.guild.id}`;
 if (member.user.id !== PeekyId && peeky.serverData.has(keySF))  {
     
 //Member Counter (LEFT)
-if  (peeky.serverData.get(keySF, "member_counter_bonus") == true) {
+if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
 
 if  (!MemberCounterCooldown.has(member.guild.id))  {
 
@@ -2220,7 +2221,7 @@ if  (!MemberCounterCooldown.has(member.guild.id))  {
 if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
   
     //Permission Checking
-    if(member.guild.me.hasPermission("SEND_MESSAGES")) {
+    if(member.guild.me.hasPermission("SEND_MESSAGES"))  {
     
     const guild     = member.guild;
     var ProfileName = member.user.username;
@@ -2433,7 +2434,7 @@ const keySF = `${newMember.guild.id}`;
 //FUNCTIONS
 if  (peeky.serverData.has(keySF))  {
 
-const member  = newMember;
+const member = newMember;
 
 //Streamer Role
 if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
