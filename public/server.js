@@ -1147,6 +1147,7 @@ fetch('https://peeky.glitch.me/featured_profile.txt')
 peeky.on('ready', () => {
 
 	  console.log("Ready.");
+    peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
 
     //DDB
     ddbl.postStats(peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to DDB.") && ErrorBag.add(err));
@@ -1888,12 +1889,11 @@ if  (peeky.guilds.size > MaxServers)  {
         server_invite: "no_invite",
         prefix: Prefix,
         muted_role: "Muted",
-        mod_channel: "moderation_log",
       
         Title: "None",
         Thumbnail: DefaultBackground,
         Author: "No one",
-        Length: new Date(),
+        Length: 60,
         Started: new Date(),
         Link: "None",
 
@@ -3453,6 +3453,23 @@ if (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eval "))
 
 };
 
+//EventRewards
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eventrewards"))  {
+  
+    if  (OngoingEvent == true && peeky.userData.get(key, "CelebratorBadge") == false)  {
+      
+        peeky.userData.set(key, true, "CelebratorBadge");
+        peeky.userData.get(key, true, "Inventory").push(333);
+      
+        const embed = {"description": SuccessIcon + " You have received the event rewards!"
+                                      + "\n\n" + InfoIcon + " The **" + Banners[333 - 1][Banner.Name] + "** background."
+                                      + "\n\n" + InfoIcon + " The **Celebrator** badge.",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      
+    };
+  
+};
+
 //Upgrade
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade"))  {
 
@@ -3486,23 +3503,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade
     {
       const embed = {"description": ErrorIcon + " You have to join PEEKY's support server for that command to work.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-  
-};
-
-//EventRewards
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eventrewards"))  {
-  
-    if  (OngoingEvent == true && peeky.userData.get(key, "CelebratorBadge") == false)  {
-      
-        peeky.userData.set(key, true, "CelebratorBadge");
-        peeky.userData.get(key, true, "Inventory").push(333);
-      
-        const embed = {"description": SuccessIcon + " You have received the event rewards!"
-                                      + "\n\n" + InfoIcon + " The **" + Banners[333 - 1][Banner.Name] + "** background."
-                                      + "\n\n" + InfoIcon + " The **Celebrator** badge.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      
     };
   
 };
