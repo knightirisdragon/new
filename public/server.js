@@ -1496,8 +1496,8 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     }
      else
     {
-     Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This user's profile is currently unavailable to PEEKY.  </font></b>  </div>");
-     //Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This profile will get wiped in " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days") + " days if they do not come back.  </font></b>  </div>");
+     Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This user's profile is currently unavailable to PEEKY.  </font></b>  </div>");
+     //Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url( + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This profile will get wiped in " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days") + " days if they do not come back.  </font></b>  </div>");
     };
       
     };
@@ -1922,9 +1922,7 @@ if  (peeky.guilds.size > MaxServers)  {
         role_saver_bonus: false,
         role_saver_array: [],
         game_roles_bonus: false,
-        game_roles_bonus_setting: [],
-        temp_channels_bonus: false,
-        temp_channels_bonus_setting: 60
+        game_roles_bonus_setting: []
     });
   
 };
