@@ -1156,7 +1156,7 @@ peeky.on('ready', () => {
         peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
   
         //DBL
-        dbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DBL."); ErrorBag.add(err)});
+        //dbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DBL."); ErrorBag.add(err)});
 
         //DDBL
         ddbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DDBL."); ErrorBag.add(err)});
