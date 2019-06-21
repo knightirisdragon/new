@@ -1937,7 +1937,9 @@ if  (peeky.guilds.size > MaxServers)  {
         role_saver_bonus: false,
         role_saver_array: [],
         game_roles_bonus: false,
-        game_roles_bonus_setting: []
+        game_roles_bonus_setting: [],
+        temporary_channels_bonus: false,
+        temporary_channels_setting: 60
     });
   
 };
