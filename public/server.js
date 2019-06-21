@@ -1438,14 +1438,16 @@ peeky.on('message', async (message) => {
     });
       
     //Profiles
-    var filtered = function_ShuffleArray(peeky.userData.filter( p => p.UserID && p.lastSeen && p.FashionBadge == false ));
+    var filtered = function_ShuffleArray(peeky.userData.filter( p => p.UserID && p.lastSeen ));  // && p.FashionBadge == false
     var toRemoveProfiles = filtered.filter(data => {
-       return (rightNow - InactiveWipe > data.lastSeen);
+        return (rightNow - InactiveWipe > data.lastSeen);
     });
 
     toRemoveProfiles.forEach(data => {
-        console.log("I have wiped a profile because it was inactive.");
-        peeky.userData.delete(`${data.UserID}`);
+        if  (!peeky.users.has(data.UserID))  {
+            console.log("I have wiped a profile because it was inactive and unavailable.");
+            peeky.userData.delete(`${data.UserID}`);
+        };
     });
     
     };
