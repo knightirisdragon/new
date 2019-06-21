@@ -1503,7 +1503,8 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     }
      else
     {
-     Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This user's profile is currently unavailable to PEEKY.  </font></b>  </div>");
+     //Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This user's profile is currently unavailable to PEEKY.  </font></b>  </div>");
+     Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "'  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  TIf this profiles stays unavailable for " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days") + "  </font></b>  </div>");
     };
       
     };
