@@ -1150,13 +1150,13 @@ peeky.on('ready', () => {
     peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
 
     //DDB
-    ddbl.postStats(peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to DDB.") && ErrorBag.add(err));
+    ddbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DDB."); ErrorBag.add(err)});
   
     //DB
-    dbl.postStats(peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to DB.") && ErrorBag.add(err));
+    dbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DB."); ErrorBag.add(err)});
   
     //BLS
-    bls.postServerCount(peeky.guilds.size).catch(err => console.log("Failed to post the serverCount to BLS.") && ErrorBag.add(err));
+    bls.postServerCount(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to BLS."); ErrorBag.add(err)});
   
     //User Setting Updating
     setInterval(() => {
@@ -1499,12 +1499,12 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
             Leaderboard.push(SavedProfile);
         };
         
-    }
+    }/*
      else
     {
      Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This user's profile is currently unavailable to PEEKY.  </font></b>  </div>");
      //Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This profile will get wiped in " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days") + " days if they do not come back.  </font></b>  </div>");
-    };
+    };*/
       
     };
       
