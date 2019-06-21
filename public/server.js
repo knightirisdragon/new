@@ -1728,8 +1728,7 @@ if  (!WebsiteCooldowns.has("news"))  {
 
     var NewsList = [];
 
-    peeky.channels.get(AnnouncementsChannel).fetchMessages({ limit: 4 })
-    .then(async (messages) => {
+    peeky.channels.get(AnnouncementsChannel).fetchMessages({ limit: 4 }).then(async (messages) => {
           
     await messages.forEach(m => {
         var Header = m.content.split("\n")[0];
@@ -2245,9 +2244,9 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
 //GUILD MEMBER UPDATE EVENTS
 peeky.on("guildMemberUpdate", async (oldMember, newMember) => {
   
-const key        = `${newMember.user.id}`;
-const keySF      = `${newMember.guild.id}`;
-const member     = newMember;
+const key    = `${newMember.user.id}`;
+const keySF  = `${newMember.guild.id}`;
+const member = newMember;
   
 //FUNCTIONS
 if (member.user.id !== PeekyId && peeky.serverData.has(keySF))  {
