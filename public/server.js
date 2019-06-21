@@ -1444,7 +1444,7 @@ peeky.on('message', async (message) => {
     });
 
     toRemoveProfiles.forEach(data => {
-        if  (!peeky.users.has(data.UserID))  {
+        if  (!peeky.users.has(data.UserID) || data.FashionBadge == false)  {
             console.log("I have wiped a profile because it was inactive and unavailable.");
             peeky.userData.delete(`${data.UserID}`);
         };
