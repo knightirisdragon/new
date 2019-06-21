@@ -1170,6 +1170,10 @@ peeky.on('disconnect', () => {
 	  console.log('Disconnected.');
 });
 
+peeky.on('debug', info => {
+	  console.log(info.replace(process.env.BOT_TOKEN, "TOKEN"));
+});
+
 //Fixes
 process.on('uncaughtException', function (err) {  ErrorBag.add(err)  });
 peeky.on('error', function (err)  {  ErrorBag.add(err) });
