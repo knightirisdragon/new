@@ -1148,21 +1148,22 @@ peeky.on('ready', () => {
 
 	  console.log("Ready.");
     peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
-  
-    //DBL
-    dbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DBL."); ErrorBag.add(err)});
 
-    //DDBL
-    ddbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DDBL."); ErrorBag.add(err)});
-  
-    //BLS
-    bls.postServerCount(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to BLS."); ErrorBag.add(err)});
-  
-    //User Setting Updating
     setInterval(() => {
+      
+        //Set user info
         peeky.user.setAvatar(RandomAvatars[Math.floor(Math.random()*RandomAvatars.length)]).catch(error => ErrorBag.add(error));
         peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
-        console.log("Avatar changed.")
+  
+        //DBL
+        dbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DBL."); ErrorBag.add(err)});
+
+        //DDBL
+        ddbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DDBL."); ErrorBag.add(err)});
+
+        //BLS
+        bls.postServerCount(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to BLS."); ErrorBag.add(err)});
+      
     }, 7200000);
   
 });
@@ -5044,8 +5045,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
     InfoMessages.push(SuccessIcon + " Here's your daily reward, a chest!");
     peeky.userData.math(key, "+", 1, "Chests");
       
-    //Vote DBL
-    await dbl.hasVoted(message.author.id).then(async VotedState => {
+    /*//Vote DBL
+    await dbl.hasVoted(message.author.id).catch(error => {  ErrorBag.add(error);  return  }).then(async VotedState => {
 
     if  (VotedState == true)  {
         InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DB today.");
@@ -5055,10 +5056,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
       
     };
 
-    });
+    });*/
 
     //Vote DDBL
-    await ddbl.getVotes().then(AllVotes => {
+    await ddbl.getVotes().catch(error => {  ErrorBag.add(error);  return  }).then(AllVotes => {
       
         var Now = new Date();
         AllVotes = AllVotes.filter(i => i.id == message.author.id && Now - new Date(i.timestamp) <= 86400000);
@@ -5075,7 +5076,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
     });
 
     //Vote BLS
-    await bls.getUpvotes().then(AllVotes => {
+    await bls.getUpvotes().catch(error => {  ErrorBag.add(error);  return  }).then(AllVotes => {
       
         var Now = new Date();
         AllVotes = AllVotes.filter(i => i.user.id == message.author.id && Now - new Date(i.timestamp) <= 86400000);
