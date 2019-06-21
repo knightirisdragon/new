@@ -185,7 +185,8 @@ const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw",
                                "https://www.youtube.com/watch?v=YWN81V7ojOE",
                                "https://www.youtube.com/watch?v=pcSLtIYLbLQ",
                                "https://www.youtube.com/watch?v=6okxuiiHx2w",
-                               "https://www.youtube.com/watch?v=NqpnbSFprB4"
+                               "https://www.youtube.com/watch?v=NqpnbSFprB4",
+                               "https://www.youtube.com/watch?v=hWfbUTwzzZA"
                             ];
 
 //Vote Emotes
@@ -1497,7 +1498,6 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
      else
     {
      Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This user's profile is currently unavailable to PEEKY.  </font></b>  </div>");
-     //Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url( + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This profile will get wiped in " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days") + " days if they do not come back.  </font></b>  </div>");
     };
       
     };
