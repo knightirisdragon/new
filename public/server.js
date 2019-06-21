@@ -1148,12 +1148,12 @@ peeky.on('ready', () => {
 
 	  console.log("Ready.");
     peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
-
-    //DDB
-    ddbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DDB."); ErrorBag.add(err)});
   
-    //DB
-    dbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DB."); ErrorBag.add(err)});
+    //DBL
+    dbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DBL."); ErrorBag.add(err)});
+
+    //DDBL
+    ddbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DDBL."); ErrorBag.add(err)});
   
     //BLS
     bls.postServerCount(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to BLS."); ErrorBag.add(err)});
@@ -1498,13 +1498,13 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
         } else  {
             Leaderboard.push(SavedProfile);
         };
-        
-    }/*
+
+    }
      else
     {
      Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This user's profile is currently unavailable to PEEKY.  </font></b>  </div>");
      //Leaderboard.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNKNOWN PROFILE  <br>  <font size='2'>  This profile will get wiped in " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days") + " days if they do not come back.  </font></b>  </div>");
-    };*/
+    };
       
     };
       
@@ -1830,14 +1830,6 @@ if  (!WebsiteCooldowns.has("stats"))  {
       
     WebsiteCooldowns.add("stats");
     setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
-
-    var Votes = 0;
-  
-    await ddbl.getVotes(PeekyId).catch(error => ErrorBag.add(error) && FailedVoteChecks.add(message.id)).then(async function (res)  {
-    if  (!FailedVoteChecks.has(message.id))  {
-        Votes = res.length;
-    };
-    });
       
     WebsiteCooldowns.add("reviews");
     setTimeout(() => {WebsiteCooldowns.delete("reviews")}, 600000);
@@ -1937,9 +1929,7 @@ if  (peeky.guilds.size > MaxServers)  {
         role_saver_bonus: false,
         role_saver_array: [],
         game_roles_bonus: false,
-        game_roles_bonus_setting: [],
-        temporary_channels_bonus: false,
-        temporary_channels_setting: 60
+        game_roles_bonus_setting: []
     });
   
 };
