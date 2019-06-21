@@ -3,7 +3,6 @@ dependencies:
   botlist.space: 3.2.1
   canvas: 2.5.0
   canvas-node: 0.3.23
-  dblapi.js: 2.3.0
   ddblapi.js: 1.0.0
   discord.js: 11.5.1
   dominant-color: 0.0.1
@@ -266,10 +265,6 @@ packages:
       node: '>=0.10'
     resolution:
       integrity: sha1-hTz6D3y+L+1d4gMmuN1YEDX24vA=
-  /dblapi.js/2.3.0:
-    dev: false
-    resolution:
-      integrity: sha512-8uZQMBg1coJsL5SEN1oPj2dgjgfm0DW7FhP8XWnG2V/xcOJnQNM2kCId1g/pyqm8PYH9346olL1IrLJQ6m0wOg==
   /ddblapi.js/1.0.0:
     dependencies:
       axios: 0.18.1
@@ -1449,7 +1444,6 @@ specifiers:
   botlist.space: ^3.1.6
   canvas: ^2.5.0
   canvas-node: ^0.3.20
-  dblapi.js: ^2.3.0
   ddblapi.js: ^1.0.0
   discord.js: ^11.5.1
   dominant-color: ^0.0.1

@@ -6,10 +6,6 @@ const peeky   = new Discord.Client();
 const { ddblAPI } = require('ddblapi.js');
 const ddbl = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
 
-//DBL
-const DBL = require("dblapi.js");
-const dbl = new DBL(process.env.DBL_TOKEN, peeky);
-
 //BLS
 const BotList = require('botlist.space');
 const bls     = new BotList({ id: "482945063282802698", botToken: process.env.BLS_TOKEN });
@@ -1154,9 +1150,6 @@ peeky.on('ready', () => {
         //Set user info
         peeky.user.setAvatar(RandomAvatars[Math.floor(Math.random()*RandomAvatars.length)]).catch(error => ErrorBag.add(error));
         peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
-  
-        //DBL
-        //dbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DBL."); ErrorBag.add(err)});
 
         //DDBL
         ddbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DDBL."); ErrorBag.add(err)});
@@ -1929,7 +1922,9 @@ if  (peeky.guilds.size > MaxServers)  {
         role_saver_bonus: false,
         role_saver_array: [],
         game_roles_bonus: false,
-        game_roles_bonus_setting: []
+        game_roles_bonus_setting: [],
+        temp_channels_bonus: false,
+        temp_channels_bonus_setting: 60
     });
   
 };
@@ -5044,22 +5039,9 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
     //Reward
     InfoMessages.push(SuccessIcon + " Here's your daily reward, a chest!");
     peeky.userData.math(key, "+", 1, "Chests");
-      
-    /*//Vote DBL
-    await dbl.hasVoted(message.author.id).catch(error => {  ErrorBag.add(error);  return  }).then(async VotedState => {
-
-    if  (VotedState == true)  {
-        InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DB today.");
-
-        peeky.userData.math(key, "+", 1, "Chests");
-        CountedVotes ++;
-      
-    };
-
-    });*/
 
     //Vote DDBL
-    await ddbl.getVotes().catch(error => {  ErrorBag.add(error);  return  }).then(AllVotes => {
+    await ddbl.getVotes().then(AllVotes => {
       
         var Now = new Date();
         AllVotes = AllVotes.filter(i => i.id == message.author.id && Now - new Date(i.timestamp) <= 86400000);
@@ -5076,7 +5058,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
     });
 
     //Vote BLS
-    await bls.getUpvotes().catch(error => {  ErrorBag.add(error);  return  }).then(AllVotes => {
+    await bls.getUpvotes().then(AllVotes => {
       
         var Now = new Date();
         AllVotes = AllVotes.filter(i => i.user.id == message.author.id && Now - new Date(i.timestamp) <= 86400000);
