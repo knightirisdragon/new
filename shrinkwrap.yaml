@@ -1,7 +1,7 @@
 dependencies:
   better-sqlite-pool: 0.2.2
   botlist.space: 3.2.1
-  canvas: 2.5.0
+  canvas: 2.6.0
   canvas-node: 0.3.23
   ddblapi.js: 1.0.0
   discord.js: 11.5.1
@@ -184,7 +184,7 @@ packages:
     dev: false
     resolution:
       integrity: sha1-1tNMyQPmygd4hdJMxx8rXtyFDqY=
-  /canvas/2.5.0:
+  /canvas/2.6.0:
     dependencies:
       nan: 2.14.0
       node-pre-gyp: 0.11.0
@@ -194,7 +194,7 @@ packages:
       node: '>=6'
     requiresBuild: true
     resolution:
-      integrity: sha512-wwRz2cLMgb9d+rnotOJCoc04Bzj3aJMpWc6JxAD6lP7bYz0ldcn0sKddoZ0vhD5T8HBxrK+XmRDJb68/2VqARw==
+      integrity: sha512-bEO9f1ThmbknLPxCa8Es7obPlN9W3stB1bo7njlhOFKIdUTldeTqXCh9YclCPAi2pSQs84XA0jq/QEZXSzgyMw==
   /caseless/0.12.0:
     dev: false
     resolution:
@@ -1442,7 +1442,7 @@ shrinkwrapVersion: 3
 specifiers:
   better-sqlite-pool: ^0.2.2
   botlist.space: ^3.1.6
-  canvas: ^2.5.0
+  canvas: ^2.6.0
   canvas-node: ^0.3.20
   ddblapi.js: ^1.0.0
   discord.js: ^11.5.1
