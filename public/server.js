@@ -6161,7 +6161,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "idban "
 
         if  (!message.guild.members.find(m => m.id == GivenID))  {
 
-            await message.guild.ban(GivenID, {  reason: "ID Banned by " + message.author.tag + ".", days: 0  }).catch(error => { 
+            await message.guild.ban(GivenID, {  reason: "ID banned by " + message.author.tag + ".", days: 0  }).catch(error => { 
                   const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   ErrorBag.add(error); Failed = true;
@@ -6193,12 +6193,12 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "idban "
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
    
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
+    }
+     else
+    {
+     const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
 };
   
@@ -6213,7 +6213,7 @@ if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
           
 if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS")) {
 
-    await message.guild.ban(GivenID, {  reason: "ID Banned by " + message.author.tag + ".", days: 0  }).catch(error => { 
+    await message.guild.ban(MentionedMember.user.id, {  reason: " banned by " + message.author.tag + ".", days: 0  }).catch(error => { 
           const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           ErrorBag.add(error); Failed = true;
