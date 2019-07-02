@@ -2573,7 +2573,7 @@ if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reactio
 };
   
 //Workshop Response
-if  (reaction.message.channel.id == WorkshopChannel && reaction.emoji.name == "🏁")  {
+if  (reaction.message.channel.id == WorkshopChannel && reaction.emoji.name == "🏁" & reaction.count == 1)  {
 
     const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted!",  "color": EmbedColor}; 
     reaction.message.author.send({ embed }).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
