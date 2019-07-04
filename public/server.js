@@ -6374,8 +6374,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
   
-    var MutedRole = message.content.split(Prefix + "mutedrole ")[1];
-    var FixedMutedRole = Function_RemoveFormatting(MutedRole, "muted_role", true);
+    var MutedRole = message.content.split(Prefix + "muterole ")[1];
+    var FixedMutedRole = Function_RemoveFormatting(MutedRole, "role", true);
     var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
     var InfoMessages = [];
   
