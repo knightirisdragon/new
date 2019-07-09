@@ -4766,7 +4766,7 @@ if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "custom
         peeky.userData.math(key, "-", CustomBackgroundPrice, "Gredit");
         peeky.userData.set(key, message.attachments.array()[0].url.replace("https", "http"), "Background");
 
-        const embed = {"description": SuccessIcon + " You have bought a **Custom Background** for **" + CustomBackgroundPrice.toLocaleString('en') + " " + GreditIcon + "**." + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have bought a **Custom Background** for **" + CustomBackgroundPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     }
