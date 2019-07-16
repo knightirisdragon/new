@@ -1350,6 +1350,7 @@ peeky.on('message', async (message) => {
         
     const canvas = Canvas.createCanvas(500, 95);
     const ctx = canvas.getContext('2d');
+    var   Failed = false;
       
     ctx.globalAlpha = 0.75;
 
@@ -1357,15 +1358,16 @@ peeky.on('message', async (message) => {
     var ProfileName = message.author.username;
 
     message.channel.startTyping();
-    
-    for(var i = 0; i < Banners.length; i++)  {
-       if (peeky.userData.get(key, "Background") == i + 1) {
-           TheBannerShown = Banners[i][Banner.Source];
-           break;
-          };
+      
+    var TheBannerShown = DefaultBackground;
+    if  (peeky.userData.has(key))  {
+        TheBannerShown = function_GetBackground(key);
     };
 
-    const background = await Canvas.loadImage(TheBannerShown);
+    const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(message.author.id, DefaultBackground, "Background");});
+      
+    if  (Failed == false)  {
+  
     ctx.drawImage(background, 0, 0, canvas.width, 300);  
       
     const layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Flevel_up_layout_2.png?v=1561018982613");
@@ -1404,11 +1406,13 @@ peeky.on('message', async (message) => {
             
     console.log("The Notifications function has been triggered in " + message.guild.name + ".");
 
-    };  
     };
 
+    };  
     };
     };
+  
+};
 
     //Auto Wipe System
     if  (!WebsiteCooldowns.has("autowipe"))  {
