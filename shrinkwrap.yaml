@@ -15,7 +15,7 @@ dependencies:
   request: 2.88.0
   require.js: 1.0.0
   sqlite3: 4.0.9
-  ytdl-core: 0.29.2
+  ytdl-core: 0.29.3
   ytdl-core-discord: 1.0.3
 packages:
   /abbrev/1.1.1:
@@ -713,7 +713,7 @@ packages:
       integrity: sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA==
   /m3u8stream/0.6.2:
     dependencies:
-      miniget: 1.5.1
+      miniget: 1.5.3
       sax: 1.2.4
     dev: false
     engines:
@@ -769,6 +769,12 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-KJ3AyIVZ76QuWAq43BWjkK+jLdhxhy3s4tsdg9Je91+cIFkeOSW2VEj2lSeKw50CPu1eCCkSbiQEBKL36mpA5w==
+  /miniget/1.5.3:
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-6xiJs3ZGBdrNMlPNlEWirHhY53hSW33nG1Ytub9Cg5+jLhFPn9PGe4FmPZK9WlmDE1N7/8DEL7PGr7r9kbxwgw==
   /minimatch/3.0.4:
     dependencies:
       brace-expansion: 1.1.11
@@ -1436,6 +1442,17 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-rQTxqxF09tKGgWxVtvFfi6ga1KWcHNbUGz09yTklirhqQlsIYvaDFCEhJ0K/RlzMH12FquAAMzh+Qi35fkwbFQ==
+  /ytdl-core/0.29.3:
+    dependencies:
+      html-entities: 1.2.1
+      m3u8stream: 0.6.2
+      miniget: 1.5.3
+      sax: 1.2.4
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-IqMjkTvGjB2Shu9W2HhzyquIo8Pv6AGogc7+Vv3bcxDXjYCgYUPt+LX0CqL76GTmjftnMSVpI1dO79Uzj4f5mQ==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
@@ -1456,5 +1473,5 @@ specifiers:
   request: ^2.88.0
   require.js: ^1.0.0
   sqlite3: ^4.0.8
-  ytdl-core: ^0.29.2
+  ytdl-core: ^0.29.3
   ytdl-core-discord: ^1.0.3
