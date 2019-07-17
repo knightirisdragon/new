@@ -286,15 +286,11 @@ app.use(express.static('public'));
 
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
-});
-
-app.get("/", (request, response) => {
   response.sendStatus(200);
 });
 
 app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`https://peeky.glitch.me/`);
+  setInterval(() => { http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 280000);
 
 //RESPONSE MESSAGES
