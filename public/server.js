@@ -669,7 +669,7 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground341.png?v=1563487780080", 425, "Aw man", "CaptainSparklez", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground342.png?v=1563487804389", 475, "Surrounded", "Alien Isolation", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground343.png?v=1563487814497", 450, "High-Tech", "Call of Duty Modern Warfare", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground344.png?v=1563487825049", 500, "Midnight Breakfast", "Vampyr", undefined]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground344.png?v=1563487825049", 500, "Midnight breakfast", "Vampyr", undefined]
 
 ];
 
@@ -1042,14 +1042,14 @@ function function_TimeLeft(value, type)  {
 //Numarize Array
 function function_NumarizeArray(array, brackets)  {
 
-var Current = 0; var List = [];
+    var Current = 0; var List = [];
 
-array.forEach(i => {
-    Current ++;
-    List.push(Current + ". " + brackets[0] + i + brackets[1] + "\n");
-});
-  
-return List.join("");
+    array.forEach(i => {
+        Current ++;
+        List.push(Current + ". " + brackets[0] + i + brackets[1] + "\n");
+    });
+
+    return List.join("");
 
 };
 
