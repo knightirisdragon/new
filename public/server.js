@@ -3449,58 +3449,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "get "))  {
     message.channel.send("`" + Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get", true) + "`").catch(error => ErrorBag.add(error));
 };
-  
-//ServerInfo
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "serverinfo"))  {
-  
-    var List = [];
-
-    if  (message.guild.roles.find(r => r.name.toLowerCase().includes("moderator")))  {
-    message.guild.members.filter(m => m.roles.find(r => Function_RemoveFormatting(r.name.toLowerCase(), "other", false).includes("moderator"))).map(m => m.user.tag).forEach(i => {
-      
-        if  (!List.includes("moderator"))  {
-            List.push(Function_RemoveFormatting(i, "other", false));
-        };
-      
-    });
-    } else
-    if  (message.guild.roles.find(r => r.name.toLowerCase().includes("admin")))  {
-    message.guild.members.filter(m => m.roles.find(r => Function_RemoveFormatting(r.name.toLowerCase(), "other", false).includes("admin"))).map(m => m.user.tag).forEach(i => {
-      
-        if  (!List.includes("admin"))  {
-            List.push(Function_RemoveFormatting(i, "other", false));
-        };
-      
-    });
-    } else
-    if  (message.guild.roles.find(r => r.name.toLowerCase().includes("helper")))  {
-    message.guild.members.filter(m => m.roles.find(r => Function_RemoveFormatting(r.name.toLowerCase(), "other", false).includes("helper"))).map(m => m.user.tag).forEach(i => {
-      
-        if  (!List.includes("helper"))  {
-            List.push(Function_RemoveFormatting(i, "other", false));
-        };
-      
-    });
-    } else
-    if  (message.guild.roles.find(r => r.name.toLowerCase().includes("staff")))  {
-    message.guild.members.filter(m => m.roles.find(r => Function_RemoveFormatting(r.name.toLowerCase(), "other", false).includes("staff"))).map(m => m.user.tag).forEach(i => {
-      
-        if  (!List.includes("staff"))  {
-            List.push(Function_RemoveFormatting(i, "other", false));
-        };
-      
-    });
-    };
-
-    if (List.includes(Function_RemoveFormatting(message.guild.owner.user.tag, "other", false)) == false) {
-    List.push(Function_RemoveFormatting(message.guild.owner.user.tag, "other", false));
-    };
-  
-    const embed = {"description": "**Server Staff:** \n\n **" + List.join("**,\n**") + "**.",  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    
-  
-};
 
 //Eval
 if (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eval "))  {
