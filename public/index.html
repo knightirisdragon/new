@@ -114,7 +114,7 @@
       bottom: 10px;
       position: fixed;
       z-index: 101;
-      visibility: hidden;
+      display: none;
     }
       
     .staffcontacts  {
@@ -217,21 +217,6 @@
     .container:hover .summaryhome {
       filter: blur(0px);
     }
-
-    /*
-    .container:hover #F {
-        content: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ffunctions.gif?1558182385432');
-    }
-    .container:hover #PS {
-        content: url('https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_system.gif');
-    }
-    .container:hover #MC {
-        content: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fmoderation_commands.gif?1558178567187');
-    }
-    .container:hover #MP {
-        content: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fmusic_player.gif?1558180422722');
-    }
-    */
       
     </style>
 
@@ -242,7 +227,15 @@
       
     function MoreInfo  (id)  {
       
-        document.getElementById(id).style.visiblity = "visible";
+        id = id + "_window";
+      
+        var x = document.getElementsByClassName("staffwindow");
+        var i;
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+      
+        document.getElementById(id).style.display = "block";
       
     };
     
