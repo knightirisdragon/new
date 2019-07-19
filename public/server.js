@@ -2119,6 +2119,70 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
 
 };
     
+//Role Saver
+if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
+  
+    //Permission Checking
+  if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
+    
+      if  (peeky.serverData.has(keySF, "role_saver_array"))  {
+      
+          var SavedRoles = peeky.serverData.get(keySF, "role_saver_array");
+        
+          SavedRoles.forEach(current => {
+            
+              if  (current[0] == member.user.id)  {
+                
+                  const ValidRoles = [];
+                
+                  current[1].forEach(role => {
+                      
+                    if  (member.guild.roles.find(r => r.id == role))  {
+                        ValidRoles.push(role);
+                    };                  
+                    
+                  });
+                
+                  member.setRoles(ValidRoles).catch(error => ErrorBag.add(error));
+    
+                  console.log("The Role Saver function has been triggered in " + member.guild.name + ".");
+                
+              };
+            
+          });  
+      };
+
+  };
+
+};
+    
+//Nickname Saver
+if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
+  
+    //Permission Checking
+  if  (member.guild.me.hasPermission("MANAGE_NICKNAMES"))  {
+    
+      if  (peeky.serverData.has(keySF, "nick_saver_array"))  {
+      
+          var SavedNicks = peeky.serverData.get(keySF, "nick_saver_array");
+        
+          SavedNicks.forEach(current => {
+            
+              if  (current[0] == member.user.id)  {
+                
+                  member.setNickname(current[1]);
+    
+                  console.log("The Nickname Saver function has been triggered in " + member.guild.name + ".");
+                
+              };
+            
+          });  
+      };
+
+  };
+
+};
+    
 //Server Trial
 if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
 
@@ -2271,6 +2335,28 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
             SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name !== "@everyone").map(r => r.id);
         } else {
           SavedRoles.push([member.user.id, member.roles.filter(r => r.name !== "@everyone").map(r => r.id)]);
+        };
+      
+    };
+
+};
+    
+//Nickname Saver
+if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
+  
+    if  (peeky.serverData.has(keySF, "nick_saver_array"))  {
+
+        var SavedNicks  = peeky.serverData.get(keySF, "nick_saver_array");
+        var MemberIndex = SavedNicks.findIndex(i => i[0] == member.user.id);
+      
+        if  (member.nickname !== null)  {
+
+            if  (MemberIndex >= 0)  {
+                SavedNicks[MemberIndex][1] = member.nickname;
+            } else {
+              SavedNicks.push([member.user.id, member.nickname]);
+            };
+        
         };
       
     };
