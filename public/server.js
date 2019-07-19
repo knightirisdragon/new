@@ -2168,7 +2168,7 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
         
           SavedNicks.forEach(current => {
             
-              if  (current[0] == member.user.id)  {
+              if  (current[0] == member.user.id && current[1] !== null)  {
                 
                   member.setNickname(current[1]);
     
@@ -2348,15 +2348,11 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
 
         var SavedNicks  = peeky.serverData.get(keySF, "nick_saver_array");
         var MemberIndex = SavedNicks.findIndex(i => i[0] == member.user.id);
-      
-        if  (member.nickname !== null)  {
 
-            if  (MemberIndex >= 0)  {
+        if  (MemberIndex >= 0)  {
                 SavedNicks[MemberIndex][1] = member.nickname;
-            } else {
+        } else {
               SavedNicks.push([member.user.id, member.nickname]);
-            };
-        
         };
       
     };
@@ -2713,6 +2709,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "join_role_bonus") == true)              { var JR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var JR = DisabledIcon};
         if (peeky.serverData.get(keySF, "game_roles_bonus") == true)             { var GR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var GR = DisabledIcon};
         if (peeky.serverData.get(keySF, "role_saver_bonus") == true)             { var RS = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var RS = DisabledIcon};
+        if (peeky.serverData.get(keySF, "nick_saver_bonus") == true)             { var NS = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var NS = DisabledIcon};
         if (peeky.serverData.get(keySF, "server_trial_bonus") == true)           { var ST = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var ST = DisabledIcon};
         if (peeky.serverData.get(keySF, "streamer_role_bonus") == true)          { var SR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SR = DisabledIcon};
         if (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)   { var SA2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA2 = DisabledIcon};
@@ -2747,7 +2744,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
                                 "**Flood Protection** " + FP + "\n" + "No Setting." + "\n\n" +
                                 "**Role Saver** " + RS + "\n" + "No Setting." + "\n\n" +
-                                "**Event Countdown** " + EC + "\n" + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`",
+                                "**Nickname Saver** " + NS + "\n" + "No Setting.",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -2759,7 +2756,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "3⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  "**Server Message** " + SM + "\n" + "`" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`" + "\n\n" +
+                  description:  "**Event Countdown** " + EC + "\n" + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`" + "\n\n" +
+                                "**Server Message** " + SM + "\n" + "`" + Function_RemoveFormatting(ServerMessage, "sm", true) + "`" + "\n\n" +
                                 "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
@@ -4160,6 +4158,21 @@ if  (FunctioName.startsWith("flood protection")) {
       
     if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
     const embed = {"description": SuccessIcon + " The **Flood Protection** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+
+//Toggle Nickname Saver
+if  (FunctioName.startsWith("nickname saver")) {
+
+    if(peeky.serverData.get(keySF, "nick_saver_bonus") == true) {peeky.serverData.set(keySF, false, "nick_saver_bonus");}
+    else peeky.serverData.set(keySF, true, "nick_saver_bonus");
+      
+    if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Nickname Saver** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
