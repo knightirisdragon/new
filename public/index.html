@@ -236,8 +236,12 @@
           x[i].style.display = "none";
         }
       
-        document.getElementById(id).style.display = "block";
+        var Element = document.getElementById(id);
       
+        if  (Element)  {  
+            Element.style.display = "block";
+        };
+
     };
     
     </script>
