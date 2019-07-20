@@ -5428,6 +5428,7 @@ if (!ProfileCooldown.has(message.author.id)) {
 
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
+    console.log(TheBannerShown);
     await dominant_color(TheBannerShown, {format: 'hex'}, function(err, color)  {
               
           ProfileColor = color;
