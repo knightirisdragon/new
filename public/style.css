@@ -15,6 +15,12 @@ img  {border-radius: 10px; cursor: pointer;}
   box-sizing: border-box;
 }
 
+.close  {  
+    background-color: rgba(100, 0, 0, 0.75);
+    border-radius: 25px;
+    padding: 10px;
+}
+
 .item_header  {
     background-color: rgba(35, 39, 42, 0.9);
     width: 100%;
