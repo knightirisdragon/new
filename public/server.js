@@ -1,4 +1,4 @@
-//DISCORD
+ //DISCORD
 const Discord = require("discord.js");
 const peeky   = new Discord.Client();
 
@@ -1811,8 +1811,8 @@ if  (!WebsiteCooldowns.has("staff"))  {
             StaffButton.push('<a href="https://www.instagram.com/vraagtekenss/" target="_blank">  <img src=' + InstagramIcon + ' class="staffbutton">  </a>');
         };
       
-        var CurrentContact = '<div class="container">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="2"> ' + function_RemoveTags(guildMember.user.username) + '<font size="2" color=#7289DA>#' + guildMember.user.discriminator + '</font>' + '  <br>  <font size="1">  ' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '  </font>  </font>  <br><br>  ' + StaffButton.join(" ") + '  </b>  </div>';
-
+        var CurrentContact = '<div class="staffwindow" id="' + guildMemberId + '_window" style="background-image: url(' + function_GetBackground(guildMemberId) + '); background-size: cover;  background-repeat: no-repeat;">  <img class="stafficon_w" src="' + guildMember.user.avatarURL +'">  <b class="staffname_w">' + guildMember.user.tag + '</b>  <b class="staffdesc_w">' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '</b>  <div class="staffcontacts">' + StaffButton.join(" ") + '</div>  </div>' + '<div class="container">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="2"> ' + function_RemoveTags(guildMember.user.username) + '<font size="2" color=#7289DA>#' + guildMember.user.discriminator + '</font>' + '  <br><br>  ' + '<a style="font-size: 14px;" id="' + guildMemberId + '" onclick="MoreInfo(this.id)">More info</a>' + '  </b>  </div>';  
+      
         if  (guildMember.roles.has("574255080069398543"))  {
             DevList.push(CurrentContact);
         };
@@ -3448,58 +3448,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))
 //Get
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "get "))  {
     message.channel.send("`" + Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get", true) + "`").catch(error => ErrorBag.add(error));
-};
-  
-//ServerInfo
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "serverinfo"))  {
-  
-    var List = [];
-
-    if  (message.guild.roles.find(r => r.name.toLowerCase().includes("moderator")))  {
-    message.guild.members.filter(m => m.roles.find(r => Function_RemoveFormatting(r.name.toLowerCase(), "other", false).includes("moderator"))).map(m => m.user.tag).forEach(i => {
-      
-        if  (!List.includes("moderator"))  {
-            List.push(Function_RemoveFormatting(i, "other", false));
-        };
-      
-    });
-    } else
-    if  (message.guild.roles.find(r => r.name.toLowerCase().includes("admin")))  {
-    message.guild.members.filter(m => m.roles.find(r => Function_RemoveFormatting(r.name.toLowerCase(), "other", false).includes("admin"))).map(m => m.user.tag).forEach(i => {
-      
-        if  (!List.includes("admin"))  {
-            List.push(Function_RemoveFormatting(i, "other", false));
-        };
-      
-    });
-    } else
-    if  (message.guild.roles.find(r => r.name.toLowerCase().includes("helper")))  {
-    message.guild.members.filter(m => m.roles.find(r => Function_RemoveFormatting(r.name.toLowerCase(), "other", false).includes("helper"))).map(m => m.user.tag).forEach(i => {
-      
-        if  (!List.includes("helper"))  {
-            List.push(Function_RemoveFormatting(i, "other", false));
-        };
-      
-    });
-    } else
-    if  (message.guild.roles.find(r => r.name.toLowerCase().includes("staff")))  {
-    message.guild.members.filter(m => m.roles.find(r => Function_RemoveFormatting(r.name.toLowerCase(), "other", false).includes("staff"))).map(m => m.user.tag).forEach(i => {
-      
-        if  (!List.includes("staff"))  {
-            List.push(Function_RemoveFormatting(i, "other", false));
-        };
-      
-    });
-    };
-
-    if (List.includes(Function_RemoveFormatting(message.guild.owner.user.tag, "other", false)) == false) {
-    List.push(Function_RemoveFormatting(message.guild.owner.user.tag, "other", false));
-    };
-  
-    const embed = {"description": "**Server Staff:** \n\n **" + List.join("**,\n**") + "**.",  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    
-  
 };
 
 //Eval

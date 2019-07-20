@@ -24,104 +24,150 @@
     <style>
       
     #News  {
-    text-align: left;
-    width: 100%;
-    position: relative;
-    display: inline-block;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: transform .25s ease;
+      text-align: left;
+      width: 100%;
+      position: relative;
+      display: inline-block;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: transform .25s ease;
     }
       
     .newsitem  {
-    background-color: rgba(35, 39, 42, 0.5);
-    border-left: #7289DA 2px solid;
-    width: 100%;
-    padding: 15px;
-      
-    display: inline-block;
-    transition: transform .25s ease;
+      background-color: rgba(35, 39, 42, 0.5);
+      border-left: #7289DA 2px solid;
+      width: 100%;
+      padding: 15px;
+
+      display: inline-block;
+      transition: transform .25s ease;
     }
       
     .newsauthor  {
-    width: 100%;
-    padding-bottom: 10px;
-    font-size: 10px;
+      width: 100%;
+      padding-bottom: 10px;
+      font-size: 10px;
 
-    display: inline-block;
+      display: inline-block;
     }
       
     .newsheader  {
-    width: 100%;
-    font-size: 20px;
+      width: 100%;
+      font-size: 20px;
 
-    display: inline-block;
+      display: inline-block;
     }
       
     .newsbody  {
-    font-size: 13px;
+      font-size: 13px;
     }
       
     .newsimage  {
-    border-radius: 2px;
-    border: rgba(35, 39, 42, 0.9) solid;
-    max-height: 250px;
+      border-radius: 2px;
+      border: rgba(35, 39, 42, 0.9) solid;
+      max-height: 250px;
     }
       
     #Reviews  {
-    background-color: rgba(35, 39, 42, 0.5);
-    border-left: #7289DA 2px solid;
-    width: 100%;
-    text-align: left;
-    padding: 15px;
-    position: relative;
-    text-decoration: none;
-    display: inline-block;
-    transition: transform .25s ease;
+      background-color: rgba(35, 39, 42, 0.5);
+      border-left: #7289DA 2px solid;
+      width: 100%;
+      text-align: left;
+      padding: 15px;
+      position: relative;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform .25s ease;
     }
 
     .staffroom  {
-    background-color: rgba(35, 39, 42, 0.5);
-    padding: 15px;
+      background-color: rgba(35, 39, 42, 0.5);
+      padding: 15px;
 
-    overflow: auto;
-    flex-direction: initial;
-    display: flex;  
-      
-    text-align: left;
+      overflow: auto;
+      flex-direction: initial;
+      display: flex; 
+
+      text-align: left;
     }
 
     .stafficon  {
-    border: rgba(35, 39, 42, 0.75) solid;
-    border-radius: 10px;
-    display: inline-block;
-    }
-      
-    .staffbutton_a  {
-    width: 20px;
-    height: 20px;      
+      border: rgba(35, 39, 42, 0.75) solid;
+      border-radius: 10px;
+      display: inline-block;
     }
       
     .staffbutton  {
-    border: rgba(35, 39, 42, 0.5) 2px solid;
-    border-radius: 10px;
-    width: 35px;
-    height: 35px;
-    transition: transform .25s ease;
+      border: rgba(35, 39, 42, 0.5) 2px solid;
+      border-radius: 10px;
+      width: 35px;
+      height: 35px;
+      transition: transform .25s ease;
+    }
+      
+    .staffwindow  {
+      background-color: red;
+      border-radius: 10px;
+      width: 500px;
+      height: 120px;
+      right: 10px;
+      bottom: 10px;
+      position: fixed;
+      z-index: 101;
+      display: none;
+      cursor: pointer;
+    }
+      
+    .staffcontacts  {
+      position: absolute;
+      left: 5px;
+      top: 85px;
+    }
+      
+    .staffbutton  {
+      width: 30px;   
+      height: 30px;   
+    }
+      
+    .stafficon_w  {
+      border-radius: 10px;
+      height: 75px;
+      position: absolute;
+      left: 5px;
+      top: 5px;
+    }
+      
+    .staffname_w  {
+      background-color: rgba(35, 39, 42, 0.5);
+      border-radius: 10px;
+      padding: 5px;
+      left: 85px;
+      top: 10px;
+      position: absolute;
+    }
+      
+    .staffdesc_w  {
+      background-color: rgba(35, 39, 42, 0.5);
+      border-radius: 10px;
+      padding: 5px;
+      font-size: 13px;
+      left: 85px;
+      top: 50px;
+      position: absolute;
     }
       
     .staffbutton:hover  {
-    transform: scale(0.9);
+      transform: scale(0.9);
     }
     
     .featuredprofile  {
-    border-radius: 2px;
-      
-    transition: transform .25s ease;
+      border-radius: 2px;
+
+      transition: transform .25s ease;
     }
   
     .featuredprofile:hover  {
-    transform: scale(0.99);
+      transform: scale(0.99);
     }
 
     #InvBtn, 
@@ -129,64 +175,49 @@
     #InvBtn3,
     #InvBtn4,
     #InvBtn5  {
-    width: 100%;      
+      width: 100%;      
     }
       
     .botstats  {
-    padding: 10px;
-    display: inline-block;
-    background-color: transparent;
-    cursor: pointer;
+      padding: 10px;
+      display: inline-block;
+      background-color: transparent;
+      cursor: pointer;
     }
       
     .botdiv  {
-    background-color: rgba(35, 39, 42, 0.75);
-    border-left: #7289DA 2px solid;
-    padding: 15px;
-    display: inline-block;    
+      background-color: rgba(35, 39, 42, 0.75);
+      border-left: #7289DA 2px solid;
+      padding: 15px;
+      display: inline-block;    
     }
       
     .botdesc  {
-    width: 100%;
-    display: inline-block;    
+      width: 100%;
+      display: inline-block;    
     }
       
     .fullsize  {
-    background-color: rgba(35, 39, 42, 0.25);
+      background-color: rgba(35, 39, 42, 0.25);
     }
       
     .category  {
-    width: 100%;
-    text-align: center;
-    display: inline-block;
+      width: 100%;
+      text-align: center;
+      display: inline-block;
     }
 
     .summaryhome {
-    border-radius: 0px;
-    padding: 10px;
-    position: relative;
-    display: inline-block;
-    text-align: center;
+      border-radius: 0px;
+      padding: 10px;
+      position: relative;
+      display: inline-block;
+      text-align: center;
     }
 
     .container:hover .summaryhome {
-    filter: blur(0px);
+      filter: blur(0px);
     }
-
-    /*
-    .container:hover #F {
-        content: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ffunctions.gif?1558182385432');
-    }
-    .container:hover #PS {
-        content: url('https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_system.gif');
-    }
-    .container:hover #MC {
-        content: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fmoderation_commands.gif?1558178567187');
-    }
-    .container:hover #MP {
-        content: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fmusic_player.gif?1558180422722');
-    }
-    */
       
     </style>
 
@@ -194,6 +225,20 @@
     <script src="/server.js" defer></script>
     
     <script>
+      
+    function MoreInfo  (id)  {
+      
+        id = id + "_window";
+      
+        var x = document.getElementsByClassName("staffwindow");
+        var i;
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+      
+        document.getElementById(id).style.display = "block";
+      
+    };
     
     </script>
 
