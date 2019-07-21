@@ -1782,9 +1782,9 @@ if  (!WebsiteCooldowns.has("staff"))  {
         var StaffTag = [];
         var StaffButton = [];
       
-        var TwitterBody = '<img src=' + TwitterIcon + ' class="staffbutton"> <b class="">Twitter</b>';
-        var RedditBody = '<img src=' + RedditIcon + ' class="staffbutton"> Reddit';
-        var InstagramBody = '<img src=' + InstagramIcon + ' class="staffbutton"> Instagram';
+        var TwitterBody = '<img src=' + TwitterIcon + ' class="staffbutton"> <b class="contacttext">Twitter</b>';
+        var RedditBody = '<img src=' + RedditIcon + ' class="staffbutton"> <b class="contacttext">Reddit</b>';
+        var InstagramBody = '<img src=' + InstagramIcon + ' class="staffbutton"> <b class="contacttext">Instagram</b>';
 
         //Vojtěch
         if  (guildMemberId == OwnerId)  {
