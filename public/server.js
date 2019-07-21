@@ -1781,37 +1781,41 @@ if  (!WebsiteCooldowns.has("staff"))  {
       
         var StaffTag = [];
         var StaffButton = [];
+      
+        var TwitterBody = '<img src=' + TwitterIcon + ' class="staffbutton"> <b class="">Twitter</b>';
+        var RedditBody = '<img src=' + RedditIcon + ' class="staffbutton"> Reddit';
+        var InstagramBody = '<img src=' + InstagramIcon + ' class="staffbutton"> Instagram';
 
         //Vojtěch
         if  (guildMemberId == OwnerId)  {
-            StaffButton.push('<a href="https://twitter.com/vojtech_jilovec" target="_blank">  <img src=' + TwitterIcon + ' class="staffbutton">  </a>');
-            StaffButton.push('<a href="https://www.reddit.com/user/vojtasonic" target="_blank">  <img src=' + RedditIcon + ' class="staffbutton">  </a>');
+            StaffButton.push('<a href="https://twitter.com/vojtech_jilovec" target="_blank">  ' + TwitterBody + '  </a>');
+            StaffButton.push('<a href="https://www.reddit.com/user/vojtasonic" target="_blank">  ' + RedditBody + '  </a>');
         } else
 
         //Nick
         if  (guildMemberId == "298551254978789378")  {
-            StaffButton.push('<a href="https://twitter.com/MRArmy4" target="_blank">  <img src=' + TwitterIcon + ' class="staffbutton">  </a>');
-            StaffButton.push('<a href="https://www.reddit.com/user/MrArmy_" target="_blank">  <img src=' + RedditIcon + ' class="staffbutton">  </a>');
+            StaffButton.push('<a href="https://twitter.com/MRArmy4" target="_blank">  ' + TwitterBody + '  </a>');
+            StaffButton.push('<a href="https://www.reddit.com/user/MrArmy_" target="_blank">  ' + RedditBody + '  </a>');
         } else
 
         //Nixen
         if  (guildMemberId == "244160350889443338")  {
-            StaffButton.push('<a href="https://twitter.com/NixenFin" target="_blank">  <img src=' + TwitterIcon + ' class="staffbutton">  </a>');
-            StaffButton.push('<a href="https://www.reddit.com/user/Nixenn" target="_blank">  <img src=' + RedditIcon + ' class="staffbutton">  </a>');
+            StaffButton.push('<a href="https://twitter.com/NixenFin" target="_blank">  ' + TwitterBody + '  </a>');
+            StaffButton.push('<a href="https://www.reddit.com/user/Nixenn" target="_blank">  ' + RedditBody + '  </a>');
         } else
       
         //Sabi
         if  (guildMemberId == "180090347421040640")  {
-            StaffButton.push('<a href="https://www.reddit.com/user/Sabinyan" target="_blank">  <img src=' + RedditIcon + ' class="staffbutton">  </a>');
+            StaffButton.push('<a href="https://www.reddit.com/user/Sabinyan" target="_blank">  ' + RedditBody + '  </a>');
         } else
       
         //Annika
         if  (guildMemberId == "351314991028371457")  {
-            StaffButton.push('<a href="https://twitter.com/vraagtekenss" target="_blank">  <img src=' + TwitterIcon + ' class="staffbutton">  </a>');
-            StaffButton.push('<a href="https://www.instagram.com/vraagtekenss/" target="_blank">  <img src=' + InstagramIcon + ' class="staffbutton">  </a>');
+            StaffButton.push('<a href="https://twitter.com/vraagtekenss" target="_blank">  ' + TwitterBody + '  </a>');
+            StaffButton.push('<a href="https://www.instagram.com/vraagtekenss/" target="_blank">  ' + InstagramBody + '  </a>');
         };
       
-        var CurrentContact = '<div class="staffwindow" id="' + guildMemberId + '_window" style="background-image: url(' + function_GetBackground(guildMemberId) + '); background-size: cover;  background-repeat: no-repeat;">  <a class="close" onclick="MoreInfo(`none`)">Close</a>  <img class="stafficon_w" src="' + guildMember.user.avatarURL +'">  <b class="staffname_w">' + guildMember.user.username + '</b><font color="#7289DA">' + guildMember.user.discriminator + '</font> on <font color="#7289DA">  <b class="staffdesc_w">' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '</b>  <div class="staffcontacts">' + StaffButton.join("<br>") + '</div>  </div>' + '<div class="container">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="2"> ' + function_RemoveTags(guildMember.user.username) + '<font color=#7289DA>#' + guildMember.user.discriminator + '</font>' + '  </font>  <br><br>  <a style="font-size: 14px;" id="' + guildMemberId + '" onclick="MoreInfo(this.id)">More info</a>  </b>  </div>';  
+        var CurrentContact = '<div class="staffwindow" id="' + guildMemberId + '_window" style="background-image: url(' + function_GetBackground(guildMemberId) + '); background-size: cover;  background-repeat: no-repeat;">  <a class="close" onclick="MoreInfo(`none`)">Close</a>  <img class="stafficon_w" src="' + guildMember.user.avatarURL +'">  <b class="staffname_w">' + guildMember.user.username + '#<font color="#7289DA">' + guildMember.user.discriminator + '</font> </b> on <font color="#7289DA">  <b class="staffdesc_w">' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '</b>  <div class="staffcontacts">' + StaffButton.join("<br>") + '</div>  </div>' + '<div class="container">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="2"> ' + function_RemoveTags(guildMember.user.username) + '<font color=#7289DA>#' + guildMember.user.discriminator + '</font>' + '  </font>  <br><br>  <a style="font-size: 14px;" id="' + guildMemberId + '" onclick="MoreInfo(this.id)">More info</a>  </b>  </div>';  
       
         if  (guildMember.roles.has("574255080069398543"))  {
             DevList.push(CurrentContact);
