@@ -5676,8 +5676,8 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.fillStyle = "white";
     ctx.shadowOffsetX = 1; 
     ctx.shadowOffsetY = 1;
-    ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
-    ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
+    ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 33.5, 275);
+    ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 33.5, 275);
 
     const attachment = new Discord.Attachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
       
@@ -5688,7 +5688,7 @@ if (!ProfileCooldown.has(message.author.id)) {
         WebsiteCooldowns.add("featuredprofile");
 
         var FeaturedDate = new Date();
-        var data = "<font size='4'>" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s profile got featured on " + function_DateFormat(FeaturedDate) + '.</font>  <br><br>  <img src="' + m.attachments.array()[0].url + '" class="featuredprofile">';
+        var data = "<font size='4' class='headersub'>" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s profile got featured on " + function_DateFormat(FeaturedDate) + "</font>  <br><br><br>  <img src='" + m.attachments.array()[0].url + "'> class='featuredprofile'>";
 
         fs.writeFile('public/featured_profile.txt', data, (err) => {
             if (err) console.log(err); 
