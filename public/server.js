@@ -5361,7 +5361,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     });
       
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
-        FixedBackgrounds.push("Custom (0)");
+        FixedBackgrounds.push("Custom `0`");
         var CustomBackgroundAmount = 1;
     } else {  var CustomBackgroundAmount = 0;  };
 
