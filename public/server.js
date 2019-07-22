@@ -321,7 +321,7 @@ const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
 //RESPONSE MESSAGES
 
-//Banner List
+//Backgrounds List
 var Banner  = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
 var Banners = [
 
@@ -669,7 +669,9 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground341.png?v=1563487780080", 425, "Aw man", "CaptainSparklez", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground342.png?v=1563487804389", 475, "Surrounded", "Alien Isolation", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground343.png?v=1563487814497", 450, "High-Tech", "Call of Duty Modern Warfare", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground344.png?v=1563487825049", 500, "Midnight breakfast", "Vampyr", undefined]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground344.png?v=1563487825049", 500, "Midnight breakfast", "Vampyr", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground345.png?v=1563790940323", 450, "Joseph Joestart", "JoJo's Bizzare Adventures", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground346.jpg?v=1563790823009", 500, "Village Discovery", "Minecraft", undefined]     
 
 ];
 
@@ -2676,7 +2678,7 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
   
     if  (reaction.emoji.name == "✍")  {
 
-        peeky.users.get(OwnerId).send("['IMAGE_LINK', " + reaction.message.content.split("\n")[1].replace("Price: ", "") + ", " + reaction.message.content.split("\n")[0].replace("Name: ", "") + ", " + reaction.message.content.split("\n")[2].replace("Credit: ", "") + ", undefined]").catch(error => ErrorBag.add(error));
+        peeky.users.get(OwnerId).send('["INSERT_LINK", ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + reaction.message.content.split("\n")[0].replace("Name: ", "") + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ']').catch(error => ErrorBag.add(error));
       
         reaction.remove().catch(error => ErrorBag.add(error));
       
