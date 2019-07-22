@@ -2670,17 +2670,11 @@ if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reactio
 if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
   
     if  (reaction.emoji.name == "🏁")  {
-
-        const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted!",  "color": EmbedColor}; 
-        reaction.message.author.send({ embed }).catch(error => ErrorBag.add(error));
       
-    };
-  
-    if  (reaction.emoji.name == "✍")  {
-
         peeky.users.get(OwnerId).send('["INSERT_LINK", ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + reaction.message.content.split("\n")[0].replace("Name: ", "") + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ']').catch(error => ErrorBag.add(error));
-      
-        reaction.remove().catch(error => ErrorBag.add(error));
+
+        const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted and will be added shortly!",  "color": EmbedColor}; 
+        reaction.message.author.send({ embed }).catch(error => ErrorBag.add(error));
       
     };
   
