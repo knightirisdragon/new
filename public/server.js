@@ -3047,15 +3047,28 @@ if  (!message.webhookID)  {
 if  (!message.author.bot && message.guild.owner !== undefined)  {
   
     //Publisher Badge
-    if  (message.channel.id == WorkshopChannel && message.attachments.size == 1 && message.content.toLowerCase().includes("name:") && message.content.toLowerCase().includes("credit:") && message.content.toLowerCase().includes("price:"))  {
-        if  (peeky.userData.has(key) && peeky.userData.get(key, "PublisherBadge") == false)  {
-            peeky.userData.set(key, true, "PublisherBadge");
-        };
-    };
 
     //Ownership Badge
     if  (peeky.userData.get(key, "OwnershipBadge") == false && message.author.id == message.guild.owner.user.id)  {
         peeky.userData.set(key, true, "OwnershipBadge");
+    };
+  
+};
+  
+//MISCELLANEOUS
+    
+if  (message.channel.id == WorkshopChannel)  {
+  
+    if  (message.attachments.size == 1 && message.content.toLowerCase().split('\n')[0].startsWith("name: ") && message.content.toLowerCase().split('\n')[1].startsWith("credit: ") && message.content.toLowerCase().split('\n')[2].startsWith("price: "))  {
+      
+        if  (peeky.userData.has(key) && peeky.userData.get(key, "PublisherBadge") == false)  {
+            peeky.userData.set(key, true, "PublisherBadge");
+        };
+ 
+    }
+     else
+    {
+     message.delete().catch(error => ErrorBag.add(error));
     };
   
 };
