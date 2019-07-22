@@ -56,6 +56,7 @@ const EventCountdownCooldown = new Set();
 const MemberCounterCooldown  = new Set();
 const MessageLogCooldown     = new Set();
 const DonorWallCooldown      = new Set();
+const ServerAgeCooldown      = new Set();
 const ResponseCooldowns      = new Set();  const ResponseCooldownMS = 5000;
 
 //Image Assets
@@ -3136,98 +3137,128 @@ if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.s
 };
 
 };
+    
+//Server Age
+if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
 
-//Event Countdown
-if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
+    if  (!ServerAgeCooldown.has(message.guild.id))  {
 
-if  (!EventCountdownCooldown.has(message.guild.id) && !message.author.bot)  {
+        ServerAgeCooldown.add(message.guild.id);
+        setTimeout(() => {ServerAgeCooldown.delete(message.guild.id)}, 300000);
 
-    var ChannelExists = message.guild.channels.find(c => c.id == peeky.serverData.get(keySF, "event_countdown_bonus_id"));
+        //Permission Checking
+        if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
 
-    if  (ChannelExists && ChannelExists.permissionsFor(peeky.user).has('CONNECT'))  {
+            var id = peeky.serverData.get(keySF, "server_age_bonus_id");
 
-        EventCountdownCooldown.add(message.guild.id);
-        setTimeout(() => {EventCountdownCooldown.delete(message.guild.id)}, 300000);
+            var channel = message.guild.channels.find(g => g.id == id);
 
-        var TheDate = peeky.serverData.get(keySF, "event_countdown_bonus_setting") - new Date();
-        const EndName = "The Countdown has ended.";
+            var Time = (new Date(message.guild.createdAt) - Date.now());
+            var FixedTime = Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(1);
 
-    if  (peeky.serverData.get(keySF, "event_countdown_bonus_setting") > 0 && TheDate > 0)  {
+            if (channel && channel.permissionsFor(peeky.user).has('CONNECT')) {
+                channel.setName("Server Age: " + FixedTime + " days").catch(error => ErrorBag.add(error));
 
-        var Time = (new Date(peeky.serverData.get(keySF, "event_countdown_bonus_setting")) - Date.now());
-        var FixedTime = (Math.abs(Time / (1000 * 60 * 60)).toFixed(1));
-        var LengthName = "hours";
-
-        if  (FixedTime > 24)  {
-            FixedTime = (Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(1)); LengthName = "days";
-
-            if  (FixedTime >= 365)  {
-                    FixedTime = "over"; LengthName = "a year";
+                console.log("The Server Age function has been triggered in " + message.guild.name + ".");
             };
 
         };
 
-        ChannelExists.setName("Starting in " + FixedTime + " " + LengthName).catch(error => ErrorBag.add(error));
-        console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
+    };
+  
+};
 
-        }
-         else if (ChannelExists.name !== EndName)
-        {
-         ChannelExists.setName(EndName).catch(error => ErrorBag.add(error));
-         console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
+//Event Countdown
+if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
+
+    if  (!EventCountdownCooldown.has(message.guild.id))  {
+
+        var ChannelExists = message.guild.channels.find(c => c.id == peeky.serverData.get(keySF, "event_countdown_bonus_id"));
+
+        if  (ChannelExists && ChannelExists.permissionsFor(peeky.user).has('CONNECT'))  {
+
+            EventCountdownCooldown.add(message.guild.id);
+            setTimeout(() => {EventCountdownCooldown.delete(message.guild.id)}, 300000);
+
+            var TheDate = peeky.serverData.get(keySF, "event_countdown_bonus_setting") - new Date();
+            const EndName = "The Countdown has ended.";
+
+        if  (peeky.serverData.get(keySF, "event_countdown_bonus_setting") > 0 && TheDate > 0)  {
+
+            var Time = (new Date(peeky.serverData.get(keySF, "event_countdown_bonus_setting")) - Date.now());
+            var FixedTime = (Math.abs(Time / (1000 * 60 * 60)).toFixed(1));
+            var LengthName = "hours";
+
+            if  (FixedTime > 24)  {
+                FixedTime = (Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(1)); LengthName = "days";
+
+                if  (FixedTime >= 365)  {
+                        FixedTime = "over"; LengthName = "a year";
+                };
+
+            };
+
+            ChannelExists.setName("Starting in " + FixedTime + " " + LengthName).catch(error => ErrorBag.add(error));
+            console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
+
+            }
+             else if (ChannelExists.name !== EndName)
+            {
+             ChannelExists.setName(EndName).catch(error => ErrorBag.add(error));
+             console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
+            };
+
         };
 
     };
-
-};
 
 };
 
 //Server Trial
 if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
 
-if  (!ServerTrialCooldown.has("cooldown"))  {
+    if  (!ServerTrialCooldown.has("cooldown"))  {
 
-    ServerTrialCooldown.add("cooldown");
-    setTimeout(() => {ServerTrialCooldown.delete("cooldown")}, 600000);
-    
-    var filtered = peeky.serverData.filter( p => p.server_trial_bonus == true );
-    var ValidGuilds = function_ShuffleArray(filtered.map(i => i.GuildID));
+        ServerTrialCooldown.add("cooldown");
+        setTimeout(() => {ServerTrialCooldown.delete("cooldown")}, 600000);
 
-    ValidGuilds.forEach(g => {
+        var filtered = peeky.serverData.filter( p => p.server_trial_bonus == true );
+        var ValidGuilds = function_ShuffleArray(filtered.map(i => i.GuildID));
 
-    if  (peeky.guilds.has(g))  {
-        
-        var Guild = peeky.guilds.get(g);
-        
-    if  (Guild.me.hasPermission('KICK_MEMBERS'))  {
+        ValidGuilds.forEach(g => {
 
-        var OnTrial = function_ShuffleArray((Guild.members.filter(m => !m.user.bot && !m.permissions.has('MANAGE_GUILD') && m.roles.find(r => r.name == "Trial")).map(m => m))).slice(0, 5);
-        var TrialTime = peeky.serverData.get(keySF, "server_trial_bonus_setting");
-      
-        OnTrial.forEach(async m => {
+        if  (peeky.guilds.has(g))  {
 
-            if  (new Date() - m.joinedAt >= (TrialTime * 60 * 1000))  {
+            var Guild = peeky.guilds.get(g);
 
-                setTimeout(async () => {
+        if  (Guild.me.hasPermission('KICK_MEMBERS'))  {
 
-                await m.send("Your trial on **" + Function_RemoveFormatting(Guild.name, "other", true) + "** has ended.").catch(error => ErrorBag.add(error));  
-                m.kick({  reason: "Triggered by the Server Trial function."  }).catch(error => ErrorBag.add(error));
+            var OnTrial = function_ShuffleArray((Guild.members.filter(m => !m.user.bot && !m.permissions.has('MANAGE_GUILD') && m.roles.find(r => r.name == "Trial")).map(m => m))).slice(0, 5);
+            var TrialTime = peeky.serverData.get(keySF, "server_trial_bonus_setting");
 
-                console.log("The Server Trial function has been triggered in " + m.guild.name + ".");                
+            OnTrial.forEach(async m => {
 
-                }, 5000);
+                if  (new Date() - m.joinedAt >= (TrialTime * 60 * 1000))  {
 
-            };
-          
+                    setTimeout(async () => {
+
+                    await m.send("Your trial on **" + Function_RemoveFormatting(Guild.name, "other", true) + "** has ended.").catch(error => ErrorBag.add(error));  
+                    m.kick({  reason: "Triggered by the Server Trial function."  }).catch(error => ErrorBag.add(error));
+
+                    console.log("The Server Trial function has been triggered in " + m.guild.name + ".");                
+
+                    }, 5000);
+
+                };
+
+            });
+        };
+
+        };
+
         });
-    };
-      
-    };
 
-    });
-
-};
+    };
 
 };
 
@@ -3941,7 +3972,7 @@ if  (FunctioName.startsWith("stream announcements"))  {
 else
       
 //Toggle Member Counter
-if  (FunctioName.startsWith("member counter")) {
+if  (FunctioName.startsWith("member counter"))  {
   
     const guild = message.guild;
     const name = peeky.serverData.get(keySF, "member_counter_bonus_setting") + ": " + message.guild.members.filter(m => !m.user.bot).size;
@@ -3990,12 +4021,60 @@ if  (FunctioName.startsWith("member counter")) {
   
 else
       
+//Toggle Server Age
+if  (FunctioName.startsWith("server age"))  {
+  
+    const guild = message.guild;
+    const name = peeky.serverData.get(keySF, "member_counter_bonus_setting") + ": " + message.guild.members.filter(m => !m.user.bot).size;
+    var channel = guild.channels.find(c=> c.id == id);
+
+    if(peeky.serverData.get(keySF, "server_age_bonus") == true) {peeky.serverData.set(keySF, false, "server_age_bonus");}
+    else peeky.serverData.set(keySF, true, "server_age_bonus");
+
+    //Channel Creating    
+    if (!channel) {
+
+    if  (!ChannelCooldown.has(message.guild.id)) {
+      
+    if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
+
+    ChannelCooldown.add(message.guild.id);
+    setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
+
+    await message.guild.createChannel(name, { type: 'voice', reason: "Channel created by @" + message.author.tag + " through a function." })
+    .then(async function (channel)  {
+         peeky.serverData.set(keySF, channel.id, "server_age_bonus_id");
+         await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  CONNECT: false  }).catch(error => ErrorBag.add(error));
+         await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  CONNECT: true  }).catch(error => ErrorBag.add(error));
+    }).catch(function(err) {  ErrorBag.add(err);  });     
+      
+    InfoMessages.push(InfoIcon + " Created a channel called **" + name + "** for the **Server Age** function.");
+    
+    };
+    
+    }
+     else
+    {
+     const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
+     message.channel.send({ embed })
+     .catch(error => ErrorBag.add(error));
+    };
+    };
+      
+    if  (peeky.serverData.get(keySF, "member_counter_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Member Counter** function has been **"  + StatusString + "**."+ "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+      
 //Toggle Event Countdown
 if  (FunctioName.startsWith("event countdown"))  {
   
     const guild = message.guild;
     const name = "Countdown Starting Soon..."
-    var id = peeky.serverData.get(keySF, "event_countdown_bonus_id");
     var channel = guild.channels.find(c=> c.id == id);
 
     if(peeky.serverData.get(keySF, "event_countdown_bonus") == true) {peeky.serverData.set(keySF, false, "event_countdown_bonus");}
@@ -4006,7 +4085,7 @@ if  (FunctioName.startsWith("event countdown"))  {
 
     if  (!ChannelCooldown.has(message.guild.id)) {
 
-    if  (message.guild.me.hasPermission("MANAGE_CHANNELS")) {
+    if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
 
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
@@ -4054,7 +4133,7 @@ if  (FunctioName.startsWith("notifications")) {
   
 else
   
-//Toggle Notifications
+//Toggle Game Roles
 if  (FunctioName.startsWith("game roles")) {
         
     if(peeky.serverData.get(keySF, "game_roles_bonus") == true) {peeky.serverData.set(keySF, false, "game_roles_bonus")}
@@ -4367,7 +4446,6 @@ else
 if  (FunctioName.startsWith("member counter "))  {
 
     var CounterName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set member counter ")[1];
-    let foundWord = false;
       
     peeky.serverData.set(keySF, Function_RemoveFormatting(CounterName, "other"), "member_counter_bonus_setting", true);
 
