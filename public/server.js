@@ -1788,10 +1788,9 @@ if  (!WebsiteCooldowns.has("staff"))  {
             StaffButton.push('<a href="https://www.reddit.com/user/MrArmy_" target="_blank">  ' + RedditBody + '  </a>');
         } else
 
-        //Nixen
-        if  (guildMemberId == "244160350889443338")  {
-            StaffButton.push('<a href="https://twitter.com/NixenFin" target="_blank">  ' + TwitterBody + '  </a>');
-            StaffButton.push('<a href="https://www.reddit.com/user/Nixenn" target="_blank">  ' + RedditBody + '  </a>');
+        //Ber
+        if  (guildMemberId == "266579411162103808")  {
+            StaffButton.push('<a href="https://twitter.com/Bersekr21" target="_blank">  ' + TwitterBody + '  </a>');
         } else
       
         //Sabi
@@ -5251,20 +5250,24 @@ if  (!ProfileCooldown.has(message.author.id))  {
         if  (peeky.userData.get(key, "Inventory").includes(DonatedAmount))  {
           
         if  ((DonatedAmount !== 1) && (DonatedAmount !== Exclusive))  {
+          
+        if  (!peeky.userData.get(key, "Inventory").includes(i))  {
 
-        var BackgroundIndex = peeky.userData.get(key, "Inventory").indexOf(DonatedAmount);
+            var BackgroundIndex = peeky.userData.get(key, "Inventory").indexOf(DonatedAmount);
 
-        peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
-        peeky.userData.get(key2, "Inventory").push(DonatedAmount);
+            peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
+            peeky.userData.get(key2, "Inventory").push(DonatedAmount);
 
-        //Set Default Background
-        if  (isNaN(peeky.userData.get(key, "Background")) == false && peeky.userData.get(key, "Background") == DonatedAmount)  {
-            peeky.userData.set(key, 1, "Background");
-            InfoMessages.push(InfoMessage2[0]);
+            //Set Default Background
+            if  (isNaN(peeky.userData.get(key, "Background")) == false && peeky.userData.get(key, "Background") == DonatedAmount)  {
+                peeky.userData.set(key, 1, "Background");
+                InfoMessages.push(InfoMessage2[0]);
+            };
+
+            const embed = {"description": SuccessIcon + " You have given the **" + Banners[DonatedAmount - 1][Banner.Name] + "** background to **" + Function_RemoveFormatting(DonatedUser.user.username, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          
         };
-
-        const embed = {"description": SuccessIcon + " You have given the **" + Banners[DonatedAmount - 1][Banner.Name] + "** background to **" + Function_RemoveFormatting(DonatedUser.user.username, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
          else
