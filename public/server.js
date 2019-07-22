@@ -1930,7 +1930,11 @@ if  (peeky.guilds.size > MaxServers)  {
         role_saver_bonus: false,
         role_saver_array: [],
         game_roles_bonus: false,
-        game_roles_bonus_setting: []
+        game_roles_bonus_setting: [],
+        nick_saver_bonus: false,
+        nick_saver_array: [],
+        server_age_bonus: false,
+        server_age_bonus_id: null
     });
   
 };
