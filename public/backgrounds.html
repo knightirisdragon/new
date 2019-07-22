@@ -95,7 +95,7 @@ var MaxSortingModes = 6;
 function Loaded()  {
 
   document.getElementById("sort_mode").innerHTML = "Sorting: Newest (1/" + MaxSortingModes + ")";
-  document.getElementById("sort_desc").innerHTML = "These are all the newest backgrounds that you can use on your profile!";
+  document.getElementById("sort_desc").innerHTML = "These are all the backgrounds, sorted by the newest.";
   
 };
   
@@ -166,7 +166,7 @@ function ChangeSorting(current)  {
         document.getElementById("sort_exclusive").style.display = "none";
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Shuffled (6/" + MaxSortingModes + ")";
-        document.getElementById("sort_desc").innerHTML = "These are all the backgrounds , but shuffled.";
+        document.getElementById("sort_desc").innerHTML = "These are all the backgrounds, but shuffled.";
     };
     
 };
@@ -198,7 +198,7 @@ function ChangeSorting(current)  {
 
 <div class="fullsize">
   
-<font size="7" class="headertext">Backgounds</font>
+<font size="7" class="headertext">Backgrounds</font>
 <font class="headersub">
     <font size="4" id="sort_desc"></font>
     <br>
