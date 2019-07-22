@@ -3676,6 +3676,16 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
   
     var FunctioName = message.content.split(peeky.serverData.get(keySF, "prefix") + "toggle ")[1];
     var InfoMessages = [];
+    var ManageChannels = false;
+    var ManageRoles = false;
+  
+    if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
+        ManageChannels = true;  
+    };
+  
+    if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
+        ManageRoles = true;  
+    };
       
 //Toggle Automatic Reactions
 if  (FunctioName.startsWith("automatic reactions")) {
@@ -3707,7 +3717,7 @@ if  (FunctioName.startsWith("welcome messages")) {
     
     if  (!ChannelCooldown.has(message.guild.id)) {
       
-    if  (message.guild.me.hasPermission("MANAGE_CHANNELS")) {
+    if  (ManageChannels == true)  {
 
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
@@ -3753,7 +3763,7 @@ if  (FunctioName.startsWith("classification wall"))  {
       
     if  (!ChannelCooldown.has(message.guild.id)) {
 
-    if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
+    if  (ManageChannels == true)  {
 
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
@@ -3799,8 +3809,7 @@ if  (FunctioName.startsWith("join role"))  {
 
     if  (!RoleCooldown.has(message.guild.id)) {
       
-    //Permission Checking
-    if(message.guild.me.hasPermission("MANAGE_ROLES")) {
+    if  (ManageRoles == true)  {
 
     RoleCooldown.add(message.guild.id);
     setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
@@ -3891,7 +3900,7 @@ if  (FunctioName.startsWith("message log"))  {
 
     if  (!ChannelCooldown.has(message.guild.id)) {
 
-    if(message.guild.me.hasPermission("MANAGE_CHANNELS")) {
+    if  (ManageChannels == true)  {
 
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
@@ -3938,7 +3947,7 @@ if  (FunctioName.startsWith("stream announcements"))  {
 
     if  (!ChannelCooldown.has(message.guild.id)) {
 
-    if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
+    if  (ManageChannels == true)  {
 
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
@@ -3987,7 +3996,7 @@ if  (FunctioName.startsWith("member counter"))  {
 
     if  (!ChannelCooldown.has(message.guild.id)) {
       
-    if(message.guild.me.hasPermission("MANAGE_CHANNELS")) {
+    if  (ManageChannels == true)  {
 
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
@@ -4026,29 +4035,30 @@ if  (FunctioName.startsWith("server age"))  {
   
     const guild = message.guild;
     const name = peeky.serverData.get(keySF, "member_counter_bonus_setting") + ": " + message.guild.members.filter(m => !m.user.bot).size;
+    var id = peeky.serverData.get(keySF, "member_counter_bonus_id");
     var channel = guild.channels.find(c=> c.id == id);
 
-    if(peeky.serverData.get(keySF, "server_age_bonus") == true) {peeky.serverData.set(keySF, false, "server_age_bonus");}
-    else peeky.serverData.set(keySF, true, "server_age_bonus");
+    if(peeky.serverData.get(keySF, "member_counter_bonus") == true) {peeky.serverData.set(keySF, false, "member_counter_bonus");}
+    else peeky.serverData.set(keySF, true, "member_counter_bonus");
 
     //Channel Creating    
     if (!channel) {
 
     if  (!ChannelCooldown.has(message.guild.id)) {
       
-    if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
+    if  (ManageChannels == true)  {
 
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
     await message.guild.createChannel(name, { type: 'voice', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
-         peeky.serverData.set(keySF, channel.id, "server_age_bonus_id");
+         peeky.serverData.set(keySF, channel.id, "member_counter_bonus_id");
          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  CONNECT: false  }).catch(error => ErrorBag.add(error));
          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  CONNECT: true  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });     
       
-    InfoMessages.push(InfoIcon + " Created a channel called **" + name + "** for the **Server Age** function.");
+    InfoMessages.push(InfoIcon + " Created a channel called **" + name + "** for the **Member Counter** function.");
     
     };
     
@@ -4075,6 +4085,7 @@ if  (FunctioName.startsWith("event countdown"))  {
   
     const guild = message.guild;
     const name = "Countdown Starting Soon..."
+    var id = peeky.serverData.get(keySF, "event_countdown_bonus_id");
     var channel = guild.channels.find(c=> c.id == id);
 
     if(peeky.serverData.get(keySF, "event_countdown_bonus") == true) {peeky.serverData.set(keySF, false, "event_countdown_bonus");}
@@ -4085,7 +4096,7 @@ if  (FunctioName.startsWith("event countdown"))  {
 
     if  (!ChannelCooldown.has(message.guild.id)) {
 
-    if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
+    if  (ManageChannels == true)  {
 
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
@@ -4239,8 +4250,7 @@ if  (FunctioName.startsWith("streamer role"))  {
 
     if  (!RoleCooldown.has(message.guild.id)) {
       
-    //Permission Checking
-    if(message.guild.me.hasPermission("MANAGE_ROLES")) {
+    if  (ManageRoles == true)  {
 
     RoleCooldown.add(message.guild.id);
     setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
@@ -4284,8 +4294,7 @@ if  (FunctioName.startsWith("server trial"))  {
 
     if  (!RoleCooldown.has(message.guild.id)) {
       
-    //Permission Checking
-    if(message.guild.me.hasPermission("MANAGE_ROLES")) {
+    if  (ManageRoles == true)  {
 
     RoleCooldown.add(message.guild.id);
     setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
