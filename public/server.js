@@ -1539,7 +1539,6 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 600000);
 
     const BackgroundList            = [];
-    const FeaturedList              = [];
     const CheapBackgrounds          = [];
     const RevenueBackgrounds        = [];
     var ExclusiveBackgrounds        = [];
@@ -1569,17 +1568,6 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     
           BackgroundList.push(BackgroundString);
 
-          if  (Current == peeky.userData.get(OwnerId, "Background"))  {
-              FeaturedList.push(BackgroundString);
-
-              Fillers = 0;
-              while (Fillers < 99)  {
-              	    Fillers ++;
-                    FeaturedList.push('<div class="filler">  <img src="' + DarkField + '"  width="500" height="300" class="background_image">  </div>')
-              };
-                
-          };
-
           if  (background_info[1] <= 200 && Current !== 1)  {
               CheapBackgrounds.push(BackgroundString);
           };
@@ -1605,7 +1593,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     AddToExclusiveBackgrounds = AddToExclusiveBackgrounds.join(" ");
     ExclusiveBackgrounds.push(AddToExclusiveBackgrounds);
 
-    await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_featured'> " + FeaturedList.join(" ") + " </div>" + "<div id='sort_cheap'> " + CheapBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_revenue'> " + RevenueBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_exclusive'> " + ExclusiveBackgrounds.reverse().join(" ") + " </div>", (err) => {
+    await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_cheap'> " + CheapBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_revenue'> " + RevenueBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_exclusive'> " + ExclusiveBackgrounds.reverse().join(" ") + " </div>", (err) => {
         if (err) console.log(err);
     });
 

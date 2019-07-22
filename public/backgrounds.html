@@ -59,7 +59,6 @@
 }
   
 #sort_old,
-#sort_featured,
 #sort_cheap,
 #sort_revenue,
 #sort_exclusive,
@@ -91,7 +90,7 @@
 <script>
 
 var CurrentSortMode = "old";
-var MaxSortingModes = 7;
+var MaxSortingModes = 6;
   
 function Loaded()  {
 
@@ -100,16 +99,12 @@ function Loaded()  {
 };
   
 function ChangeSorting(current)  {
-
-    /*document.documentElement.scrollTop = 650;
-    document.body.scrollTop = 650;*/
   
     if  (current == "new")  {
         CurrentSortMode = "old";
         document.getElementById("sort_new").style.display = "block";
         document.getElementById("sort_old").style.display = "none";
         document.getElementById("sort_random").style.display = "none";
-        document.getElementById("sort_featured").style.display = "none";
         document.getElementById("sort_cheap").style.display = "none";
         document.getElementById("sort_revenue").style.display = "none";
         document.getElementById("sort_exclusive").style.display = "none";
@@ -120,7 +115,6 @@ function ChangeSorting(current)  {
         document.getElementById("sort_new").style.display = "none";
         document.getElementById("sort_old").style.display = "block";
         document.getElementById("sort_random").style.display = "none";
-        document.getElementById("sort_featured").style.display = "none";
         document.getElementById("sort_cheap").style.display = "none";
         document.getElementById("sort_revenue").style.display = "none";
         document.getElementById("sort_exclusive").style.display = "none";
@@ -131,7 +125,6 @@ function ChangeSorting(current)  {
         document.getElementById("sort_new").style.display = "none";
         document.getElementById("sort_old").style.display = "none";
         document.getElementById("sort_random").style.display = "none";
-        document.getElementById("sort_featured").style.display = "none";
         document.getElementById("sort_cheap").style.display = "block";
         document.getElementById("sort_revenue").style.display = "none";
         document.getElementById("sort_exclusive").style.display = "none";
@@ -142,7 +135,6 @@ function ChangeSorting(current)  {
         document.getElementById("sort_new").style.display = "none";
         document.getElementById("sort_old").style.display = "none";
         document.getElementById("sort_random").style.display = "none";
-        document.getElementById("sort_featured").style.display = "none";
         document.getElementById("sort_cheap").style.display = "none";
         document.getElementById("sort_revenue").style.display = "block";
         document.getElementById("sort_exclusive").style.display = "none";
@@ -153,35 +145,22 @@ function ChangeSorting(current)  {
         document.getElementById("sort_new").style.display = "none";
         document.getElementById("sort_old").style.display = "none";
         document.getElementById("sort_random").style.display = "none";
-        document.getElementById("sort_featured").style.display = "none";
         document.getElementById("sort_cheap").style.display = "none";
         document.getElementById("sort_revenue").style.display = "none";
         document.getElementById("sort_exclusive").style.display = "block";
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Exclusive (5/" + MaxSortingModes + ")";
     } else if (current == "revenue") {
-        CurrentSortMode = "shuffled";
+        CurrentSortMode = "new";
         document.getElementById("sort_new").style.display = "none";
         document.getElementById("sort_old").style.display = "none";
         document.getElementById("sort_random").style.display = "block";
-        document.getElementById("sort_featured").style.display = "none";
         document.getElementById("sort_cheap").style.display = "none";
         document.getElementById("sort_revenue").style.display = "none";
         document.getElementById("sort_exclusive").style.display = "none";
       
         document.getElementById("sort_mode").innerHTML = "Sorting: Shuffled (6/" + MaxSortingModes + ")";
-    } else if (current == "shuffled") {
-        CurrentSortMode = "new";
-        document.getElementById("sort_new").style.display = "none";
-        document.getElementById("sort_old").style.display = "none";
-        document.getElementById("sort_random").style.display = "none";
-        document.getElementById("sort_featured").style.display = "block";
-        document.getElementById("sort_cheap").style.display = "none";
-        document.getElementById("sort_revenue").style.display = "none";
-        document.getElementById("sort_exclusive").style.display = "none";
-      
-        document.getElementById("sort_mode").innerHTML = "Sorting: Featured (7/" + MaxSortingModes + ")";
-    }
+    };
     
 };
   
@@ -213,7 +192,7 @@ function ChangeSorting(current)  {
 <div class="fullsize">
   
 <font size="7" class="headertext">Backgounds</font>
-<font size="4" class="headersub">These are all the backgrounds that you can use on your profile!  <br>
+<font size="4" id="sort_desc" class="headersub">These are all the backgrounds that you can use on your profile!  <br>
 <font size="2" id="sort_mode"></font></font>
 
 <br><br><br>
