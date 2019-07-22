@@ -2665,11 +2665,22 @@ if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reactio
 };
   
 //Workshop Response
-if  (reaction.message.channel.id == WorkshopChannel && reaction.emoji.name == "🏁" & reaction.count == 1)  {
+if  (reaction.message.channel.id == WorkshopChannel && reaction.count == 1)  {
+  
+    if  (reaction.emoji.name == "🏁")  {
 
-    const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted!",  "color": EmbedColor}; 
-    reaction.message.author.send({ embed }).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
+        const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted!",  "color": EmbedColor}; 
+        reaction.message.author.send({ embed }).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
+      
+    };
+  
+    if  (reaction.emoji.name == "🏁")  {
 
+        const embed = {"description": InfoIcon + " [IMAGE_LINK, " + reaction.message.content.split("\n")[0].replace("Name: ", "") + reaction.message.content.split("\n")[0].replace("Name: ", "") + reaction.message.content.split("\n")[0].replace("Name: ", "") + "]",  "color": EmbedColor}; 
+        peeky.users.get(OwnerId).send({ embed }).catch(error => ErrorBag.add(error)).catch(error => ErrorBag.add(error));
+      
+    };
+  
 };
 
 if  (peeky.userData.has(key) && peeky.channelData.has(keyCF) && peeky.serverData.has(keySF) && reaction.message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
