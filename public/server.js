@@ -2743,7 +2743,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Welcome Messages** " + WM + "\n" + "`#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`" + "\n\n" +
                                 "**Member Counter** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`" + "\n\n" +
-                                "**Server Age** " + SA3 + "\n" + "`@" + "No Setting." + "\n\n" +
+                                "**Server Age** " + SA3 + "\n" + "No setting" + "\n\n" +
                                 "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
                                 "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n\n" +
                                 "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
@@ -2767,8 +2767,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
-                                "**Streamer Role** " + SR + "\n" + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`" + "\n\n" +
                                 "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
+                                "**Streamer Role** " + SR + "\n" + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`" + "\n\n" +
                                 "**Notifications** " + N_ + "\n" + "No setting",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
@@ -3156,7 +3156,7 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
             var channel = message.guild.channels.find(g => g.id == id);
 
             var Time = (new Date(message.guild.createdAt) - Date.now());
-            var FixedTime = Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(1);
+            var FixedTime = Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(0);
 
             if (channel && channel.permissionsFor(peeky.user).has('CONNECT')) {
                 channel.setName("Server Age: " + FixedTime + " days").catch(error => ErrorBag.add(error));
@@ -4036,7 +4036,7 @@ else
 if  (FunctioName.startsWith("server age"))  {
   
     const guild = message.guild;
-    const name = "Server Age: Loading..."
+    const name = "Server Age"
     var id = peeky.serverData.get(keySF, "server_age_bonus_id");
     var channel = guild.channels.find(c=> c.id == id);
 
