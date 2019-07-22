@@ -2659,7 +2659,7 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
   
     if  (reaction.emoji.name == "🏁")  {
       
-        peeky.users.get(OwnerId).send('["INSERT_LINK", ' + reaction.message.content.toLowerCase().split('\n')[2].replace("price: ", "") + ', "' + reaction.message.content.toLowerCase().split("\n")[0].replace("name: ", "") + '", "' + reaction.message.content.toLowerCase().split("\n")[1].replace("credit: ", "") + '", ' + undefined + ']').catch(error => ErrorBag.add(error));
+        peeky.users.get(OwnerId).send('["INSERT_LINK", ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + reaction.message.content.split("\n")[0].replace("Name: ", "") + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ']').catch(error => ErrorBag.add(error));
 
         const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted and will be added shortly!",  "color": EmbedColor}; 
         reaction.message.author.send({ embed }).catch(error => ErrorBag.add(error));
@@ -3045,8 +3045,6 @@ if  (!message.webhookID)  {
 
 //BADGES
 if  (!message.author.bot && message.guild.owner !== undefined)  {
-  
-    //Publisher Badge
 
     //Ownership Badge
     if  (peeky.userData.get(key, "OwnershipBadge") == false && message.author.id == message.guild.owner.user.id)  {
@@ -3057,10 +3055,12 @@ if  (!message.author.bot && message.guild.owner !== undefined)  {
   
 //MISCELLANEOUS
     
+//Workshop Auto-Management
 if  (message.channel.id == WorkshopChannel)  {
   
-    if  (message.attachments.size == 1 && message.content.toLowerCase().split('\n')[0].startsWith("name: ") && message.content.toLowerCase().split('\n')[1].startsWith("credit: ") && message.content.toLowerCase().split('\n')[2].startsWith("price: "))  {
+    if  (message.attachments.size == 1 && message.content.split('\n')[0].startsWith("Name: ") && message.content.split('\n')[1].startsWith("Credit: ") && message.content.split('\n')[2].startsWith("Price: ") && isNaN(message.content.split('\n')[2].replace("Price: ", "")) == false && message.content.toLowerCase().split('\n')[3] == undefined)  {
       
+        //Publisher Badge
         if  (peeky.userData.has(key) && peeky.userData.get(key, "PublisherBadge") == false)  {
             peeky.userData.set(key, true, "PublisherBadge");
         };
@@ -3070,7 +3070,7 @@ if  (message.channel.id == WorkshopChannel)  {
     {
      message.delete().catch(error => ErrorBag.add(error));
     };
-  
+
 };
   
   
