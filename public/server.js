@@ -3146,7 +3146,7 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
     if  (!ServerAgeCooldown.has(message.guild.id))  {
 
         ServerAgeCooldown.add(message.guild.id);
-        setTimeout(() => {ServerAgeCooldown.delete(message.guild.id)}, 300000);
+        setTimeout(() => {ServerAgeCooldown.delete(message.guild.id)}, 3600000);
 
         //Permission Checking
         if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
