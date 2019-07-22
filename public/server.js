@@ -2718,6 +2718,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "server_trial_bonus") == true)           { var ST = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var ST = DisabledIcon};
         if (peeky.serverData.get(keySF, "streamer_role_bonus") == true)          { var SR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SR = DisabledIcon};
         if (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)   { var SA2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA2 = DisabledIcon};
+        if (peeky.serverData.get(keySF, "server_age_bonus") == true)             { var SA3 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA3 = DisabledIcon};
         if (peeky.channelData.get(keyCF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
         if (peeky.channelData.get(keyCF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
         if (peeky.channelData.get(keyCF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
@@ -2742,11 +2743,11 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Welcome Messages** " + WM + "\n" + "`#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`" + "\n\n" +
                                 "**Member Counter** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`" + "\n\n" +
+                                "**Server Age** " + SA3 + "\n" + "`@" + "No Setting." + "\n\n" +
                                 "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
                                 "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n\n" +
                                 "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
                                 "**Server Trial** " + ST + "\n" + "`" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes`" + "\n\n" +
-                                "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
                                 "**Flood Protection** " + FP + "\n" + "No Setting." + "\n\n" +
                                 "**Role Saver** " + RS + "\n" + "No Setting." + "\n\n" +
                                 "**Nickname Saver** " + NS + "\n" + "No Setting.",
@@ -2767,6 +2768,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
                                 "**Streamer Role** " + SR + "\n" + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`" + "\n\n" +
+                                "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
                                 "**Notifications** " + N_ + "\n" + "No setting",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
@@ -4034,12 +4036,12 @@ else
 if  (FunctioName.startsWith("server age"))  {
   
     const guild = message.guild;
-    const name = peeky.serverData.get(keySF, "member_counter_bonus_setting") + ": " + message.guild.members.filter(m => !m.user.bot).size;
-    var id = peeky.serverData.get(keySF, "member_counter_bonus_id");
+    const name = "Server Age: Loading..."
+    var id = peeky.serverData.get(keySF, "server_age_bonus_id");
     var channel = guild.channels.find(c=> c.id == id);
 
-    if(peeky.serverData.get(keySF, "member_counter_bonus") == true) {peeky.serverData.set(keySF, false, "member_counter_bonus");}
-    else peeky.serverData.set(keySF, true, "member_counter_bonus");
+    if(peeky.serverData.get(keySF, "server_age_bonus") == true) {peeky.serverData.set(keySF, false, "server_age_bonus");}
+    else peeky.serverData.set(keySF, true, "server_age_bonus");
 
     //Channel Creating    
     if (!channel) {
@@ -4053,12 +4055,12 @@ if  (FunctioName.startsWith("server age"))  {
 
     await message.guild.createChannel(name, { type: 'voice', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
-         peeky.serverData.set(keySF, channel.id, "member_counter_bonus_id");
+         peeky.serverData.set(keySF, channel.id, "server_age_bonus_id");
          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  CONNECT: false  }).catch(error => ErrorBag.add(error));
          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  CONNECT: true  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });     
       
-    InfoMessages.push(InfoIcon + " Created a channel called **" + name + "** for the **Member Counter** function.");
+    InfoMessages.push(InfoIcon + " Created a channel called **" + name + "** for the **Server Age** function.");
     
     };
     
@@ -4071,8 +4073,8 @@ if  (FunctioName.startsWith("server age"))  {
     };
     };
       
-    if  (peeky.serverData.get(keySF, "member_counter_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Member Counter** function has been **"  + StatusString + "**."+ "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "server_age_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Server Age** function has been **"  + StatusString + "**."+ "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
