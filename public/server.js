@@ -316,6 +316,7 @@ const ErrorMessage10 = [ErrorIcon + " Make sure the Function's name is all in lo
 const ErrorMessage11 = [ErrorIcon + " You need to be a Supporter to do that."];
 const ErrorMessage12 = [ErrorIcon + " There are no songs currently playing."];
 const ErrorMessage13 = [ErrorIcon + " Something has gone unexpectedly wrong."];
+const ErrorMessage14 = [ErrorIcon + " You already own that background."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -4791,7 +4792,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
 };
   
 } else { 
-  const embed = {"description": ErrorIcon + " You already own that background.", "color": EmbedColor}; 
+  const embed = {"description": ErrorMessage14[0], "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
   break;
@@ -5267,6 +5268,11 @@ if  (!ProfileCooldown.has(message.author.id))  {
             const embed = {"description": SuccessIcon + " You have given the **" + Banners[DonatedAmount - 1][Banner.Name] + "** background to **" + Function_RemoveFormatting(DonatedUser.user.username, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           
+        }
+         else
+        {
+         const embed = {"description": ErrorMessage14[0],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
         }
