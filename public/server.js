@@ -2036,36 +2036,9 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
   
 };
     
-//Member Counter (JOIN)
-if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
-  
-if  (!MemberCounterCooldown.has(member.guild.id))  {
-
-    MemberCounterCooldown.add(member.guild.id);
-    setTimeout(() => {MemberCounterCooldown.delete(member.guild.id)}, 5000);
-
-    //Permission Checking
-    if  (member.guild.me.hasPermission("MANAGE_CHANNELS"))  {
-
-        var id = peeky.serverData.get(keySF, "member_counter_bonus_id");
-        var Prefix = peeky.serverData.get(keySF, "member_counter_bonus_setting");
-
-        var channel = member.guild.channels.find(g => g.id == id);
-
-        if (channel && channel.permissionsFor(peeky.user).has('CONNECT')) {
-            channel.setName(Prefix + ": " + member.guild.members.filter(m => !m.user.bot).size).catch(error => ErrorBag.add(error));
-
-            console.log("The Member Counter function has been triggered in " + member.guild.name + ".");
-        };
-
-    };
-};
-};
-    
 //Join Role
 if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
   
-    //Permission Checking
     if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
       
         var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
@@ -2084,7 +2057,6 @@ if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
 //Role Saver
 if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
   
-    //Permission Checking
   if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
     
       if  (peeky.serverData.has(keySF, "role_saver_array"))  {
@@ -2120,8 +2092,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
     
 //Role Saver
 if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
-  
-    //Permission Checking
+
   if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
     
       if  (peeky.serverData.has(keySF, "role_saver_array"))  {
@@ -2157,36 +2128,34 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
     
 //Nickname Saver
 if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
-  
-    //Permission Checking
-  if  (member.guild.me.hasPermission("MANAGE_NICKNAMES"))  {
-    
-      if  (peeky.serverData.has(keySF, "nick_saver_array"))  {
-      
-          var SavedNicks = peeky.serverData.get(keySF, "nick_saver_array");
-        
-          SavedNicks.forEach(current => {
-            
-              if  (current[0] == member.user.id && current[1] !== null)  {
-                
-                  member.setNickname(current[1]);
-    
-                  console.log("The Nickname Saver function has been triggered in " + member.guild.name + ".");
-                
-              };
-            
-          });  
-      };
 
-  };
+    if  (member.guild.me.hasPermission("MANAGE_NICKNAMES"))  {
+
+        if  (peeky.serverData.has(keySF, "nick_saver_array"))  {
+
+            var SavedNicks = peeky.serverData.get(keySF, "nick_saver_array");
+
+            SavedNicks.forEach(current => {
+
+                if  (current[0] == member.user.id && current[1] !== null)  {
+
+                    member.setNickname(current[1]);
+
+                    console.log("The Nickname Saver function has been triggered in " + member.guild.name + ".");
+
+                };
+
+            });  
+        };
+
+    };
 
 };
     
 //Server Trial
 if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
 
-      //Permission Checking
-    if  (member.guild.me.hasPermission("MANAGE_ROLES")) {
+    if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
 
         var name = "Trial";
         var RoleExist = member.guild.roles.find(role => role.name == name);
@@ -2201,9 +2170,6 @@ if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
 
 //Welcome Messages
 if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
-  
-    //Permission Checking
-    if(member.guild.me.hasPermission("SEND_MESSAGES")) {
     
     const guild     = member.guild;
     var ProfileName = member.user.username;
@@ -2236,7 +2202,6 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
     console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
       
     };
-    };
 
 };
 
@@ -2252,38 +2217,8 @@ const keySF = `${member.guild.id}`;
 
 if (member.user.id !== PeekyId && peeky.serverData.has(keySF))  {
     
-//Member Counter (LEFT)
-if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
-
-if  (!MemberCounterCooldown.has(member.guild.id))  {
-
-    MemberCounterCooldown.add(member.guild.id);
-    setTimeout(() => {MemberCounterCooldown.delete(member.guild.id)}, 5000);
-
-    //Permission Checking
-    if  (member.guild.me.hasPermission("MANAGE_CHANNELS")) {
-      
-        var id = peeky.serverData.get(keySF, "member_counter_bonus_id");
-        var Prefix = peeky.serverData.get(keySF, "member_counter_bonus_setting");
-
-        var channel = member.guild.channels.find(g => g.id == id);
-
-        if (channel && channel.permissionsFor(peeky.user).has('CONNECT')) {
-            channel.setName(Prefix + ": " + member.guild.members.filter(m => !m.user.bot).size).catch(error => ErrorBag.add(error));
-
-            console.log("The Member Counter function has been triggered in " + member.guild.name + ".");
-        };
-    
-    };
-
-};
-};
-    
 //Welcome Messages
 if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
-  
-    //Permission Checking
-    if(member.guild.me.hasPermission("SEND_MESSAGES"))  {
     
     const guild     = member.guild;
     var ProfileName = member.user.username;
@@ -2303,12 +2238,10 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
     console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
       
     };
-    };
-
+  
 };
 
 };
-
 });
 
 
@@ -3148,7 +3081,6 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
         ServerAgeCooldown.add(message.guild.id);
         setTimeout(() => {ServerAgeCooldown.delete(message.guild.id)}, 3600000);
 
-        //Permission Checking
         if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
 
             var id = peeky.serverData.get(keySF, "server_age_bonus_id");
@@ -3162,6 +3094,33 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
                 channel.setName("Server Age: " + FixedTime + " days").catch(error => ErrorBag.add(error));
 
                 console.log("The Server Age function has been triggered in " + message.guild.name + ".");
+            };
+
+        };
+
+    };
+  
+};
+    
+//Member Counter
+if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
+
+    if  (!MemberCounterCooldown.has(message.guild.id))  {
+
+        MemberCounterCooldown.add(message.guild.id);
+        setTimeout(() => {MemberCounterCooldown.delete(message.guild.id)}, 300000);
+
+        if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
+
+            var id = peeky.serverData.get(keySF, "member_counter_bonus_id");
+            var Prefix = peeky.serverData.get(keySF, "member_counter_bonus_setting");
+
+            var channel = message.guild.channels.find(g => g.id == id);
+
+            if (channel && channel.permissionsFor(peeky.user).has('CONNECT')) {
+                channel.setName(Prefix + ": " + message.guild.members.filter(m => !m.user.bot).size).catch(error => ErrorBag.add(error));
+
+                console.log("The Member Counter function has been triggered in " + message.guild.name + ".");
             };
 
         };
@@ -3986,7 +3945,7 @@ else
 if  (FunctioName.startsWith("member counter"))  {
   
     const guild = message.guild;
-    const name = peeky.serverData.get(keySF, "member_counter_bonus_setting") + ": " + message.guild.members.filter(m => !m.user.bot).size;
+    const name = peeky.serverData.get(keySF, "member_counter_bonus_setting") + ": ...";
     var id = peeky.serverData.get(keySF, "member_counter_bonus_id");
     var channel = guild.channels.find(c=> c.id == id);
 
@@ -4036,7 +3995,7 @@ else
 if  (FunctioName.startsWith("server age"))  {
   
     const guild = message.guild;
-    const name = "Server Age"
+    const name = "Server Age: ...";
     var id = peeky.serverData.get(keySF, "server_age_bonus_id");
     var channel = guild.channels.find(c=> c.id == id);
 
@@ -5513,7 +5472,6 @@ if (!ProfileCooldown.has(message.author.id)) {
     ProfileCooldown.add(message.author.id);
     setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
   
-    //Permission Checking
     if  (message.guild.me.hasPermission("ATTACH_FILES"))  {
       
     const canvas        = Canvas.createCanvas(500, 300);
