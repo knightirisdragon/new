@@ -1428,8 +1428,8 @@ peeky.on('message', async (message) => {
   
 };
 
-    //Auto Wipe System
-    if  (!WebsiteCooldowns.has("autowipe"))  {
+//Auto Wipe System
+if  (!WebsiteCooldowns.has("autowipe"))  {
       
     WebsiteCooldowns.add("autowipe");
     setTimeout(() => {WebsiteCooldowns.delete("autowipe")}, 3600000);
@@ -1472,7 +1472,7 @@ peeky.on('message', async (message) => {
         };
     });
     
-    };
+};
 
 if  (!WebsiteCooldowns.has("leaderboard"))  {
 
