@@ -3140,7 +3140,7 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
 
             var channel = message.guild.channels.find(g => g.id == id);
 
-            var Time = (new Date(message.guild.createdAt) - Date.now());
+            var Time = (message.guild.createdAt) - Date.now());
             var FixedTime = Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(0);
 
             if (channel && channel.permissionsFor(peeky.user).has('CONNECT')) {
@@ -3199,7 +3199,7 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
 
         if  (peeky.serverData.get(keySF, "event_countdown_bonus_setting") > 0 && TheDate > 0)  {
 
-            var Time = (new Date(peeky.serverData.get(keySF, "event_countdown_bonus_setting")) - Date.now());
+            var Time = (peeky.serverData.get(keySF, "event_countdown_bonus_setting") - Date.now());
             var FixedTime = (Math.abs(Time / (1000 * 60 * 60)).toFixed(1));
             var LengthName = "hours";
 
@@ -5452,6 +5452,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     
     if  (peeky.userData.has(key2))  {
       
+    //Badges
     const PeekySupportServer = peeky.guilds.get(SupportServer);
     const TheUserWithRole    = peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id);
     var EndString            = "";
@@ -5480,6 +5481,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (peeky.userData.get(key2, "FashionBadge") == true)                                               {  Badges.push(FashionEmote + " Fashion")  };
     if  (Badges.length == 0)  {Badges = ["None"]; BadgesAmount = 0;} else {BadgesAmount = Badges.length};
       
+    //Backgrounds
     var FixedBackgrounds = [];
     var InventoryWorth = 0;
     var Current = 0;
@@ -5498,9 +5500,20 @@ if  (!ProfileCooldown.has(message.author.id)) {
         FixedBackgrounds.push(Banners[banner - 1][Banner.Name] + " `" + banner + "`");
     });
       
+    //Other
+    var OtherStuff = [];  
+    
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
+      
+        var Time = (new Date(peeky.userData.get(key, "BoosterStart")) - Date.now());
+        var FixedTime = (Math.abs(Time / (1000 * 60 * 60)).toFixed(1));
+      
+        OtherStuff.push("Profile Booster `" + FixedTime + " hours left`");
+    };
+      
     if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > BackgroundInvLimit)  {  EndString = " and some more.."  };
 
-    message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**" + BadgesAmount + " Badges**\n" + Badges.join(', ') + ".").catch(error => ErrorBag.add(error));
+    message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**" + BadgesAmount + " Badges**\n" + Badges.join(', ') + ".\n\n**Other**\n" + OtherStuff.join('\n')).catch(error => ErrorBag.add(error));
 
     }
      else 
