@@ -235,14 +235,15 @@ const DisabledIcon = "<:disabled:538295054431813662>";
 const SettingsIcon = "<:settings:586612320839532573>";
 
 //Role IDs
-const StaffRole         = "494429609874685983";
-const SupporterRole     = "504740473185894400";
-const BoosterRole       = "589783851329650690";
-const ServerUpgradeRole = "549190337437106176";
-const RedeemRole1       = "505491936401162270";  //1000 Gredit
-const RedeemRole2       = "527197436746268704";  //2000 Gredit
-const RedeemRole3       = "536142807702831104";  //5000 Gredit
-const RedeemRole4       = "536142889189638155";  //10000 Gredit
+const StaffRole          = "494429609874685983";
+const SupporterRole      = "504740473185894400";
+const BoosterRole        = "589783851329650690";
+const ServerUpgradeRole  = "549190337437106176";
+const ProfileBoosterRole = "603249410532442116";
+const RedeemRole1        = "505491936401162270";  //1000 Gredit
+const RedeemRole2        = "527197436746268704";  //2000 Gredit
+const RedeemRole3        = "536142807702831104";  //5000 Gredit
+const RedeemRole4        = "536142889189638155";  //10000 Gredit
 
 //Other IDs
 const OwnerId              = "108899856889737216";
@@ -1341,78 +1342,85 @@ peeky.on('message', async (message) => {
     if  (OngoingEvent == true)  {
         peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");
     };
+      
+    //PROFILE BOOSTER DOUBLE EXP
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
+        peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");
+    };
 
     };
 
-    if  (peeky.userData.get(key, "Exp") >= ExpNeeded * peeky.userData.get(key, "Level")) {  //Level Up    
+    //Level Up
+    if  (peeky.userData.get(key, "Exp") >= ExpNeeded * peeky.userData.get(key, "Level")) { 
         
         peeky.userData.set(key, 1, "Exp");
         peeky.userData.math(key, "+", 1, "Level");
         peeky.userData.math(key, "+", 1, "Chests");
     
-    if  (peeky.serverData.get(keySF, "notifications") == true) {  //Level Up Notification
+    if  (peeky.serverData.get(keySF, "notifications") == true)  {
         
-    const canvas = Canvas.createCanvas(500, 95);
-    const ctx = canvas.getContext('2d');
-    var   Failed = false;
-      
-    ctx.globalAlpha = 0.75;
+        const canvas = Canvas.createCanvas(500, 95);
+        const ctx = canvas.getContext('2d');
+        var   Failed = false;
 
-    var TheBannerShown = DefaultBackground;
-    var ProfileName = message.author.username;
+        ctx.globalAlpha = 0.75;
 
-    message.channel.startTyping();
-      
-    var TheBannerShown = DefaultBackground;
-    if  (peeky.userData.has(key))  {
-        TheBannerShown = function_GetBackground(key);
-    };
+        var TheBannerShown = DefaultBackground;
+        var ProfileName = message.author.username;
 
-    const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(message.author.id, DefaultBackground, "Background");});
-      
-    if  (Failed == false)  {
-  
-    ctx.drawImage(background, 0, 0, canvas.width, 300);  
-      
-    const layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Flevel_up_layout_2.png?v=1561018982613");
-    ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
-      
-    //Setting
-    ctx.shadowColor = "black";
-    ctx.shadowOffsetX = 1; 
-    ctx.shadowOffsetY = 1;
-    ctx.globalAlpha = 1;
-    ctx.textAlign = "left";
-      
-    //Draw Events
-      
+        message.channel.startTyping();
+
+        var TheBannerShown = DefaultBackground;
+        if  (peeky.userData.has(key))  {
+            TheBannerShown = function_GetBackground(key);
+        };
+
+        const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(message.author.id, DefaultBackground, "Background");});
+
+        if  (Failed == false)  {
+
+        ctx.drawImage(background, 0, 0, canvas.width, 300);  
+
+        const layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Flevel_up_layout_2.png?v=1561018982613");
+        ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
+
+        //Setting
+        ctx.shadowColor = "black";
+        ctx.shadowOffsetX = 1; 
+        ctx.shadowOffsetY = 1;
+        ctx.globalAlpha = 1;
+        ctx.textAlign = "left";
+
+        //Draw Events
+
         //Name String
-    ctx.font = "25px " + DefaultFont;
-    ctx.fillStyle = "white";
-    ctx.fillText(ProfileName, 125, 40);
-    
-        //Level Up String
-    ctx.font = "18px " + DefaultFont;
-    ctx.fillStyle = "lightgreen";
-    ctx.fillText("Has leveled up to Level " + peeky.userData.get(key, "Level") + "!", 125, 75);
-    
-      //Avatar
-    ctx.shadowOffsetX = 0; 
-    ctx.shadowOffsetY = 0;
-    const avatar = await Canvas.loadImage(message.author.displayAvatarURL.replace("https", "http"));
-    ctx.drawImage(avatar, 7, 7, 82, 82);
-    
-    const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
-      
-    message.channel.send("", attachment).catch(error => ErrorBag.add(error));
-      
-    message.channel.stopTyping();
-            
-    console.log("The Notifications function has been triggered in " + message.guild.name + ".");
+        ctx.font = "25px " + DefaultFont;
+        ctx.fillStyle = "white";
+        ctx.fillText(ProfileName, 125, 40);
 
-    };
+        //Level Up String
+        ctx.font = "18px " + DefaultFont;
+        ctx.fillStyle = "lightgreen";
+        ctx.fillText("Has leveled up to Level " + peeky.userData.get(key, "Level") + "!", 125, 75);
+
+        //Avatar
+        ctx.shadowOffsetX = 0; 
+        ctx.shadowOffsetY = 0;
+        const avatar = await Canvas.loadImage(message.author.displayAvatarURL.replace("https", "http"));
+        ctx.drawImage(avatar, 7, 7, 82, 82);
+
+        const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+
+        message.channel.send("", attachment).catch(error => ErrorBag.add(error));
+
+        message.channel.stopTyping();
+
+        console.log("The Notifications function has been triggered in " + message.guild.name + ".");
+
+        };
 
     };  
+  
     };
     };
   
@@ -2429,6 +2437,27 @@ if  (newMember.roles.has(RedeemRole4))  {
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
       
         peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **10,000 Gredit**.").catch(error => ErrorBag.add(error));
+    };
+
+}; 
+  
+//Booster  
+if  (newMember.roles.has(ProfileBoosterRole))  {
+    newMember.removeRole(ProfileBoosterRole).catch(error => {ErrorBag.add(error); Failed = true});
+      
+    if  (Failed !== true)  {
+
+        peeky.userData.set(key, new Date(), "BoosterStart");
+      
+        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+            peeky.userData.set(key, true, "ContributorBadge");
+            InfoMessages.push(InfoMessage1[0]);
+        };
+      
+        const embed = {"description": SuccessIcon + " You have been awarded **Profile Booster** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+      
+        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **Profile Booster**.").catch(error => ErrorBag.add(error));
     };
 
 }; 
