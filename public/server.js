@@ -44,6 +44,7 @@ const QueuedSOSMessages      = new Set();
 const CurrentlyPlaying       = new Set();
 const WebsiteCooldowns       = new Set();  //Auto Wipe, Website stats, Featured Profile, etc.
 const GainCooldown           = new Set();
+const ProfileBoosterCooldown = new Set();
 const OverviewCooldown       = new Set();
 const SetInviteCooldown      = new Set();
 const ProfileCooldown        = new Set();  const ProfileCooldownMS = 5000;
@@ -3041,7 +3042,20 @@ if  (message.channel.id == WorkshopChannel)  {
     };
 
 };
+    
+//Profile Booster Auto-Management
+if  (!ProfileBoosterCooldown.has(message.guild.id))  {
+
+    ProfileBoosterCooldown.add(message.guild.id);
+    setTimeout(() => {ProfileBoosterCooldown.delete(message.guild.id)}, 3600000);
   
+    peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(ProfileBoosterRole)).forEach(m => {
+      
+        if  (new Date() - m.joinedAt >= ProfileBoosterLength)  {};
+      
+    });
+
+};  
   
 //FUNCTIONS
 if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
