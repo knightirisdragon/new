@@ -2305,7 +2305,7 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
 
 };
   
-//Supporter Date
+//Store Roles System
 if  (keySF == SupportServer)  {
 
 var ExpAmount    = 100;
@@ -2330,7 +2330,6 @@ if  (peeky.userData.has(key))  {
         const embed = {"description": SuccessIcon + " You have been awarded the **Supporter status** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
       
-        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **Supporter**.").catch(error => ErrorBag.add(error));
     };
   
 };
@@ -2353,7 +2352,6 @@ if  (peeky.userData.has(key))  {
         const embed = {"description": SuccessIcon + " You have been awarded a **Server Upgrade** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
       
-        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **Server Upgrade**.").catch(error => ErrorBag.add(error));
     };
   
 };
@@ -2378,7 +2376,6 @@ if  (peeky.userData.has(key))  {
         const embed = {"description": SuccessIcon + " You have been awarded a **Profile Booster** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
       
-        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **Profile Booster**.").catch(error => ErrorBag.add(error));
     };
   
 };
@@ -2400,7 +2397,6 @@ if  (newMember.roles.has(RedeemRole1))  {
         const embed = {"description": SuccessIcon + " You have been awarded **1,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
       
-        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **1,000 Gredit**.").catch(error => ErrorBag.add(error));
     };
 
 }; 
@@ -2422,7 +2418,6 @@ if  (newMember.roles.has(RedeemRole2))  {
         const embed = {"description": SuccessIcon + " You have been awarded **2,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
       
-        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **2,000 Gredit**.").catch(error => ErrorBag.add(error));
 
     };
 
@@ -2445,7 +2440,6 @@ if  (newMember.roles.has(RedeemRole3))  {
         const embed = {"description": SuccessIcon + " You have been awarded **5,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
       
-        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **5,000 Gredit**.").catch(error => ErrorBag.add(error));
     };
 
 }; 
@@ -6186,11 +6180,13 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
       
     if  (CurrentlyPlaying.has(message.guild.id))  {
       
-        CurrentlyPlaying.delete(message.guild.id);
-      
-        if  (message.guild.me.voiceChannel)  {
-            message.guild.me.voiceChannel.leave();
-        };
+        if  (message.member.voiceChannel && message.member.voiceChannel.)  {
+            CurrentlyPlaying.delete(message.guild.id);
+
+            if  (message.guild.me.voiceChannel)  {
+                message.guild.me.voiceChannel.leave();
+            };
+        }
       
     } else {
       const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
