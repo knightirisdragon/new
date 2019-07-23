@@ -6183,7 +6183,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
       
         var OwnerActive = false;
       
-        if  (message.member.voiceChannel && message.member.voiceChannel.members.forEach(m => m.id == message.guild.owner.user.id))  {
+        if  (message.member.voiceChannel && message.member.voiceChannel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
             OwnerActive = true;
         };
       
