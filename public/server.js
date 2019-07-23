@@ -6180,13 +6180,24 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
       
     if  (CurrentlyPlaying.has(message.guild.id))  {
       
-        if  (message.member.voiceChannel && message.member.voiceChannel.members.forEach(m => m.id == message.owner.user.id) && )  {
+        var OwnerActive = false;
+      
+        if  (message.member.voiceChannel && message.member.voiceChannel.members.forEach(m => m.id == message.guild.owner.user.id))  {
+            OwnerActive = true;
+        };
+      
+        if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
+          
             CurrentlyPlaying.delete(message.guild.id);
 
             if  (message.guild.me.voiceChannel)  {
                 message.guild.me.voiceChannel.leave();
             };
-        }
+          
+        } else {
+          const embed = {"description": ErrorIcon + " Only the server owner can skip the song.",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
       
     } else {
       const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
