@@ -6180,7 +6180,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
       
     if  (CurrentlyPlaying.has(message.guild.id))  {
       
-        if  (message.member.voiceChannel && message.member.voiceChannel.)  {
+        if  (message.member.voiceChannel && message.member.voiceChannel.members.forEach(m => m.id == message.owner.user.id) && )  {
             CurrentlyPlaying.delete(message.guild.id);
 
             if  (message.guild.me.voiceChannel)  {
