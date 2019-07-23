@@ -677,7 +677,10 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground344.png?v=1563487825049", 500, "Midnight breakfast", "Vampyr", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground345.png?v=1563790940323", 450, "Joseph Joestart", "JoJo's Bizzare Adventures", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground346.jpg?v=1563790823009", 500, "Village Discovery", "Minecraft", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground347.png?v=1563909059548", 500, "Water Sheep's memorial", "u/neytirixx", undefined]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground347.png?v=1563909059548", 500, "Water Sheep's memorial", "u/neytirixx", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground348.jpg?v=1563910715202", 475, "Bird's cage", "Resident Evil 7", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground349.png?v=1563910720991", 450, "The beach", "Unknown", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground350.jpg?v=1563910886501", 425, "The Plan of Attack", "Unkown", undefined]
 
 ];
 
