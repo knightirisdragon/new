@@ -1,4 +1,4 @@
- //DISCORD
+//DISCORD
 const Discord = require("discord.js");
 const peeky   = new Discord.Client();
 
