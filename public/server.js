@@ -1334,21 +1334,21 @@ peeky.on('message', async (message) => {
     BadgeExpAmount    += peeky.userData.get(key, "UpgradedServers");
     BadgeGreditAmount += peeky.userData.get(key, "UpgradedServers");
       
+    //EVENT DOUBLE EXP
+    if  (OngoingEvent == true)  {
+        BadgeExpAmount = BadgeExpAmount * 2;
+    };
+      
+    //PROFILE BOOSTER DOUBLE EXP
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
+        BadgeExpAmount = BadgeExpAmount * 2;
+    };
+      
     peeky.userData.set(key, BadgeGreditAmount, "BadgeGredit");
     peeky.userData.set(key, BadgeExpAmount, "BadgeExp");
 
     peeky.userData.math(key, "+", Math.round(Math.random() * BadgeGreditAmount), "Gredit");
     peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");
-      
-    //EVENT DOUBLE EXP
-    if  (OngoingEvent == true)  {
-        peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");
-    };
-      
-    //PROFILE BOOSTER DOUBLE EXP
-    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
-        peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");
-    };
 
     };
 
@@ -3058,7 +3058,9 @@ if  (!ProfileBoosterCooldown.has(message.guild.id))  {
       
         if  (peeky.userData.has(m.user.id, "BoosterStart") && new Date() - peeky.userData.get(m.user.id, "BoosterStart") >= ProfileBoosterLength)  {
             m.removeRole(ProfileBoosterRole).catch(error => ErrorBag.add(error));
-            console.log("test");
+          
+            const embed = {"description": InfoIcon + " Your **Profile Booster** has expired.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
     });

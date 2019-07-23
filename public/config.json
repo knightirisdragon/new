@@ -4,7 +4,7 @@
 
 "event_status": false,
 "autowipe_time": 1296000000,
-"booster_time": 10000,
+"booster_time": 86400000,
   
 "custom_background": 1000,
 "sell_multiplier": 2.5,
