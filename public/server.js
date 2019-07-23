@@ -109,6 +109,7 @@ const SellMultiplier        = Config.sell_multiplier;
 const ExpNeeded             = Config.exp_multiplier;
 const MaxServers            = Config.server_limit;
 const InactiveWipe          = Config.autowipe_time;
+const ProfileBoosterLength  = Config.booster_time;
 const InactiveDays          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 
 //Arrays
@@ -2352,6 +2353,31 @@ if  (peeky.userData.has(key))  {
     };
   
 };
+
+//Profile Booster
+if  (peeky.userData.has(key))  {
+    
+    var HadRole = oldMember.roles.find(r => r.id == ProfileBoosterRole);
+    var HasRole = newMember.roles.find(r => r.id == ProfileBoosterRole);
+  
+    if  (HadRole == null && HasRole)  {
+
+        peeky.userData.math(key, "+", ExpAmount, "Exp");
+      
+        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+            peeky.userData.set(key, true, "ContributorBadge");
+            InfoMessages.push(InfoMessage1[0]);
+        };
+      
+        peeky.userData.set(key, new Date(), "BoosterStart");
+
+        const embed = {"description": SuccessIcon + " You have been awarded a **Profile Booster** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+      
+        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **Profile Booster**.").catch(error => ErrorBag.add(error));
+    };
+  
+};
   
 //1,000 Gredit
 if  (newMember.roles.has(RedeemRole1))  {
@@ -2438,27 +2464,6 @@ if  (newMember.roles.has(RedeemRole4))  {
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
       
         peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **10,000 Gredit**.").catch(error => ErrorBag.add(error));
-    };
-
-}; 
-  
-//Booster  
-if  (newMember.roles.has(ProfileBoosterRole))  {
-    newMember.removeRole(ProfileBoosterRole).catch(error => {ErrorBag.add(error); Failed = true});
-      
-    if  (Failed !== true)  {
-
-        peeky.userData.set(key, new Date(), "BoosterStart");
-      
-        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-            peeky.userData.set(key, true, "ContributorBadge");
-            InfoMessages.push(InfoMessage1[0]);
-        };
-      
-        const embed = {"description": SuccessIcon + " You have been awarded **Profile Booster** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
-      
-        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **Profile Booster**.").catch(error => ErrorBag.add(error));
     };
 
 }; 
@@ -3051,7 +3056,10 @@ if  (!ProfileBoosterCooldown.has(message.guild.id))  {
   
     peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(ProfileBoosterRole)).forEach(m => {
       
-        if  (new Date() - m.joinedAt >= ProfileBoosterLength)  {};
+        if  (peeky.userData.has(m.user.id, "BoosterStart") && new Date() - peeky.userData.get(m.user.id, "BoosterStart") >= ProfileBoosterLength)  {
+            m.removeRole(ProfileBoosterRole).catch(error => ErrorBag.add(error));
+            console.log("test");
+        };
       
     });
 
