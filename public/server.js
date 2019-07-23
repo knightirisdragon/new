@@ -676,7 +676,8 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground343.png?v=1563487814497", 450, "High-Tech", "Call of Duty Modern Warfare", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground344.png?v=1563487825049", 500, "Midnight breakfast", "Vampyr", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground345.png?v=1563790940323", 450, "Joseph Joestart", "JoJo's Bizzare Adventures", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground346.jpg?v=1563790823009", 500, "Village Discovery", "Minecraft", undefined]     
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground346.jpg?v=1563790823009", 500, "Village Discovery", "Minecraft", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground347.png?v=1563909059548", 500, "Water Sheep's memorial", "u/neytirixx", undefined]
 
 ];
 
