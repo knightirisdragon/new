@@ -677,9 +677,9 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground345.png?v=1563911688280", 500, "Midnight breakfast", "Vampyr", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground346.png?v=1563911687954", 450, "Joseph Joestart", "JoJo's Bizzare Adventures", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground347.jpg?v=1563911682560", 500, "Village Discovery", "Minecraft", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground348.png?v=1563911685491", 500, "Water Sheep's memorial", "u/neytirixx", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground348.png?v=1563922180572", 500, "Water Sheep's memorial", "u/neytirixx", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground349.jpg?v=1563911682933", 475, "Bird's cage", "Resident Evil 7", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground350.png?v=1563911695139", 450, "The beach", "Unknown", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground350.png?v=1563922201014", 450, "The beach", "Unknown", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground351.jpg?v=1563911683311", 425, "The plan of attack", "Unkown", undefined]
 
 ];
@@ -2636,7 +2636,7 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
       
         var Name = reaction.message.content.split("\n")[0].replace("Name: ", ""); var FixedName = null;
 
-        FixedName = Name.slice(0,1) + Name.slice(1, Name.length).toLowerCase();
+        FixedName = Name.slice(0,1).toUpperCase() + Name.slice(1, Name.length).toLowerCase();
       
         peeky.users.get(OwnerId).send('["INSERT_LINK", ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + FixedName + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ']').catch(error => ErrorBag.add(error));
 
