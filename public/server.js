@@ -70,6 +70,7 @@ const DarkField  = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2
 const LightField = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Flightfield.png?1558421869640";
 
 const DefaultBackground = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground1.png?1558721841453";
+const NABackground      = "http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2FNA%20Background.png?v=1563929199191"
 const PrismPattern      = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern_assets.png?1554545063162";
 const CoinImage         = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542";
 const ExpImage          = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_xp.png?1541260284097";
@@ -2645,7 +2646,7 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
   
     if  (reaction.emoji.name == "🏁")  {
       
-        peeky.users.get(OwnerId).send('["INSERT_LINK", ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ']').catch(error => ErrorBag.add(error));
+        peeky.users.get(OwnerId).send('[NABackground, ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ']').catch(error => ErrorBag.add(error));
 
         const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted and will be added shortly!",  "color": EmbedColor}; 
         reaction.message.author.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5559,8 +5560,6 @@ if (!ProfileCooldown.has(message.author.id)) {
 
     //Vars
     const ProfileName        = SomeoneTagged.username;
-    const PeekySupportServer = peeky.guilds.get(SupportServer);
-    const TheUserWithRole    = peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id);
     const key2               = SomeoneTagged.id;
     var   Failed             = false;
       
@@ -5668,7 +5667,7 @@ if (!ProfileCooldown.has(message.author.id)) {
         //PEEKY Staff Icon
     if  (BadgeAmount < MaxBadges)  {
     const moderator_icon = await Canvas.loadImage(ModeratorImage);
-    if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(StaffRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(StaffRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
     ctx.drawImage(moderator_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
     };
 
@@ -5682,14 +5681,14 @@ if (!ProfileCooldown.has(message.author.id)) {
         //Supporter Icon
     if  (BadgeAmount < MaxBadges)  {
     const supporter_icon = await Canvas.loadImage(SupporterImage);
-    if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(SupporterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(SupporterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
     ctx.drawImage(supporter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
     };
 
         //Booster Icon
     if  (BadgeAmount < MaxBadges)  {
     const supporter_icon = await Canvas.loadImage(BoosterImage);
-    if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(BoosterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(BoosterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
     ctx.drawImage(supporter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
     };
 
@@ -5836,7 +5835,7 @@ if (!ProfileCooldown.has(message.author.id)) {
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
-    if  (!WebsiteCooldowns.has("featuredprofile") && PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(SupporterRole))  {
+    if  (!WebsiteCooldowns.has("featuredprofile") && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(SupporterRole))  {
       
         WebsiteCooldowns.add("featuredprofile");
 
