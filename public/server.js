@@ -5838,7 +5838,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
 
     if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(ProfileBoosterRole))  {
-        const embed = {"description": InfoIcon + " The **Profile Booster** for this profile will remain active for " + function_TimeLeft(peeky.userData.get(key, "BoosterStart"),  "hours", ProfileBoosterHours) + " hours.",  "color": EmbedColor}; 
+        const embed = {"description": InfoIcon + " The **Profile Booster** for this profile will remain active for **" + function_TimeLeft(peeky.userData.get(key, "BoosterStart"),  "hours", ProfileBoosterHours) + " hours**.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
