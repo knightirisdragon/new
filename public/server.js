@@ -1044,29 +1044,23 @@ function function_DateFormat(value)  {
 //Time Left
 function function_TimeLeft(value, type)  {
   
-    if  (!isNaN(value))  {
+if  
       
     if  (type == "leaderboard")  {
 
-        return InactiveDays - (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(0));
+        return InactiveDays - (Math.abs((new Date() - value) / (1000 * 60 * 60 * 24)).toFixed(0));
       
     }  else if  (type == "days")  {
 
-        return (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(0));
+        return (Math.abs((new Date() - value) / (1000 * 60 * 60 * 24)).toFixed(0));
       
     }   else if  (type == "hours")  {
 
-        return (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60)).toFixed(0));
+        return (Math.abs((new Date() - value) / (1000 * 60 * 60)).toFixed(0));
       
     }  else if  (type == "minutes")  {
 
-        return (Math.abs((new Date() - new Date(value)) / (1000 * 60)).toFixed(0));
-      
-    };
-      
-    }  else  {
-
-       return "Invalid Date"; 
+        return (Math.abs((new Date() - value) / (1000 * 60)).toFixed(0));
       
     };
 
@@ -3684,11 +3678,11 @@ if  (!OverviewCooldown.has(message.guild.id))  {
     const embed = {"description": "**Overview Menu**" + "\n\n" + "1⃣ Server Settings" + "\n\n" + "2⃣ Server Functions `[1/2]`" + "\n\n" + "3⃣ Server Functions `[2/2]`" + "\n\n" + "4⃣ Channel Functions",  "color": EmbedColor}; 
     await message.channel.send({  embed  }).catch(error => {ErrorBag.add(error);}).then(async m => {
             
+          peeky.userData.set(key, m.id, "OverviewID");
           await m.react("1⃣").catch(error => {ErrorBag.add(error)});
           await m.react("2⃣").catch(error => {ErrorBag.add(error)});
           await m.react("3⃣").catch(error => {ErrorBag.add(error)});
           await m.react("4⃣").catch(error => {ErrorBag.add(error)});
-          peeky.userData.set(key, m.id, "OverviewID");
             
     }).catch(error => {ErrorBag.add(error)});
   
