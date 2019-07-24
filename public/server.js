@@ -842,7 +842,8 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             if  (Type == "Started")  {
                 ctx.fillText(peeky.users.get(User).username + " has requested " + Author + "'s song.", 15, 310);
             }  else if  (Type == "Playlist")  {
-                ctx.fillText(peeky.users.get(User).username + " has requested a random song from their playlist.", 15, 310);
+                //ctx.font = "13px " + DefaultFont;
+                ctx.fillText(peeky.users.get(User).username + " has requested a random song from " + peeky.userData.get(User, "PlaylistName") + ".", 15, 310, canvas.width - 30);
             }  else if  (Type == "Random")  {
                 ctx.fillText(peeky.users.get(User).username + " has requested a random song.", 15, 310);
             }  else if  (Type == "Previous")  {
@@ -853,7 +854,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
 
             //Song Name
             ctx.font = "20px " + DefaultFont;
-            ctx.fillText(Title, 15, 345);
+            ctx.fillText(Title, 15, 345, canvas.width - 30);
 
             return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
