@@ -694,7 +694,8 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground359.png?v=1563964603301", 500, "Gun play", "Call of Duty Modern Warfare", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground360.png?v=1563964903981", 500, "Dragon's return", "The Elder Scrolls Online", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground361.png?v=1563964756492", 500, "The prophecy", "The Elder Scrolls Online", undefined],
-    ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground362.png?v=1563970489879", 400, "Dragon rider", "Unknown", undefined]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground362.png?v=1563970489879", 400, "Dragon rider", "Unknown", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground363.png?v=1563983696291", 420, "The inferno", "Endless Legend", undefined]
 
 ];
 
@@ -6234,7 +6235,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
       
         var OwnerActive = false;
       
-        if  (message.member.voiceChannel && message.member.voiceChannel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+        if  (message.guild.me.voiceChannel && message.guild.me.voiceChannel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
             OwnerActive = true;
         };
       
