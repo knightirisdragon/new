@@ -842,7 +842,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             }  else if  (Type == "Previous")  {
                 ctx.fillText(peeky.users.get(User).username + " has requested the previous song.", 15, 310);
             }  else if  (Type == "Current")  {
-                ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes") + " minutes left.", 15, 310);
+                ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes", null) + " minutes left.", 15, 310);
             };
 
             //Song Name
@@ -1042,25 +1042,41 @@ function function_DateFormat(value)  {
 };
 
 //Time Left
-function function_TimeLeft(value, type)  {
+function function_TimeLeft(value, type, since)  {
   
     if  (!isNaN(value))  {
       
-    if  (type == "leaderboard")  {
-
-        return InactiveDays - (Math.abs((new Date() - value) / (1000 * 60 * 60 * 24)).toFixed(0));
+        value = new Date(value);
       
-    }  else if  (type == "days")  {
+        if  (type == "leaderboard")  {
 
-        return (Math.abs((new Date() - value) / (1000 * 60 * 60 * 24)).toFixed(0));
+            return since - (Math.abs((new Date() - value) / (1000 * 60 * 60 * 24)).toFixed(0));
+
+        }  else if  (type == "days")  {
+
+            if  (since !== null)  {
+              
+                return since - (Math.abs((new Date() - value) / (1000 * 60 * 60 * 24)).toFixed(0));
+              
+            }  else  {
+              
+                return (Math.abs((new Date() - value) / (1000 * 60 * 60 * 24)).toFixed(0));
+              
+            };
+
+        }   else if  (type == "hours")  {
+
+            return since - (Math.abs((new Date() - value) / (1000 * 60 * 60)).toFixed(0));
+
+        }  else if  (type == "minutes")  {
+
+            return since - (Math.abs((new Date() - value) / (1000 * 60)).toFixed(0));
+
+        };
       
-    }   else if  (type == "hours")  {
+    }  else  {
 
-        return (Math.abs((new Date() - value) / (1000 * 60 * 60)).toFixed(0));
-      
-    }  else if  (type == "minutes")  {
-
-        return (Math.abs((new Date() - value) / (1000 * 60)).toFixed(0));
+       return "Invalid Date"; 
       
     };
 
@@ -1545,7 +1561,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     }
      else
     {
-     Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "'  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNAVAILABLE PROFILE  <br>  <font size='2'>  If this profiles stays unavailable for " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "leaderboard") + " more days, it will get deleted.  </font></b>  </div>");
+     Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "'  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNAVAILABLE PROFILE  <br>  <font size='2'>  If this profiles stays unavailable for " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "leaderboard", InactiveDays) + " more days, it will get deleted.  </font></b>  </div>");
     };
       
     };
