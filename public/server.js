@@ -1044,7 +1044,7 @@ function function_DateFormat(value)  {
 //Time Left
 function function_TimeLeft(value, type)  {
   
-if  
+    if  (!isNaN(value))  {
       
     if  (type == "leaderboard")  {
 
