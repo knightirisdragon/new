@@ -1429,7 +1429,7 @@ peeky.on('message', async (message) => {
         //Level Up String
         ctx.font = "18px " + DefaultFont;
         ctx.fillStyle = "lightgreen";
-        ctx.fillText("Has leveled up to Level " + peeky.userData.get(key, "Level") + "!", 125, 75);
+        ctx.fillText("Has reached Level " + peeky.userData.get(key, "Level") + "!", 125, 75);
 
         //Avatar
         ctx.shadowOffsetX = 0; 
