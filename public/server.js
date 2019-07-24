@@ -2716,7 +2716,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
 
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Prefix** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "prefix") + "`" + "\n\n" +
-                                "**Mute Role** " + SettingsIcon + "\n" + "`@­" + peeky.serverData.get(keySF, "muted_role") + "`",
+                                "**Mute Role** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "muted_role") + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -4423,7 +4423,7 @@ if  (FunctioName.startsWith("welcome messages "))  {
     var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
     peeky.serverData.set(keySF, FixedChannelName, "welcome_messages_bonus_setting");
 
-    const embed = {"description": SuccessIcon + " The **Welcome Messages** setting has been set to **#­" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting")+ "**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " The **Welcome Messages** setting has been set to **#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting")+ "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
@@ -4436,7 +4436,7 @@ if  (FunctioName.startsWith("join role "))  {
     var RoleName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set join role ")[1];
     peeky.serverData.set(keySF, Function_RemoveFormatting(RoleName, "role"), "join_role_bonus_setting", true);
 
-    const embed = {"description": SuccessIcon + " The **Join Role** setting has been set to **@­" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " The **Join Role** setting has been set to **@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -4449,7 +4449,7 @@ if  (FunctioName.startsWith("streamer role "))  {
     var RoleName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set streamer role ")[1];
     peeky.serverData.set(keySF, Function_RemoveFormatting(RoleName, "role"), "streamer_role_bonus_setting", true);
 
-    const embed = {"description": SuccessIcon + " The **Streamer Role** setting has been set to **@­" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " The **Streamer Role** setting has been set to **@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -4477,7 +4477,7 @@ if  (FunctioName.startsWith("classification wall "))  {
     peeky.serverData.set(keySF, Function_RemoveFormatting(ChannelName, "role"), "donor_wall_bonus_setting", true);
     peeky.serverData.set(keySF, Function_RemoveFormatting(ChannelName, "channel") + "s", "donor_wall_bonus_channel", true);
 
-    const embed = {"description": SuccessIcon + " The **Classification Wall** setting has been set to **#­" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "** and **@­" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " The **Classification Wall** setting has been set to **#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "** and **@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -4625,7 +4625,7 @@ if  (FunctioName.startsWith("message log "))  {
 
     peeky.serverData.set(keySF, FixedChannelName, "message_log_bonus_setting");
 
-    const embed = {"description": SuccessIcon + " The **Message Log** setting has been set to **#­" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " The **Message Log** setting has been set to **#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -4640,7 +4640,7 @@ if  (FunctioName.startsWith("stream announcements "))  {
 
     peeky.serverData.set(keySF, FixedChannelName, "stream_announcements_bonus_setting");
 
-    const embed = {"description": SuccessIcon + " The **Stream Announcements** setting has been set to **#­" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " The **Stream Announcements** setting has been set to **#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -6204,13 +6204,11 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
           },
           "fields": [
           {
-            "name": "Playlist Info",
-            "value": "Owner: " + Function_RemoveFormatting(SomeoneTagged.username, "other", true)
-                     + "\n"
-                     + "Name: " + peeky.userData.get(SomeoneTagged.id, "PlaylistName")
+            "name": peeky.userData.get(SomeoneTagged.id, "PlaylistName"),
+            "value": Function_RemoveFormatting(SomeoneTagged.username, "other", true)
           },
           {
-            "name": "­\nPlaylist Songs",
+            "name": "­\nSongs",
             "value": FinalizedPlaylist + "\n­"
           }],  "color": EmbedColor}; 
           message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
@@ -6556,7 +6554,7 @@ if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
           
 if  (GivenRole && GivenRole.name !== "@everyone") {
   
-    const embed = {"description": SuccessIcon + " The channel is now locked down for everyone except **@­" + Function_RemoveFormatting(GivenRole.name, "other", true) + "**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " The channel is now locked down for everyone except **@" + Function_RemoveFormatting(GivenRole.name, "other", true) + "**.",  "color": EmbedColor}; 
     await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
     message.channel.setName(message.channel.name + "_locked", ["Locked by @" + message.author.tag + "."]).catch(error => ErrorBag.add(error));
@@ -6652,7 +6650,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 
     peeky.serverData.set(keySF, MutedRole, "muted_role");
   
-    const embed = {"description": SuccessIcon + " The server's mute role is now called **@­" + MutedRole + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    const embed = {"description": SuccessIcon + " The server's mute role is now called **@" + MutedRole + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
