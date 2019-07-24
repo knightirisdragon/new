@@ -763,12 +763,13 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     
     //Description String
     var text = peeky.userData.get(key, "Description");
-    var fontsize=18;
+    var fontsize=5;
     var y_position = 75;
     ctx.fillStyle = "white";
       
     if (text.includes("\n")) {  y_position = 62.5;  };
-    ctx.fillText(text, 125, y_position, canvas.width - 175);
+    ctx.font = "18px " + DefaultFont;
+    ctx.fillText(text, 125, y_position);
     }
     else if (!member.user.bot) {
     ctx.font = "18px " + DefaultFont;
