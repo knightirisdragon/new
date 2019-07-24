@@ -6198,7 +6198,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
 
       const embed = {
       "image": {
-        "url": "https://cdn.discordapp.com/embed/avatars/0.png"
+        "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fplaylist_embed.png?v=1563967857471"
       },
       "fields": [
       {
@@ -6209,7 +6209,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
       },
       {
         "name": "­\nPlaylist Songs",
-        "value": FinalizedPlaylist
+        "value": FinalizedPlaylist + "\n­"
       }],  "color": EmbedColor}; 
       message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
       
