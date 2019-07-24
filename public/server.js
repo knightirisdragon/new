@@ -279,6 +279,7 @@ const Blurple            = "#7289DA";
 const EmbedColor         = 3093047;
 const BackgroundInvLimit = 25;
 const BannedWordsLimit   = 10;
+const PlaylistLimit      = 10;
 const GameRolesLimit     = 10;
 const AutoDeleteTime     = 250;
 
@@ -322,6 +323,7 @@ const ErrorMessage11 = [ErrorIcon + " You need to be a Supporter to do that."];
 const ErrorMessage12 = [ErrorIcon + " There are no songs currently playing."];
 const ErrorMessage13 = [ErrorIcon + " Something has gone unexpectedly wrong."];
 const ErrorMessage14 = [ErrorIcon + " You already own that background."];
+const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -6111,10 +6113,17 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
 
         if  (CurrentlyPlaying.has(message.guild.id) && peeky.serverData.get(keySF, "Link") !== "None")  {
           
-            peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
+            if  (peeky.userData.get(key, "Playlist").length < PlaylistLimit)  {
+          
+                peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
 
-            const embed = {"description": SuccessIcon + " Added the current song to your **" + peeky.userData.get(key, "PlaylistName") + "** playlist.",  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));                
+                const embed = {"description": SuccessIcon + " Added the current song to your **" + peeky.userData.get(key, "PlaylistName") + "** playlist.",  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));    
+                
+            } else {
+              const embed = {"description": ErrorMessage15[0],  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };           
               
         } else {
           const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
@@ -6127,10 +6136,17 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
       
         if  (ytdl.validateURL(PlaylistRequest) == true)  {
           
-            peeky.userData.get(key, "Playlist").push(PlaylistRequest);
+            if  (peeky.userData.get(key, "Playlist").length < PlaylistLimit)  {
+          
+                peeky.userData.get(key, "Playlist").push(PlaylistRequest);
 
-            const embed = {"description": SuccessIcon + " Added the song to your **" + peeky.userData.get(key, "PlaylistName") + "** playlist.",  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                const embed = {"description": SuccessIcon + " Added the song to your **" + peeky.userData.get(key, "PlaylistName") + "** playlist.",  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                
+            } else {
+              const embed = {"description": ErrorMessage15[0],  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            }; 
           
         } else {
           const embed = {"description": ErrorMessage4[0],  "color": EmbedColor}; 
