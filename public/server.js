@@ -677,7 +677,7 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground344.png?v=1563911687667", 450, "High-Tech", "Call of Duty Modern Warfare", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground345.png?v=1563911688280", 500, "Midnight breakfast", "Vampyr", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground346.png?v=1563911687954", 450, "Joseph Joestart", "JoJo's Bizzare Adventures", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground347.jpg?v=1563911682560", 500, "Village Discovery", "Minecraft", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground347.jpg?v=1563911682560", 500, "Village discovery", "Minecraft", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground348.png?v=1563922180572", 500, "Water Sheep's memorial", "u/neytirixx", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground349.jpg?v=1563911682933", 500, "Bird's cage", "Resident Evil 7", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground350.png?v=1563922201014", 450, "The beach", "Unknown", undefined],
@@ -6198,7 +6198,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
          var FinalizedPlaylist = "The playlist is empty.";
       };
 
-      message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s playlist called " + peeky.userData.get(SomeoneTagged.id, "PlaylistName") + "**" + "\n\n" + FinalizedPlaylist).catch(error => ErrorBag.add(error));
+      const embed = {"description": FinalizedPlaylist,  "color": EmbedColor}; 
+      message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s playlist called " + peeky.userData.get(SomeoneTagged.id, "PlaylistName") + "**", {  embed  }).catch(error => ErrorBag.add(error));
       
     };
 
