@@ -685,7 +685,10 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground352.png?v=1563930075225", 475, "Washington survivors", "The Division 2", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground353.png?v=1563930630325", 425, "Roots of a tragedy", "Jojo's Bizzare Adventures", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground354.png?v=1563930629902", 425, "Farm club", "Stardew Valley", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground355.png?v=1563930633397", 500, "Cthulhu", "Andrée Wallin", undefined]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground355.png?v=1563930633397", 500, "Cthulhu", "Andrée Wallin", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground356.png?v=1563931884386", 400, "PewDiePie's pattern", "PewDiePie", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground357.jpg?v=1563931889909", 400, "Neon ride", "u/mattystoe", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground358.png?v=1563931895048", 450, "Robot spider", "The Surge 2", undefined]
 
 ];
 
@@ -5555,7 +5558,6 @@ if (!ProfileCooldown.has(message.author.id)) {
     const canvas         = Canvas.createCanvas(500, 300);
     const ctx            = canvas.getContext('2d');
     var   SomeoneTagged  = null;
-    var   MessageContent = "";
     const StatsColor     = "lightgray"
     var   ProfileColor   = null;
     
@@ -5832,7 +5834,7 @@ if (!ProfileCooldown.has(message.author.id)) {
       
     const attachment = new Discord.Attachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
 
-    await message.channel.send(MessageContent, attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
+    await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
 
     if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(ProfileBoosterRole))  {
         const embed = {"description": InfoIcon + " The **Profile Booster** for this profile is currently active.",  "color": EmbedColor}; 
