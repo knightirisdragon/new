@@ -6196,7 +6196,11 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
          var FinalizedPlaylist = "The playlist is empty.";
       };
 
-      const embed = {"fields": [
+      const embed = {
+      "image": {
+        "url": "https://cdn.discordapp.com/embed/avatars/0.png"
+      },
+      "fields": [
       {
         "name": "Playlist Info",
         "value": "Owner: " + Function_RemoveFormatting(SomeoneTagged.username, "other", true)
