@@ -755,7 +755,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
         var NameString = peeky.users.get(key).username;
     };
   
-    ctx.fillText(NameString, 125, 40);
+    ctx.fillText(NameString, 125, 40, canvas.width - 175);
       
     if  (peeky.userData.has(key))  {
     
@@ -766,7 +766,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     ctx.fillStyle = "white";
       
     if (text.includes("\n")) {  y_position = 62.5;  };
-    ctx.fillText(text, 125, y_position, canvas.width - 100);
+    ctx.fillText(text, 125, y_position, canvas.width - 175);
     }
     else if (!member.user.bot) {
     ctx.font = "18px " + DefaultFont;
@@ -1422,7 +1422,7 @@ peeky.on('message', async (message) => {
         //Name String
         ctx.font = "25px " + DefaultFont;
         ctx.fillStyle = "white";
-        ctx.fillText(ProfileName, 125, 40);
+        ctx.fillText(ProfileName, 125, 40, canvas.width - 175);
 
         //Level Up String
         ctx.font = "18px " + DefaultFont;
@@ -5604,7 +5604,7 @@ if (!ProfileCooldown.has(message.author.id)) {
 
     //Name String
     ctx.font = "19px " + DefaultFont;
-    ctx.fillText(ProfileName, 83, 25, canvas.width - 100);
+    ctx.fillText(ProfileName, 83, 25, canvas.width - 95);
       
     //Coins String
     ctx.font = "15px " + DefaultFont;
@@ -5630,7 +5630,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.textAlign = "left";
       
     if (text.includes("\n")) {  y_position = 45;  };
-    ctx.fillText(peeky.userData.get(key2, "Description"), 83, y_position, canvas.width - 100);
+    ctx.fillText(peeky.userData.get(key2, "Description"), 83, y_position, canvas.width - 95);
       
     //Draw Images
       
