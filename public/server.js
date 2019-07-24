@@ -1043,13 +1043,13 @@ function function_TimeLeft(value, type)  {
 
         return InactiveDays - (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(0));
       
-    }  else if  (type == "booster")  {
-
-        return ProfileBoosterLength - (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60)).toFixed(0));
-      
     }  else if  (type == "days")  {
 
         return (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(0));
+      
+    }   else if  (type == "hours")  {
+
+        return (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60)).toFixed(0));
       
     }  else if  (type == "minutes")  {
 
@@ -5146,6 +5146,11 @@ if  (peeky.userData.get(key, "Chests") >= 1)  {
       if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
           TotalAmount += PeekyCoinsUpgraded;
       };
+  
+      //Profile Booster
+      if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
+          TotalAmount += PeekyCoinsOpened;
+      };
 
       var ChestAmount   = 0;
       var BadgeProgress = 0;
@@ -5827,7 +5832,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     await message.channel.send(MessageContent, attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
 
     if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(ProfileBoosterRole))  {
-        const embed = {"description": InfoIcon + " The **Profile Booster** will remain active for " + function_TimeLeft(peeky.userData.get(key2, "BoosterStart"), "booster") + " hours.",  "color": EmbedColor}; 
+        const embed = {"description": InfoIcon + " The **Profile Booster** is currently active.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
