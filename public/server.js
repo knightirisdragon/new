@@ -1043,6 +1043,10 @@ function function_TimeLeft(value, type)  {
 
         return InactiveDays - (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(0));
       
+    }  else if  (type == "booster")  {
+
+        return ProfileBoosterLength - (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60)).toFixed(0));
+      
     }  else if  (type == "days")  {
 
         return (Math.abs((new Date() - new Date(value)) / (1000 * 60 * 60 * 24)).toFixed(0));
@@ -5538,11 +5542,12 @@ if (!ProfileCooldown.has(message.author.id)) {
   
     if  (message.guild.me.hasPermission("ATTACH_FILES"))  {
       
-    const canvas        = Canvas.createCanvas(500, 300);
-    const ctx           = canvas.getContext('2d');
-    var   SomeoneTagged = null;
-    const StatsColor    = "lightgray"
-    var   ProfileColor  = null;
+    const canvas         = Canvas.createCanvas(500, 300);
+    const ctx            = canvas.getContext('2d');
+    var   SomeoneTagged  = null;
+    var   MessageContent = "";
+    const StatsColor     = "lightgray"
+    var   ProfileColor   = null;
     
     var MentionedMember = message.mentions.users.first();
     if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.author;  };
@@ -5817,11 +5822,14 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
     ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
       
-    if  ()
-
     const attachment = new Discord.Attachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
-      
-    await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {
+
+    await message.channel.send(MessageContent, attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
+
+    if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(ProfileBoosterRole))  {
+        const embed = {"description": InfoIcon + " The **Profile Booster** will remain active for " + function_TimeLeft(peeky.userData.get(key2, "BoosterStart"), "booster") + " hours.",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
     if  (!WebsiteCooldowns.has("featuredprofile") && PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(SupporterRole))  {
       
