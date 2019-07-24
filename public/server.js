@@ -5816,6 +5816,8 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.shadowOffsetY = 1;
     ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
     ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
+      
+    if  ()
 
     const attachment = new Discord.Attachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
       
