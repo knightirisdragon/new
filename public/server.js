@@ -6156,8 +6156,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
         const embed = {"description": SuccessIcon + " The song has been removed from your **" + peeky.userData.get(key, "PlaylistName") + "** playlist.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           
-        console.log(peeky.userData.get(key, "Playlist") + " /// " + BackgroundIndex);
-          
         } else {
           const embed = {"description": ErrorIcon + " That song is not in your playlist.",  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -6198,8 +6196,18 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
          var FinalizedPlaylist = "The playlist is empty.";
       };
 
-      const embed = {"description": FinalizedPlaylist,  "color": EmbedColor}; 
-      message.channel.send("**" + Function_RemoveFormatting(SomeoneTagged.username, "other", true) + "'s playlist called " + peeky.userData.get(SomeoneTagged.id, "PlaylistName") + "**", {  embed  }).catch(error => ErrorBag.add(error));
+      const embed = {"fields": [
+      {
+        "name": "Playlist Info",
+        "value": "Owner: " + Function_RemoveFormatting(SomeoneTagged.username, "other", true)
+                 + "\n"
+                 + "Name: " + peeky.userData.get(SomeoneTagged.id, "PlaylistName")
+      },
+      {
+        "name": "­\nPlaylist Songs",
+        "value": FinalizedPlaylist
+      }],  "color": EmbedColor}; 
+      message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
       
     };
 
