@@ -688,7 +688,10 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground355.png?v=1563930633397", 500, "Cthulhu", "Andrée Wallin", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground356.png?v=1563931884386", 400, "PewDiePie's pattern", "PewDiePie", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground357.jpg?v=1563931889909", 400, "Neon ride", "u/mattystoe", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground358.png?v=1563931895048", 450, "Robot spider", "The Surge 2", undefined]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground358.png?v=1563931895048", 450, "Robot spider", "The Surge 2", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground359.png?v=1563964603301", 500, "Gun play", "Call of Duty Modern Warfare", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground360.png?v=1563964903981", 500, "Dragon's return", "The Elder Scrolls Online", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground361.png?v=1563964756492", 500, "The prophecy", "The Elder Scrolls Online", undefined]
 
 ];
 
