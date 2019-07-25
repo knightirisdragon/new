@@ -696,7 +696,8 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground360.png?v=1563964903981", 500, "Dragon's return", "The Elder Scrolls Online", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground361.png?v=1563964756492", 500, "The prophecy", "The Elder Scrolls Online", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground362.png?v=1563970489879", 400, "Dragon rider", "Unknown", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground363.png?v=1563983696291", 420, "The inferno", "Endless Legend", undefined]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground363.png?v=1563983696291", 420, "The inferno", "Endless Legend", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground364.png?v=1564017185333", 150, "Office night", "Scott Cawthon", undefined]
 
 ];
 
@@ -3080,18 +3081,18 @@ if  (message.channel.id == WorkshopChannel)  {
 };
     
 //Profile Booster Auto-Management
-if  (!ProfileBoosterCooldown.has(message.guild.id))  {
+if  (!ProfileBoosterCooldown.has("cooldown"))  {
 
-    ProfileBoosterCooldown.add(message.guild.id);
-    setTimeout(() => {ProfileBoosterCooldown.delete(message.guild.id)}, 3600000);
+    ProfileBoosterCooldown.add("cooldown");
+    setTimeout(() => {ProfileBoosterCooldown.delete("cooldown")}, 1800000);
   
     peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(ProfileBoosterRole)).forEach(m => {
       
-        if  (peeky.userData.has(m.user.id, "BoosterStart") && new Date() - peeky.userData.get(m.user.id, "BoosterStart") >= ProfileBoosterLength)  {
+        if  (peeky.userData.has(m.user.id, "BoosterStart") && new Date() - new Date(peeky.userData.get(m.user.id, "BoosterStart")) >= ProfileBoosterLength)  {
             m.removeRole(ProfileBoosterRole).catch(error => ErrorBag.add(error));
           
             const embed = {"description": InfoIcon + " Your **Profile Booster** has expired.",  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            m.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
     });
