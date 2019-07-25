@@ -2365,7 +2365,7 @@ if  (peeky.userData.has(key))  {
             InfoMessages.push(InfoMessage1[0]);
         };
       
-        const embed = {"description": SuccessIcon + " You have been awarded the **Supporter status** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have been promoted to **Supporter** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
       
     };
@@ -5858,13 +5858,13 @@ if (!ProfileCooldown.has(message.author.id)) {
             if (err) console.log(err); 
         });
       
-        const embed = {"description": InfoIcon + " The profile has been featured!",  "color": EmbedColor}; 
+        const embed = {"description": InfoIcon + " This profile is now featured!",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
         console.log("The featured profile has been updated.");
     
         setTimeout(() => {
-            WebsiteCooldowns.delete("featuredprofile")
+            WebsiteCooldowns.delete("featuredprofile");
         }, 1800000);   
           
         };
