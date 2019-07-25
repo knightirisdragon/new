@@ -1475,7 +1475,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
     const rightNow = Date.now();
   
     //Guilds
-    var filtered = peeky.serverData.filter( p => p.GuildID && p.GuildID !== EmojiStorage && p.lastSeen );
+    var filtered = peeky.serverData.filter( p => p.GuildID && p.GuildID !== EmojiStorage && p.GuildID !== SupportServer && p.lastSeen );
     var toRemoveGuilds = filtered.filter(data => {
         return rightNow - InactiveWipe > data.lastSeen;
     });
@@ -1498,7 +1498,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
     });
       
     //Profiles
-    var filtered = function_ShuffleArray(peeky.userData.filter( p => p.UserID && p.lastSeen ));  // && p.FashionBadge == false
+    var filtered = function_ShuffleArray(peeky.userData.filter( p => p.UserID && p.lastSeen ));
     var toRemoveProfiles = filtered.filter(data => {
         return (rightNow - InactiveWipe > data.lastSeen);
     });
