@@ -3091,7 +3091,7 @@ if  (!ProfileBoosterCooldown.has("cooldown"))  {
         if  (peeky.userData.has(m.user.id, "BoosterStart") && new Date() - new Date(peeky.userData.get(m.user.id, "BoosterStart")) >= ProfileBoosterLength)  {
             m.removeRole(ProfileBoosterRole).catch(error => ErrorBag.add(error));
           
-            const embed = {"description": InfoIcon + " Your **Profile Booster** has expired.",  "color": EmbedColor}; 
+            const embed = {"description": InfoIcon + " Your **Profile Booster** has just expired.",  "color": EmbedColor}; 
             m.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
