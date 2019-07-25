@@ -111,8 +111,8 @@ const ExpNeeded             = Config.exp_multiplier;
 const MaxServers            = Config.server_limit;
 const InactiveWipe          = Config.autowipe_time;
 const ProfileBoosterLength  = Config.booster_time;
-const InactiveDays          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
-const ProfileBoosterHours   = (ProfileBoosterLength  / ( 60 * 60 * 1000 ));
+const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
+const ProfileBoosterTime    = (ProfileBoosterLength  / ( 60 * 60 * 1000 ));
 
 //Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
@@ -1563,7 +1563,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     }
      else
     {
-     Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "'  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNAVAILABLE PROFILE  <br>  <font size='2'>  If this profiles stays unavailable for " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days", InactiveDays) + " more days, it will get deleted.  </font></b>  </div>");
+     Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "'  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNAVAILABLE PROFILE  <br>  <font size='2'>  If this profiles stays unavailable for " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days", InactiveTime) + " more days, it will get deleted.  </font></b>  </div>");
     };
       
     };
@@ -5839,7 +5839,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
 
     if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(ProfileBoosterRole))  {
-        const embed = {"description": InfoIcon + " The **Profile Booster** for this profile will remain active for **" + function_TimeLeft(peeky.userData.get(key, "BoosterStart"),  "hours", ProfileBoosterHours) + " hours**.",  "color": EmbedColor}; 
+        const embed = {"description": InfoIcon + " The **Profile Booster** for this profile will remain active for **" + function_TimeLeft(peeky.userData.get(key, "BoosterStart"),  "hours", ProfileBoosterTime) + " hours**.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
