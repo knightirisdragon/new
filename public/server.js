@@ -697,7 +697,9 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground361.png?v=1563964756492", 500, "The prophecy", "The Elder Scrolls Online", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground362.png?v=1563970489879", 400, "Dragon rider", "Unknown", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground363.png?v=1563983696291", 420, "The inferno", "Endless Legend", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground364.png?v=1564017185333", 150, "Office night", "Five Nights at Freddy's", undefined]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground364.png?v=1564017185333", 150, "Office night", "Five Nights at Freddy's", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground365.png?v=1564058813872", 475, "Joergen's rollercoaster", "u/neytirixx", undefined],
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground366.png?v=1564058885585", 500, "Dangerous hunt", "Monster Hunters World", undefined]
 
 ];
 
@@ -5057,7 +5059,7 @@ if  (i !== 1)  {
     var FinalPrice       = Banners[i - 1][Banner.Price];
     var i                = Number(i);
   
-    if  (FinalPrice = Exclusive)  {
+    if  (FinalPrice == Exclusive)  {
         FinalPrice = 0;
     } else {
         FinalPrice = Math.round(FinalPrice / SellMultiplier);
