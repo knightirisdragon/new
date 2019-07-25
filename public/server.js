@@ -5990,7 +5990,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             };
 
             const stream = ytdl(GivenSong);
-            const dispatcher = await connection.playStream(stream);
+            const dispatcher = await connection.playStream(stream, {  volume: 0.25  });
 
             dispatcher.on('end', async reason => {
               
