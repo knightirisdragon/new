@@ -3600,30 +3600,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eventre
     };
   
 };
-  
-//UserInfo
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "userinfo"))  {
-  
-    var MentionedMember = message.mentions.members.first();
-    var SomeoneTagged = message.member;
-      
-    if  (MentionedMember) {
-        SomeoneTagged = MentionedMember;
-    };
-  
-    const embed = {"fields": [
-      {
-        "name": MentionedMember.user.username,
-        "value": "Account Created: " + function_DateFormat(MentionedMember.user.createdAt)
-               + "\n"
-               + "Member Since:" + function_DateFormat(MentionedMember.joinedAt)
-      }
-      ]
-      ,"color": SomeoneTagged.displayColor
-    }; 
-  
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 //Upgrade
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade"))  {
