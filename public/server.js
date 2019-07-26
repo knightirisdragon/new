@@ -724,7 +724,12 @@ var GuessTheSong = [
     ["https://www.youtube.com/watch?v=kx0Z0B8Xox0", "Rodeo", "easy"],
     ["https://www.youtube.com/watch?v=DPVCNK74ZBI", "Hurt", "medium"],
     ["https://www.youtube.com/watch?v=52Gg9CqhbP8", "Let's Go", "medium"],
-    ["https://www.youtube.com/watch?v=5ZYgIrqELFw", "All Star", "easy"]
+    ["https://www.youtube.com/watch?v=5ZYgIrqELFw", "All Star", "easy"],
+    ["https://www.youtube.com/watch?v=7pzOBI3PD8E", "Sweather Weather", "hard"],
+    ["https://www.youtube.com/watch?v=L3wKzyIN1yk", "Human", "medium"],
+    ["https://www.youtube.com/watch?v=hWfbUTwzzZA", "Caramelldansen", "hard"],
+    ["https://www.youtube.com/watch?v=oG7jKUHsLfY", "Last Train Home", "hard"],
+    ["https://www.youtube.com/watch?v=XUhVCoTsBaM", "Awaken", "medium"]
   
 ];
 
@@ -6331,11 +6336,18 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
 
                     message.channel.awaitMessages(response => response.content.toLowerCase().includes(GuessTheSong[ChosenSong][1].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
                     .then(collected => {
+                      var key = collected.first().author.id;
+                      
                       const embed = {"description": SuccessIcon +  " Congratulations, **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "**, you've guessed the song's name!",  "color": EmbedColor}; 
                       message.channel.send({  embed  });
                       
                       CurrentlyPlaying.delete(message.guild.id);
                       voiceChannel.leave();
+                      
+                      if  (peeky.userData.has(key))  {
+                          peeky.userData.math(key, "+", 5, "Gredit");
+                      };
+                      
                     })
                     .catch(collected => {
                       const embed = {"description": ErrorIcon + " The song's name was **" + GuessTheSong[ChosenSong][1] + "**.",  "color": EmbedColor}; 
