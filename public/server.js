@@ -258,7 +258,7 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 
 
 //Large Arrays
-var Banners = [
+const Banners = [
 
     [DefaultBackground, 0, "Default", "Steam", undefined], //Default
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground2.jpg?1537950866619", 475, "Welcome to NYC", "The Division", undefined],
@@ -714,11 +714,12 @@ const RandomSongs = [
     "https://www.youtube.com/watch?v=al1BNB8bKaE",
     "https://www.youtube.com/watch?v=3vVSBLkpO-8",
     "https://www.youtube.com/watch?v=vOXZkm9p_zY",
-    "https://www.youtube.com/watch?v=d5Ql4Sjo-GU"
+    "https://www.youtube.com/watch?v=d5Ql4Sjo-GU",
+    "https://www.youtube.com/watch?v=zKFzKIa_pIM"
   
 ];
 
-var GuessTheSong = [
+const GuessTheSong = [
   
     ["https://www.youtube.com/watch?v=HRDp-Q_DsfE", "Bloody Stream", "medium"],
     ["https://www.youtube.com/watch?v=cPJUBQd-PNM", "Revenge", "easy"],
@@ -750,12 +751,23 @@ var GuessTheSong = [
     ["https://www.youtube.com/watch?v=ZONlGIshF3o", "Where Does The Time Go", "hard"],
     ["https://www.youtube.com/watch?v=3kCWT57h4J0", "Devilman no Uta", "hard"],
     ["https://www.youtube.com/watch?v=dv13gl0a-FA", "Deja Vu", "medium"],
-    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
-    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
-    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
-    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
-    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
-    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
+    ["https://www.youtube.com/watch?v=_ubnhgZgsfc", "Stronger", "medium"],
+    ["https://www.youtube.com/watch?v=zKFzKIa_pIM", "Chlorine", "easy"]
+  
+];
+
+const TriviaQuestions = [
+  
+    ["Who painted the Mona Lisa?", ["Da Vinci"], ["Mona Lisa"], ["Kars"], "Art"],
+    ["When did the Second World War end?", ["1945"], ["1939"], ["1944"], "History"],
+    ["Who starts first in chess?", ["White"], [""], [""], ""],
+    ["", [""], [""], [""], ""],
+    ["", [""], [""], [""], ""],
+    ["", [""], [""], [""], ""],
+    ["", [""], [""], [""], ""],
+    ["", [""], [""], [""], ""],
+    ["", [""], [""], [""], ""],
+    ["", [""], [""], [""], ""],
   
 ];
 
