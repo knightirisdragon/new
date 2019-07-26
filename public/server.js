@@ -1,4 +1,4 @@
-//DISCORD
+//Discord
 const Discord = require("discord.js");
 const peeky   = new Discord.Client();
 
@@ -10,23 +10,37 @@ const ddbl = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
 const BotList = require('botlist.space');
 const bls     = new BotList({ id: "482945063282802698", botToken: process.env.BLS_TOKEN });
 
-//MUSIC
+//Music
 const ytdl_discord = require('ytdl-core-discord');
 const ytdl         = require('ytdl-core');
 const opus         = require('node-opus');
 
-//CANVAS
+//Canvas
 const Canvas         = require('canvas');
 const request        = require('request');
 const dominant_color = require('dominant-color');
 
-//ENMAP
+//Enmap
 const Enmap = require("enmap");
 peeky.userData = new Enmap({name: "userData"});
 peeky.serverData = new Enmap({name: "serverData"});
 peeky.channelData = new Enmap({name: "channelData"});
 
-//MISC.
+//Website
+const http    = require('http');
+const express = require('express');
+const app     = express();
+
+app.use(express.static('public'));
+app.get('/', function(request, response) {
+  response.sendFile(__dirname + '/views/index.html');
+  response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+  setInterval(() => { http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 280000);
+
+//Miscellaneous
 const fs         = require('fs');
 const ms         = require('parse-ms');
 const node_fetch = require('node-fetch');
@@ -114,89 +128,15 @@ const ProfileBoosterLength  = Config.booster_time;
 const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 const ProfileBoosterTime    = (ProfileBoosterLength  / ( 60 * 60 * 1000 ));
 
-//Arrays
+//Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const MarkedUsers         = [  "251634374972276736"  ];
 const blacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const whitelistedSymbols  = [  "a", "á", "b", "c", "č", "d", "ď", "e", "é", "ě", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "ň", "o", "ó", "p", "q", "r", "ř", "s", "š", "t", "u", "ů", "ú", "v", "w", "x", "y", "ý", "z", "ž", "0", "1", "2", "3", "4", "6", "5", "7", "8", "9", "_", "-", " ", ",", ".", "'", '"', "(", ")", "[", "]"  ];
 const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
 
-const DefaultDescriptions = [  "I'm very busy and important.",
-                               "I sip water quite slowly.",
-                               "Battery low, I'm scared.",
-                               "I have a car for each day of the month.",
-                               "I make up a dream in my head before I go to bed.", "My life is a green screen.",
-                               "I don't believe in showers.",
-                               "Certified troublemaker.",
-                               "I'm a Bacon Guru.",
-                               "Smarter than a 5th grader.",
-                               "I took an arrow to the knee.",
-                               "Pikachu chooses me.",
-                               "I'm real, I hope my followers are too.",
-                               "I have invincible minions.",
-                               "Is this water dry?",
-                               "I yell at inanimate objects.",
-                               "I sneak drinks into movie theatres.",
-                               "I hide my sweat well.",
-                               "I unleashed the zombie apocalypse.",
-                               "I'm a very mysterious person.",
-                               "I am so funny.",
-                               "I slapped a chicken once.",
-                               "I don't know what alt-tab does.",
-                               "Hitting things to make them work.",
-                               "I put fries into my straw.",
-                               "I walk faster when I see a creepy van.",
-                               "More than meets the eye.",
-                               "I draw on fogged up windows.",
-                               "Born at a very young age."
-                            ];
-const RandomAvatars       = [  "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_1.png?v=1560717936708",
-                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_2.png?v=1560717937510",
-                               "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_3.png?v=1560717937123"
-                            ];
-const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw",
-                               "https://www.youtube.com/watch?v=N6hF3EaICxk",
-                               "https://www.youtube.com/watch?v=NU3aCNQAqwc", 
-                               "https://www.youtube.com/watch?v=K3Qzzggn--s",
-                               "https://www.youtube.com/watch?v=PEBS2jbZce4",
-                               "https://www.youtube.com/watch?v=8Vlej7QUGGE", 
-                               "https://www.youtube.com/watch?v=k92Bgqz-p_8",
-                               "https://www.youtube.com/watch?v=R_N15egKj6c",
-                               "https://www.youtube.com/watch?v=-WpnPSChVRQ",
-                               "https://www.youtube.com/watch?v=ktvTqknDobU",
-                               "https://www.youtube.com/watch?v=pXRviuL6vMY",
-                               "https://www.youtube.com/watch?v=UprcpdwuwCg",
-                               "https://www.youtube.com/watch?v=L3wKzyIN1yk",
-                               "https://www.youtube.com/watch?v=PHgc8Q6qTjc",
-                               "https://www.youtube.com/watch?v=I-sH53vXP2A",
-                               "https://www.youtube.com/watch?v=FTQbiNvZqaY",
-                               "https://www.youtube.com/watch?v=1vrEljMfXYo",
-                               "https://www.youtube.com/watch?v=V5XOwWOAQBQ",
-                               "https://www.youtube.com/watch?v=bl0e5DrYLyY",
-                               "https://www.youtube.com/watch?v=jjjaU5kQV8k",
-                               "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                               "https://www.youtube.com/watch?v=P5QbkjnCvl4",
-                               "https://www.youtube.com/watch?v=i7fnlJ60RO8",
-                               "https://www.youtube.com/watch?v=oY9m2sHQwLs",
-                               "https://www.youtube.com/watch?v=eVTXPUF4Oz4",
-                               "https://www.youtube.com/watch?v=fPO76Jlnz6c",
-                               "https://www.youtube.com/watch?v=PVjiKRfKpPI",
-                               "https://www.youtube.com/watch?v=DKL4X0PZz7M",
-                               "https://www.youtube.com/watch?v=gUcisIlT7sM",
-                               "https://www.youtube.com/watch?v=ytWz0qVvBZ0",
-                               "https://www.youtube.com/watch?v=G_Nl5xDNXIs",
-                               "https://www.youtube.com/watch?v=t_q1SDzeCqo",
-                               "https://www.youtube.com/watch?v=hbrpmQ09juQ",
-                               "https://www.youtube.com/watch?v=YWN81V7ojOE",
-                               "https://www.youtube.com/watch?v=pcSLtIYLbLQ",
-                               "https://www.youtube.com/watch?v=6okxuiiHx2w",
-                               "https://www.youtube.com/watch?v=NqpnbSFprB4",
-                               "https://www.youtube.com/watch?v=hWfbUTwzzZA",
-                               "https://www.youtube.com/watch?v=BGkRUYjflbY",
-                               "https://www.youtube.com/watch?v=WTJSt4wP2ME",
-                               "https://www.youtube.com/watch?v=al1BNB8bKaE",
-                               "https://www.youtube.com/watch?v=3vVSBLkpO-8"
-                            ];
+//Small Objects
+var Banner  = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
 
 //Vote Emotes
 const DefaultUpvote   = "529413730874949632";
@@ -285,23 +225,7 @@ const PlaylistLimit      = 10;
 const GameRolesLimit     = 10;
 const AutoDeleteTime     = 250;
 
-//WEBSITE
-const http    = require('http');
-const express = require('express');
-const app     = express();
-
-app.use(express.static('public'));
-
-app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/views/index.html');
-  response.sendStatus(200);
-});
-
-app.listen(process.env.PORT);
-  setInterval(() => { http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000);
-
-//RESPONSE MESSAGES
+//Response Messages
 const CooldownMessage1 = [ErrorIcon + " You are currently on a cooldown for that command."];
 const CooldownMessage2 = [ErrorIcon + " Automated channel creation is currently on a cooldown."];
 const CooldownMessage3 = [ErrorIcon + " Automated role creation is currently on a cooldown."];
@@ -329,10 +253,9 @@ const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your play
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
-//RESPONSE MESSAGES
 
-//Backgrounds List
-var Banner  = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
+
+//Large Arrays
 var Banners = [
 
     [DefaultBackground, 0, "Default", "Steam", undefined], //Default
@@ -704,6 +627,91 @@ var Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground367.png?v=1564068410313", 300, "Pillar men", "Jojo's Bizarre Adventure", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground368.png?v=1564068462711", 350, "Canary", "Unknown", undefined]
 
+];
+const DefaultDescriptions = [  
+    "I'm very busy and important.",
+    "I sip water quite slowly.",
+    "Battery low, I'm scared.",
+    "I have a car for each day of the month.",
+    "I make up a dream in my head before I go to bed.", "My life is a green screen.",
+    "I don't believe in showers.",
+    "Certified troublemaker.",
+    "I'm a Bacon Guru.",
+    "Smarter than a 5th grader.",
+    "I took an arrow to the knee.",
+    "Pikachu chooses me.",
+    "I'm real, I hope my followers are too.",
+    "I have invincible minions.",
+    "Is this water dry?",
+    "I yell at inanimate objects.",
+    "I sneak drinks into movie theatres.",
+    "I hide my sweat well.",
+    "I unleashed the zombie apocalypse.",
+    "I'm a very mysterious person.",
+    "I am so funny.",
+    "I slapped a chicken once.",
+    "I don't know what alt-tab does.",
+    "Hitting things to make them work.",
+    "I put fries into my straw.",
+    "I walk faster when I see a creepy van.",
+    "More than meets the eye.",
+    "I draw on fogged up windows.",
+    "Born at a very young age."
+];
+
+const RandomAvatars = [  
+  
+    "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_1.png?v=1560717936708",
+    "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_2.png?v=1560717937510",
+    "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_3.png?v=1560717937123"
+  
+];
+
+const RandomSongs = [  
+
+    "https://www.youtube.com/watch?v=tklQ47Hpfxw",
+    "https://www.youtube.com/watch?v=N6hF3EaICxk",
+    "https://www.youtube.com/watch?v=NU3aCNQAqwc", 
+    "https://www.youtube.com/watch?v=K3Qzzggn--s",
+    "https://www.youtube.com/watch?v=PEBS2jbZce4",
+    "https://www.youtube.com/watch?v=8Vlej7QUGGE", 
+    "https://www.youtube.com/watch?v=k92Bgqz-p_8",
+    "https://www.youtube.com/watch?v=R_N15egKj6c",
+    "https://www.youtube.com/watch?v=-WpnPSChVRQ",
+    "https://www.youtube.com/watch?v=ktvTqknDobU",
+    "https://www.youtube.com/watch?v=pXRviuL6vMY",
+    "https://www.youtube.com/watch?v=UprcpdwuwCg",
+    "https://www.youtube.com/watch?v=L3wKzyIN1yk",
+    "https://www.youtube.com/watch?v=PHgc8Q6qTjc",
+    "https://www.youtube.com/watch?v=I-sH53vXP2A",
+    "https://www.youtube.com/watch?v=FTQbiNvZqaY",
+    "https://www.youtube.com/watch?v=1vrEljMfXYo",
+    "https://www.youtube.com/watch?v=V5XOwWOAQBQ",
+    "https://www.youtube.com/watch?v=bl0e5DrYLyY",
+    "https://www.youtube.com/watch?v=jjjaU5kQV8k",
+    "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "https://www.youtube.com/watch?v=P5QbkjnCvl4",
+    "https://www.youtube.com/watch?v=i7fnlJ60RO8",
+    "https://www.youtube.com/watch?v=oY9m2sHQwLs",
+    "https://www.youtube.com/watch?v=eVTXPUF4Oz4",
+    "https://www.youtube.com/watch?v=fPO76Jlnz6c",
+    "https://www.youtube.com/watch?v=PVjiKRfKpPI",
+    "https://www.youtube.com/watch?v=DKL4X0PZz7M",
+    "https://www.youtube.com/watch?v=gUcisIlT7sM",
+    "https://www.youtube.com/watch?v=ytWz0qVvBZ0",
+    "https://www.youtube.com/watch?v=G_Nl5xDNXIs",
+    "https://www.youtube.com/watch?v=t_q1SDzeCqo",
+    "https://www.youtube.com/watch?v=hbrpmQ09juQ",
+    "https://www.youtube.com/watch?v=YWN81V7ojOE",
+    "https://www.youtube.com/watch?v=pcSLtIYLbLQ",
+    "https://www.youtube.com/watch?v=6okxuiiHx2w",
+    "https://www.youtube.com/watch?v=NqpnbSFprB4",
+    "https://www.youtube.com/watch?v=hWfbUTwzzZA",
+    "https://www.youtube.com/watch?v=BGkRUYjflbY",
+    "https://www.youtube.com/watch?v=WTJSt4wP2ME",
+    "https://www.youtube.com/watch?v=al1BNB8bKaE",
+    "https://www.youtube.com/watch?v=3vVSBLkpO-8"
+  
 ];
 
 var GuessTheSong = [
@@ -2639,7 +2647,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
                 console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
             };   
 
-            RoleCooldown.add(member.user.id + member.guild.id);
+            RoleCooldown.add(member.user.id + member.guild.id, [""]);
             setTimeout(() => {RoleCooldown.delete(member.user.id + member.guild.id)}, RoleCooldownMS);         
 
         } else { 
