@@ -6206,8 +6206,16 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
       };
       
       if  (peeky.userData.has(SomeoneTagged.id))  {
+            
+          var Playlist = [];
 
-          const Playlist = peeky.userData.get(SomeoneTagged.id, "Playlist");
+          peeky.userData.get(SomeoneTagged.id, "Playlist").forEach(item => {
+            
+              ytdl.getBasicInfo(item).then(async (info) => {
+                  Playlist.push(info.title.replace(0, 50) + item);
+              });
+            
+          });
 
           if  (Playlist.length > 0)  {
               var FinalizedPlaylist = function_NumarizeArray(Playlist, ["<", ">"])
