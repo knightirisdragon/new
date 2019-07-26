@@ -6318,6 +6318,13 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
 
                     const stream = ytdl(GuessTheSong[ChosenSong][0]);
                     const dispatcher = await connection.playStream(stream, {  volume: 0.25  });
+                  
+                    dispatcher.on('end', async reason => {
+
+                        const embed = {"description": InfoIcon + " Listen to the full song by clicking the link below." + ,  "color": EmbedColor}; 
+                        message.channel.send({  embed  });
+                      
+                    });
 
                     const embed = {"description": InfoIcon + " The round started with a **" + GuessTheSong[ChosenSong][2] + "** song.",  "color": EmbedColor}; 
                     message.channel.send({  embed  });
