@@ -719,7 +719,12 @@ var GuessTheSong = [
     ["https://www.youtube.com/watch?v=rnO-MflYxCw", "Pumped Up Kicks", "easy"],
     ["https://www.youtube.com/watch?v=yGHBcpO-M0s", "Gotta Let Go", "medium"],
     ["https://www.youtube.com/watch?v=VMtarj8Ua0s", "Mr. Blue Sky", "medium"],
-    ["https://www.youtube.com/watch?v=Gs069dndIYk", "September", "medium"]
+    ["https://www.youtube.com/watch?v=Gs069dndIYk", "September", "medium"],
+    ["https://www.youtube.com/watch?v=pgN-vvVVxMA", "SAD!", "easy"],
+    ["https://www.youtube.com/watch?v=kx0Z0B8Xox0", "Rodeo", "easy"],
+    ["https://www.youtube.com/watch?v=DPVCNK74ZBI", "Hurt", "medium"],
+    ["https://www.youtube.com/watch?v=52Gg9CqhbP8", "Let's Go", "medium"],
+    ["https://www.youtube.com/watch?v=pgN-vvVVxMA", "SAD!", "easy"]
   
 ];
 
