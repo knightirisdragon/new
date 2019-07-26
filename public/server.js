@@ -6369,6 +6369,14 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                       
                       if  (peeky.userData.has(key))  {
                           peeky.userData.math(key, "+", 5, "Gredit");
+                        
+                          //Gamer Badge
+                          if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
+                              peeky.userData.set(key, true, "GamerBadge");
+                            
+                              const embed = {"description": InfoMessage1[0],  "color": EmbedColor}; 
+                              message.channel.send({  embed  });
+                          };
                       };
                       
                     })
