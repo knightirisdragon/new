@@ -711,7 +711,8 @@ var GuessTheSong = [
     ["https://www.youtube.com/watch?v=cPJUBQd-PNM", "revenge", "easy"],
     ["https://www.youtube.com/watch?v=5-uWlFq380M", "sanctuary", "medium"],
     ["https://www.youtube.com/watch?v=bpOSxM0rNPM", "do i wanna know", "medium"],
-    ["https://www.youtube.com/watch?v=HRDp-Q_DsfE", "bloody stream", "medium"],
+    ["https://www.youtube.com/watch?v=2uRLJZxINAQ", "pepe", "hard"],
+    ["https://www.youtube.com/watch?v=aiSdTQ9DW9g", "rasputi", "easy"]
   
 ];
 
@@ -6283,6 +6284,25 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
+};
+
+//Minigame Commands
+
+//Minigame
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "minigame "))  {
+  
+    var Minigame = message.content;
+  
+    if  ()
+    var ChosenSong = Math.floor((Math.random() * GuessTheSong.length) + 1);
+    
+    for  (var i = 0; i < GuessTheSong.length; i++) {
+         if   (ChosenSong == i + 1) {
+              console.log(GuessTheSong[i][1]);
+              break;
+         };
+    };
+  
 };
 
 //Moderation Commands
