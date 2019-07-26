@@ -6209,34 +6209,38 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
             
           var Playlist = [];
 
-          peeky.userData.get(SomeoneTagged.id, "Playlist").forEach(item => {
+          peeky.userData.get(SomeoneTagged.id, "Playlist").forEach(async item => {
             
               ytdl.getBasicInfo(item).then(async (info) => {
-                  Playlist.push(info.title.replace(0, 50) + item);
+                  Playlist.push(info.title.slice(0, 25) + "\n­ " + item);
               });
             
           });
+        
+          setTimeout(function() {
 
-          if  (Playlist.length > 0)  {
-              var FinalizedPlaylist = function_NumarizeArray(Playlist, ["<", ">"])
-          }  else  {
-             var FinalizedPlaylist = "The playlist is empty.";
-          };
+              if  (Playlist.length > 0)  {
+                  var FinalizedPlaylist = function_NumarizeArray(Playlist, ["", ""])
+              }  else  {
+                 var FinalizedPlaylist = "The playlist is empty.";
+              };
 
-          const embed = {
-          "image": {
-            "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fplaylist_embed.png?v=1563967857471"
-          },
-          "fields": [
-          {
-            "name": peeky.userData.get(SomeoneTagged.id, "PlaylistName"),
-            "value": Function_RemoveFormatting(SomeoneTagged.username, "other", true)
-          },
-          {
-            "name": "­\nSongs",
-            "value": FinalizedPlaylist + "\n­"
-          }],  "color": EmbedColor}; 
-          message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+              const embed = {
+              "image": {
+                "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fplaylist_embed.png?v=1563967857471"
+              },
+              "fields": [
+              {
+                "name": peeky.userData.get(SomeoneTagged.id, "PlaylistName"),
+                "value": Function_RemoveFormatting(SomeoneTagged.username, "other", true)
+              },
+              {
+                "name": "­\nSongs",
+                "value": FinalizedPlaylist + "\n­"
+              }],  "color": EmbedColor
+              };
+
+              message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
           
       } else {
         const embed = {"description": ErrorMessage7[0],  "color": EmbedColor}; 
