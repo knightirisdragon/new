@@ -6304,32 +6304,39 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
   
                 await voiceChannel.join().then(async connection => {
 
-                    const stream = ytdl(GivenSong);
+                    const stream = ytdl(GuessTheSong[ChosenSong][0]);
                     const dispatcher = await connection.playStream(stream, {  volume: 0.25  });
-                             
-                    dispatcher.on('end', async reason => {
-                        voiceChannel.leave();
-                        CurrentlyPlaying.delete(message.guild.id);
-                    });
 
-                    message.channel.send("**Guess the Song:** Timer started - Guess the song's name!");
+                    const embed = {"description": InfoIcon + " The timer started - Guess the song's name!",  "color": EmbedColor}; 
+                    message.channel.send({  embed  });
 
-                    message.channel.awaitMessages(GuessTheSong[ChosenSong][1], { maxMatches: 1, time: 20000, errors: ['time'] })
+                    message.channel.awaitMessages(response => response.content.includes(GuessTheSong[ChosenSong][1]), { maxMatches: 1, time: 20000, errors: ['time'] })
                     .then(collected => {
-                      message.channel.send("**Guess the Song:** " + collected.first().author.username + " has guessed the song's name!");
+                      const embed = {"description": InfoIcon + Function_RemoveFormatting(collected.first().author.username, "other", true) + " has guessed the song's name!",  "color": EmbedColor}; 
+                      message.channel.send({  embed  });
+                      
                       CurrentlyPlaying.delete(message.guild.id);
+                      voiceChannel.leave();
                     })
                     .catch(collected => {
-                      message.channel.send("**Guess the Song:** The song is over and no one got it.");
+                      message.channel.send("**Guess the Song:** The song's name was " + GuessTheSong[ChosenSong][1] + ".");
                       CurrentlyPlaying.delete(message.guild.id);
+                      voiceChannel.leave();
                     });
 
                 });
               
             };
 
+        } else {
+          const embed = {"description": ErrorIcon + " You need to join a voice channel.",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
+
       
+    } else {
+      const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
 };
