@@ -724,7 +724,7 @@ var GuessTheSong = [
     ["https://www.youtube.com/watch?v=kx0Z0B8Xox0", "Rodeo", "easy"],
     ["https://www.youtube.com/watch?v=DPVCNK74ZBI", "Hurt", "medium"],
     ["https://www.youtube.com/watch?v=52Gg9CqhbP8", "Let's Go", "medium"],
-    ["https://www.youtube.com/watch?v=L_jWHffIx5E", "All Star", "easy"]
+    ["https://www.youtube.com/watch?v=5ZYgIrqELFw", "All Star", "easy"]
   
 ];
 
@@ -6322,7 +6322,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                     const embed = {"description": InfoIcon + " The round started with a **" + GuessTheSong[ChosenSong][2] + "** song.",  "color": EmbedColor}; 
                     message.channel.send({  embed  });
 
-                    message.channel.awaitMessages(response => response.content.toLowerCase().includes(GuessTheSong[ChosenSong][1].toLowerCase()), { maxMatches: 1, time: 20000, errors: ['time'] })
+                    message.channel.awaitMessages(response => response.content.toLowerCase().includes(GuessTheSong[ChosenSong][1].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
                     .then(collected => {
                       const embed = {"description": SuccessIcon +  " Congratulations, **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "**, you've guessed the song's name!",  "color": EmbedColor}; 
                       message.channel.send({  embed  });
