@@ -2643,17 +2643,17 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
         if  (member.presence.game !== null && member.presence.game.name.toLowerCase() == GameName)  {
 
             if  (!HasRole && !RoleCooldown.has(member.user.id + member.guild.id))  {
-                member.addRole(RoleExists).catch(error => ErrorBag.add(error));
+                member.addRole(RoleExists, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
                 console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
             };   
 
-            RoleCooldown.add(member.user.id + member.guild.id, [""]);
+            RoleCooldown.add(member.user.id + member.guild.id);
             setTimeout(() => {RoleCooldown.delete(member.user.id + member.guild.id)}, RoleCooldownMS);         
 
         } else { 
 
           if  (HasRole)  {
-                member.removeRole(RoleExists).catch(error => ErrorBag.add(error));
+                member.removeRole(RoleExists, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
           };
 
         };
@@ -2664,7 +2664,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 
               member.guild.createRole({
               name: GameName
-              }).catch(error => ErrorBag.add(error));
+              }, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
 
               RoleCooldown.add(member.guild.id);
               setTimeout(() => {RoleCooldown.delete(member.guild.id)}, RoleCooldownMS);
@@ -2857,7 +2857,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
                 await reaction.message.member.send("You have been vote kicked from **" + Function_RemoveFormatting(reaction.message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
-                reaction.message.guild.members.get(reaction.message.member.user.id).kick({  reason: "Triggered by the Vote Kick function."  }).catch(error => ErrorBag.add(error));   
+                reaction.message.guild.members.get(reaction.message.member.user.id).kick("Triggered by the Vote Kick function.").catch(error => ErrorBag.add(error));   
 
                 reaction.message.clearReactions().catch(error => ErrorBag.add(error));
               
@@ -3216,7 +3216,7 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
             var FixedTime = Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(0);
 
             if (channel && channel.permissionsFor(peeky.user).has('CONNECT')) {
-                channel.setName("Server Age: " + FixedTime + " days").catch(error => ErrorBag.add(error));
+                channel.setName("Server Age: " + FixedTime + " days", "Triggered by the Server Age function.").catch(error => ErrorBag.add(error));
 
                 console.log("The Server Age function has been triggered in " + message.guild.name + ".");
             };
@@ -3228,7 +3228,7 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
 };
     
 //Member Counter
-if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
+if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
 
     if  (!MemberCounterCooldown.has(message.guild.id))  {
 
@@ -3243,7 +3243,7 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
             var channel = message.guild.channels.find(g => g.id == id);
 
             if (channel && channel.permissionsFor(peeky.user).has('CONNECT')) {
-                channel.setName(Prefix + ": " + message.guild.members.filter(m => !m.user.bot).size).catch(error => ErrorBag.add(error));
+                channel.setName(Prefix + ": " + message.guild.members.filter(m => !m.user.bot).size, "Triggered by the Member Counter function.").catch(error => ErrorBag.add(error));
 
                 console.log("The Member Counter function has been triggered in " + message.guild.name + ".");
             };
@@ -3284,7 +3284,7 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
 
             };
 
-            ChannelExists.setName("Starting in " + FixedTime + " " + LengthName).catch(error => ErrorBag.add(error));
+            ChannelExists.setName("Starting in " + FixedTime + " " + LengthName, "Triggered by the Event Countdown function.").catch(error => ErrorBag.add(error));
             console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
 
             }
@@ -3329,7 +3329,7 @@ if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
                     setTimeout(async () => {
 
                     await m.send("Your trial on **" + Function_RemoveFormatting(Guild.name, "other", true) + "** has ended.").catch(error => ErrorBag.add(error));  
-                    m.kick({  reason: "Triggered by the Server Trial function."  }).catch(error => ErrorBag.add(error));
+                    m.kick("Triggered by the Server Trial function.").catch(error => ErrorBag.add(error));
 
                     console.log("The Server Trial function has been triggered in " + m.guild.name + ".");                
 
@@ -3485,7 +3485,7 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
                 NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
             };
 
-            message.member.setNickname(NewNickname, {reason: "Triggered by the Clear Nicknames function."}).catch(error => ErrorBag.add(error));
+            message.member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
 
             const embed = {"description": InfoIcon + " I have cleared **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s nickname of fancy letters.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
@@ -6445,8 +6445,8 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 }
  else
 {
-        const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+ const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 };
@@ -6593,8 +6593,6 @@ if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions
     });
 
     if  (Failed == false)  {
-        message.guild.ban(MentionedMember, { reason: "Banned by " + message.author.tag + ".", days: 0  }).catch(error => ErrorBag.add(error));
-      
         const embed = {"description": SuccessIcon + " I have banned **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
@@ -6622,7 +6620,7 @@ if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions
 
 };
 
-//purge
+//Purge
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "purge "))  {
 
     if  (message.member.permissions.has("MANAGE_MESSAGES"))  {
@@ -6681,7 +6679,7 @@ if  (GivenRole && GivenRole.name !== "@everyone") {
     const embed = {"description": SuccessIcon + " The channel is now locked down for everyone except **@" + Function_RemoveFormatting(GivenRole.name, "other", true) + "**.",  "color": EmbedColor}; 
     await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
-    message.channel.setName(message.channel.name + "_locked", ["Locked by @" + message.author.tag + "."]).catch(error => ErrorBag.add(error));
+    message.channel.setName(message.channel.name + "_locked", "Locked by @" + message.author.tag + ".").catch(error => ErrorBag.add(error));
     
     message.channel.overwritePermissions(message.guild.roles.find(r => r.name == "@everyone"), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
     message.channel.overwritePermissions(message.guild.roles.find(r => r.id == GivenRole.id), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
