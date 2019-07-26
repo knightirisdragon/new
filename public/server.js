@@ -6288,22 +6288,48 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
 
 //Minigames Commands
 
-//Minigame
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "minigame "))  {
-  
-    var Minigame = message.content.split(peeky.serverData.get(keySF, "prefix") + "minigame ")[1];;
-  
-    if  (Minigame == "guess the song")  {
-      
-        var ChosenSong = Math.floor((Math.random() * GuessTheSong.length) + 1);
+//GuessTheSong  
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessthesong"))  {
 
-        for  (var i = 0; i < GuessTheSong.length; i++) {
-             if   (ChosenSong == i + 1) {
-                  console.log(GuessTheSong[i][1]);
-                  break;
-             };
+    if  (!CurrentlyPlaying.has(message.guild.id))  {
+
+        if  (message.member.voiceChannel)  {
+          
+            const voiceChannel  = message.member.voiceChannel;
+            var ChosenSong = Math.floor((Math.random() * GuessTheSong.length));
+
+            await CurrentlyPlaying.add(message.guild.id);
+          
+            if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT') && voiceChannel.permissionsFor(peeky.user).has('SPEAK'))  {
+  
+                await voiceChannel.join().then(async connection => {
+
+                    const stream = ytdl(GivenSong);
+                    const dispatcher = await connection.playStream(stream, {  volume: 0.25  });
+                             
+                    dispatcher.on('end', async reason => {
+                        voiceChannel.leave();
+                        CurrentlyPlaying.delete(message.guild.id);
+                    });
+
+                    message.channel.send("**Guess the Song:** Timer started - Guess the song's name!");
+
+                    message.channel.awaitMessages(GuessTheSong[ChosenSong][1], { maxMatches: 1, time: 20000, errors: ['time'] })
+                    .then(collected => {
+                      message.channel.send("**Guess the Song:** " + collected.first().author.username + " has guessed the song's name!");
+                      CurrentlyPlaying.delete(message.guild.id);
+                    })
+                    .catch(collected => {
+                      message.channel.send("**Guess the Song:** The song is over and no one got it.");
+                      CurrentlyPlaying.delete(message.guild.id);
+                    });
+
+                });
+              
+            };
+
         };
-    
+      
     };
   
 };
