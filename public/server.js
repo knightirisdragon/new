@@ -724,7 +724,7 @@ var GuessTheSong = [
     ["https://www.youtube.com/watch?v=kx0Z0B8Xox0", "Rodeo", "easy"],
     ["https://www.youtube.com/watch?v=DPVCNK74ZBI", "Hurt", "medium"],
     ["https://www.youtube.com/watch?v=52Gg9CqhbP8", "Let's Go", "medium"],
-    ["https://www.youtube.com/watch?v=pgN-vvVVxMA", "SAD!", "easy"]
+    ["https://www.youtube.com/watch?v=L_jWHffIx5E", "All Star", "easy"]
   
 ];
 
@@ -6298,7 +6298,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
 
 };
 
-//Minigames Commands
+//Minigame Commands
 
 //GuessTheSong  
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessthesong"))  {
