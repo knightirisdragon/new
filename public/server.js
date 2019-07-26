@@ -194,7 +194,8 @@ const RandomSongs         = [  "https://www.youtube.com/watch?v=tklQ47Hpfxw",
                                "https://www.youtube.com/watch?v=hWfbUTwzzZA",
                                "https://www.youtube.com/watch?v=BGkRUYjflbY",
                                "https://www.youtube.com/watch?v=WTJSt4wP2ME",
-                               "https://www.youtube.com/watch?v=al1BNB8bKaE"
+                               "https://www.youtube.com/watch?v=al1BNB8bKaE",
+                               "https://www.youtube.com/watch?v=3vVSBLkpO-8"
                             ];
 
 //Vote Emotes
@@ -707,12 +708,18 @@ var Banners = [
 
 var GuessTheSong = [
   
-    ["https://www.youtube.com/watch?v=HRDp-Q_DsfE", "bloody stream", "medium"],
-    ["https://www.youtube.com/watch?v=cPJUBQd-PNM", "revenge", "easy"],
-    ["https://www.youtube.com/watch?v=5-uWlFq380M", "sanctuary", "medium"],
-    ["https://www.youtube.com/watch?v=bpOSxM0rNPM", "do i wanna know", "medium"],
-    ["https://www.youtube.com/watch?v=2uRLJZxINAQ", "pepe", "hard"],
-    ["https://www.youtube.com/watch?v=aiSdTQ9DW9g", "rasputin", "easy"]
+    ["https://www.youtube.com/watch?v=HRDp-Q_DsfE", "Bloody Stream", "medium"],
+    ["https://www.youtube.com/watch?v=cPJUBQd-PNM", "Revenge", "easy"],
+    ["https://www.youtube.com/watch?v=5-uWlFq380M", "Sanctuary", "medium"],
+    ["https://www.youtube.com/watch?v=bpOSxM0rNPM", "Do I Wanna Know", "medium"],
+    ["https://www.youtube.com/watch?v=2uRLJZxINAQ", "PEPE", "hard"],
+    ["https://www.youtube.com/watch?v=aiSdTQ9DW9g", "Rasputin", "easy"],
+    ["https://www.youtube.com/watch?v=6E5m_XtCX3c", "Ocean Man", "easy"],
+    ["https://www.youtube.com/watch?v=3vVSBLkpO-8", "Baby I'm yours", "hard"],
+    ["https://www.youtube.com/watch?v=rnO-MflYxCw", "Pumped Up Kicks", "easy"],
+    ["https://www.youtube.com/watch?v=yGHBcpO-M0s", "Gotta Let Go", "medium"],
+    ["https://www.youtube.com/watch?v=VMtarj8Ua0s", "Mr. Blue Sky", "medium"],
+    ["https://www.youtube.com/watch?v=Gs069dndIYk", "September", "medium"]
   
 ];
 
@@ -6307,19 +6314,21 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                     const stream = ytdl(GuessTheSong[ChosenSong][0]);
                     const dispatcher = await connection.playStream(stream, {  volume: 0.25  });
 
-                    const embed = {"description": InfoIcon + " The timer started - Guess the song's name!",  "color": EmbedColor}; 
+                    const embed = {"description": InfoIcon + " The round started with a **" + GuessTheSong[ChosenSong][2] + "** song.",  "color": EmbedColor}; 
                     message.channel.send({  embed  });
 
-                    message.channel.awaitMessages(response => response.content.includes(GuessTheSong[ChosenSong][1]), { maxMatches: 1, time: 20000, errors: ['time'] })
+                    message.channel.awaitMessages(response => response.content.toLowerCase().includes(GuessTheSong[ChosenSong][1].toLowerCase()), { maxMatches: 1, time: 20000, errors: ['time'] })
                     .then(collected => {
-                      const embed = {"description": InfoIcon + Function_RemoveFormatting(collected.first().author.username, "other", true) + " has guessed the song's name!",  "color": EmbedColor}; 
+                      const embed = {"description": SuccessIcon +  " Congratulations, **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "**, you've guessed the song's name!",  "color": EmbedColor}; 
                       message.channel.send({  embed  });
                       
                       CurrentlyPlaying.delete(message.guild.id);
                       voiceChannel.leave();
                     })
                     .catch(collected => {
-                      message.channel.send("**Guess the Song:** The song's name was " + GuessTheSong[ChosenSong][1] + ".");
+                      const embed = {"description": ErrorIcon + " The song's name was **" + GuessTheSong[ChosenSong][1] + "**.",  "color": EmbedColor}; 
+                      message.channel.send({  embed  });
+                      
                       CurrentlyPlaying.delete(message.guild.id);
                       voiceChannel.leave();
                     });
