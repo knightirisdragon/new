@@ -6339,6 +6339,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
           
             const voiceChannel  = message.member.voiceChannel;
             var ChosenSong = Math.floor((Math.random() * GuessTheSong.length));
+            var InfoMessages = [InfoIcon + " Full Song: <" + GuessTheSong[ChosenSong][0] + ">"];
 
             await CurrentlyPlaying.add(message.guild.id);
           
@@ -6349,12 +6350,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                     const stream = ytdl(GuessTheSong[ChosenSong][0]);
                     const dispatcher = await connection.playStream(stream, {  volume: 0.25  });
                   
-                    dispatcher.on('end', async reason => {
-
-                        const embed = {"description": InfoIcon + " Full Song: <" + GuessTheSong[ChosenSong][0] + ">",  "color": EmbedColor}; 
-                        message.channel.send({  embed  });
-                      
-                    });
+                    //dispatcher.on('end', async reason => {});
 
                     const embed = {"description": InfoIcon + " The round started with a **" + GuessTheSong[ChosenSong][2] + "** song.",  "color": EmbedColor}; 
                     message.channel.send({  embed  });
@@ -6362,24 +6358,22 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                     message.channel.awaitMessages(response => response.content.toLowerCase().includes(GuessTheSong[ChosenSong][1].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
                     .then(collected => {
                       var key = collected.first().author.id;
+                        
+                      //Gamer Badge
+                      if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
+                          peeky.userData.set(key, true, "GamerBadge");
+                          InfoMessages.push(InfoMessage1[0]);
+                      };
                       
-                      const embed = {"description": SuccessIcon +  " Congratulations, **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "**, you've guessed the song's name!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                      message.channel.send({  embed  });
+                      if  (peeky.userData.has(key))  {
+                          peeky.userData.math(key, "+", 5, "Gredit");
+                      };
                       
                       CurrentlyPlaying.delete(message.guild.id);
                       voiceChannel.leave();
                       
-                      if  (peeky.userData.has(key))  {
-                          peeky.userData.math(key, "+", 5, "Gredit");
-                        
-                          //Gamer Badge
-                          if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
-                              peeky.userData.set(key, true, "GamerBadge");
-                            
-                              const embed = {"description": InfoMessage1[0],  "color": EmbedColor}; 
-                              message.channel.send({  embed  });
-                          };
-                      };
+                      const embed = {"description": SuccessIcon +  " Congratulations, **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "**, you've guessed the song's name!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                      message.channel.send({  embed  });
                       
                     })
                     .catch(collected => {
