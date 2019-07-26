@@ -705,6 +705,16 @@ var Banners = [
 
 ];
 
+var GuessTheSong = [
+  
+    ["https://www.youtube.com/watch?v=HRDp-Q_DsfE", "bloody stream", "medium"],
+    ["https://www.youtube.com/watch?v=cPJUBQd-PNM", "revenge", "easy"],
+    ["https://www.youtube.com/watch?v=5-uWlFq380M", "sanctuary", "medium"],
+    ["https://www.youtube.com/watch?v=bpOSxM0rNPM", "do i wanna know", "medium"],
+    ["https://www.youtube.com/watch?v=HRDp-Q_DsfE", "bloody stream", "medium"],
+  
+];
+
 //FUNCTIONS
 
 //CANVAS: Welcome Messages embed
