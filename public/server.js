@@ -713,7 +713,8 @@ const RandomSongs = [
     "https://www.youtube.com/watch?v=WTJSt4wP2ME",
     "https://www.youtube.com/watch?v=al1BNB8bKaE",
     "https://www.youtube.com/watch?v=3vVSBLkpO-8",
-    "https://www.youtube.com/watch?v=vOXZkm9p_zY"
+    "https://www.youtube.com/watch?v=vOXZkm9p_zY",
+    "https://www.youtube.com/watch?v=d5Ql4Sjo-GU"
   
 ];
 
@@ -742,7 +743,19 @@ var GuessTheSong = [
     ["https://www.youtube.com/watch?v=oG7jKUHsLfY", "Last Train Home", "hard"],
     ["https://www.youtube.com/watch?v=XUhVCoTsBaM", "Awaken", "medium"],
     ["https://www.youtube.com/watch?v=DwPWGUhEtP0", "Roundabout", "medium"],
-    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"]
+    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
+    ["https://www.youtube.com/watch?v=RiifAqNwHoo", "THE HERO", "medium"],
+    ["https://www.youtube.com/watch?v=fcsvE1zv1ek", "Gangsta's Paradise", "easy"],
+    ["https://www.youtube.com/watch?v=d5Ql4Sjo-GU", "Midsummer Madness", "medium"],
+    ["https://www.youtube.com/watch?v=ZONlGIshF3o", "Where Does The Time Go", "hard"],
+    ["https://www.youtube.com/watch?v=3kCWT57h4J0", "Devilman no Uta", "hard"],
+    ["https://www.youtube.com/watch?v=dv13gl0a-FA", "Deja Vu", "medium"],
+    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
+    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
+    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
+    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
+    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
+    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
   
 ];
 
