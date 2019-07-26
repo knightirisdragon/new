@@ -114,6 +114,7 @@ const HorderImage       = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602
 const PainterImage      = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpainter.png?1558728694985";
 const MinerImage        = "http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2FMiner.png?1559015350668";
 const BoosterImage      = "http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbooster.png?v=1560691400942";
+const GamerImage        = "http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2FGamer.png?v=1564176885010";
 
 //Config
 const Config                = require("./config.json");
@@ -164,6 +165,7 @@ const HorderEmote       = "<:horder:581571252070776844>";
 const PainterEmote      = "<:painter:581575158855368724>";
 const MinerEmote        = "<:miner:582777441592934410>";
 const BoosterEmote      = "<:booster:589786301759488050>";
+const GamerEmote        = "<:gamer:604426153524068354>";
 
 //Other Emotes
 const ErrorIcon    = "<:peeky_error:529412267343872031>";
@@ -1315,6 +1317,7 @@ peeky.on('message', async (message) => {
         HorderBadge: false,
         PainterBadge: false,
         MinerBadge: false,
+        GamerBadge: false,
       
         BadgeGredit: 0,
         BadgeExp: 0,
@@ -1394,6 +1397,9 @@ peeky.on('message', async (message) => {
       
         //Miner
     if  (peeky.userData.get(key, "MinerBadge") == true)  {  BadgeGreditAmount += 1;  };
+      
+        //Gamer
+    if  (peeky.userData.get(key, "GamerBadge") == true)  {  BadgeExpAmount += 1;  };
       
         //Horder
     if  (peeky.userData.get(key, "HorderBadge") == true)  {  BadgeGreditAmount += 1;  };
@@ -5552,6 +5558,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (peeky.userData.get(key2, "PartyBadge") == true)                                                 {  Badges.push(PartyEmote + " Party")  };
     if  (peeky.userData.get(key2, "OwnershipBadge") == true)                                             {  Badges.push(OwnershipEmote + " Ownership")  };
     if  (peeky.userData.get(key2, "MinerBadge") == true)                                                 {  Badges.push(MinerEmote + " Miner")  };
+    if  (peeky.userData.get(key2, "GamerBadge") == true)                                                 {  Badges.push(GamerEmote + " Gamer")  };
     if  (peeky.userData.get(key2, "HorderBadge") == true)                                                {  Badges.push(HorderEmote + " Horder")  };
     if  (peeky.userData.get(key2, "GamblerBadge") >= 10)                                                 {  Badges.push(GamblerEmote + " Gambler")  };
     if  (peeky.userData.get(key2, "CharityBadge") == true)                                               {  Badges.push(CharityEmote + " Charity")  };
@@ -5823,6 +5830,13 @@ if (!ProfileCooldown.has(message.author.id)) {
     const miner_icon = await Canvas.loadImage(MinerImage);
     if  (peeky.userData.get(key2, "MinerBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
     ctx.drawImage(miner_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Gamer Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const gamer_icon = await Canvas.loadImage(GamerImage);
+    if  (peeky.userData.get(key2, "GamerBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(gamer_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
     };
 
     //Gambler Icon
