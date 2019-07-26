@@ -6352,7 +6352,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                   
                     //dispatcher.on('end', async reason => {});
 
-                    const embed = {"description": InfoIcon + " The round started with a **" + GuessTheSong[ChosenSong][2] + "** song.",  "color": EmbedColor}; 
+                    const embed = {"description": InfoIcon + " The round has started with a **" + GuessTheSong[ChosenSong][2] + "** song.",  "color": EmbedColor}; 
                     message.channel.send({  embed  });
 
                     message.channel.awaitMessages(response => response.content.toLowerCase().includes(GuessTheSong[ChosenSong][1].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
