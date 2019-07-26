@@ -6363,7 +6363,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                     .then(collected => {
                       var key = collected.first().author.id;
                       
-                      const embed = {"description": SuccessIcon +  " Congratulations, **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "**, you've guessed the song's name!",  "color": EmbedColor}; 
+                      const embed = {"description": SuccessIcon +  " Congratulations, **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "**, you've guessed the song's name!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                       message.channel.send({  embed  });
                       
                       CurrentlyPlaying.delete(message.guild.id);
