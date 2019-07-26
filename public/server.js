@@ -712,7 +712,8 @@ const RandomSongs = [
     "https://www.youtube.com/watch?v=BGkRUYjflbY",
     "https://www.youtube.com/watch?v=WTJSt4wP2ME",
     "https://www.youtube.com/watch?v=al1BNB8bKaE",
-    "https://www.youtube.com/watch?v=3vVSBLkpO-8"
+    "https://www.youtube.com/watch?v=3vVSBLkpO-8",
+    "https://www.youtube.com/watch?v=vOXZkm9p_zY"
   
 ];
 
@@ -740,7 +741,8 @@ var GuessTheSong = [
     ["https://www.youtube.com/watch?v=hWfbUTwzzZA", "Caramelldansen", "hard"],
     ["https://www.youtube.com/watch?v=oG7jKUHsLfY", "Last Train Home", "hard"],
     ["https://www.youtube.com/watch?v=XUhVCoTsBaM", "Awaken", "medium"],
-    ["https://www.youtube.com/watch?v=DwPWGUhEtP0", "Roundabout", "medium"]
+    ["https://www.youtube.com/watch?v=DwPWGUhEtP0", "Roundabout", "medium"],
+    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"]
   
 ];
 
