@@ -6321,7 +6321,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                   
                     dispatcher.on('end', async reason => {
 
-                        const embed = {"description": InfoIcon + " Listen to the full song by clicking the link below." + ,  "color": EmbedColor}; 
+                        const embed = {"description": InfoIcon + " Full Song: <" + GuessTheSong[ChosenSong][0] + ">",  "color": EmbedColor}; 
                         message.channel.send({  embed  });
                       
                     });
