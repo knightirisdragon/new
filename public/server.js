@@ -6435,7 +6435,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                       };
                       
                       if  (peeky.userData.has(key))  {
-                          peeky.userData.math(key, "+", 5, "Gredit");
+                          peeky.userData.math(key, "+", 25, "Gredit");
                       };
                       
                       voiceChannel.leave();
@@ -6494,7 +6494,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "triviaq
              };
 
              if  (peeky.userData.has(key))  {
-                 peeky.userData.math(key, "+", 10, "Gredit");
+                 peeky.userData.math(key, "+", 25, "Gredit");
              };
 
              const embed = {"description": SuccessIcon +  " **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "** has chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
