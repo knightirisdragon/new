@@ -91,6 +91,7 @@ const CoinImage         = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873
 const ExpImage          = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_xp.png?1541260284097";
 const LevelImage        = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_level.png?1541260281702";
 const ChestImage        = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051";
+const BadgesImage       = "http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fbadges.png?v=1564223240455"
 const XPImage           = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2FScreenshot_141.png?1543781509470";
 const BackpackImage     = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_backpack.png?1546614356449";
 
@@ -5745,7 +5746,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.drawImage(backpack_icon, 10, 155, 27, 27);
 
     //Backpack Icon
-    const badges_icon = await Canvas.loadImage(BadgeImage);
+    const badges_icon = await Canvas.loadImage(BadgesImage);
     ctx.drawImage(badges_icon, canvas.width / 2 + 10, 85, 27, 27);
 
     //Progress Bar
