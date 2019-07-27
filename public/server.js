@@ -5722,7 +5722,8 @@ if (!ProfileCooldown.has(message.author.id)) {
     //Chests String
     ctx.font = "15px " + DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 45, 140, canvas.width / 2 - 50);
-      
+    
+    /* 
     //Exp String
     ctx.font = "15px " + DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Exp").toLocaleString('en') + " Exp", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
@@ -5730,6 +5731,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     //Badges String
     ctx.font = "15px " + DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
+    */
 
     //Backpack String
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
@@ -5763,6 +5765,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     const backpack_icon = await Canvas.loadImage(BackpackImage);
     ctx.drawImage(backpack_icon, 10, 155, 27, 27);
 
+    /*
     //Exp Icon
     const exp_icon = await Canvas.loadImage(ExpImage);
     ctx.drawImage(exp_icon, canvas.width / 2 + 10, 87, 27, 27);
@@ -5770,6 +5773,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     //Badges Icon
     const badges_icon = await Canvas.loadImage(BadgesImage);
     ctx.drawImage(badges_icon, canvas.width / 2 + 10, 120, 27, 27);
+    */
 
     //Progress Bar
     const progress_bar = await Canvas.loadImage(XPImage);
