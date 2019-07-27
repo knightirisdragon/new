@@ -630,7 +630,8 @@ const Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground366.png?v=1564058885585", 500, "Dangerous hunt", "Monster Hunters World", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground367.png?v=1564068410313", 300, "Pillar men", "Jojo's Bizarre Adventure", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground368.png?v=1564068462711", 350, "Canary", "Unknown", undefined],
-    ["http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fbackground369.png?v=1564222331497", 500, "Dead men", "Kane and Lynch Dead Men", undefined]
+    ["http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fbackground369.png?v=1564222331497", 500, "Dead men", "Kane and Lynch Dead Men", undefined],
+    ["http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fbackground370.png?v=1564225161116", 475, "Journey", "u/BeastScrollGames", undefined]
 
 ];
 const DefaultDescriptions = [  
@@ -5709,9 +5710,13 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.font = "15px " + DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 45, 140, canvas.width / 2 - 50);
       
+    //Exp String
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Exp").toLocaleString('en') + " Exp", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
+      
     //Badges String
     ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
+    ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
 
     //Backpack String
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
@@ -5745,9 +5750,13 @@ if (!ProfileCooldown.has(message.author.id)) {
     const backpack_icon = await Canvas.loadImage(BackpackImage);
     ctx.drawImage(backpack_icon, 10, 155, 27, 27);
 
+    //Exp Icon
+    const exp_icon = await Canvas.loadImage(ExpImage);
+    ctx.drawImage(exp_icon, canvas.width / 2 + 10, 87, 27, 27);
+
     //Badges Icon
     const badges_icon = await Canvas.loadImage(BadgesImage);
-    ctx.drawImage(badges_icon, canvas.width / 2 + 10, 85, 27, 27);
+    ctx.drawImage(badges_icon, canvas.width / 2 + 10, 120, 27, 27);
 
     //Progress Bar
     const progress_bar = await Canvas.loadImage(XPImage);
