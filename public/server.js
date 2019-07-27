@@ -119,6 +119,8 @@ const PainterImage      = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602
 const MinerImage        = "http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2FMiner.png?1559015350668";
 const BoosterImage      = "http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbooster.png?v=1560691400942";
 const GamerImage        = "http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2FGamer.png?v=1564176885010";
+const EvilImage         = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fevil.png?v=1564269349943";
+const GoodImage         = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564269350363";
 
 //Config
 const Config                = require("./config.json");
@@ -171,6 +173,8 @@ const PainterEmote      = "<:painter:581575158855368724>";
 const MinerEmote        = "<:miner:582777441592934410>";
 const BoosterEmote      = "<:booster:589786301759488050>";
 const GamerEmote        = "<:gamer:604426153524068354>";
+const EvilEmote         = "<:evil:604813297514184711>";
+const GoodEmote         = "<:good:604813296717266955>";
 
 //Other Emotes
 const ErrorIcon    = "<:peeky_error:529412267343872031>";
@@ -1381,6 +1385,8 @@ peeky.on('message', async (message) => {
         PainterBadge: false,
         MinerBadge: false,
         GamerBadge: false,
+        EvilBadge: false,
+        GoodBadge: false,
       
         BadgeGredit: 0,
         BadgeExp: 0,
@@ -1443,6 +1449,12 @@ peeky.on('message', async (message) => {
       
         //Medallist
     if  (peeky.userData.get(key, "MedallistBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
+      
+        //Evil
+    if  (peeky.userData.get(key, "EvilBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
+      
+        //Good
+    if  (peeky.userData.get(key, "GoodBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
       
         //Party
     if  (peeky.userData.get(key, "PartyBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
@@ -5888,6 +5900,20 @@ if (!ProfileCooldown.has(message.author.id)) {
     const medalist_icon = await Canvas.loadImage(MedallistImage);
     if  (peeky.userData.get(key2, "MedallistBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
     ctx.drawImage(medalist_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Evil  Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const publisher_icon = await Canvas.loadImage(PartyImage);
+    if  (peeky.userData.get(key2, "PartyBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(publisher_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Good Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const publisher_icon = await Canvas.loadImage(PartyImage);
+    if  (peeky.userData.get(key2, "GoodBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(publisher_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
     };
 
     //Party Icon
