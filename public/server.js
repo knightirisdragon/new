@@ -725,40 +725,41 @@ const RandomSongs = [
 
 const GuessTheSong = [
   
-    ["https://www.youtube.com/watch?v=HRDp-Q_DsfE", "Bloody Stream", "medium"],
-    ["https://www.youtube.com/watch?v=cPJUBQd-PNM", "Revenge", "easy"],
-    ["https://www.youtube.com/watch?v=5-uWlFq380M", "Sanctuary", "medium"],
-    ["https://www.youtube.com/watch?v=bpOSxM0rNPM", "Do I Wanna Know", "medium"],
-    ["https://www.youtube.com/watch?v=2uRLJZxINAQ", "PEPE", "hard"],
-    ["https://www.youtube.com/watch?v=aiSdTQ9DW9g", "Rasputin", "easy"],
-    ["https://www.youtube.com/watch?v=6E5m_XtCX3c", "Ocean Man", "easy"],
-    ["https://www.youtube.com/watch?v=3vVSBLkpO-8", "Baby I'm yours", "hard"],
-    ["https://www.youtube.com/watch?v=rnO-MflYxCw", "Pumped Up Kicks", "easy"],
-    ["https://www.youtube.com/watch?v=yGHBcpO-M0s", "Gotta Let Go", "medium"],
-    ["https://www.youtube.com/watch?v=VMtarj8Ua0s", "Mr. Blue Sky", "medium"],
-    ["https://www.youtube.com/watch?v=Gs069dndIYk", "September", "medium"],
-    ["https://www.youtube.com/watch?v=pgN-vvVVxMA", "SAD!", "easy"],
-    ["https://www.youtube.com/watch?v=kx0Z0B8Xox0", "Rodeo", "easy"],
-    ["https://www.youtube.com/watch?v=DPVCNK74ZBI", "Hurt", "medium"],
-    ["https://www.youtube.com/watch?v=52Gg9CqhbP8", "Let's Go", "medium"],
-    ["https://www.youtube.com/watch?v=5ZYgIrqELFw", "All Star", "easy"],
-    ["https://www.youtube.com/watch?v=7pzOBI3PD8E", "Sweater Weather", "hard"],
-    ["https://www.youtube.com/watch?v=L3wKzyIN1yk", "Human", "medium"],
-    ["https://www.youtube.com/watch?v=hWfbUTwzzZA", "Caramelldansen", "hard"],
-    ["https://www.youtube.com/watch?v=oG7jKUHsLfY", "Last Train Home", "hard"],
-    ["https://www.youtube.com/watch?v=XUhVCoTsBaM", "Awaken", "medium"],
-    ["https://www.youtube.com/watch?v=DwPWGUhEtP0", "Roundabout", "medium"],
-    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "medium"],
-    ["https://www.youtube.com/watch?v=RiifAqNwHoo", "THE HERO", "medium"],
-    ["https://www.youtube.com/watch?v=fcsvE1zv1ek", "Gangsta's Paradise", "easy"],
+    ["https://www.youtube.com/watch?v=HRDp-Q_DsfE", "Bloody Stream", "Medium"],
+    ["https://www.youtube.com/watch?v=cPJUBQd-PNM", "Revenge", "Easy"],
+    ["https://www.youtube.com/watch?v=5-uWlFq380M", "Sanctuary", "Medium"],
+    ["https://www.youtube.com/watch?v=bpOSxM0rNPM", "Do I Wanna Know", "Medium"],
+    ["https://www.youtube.com/watch?v=2uRLJZxINAQ", "PEPE", "Hard"],
+    ["https://www.youtube.com/watch?v=aiSdTQ9DW9g", "Rasputin", "Easy"],
+    ["https://www.youtube.com/watch?v=6E5m_XtCX3c", "Ocean Man", "Easy"],
+    ["https://www.youtube.com/watch?v=3vVSBLkpO-8", "Baby I'm yours", "Hard"],
+    ["https://www.youtube.com/watch?v=rnO-MflYxCw", "Pumped Up Kicks", "Easy"],
+    ["https://www.youtube.com/watch?v=yGHBcpO-M0s", "Gotta Let Go", "Medium"],
+    ["https://www.youtube.com/watch?v=VMtarj8Ua0s", "Mr. Blue Sky", "Medium"],
+    ["https://www.youtube.com/watch?v=Gs069dndIYk", "September", "Medium"],
+    ["https://www.youtube.com/watch?v=pgN-vvVVxMA", "SAD!", "Easy"],
+    ["https://www.youtube.com/watch?v=kx0Z0B8Xox0", "Rodeo", "Easy"],
+    ["https://www.youtube.com/watch?v=DPVCNK74ZBI", "Hurt", "Medium"],
+    ["https://www.youtube.com/watch?v=52Gg9CqhbP8", "Let's Go", "Medium"],
+    ["https://www.youtube.com/watch?v=5ZYgIrqELFw", "All Star", "Easy"],
+    ["https://www.youtube.com/watch?v=7pzOBI3PD8E", "Sweater Weather", "Hard"],
+    ["https://www.youtube.com/watch?v=L3wKzyIN1yk", "Human", "Medium"],
+    ["https://www.youtube.com/watch?v=hWfbUTwzzZA", "Caramelldansen", "Hard"],
+    ["https://www.youtube.com/watch?v=oG7jKUHsLfY", "Last Train Home", "Hard"],
+    ["https://www.youtube.com/watch?v=XUhVCoTsBaM", "Awaken", "Medium"],
+    ["https://www.youtube.com/watch?v=DwPWGUhEtP0", "Roundabout", "Medium"],
+    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "Medium"],
+    ["https://www.youtube.com/watch?v=RiifAqNwHoo", "THE HERO", "Medium"],
+    ["https://www.youtube.com/watch?v=fcsvE1zv1ek", "Gangsta's Paradise", "Easy"],
     ["https://www.youtube.com/watch?v=d5Ql4Sjo-GU", "Midsummer Madness", "medium"],
-    ["https://www.youtube.com/watch?v=ZONlGIshF3o", "Where Does The Time Go", "hard"],
-    ["https://www.youtube.com/watch?v=3kCWT57h4J0", "Devilman no Uta", "hard"],
-    ["https://www.youtube.com/watch?v=dv13gl0a-FA", "Deja Vu", "medium"],
-    ["https://www.youtube.com/watch?v=_ubnhgZgsfc", "Stronger", "medium"],
-    ["https://www.youtube.com/watch?v=zKFzKIa_pIM", "Chlorine", "easy"],
-    ["https://www.youtube.com/watch?v=HUHC9tYz8ik", "Bury a friend", "medium"],
-    ["https://www.youtube.com/watch?v=gBRi6aZJGj4", "Bellyache", "hard"]
+    ["https://www.youtube.com/watch?v=ZONlGIshF3o", "Where Does The Time Go", "Hard"],
+    ["https://www.youtube.com/watch?v=3kCWT57h4J0", "Devilman no Uta", "Hard"],
+    ["https://www.youtube.com/watch?v=dv13gl0a-FA", "Deja Vu", "Medium"],
+    ["https://www.youtube.com/watch?v=_ubnhgZgsfc", "Stronger", "Medium"],
+    ["https://www.youtube.com/watch?v=zKFzKIa_pIM", "Chlorine", "Easy"],
+    ["https://www.youtube.com/watch?v=HUHC9tYz8ik", "Bury a friend", "Medium"],
+    ["https://www.youtube.com/watch?v=gBRi6aZJGj4", "Bellyache", "Hard"],
+    ["https://www.youtube.com/watch?v=k1ATPhkVWi0", "My Strange Addiction", "Medium"]
   
 ];
 
@@ -778,25 +779,12 @@ const TriviaQuestions = [
     ["Resident Evil 7 was released in which year?", ["2017"], ["2016"], ["2018"], "Video Games"],
     ["Name of the character abused by Mario?", ["Donkey Kong"], ["Yoshi"], ["Luigi"], "Video Games"],
     ["How many layers are there in the Sun?", ["6"], ["4"], ["10"], "Space"],
-    ["How much water is evaporated every day?", ["1 Trillion Tons"], ["58 Billion Tons"], ["100 Trillion Tons"], "Biology"],
-    ["Unlike most other fish, sharks have no ...?", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""]
+    ["How much water is evaporated every day?", ["1 Trillion Tons"], ["58 Billion Tons"], ["100 Trillion Tons"], "Space"],
+    ["Unlike most other fish, sharks have no ...?", ["Bones"], ["Gills"], ["Liver"], "Biology"],
+    ["Which of the following has more bones?", ["Baby"], ["Adult"], ["Teenager"], "Biology"],
+    ["Which game was delayed because it had a hidden photo of a developer's butt?", ["Halo 2"], ["Saints Row 3"], ["GTA V"], "Video Games"],
+    ["What Spanish artist said he would eat his wife when she died?", ["Dali"], ["Pablo Picasso"], ["El Greco"], "History"],
+    ["What was the first Nazi concentration camp?", ["Dachau"], ["Aushwitz"], ["Chelmno"], "History"]
   
 ];
 
@@ -6425,7 +6413,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                   
                     //dispatcher.on('end', async reason => {});
 
-                    const embed = {"description": InfoIcon + " The round has started with a **" + GuessTheSong[ChosenSong][2] + "** song.",  "color": EmbedColor}; 
+                    const embed = {"description": "**Try to guess the name of this song!**" + "\n" + GuessTheSong[ChosenSong][2],  "color": EmbedColor}; 
                     message.channel.send({  embed  });
 
                     message.channel.awaitMessages(response => response.content.toLowerCase().includes(GuessTheSong[ChosenSong][1].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
@@ -6450,7 +6438,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                       
                     })
                     .catch(collected => {
-                      const embed = {"description": ErrorIcon + " The song's name was **" + GuessTheSong[ChosenSong][1] + "**.",  "color": EmbedColor}; 
+                      const embed = {"description": ErrorIcon + " The song's name was **" + GuessTheSong[ChosenSong][1] + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                       message.channel.send({  embed  });
                       
                       CurrentlyPlaying.delete(message.guild.id);
