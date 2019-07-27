@@ -719,7 +719,8 @@ const RandomSongs = [
     "https://www.youtube.com/watch?v=3vVSBLkpO-8",
     "https://www.youtube.com/watch?v=vOXZkm9p_zY",
     "https://www.youtube.com/watch?v=d5Ql4Sjo-GU",
-    "https://www.youtube.com/watch?v=zKFzKIa_pIM"
+    "https://www.youtube.com/watch?v=zKFzKIa_pIM",
+    "https://www.youtube.com/watch?v=PoVgCOCt4KA"
   
 ];
 
@@ -760,6 +761,7 @@ const GuessTheSong = [
     ["https://www.youtube.com/watch?v=HUHC9tYz8ik", "Bury a friend", "Medium"],
     ["https://www.youtube.com/watch?v=gBRi6aZJGj4", "Bellyache", "Hard"],
     ["https://www.youtube.com/watch?v=k1ATPhkVWi0", "My Strange Addiction", "Medium"]
+    ["https://www.youtube.com/watch?v=PoVgCOCt4KA", "Alien Boy", "Medium"]
   
 ];
 
@@ -784,7 +786,16 @@ const TriviaQuestions = [
     ["Which of the following has more bones?", ["Baby"], ["Adult"], ["Teenager"], "Biology"],
     ["Which game was delayed because it had a hidden photo of a developer's butt?", ["Halo 2"], ["Saints Row 3"], ["GTA V"], "Video Games"],
     ["What Spanish artist said he would eat his wife when she died?", ["Dali"], ["Pablo Picasso"], ["El Greco"], "History"],
-    ["What was the first Nazi concentration camp?", ["Dachau"], ["Aushwitz"], ["Chelmno"], "History"]
+    ["What was the first Nazi concentration camp?", ["Dachau"], ["Aushwitz"], ["Chelmno"], "History"],
+    ["How many U.S. presidents have been assassinated prior to 2019?", ["4"], ["9"], ["2"], "History"],
+    ["What three colors appear on the Italian flag?", ["Red, white and green"], ["Orange, white and green"], ["Red, blue and white"], "Other"],
+    ["How is CzechoSlovakia called today?", ["Czechia"], ["Bohemia"], ["Still CzechoSlovakia"], "History"],
+    ["Which war took place between 1950 and 1953?", ["The Korean War"], ["The second World War"], ["Nothing"], "History"],
+    ["Who was the first democratically elected President of Russia?", ["Boris Yeltsin"], ["Vladimir Putin"], ["Nikita Krushcev"], "History"],
+    ["What did ancient Egyptians use as pillows?", ["Stones"], ["Animal Pelts"], ["Bundles of Wheat"], "History"],
+    ["", [""], [""], [""], ""],
+    ["", [""], [""], [""], ""],
+    ["", [""], [""], [""], ""]
   
 ];
 
