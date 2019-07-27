@@ -760,14 +760,14 @@ const TriviaQuestions = [
   
     ["Who painted the Mona Lisa?", ["Da Vinci"], ["Mona Lisa"], ["Kars"], "Art"],
     ["When did the Second World War end?", ["1945"], ["1939"], ["1944"], "History"],
-    ["Who starts first in chess?", ["White"], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
+    ["Who starts first in chess?", ["White"], ["Black"], ["Arbitrary"], "Games"],
+    ["What year did Elvis Presley die?", ["1977"], ["1979"], ["1972"], "History"],
+    ["What colours make purple?", ["Red & Blue"], ["Blue & Black"], ["Pink & Red"], "Other"],
+    ["When was President Kennedy killed?", ["1963"], ["1969"], ["1961"], "History"],
+    ["What is the first letter on a typewriter?", ["Q"], ["A"], ["W"], "History"],
+    ["The average human body contains how many pints of blood?", ["9"], ["10"], ["8"], "Other"],
+    ["Which of the planets is closest to the sun?", ["Mercury"], ["Mars"], ["Earth"], "Other"],
+    ["What was Twitter’s original name?", ["Twttr"], ["Twitter"], ["Tweeter"], "Internet"],
   
 ];
 
@@ -6417,6 +6417,48 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
           const embed = {"description": ErrorIcon + " You need to join a voice channel.",  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
+
+      
+    } else {
+      const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+  
+};
+
+//GuessTheSong  
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessthesong"))  {
+
+    if  (!CurrentlyPlaying.has(message.guild.id))  {
+
+            var ChosenQuestion = Math.floor((Math.random() * TriviaQuestions.length));
+            var InfoMessages = [];
+                    message.channel.awaitMessages(response => response.content.toLowerCase().includes(GuessTheSong[ChosenSong][1].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
+                    .then(collected => {
+                      var key = collected.first().author.id;
+                        
+                      //Gamer Badge
+                      if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
+                          peeky.userData.set(key, true, "GamerBadge");
+                          InfoMessages.push(InfoMessage1[0]);
+                      };
+                      
+                      if  (peeky.userData.has(key))  {
+                          peeky.userData.math(key, "+", 5, "Gredit");
+                      };
+                      
+                      CurrentlyPlaying.delete(message.guild.id);                      
+                      const embed = {"description": SuccessIcon +  " Congratulations, **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "**, you've guessed the song's name!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                      message.channel.send({  embed  });
+                      
+                    })
+                    .catch(collected => {
+                      const embed = {"description": ErrorIcon + " The song's name was **" + GuessTheSong[ChosenSong][1] + "**.",  "color": EmbedColor}; 
+                      message.channel.send({  embed  });
+                      
+                      CurrentlyPlaying.delete(message.guild.id);
+                      voiceChannel.leave();
+                    });
 
       
     } else {
