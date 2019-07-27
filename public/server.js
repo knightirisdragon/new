@@ -141,7 +141,8 @@ const whitelistedSymbols  = [  "a", "á", "b", "c", "č", "d", "ď", "e", "é", 
 const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
 
 //Small Objects
-var Banner  = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
+var Banner        = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
+var StreamOptions = {  volume: 0.25  };
 
 //Vote Emotes
 const DefaultUpvote   = "529413730874949632";
@@ -6150,7 +6151,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
             };
 
             const stream = ytdl(GivenSong);
-            const dispatcher = await connection.playStream(stream, {  volume: 0.25  });
+            const dispatcher = await connection.playStream(stream, StreamOptions);
 
             dispatcher.on('end', async reason => {
               
@@ -6456,7 +6457,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                 await voiceChannel.join().then(async connection => {
 
                     const stream = ytdl(GuessTheSong[ChosenSong][0]);
-                    const dispatcher = await connection.playStream(stream, {  volume: 0.25  });
+                    const dispatcher = await connection.playStream(stream, StreamOptions);
                   
                     //dispatcher.on('end', async reason => {});
 
