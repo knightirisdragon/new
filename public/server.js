@@ -6406,7 +6406,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
             var ChosenSong = Math.floor((Math.random() * GuessTheSong.length));
             var InfoMessages = [InfoIcon + " Full Song: <" + GuessTheSong[ChosenSong][0] + ">"];
 
-            await CurrentlyPlaying.add(message.guild.id);
+            CurrentlyPlaying.add(message.guild.id);
+            setTimeout(() => {CurrentlyPlaying.delete(message.author.id)}, 30000);
           
             if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT') && voiceChannel.permissionsFor(peeky.user).has('SPEAK'))  {
   
@@ -6434,7 +6435,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                           peeky.userData.math(key, "+", 5, "Gredit");
                       };
                       
-                      CurrentlyPlaying.delete(message.guild.id);
                       voiceChannel.leave();
                       
                       const embed = {"description": SuccessIcon +  " **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "** has guessed the song's name!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
@@ -6445,7 +6445,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
                       const embed = {"description": ErrorIcon + " The song's name was **" + GuessTheSong[ChosenSong][1] + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                       message.channel.send({  embed  });
                       
-                      CurrentlyPlaying.delete(message.guild.id);
                       voiceChannel.leave();
                     });
 
@@ -6475,7 +6474,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "triviaq
         var InfoMessages = [];
         var Answers = function_ShuffleArray(TriviaQuestions[ChosenQuestion].slice(1, 4));
 
-        await ActiveTrivias.add(message.guild.id);
+        ActiveTrivias.add(message.guild.id);
+        setTimeout(() => {ActiveTrivias.delete(message.author.id)}, 30000);
       
         const embed = {"description": "**" + TriviaQuestions[ChosenQuestion][0] + "**\n" + TriviaQuestions[ChosenQuestion][4] + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
         message.channel.send({  embed  });
@@ -6496,14 +6496,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "triviaq
 
              const embed = {"description": SuccessIcon +  " **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "** has chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
              message.channel.send({  embed  });
-
-             ActiveTrivias.delete(message.guild.id);
         })
         .catch(collected => {
               const embed = {"description": ErrorIcon + " The question's answer was **" + TriviaQuestions[ChosenQuestion][1][0] + "**.",  "color": EmbedColor}; 
               message.channel.send({  embed  });
-
-              ActiveTrivias.delete(message.guild.id);
         });
 
       
