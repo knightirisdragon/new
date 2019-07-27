@@ -2746,24 +2746,32 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
 };
   
 //Karma System
-if  (KarmaImages.findIndex(i => i[0] == reaction.message.id))  {
+if  (KarmaImages.findIndex(i => i[0] == reaction.message.id) && user.bot)  {
+          
+            console.log("ye ok");
   
     var ReactionEmoji1 = reaction.message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
     var ReactionEmoji2 = reaction.message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
   
     if  ((ReactionEmoji1 && reaction.emoji.name == ReactionEmoji1.name) || (reaction.emoji.id == DefaultUpvote))  {
+          
+            console.log("yay");
       
-        var Index = KarmaImages.findIndex(i => i[0] == reaction.message.id);
-      
+        var Index = KarmaImages.findIndex(i =>  i[0] == reaction.message.id);
+
         if  (Index >= 0)  {
           
-            if  (!KarmaImages[Index][1].includes(user.id))  {
+            console.log("hm");
+            
+            var Index2 = KarmaImages[Index][1].indexOf(user.id);
+            
+            if  (Index2 == -1)  {
 
                 KarmaImages[Index][1].push(user.id);
                 peeky.userData.math(user.id, "+", 1, "Karma");
-
+              
             };
-          
+
         };
         
     }
@@ -2773,10 +2781,14 @@ if  (KarmaImages.findIndex(i => i[0] == reaction.message.id))  {
 
           if  (Index >= 0)  {
             
-          var Index2 = KarmaImages[Index].indexOf(user.id)
+              var Index2 = KarmaImages[Index][1].indexOf(user.id);
+            
+              if  (Index2 == -1)  {
 
-              KarmaImages[Index][1].push(user.id);
-              peeky.userData.math(user.id, "-", 1, "Karma");
+                  KarmaImages[Index][1].push(user.id);
+                  peeky.userData.math(user.id, "-", 1, "Karma");
+              
+              };
 
           };
         
