@@ -756,7 +756,9 @@ const GuessTheSong = [
     ["https://www.youtube.com/watch?v=3kCWT57h4J0", "Devilman no Uta", "hard"],
     ["https://www.youtube.com/watch?v=dv13gl0a-FA", "Deja Vu", "medium"],
     ["https://www.youtube.com/watch?v=_ubnhgZgsfc", "Stronger", "medium"],
-    ["https://www.youtube.com/watch?v=zKFzKIa_pIM", "Chlorine", "easy"]
+    ["https://www.youtube.com/watch?v=zKFzKIa_pIM", "Chlorine", "easy"],
+    ["https://www.youtube.com/watch?v=HUHC9tYz8ik", "Bury a friend", "medium"],
+    ["https://www.youtube.com/watch?v=gBRi6aZJGj4", "Bellyache", "hard"]
   
 ];
 
@@ -775,9 +777,9 @@ const TriviaQuestions = [
     ["Which year was Minecraft released?", ["2009"], ["2010"], ["2008"], "Video Games"],
     ["Resident Evil 7 was released in which year?", ["2017"], ["2016"], ["2018"], "Video Games"],
     ["Name of the character abused by Mario?", ["Donkey Kong"], ["Yoshi"], ["Luigi"], "Video Games"],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
+    ["How many layers are there in the Sun?", ["6"], ["4"], ["10"], "Space"],
+    ["How much water is evaporated every day?", ["1 Trillion Tons"], ["58 Billion Tons"], ["100 Trillion Tons"], "Biology"],
+    ["Unlike most other fish, sharks have no ...?", [""], [""], [""], ""],
     ["", [""], [""], [""], ""],
     ["", [""], [""], [""], ""],
     ["", [""], [""], [""], ""],
