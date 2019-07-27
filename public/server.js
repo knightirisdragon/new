@@ -1348,6 +1348,7 @@ peeky.on('message', async (message) => {
         Description: function_RandomDescription(),
         Inventory: [1],
         Gredit: 0,
+        Karma: 0,
         Exp: 1,
         Level: 1,
         Chests: 0,
@@ -2245,42 +2246,6 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
 
 };
     
-//Role Saver
-if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
-
-  if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
-    
-      if  (peeky.serverData.has(keySF, "role_saver_array"))  {
-      
-          var SavedRoles = peeky.serverData.get(keySF, "role_saver_array");
-        
-          SavedRoles.forEach(current => {
-            
-              if  (current[0] == member.user.id)  {
-                
-                  const ValidRoles = [];
-                
-                  current[1].forEach(role => {
-                      
-                    if  (member.guild.roles.find(r => r.id == role))  {
-                        ValidRoles.push(role);
-                    };                  
-                    
-                  });
-                
-                  member.setRoles(ValidRoles).catch(error => ErrorBag.add(error));
-    
-                  console.log("The Role Saver function has been triggered in " + member.guild.name + ".");
-                
-              };
-            
-          });  
-      };
-
-  };
-
-};
-    
 //Nickname Saver
 if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
 
@@ -2781,30 +2746,36 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
 };
   
 //Karma System
-if  (KarmaImage.findIndex(i => i[0] == reaction.message.id))  {
+if  (KarmaImages.findIndex(i => i[0] == reaction.message.id))  {
   
     var ReactionEmoji1 = reaction.message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
     var ReactionEmoji2 = reaction.message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
   
     if  ((ReactionEmoji1 && reaction.emoji.name == ReactionEmoji1.name) || (reaction.emoji.id == DefaultUpvote))  {
       
-        var Index = KarmaImage.findIndex(i => i[0] == reaction.message.id);
+        var Index = KarmaImages.findIndex(i => i[0] == reaction.message.id);
       
-        if  (!KarmaImage[Index][1].includes(user.id))  {
+        if  (Index >= 0)  {
           
-            KarmaImage[Index][1].push(user.id);
-            peeky.userData.math(user.id, "+", 1, "Karma");
+            if  (!KarmaImages[Index][1].includes(user.id))  {
+
+                KarmaImages[Index][1].push(user.id);
+                peeky.userData.math(user.id, "+", 1, "Karma");
+
+            };
           
         };
         
     }
     else  if  ((ReactionEmoji2 && reaction.emoji.name == ReactionEmoji2.name) || (reaction.emoji.id == DefaultDownvote))  {
       
-          var Index = KarmaImage.findIndex(i => i[0] == reaction.message.id);
+          var Index = KarmaImages.findIndex(i => i[0] == reaction.message.id);
 
-          if  (!KarmaImage[Index][1].includes(user.id))  {
+          if  (Index >= 0)  {
+            
+          var Index2 = KarmaImages[Index].indexOf(user.id)
 
-              KarmaImage[Index][1].push(user.id);
+              KarmaImages[Index][1].push(user.id);
               peeky.userData.math(user.id, "-", 1, "Karma");
 
           };
@@ -3256,7 +3227,7 @@ if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
          await message.react(ReactionEmoji1).catch(error => ErrorBag.add(error));
          await message.react(ReactionEmoji2).catch(error => ErrorBag.add(error));
       
-         KarmaImages.push(message.id, [message.author.id]);
+         KarmaImages.push([message.id, [message.author.id]]);
 
          console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
         }
@@ -3265,7 +3236,7 @@ if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
          await message.react(DefaultUpvote).catch(error => ErrorBag.add(error));
          await message.react(DefaultDownvote).catch(error => ErrorBag.add(error));
       
-         KarmaImages.push(message.id, [message.author.id]);
+         KarmaImages.push([message.id, [message.author.id]]);
 
          console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
         };
@@ -5775,7 +5746,7 @@ if (!ProfileCooldown.has(message.author.id)) {
       
     //Karma String
     ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + 0 + " Karma", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
+    ctx.fillText("" + peeky.userData.get(key2, "Karma") + " Karma", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
       
     //Badges String
     ctx.font = "15px " + DefaultFont;
