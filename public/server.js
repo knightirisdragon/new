@@ -56,6 +56,7 @@ const CurrentlyStreaming     = new Set();
 const ClearedNames           = new Set();
 const QueuedSOSMessages      = new Set();
 const CurrentlyPlaying       = new Set();
+const ActiveTrivias          = new Set();
 const WebsiteCooldowns       = new Set();  //Auto Wipe, Website stats, Featured Profile, etc.
 const GainCooldown           = new Set();
 const ProfileBoosterCooldown = new Set();
@@ -6426,39 +6427,45 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
   
 };
 
-//GuessTheSong  
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessthesong"))  {
+//TriviaQuestions  
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "triviaquestions"))  {
 
-    if  (!CurrentlyPlaying.has(message.guild.id))  {
+    if  (!ActiveTrivias.has(message.guild.id))  {
 
-            var ChosenQuestion = Math.floor((Math.random() * TriviaQuestions.length));
-            var InfoMessages = [];
-                    message.channel.awaitMessages(response => response.content.toLowerCase().includes(GuessTheSong[ChosenSong][1].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
-                    .then(collected => {
-                      var key = collected.first().author.id;
+        var ChosenQuestion = Math.floor((Math.random() * TriviaQuestions.length));
+        var InfoMessages = [];
+        var Answers = function_ShuffleArray(TriviaQuestions[ChosenQuestion].slice(1, 4));
+
+        await ActiveTrivias.add(message.guild.id);
+      
+        const embed = {"description": InfoIcon + " Ok so, " + TriviaQuestions[ChosenQuestion][0] + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
+        message.channel.send({  embed  });
+    
+        message.channel.awaitMessages(response => response.content.toLowerCase().includes(TriviaQuestions[ChosenQuestion][1].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
+        .then(collected => {
+            var key = collected.first().author.id;
                         
-                      //Gamer Badge
-                      if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
-                          peeky.userData.set(key, true, "GamerBadge");
-                          InfoMessages.push(InfoMessage1[0]);
-                      };
+            //Gamer Badge
+            if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
+                peeky.userData.set(key, true, "GamerBadge");
+                InfoMessages.push(InfoMessage1[0]);
+            };
                       
-                      if  (peeky.userData.has(key))  {
-                          peeky.userData.math(key, "+", 5, "Gredit");
-                      };
-                      
-                      CurrentlyPlaying.delete(message.guild.id);                      
-                      const embed = {"description": SuccessIcon +  " Congratulations, **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "**, you've guessed the song's name!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                      message.channel.send({  embed  });
-                      
-                    })
-                    .catch(collected => {
-                      const embed = {"description": ErrorIcon + " The song's name was **" + GuessTheSong[ChosenSong][1] + "**.",  "color": EmbedColor}; 
-                      message.channel.send({  embed  });
-                      
-                      CurrentlyPlaying.delete(message.guild.id);
-                      voiceChannel.leave();
-                    });
+            if  (peeky.userData.has(key))  {
+                peeky.userData.math(key, "+", 5, "Gredit");
+            };                   
+            
+            const embed = {"description": SuccessIcon +  " Congratulations, **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "**, you've chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            message.channel.send({  embed  });
+          
+            ActiveTrivias.delete(message.guild.id);
+        })
+        .catch(collected => {
+              const embed = {"description": ErrorIcon + " The question's answer was **" + TriviaQuestions[ChosenQuestion][1] + "**.",  "color": EmbedColor}; 
+              message.channel.send({  embed  });
+          
+              ActiveTrivias.delete(message.guild.id);
+        });
 
       
     } else {
