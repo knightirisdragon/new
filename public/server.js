@@ -91,7 +91,8 @@ const CoinImage         = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873
 const ExpImage          = "https://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fexp.png?v=1564224431507";
 const LevelImage        = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_level.png?1541260281702";
 const ChestImage        = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051";
-const BadgesImage       = "http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fbadges.png?v=1564223240455";
+const BadgesImage       = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbadges.png?v=1564245176155";
+const KarmaImage        = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fkarma.png?v=1564244903816";
 const XPImage           = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2FScreenshot_141.png?1543781509470";
 const BackpackImage     = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_backpack.png?1546614356449";
 
@@ -5733,16 +5734,18 @@ if (!ProfileCooldown.has(message.author.id)) {
     //Chests String
     ctx.font = "15px " + DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 45, 140, canvas.width / 2 - 50);
-    
-    /* 
-    //Exp String
-    ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Exp").toLocaleString('en') + " Exp", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
       
     //Badges String
     ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
-    */
+    ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
+      
+    //Karma String
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + 0 + " Karma", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
+
+    //Exp String
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Exp").toLocaleString('en') + " Exp", canvas.width / 2 + 45, 175, canvas.width / 2 - 50);
 
     //Backpack String
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
@@ -5750,7 +5753,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     } else {  var CustomBackgroundAmount = 0;  };
       
     ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 45, 175);
+    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 45, 175, canvas.width / 2 - 50);
     
     //Description String
     var text = peeky.userData.get(key2, "Description");
@@ -5776,15 +5779,17 @@ if (!ProfileCooldown.has(message.author.id)) {
     const backpack_icon = await Canvas.loadImage(BackpackImage);
     ctx.drawImage(backpack_icon, 10, 155, 27, 27);
 
-    /*
     //Exp Icon
     const exp_icon = await Canvas.loadImage(ExpImage);
-    ctx.drawImage(exp_icon, canvas.width / 2 + 10, 87, 27, 27);
+    ctx.drawImage(exp_icon, canvas.width / 2 + 10, 155, 27, 27);
 
     //Badges Icon
     const badges_icon = await Canvas.loadImage(BadgesImage);
     ctx.drawImage(badges_icon, canvas.width / 2 + 10, 120, 27, 27);
-    */
+
+    //Badges Icon
+    const karma_icon = await Canvas.loadImage(KarmaImage);
+    ctx.drawImage(karma_icon, canvas.width / 2 + 10, 87, 27, 27);
 
     //Progress Bar
     const progress_bar = await Canvas.loadImage(XPImage);
