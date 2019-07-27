@@ -6438,7 +6438,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "triviaq
 
         await ActiveTrivias.add(message.guild.id);
       
-        const embed = {"description": InfoIcon + " " + TriviaQuestions[ChosenQuestion][0] + "\n" + Hollow + " Category: " + TriviaQuestions[ChosenQuestion][4] + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
+        const embed = {"description": "**" + TriviaQuestions[ChosenQuestion][0] + "**\n" + TriviaQuestions[ChosenQuestion][4] + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
         message.channel.send({  embed  });
     
         message.channel.awaitMessages(response => response.content.toLowerCase().includes(TriviaQuestions[ChosenQuestion][1][0].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
