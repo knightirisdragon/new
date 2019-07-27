@@ -88,10 +88,10 @@ const DefaultBackground = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602
 const NoBackground      = "http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2FNA%20Background.png?v=1563929199191"
 const PrismPattern      = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern_assets.png?1554545063162";
 const CoinImage         = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542";
-const ExpImage          = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_xp.png?1541260284097";
+const ExpImage          = "https://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fexp.png?v=1564224431507";
 const LevelImage        = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_level.png?1541260281702";
 const ChestImage        = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051";
-const BadgesImage       = "http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fbadges.png?v=1564223240455"
+const BadgesImage       = "http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fbadges.png?v=1564223240455";
 const XPImage           = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2FScreenshot_141.png?1543781509470";
 const BackpackImage     = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_backpack.png?1546614356449";
 
@@ -5745,7 +5745,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     const backpack_icon = await Canvas.loadImage(BackpackImage);
     ctx.drawImage(backpack_icon, 10, 155, 27, 27);
 
-    //Backpack Icon
+    //Badges Icon
     const badges_icon = await Canvas.loadImage(BadgesImage);
     ctx.drawImage(badges_icon, canvas.width / 2 + 10, 85, 27, 27);
 
