@@ -5759,9 +5759,11 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.font = "15px " + DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
 
+    /*
     //Exp String
     ctx.font = "15px " + DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Exp").toLocaleString('en') + " Exp", canvas.width / 2 + 45, 175, canvas.width / 2 - 50);
+    */
 
     //Backpack String
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
@@ -5803,9 +5805,11 @@ if (!ProfileCooldown.has(message.author.id)) {
     const badges_icon = await Canvas.loadImage(BadgesImage);
     ctx.drawImage(badges_icon, canvas.width / 2 + 10, 120, 27, 27);
 
+    /*
     //Exp Icon
     const exp_icon = await Canvas.loadImage(ExpImage);
     ctx.drawImage(exp_icon, canvas.width / 2 + 10, 155, 27, 27);
+    */
 
     //Progress Bar
     const progress_bar = await Canvas.loadImage(XPImage);
