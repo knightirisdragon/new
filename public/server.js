@@ -628,7 +628,8 @@ const Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground365.png?v=1564058813872", 475, "Joergen's rollercoaster", "u/neytirixx", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground366.png?v=1564058885585", 500, "Dangerous hunt", "Monster Hunters World", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground367.png?v=1564068410313", 300, "Pillar men", "Jojo's Bizarre Adventure", undefined],
-    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground368.png?v=1564068462711", 350, "Canary", "Unknown", undefined]
+    ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground368.png?v=1564068462711", 350, "Canary", "Unknown", undefined],
+    ["http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fbackground369.png?v=1564222331497", 500, "Dead men", "Kane and Lynch Dead Men", undefined]
 
 ];
 const DefaultDescriptions = [  
@@ -1322,6 +1323,7 @@ peeky.on('message', async (message) => {
         Exp: 1,
         Level: 1,
         Chests: 0,
+        Badges: 0,
         UpgradedServers: 0,
       
         //Music
@@ -5703,6 +5705,10 @@ if (!ProfileCooldown.has(message.author.id)) {
     //Chests String
     ctx.font = "15px " + DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 45, 140);
+      
+    //Badges String
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Chests", 45, 140);
 
     //Backpack String
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
