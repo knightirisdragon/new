@@ -6016,7 +6016,7 @@ if (!ProfileCooldown.has(message.author.id)) {
 //Play 
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play "))  {
   
-    if  (!CurrentlyPlaying.has(message.guild.id))  {
+    if  (!CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
 
     var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
     var Type = "Started";
@@ -6086,7 +6086,10 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
               
             await voiceChannel.join().then(async connection => {
 
-            await CurrentlyPlaying.add(message.guild.id);
+            CurrentlyPlaying.add(message.guild.id);
+      
+            MusicCmdCooldown.add(message.guild.id);
+            setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
           
             peeky.serverData.set(keySF, Title, "Title");
             peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
@@ -6407,7 +6410,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
             var InfoMessages = [InfoIcon + " Full Song: <" + GuessTheSong[ChosenSong][0] + ">"];
 
             CurrentlyPlaying.add(message.guild.id);
-            setTimeout(() => {CurrentlyPlaying.delete(message.author.id)}, 30000);
+            setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 30000);
           
             if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT') && voiceChannel.permissionsFor(peeky.user).has('SPEAK'))  {
   
@@ -6475,7 +6478,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "triviaq
         var Answers = function_ShuffleArray(TriviaQuestions[ChosenQuestion].slice(1, 4));
 
         ActiveTrivias.add(message.guild.id);
-        setTimeout(() => {ActiveTrivias.delete(message.author.id)}, 30000);
+        setTimeout(() => {ActiveTrivias.delete(message.guild.id)}, 30000);
       
         const embed = {"description": "**" + TriviaQuestions[ChosenQuestion][0] + "**\n" + TriviaQuestions[ChosenQuestion][4] + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
         message.channel.send({  embed  });
