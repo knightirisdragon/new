@@ -793,9 +793,9 @@ const TriviaQuestions = [
     ["Which war took place between 1950 and 1953?", ["The Korean War"], ["The second World War"], ["Nothing"], "History"],
     ["Who was the first democratically elected President of Russia?", ["Boris Yeltsin"], ["Vladimir Putin"], ["Nikita Krushcev"], "History"],
     ["What did ancient Egyptians use as pillows?", ["Stones"], ["Animal Pelts"], ["Bundles of Wheat"], "History"],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""],
-    ["", [""], [""], [""], ""]
+    ["In the film Babe, what type of animal was Babe?", ["Pig"], ["Dog"], ["Bunny"], "Other"],
+    ["What’s the total number of dots on a pair of dice?", ["42"], ["6"], ["64"], "Other"],
+    ["Which is the tallest mammal?", ["Giraffe"], ["Sauropod"], ["Whale"], "Biology"]
   
 ];
 
