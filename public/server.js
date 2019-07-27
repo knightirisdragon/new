@@ -173,7 +173,7 @@ const PainterEmote      = "<:painter:581575158855368724>";
 const MinerEmote        = "<:miner:582777441592934410>";
 const BoosterEmote      = "<:booster:589786301759488050>";
 const GamerEmote        = "<:gamer:604426153524068354>";
-const EvilEmote         = "<:evil:604813297514184711>";
+const EvilEmote         = "<:evil:604817305247023117>";
 const GoodEmote         = "<:good:604813296717266955>";
 
 //Other Emotes
@@ -2780,6 +2780,15 @@ if  (!user.bot && KarmaImages.findIndex(i => i[0] == reaction.message.id) >= 0) 
                 KarmaImages[Index][1].push(user.id);
                 peeky.userData.math(reaction.message.author.id, "+", 1, "Karma");
               
+                if  (peeky.userData.get(reaction.message.author.id, "Karma") == 50)  {
+                  
+                    if  (peeky.userData.has(key) && peeky.userData.get(key, "GoodBadge") == false)  {
+                        peeky.userData.set(key, true, "GoodBadge");
+                        peeky.userData.set(key, false, "EvilBadge");
+                    };                    
+                  
+                };
+              
             };
 
         };
@@ -2798,6 +2807,15 @@ if  (!user.bot && KarmaImages.findIndex(i => i[0] == reaction.message.id) >= 0) 
 
                 KarmaImages[Index][1].push(user.id);
                 peeky.userData.math(reaction.message.author.id, "-", 1, "Karma");
+              
+                if  (peeky.userData.get(reaction.message.author.id, "Karma") == -50)  {
+                  
+                    if  (peeky.userData.has(key) && peeky.userData.get(key, "EvilBadge") == false)  {
+                        peeky.userData.set(key, true, "EvilBadge");
+                        peeky.userData.set(key, false, "GoodBadge");
+                    };                    
+                  
+                };
               
             };
 
@@ -5647,6 +5665,8 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (peeky.userData.get(key2, "VoterBadge") == true)                                                 {  Badges.push(VoterEmote + " Voter")  };
     if  (peeky.userData.get(key2, "PublisherBadge") == true)                                             {  Badges.push(PublisherEmote + " Publisher")  };
     if  (peeky.userData.get(key2, "PartyBadge") == true)                                                 {  Badges.push(PartyEmote + " Party")  };
+    if  (peeky.userData.get(key2, "EvilBadge") == true)                                                  {  Badges.push(EvilEmote + " Evil")  };
+    if  (peeky.userData.get(key2, "GoodBadge") == true)                                                  {  Badges.push(GoodEmote + " Good")  };
     if  (peeky.userData.get(key2, "OwnershipBadge") == true)                                             {  Badges.push(OwnershipEmote + " Ownership")  };
     if  (peeky.userData.get(key2, "MinerBadge") == true)                                                 {  Badges.push(MinerEmote + " Miner")  };
     if  (peeky.userData.get(key2, "GamerBadge") == true)                                                 {  Badges.push(GamerEmote + " Gamer")  };
@@ -5904,16 +5924,16 @@ if (!ProfileCooldown.has(message.author.id)) {
 
     //Evil  Icon
     if  (BadgeAmount < MaxBadges)  {
-    const publisher_icon = await Canvas.loadImage(PartyImage);
-    if  (peeky.userData.get(key2, "PartyBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(publisher_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    const evil_icon = await Canvas.loadImage(EvilImage);
+    if  (peeky.userData.get(key2, "EvilBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(evil_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
     };
 
     //Good Icon
     if  (BadgeAmount < MaxBadges)  {
-    const publisher_icon = await Canvas.loadImage(PartyImage);
+    const good_icon = await Canvas.loadImage(GoodImage);
     if  (peeky.userData.get(key2, "GoodBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(publisher_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    ctx.drawImage(good_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
     };
 
     //Party Icon
