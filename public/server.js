@@ -633,7 +633,10 @@ const Banners = [
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground367.png?v=1564068410313", 300, "Pillar men", "Jojo's Bizarre Adventure", undefined],
     ["http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground368.png?v=1564068462711", 350, "Canary", "Unknown", undefined],
     ["http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fbackground369.png?v=1564222331497", 500, "Dead men", "Kane and Lynch Dead Men", undefined],
-    ["http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fbackground370.png?v=1564225161116", 475, "Journey", "u/BeastScrollGames", undefined]
+    ["http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fbackground370.png?v=1564225161116", 475, "Journey", "u/BeastScrollGames", undefined],
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground371.png?v=1564261114754", 500, "Campfire tales", "Unknown", undefined],
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground372.jpg?v=1564261330942", 425, "Orcs vs. humans", "Unknown", undefined],
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground373.jpg?v=1564261391413", 450, "The fire sorcerer", "Unknown", undefined]
 
 ];
 const DefaultDescriptions = [  
