@@ -51,6 +51,7 @@ const ErrorBag               = new Set();
 const FailedVoteChecks       = new Set();
 const FalseMsgIDs            = new Set();
 const FloodProtectionStrikes = [];
+const KarmaImages            = [];
 const LoggedMessages         = new Set();
 const CurrentlyStreaming     = new Set();
 const ClearedNames           = new Set();
@@ -2778,6 +2779,20 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
     };
   
 };
+  
+//Karma System
+if  (KarmaImage.includes(reaction.message.id))  {
+  
+    var ReactionEmoji1 = reaction.message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
+    var ReactionEmoji2 = reaction.message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
+  
+    if  (ReactionEmoji1 && reaction.emoji.name == ReactionEmoji1.name || reaction.emoji.id == DefaultUpvote)  {
+      
+        
+      
+    };
+  
+};
 
 if  (peeky.userData.has(key) && peeky.channelData.has(keyCF) && peeky.serverData.has(keySF) && reaction.message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
   
@@ -3221,6 +3236,8 @@ if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
     if  (ReactionEmoji1 && ReactionEmoji2)  {
          await message.react(ReactionEmoji1).catch(error => ErrorBag.add(error));
          await message.react(ReactionEmoji2).catch(error => ErrorBag.add(error));
+      
+         KarmaImages.push(message.id, [message.author.id]);
 
          console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
         }
@@ -3228,6 +3245,8 @@ if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
         { 
          await message.react(DefaultUpvote).catch(error => ErrorBag.add(error));
          await message.react(DefaultDownvote).catch(error => ErrorBag.add(error));
+      
+         KarmaImages.push(message.id, [message.author.id]);
 
          console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
         };
@@ -5735,13 +5754,13 @@ if (!ProfileCooldown.has(message.author.id)) {
     ctx.font = "15px " + DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 45, 140, canvas.width / 2 - 50);
       
-    //Badges String
-    ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
-      
     //Karma String
     ctx.font = "15px " + DefaultFont;
     ctx.fillText("" + 0 + " Karma", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
+      
+    //Badges String
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
 
     //Exp String
     ctx.font = "15px " + DefaultFont;
@@ -5779,17 +5798,17 @@ if (!ProfileCooldown.has(message.author.id)) {
     const backpack_icon = await Canvas.loadImage(BackpackImage);
     ctx.drawImage(backpack_icon, 10, 155, 27, 27);
 
-    //Exp Icon
-    const exp_icon = await Canvas.loadImage(ExpImage);
-    ctx.drawImage(exp_icon, canvas.width / 2 + 10, 155, 27, 27);
+    //Karma Icon
+    const karma_icon = await Canvas.loadImage(KarmaImage);
+    ctx.drawImage(karma_icon, canvas.width / 2 + 10, 85, 27, 27);
 
     //Badges Icon
     const badges_icon = await Canvas.loadImage(BadgesImage);
     ctx.drawImage(badges_icon, canvas.width / 2 + 10, 120, 27, 27);
 
-    //Badges Icon
-    const karma_icon = await Canvas.loadImage(KarmaImage);
-    ctx.drawImage(karma_icon, canvas.width / 2 + 10, 87, 27, 27);
+    //Exp Icon
+    const exp_icon = await Canvas.loadImage(ExpImage);
+    ctx.drawImage(exp_icon, canvas.width / 2 + 10, 155, 27, 27);
 
     //Progress Bar
     const progress_bar = await Canvas.loadImage(XPImage);
