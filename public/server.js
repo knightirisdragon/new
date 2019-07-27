@@ -452,7 +452,7 @@ const Banners = [
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground186.jpg?1548191942331", 375, "Zombie virus", "Unknown", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground187.png?1548198438043", 400, "Prism pattern", "Unknown", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground188.png?1548440856335", 300, "Gamers arise!", "TheVoiceOverPete", undefined],
-    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground189.png?1548787581218", 300, "End stronghold", "Unknown", undefined],
+    ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground189.png?1548787581218", 300, "End stronghold", "Jeracraft", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground190.png?1548787620678", 425, "The hat", "Telltale's The Walking Dead", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground191.png?1549491879583", 250, "Retribution", "SpectreGames", undefined],
     ["http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground192.png?1550519837303", 450, "Sunset view", "Vojtěch Jílovec", `108899856889737216`],
