@@ -6438,32 +6438,32 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "triviaq
 
         await ActiveTrivias.add(message.guild.id);
       
-        const embed = {"description": InfoIcon + " Ok so, " + TriviaQuestions[ChosenQuestion][0] + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
+        const embed = {"description": InfoIcon + " " + TriviaQuestions[ChosenQuestion][0] + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
         message.channel.send({  embed  });
     
-        message.channel.awaitMessages(response => response.content.toLowerCase().includes(TriviaQuestions[ChosenQuestion][1].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
+        message.channel.awaitMessages(response => response.content.toLowerCase().includes("test"), { maxMatches: 1, time: 30000, errors: ['time'] })
         .then(collected => {
-            var key = collected.first().author.id;
-                        
-            //Gamer Badge
-            if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
-                peeky.userData.set(key, true, "GamerBadge");
-                InfoMessages.push(InfoMessage1[0]);
-            };
-                      
-            if  (peeky.userData.has(key))  {
-                peeky.userData.math(key, "+", 5, "Gredit");
-            };                   
-            
-            const embed = {"description": SuccessIcon +  " Congratulations, **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "**, you've chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-            message.channel.send({  embed  });
-          
-            ActiveTrivias.delete(message.guild.id);
+             var key = collected.first().author.id;
+
+             //Gamer Badge
+             if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
+                 peeky.userData.set(key, true, "GamerBadge");
+                 InfoMessages.push(InfoMessage1[0]);
+             };
+
+             if  (peeky.userData.has(key))  {
+                 peeky.userData.math(key, "+", 10, "Gredit");
+             };
+
+             const embed = {"description": SuccessIcon +  " Congratulations, " + Function_RemoveFormatting(collected.first().author.username, "other", true) + ", you've chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+             message.channel.send({  embed  });
+
+             ActiveTrivias.delete(message.guild.id);
         })
         .catch(collected => {
-              const embed = {"description": ErrorIcon + " The question's answer was **" + TriviaQuestions[ChosenQuestion][1] + "**.",  "color": EmbedColor}; 
+              const embed = {"description": ErrorIcon + " The question's answer was " + TriviaQuestions[ChosenQuestion][1] + ".",  "color": EmbedColor}; 
               message.channel.send({  embed  });
-          
+
               ActiveTrivias.delete(message.guild.id);
         });
 
