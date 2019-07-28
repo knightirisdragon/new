@@ -49,7 +49,6 @@ const https      = require('https');
 //Sets and arrays
 const ErrorBag               = new Set();
 const FailedVoteChecks       = new Set();
-const FalseMsgIDs            = new Set();
 const FloodProtectionStrikes = [];
 const KarmaImages            = [];
 const LoggedMessages         = new Set();
