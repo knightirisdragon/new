@@ -808,6 +808,11 @@ const TriviaQuestions = [
   
 ];
 
+const DrawAndGuess = [
+  
+  
+];
+
 //FUNCTIONS
 
 //CANVAS: Welcome Messages embed
