@@ -6919,17 +6919,18 @@ if  (GivenRole && GivenRole.name !== "@everyone") {
 };
   
 //Prefix
-if  (message.content.startsWith(Prefix + "prefix "))  {
+if (CommandName.startsWith("prefix "))  {
 
-    if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+    if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-            var NewPrefix = message.content.split(Prefix + "prefix ")[1].toLowerCase();
+            const InfoMessages = [InfoIcon + " If the server prefix is broken, contact one of my developers."];
+            var   NewPrefix    = CommandName.split("prefix ")[1].toLowerCase();
 
             peeky.serverData.set(keySF, NewPrefix, "prefix");
 
-            const embed = {"description": SuccessIcon + " The server prefix is now **" + NewPrefix + "**.",  "color": EmbedColor}; 
+            const embed = {"description": SuccessIcon + " The server prefix is now **" + NewPrefix + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
