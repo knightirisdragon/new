@@ -3675,23 +3675,38 @@ if  (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true)  {
 };
 
 //COMMANDS
-if  (message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && message.content.startsWith(peeky.serverData.get(keySF, "prefix")) && !message.webhookID && !message.author.bot)  {
+if  (!message.author.bot && !message.webhookID && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+  
+//Mention Commands
+if  (message.mentions.members.first() && message.mentions.members.first().id == PeekyId)  {
+  
+    const embed = {
+                  "description": "**Server's Prefix:** " + peeky.serverData.get(keySF, "prefix"),
+                  "color": EmbedColor
+    };
+
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  
+};
+  
+//Prefixed Commands
+if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
   
 //Misc. Commands
 
 //Help
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))  {
 
-    const embed = {
-                    "description": "**Website** [[Open]](https://peeky.glitch.me/)\nYou can visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related." + 
-                                   "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + "?buyer=" + message.author.id + ")\nYou can support PEEKY by purchasing some neat items from the store!" +
-                                   "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\nYou can join the Support Server for important announcements, assistance with the bot, giveaways and much more!" +
-                                   "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\nYou can add PEEKY to your server and get all the features for free and under a minute!",
-                    "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
-                    "color": 7506394
-      };
+    const HelpEmbed = {
+                  "description": "**Website** [[Open]](https://peeky.glitch.me/)\nYou can visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related." + 
+                                 "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + "?buyer=" + message.author.id + ")\nYou can support PEEKY by purchasing some neat items from the store!" +
+                                 "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\nYou can join the Support Server for important announcements, assistance with the bot, giveaways and much more!" +
+                                 "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\nYou can add PEEKY to your server and get all the features for free and under a minute!",
+                  "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
+                  "color": 7506394
+    };
 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 };
   
@@ -7006,9 +7021,11 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 };
 
 };
-
   
 };
+  
+};
+
 };  
 };
 });
