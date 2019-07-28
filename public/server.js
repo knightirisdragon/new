@@ -6637,28 +6637,37 @@ if (CommandName.startsWith("drawandguess"))  {
         ActiveMinigames.add(message.guild.id);
         setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 90000);
       
-        const embed = {"description": "**Draw the word " + DrawAndGuess[ChosenQuestion] + " in under 1 minute and send it to me!**",  "color": EmbedColor}; 
-        message.channel.send({  embed,  file: "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fempty_canvas.png"  });
+        const embed = {"description": "**Draw the word " + DrawAndGuess[ChosenQuestion] + " in under 1 minute!**",  "color": EmbedColor}; 
+        message.author.send({  embed,  file: "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fempty_canvas.png"  });
     
-        message.author.awaitMessages(response => response.attachments.array().length > 0, { maxMatches: 1, time: 60000, errors: ['time'] })
+        message.channel.awaitMessages(response => response.author.id == message.author.id && response.attachments.array().length > 0, { maxMatches: 1, time: 60000, errors: ['time'] })
         .then(collected => {
-             var key = collected.first().author.id;
+          
+            message.channel.awaitMessages(response => response.author.id !== message.author.id && response.content.toLowerCase().includes(DrawAndGuess[ChosenQuestion].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
+            .then(collected => {
+                 var key = collected.first().author.id;
 
-             //Gamer Badge
-             if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
-                 peeky.userData.set(key, true, "GamerBadge");
-                 InfoMessages.push(InfoMessage1[0]);
-             };
+                 //Gamer Badge
+                 if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
+                     peeky.userData.set(key, true, "GamerBadge");
+                     InfoMessages.push(InfoMessage1[0]);
+                 };
 
-             if  (peeky.userData.has(key))  {
-                 peeky.userData.math(key, "+", 25, "Gredit");
-             };
+                 if  (peeky.userData.has(key))  {
+                     peeky.userData.math(key, "+", 100, "Gredit");
+                 };
 
-             const embed = {"description": SuccessIcon +  " **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "** has chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-             message.channel.send({  embed  });
+                 const embed = {"description": SuccessIcon +  " **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "** has guessed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                 message.channel.send({  embed  });
+            })
+            .catch(collected => {
+                const embed = {"description": ErrorIcon + " The word was **" + DrawAndGuess[ChosenQuestion] + "**.",  "color": EmbedColor}; 
+                message.channel.send({  embed  });
+            });
+             
         })
         .catch(collected => {
-              const embed = {"description": ErrorIcon + " The question's answer was **" + TriviaQuestions[ChosenQuestion][1][0] + "**.",  "color": EmbedColor}; 
+              const embed = {"description": ErrorIcon + " Sorry, but **" + message.author.username + "** has ran out of time to draw.",  "color": EmbedColor}; 
               message.channel.send({  embed  });
         });
 
