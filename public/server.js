@@ -810,6 +810,28 @@ const TriviaQuestions = [
 
 const DrawAndGuess = [
   
+    "Life",
+    "Happiness",
+    "Goal",
+    "School",
+    "Board",
+    "Sun",
+    "Space",
+    "Videogame",
+    "Restaurant",
+    "Discord",
+    "Worker",
+    "Website",
+    "Face",
+    "Human",
+    "PEEKY",
+    "Smile",
+    "Dog",
+    "Cat",
+    "Creeper",
+    "Devil",
+    "Fridge",
+    "Rose"
   
 ];
 
@@ -6575,6 +6597,50 @@ if (CommandName.startsWith("triviaquestions"))  {
         message.channel.send({  embed  });
     
         message.channel.awaitMessages(response => response.content.toLowerCase().includes(TriviaQuestions[ChosenQuestion][1][0].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
+        .then(collected => {
+             var key = collected.first().author.id;
+
+             //Gamer Badge
+             if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
+                 peeky.userData.set(key, true, "GamerBadge");
+                 InfoMessages.push(InfoMessage1[0]);
+             };
+
+             if  (peeky.userData.has(key))  {
+                 peeky.userData.math(key, "+", 25, "Gredit");
+             };
+
+             const embed = {"description": SuccessIcon +  " **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "** has chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+             message.channel.send({  embed  });
+        })
+        .catch(collected => {
+              const embed = {"description": ErrorIcon + " The question's answer was **" + TriviaQuestions[ChosenQuestion][1][0] + "**.",  "color": EmbedColor}; 
+              message.channel.send({  embed  });
+        });
+
+      
+    } else {
+      const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+  
+};
+
+//DrawAndGuess  
+if (CommandName.startsWith("drawandguess"))  {
+
+    if  (!ActiveMinigames.has(message.guild.id))  {
+
+        var ChosenQuestion = Math.floor((Math.random() * DrawAndGuess.length));
+        var InfoMessages = [];
+
+        ActiveMinigames.add(message.guild.id);
+        setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 90000);
+      
+        const embed = {"description": "**Draw the word " + DrawAndGuess[ChosenQuestion] + " in under 1 minute and send it to me!**",  "color": EmbedColor}; 
+        message.channel.send({  embed,  file: "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fempty_canvas.png"  });
+    
+        message.author.awaitMessages(response => response.attachments.array().length > 0, { maxMatches: 1, time: 60000, errors: ['time'] })
         .then(collected => {
              var key = collected.first().author.id;
 
