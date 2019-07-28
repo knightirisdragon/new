@@ -6642,6 +6642,9 @@ if (CommandName.startsWith("drawandguess"))  {
     
         message.channel.awaitMessages(response => response.author.id == message.author.id && response.attachments.array().length > 0, { maxMatches: 1, time: 60000, errors: ['time'] })
         .then(collected => {
+
+            const embed = {"description": InfoIcon + " Try to guess the word that **" + message.author.username + "** has drawn!",  "color": EmbedColor}; 
+            message.channel.send({  embed  });
           
             message.channel.awaitMessages(response => response.author.id !== message.author.id && response.content.toLowerCase().includes(DrawAndGuess[ChosenQuestion].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
             .then(collected => {
