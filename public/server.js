@@ -56,7 +56,7 @@ const CurrentlyStreaming     = new Set();
 const ClearedNames           = new Set();
 const QueuedSOSMessages      = new Set();
 const CurrentlyPlaying       = new Set();
-const ActiveTrivias          = new Set();
+const ActiveMinigames        = new Set();
 const WebsiteCooldowns       = new Set();  //Auto Wipe, Website stats, Featured Profile, etc.
 const GainCooldown           = new Set();
 const ProfileBoosterCooldown = new Set();
@@ -173,7 +173,7 @@ const MinerEmote        = "<:miner:582777441592934410>";
 const BoosterEmote      = "<:booster:589786301759488050>";
 const GamerEmote        = "<:gamer:604426153524068354>";
 const EvilEmote         = "<:evil:604817305247023117>";
-const GoodEmote         = "<:good:604813296717266955>";
+const GoodEmote         = "<:good:605138883138551838>";
 
 //Other Emotes
 const ErrorIcon    = "<:peeky_error:529412267343872031>";
@@ -6484,7 +6484,7 @@ if (CommandName.startsWith("skip"))  {
 //GuessTheSong  
 if (CommandName.startsWith("guessthesong"))  {
 
-    if  (!CurrentlyPlaying.has(message.guild.id))  {
+    if  (!CurrentlyPlaying.has(message.guild.id) && !ActiveMinigames.has(message.guild.id))  {
 
         if  (message.member.voiceChannel)  {
           
@@ -6494,6 +6494,9 @@ if (CommandName.startsWith("guessthesong"))  {
 
             CurrentlyPlaying.add(message.guild.id);
             setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 30000);
+
+            ActiveMinigames.add(message.guild.id);
+            setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 30000);
           
             if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT') && voiceChannel.permissionsFor(peeky.user).has('SPEAK'))  {
   
@@ -6554,14 +6557,14 @@ if (CommandName.startsWith("guessthesong"))  {
 //TriviaQuestions  
 if (CommandName.startsWith("triviaquestions"))  {
 
-    if  (!ActiveTrivias.has(message.guild.id))  {
+    if  (!ActiveMinigames.has(message.guild.id))  {
 
         var ChosenQuestion = Math.floor((Math.random() * TriviaQuestions.length));
         var InfoMessages = [];
         var Answers = function_ShuffleArray(TriviaQuestions[ChosenQuestion].slice(1, 4));
 
-        ActiveTrivias.add(message.guild.id);
-        setTimeout(() => {ActiveTrivias.delete(message.guild.id)}, 30000);
+        ActiveMinigames.add(message.guild.id);
+        setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 30000);
       
         const embed = {"description": "**" + TriviaQuestions[ChosenQuestion][0] + "**\n" + TriviaQuestions[ChosenQuestion][4] + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
         message.channel.send({  embed  });
