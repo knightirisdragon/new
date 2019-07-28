@@ -6925,7 +6925,7 @@ if (CommandName.startsWith("prefix "))  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-            const InfoMessages = [InfoIcon + " If the server prefix is broken, contact one of my developers."];
+            const InfoMessages = [InfoIcon + " If the server prefix is broken, join the Support Server."];
             var   NewPrefix    = CommandName.split("prefix ")[1].toLowerCase();
 
             peeky.serverData.set(keySF, NewPrefix, "prefix");
