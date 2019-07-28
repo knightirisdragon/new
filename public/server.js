@@ -3679,7 +3679,7 @@ if  (!message.author.bot && !message.webhookID && message.channel.permissionsFor
 //Mention Commands
   
 //Help
-if  ((message.mentions.members.first() && message.mentions.members.first().id == PeekyId) || message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help"))  {
+if  ((message.mentions.members.first() && message.mentions.members.first().id == PeekyId) || (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help")))  {
     
     const embed = {  "description": 
                          "**Website** [[Open]](https://peeky.glitch.me/)\nYou can visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related." + 
@@ -3698,17 +3698,15 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
 //Prefixed Commands
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
   
-var Command
-  
-//Misc. Commands
+var CommandName = message.content.replace(peeky.serverData.get(keySF, "prefix"), "");
   
 //Get
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "get "))  {
+if  (CommandName.startsWith("get "))  {
     message.channel.send("`" + Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get", true) + "`").catch(error => ErrorBag.add(error));
 };
 
 //Eval
-if (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eval "))  {
+if (CommandName.startsWith("eval "))  {
     
     if (message.author.id == OwnerId) {
        
@@ -3743,7 +3741,7 @@ if (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eval "))
 };
 
 //EventRewards
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eventrewards"))  {
+if (CommandName.startsWith("eventrewards"))  {
   
     if  (OngoingEvent == true && peeky.userData.get(key, "CelebratorBadge") == false)  {
       
@@ -3760,7 +3758,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "eventre
 };
 
 //Upgrade
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade"))  {
+if (CommandName.startsWith("upgrade"))  {
 
     const PeekySupportServer = peeky.guilds.get(SupportServer);
     const TheUserWithRole    = PeekySupportServer.members.get(message.author.id);
@@ -3797,7 +3795,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "upgrade
 };
 
 //SetInvite
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "setinvite"))  {
+if (CommandName.startsWith("setinvite"))  {
   
 if  (!SetInviteCooldown.has(message.guild.id))  {
 
@@ -3844,11 +3842,9 @@ if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
 };
 
 };
-
-//Function Commands
       
 //Overview
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "overview"))  {
+if (CommandName.startsWith("overview"))  {
   
 if  (!OverviewCooldown.has(message.guild.id))  {
          
@@ -3875,8 +3871,8 @@ if  (!OverviewCooldown.has(message.guild.id))  {
 
 };
 
-//TOGGLE COMMANDS
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "toggle "))  {
+//Toggle
+if (CommandName.startsWith("toggle "))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
@@ -4580,10 +4576,10 @@ if  (FunctioName.startsWith("spoiler lock"))  {
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
-}; //END
+};
 
-//SET COMMANDS
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "set "))  {
+//Set
+if (CommandName.startsWith("set "))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
@@ -4925,9 +4921,9 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < GameRolesL
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
-}; //END
+};
 
-//CLEAR COMMANDS
+//Clear
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "clear "))  {
   
     var FunctioName = message.content.split(peeky.serverData.get(keySF, "prefix") + "clear ")[1];
@@ -4978,11 +4974,9 @@ if  (FunctioName.startsWith("game roles"))  {
 };
 
 };
-      
-//Profile Commands
 
 //BuyDescription
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "buydescription "))  {
+if (CommandName.startsWith("buydescription "))  {
       
     var NewDescription = message.content.split(peeky.serverData.get(keySF, "prefix") + "buydescription ")[1];
 
@@ -5036,7 +5030,7 @@ if  (NewLinesCount < 2)  {
 };
   
 //BuyBackground  
-if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "buybackground "))  {
+if (CommandName.startsWith("buybackground "))  {
 
 for(var i = 1; i <= Banners.length; i++) {
   
@@ -5110,7 +5104,7 @@ if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
 };
   
 //CustomBackground
-if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "custombackground"))  {
+if (CommandName.startsWith("custombackground"))  {
   
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {
   
@@ -5157,7 +5151,7 @@ if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "custom
 };
   
 //SetBackground
-if  (message.content.startsWith( peeky.serverData.get(keySF, "prefix") + "setbackground "))  {
+if (CommandName.startsWith("setbackground "))  {
 
 for (var i = 1; i <= Banners.length; i++) {
   
@@ -5202,7 +5196,7 @@ if  (peeky.userData.get(key, "Inventory").includes(i))  {
 };
   
 //SellBackground
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "sellbackground "))  {
+if (CommandName.startsWith("sellbackground "))  {
   
     var i = message.content.split(peeky.serverData.get(keySF, "prefix") + "sellbackground ")[1]; 
     var InfoMessages = []; 
@@ -5298,7 +5292,7 @@ if  (i !== 1)  {
 };
 
 //Open
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "open"))  {  
+if (CommandName.startsWith("open"))  {
 
 if  (!ProfileCooldown.has(message.author.id))  {
   
@@ -5394,7 +5388,7 @@ if  (peeky.userData.get(key, "Chests") >= 1)  {
 };
 
 //Daily
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily"))  {
+if (CommandName.startsWith("daily"))  {
 
     let cooldown     = 8.64e+7;
     let lastDaily    = peeky.userData.get(key, "DailyRewarded");
@@ -5480,7 +5474,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "daily")
 };
 
 //Gift
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "gift "))  {
+if (CommandName.startsWith("gift "))  {
 
 if  (!ProfileCooldown.has(message.author.id))  {
       
@@ -5636,7 +5630,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
 };
   
 //Inventory
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "inventory"))  {
+if (CommandName.startsWith("inventory"))  {
   
 if  (!ProfileCooldown.has(message.author.id)) {
       
@@ -5722,7 +5716,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
 };
 
 //Profile
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "profile"))  {
+if (CommandName.startsWith("profile"))  {
   
 if (!ProfileCooldown.has(message.author.id)) {
       
@@ -6103,10 +6097,8 @@ if (!ProfileCooldown.has(message.author.id)) {
          };
 };
 
-//Music Commands
-
 //Play 
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play "))  {
+if (CommandName.startsWith("play "))  {
   
     if  (!CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
 
@@ -6281,7 +6273,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "play ")
 };
 
 //Current
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current"))  {
+if (CommandName.startsWith("current"))  {
       
     if  (!MusicCmdCooldown.has(message.author.id))  {
 
@@ -6313,7 +6305,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "current
 };
 
 //Playlist
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlist"))  {
+if (CommandName.startsWith("playlist"))  {
       
     if  (!MusicCmdCooldown.has(message.author.id))  {
 
@@ -6458,7 +6450,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "playlis
 };
 
 //Skip
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))  {
+if (CommandName.startsWith("skip"))  {
       
     if  (CurrentlyPlaying.has(message.guild.id))  {
       
@@ -6488,10 +6480,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "skip"))
 
 };
 
-//Minigame Commands
-
 //GuessTheSong  
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessthesong"))  {
+if (CommandName.startsWith("guessthesong"))  {
 
     if  (!CurrentlyPlaying.has(message.guild.id))  {
 
@@ -6561,7 +6551,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "guessth
 };
 
 //TriviaQuestions  
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "triviaquestions"))  {
+if (CommandName.startsWith("triviaquestions"))  {
 
     if  (!ActiveTrivias.has(message.guild.id))  {
 
@@ -6605,10 +6595,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "triviaq
   
 };
 
-//Moderation Commands
-
 //Mute
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "mute "))  {
+if (CommandName.startsWith("mute "))  {
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
     
@@ -6675,7 +6663,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 };
 
 //Unmute
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "unmute "))  {
+if (CommandName.startsWith("unmute "))  {
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
     
@@ -6742,7 +6730,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 };
 
 //IDBan
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "idban "))  {
+if (CommandName.startsWith("idban "))  {
 
     if  (message.member.permissions.has("BAN_MEMBERS")) {
     
@@ -6799,7 +6787,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "idban "
 };
   
 //Ban
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "ban "))  {
+if (CommandName.startsWith("ban "))  {
 
 if  (message.member.permissions.has("BAN_MEMBERS"))  {
     
@@ -6844,7 +6832,7 @@ if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions
 };
 
 //Purge
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "purge "))  {
+if (CommandName.startsWith("purge "))  {
 
     if  (message.member.permissions.has("MANAGE_MESSAGES"))  {
     
@@ -6889,7 +6877,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "purge "
 };
   
 //Lockdown
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "lockdown "))  {
+if (CommandName.startsWith("lockdown"))  {
 
 if  (message.member.permissions.has("MANAGE_CHANNELS")) {
     
@@ -6933,34 +6921,35 @@ if  (GivenRole && GivenRole.name !== "@everyone") {
 //Prefix
 if  (message.content.startsWith(Prefix + "prefix "))  {
 
-if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+    if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
-if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
-  
-    var NewPrefix = message.content.split(Prefix + "prefix ")[1].toLowerCase();
-  
-    peeky.serverData.set(keySF, NewPrefix, "prefix");
-  
-    const embed = {"description": SuccessIcon + " The server prefix is now **" + NewPrefix + "**.",  "color": EmbedColor}; 
-    await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-}
- else
-{
- const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-  
-}
- else
-{      
-  const embed = {"description": PermissionsMessageError2[0],  "color": EmbedColor}; 
-  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
+        if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+
+            var NewPrefix = message.content.split(Prefix + "prefix ")[1].toLowerCase();
+
+            peeky.serverData.set(keySF, NewPrefix, "prefix");
+
+            const embed = {"description": SuccessIcon + " The server prefix is now **" + NewPrefix + "**.",  "color": EmbedColor}; 
+            await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+        }
+         else
+        {
+         const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+    }
+     else
+    {      
+      const embed = {"description": PermissionsMessageError2[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
 };
   
 //MuteRole
-if  (message.content.startsWith(Prefix + "muterole "))  {
+if (CommandName.startsWith("muterole "))  {
 
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
