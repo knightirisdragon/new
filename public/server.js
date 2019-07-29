@@ -6550,8 +6550,16 @@ if (CommandName.startsWith("guessthesong"))  {
 
                     const stream = ytdl(GuessTheSong[ChosenSong][0]);
                     const dispatcher = await connection.playStream(stream, StreamOptions);
+                    const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (30 / 60));
                   
                     //dispatcher.on('end', async reason => {});
+          
+                    peeky.serverData.set(keySF, "Guess the Song", "Title");
+                    peeky.serverData.set(keySF, DefaultBackground, "Thumbnail");
+                    peeky.serverData.set(keySF, "", "Author");
+                    peeky.serverData.set(keySF, LengthDate, "Length");
+                    peeky.serverData.set(keySF, new Date(), "Started");
+                    peeky.serverData.set(keySF, "", "Link");
 
                     const embed = {"description": "**Try to guess the name of this song!**" + "\n" + GuessTheSong[ChosenSong][2],  "color": EmbedColor}; 
                     message.channel.send({  embed  });
