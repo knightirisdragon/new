@@ -640,7 +640,10 @@ const Banners = [
     ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground371.png?v=1564261114754", 500, "Campfire tales", "Unknown", undefined],
     ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground372.jpg?v=1564261330942", 425, "Orcs vs. humans", "Unknown", undefined],
     ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground373.jpg?v=1564261391413", 450, "The fire sorcerer", "Unknown", undefined],
-    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground374.jpg?v=1564346562475", 400, "Startdust battle", "Jojo's Bizarre Adventures", undefined]
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground374.jpg?v=1564346562475", 400, "Startdust battle", "Jojo's Bizarre Adventures", undefined],
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground375.jpg?v=1564395161731", 450, "Deadra warrior", "The Elder Scrolls V Skyrim", undefined],
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground376.jpg?v=1564395226382", 400, "Kunětická hora", "Bersekr21", `266579411162103808`],
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground377.jpg?v=1564395286909", 425, "Bunny rabbit", "Unknown", undefined]
 
 ];
 const DefaultDescriptions = [  
