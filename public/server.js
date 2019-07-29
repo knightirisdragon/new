@@ -831,7 +831,23 @@ const DrawAndGuess = [
     "Creeper",
     "Devil",
     "Fridge",
-    "Rose"
+    "Rose",
+    "Car",
+    "Donuts",
+    "Golfing",
+    "Deer",
+    "Storage",
+    "Spiderman",
+    "Parents",
+    "Sheep",
+    "Photographer",
+    "Bunny",
+    "Pikachu",
+    "Pokemon",
+    "Store",
+    "Dress",
+    "Grapes",
+    "Hero"
   
 ];
 
@@ -6637,13 +6653,16 @@ if (CommandName.startsWith("drawandguess"))  {
         ActiveMinigames.add(message.guild.id);
         setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 90000);
       
-        const embed = {"description": "**Draw the word " + DrawAndGuess[ChosenQuestion] + " in under 1 minute!**",  "color": EmbedColor}; 
-        message.author.send({  embed,  file: "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fempty_canvas.png"  });
+        var embed = {"description": "**Draw the word " + DrawAndGuess[ChosenQuestion] + " in under 1 minute!**",  "color": EmbedColor}; 
+        await message.author.send({  embed,  file: "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fempty_canvas.png"  });
+
+        var embed = {"description": InfoIcon + " **" + Function_RemoveFormatting(message.author.username, "other", true) + "** has 1 minute to draw their word!",  "color": EmbedColor}; 
+        message.channel.send({  embed  });
     
         message.channel.awaitMessages(response => response.author.id == message.author.id && response.attachments.array().length > 0, { maxMatches: 1, time: 60000, errors: ['time'] })
         .then(collected => {
 
-            const embed = {"description": InfoIcon + " Try to guess the word that **" + message.author.username + "** has drawn!",  "color": EmbedColor}; 
+            const embed = {"description": InfoIcon + " Try to guess the word that **" + Function_RemoveFormatting(message.author.username, "other", true) + "** has drawn!",  "color": EmbedColor}; 
             message.channel.send({  embed  });
           
             message.channel.awaitMessages(response => response.author.id !== message.author.id && response.content.toLowerCase().includes(DrawAndGuess[ChosenQuestion].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
@@ -6669,8 +6688,11 @@ if (CommandName.startsWith("drawandguess"))  {
             });
              
         })
-        .catch(collected => {
-              const embed = {"description": ErrorIcon + " Sorry, but **" + message.author.username + "** has ran out of time to draw.",  "color": EmbedColor}; 
+        .catch(async collected => {
+              var embed = {"description": ErrorIcon + "You've ran out of time.",  "color": EmbedColor}; 
+              await message.author.send({  embed,  file: "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fempty_canvas.png"  });
+          
+              var embed = {"description": ErrorIcon + " Sorry, but **" + Function_RemoveFormatting(message.author.username, "other", true) + "** has ran out of time to draw.",  "color": EmbedColor}; 
               message.channel.send({  embed  });
         });
 
