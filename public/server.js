@@ -6564,7 +6564,7 @@ if (CommandName.startsWith("guessthesong"))  {
                     const embed = {"description": "**Try to guess the name of this song!**" + "\n" + GuessTheSong[ChosenSong][2],  "color": EmbedColor}; 
                     message.channel.send({  embed  });
 
-                    message.channel.awaitMessages(response => response.content.toLowerCase().includes(GuessTheSong[ChosenSong][1].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
+                    message.channel.awaitMessages(response => response.content.toLowerCase() == GuessTheSong[ChosenSong][1].toLowerCase(), { maxMatches: 1, time: 30000, errors: ['time'] })
                     .then(collected => {
                       var key = collected.first().author.id;
                         
@@ -6623,7 +6623,7 @@ if (CommandName.startsWith("triviaquestions"))  {
         const embed = {"description": "**" + TriviaQuestions[ChosenQuestion][0] + "**\n" + TriviaQuestions[ChosenQuestion][4] + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
         message.channel.send({  embed  });
     
-        message.channel.awaitMessages(response => response.content.toLowerCase().includes(TriviaQuestions[ChosenQuestion][1][0].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
+        message.channel.awaitMessages(response => response.content.toLowerCase() == TriviaQuestions[ChosenQuestion][1][0].toLowerCase(), { maxMatches: 1, time: 30000, errors: ['time'] })
         .then(collected => {
              var key = collected.first().author.id;
 
@@ -6676,7 +6676,7 @@ if (CommandName.startsWith("drawandguess"))  {
             const embed = {"description": InfoIcon + " Try to guess the word that **" + Function_RemoveFormatting(message.author.username, "other", true) + "** has drawn!",  "color": EmbedColor}; 
             message.channel.send({  embed  });
           
-            message.channel.awaitMessages(response => response.author.id !== message.author.id && response.content.toLowerCase().includes(DrawAndGuess[ChosenQuestion].toLowerCase()), { maxMatches: 1, time: 30000, errors: ['time'] })
+            message.channel.awaitMessages(response => response.author.id !== message.author.id && response.content.toLowerCase() == DrawAndGuess[ChosenQuestion].toLowerCase(), { maxMatches: 1, time: 30000, errors: ['time'] })
             .then(collected => {
                  var key = collected.first().author.id;
 
