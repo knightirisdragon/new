@@ -6676,7 +6676,7 @@ if (CommandName.startsWith("drawandguess"))  {
                  };
 
                  if  (peeky.userData.has(key))  {
-                     peeky.userData.math(key, "+", 100, "Gredit");
+                     peeky.userData.math(key, "+", 50, "Gredit");
                  };
 
                  const embed = {"description": SuccessIcon +  " **" + Function_RemoveFormatting(collected.first().author.username, "other", true) + "** has guessed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
@@ -6688,11 +6688,8 @@ if (CommandName.startsWith("drawandguess"))  {
             });
              
         })
-        .catch(async collected => {
-              var embed = {"description": ErrorIcon + "You've ran out of time.",  "color": EmbedColor}; 
-              await message.author.send({  embed,  file: "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fempty_canvas.png"  });
-          
-              var embed = {"description": ErrorIcon + " Sorry, but **" + Function_RemoveFormatting(message.author.username, "other", true) + "** has ran out of time to draw.",  "color": EmbedColor}; 
+        .catch(collected => {          
+              const embed = {"description": ErrorIcon + " Sorry, but **" + Function_RemoveFormatting(message.author.username, "other", true) + "** has ran out of time to draw.",  "color": EmbedColor}; 
               message.channel.send({  embed  });
         });
 
