@@ -643,7 +643,11 @@ const Banners = [
     ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground374.jpg?v=1564346562475", 400, "Startdust battle", "Jojo's Bizarre Adventures", undefined],
     ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground375.jpg?v=1564395161731", 450, "Deadra warrior", "The Elder Scrolls V Skyrim", undefined],
     ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground376.jpg?v=1564395226382", 400, "Kunětická hora", "Bersekr21", `266579411162103808`],
-    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground377.jpg?v=1564395286909", 425, "Bunny rabbit", "Unknown", undefined]
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground377.jpg?v=1564395286909", 425, "Bunny rabbit", "Unknown", undefined],
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground378.jpg?v=1564447926358", 500, "New contract", "Hitman 2", undefined],
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground379.jpg?v=1564447989239", 250, "Horse friend", "Unknown", undefined],  
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground380.jpg?v=1564448048338", 425, "Japaneese terrace", "Unknown", undefined],
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground381.png?v=1564448236674", 400, "Desolate park", "Zach Soza", undefined]
 
 ];
 const DefaultDescriptions = [  
@@ -1787,7 +1791,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     
           BackgroundList.push(BackgroundString);
 
-          if  (background_info[1] <= 200 && Current !== 1)  {
+          if  (background_info[1] <= 250 && Current !== 1)  {
               CheapBackgrounds.push(BackgroundString);
           };
 
