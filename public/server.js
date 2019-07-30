@@ -647,7 +647,8 @@ const Banners = [
     ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground378.jpg?v=1564447926358", 500, "New contract", "Hitman 2", undefined],
     ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground379.jpg?v=1564447989239", 250, "Horse friend", "Unknown", undefined],  
     ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground380.jpg?v=1564448048338", 425, "Japaneese terrace", "Unknown", undefined],
-    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground381.png?v=1564448236674", 400, "Desolate park", "Zach Soza", undefined]
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground381.png?v=1564448236674", 400, "Desolate park", "Zach Soza", undefined],
+    ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground382.jpg?v=1564448921669", 250, "Playful dogs", "Unknown", undefined]
 
 ];
 const DefaultDescriptions = [  
