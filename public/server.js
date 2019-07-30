@@ -6979,18 +6979,22 @@ if (CommandName.startsWith("purge "))  {
 
             await message.delete().catch(error => ErrorBag.add(error));
 
-            message.channel.bulkDelete(BulkAmount).catch(error => ErrorBag.add(error)).then(() => {
-
-            const embed = {"description":  SuccessIcon + " I have purged **" + BulkAmount + " messages** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
+            message.channel.bulkDelete(BulkAmount).catch(error => {
+                const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                ErrorBag.add(error); Failed = true;
             });
+
+            if  (Failed == false)  {
+                const embed = {"description":  SuccessIcon + " I have purged **" + BulkAmount + " messages** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
           
         }
          else
         {
           
-         const embed = {"description": ErrorIcon + " You can only purge between 1 and 100 messages.",  "color": EmbedColor}; 
+         const embed = {"description": ErrorIcon + " You can only purge 1 to 100 messages.",  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         
         };
