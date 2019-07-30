@@ -6223,15 +6223,17 @@ if (CommandName.startsWith("play "))  {
           await ytdl.getBasicInfo(GivenSong).then(async (info) => {
 
             info = info.player_response.videoDetails;
+            //console.log(info);
               
             const Thumbnail  = info.thumbnail.thumbnails[info.thumbnail.thumbnails.length - 1].url;
             const Title      = info.title;
-            const Author     = info.author.name;
+            const Author     = info.author;
             const Length     = info.lengthSeconds;
             const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
             const Started    = new Date();
+            const Livestream = info.isLiveContent;
           
-            if  (Length <= 600 && Length > 0)  {
+            if  (Length <= 600 && Livestream == false)  {
               
             await voiceChannel.join().then(async connection => {
 
