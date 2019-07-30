@@ -6204,12 +6204,14 @@ if (CommandName.startsWith("play "))  {
     
     if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT') && voiceChannel.permissionsFor(peeky.user).has('SPEAK'))  {
 
-        await ytdl.getBasicInfo(GivenSong).then(async (info) => {
+          await ytdl.getBasicInfo(GivenSong).then(async (info) => {
+
+            info = info.player_response.videoDetails;
               
-            const Thumbnail  = info.player_response.videoDetails.thumbnail.thumbnails[info.player_response.videoDetails.thumbnail.thumbnails.length - 1].url;
+            const Thumbnail  = info.thumbnail.thumbnails[info.thumbnail.thumbnails.length - 1].url;
             const Title      = info.title;
             const Author     = info.author.name;
-            const Length     = info.length_seconds;
+            const Length     = info.lengthSeconds;
             const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
             const Started    = new Date();
           
