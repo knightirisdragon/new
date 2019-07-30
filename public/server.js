@@ -652,11 +652,13 @@ const Banners = [
 
 ];
 const DefaultDescriptions = [  
+
     "I'm very busy and important.",
     "I sip water quite slowly.",
     "Battery low, I'm scared.",
     "I have a car for each day of the month.",
-    "I make up a dream in my head before I go to bed.", "My life is a green screen.",
+    "I make up a dream in my head before I go to bed.",
+    "My life is a green screen.",
     "I don't believe in showers.",
     "Certified troublemaker.",
     "I'm a Bacon Guru.",
@@ -679,7 +681,10 @@ const DefaultDescriptions = [
     "I walk faster when I see a creepy van.",
     "More than meets the eye.",
     "I draw on fogged up windows.",
-    "Born at a very young age."
+    "Born at a very young age.",
+    "Is this a JoJo reference?",
+    "I did not set this description, I think."
+
 ];
 
 const RandomAvatars = [  
@@ -737,7 +742,8 @@ const RandomSongs = [
     "https://www.youtube.com/watch?v=vOXZkm9p_zY",
     "https://www.youtube.com/watch?v=d5Ql4Sjo-GU",
     "https://www.youtube.com/watch?v=zKFzKIa_pIM",
-    "https://www.youtube.com/watch?v=PoVgCOCt4KA"
+    "https://www.youtube.com/watch?v=PoVgCOCt4KA",
+    "https://www.youtube.com/watch?v=Sk-U8ruIQyA"
   
 ];
 
@@ -777,8 +783,9 @@ const GuessTheSong = [
     ["https://www.youtube.com/watch?v=zKFzKIa_pIM", "Chlorine", "Easy"],
     ["https://www.youtube.com/watch?v=HUHC9tYz8ik", "Bury a friend", "Medium"],
     ["https://www.youtube.com/watch?v=gBRi6aZJGj4", "Bellyache", "Hard"],
-    ["https://www.youtube.com/watch?v=k1ATPhkVWi0", "My Strange Addiction", "Medium"]
-    ["https://www.youtube.com/watch?v=PoVgCOCt4KA", "Alien Boy", "Medium"]
+    ["https://www.youtube.com/watch?v=k1ATPhkVWi0", "My Strange Addiction", "Medium"],
+    ["https://www.youtube.com/watch?v=PoVgCOCt4KA", "Alien Boy", "Medium"],
+    ["https://www.youtube.com/watch?v=Sk-U8ruIQyA", "Blood // Water", "hard"]
   
 ];
 
@@ -812,7 +819,7 @@ const TriviaQuestions = [
     ["What did ancient Egyptians use as pillows?", ["Stones"], ["Animal Pelts"], ["Bundles of Wheat"], "History"],
     ["In the film Babe, what type of animal was Babe?", ["Pig"], ["Dog"], ["Bunny"], "Other"],
     ["What’s the total number of dots on a pair of dice?", ["42"], ["6"], ["64"], "Other"],
-    ["Which is the tallest mammal?", ["Giraffe"], ["Sauropod"], ["Whale"], "Biology"]
+    ["Which of these is the tallest mammal?", ["Giraffe"], ["Sauropod"], ["Whale"], "Biology"]
   
 ];
 
