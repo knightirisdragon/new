@@ -862,7 +862,11 @@ const DrawAndGuess = [
     "Store",
     "Dress",
     "Grapes",
-    "Hero"
+    "Hero",
+    "Minecraft",
+    "Weapon",
+    "Sleep",
+    "Fruit"
   
 ];
 
