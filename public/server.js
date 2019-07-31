@@ -6167,7 +6167,7 @@ if (CommandName.startsWith("play "))  {
   
     if  (!CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
 
-    var GivenSong = CommandName.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
+    var GivenSong = CommandName.replace("play ", "");
     var Type = "Started";
     var DeleteMessage = true;
     var ChoosingMode = true;
@@ -6175,18 +6175,18 @@ if (CommandName.startsWith("play "))  {
       
     if  (GivenSong !== RandomString && GivenSong !== "previous" && GivenSong !== "playlist")  {
 
-        search(GivenSong, SearchOptions, function(error, results) {
+        await search(GivenSong, SearchOptions, function(error, results)  {
 
-        if  (error) return ErrorBag.add(error);
+            if  (error) return ErrorBag.add(error);
 
-        if  (results.length > 0)  {
+            if  (results.length > 0)  {
 
-            GivenSong = results[0].link;
-            ChoosingMode = false;
+                GivenSong = results[0].link;
+                ChoosingMode = false;
 
-        } else {
-          IsRandom = true;
-        };
+            } else {
+              IsRandom = true;
+            };
 
         });
       
@@ -6233,6 +6233,8 @@ if (CommandName.startsWith("play "))  {
     };
       
     if  (!GivenSong.includes("?list="))  {
+      
+    console.log(GivenSong)
       
     if  ((GivenSong) && (ytdl.validateURL(GivenSong) == true))  {
 
