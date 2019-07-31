@@ -6240,8 +6240,8 @@ if (CommandName.startsWith("play "))  {
             await voiceChannel.join().then(async connection => {
 
             CurrentlyPlaying.add(message.guild.id);
-      
             MusicCmdCooldown.add(message.guild.id);
+
             setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
           
             peeky.serverData.set(keySF, Title, "Title");
