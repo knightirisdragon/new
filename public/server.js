@@ -1026,6 +1026,24 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
 
 };
 
+async function function_YoutubeSearch(text)  {
+  
+    await search(text, SearchOptions, function(error, results)  {
+
+        if  (error) return ErrorBag.add(error);
+
+        if  (results.length > 0)  {
+          
+            setTimeout() {}, )
+
+            return results[0].link;
+              
+        };
+
+    });
+  
+};
+
 //Remove Formatting
 function Function_RemoveFormatting(text, type, sliced)  {
     
@@ -6215,7 +6233,8 @@ if (CommandName.startsWith("play "))  {
       
     if  (ChoosingMode == true)  {
       
-        function_YouTubeSearch(GivenSong);
+        GivenSong    = function_YoutubeSearch(GivenSong);
+        ChoosingMode = false;
       
     };
       
