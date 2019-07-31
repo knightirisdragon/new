@@ -6390,6 +6390,7 @@ if  (CommandName.startsWith("current"))  {
 
 };
 
+/*
 //Search
 if (CommandName.startsWith("search "))  {
       
@@ -6435,6 +6436,7 @@ if (CommandName.startsWith("search "))  {
     };
 
 };
+*/
 
 //Playlist
 if (CommandName.startsWith("playlist"))  {
