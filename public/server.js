@@ -1026,24 +1026,6 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
 
 };
 
-async function function_YoutubeSearch(text)  {
-  
-    await search(text, SearchOptions, function(error, results)  {
-
-        if  (error) return ErrorBag.add(error);
-
-        if  (results.length > 0)  {
-          
-            setTimeout() {}, )
-
-            return results[0].link;
-              
-        };
-
-    });
-  
-};
-
 //Remove Formatting
 function Function_RemoveFormatting(text, type, sliced)  {
     
@@ -6231,12 +6213,17 @@ if (CommandName.startsWith("play "))  {
     };
     };
       
-    if  (ChoosingMode == true)  {
-      
-        GivenSong    = function_YoutubeSearch(GivenSong);
-        ChoosingMode = false;
-      
-    };
+    search(text, SearchOptions, async function(error, results)  {
+
+        if  (error) return ErrorBag.add(error);
+
+        if  (results.length > 0)  {
+            console.log(GivenSong)
+            console.log(results[0]);
+          
+            GivenSong = results[0].link;
+            DeleteMessage = false;
+        };
       
     if  (!GivenSong.includes("?list="))  {
       
@@ -6248,7 +6235,7 @@ if (CommandName.startsWith("play "))  {
     
     if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT') && voiceChannel.permissionsFor(peeky.user).has('SPEAK'))  {
 
-          await ytdl.getBasicInfo(GivenSong).then(async (info) => {
+            await ytdl.getBasicInfo(GivenSong).then(async (info) => {
 
             info = info.player_response.videoDetails;
             //console.log(info);
@@ -6357,6 +6344,8 @@ if (CommandName.startsWith("play "))  {
       const embed = {"description": ErrorIcon + " You cannot play a YouTube playlist.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
+
+    });
       
     }
      else
