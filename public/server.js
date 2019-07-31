@@ -6342,7 +6342,7 @@ if (CommandName.startsWith("play "))  {
 };
 
 //Current
-if (CommandName.startsWith("current"))  {
+if  (CommandName.startsWith("current"))  {
       
     if  (!MusicCmdCooldown.has(message.author.id))  {
 
@@ -6383,7 +6383,9 @@ if (CommandName.startsWith("search "))  {
       
         var SearchPhrase = CommandName.replace("search ", "");
       
-        search(SearchPhrase, SearchOptions, function(err, results) {
+        search(SearchPhrase, SearchOptions, function(error, results) {
+          
+        if  (error) return ErrorBag.add(error);
         
         if  (results.length > 0)  {
           
@@ -6404,14 +6406,10 @@ if (CommandName.startsWith("search "))  {
             });
           
         } else {
-          const embed = {"description": ErrorIcon + " No video found. Try different key words!",  "color": EmbedColor}; 
+          const embed = {"description": ErrorIcon + " No video found - Try different key words!",  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
           
-        }).catch(error => { 
-           const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
-           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-           ErrorBag.add(error);
         });
 
     } else {
@@ -6609,10 +6607,9 @@ if (CommandName.startsWith("guessthesong"))  {
             var InfoMessages = [InfoIcon + " Full Song: <" + GuessTheSong[ChosenSong][0] + ">"];
 
             CurrentlyPlaying.add(message.guild.id);
-            setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 30000);
-
             ActiveMinigames.add(message.guild.id);
-            setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 30000);
+            setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)
+                              ActiveMinigames.delete(message.guild.id)}, 30000);
           
             if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT') && voiceChannel.permissionsFor(peeky.user).has('SPEAK'))  {
   
