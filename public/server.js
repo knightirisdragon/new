@@ -6172,6 +6172,10 @@ if (CommandName.startsWith("play "))  {
     var DeleteMessage = true;
     var ChoosingMode = true;
     var IsRandom = false;
+      
+    MusicCmdCooldown.add(message.guild.id);
+
+    setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
   
     if  (GivenSong == RandomString && ChoosingMode == true)  {
         GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
@@ -6239,8 +6243,8 @@ if (CommandName.startsWith("play "))  {
 
             await ytdl.getBasicInfo(GivenSong).then(async (info) => {
 
+            CurrentlyPlaying.add(message.guild.id);
             info = info.player_response.videoDetails;
-            //console.log(info);
               
             const Thumbnail  = info.thumbnail.thumbnails[info.thumbnail.thumbnails.length - 1].url;
             const Title      = info.title;
@@ -6253,11 +6257,6 @@ if (CommandName.startsWith("play "))  {
             if  (Length <= 600 && Livestream == false)  {
               
             await voiceChannel.join().then(async connection => {
-
-            CurrentlyPlaying.add(message.guild.id);
-            MusicCmdCooldown.add(message.guild.id);
-
-            setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
           
             peeky.serverData.set(keySF, Title, "Title");
             peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
