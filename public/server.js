@@ -3767,7 +3767,7 @@ var CommandName = message.content.replace(peeky.serverData.get(keySF, "prefix"),
   
 //Get
 if  (CommandName.startsWith("get "))  {
-    message.channel.send("`" + Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get", true) + "`").catch(error => ErrorBag.add(error));
+    message.channel.send("`" + Function_RemoveFormatting(CommandName.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get", true) + "`").catch(error => ErrorBag.add(error));
 };
 
 //Eval
@@ -3782,7 +3782,7 @@ if (CommandName.startsWith("eval "))  {
       return text;
     };
        
-    var EvalResult = message.content.split(peeky.serverData.get(keySF, "prefix") + "eval ")[1]
+    var EvalResult = CommandName.split(peeky.serverData.get(keySF, "prefix") + "eval ")[1]
 
     try {
       const code = EvalResult;
@@ -3943,7 +3943,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
-    var FunctioName = message.content.split(peeky.serverData.get(keySF, "prefix") + "toggle ")[1];
+    var FunctioName = CommandName.split(peeky.serverData.get(keySF, "prefix") + "toggle ")[1];
     var InfoMessages = [];
     var ManageChannels = false;
     var ManageRoles = false;
@@ -4650,12 +4650,12 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
-    var FunctioName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set ")[1];
+    var FunctioName = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set ")[1];
       
 //Set Welcome Messages
 if  (FunctioName.startsWith("welcome messages "))  {
 
-    var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set welcome messages ")[1];
+    var ChannelName = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set welcome messages ")[1];
     var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
     peeky.serverData.set(keySF, FixedChannelName, "welcome_messages_bonus_setting");
 
@@ -4669,7 +4669,7 @@ else
 //Set Join Role
 if  (FunctioName.startsWith("join role "))  {
     
-    var RoleName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set join role ")[1];
+    var RoleName = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set join role ")[1];
     peeky.serverData.set(keySF, Function_RemoveFormatting(RoleName, "role"), "join_role_bonus_setting", true);
 
     const embed = {"description": SuccessIcon + " The **Join Role** setting has been set to **@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "**.",  "color": EmbedColor}; 
@@ -4682,7 +4682,7 @@ else
 //Set Streamer Role
 if  (FunctioName.startsWith("streamer role "))  {
     
-    var RoleName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set streamer role ")[1];
+    var RoleName = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set streamer role ")[1];
     peeky.serverData.set(keySF, Function_RemoveFormatting(RoleName, "role"), "streamer_role_bonus_setting", true);
 
     const embed = {"description": SuccessIcon + " The **Streamer Role** setting has been set to **@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "**.",  "color": EmbedColor}; 
@@ -4695,7 +4695,7 @@ else
 //Set Automatic Reactions
 if  (FunctioName.startsWith("automatic reactions "))  {
 
-    var ReactionName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set automatic reactions ")[1];
+    var ReactionName = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set automatic reactions ")[1];
     var FixedReactionName = Function_RemoveFormatting(ReactionName, "other", true);
     peeky.serverData.set(keySF, FixedReactionName, "automatic_reactions_bonus_setting");
     
@@ -4709,7 +4709,7 @@ else
 //Set Classification Wall
 if  (FunctioName.startsWith("classification wall "))  {
 
-    var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set classification wall ")[1];
+    var ChannelName = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set classification wall ")[1];
     peeky.serverData.set(keySF, Function_RemoveFormatting(ChannelName, "role"), "donor_wall_bonus_setting", true);
     peeky.serverData.set(keySF, Function_RemoveFormatting(ChannelName, "channel") + "s", "donor_wall_bonus_channel", true);
 
@@ -4723,7 +4723,7 @@ else
 //Set Member Counter
 if  (FunctioName.startsWith("member counter "))  {
 
-    var CounterName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set member counter ")[1];
+    var CounterName = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set member counter ")[1];
       
     peeky.serverData.set(keySF, Function_RemoveFormatting(CounterName, "other"), "member_counter_bonus_setting", true);
 
@@ -4737,7 +4737,7 @@ else
 //Set Event Countdown
 if  (FunctioName.startsWith("event countdown "))  {
 
-    var Timestamp = message.content.split(peeky.serverData.get(keySF, "prefix") + "set event countdown ")[1];
+    var Timestamp = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set event countdown ")[1];
 
     if  (!isNaN(Timestamp))  {
 
@@ -4762,7 +4762,7 @@ else
 //Set Spoiler Lock
 if  (FunctioName.startsWith("spoiler lock "))  {
 
-    var GivenMinutes = message.content.split(peeky.serverData.get(keySF, "prefix") + "set spoiler lock ")[1];
+    var GivenMinutes = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set spoiler lock ")[1];
 
     if  (!isNaN(GivenMinutes) && GivenMinutes >= 0)   {
 
@@ -4787,7 +4787,7 @@ else
 //Set Server Trial
 if  (FunctioName.startsWith("server trial "))  {
     
-    var GivenMinutes = message.content.split(peeky.serverData.get(keySF, "prefix") + "set server trial ")[1];
+    var GivenMinutes = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set server trial ")[1];
 
     if  (!isNaN(GivenMinutes) && GivenMinutes > 0)   {
 
@@ -4810,7 +4810,7 @@ else
 //Set Suspicion Alert
 if  (FunctioName.startsWith("suspicion alert "))  {
 
-    var BanAmount = message.content.split(peeky.serverData.get(keySF, "prefix") + "set suspicion alert ")[1];
+    var BanAmount = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set suspicion alert ")[1];
 
     if  (isNaN(BanAmount) == false) {
 
@@ -4833,7 +4833,7 @@ else
 //Set Vote Kick
 if  (FunctioName.startsWith("vote kick "))  {
 
-    var VoteAmount = message.content.split(peeky.serverData.get(keySF, "prefix") + "set vote kick ")[1];
+    var VoteAmount = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set vote kick ")[1];
 
     if  (isNaN(VoteAmount) == false && VoteAmount > 0) {
 
@@ -4856,7 +4856,7 @@ else
 //Set Message Log
 if  (FunctioName.startsWith("message log "))  {
     
-    var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set message log ")[1];
+    var ChannelName = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set message log ")[1];
     var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
 
     peeky.serverData.set(keySF, FixedChannelName, "message_log_bonus_setting");
@@ -4871,7 +4871,7 @@ else
 //Set Message Log
 if  (FunctioName.startsWith("stream announcements "))  {
 
-    var ChannelName = message.content.split(peeky.serverData.get(keySF, "prefix") + "set stream announcements ")[1];
+    var ChannelName = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set stream announcements ")[1];
     var FixedChannelName = Function_RemoveFormatting(ChannelName, "channel", true);
 
     peeky.serverData.set(keySF, FixedChannelName, "stream_announcements_bonus_setting");
@@ -4886,7 +4886,7 @@ else
 //Set Clear Nicknames
 if  (FunctioName.startsWith("clear nicknames "))  {
 
-    var NewSetting = message.content.split(peeky.serverData.get(keySF, "prefix") + "set clear nicknames ")[1];
+    var NewSetting = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set clear nicknames ")[1];
     peeky.serverData.set(keySF, Function_RemoveFormatting(NewSetting, "other"), "clear_nicknames_bonus_setting", true);
 
     const embed = {"description": SuccessIcon + " The **Clear Nicknames** setting has been set to **" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "**.",  "color": EmbedColor}; 
@@ -4899,7 +4899,7 @@ else
 //Set Server Message
 if  (FunctioName.startsWith("server message "))  {
    
-    var ServerMessageContent = message.content.split(peeky.serverData.get(keySF, "prefix") + "set server message ")[1];
+    var ServerMessageContent = CommandName.split(peeky.serverData.get(keySF, "prefix") + "set server message ")[1];
     var ServerMessagePreview = ServerMessageContent;
     var FixedMsgEnd          = "";
     var TagString            = "";
@@ -4926,7 +4926,7 @@ if  (FunctioName.startsWith("banned words "))  {
   
 if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWordsLimit)  {
 
-    var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set banned words ")[1].toLowerCase(), "other", true);
+    var ReceivedArray = Function_RemoveFormatting(CommandName.split(peeky.serverData.get(keySF, "prefix") + "set banned words ")[1].toLowerCase(), "other", true);
     peeky.serverData.get(keySF, "banned_words_bonus_setting").push(ReceivedArray);
 
     var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
@@ -4950,7 +4950,7 @@ if  (FunctioName.startsWith("game roles "))  {
   
 if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < GameRolesLimit)  {
 
-    var ReceivedArray = Function_RemoveFormatting(message.content.split(peeky.serverData.get(keySF, "prefix") + "set game roles ")[1], "other", true);
+    var ReceivedArray = Function_RemoveFormatting(CommandName.split(peeky.serverData.get(keySF, "prefix") + "set game roles ")[1], "other", true);
     peeky.serverData.get(keySF, "game_roles_bonus_setting").push(ReceivedArray);
 
     var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "game_roles_bonus_setting");
@@ -4991,7 +4991,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < GameRolesL
 //Clear
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "clear "))  {
   
-    var FunctioName = message.content.split(peeky.serverData.get(keySF, "prefix") + "clear ")[1];
+    var FunctioName = CommandName.split(peeky.serverData.get(keySF, "prefix") + "clear ")[1];
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
@@ -5043,7 +5043,7 @@ if  (FunctioName.startsWith("game roles"))  {
 //BuyDescription
 if (CommandName.startsWith("buydescription "))  {
       
-    var NewDescription = message.content.split(peeky.serverData.get(keySF, "prefix") + "buydescription ")[1];
+    var NewDescription = CommandName.split(peeky.serverData.get(keySF, "prefix") + "buydescription ")[1];
 
     var UpdatedAmount = NewDescription.length;
     var NewLinesCount = 0;
@@ -5263,7 +5263,7 @@ if  (peeky.userData.get(key, "Inventory").includes(i))  {
 //SellBackground
 if (CommandName.startsWith("sellbackground "))  {
   
-    var i = message.content.split(peeky.serverData.get(keySF, "prefix") + "sellbackground ")[1]; 
+    var i = CommandName.split(peeky.serverData.get(keySF, "prefix") + "sellbackground ")[1]; 
     var InfoMessages = []; 
   
 if  (i !== AllString)  {
@@ -5374,7 +5374,7 @@ if  (peeky.userData.get(key, "Chests") >= 1)  {
       var TotalAmount = PeekyCoinsOpened + PeekyCoinsLevel;
       
       //Other
-      var Tokens = message.content.split(peeky.serverData.get(keySF, "prefix") + "open ");
+      var Tokens = CommandName.split(peeky.serverData.get(keySF, "prefix") + "open ");
       var InfoMessages = [];
       
       //Supporter
@@ -5555,7 +5555,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         
     if  (peeky.userData.has(key2))  {
 
-        var CommandArray = message.content.split(" ");
+        var CommandArray = CommandName.split(" ");
       
         var DonatedItem = CommandArray[2];
         var DonatedAmount = Number(CommandArray[3]);
@@ -6174,7 +6174,6 @@ if (CommandName.startsWith("play "))  {
     var IsRandom = false;
       
     MusicCmdCooldown.add(message.guild.id);
-
     setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
   
     if  (GivenSong == RandomString && ChoosingMode == true)  {
@@ -6440,7 +6439,7 @@ if (CommandName.startsWith("search "))  {
 //Playlist
 if (CommandName.startsWith("playlist"))  {
 
-    var PlaylistAction = message.content.split(peeky.serverData.get(keySF, "prefix") + "playlist")[1];
+    var PlaylistAction = CommandName.split(peeky.serverData.get(keySF, "prefix") + "playlist")[1];
   
     if  (PlaylistAction.startsWith(" add "))  {
       
@@ -6941,7 +6940,7 @@ if (CommandName.startsWith("idban "))  {
     
     if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
 
-        var GivenID = message.content.split(peeky.serverData.get(keySF, "prefix") + "idban ")[1];
+        var GivenID = CommandName.split(peeky.serverData.get(keySF, "prefix") + "idban ")[1];
         var ValidID = 0;
 
         await peeky.fetchUser(GivenID, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
@@ -7043,7 +7042,7 @@ if (CommandName.startsWith("purge "))  {
     
     if  (message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
-        var BulkAmount = message.content.split(peeky.serverData.get(keySF, "prefix") + "purge ")[1];
+        var BulkAmount = CommandName.split(peeky.serverData.get(keySF, "prefix") + "purge ")[1];
 
         if  (isNaN(BulkAmount) == false && BulkAmount > 0 && BulkAmount <= 100) {
 
@@ -7165,7 +7164,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
   
-    var MutedRole = message.content.split(Prefix + "muterole ")[1];
+    var MutedRole = CommandName.split(Prefix + "muterole ")[1];
     var FixedMutedRole = Function_RemoveFormatting(MutedRole, "role", true);
     var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
     var InfoMessages = [];
