@@ -15,7 +15,8 @@ dependencies:
   request: 2.88.0
   require.js: 1.0.0
   sqlite3: 4.0.9
-  ytdl-core: 0.29.3
+  youtube-search: 1.1.4
+  ytdl-core: 0.29.4
   ytdl-core-discord: 1.0.3
 packages:
   /abbrev/1.1.1:
@@ -1156,6 +1157,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
+  /sax/0.5.8:
+    dev: false
+    resolution:
+      integrity: sha1-1HLbIo6zMcJQaw6MFVJK25OdEsE=
   /sax/1.2.4:
     dev: false
     resolution:
@@ -1420,6 +1425,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-GIyAXC2cB7LjvpgMt9EKS2ldqr0MTrORaleiOno6TweZ6r3TKtoFQWay/2PceJ3RuBasOHzXNn5Lrw1X0bEjqA==
+  /xml2js/0.2.8:
+    dependencies:
+      sax: 0.5.8
+    dev: false
+    resolution:
+      integrity: sha1-m4FpCTFjH/CdGVdUn69U9PmAs8I=
   /y-event/0.2.3:
     dev: false
     resolution:
@@ -1428,6 +1439,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-S+Zk8DEWE6oKpV+vI3qWkaK+jSbIK86pCwe2IF/xwIpQ8jEuxpw9NyaGjmp9+BoJv5FV2piqCDcoCtStppiq2A==
+  /youtube-search/1.1.4:
+    dependencies:
+      axios: 0.18.1
+      xml2js: 0.2.8
+    dev: false
+    resolution:
+      integrity: sha512-eS3VAqm2avF094d/zu/iKjxMWIAPZ9GZ2V4qVYlznUwt2gEfQRG64o4rRHmeG60GGPCRNoPIJfbjilbfGSMfVA==
   /ytdl-core-discord/1.0.3:
     dependencies:
       prism-media: 1.0.2
@@ -1446,7 +1464,7 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-rQTxqxF09tKGgWxVtvFfi6ga1KWcHNbUGz09yTklirhqQlsIYvaDFCEhJ0K/RlzMH12FquAAMzh+Qi35fkwbFQ==
-  /ytdl-core/0.29.3:
+  /ytdl-core/0.29.4:
     dependencies:
       html-entities: 1.2.1
       m3u8stream: 0.6.2
@@ -1456,7 +1474,7 @@ packages:
     engines:
       node: '>=6'
     resolution:
-      integrity: sha512-IqMjkTvGjB2Shu9W2HhzyquIo8Pv6AGogc7+Vv3bcxDXjYCgYUPt+LX0CqL76GTmjftnMSVpI1dO79Uzj4f5mQ==
+      integrity: sha512-YvSgJS8yplbjv+TVOFTQTI/dsQxknwNHV4zt2GFrx5J71pxRKOElZy2qv7zPBM+W7QcBB5U7a21Nil0RFeP7Ig==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
@@ -1477,5 +1495,6 @@ specifiers:
   request: ^2.88.0
   require.js: ^1.0.0
   sqlite3: ^4.0.8
-  ytdl-core: ^0.29.3
+  youtube-search: ^1.1.4
+  ytdl-core: ^0.29.4
   ytdl-core-discord: ^1.0.3

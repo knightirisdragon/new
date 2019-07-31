@@ -12,6 +12,7 @@ const bls     = new BotList({ id: "482945063282802698", botToken: process.env.BL
 
 //Music
 const ytdl_discord = require('ytdl-core-discord');
+const search       = require('youtube-search');
 const ytdl         = require('ytdl-core');
 const opus         = require('node-opus');
 
@@ -83,8 +84,9 @@ const whitelistedSymbols  = [  "a", "á", "b", "c", "č", "d", "ď", "e", "é", 
 const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
 
 //Small Objects
-var Banner        = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
-var StreamOptions = {  volume: 0.25  };
+var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
+var StreamOptions   = {  volume: 0.25  };
+var SearchOptions   = {  maxResults: 1,  key: process.env.YT_TOKEN  };
 
 //Image Assets
 const TwitterIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ftwitter.png?1555574745120";
