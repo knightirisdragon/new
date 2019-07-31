@@ -86,7 +86,7 @@ const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
 //Small Objects
 var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
 var StreamOptions   = {  volume: 0.25  };
-var SearchOptions   = {  maxResults: 3,  key: process.env.YT_TOKEN  };
+var SearchOptions   = {  maxResults: 1,  key: process.env.YT_TOKEN  };
 
 //Image Assets
 const TwitterIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ftwitter.png?1555574745120";
@@ -6385,11 +6385,28 @@ if (CommandName.startsWith("search "))  {
       
         search(SearchPhrase, SearchOptions, function(err, results) {
         
+        if  (results.length > 0)  {
+          
             results.forEach(video => {
               
-                
+                var embed = {
+                  "title": video.title,
+                  "description": video.description.slice(0, 100),
+                  "url": video.link,
+                  "color": 16711680,
+                  "thumbnail": {
+                    "url": video.thumbnails.high.url
+                  }
+                };
+              
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
               
             });
+          
+        } else {
+          const embed = {"description": ErrorIcon + " No video found. Try different key words!",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
           
         }).catch(error => { 
            const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
