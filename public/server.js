@@ -6167,10 +6167,40 @@ if (CommandName.startsWith("play "))  {
   
     if  (!CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
 
-    var GivenSong = message.content.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
+    var GivenSong = CommandName.split(peeky.serverData.get(keySF, "prefix") + "play ")[1];
     var Type = "Started";
     var DeleteMessage = true;
     var ChoosingMode = true;
+      
+    var SearchPhrase = CommandName.replace("search ", "");
+      
+        search(SearchPhrase, SearchOptions, function(error, results) {
+          
+        if  (error) return ErrorBag.add(error);
+        
+        if  (results.length > 0)  {
+          
+            results.forEach(video => {
+              
+                var embed = {
+                  "title": video.title,
+                  "description": video.description.slice(0, 100),
+                  "url": video.link,
+                  "color": 16711680,
+                  "thumbnail": {
+                    "url": video.thumbnails.high.url
+                  }
+                };
+              
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              
+            });
+          
+        } else {
+          
+        };
+          
+        });
   
     if  (GivenSong == RandomString && ChoosingMode == true)  {
         GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
