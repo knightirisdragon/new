@@ -6172,25 +6172,6 @@ if (CommandName.startsWith("play "))  {
     var DeleteMessage = true;
     var ChoosingMode = true;
     var IsRandom = false;
-      
-    if  (GivenSong !== RandomString && GivenSong !== "previous" && GivenSong !== "playlist")  {
-
-        await search(GivenSong, SearchOptions, function(error, results)  {
-
-            if  (error) return ErrorBag.add(error);
-
-            if  (results.length > 0)  {
-
-                GivenSong = results[0].link;
-                ChoosingMode = false;
-
-            } else {
-              IsRandom = true;
-            };
-
-        });
-      
-    };
   
     if  (GivenSong == RandomString && ChoosingMode == true)  {
         GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
@@ -6232,9 +6213,13 @@ if (CommandName.startsWith("play "))  {
     };
     };
       
-    if  (!GivenSong.includes("?list="))  {
+    if  (ChoosingMode == true)  {
       
-    console.log(GivenSong)
+        function_YouTubeSearch(GivenSong);
+      
+    };
+      
+    if  (!GivenSong.includes("?list="))  {
       
     if  ((GivenSong) && (ytdl.validateURL(GivenSong) == true))  {
 
