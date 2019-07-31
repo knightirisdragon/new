@@ -6171,36 +6171,26 @@ if (CommandName.startsWith("play "))  {
     var Type = "Started";
     var DeleteMessage = true;
     var ChoosingMode = true;
+    var IsRandom = false;
       
-    var SearchPhrase = CommandName.replace("search ", "");
-      
-        search(SearchPhrase, SearchOptions, function(error, results) {
-          
+    if  (GivenSong !== RandomString && GivenSong !== "previous" && GivenSong !== "playlist")  {
+
+        search(GivenSong, SearchOptions, function(error, results) {
+
         if  (error) return ErrorBag.add(error);
-        
+
         if  (results.length > 0)  {
-          
-            results.forEach(video => {
-              
-                var embed = {
-                  "title": video.title,
-                  "description": video.description.slice(0, 100),
-                  "url": video.link,
-                  "color": 16711680,
-                  "thumbnail": {
-                    "url": video.thumbnails.high.url
-                  }
-                };
-              
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-              
-            });
-          
+
+            GivenSong = results[0].link;
+            ChoosingMode = false;
+
         } else {
-          
+          IsRandom = true;
         };
-          
+
         });
+      
+    };
   
     if  (GivenSong == RandomString && ChoosingMode == true)  {
         GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
@@ -6209,7 +6199,7 @@ if (CommandName.startsWith("play "))  {
         ChoosingMode = false;
     };
   
-    if  (GivenSong == "previous" && ChoosingMode == true)  {
+    if  ((GivenSong == "previous" || IsRandom == true) && ChoosingMode == true)  {
     if  (peeky.serverData.has(keySF, "Link") && peeky.serverData.get(keySF, "Link") !== "None")  {    
       
         GivenSong = peeky.serverData.get(keySF, "Link");
