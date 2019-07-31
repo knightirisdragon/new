@@ -6213,17 +6213,19 @@ if (CommandName.startsWith("play "))  {
     };
     };
       
-    search(text, SearchOptions, async function(error, results)  {
+    search(GivenSong, SearchOptions, async function(error, results)  {
 
         if  (error) return ErrorBag.add(error);
 
-        if  (results.length > 0)  {
-            console.log(GivenSong)
-            console.log(results[0]);
+        if  (ChoosingMode == true)  {
           
-            GivenSong = results[0].link;
-            DeleteMessage = false;
+            if  (results.length > 0)  {          
+                GivenSong = results[0].link;
+            };
+          
         };
+      
+        DeleteMessage = false;
       
     if  (!GivenSong.includes("?list="))  {
       
