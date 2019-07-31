@@ -6440,14 +6440,17 @@ if (CommandName.startsWith("search "))  {
 
 //Playlist
 if (CommandName.startsWith("playlist"))  {
-      
-    if  (!MusicCmdCooldown.has(message.author.id))  {
 
     var PlaylistAction = message.content.split(peeky.serverData.get(keySF, "prefix") + "playlist")[1];
   
     if  (PlaylistAction.startsWith(" add "))  {
       
+    if  (!MusicCmdCooldown.has(message.author.id))  {
+      
         var PlaylistRequest = PlaylistAction.replace(" add ", "");
+      
+        MusicCmdCooldown.add(message.author.id);
+        setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 30000);
       
     if  (PlaylistRequest == "current")  {
 
@@ -6495,6 +6498,11 @@ if (CommandName.startsWith("playlist"))  {
     
     } else {
       const embed = {"description": ErrorIcon + " You cannot add playlists to your playlist.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+    } else {
+      const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -6574,11 +6582,6 @@ if (CommandName.startsWith("playlist"))  {
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       };
       
-    };
-
-    } else {
-      const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 };
