@@ -3782,7 +3782,7 @@ if (CommandName.startsWith("eval "))  {
       return text;
     };
        
-    var EvalResult = CommandName.split(peeky.serverData.get(keySF, "prefix") + "eval ")[1]
+    var EvalResult = CommandName.split("eval ")[1]
 
     try {
       const code = EvalResult;
@@ -5374,7 +5374,7 @@ if  (peeky.userData.get(key, "Chests") >= 1)  {
       var TotalAmount = PeekyCoinsOpened + PeekyCoinsLevel;
       
       //Other
-      var Tokens = CommandName.split(peeky.serverData.get(keySF, "prefix") + "open ");
+      var Tokens = CommandName.split("open ");
       var InfoMessages = [];
       
       //Supporter
@@ -6439,7 +6439,7 @@ if (CommandName.startsWith("search "))  {
 //Playlist
 if (CommandName.startsWith("playlist"))  {
 
-    var PlaylistAction = CommandName.split(peeky.serverData.get(keySF, "prefix") + "playlist")[1];
+    var PlaylistAction = CommandName.split("playlist")[1];
   
     if  (PlaylistAction.startsWith(" add "))  {
       
@@ -6940,7 +6940,7 @@ if (CommandName.startsWith("idban "))  {
     
     if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
 
-        var GivenID = CommandName.split(peeky.serverData.get(keySF, "prefix") + "idban ")[1];
+        var GivenID = CommandName.split("idban ")[1];
         var ValidID = 0;
 
         await peeky.fetchUser(GivenID, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
@@ -7042,7 +7042,7 @@ if (CommandName.startsWith("purge "))  {
     
     if  (message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
-        var BulkAmount = CommandName.split(peeky.serverData.get(keySF, "prefix") + "purge ")[1];
+        var BulkAmount = CommandName.split("purge ")[1];
 
         if  (isNaN(BulkAmount) == false && BulkAmount > 0 && BulkAmount <= 100) {
 
@@ -7164,7 +7164,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
   
-    var MutedRole = CommandName.split(Prefix + "muterole ")[1];
+    var MutedRole = CommandName.split("muterole ")[1];
     var FixedMutedRole = Function_RemoveFormatting(MutedRole, "role", true);
     var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
     var InfoMessages = [];
