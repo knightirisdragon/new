@@ -6241,8 +6241,6 @@ if (CommandName.startsWith("play "))  {
     if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT') && voiceChannel.permissionsFor(peeky.user).has('SPEAK'))  {
 
             await ytdl.getBasicInfo(GivenSong).then(async (info) => {
-
-            CurrentlyPlaying.add(message.guild.id);
             info = info.player_response.videoDetails;
               
             const Thumbnail  = info.thumbnail.thumbnails[info.thumbnail.thumbnails.length - 1].url;
@@ -6251,11 +6249,12 @@ if (CommandName.startsWith("play "))  {
             const Length     = info.lengthSeconds;
             const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
             const Started    = new Date();
-            const Livestream = info.isLiveContent;
           
-            if  (Length <= 600 && Livestream == false)  {
+            if  (Length <= 600 && Length > 0)  {
               
             await voiceChannel.join().then(async connection => {
+
+            CurrentlyPlaying.add(message.guild.id);
           
             peeky.serverData.set(keySF, Title, "Title");
             peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
