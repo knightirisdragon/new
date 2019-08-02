@@ -6315,6 +6315,9 @@ if (CommandName.startsWith("play "))  {
             } else {
               const embed = {"description": ErrorIcon + " You cannot play livestreams or songs longer than 10 minutes.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              
+              console.log(info);
+              console.log(results[0]);
             };
 
         }).catch(async (error) => {
