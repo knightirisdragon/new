@@ -49,6 +49,7 @@ const https      = require('https');
 
 //Sets and arrays
 const ErrorBag               = new Set();
+const BannedIDs              = new Set([108899409365852160]);
 const FailedVoteChecks       = new Set();
 const FloodProtectionStrikes = [];
 const KarmaImages            = [];
@@ -3740,7 +3741,7 @@ if  (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true)  {
 };
 
 //COMMANDS
-if  (!message.author.bot && !message.webhookID && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+if  (!message.author.bot && !message.webhookID && !BannedIDs.has(message.author.id) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
   
 //Mention Commands
   
