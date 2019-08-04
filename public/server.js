@@ -3219,42 +3219,56 @@ if  (message.channel.id == WorkshopChannel && message.author.id !== PeekyId)  {
 peeky.on('message', async (message) => {
   
 if  (message.channel.type == "dm")  {
+
 if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !message.webhookID && message.content.toLowerCase() !== "accept")  {
+  
+    if  (!BannedIDs.has(message.author.id))  {
 
         const embed = {"description": InfoIcon + " Do you want to send your message to PEEKY's owner?\n" + Hollow + " Type **Accept** in under 30 seconds if you do.",  "color": EmbedColor}; 
         message.channel.send({ embed }).then(() => {
           
-          QueuedSOSMessages.add(message.author.id);
-          message.channel.awaitMessages(response => response.content.toLowerCase() == "accept", {
-            max: 1,
-            time: 30000,
-            errors: ['time'],
-          }).then((collected) => {
+        QueuedSOSMessages.add(message.author.id);
 
-          if  (message.attachments.size > 0) {
-               const image = message.attachments.array()[0].url;
-               peeky.users.get("108899856889737216").send("**" + message.author.tag + ":** " + message.content, {  files: [image]}) .catch(error => ErrorBag.add(error));
-              }
-               else
-              {
-               peeky.users.get("108899856889737216").send("**" + message.author.tag + ":** " + message.content) 
-               .catch(error => ErrorBag.add(error));
-              };
+        message.channel.awaitMessages(response => response.content.toLowerCase() == "accept", {
+          max: 1,
+          time: 30000,
+          errors: ['time'],
+        })
+        .then((collected) => {
 
-              const embed = {"description": SuccessIcon + " Your message has been successfuly sent to my owner!",  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            
-              QueuedSOSMessages.delete(message.author.id);
+            if  (message.attachments.size > 0) {
+                const image = message.attachments.array()[0].url;
+                peeky.users.get("108899856889737216").send("**" + message.author.tag + ":** " + message.content, {  files: [image]}) .catch(error => ErrorBag.add(error));
+            }
+             else
+            {
+             peeky.users.get("108899856889737216").send("**" + message.author.tag + ":** " + message.content).catch(error => ErrorBag.add(error));
+            };
+
+            const embed = {"description": SuccessIcon + " Your message has been successfuly sent to my owner!",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+            QueuedSOSMessages.delete(message.author.id);
           
-          })
-          .catch(() => {
+        })
+        .catch(() => {
            QueuedSOSMessages.delete(message.author.id);
 
            const embed = {"description": ErrorIcon + " Your message was not sent because the time limit has ran out.",  "color": EmbedColor}; 
            message.channel.send({ embed })
-          });
-      });
+        });
+          
+        });
+      
+    }
+     else
+    {
+     const embed = {"description": ErrorIcon + " You cannot send messages through PEEKY.",  "color": EmbedColor}; 
+     message.channel.send({ embed })
     };
+
+    };
+
 }
  else if (message.channel.type == "text")
 {
@@ -3749,13 +3763,13 @@ if  (!message.author.bot && !message.webhookID && !BannedIDs.has(message.author.
 if  ((message.mentions.members.first() && message.mentions.members.first().id == PeekyId) || (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help")))  {
     
     const embed = {  "description": 
-                         "**Website** [[Open]](https://peeky.glitch.me/)\nYou can visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related." + 
-                         "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\nYou can support PEEKY by purchasing some neat items from the store!" +
-                         "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\nYou can join the Support Server for important announcements, assistance with the bot, giveaways and much more!" +
-                         "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\nYou can add PEEKY to your server and get all the features for free and under a minute!" +
-                         "\n\n**Server Prefix: ** " + peeky.serverData.get(keySF, "prefix"),
-                         "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
-                         "color": 7506394  
+                     "**Website** [[Open]](https://peeky.glitch.me/)\nYou can visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related." + 
+                     "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\nYou can support PEEKY by purchasing some neat items from the store!" +
+                     "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\nYou can join the Support Server for important announcements, assistance with the bot, giveaways and much more!" +
+                     "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\nYou can add PEEKY to your server and get all the features for free and under a minute!" +
+                     "\n\n**Server Prefix: ** " + peeky.serverData.get(keySF, "prefix"),
+                     "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
+                     "color": 7506394 
     };
   
     message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
