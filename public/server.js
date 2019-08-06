@@ -1,14 +1,20 @@
+//API Tokens
+const DiscordToken = process.env.BOT_TOKEN;
+const DDBLToken = process.env.DDBL_TOKEN;
+const BLSToken = process.env.BLS_TOKEN;
+const YoutubeToken = process.env.YT_TOKEN;
+
 //Discord
 const Discord = require("discord.js");
 const peeky   = new Discord.Client();
 
 //DDBL
 const { ddblAPI } = require('ddblapi.js');
-const ddbl = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
+const ddbl = new ddblAPI("482945063282802698", DDBLToken);
 
 //BLS
 const BotList = require('botlist.space');
-const bls     = new BotList({ id: "482945063282802698", botToken: process.env.BLS_TOKEN });
+const bls     = new BotList({  id: "482945063282802698", botToken: BLSToken  });
 
 //Music
 const ytdl_discord = require('ytdl-core-discord');
@@ -47,9 +53,8 @@ const ms         = require('parse-ms');
 const node_fetch = require('node-fetch');
 const https      = require('https');
 
-//Info
+//Sets and Arrays
 const ErrorBag               = new Set();
-//Cooldowns
 const WebsiteCooldowns       = new Set();
 const GainCooldown           = new Set();
 const ProfileBoosterCooldown = new Set();
@@ -67,7 +72,6 @@ const MessageLogCooldown     = new Set();
 const DonorWallCooldown      = new Set();
 const ServerAgeCooldown      = new Set();
 const ResponseCooldowns      = new Set();  const ResponseCooldownMS = 5000;
-//System
 const FloodProtectionStrikes = [];
 const KarmaImages            = [];
 const QueuedSOSMessages      = new Set();
@@ -75,23 +79,18 @@ const ActiveMinigames        = new Set();
 const CurrentlyPlaying       = new Set();
 const CurrentlyStreaming     = new Set();
 const ClearedNames           = new Set();
-//Trashbins
 const FailedVoteChecks       = new Set();
 const LoggedMessages         = new Set();
-
-
 
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const BannedUsers         = [  108899409365852160  ];
-const blacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
-const whitelistedSymbols  = [  "a", "á", "b", "c", "č", "d", "ď", "e", "é", "ě", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "ň", "o", "ó", "p", "q", "r", "ř", "s", "š", "t", "u", "ů", "ú", "v", "w", "x", "y", "ý", "z", "ž", "0", "1", "2", "3", "4", "6", "5", "7", "8", "9", "_", "-", " ", ",", ".", "'", '"', "(", ")", "[", "]"  ];
-const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
+const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 
 //Small Objects
 var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
 var StreamOptions   = {  volume: 0.25  };
-var SearchOptions   = {  maxResults: 1,  key: process.env.YT_TOKEN  };
+var SearchOptions   = {  maxResults: 1,  key: YoutubeToken  };
 
 //Image Assets
 const TwitterIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ftwitter.png?1555574745120";
@@ -139,8 +138,8 @@ const GamerImage        = "http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1
 const EvilImage         = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fevil.png?v=1564270118631";
 const GoodImage         = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581";
 
-//Config
-const Config                = require("./config.json");
+//API
+const API                = require("./api.json");
 const OngoingEvent          = Config.event_status;
 const Prefix                = Config.default_prefix;
 const CustomBackgroundPrice = Config.custom_background;
@@ -202,10 +201,10 @@ const SupporterRole      = "504740473185894400";
 const BoosterRole        = "589783851329650690";
 const ServerUpgradeRole  = "549190337437106176";
 const ProfileBoosterRole = "603249410532442116";
-const RedeemRole1        = "505491936401162270";  //1000 Gredit
-const RedeemRole2        = "527197436746268704";  //2000 Gredit
-const RedeemRole3        = "536142807702831104";  //5000 Gredit
-const RedeemRole4        = "536142889189638155";  //10000 Gredit
+const RedeemRole1        = "505491936401162270";
+const RedeemRole2        = "527197436746268704";
+const RedeemRole3        = "536142807702831104";
+const RedeemRole4        = "536142889189638155";
 
 //Other IDs
 const OwnerId              = "108899856889737216";
@@ -2233,6 +2232,8 @@ var   Failed = false;
   
 if (member.user.id !== PeekyId && peeky.serverData.has(keySF)) {
   
+const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
+  
 //Server Message
 if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user.bot)  {
       
@@ -2379,7 +2380,7 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
     
     if (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES')) {
       
-    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "other", false).includes(word)))  {
+    if  (BlacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "other", false).includes(word)))  {
         Detected = true;
     };
 
@@ -2428,7 +2429,7 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
     
     if (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES')) {
       
-    if  (blacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "other", false).includes(word)))  {
+    if  (BlacklistedWebsites.some(word => Function_RemoveFormatting(member.user.username.toLowerCase(), "other", false).includes(word)))  {
         Detected = true;
     };
 
@@ -7247,4 +7248,4 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 };
 });
   
-peeky.login(process.env.BOT_TOKEN).catch(console.error);
+peeky.login(DiscordToken).catch(console.error);
