@@ -2843,14 +2843,19 @@ if  (!user.bot && KarmaImages.findIndex(i => i[0] == reaction.message.id) >= 0) 
             if  (Index2 == -1)  {
 
                 KarmaImages[Index][1].push(user.id);
-                peeky.userData.math(key2, "+", 1, "Karma");
               
-                if  (peeky.userData.get(key2, "Karma") == 50)  {
-                  
-                    if  (peeky.userData.has(key2) && peeky.userData.get(key2, "GoodBadge") == false)  {
-                        peeky.userData.set(key2, true, "GoodBadge");
-                        peeky.userData.set(key2, false, "EvilBadge");
-                    };                    
+                if  (peeky.userData.has(key2))  {
+                
+                    peeky.userData.math(key2, "+", 1, "Karma");
+
+                    if  (peeky.userData.get(key2, "Karma") == 50)  {
+
+                        if  (peeky.userData.has(key2) && peeky.userData.get(key2, "GoodBadge") == false)  {
+                            peeky.userData.set(key2, true, "GoodBadge");
+                            peeky.userData.set(key2, false, "EvilBadge");
+                        };                    
+
+                    };
                   
                 };
               
@@ -2871,14 +2876,19 @@ if  (!user.bot && KarmaImages.findIndex(i => i[0] == reaction.message.id) >= 0) 
             if  (Index2 == -1)  {
 
                 KarmaImages[Index][1].push(user.id);
-                peeky.userData.math(key2, "-", 1, "Karma");
               
-                if  (peeky.userData.get(key2, "Karma") == -50)  {
-                  
-                    if  (peeky.userData.has(key2) && peeky.userData.get(key2, "EvilBadge") == false)  {
-                        peeky.userData.set(key2, true, "EvilBadge");
-                        peeky.userData.set(key2, false, "GoodBadge");
-                    };                    
+                if  (peeky.userData.has(key2))  {
+                
+                    peeky.userData.math(key2, "-", 1, "Karma");
+
+                    if  (peeky.userData.get(key2, "Karma") == -50)  {
+
+                        if  (peeky.userData.has(key2) && peeky.userData.get(key2, "EvilBadge") == false)  {
+                            peeky.userData.set(key2, false, "GoodBadge");
+                            peeky.userData.set(key2, true, "EvilBadge");
+                        };                    
+
+                    };
                   
                 };
               
