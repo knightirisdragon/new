@@ -139,16 +139,17 @@ const EvilImage         = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68
 const GoodImage         = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581";
 
 //API
-const API                = require("./api.json");
-const OngoingEvent          = Config.event_status;
-const Prefix                = Config.default_prefix;
-const CustomBackgroundPrice = Config.custom_background;
-const SellMultiplier        = Config.sell_multiplier;
-const ExpNeeded             = Config.exp_multiplier;
-const MaxServers            = Config.server_limit;
-const InactiveWipe          = Config.autowipe_time;
-const ProfileBoosterLength  = Config.booster_time;
+const PeekyAPI              = require("./api.json");
+const Prefix                = PeekyAPI.default_prefix;
+const OngoingEvent          = PeekyAPI.event_status;
+const EventName             = PeekyAPI.event_name;
+const CustomBackgroundPrice = PeekyAPI.custom_background;
+const SellMultiplier        = PeekyAPI.sell_multiplier;
+const ExpNeeded             = PeekyAPI.exp_multiplier;
+const MaxServers            = PeekyAPI.server_limit;
+const InactiveWipe          = PeekyAPI.autowipe_time;
 const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
+const ProfileBoosterLength  = PeekyAPI.booster_time;
 const ProfileBoosterTime    = (ProfileBoosterLength  / ( 60 * 60 * 1000 ));
 
 //Vote Emotes
@@ -1393,10 +1394,6 @@ peeky.on('reconnecting', () => {
 peeky.on('disconnect', () => {
 	  console.log('Disconnected.');
 });
-
-/*peeky.on('debug', info => {
-	  console.log(info.replace(process.env.BOT_TOKEN, "TOKEN"));
-});*/
 
 //Fixes
 process.on('uncaughtException', function (err) {  ErrorBag.add(err)  });
@@ -3834,15 +3831,19 @@ if (CommandName.startsWith("eval "))  {
 //EventRewards
 if (CommandName.startsWith("eventrewards"))  {
   
-    if  (OngoingEvent == true && peeky.userData.get(key, "CelebratorBadge") == false)  {
+    if  (OngoingEvent == true)  {
       
-        peeky.userData.set(key, true, "CelebratorBadge");
-        peeky.userData.get(key, true, "Inventory").push(333);
+        if  (peeky.userData.get(key, "CelebratorBadge") == false)  {
       
-        const embed = {"description": SuccessIcon + " You have received the event rewards!"
-                                      + "\n\n" + InfoIcon + " The **" + Banners[333 - 1][Banner.Name] + "** background."
-                                      + "\n\n" + InfoIcon + " The **Celebrator** badge.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            peeky.userData.set(key, true, "CelebratorBadge");
+            peeky.userData.get(key, true, "Inventory").push(333);
+
+            const embed = {"description": SuccessIcon + " You have received the rewards for the **" + EventName + "** event!"
+                                          + "\n\n" + InfoIcon + " The **" + Banners[333 - 1][Banner.Name] + "** background."
+                                          + "\n\n" + InfoIcon + " The **Celebrator** badge.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));          
+          
+        };
       
     };
   

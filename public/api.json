@@ -3,6 +3,8 @@
 "server_limit": 100, 
 
 "event_status": false,
+"event_name": "PEEKY's Birthday",
+  
 "autowipe_time": 1296000000,
 "booster_time": 86400000,
   
