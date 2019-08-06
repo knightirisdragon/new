@@ -1,3 +1,5 @@
+wait_api.json
+
 enmap.sqlite
 
 enmap.sqlite-shm
@@ -8,7 +10,9 @@ news.txt
 
 stats.txt
 
-reviews.txt
+randomreview.txt
+
+messageheader.txt
 
 staff.txt
 

@@ -1344,7 +1344,7 @@ fetch('https://peeky.glitch.me/stats.txt')
    document.getElementById("ServerCount").innerHTML = data
 });
   
-fetch('https://peeky.glitch.me/randdomreview.txt')
+fetch('https://peeky.glitch.me/randomreview.txt')
 .then(response => response.text()).then((data) => {
    document.getElementById("Reviews").innerHTML = data
 });
@@ -2100,10 +2100,10 @@ if  (!WebsiteCooldowns.has("stats"))  {
       
 };
 
-if  (!WebsiteCooldowns.has("randdomreview"))  {
+if  (!WebsiteCooldowns.has("randomreview"))  {
       
-    WebsiteCooldowns.add("randdomreview");
-    setTimeout(() => {WebsiteCooldowns.delete("randdomreview")}, 600000);
+    WebsiteCooldowns.add("randomreview");
+    setTimeout(() => {WebsiteCooldowns.delete("randomreview")}, 600000);
     
     node_fetch('https://ls.terminal.ink/api/v2/bots/482945063282802698').then(response => response.json()).then(async (data) => {
       
@@ -2118,7 +2118,7 @@ if  (!WebsiteCooldowns.has("randdomreview"))  {
     var ReviewDate     = new Date(FilteredReviews[RandomReview].date);
     var ReviewFullDate = function_DateFormat(ReviewDate);
       
-    await fs.writeFile('public/randdomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + " Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast 200 characters long to show up here.</font></center>", (err) => {
+    await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + " Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast 200 characters long to show up here.</font></center>", (err) => {
         if (err) console.log(err); 
     });
       
