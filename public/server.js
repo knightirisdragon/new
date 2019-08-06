@@ -2127,6 +2127,19 @@ if  (!WebsiteCooldowns.has("randomreview"))  {
     console.log("The featured review have been updated.");
       
 };
+  
+if  (!WebsiteCooldowns.has("stats"))  {
+      
+    WebsiteCooldowns.add("stats");
+    setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
+
+    await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + MaxServers + "</font> Servers</a> <br> <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a> <br> <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days Old</a>", (err) => {
+        if (err) console.log(err); 
+    });
+      
+    console.log("The stats have been updated.");
+      
+};
 
 });
 
