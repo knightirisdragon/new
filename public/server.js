@@ -1344,7 +1344,7 @@ fetch('https://peeky.glitch.me/stats.txt')
    document.getElementById("ServerCount").innerHTML = data
 });
   
-fetch('https://peeky.glitch.me/reviews.txt')
+fetch('https://peeky.glitch.me/randdomreview.txt')
 .then(response => response.text()).then((data) => {
    document.getElementById("Reviews").innerHTML = data
 });
@@ -2086,15 +2086,24 @@ if  (!WebsiteCooldowns.has("staff"))  {
     console.log("The staff list has been updated.");
 
 };
-  
-//Update website stats
+
 if  (!WebsiteCooldowns.has("stats"))  {
       
     WebsiteCooldowns.add("stats");
     setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
+
+    await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + MaxServers + "</font> Servers</a> <br> <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a> <br> <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days Old</a>", (err) => {
+        if (err) console.log(err); 
+    });
       
-    WebsiteCooldowns.add("reviews");
-    setTimeout(() => {WebsiteCooldowns.delete("reviews")}, 600000);
+    console.log("The stats have been updated.");
+      
+};
+
+if  (!WebsiteCooldowns.has("randdomreview"))  {
+      
+    WebsiteCooldowns.add("randdomreview");
+    setTimeout(() => {WebsiteCooldowns.delete("randdomreview")}, 600000);
     
     node_fetch('https://ls.terminal.ink/api/v2/bots/482945063282802698').then(response => response.json()).then(async (data) => {
       
@@ -2109,17 +2118,13 @@ if  (!WebsiteCooldowns.has("stats"))  {
     var ReviewDate     = new Date(FilteredReviews[RandomReview].date);
     var ReviewFullDate = function_DateFormat(ReviewDate);
       
-    await fs.writeFile('public/reviews.txt',  "<font color='#7289DA' size='1'>Random Review with " + FilteredReviews[RandomReview].rating + " Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast 200 characters long to show up here.</font></center>", (err) => {
-        if (err) console.log(err); 
-    });
-
-    await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + MaxServers + "</font> Servers</a> <br> <a class='botstats'><font color='#7289DA'>" + data.data.reviews.length + "</font> Reviews</a> <br> <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a> <br> <a class='botstats'><font color='#7289DA'>" + DaysOld + "</font> Days Old</a>", (err) => {
+    await fs.writeFile('public/randdomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + " Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast 200 characters long to show up here.</font></center>", (err) => {
         if (err) console.log(err); 
     });
       
     });
       
-    console.log("The stats and reviews have been updated.");
+    console.log("The featured review have been updated.");
       
 };
 
