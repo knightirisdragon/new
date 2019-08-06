@@ -2153,7 +2153,7 @@ if  (!WebsiteCooldowns.has("api"))  {
       "booster_time": 86400000
     };
   
-    await fs.writeFile('public/api.json', JSON.stringify(JSON.parse(UpdatedApi), null, 2), (err) => {
+    await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
         if (err) console.log(err); 
     });
       
