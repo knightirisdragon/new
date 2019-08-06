@@ -3,9 +3,9 @@
 "bot_desc": "PEEKY is a fancy Discord bot that comes prepared to enhance your Discord servers.",
 "default_prefix": "p!",
 
-"server_count": 0,
-"profile_count": 0,
-"age_count": 0,
+"server_count": "wip",
+"profile_count": "wip",
+"age_count": "wip",
 
 "event_name": "PEEKY's Birthday",
 "event_status": false,
