@@ -1822,8 +1822,8 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     const BackgroundList            = [];
     const CheapBackgrounds          = [];
     const RevenueBackgrounds        = [];
-    var ExclusiveBackgrounds        = [];
-    var AddToExclusiveBackgrounds   = [];
+    var   ExclusiveBackgrounds      = [];
+    var   AddToExclusiveBackgrounds = [];
     var   Current                   = 0;            
     var   Fillers                   = 0;
 
