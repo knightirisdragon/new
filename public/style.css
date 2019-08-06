@@ -21,6 +21,17 @@ img  {border-radius: 10px; cursor: pointer;}
     padding: 5px;
 }
 
+.messageheader  {
+    background-color: orange;
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+
 .item_header  {
     background-color: rgba(35, 39, 42, 0.9);
     width: 100%;

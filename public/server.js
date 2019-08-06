@@ -1869,6 +1869,22 @@ if  (!WebsiteCooldowns.has("workshop"))  {
 
 };
 
+if  (!WebsiteCooldowns.has("eventheader"))  {
+  
+    if  (OngoingEvent == true)  {
+        var Message = "<div class='messageheader'>You can currently participate in the " + EventName + " event!</div>";  
+    } else {
+      var Message = "";  
+    };
+
+    await fs.writeFile('public/backgrounds.txt', Message, (err) => {
+        if (err) console.log(err);
+    });
+
+    console.log("The event header has been updated.");
+
+};
+
 if  (!WebsiteCooldowns.has("randomsongs"))  {
 
     WebsiteCooldowns.add("randomsongs");
