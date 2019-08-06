@@ -658,6 +658,7 @@ const Banners = [
     ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground382.jpg?v=1564448921669", 250, "Playful dogs", "Unknown", undefined]
 
 ];
+
 const DefaultDescriptions = [  
 
     "I'm very busy and important.",
@@ -1659,7 +1660,42 @@ peeky.on('message', async (message) => {
   
 };
 
-//Auto Wipe System
+//API
+if  (!WebsiteCooldowns.has("api"))  {
+      
+    WebsiteCooldowns.add("api");
+    setTimeout(() => {WebsiteCooldowns.delete("api")}, 600000);
+
+    const UpdatedApi = {
+      "bot_name": "PEEKY",
+      "bot_desc": "PEEKY is a fancy Discord bot that comes prepared to enhance your Discord servers.",
+      "default_prefix": "p!",
+
+      "server_count": peeky.guilds.size,
+      "profile_count": peeky.userData.count,
+      "age_count": function_TimeLeft(peeky.user.createdAt, "days", null),
+      "background_count": Banners.length,
+
+      "event_name": "PEEKY's Birthday",
+      "event_status": false,
+
+      "server_limit": 100,
+      "custom_background": 1000,
+      "sell_multiplier": 2.5,
+      "exp_multiplier": 125,
+      "autowipe_time": 1296000000,
+      "booster_time": 86400000
+    };
+  
+    await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
+        if (err) console.log(err); 
+    });
+      
+    console.log("The API has been updated.");
+      
+};
+
+//Auto Wipe
 if  (!WebsiteCooldowns.has("autowipe"))  {
       
     WebsiteCooldowns.add("autowipe");
@@ -1705,6 +1741,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
     
 };
 
+//Leaderboard
 if  (!WebsiteCooldowns.has("leaderboard"))  {
 
     WebsiteCooldowns.add("leaderboard");
@@ -1776,6 +1813,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
 
 };
 
+//Backgrounds
 if  (!WebsiteCooldowns.has("backgrounds"))  {
 
     WebsiteCooldowns.add("backgrounds");
@@ -1844,6 +1882,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
 
 };
   
+//Workshop
 if  (!WebsiteCooldowns.has("workshop"))  {
 
     WebsiteCooldowns.add("workshop");
@@ -1893,6 +1932,7 @@ if  (!WebsiteCooldowns.has("messageheader"))  {
 
 };
 
+//Random Songs
 if  (!WebsiteCooldowns.has("randomsongs"))  {
 
     WebsiteCooldowns.add("randomsongs");
@@ -1914,6 +1954,7 @@ if  (!WebsiteCooldowns.has("randomsongs"))  {
 
 };
 
+//Server List
 if  (!WebsiteCooldowns.has("serverlist"))  {
 
     WebsiteCooldowns.add("serverlist");
@@ -1952,6 +1993,7 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
 
 };
   
+//Supporters
 if  (!WebsiteCooldowns.has("supporters"))  {
       
     WebsiteCooldowns.add("supporters");
@@ -1981,6 +2023,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
 
 };
   
+//News
 if  (!WebsiteCooldowns.has("news"))  {
       
     WebsiteCooldowns.add("news");
@@ -2016,10 +2059,11 @@ if  (!WebsiteCooldowns.has("news"))  {
     
     }).catch(error => ErrorBag.add(error));
       
-    console.log("The news list has been updated.");
+    console.log("The news have been updated.");
 
 };
 
+//Staff
 if  (!WebsiteCooldowns.has("staff"))  {
       
     WebsiteCooldowns.add("staff");
@@ -2083,10 +2127,11 @@ if  (!WebsiteCooldowns.has("staff"))  {
         if (err) console.log(err);
     });
       
-    console.log("The staff list has been updated.");
+    console.log("The staff have been updated.");
 
 };
 
+//Stats
 if  (!WebsiteCooldowns.has("stats"))  {
       
     WebsiteCooldowns.add("stats");
@@ -2100,6 +2145,7 @@ if  (!WebsiteCooldowns.has("stats"))  {
       
 };
 
+//Random Review
 if  (!WebsiteCooldowns.has("randomreview"))  {
       
     WebsiteCooldowns.add("randomreview");
@@ -2125,39 +2171,6 @@ if  (!WebsiteCooldowns.has("randomreview"))  {
     });
       
     console.log("The featured review have been updated.");
-      
-};
-
-if  (!WebsiteCooldowns.has("api"))  {
-      
-    WebsiteCooldowns.add("api");
-    setTimeout(() => {WebsiteCooldowns.delete("api")}, 600000);
-
-    const UpdatedApi = {
-      "bot_name": "PEEKY",
-      "bot_desc": "PEEKY is a fancy Discord bot that comes prepared to enhance your Discord servers.",
-      "default_prefix": "p!",
-
-      "server_count": peeky.guilds.size,
-      "profile_count": peeky.userData.count,
-      "age_count": function_TimeLeft(peeky.user.createdAt, "days", null),
-
-      "event_name": "PEEKY's Birthday",
-      "event_status": false,
-
-      "server_limit": 100,
-      "custom_background": 1000,
-      "sell_multiplier": 2.5,
-      "exp_multiplier": 125,
-      "autowipe_time": 1296000000,
-      "booster_time": 86400000
-    };
-  
-    await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
-        if (err) console.log(err); 
-    });
-      
-    console.log("The stats have been updated.");
       
 };
 
