@@ -138,20 +138,6 @@ const GamerImage        = "http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1
 const EvilImage         = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fevil.png?v=1564270118631";
 const GoodImage         = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581";
 
-//API
-const PeekyAPI              = require("./api.json");
-const Prefix                = PeekyAPI.default_prefix;
-const OngoingEvent          = PeekyAPI.event_status;
-const EventName             = PeekyAPI.event_name;
-const CustomBackgroundPrice = PeekyAPI.custom_background;
-const SellMultiplier        = PeekyAPI.sell_multiplier;
-const ExpNeeded             = PeekyAPI.exp_multiplier;
-const MaxServers            = PeekyAPI.server_limit;
-const InactiveWipe          = PeekyAPI.autowipe_time;
-const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
-const ProfileBoosterLength  = PeekyAPI.booster_time;
-const ProfileBoosterTime    = (ProfileBoosterLength  / ( 60 * 60 * 1000 ));
-
 //Vote Emotes
 const DefaultUpvote   = "529413730874949632";
 const DefaultDownvote = "529413312862093322";
@@ -229,7 +215,21 @@ const RandomString  = "random";
 const BadFormat     = "invalid";
 const Exclusive     = "Exclusive";
 
+//API Variables
+const PeekyAPI              = require("./api.json");
+const Prefix                = PeekyAPI.default_prefix;
+const EventStatus           = PeekyAPI.event_status;
+const EventName             = PeekyAPI.event_name;
+const CustomBackgroundPrice = PeekyAPI.custom_background;
+const SellMultiplier        = PeekyAPI.sell_multiplier;
+const ExpNeeded             = PeekyAPI.exp_multiplier;
+const MaxServers            = PeekyAPI.server_limit;
+const InactiveWipe          = PeekyAPI.autowipe_time;
+const ProfileBoosterLength  = PeekyAPI.booster_time;
+
 //Other Variables
+const InactiveTime       = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
+const ProfileBoosterTime = (ProfileBoosterLength  / ( 60 * 60 * 1000 ));
 const DefaultFont        = "Verdana";
 const Dark               = "#36393E";
 const LessDark           = "#3f3f3f";
@@ -1565,7 +1565,7 @@ peeky.on('message', async (message) => {
     BadgeGreditAmount += peeky.userData.get(key, "UpgradedServers");
       
     //EVENT DOUBLE EXP
-    if  (OngoingEvent == true)  {
+    if  (EventStatus == true)  {
         BadgeExpAmount = BadgeExpAmount * 2;
     };
       
@@ -1881,7 +1881,7 @@ if  (!WebsiteCooldowns.has("messageheader"))  {
     
     var Message = "";
   
-    if  (OngoingEvent == true)  {
+    if  (EventStatus == true)  {
         Message = "<div class='messageheader'>You can currently participate in the " + EventName + " event!</div>";  
     };
 
@@ -3855,7 +3855,7 @@ if (CommandName.startsWith("eval "))  {
 //EventRewards
 if (CommandName.startsWith("eventrewards"))  {
   
-    if  (OngoingEvent == true)  {
+    if  (EventStatus == true)  {
       
         if  (peeky.userData.get(key, "CelebratorBadge") == false)  {
       
@@ -5562,7 +5562,7 @@ if (CommandName.startsWith("daily"))  {
     });
 
     //Event Reward
-    if  (OngoingEvent == true)  {
+    if  (EventStatus == true)  {
         peeky.userData.math(key, "+", 1, "Chests"); 
         InfoMessages.push(InfoIcon + " Added a bonus reward from the event.");   
     };
