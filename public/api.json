@@ -1,16 +1,19 @@
 {
-"default_prefix": "p!",  
-"server_limit": 100, 
+"bot_name": "PEEKY",
+"bot_desc": "PEEKY is a fancy Discord bot that comes prepared to enhance your Discord servers.",
+"default_prefix": "p!",
 
-"event_status": false,
+"server_count": 0,
+"profile_count": 0,
+"age_count": 0,
+
 "event_name": "PEEKY's Birthday",
-  
-"autowipe_time": 1296000000,
-"booster_time": 86400000,
-  
+"event_status": false,
+
+"server_limit": 100,
 "custom_background": 1000,
 "sell_multiplier": 2.5,
 "exp_multiplier": 125,
-  
-"short_description": "PEEKY is a fancy Discord bot that comes prepared to enhance your Discord servers."
+"autowipe_time": 1296000000,
+"booster_time": 86400000
 }
