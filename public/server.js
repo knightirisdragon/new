@@ -47,19 +47,10 @@ const ms         = require('parse-ms');
 const node_fetch = require('node-fetch');
 const https      = require('https');
 
-//Sets and arrays
+//Info
 const ErrorBag               = new Set();
-const BannedIDs              = new Set([108899409365852160]);
-const FailedVoteChecks       = new Set();
-const FloodProtectionStrikes = [];
-const KarmaImages            = [];
-const LoggedMessages         = new Set();
-const CurrentlyStreaming     = new Set();
-const ClearedNames           = new Set();
-const QueuedSOSMessages      = new Set();
-const CurrentlyPlaying       = new Set();
-const ActiveMinigames        = new Set();
-const WebsiteCooldowns       = new Set();  //Auto Wipe, Website stats, Featured Profile, etc.
+//Cooldowns
+const WebsiteCooldowns       = new Set();
 const GainCooldown           = new Set();
 const ProfileBoosterCooldown = new Set();
 const OverviewCooldown       = new Set();
@@ -76,10 +67,23 @@ const MessageLogCooldown     = new Set();
 const DonorWallCooldown      = new Set();
 const ServerAgeCooldown      = new Set();
 const ResponseCooldowns      = new Set();  const ResponseCooldownMS = 5000;
+//System
+const FloodProtectionStrikes = [];
+const KarmaImages            = [];
+const QueuedSOSMessages      = new Set();
+const ActiveMinigames        = new Set();
+const CurrentlyPlaying       = new Set();
+const CurrentlyStreaming     = new Set();
+const ClearedNames           = new Set();
+//Trashbins
+const FailedVoteChecks       = new Set();
+const LoggedMessages         = new Set();
+
+
 
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
-const MarkedUsers         = [  "251634374972276736"  ];
+const BannedUsers         = [  108899409365852160  ];
 const blacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const whitelistedSymbols  = [  "a", "á", "b", "c", "č", "d", "ď", "e", "é", "ě", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "ň", "o", "ó", "p", "q", "r", "ř", "s", "š", "t", "u", "ů", "ú", "v", "w", "x", "y", "ý", "z", "ž", "0", "1", "2", "3", "4", "6", "5", "7", "8", "9", "_", "-", " ", ",", ".", "'", '"', "(", ")", "[", "]"  ];
 const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
@@ -2247,25 +2251,20 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
   
     //Account created less than 30 days ago
     if  (new Date() - new Date(member.user.createdAt) <= 2592000000 )  {
-        Suspicions ++;
         String.push("Account created less than 30 days ago.");
     };
 
     //Account has alot of logged bans
     if  (peeky.userData.has(key) && peeky.userData.get(key, "Bans") >= BanLimit)  {
-        Suspicions ++;
         String.push("Banned more than " + peeky.userData.get(key, "Bans") + " times in other servers.");
     };
   
     //Account is marked
-    MarkedUsers.forEach(i => {
-    if  (i == member.user.id)  {
-        Suspicions ++;
-        String.push("Manually marked as potentially dangerous to your server.");
+    if  (BannedUsers.includes(member.user.id))  {
+        String.push("This user has been banned from using PEEKY.");
     };
-    });
 
-    if  (Suspicions > 0)  {
+    if  (String.length > 0)  {
         peeky.users.get(owner).send("**Someone suspicious has joined " + Function_RemoveFormatting(member.guild.name, "other", true) + "!**\nBe aware of this user but don't ban them just because you've got this message!\n\n**User:** " + Function_RemoveFormatting(member.user.tag, "other", true) + " (<@" + member.user.id + ">)\n**Suspicions:** " + (String.join(" / ") + "\n­")).catch(error => ErrorBag.add(error));   
         console.log("The Suspicion Alert function has been triggered in " + member.guild.name + ".");
     };
@@ -3232,7 +3231,7 @@ if  (message.channel.type == "dm")  {
 
 if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !message.webhookID && message.content.toLowerCase() !== "accept")  {
   
-    if  (!BannedIDs.has(message.author.id))  {
+    if  (!BannedUsers.includes(message.author.id))  {
 
         const embed = {"description": InfoIcon + " Do you want to send your message to PEEKY's owner?\n" + Hollow + " Type **Accept** in under 30 seconds if you do.",  "color": EmbedColor}; 
         message.channel.send({ embed }).then(() => {
@@ -3765,7 +3764,7 @@ if  (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true)  {
 };
 
 //COMMANDS
-if  (!message.author.bot && !message.webhookID && !BannedIDs.has(message.author.id) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+if  (!message.author.bot && !message.webhookID && !BannedUsers.includes(message.author.id) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
   
 //Mention Commands
   
