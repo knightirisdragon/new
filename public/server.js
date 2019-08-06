@@ -53,6 +53,33 @@ const ms         = require('parse-ms');
 const node_fetch = require('node-fetch');
 const https      = require('https');
 
+//API Variables
+const PeekyAPI              = require("./api.json");
+const Prefix                = PeekyAPI.default_prefix;
+const EventStatus           = PeekyAPI.event_status;
+const EventName             = PeekyAPI.event_name;
+const CustomBackgroundPrice = PeekyAPI.custom_background;
+const SellMultiplier        = PeekyAPI.sell_multiplier;
+const ExpNeeded             = PeekyAPI.exp_multiplier;
+const MaxServers            = PeekyAPI.server_limit;
+const InactiveWipe          = PeekyAPI.autowipe_time;
+const ProfileBoosterLength  = PeekyAPI.booster_time;
+
+//Other Variables
+const InactiveTime       = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
+const ProfileBoosterTime = (ProfileBoosterLength  / ( 60 * 60 * 1000 ));
+const DefaultFont        = "Verdana";
+const Dark               = "#36393E";
+const LessDark           = "#3f3f3f";
+const Light              = "#424549";
+const Blurple            = "#7289DA";
+const EmbedColor         = 3093047;
+const BackgroundInvLimit = 25;
+const BannedWordsLimit   = 10;
+const PlaylistLimit      = 10;
+const GameRolesLimit     = 10;
+const AutoDeleteTime     = 250;
+
 //Sets and Arrays
 const ErrorBag               = new Set();
 const WebsiteCooldowns       = new Set();
@@ -214,33 +241,6 @@ const AllString     = "all";
 const RandomString  = "random";
 const BadFormat     = "invalid";
 const Exclusive     = "Exclusive";
-
-//API Variables
-const PeekyAPI              = require("./api.json");
-const Prefix                = PeekyAPI.default_prefix;
-const EventStatus           = PeekyAPI.event_status;
-const EventName             = PeekyAPI.event_name;
-const CustomBackgroundPrice = PeekyAPI.custom_background;
-const SellMultiplier        = PeekyAPI.sell_multiplier;
-const ExpNeeded             = PeekyAPI.exp_multiplier;
-const MaxServers            = PeekyAPI.server_limit;
-const InactiveWipe          = PeekyAPI.autowipe_time;
-const ProfileBoosterLength  = PeekyAPI.booster_time;
-
-//Other Variables
-const InactiveTime       = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
-const ProfileBoosterTime = (ProfileBoosterLength  / ( 60 * 60 * 1000 ));
-const DefaultFont        = "Verdana";
-const Dark               = "#36393E";
-const LessDark           = "#3f3f3f";
-const Light              = "#424549";
-const Blurple            = "#7289DA";
-const EmbedColor         = 3093047;
-const BackgroundInvLimit = 25;
-const BannedWordsLimit   = 10;
-const PlaylistLimit      = 10;
-const GameRolesLimit     = 10;
-const AutoDeleteTime     = 250;
 
 //Response Messages
 const CooldownMessage1 = [ErrorIcon + " You are currently on a cooldown for that command."];
