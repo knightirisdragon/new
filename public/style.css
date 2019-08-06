@@ -23,6 +23,7 @@ img  {border-radius: 10px; cursor: pointer;}
 
 .messageheader  {
     background-color: orange;
+    border: 2px solid rgba(255, 255, 255, 0.25);
     border-radius: 10px;
     width: 100%;
     padding: 10px;

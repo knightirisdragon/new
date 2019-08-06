@@ -2258,8 +2258,7 @@ const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
 //Server Message
 if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user.bot)  {
       
-    member.send((peeky.serverData.get(keySF, "server_message_bonus_setting")).replace(GuildNameTag, Function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym))
-    .catch(error => ErrorBag.add(error));
+    member.send((peeky.serverData.get(keySF, "server_message_bonus_setting")).replace(GuildNameTag, Function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym)).catch(error => ErrorBag.add(error));
 
 };
 
@@ -2592,8 +2591,8 @@ if  (newMember.roles.has(RedeemRole1))  {
     newMember.removeRole(RedeemRole1).catch(error => {ErrorBag.add(error); Failed = true});
       
     if  (Failed !== true)  {
+      
         peeky.userData.math(key, "+", 1000, "Gredit");
-
         peeky.userData.math(key, "+", ExpAmount, "Exp");
       
         if  (peeky.userData.get(key, "ContributorBadge") == false)  {
@@ -2613,8 +2612,8 @@ if  (newMember.roles.has(RedeemRole2))  {
     newMember.removeRole(RedeemRole2).catch(error => {ErrorBag.add(error); Failed = true});
       
     if  (Failed !== true)  {
+      
         peeky.userData.math(key, "+", 2000, "Gredit");
-
         peeky.userData.math(key, "+", ExpAmount, "Exp");
       
         if  (peeky.userData.get(key, "ContributorBadge") == false)  {
@@ -2635,8 +2634,8 @@ if  (newMember.roles.has(RedeemRole3))  {
     newMember.removeRole(RedeemRole3).catch(error => {ErrorBag.add(error); Failed = true});
       
     if  (Failed !== true)  {
+      
         peeky.userData.math(key, "+", 5000, "Gredit");
-
         peeky.userData.math(key, "+", ExpAmount, "Exp");
       
         if  (peeky.userData.get(key, "ContributorBadge") == false)  {
@@ -2656,8 +2655,8 @@ if  (newMember.roles.has(RedeemRole4))  {
     newMember.removeRole(RedeemRole4).catch(error => {ErrorBag.add(error); Failed = true});
       
     if  (Failed !== true)  {
+  
         peeky.userData.math(key, "+", 10000, "Gredit");
-
         peeky.userData.math(key, "+", ExpAmount, "Exp");
       
         if  (peeky.userData.get(key, "ContributorBadge") == false)  {
@@ -2694,31 +2693,31 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
 
     if  (member.guild.me.hasPermission('MANAGE_ROLES'))  {
   
-    if  (!member.user.bot)  {
+        if  (!member.user.bot)  {
 
-        var   HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
-        var   GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
+            var   HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
+            var   GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
 
-        if  (member.presence.game !== null && member.presence.game.streaming == true)  {
+            if  (member.presence.game !== null && member.presence.game.streaming == true)  {
 
-        if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
-             member.addRole(GuildRole).catch(error => ErrorBag.add(error));
-                  
-             CurrentlyStreaming.add(member.user.id + member.guild.id + "SR");
-             setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 1800000);
+            if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
+                 member.addRole(GuildRole).catch(error => ErrorBag.add(error));
 
-             console.log("The Streamer Role function has been triggered in " + member.guild.name + ".");
+                 CurrentlyStreaming.add(member.user.id + member.guild.id + "SR");
+                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 1800000);
+
+                 console.log("The Streamer Role function has been triggered in " + member.guild.name + ".");
+            };
+
+            }  else  { 
+
+               if  (HasRole)  {
+                   member.removeRole(GuildRole).catch(error => ErrorBag.add(error));
+               };
+
+            };
+
         };
-
-        }  else  { 
-
-           if  (HasRole)  {
-               member.removeRole(GuildRole).catch(error => ErrorBag.add(error));
-           };
-
-        };
-  
-    };
 
     };
       
