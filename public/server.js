@@ -1363,6 +1363,11 @@ fetch('https://peeky.glitch.me/featured_profile.txt')
 .then(response => response.text()).then((data) => {
    document.getElementById("FeaturedProfile").innerHTML = data;
 });
+
+fetch('https://peeky.glitch.me/messageheader.txt')
+.then(response => response.text()).then((data) => {
+   document.getElementById("messageheader").innerHTML = data;
+});
   
 };
 
@@ -1869,19 +1874,22 @@ if  (!WebsiteCooldowns.has("workshop"))  {
 
 };
 
-if  (!WebsiteCooldowns.has("eventheader"))  {
+//Message Header
+if  (!WebsiteCooldowns.has("messageheader"))  {
+  
+    WebsiteCooldowns.add("messageheader");
+    
+    var Message = "";
   
     if  (OngoingEvent == true)  {
-        var Message = "<div class='messageheader'>You can currently participate in the " + EventName + " event!</div>";  
-    } else {
-      var Message = "";  
+        Message = "<div class='messageheader'>You can currently participate in the " + EventName + " event!</div>";  
     };
 
-    await fs.writeFile('public/backgrounds.txt', Message, (err) => {
+    await fs.writeFile('public/messageheader.txt', Message, (err) => {
         if (err) console.log(err);
     });
 
-    console.log("The event header has been updated.");
+    console.log("The message header has been updated.");
 
 };
 
