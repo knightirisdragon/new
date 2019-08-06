@@ -2334,7 +2334,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
                     
                   });
                 
-                  member.setRoles(ValidRoles).catch(error => ErrorBag.add(error));
+                  member.setRoles(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
     
                   console.log("The Role Saver function has been triggered in " + member.guild.name + ".");
                 
@@ -2360,7 +2360,7 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
 
                 if  (current[0] == member.user.id && current[1] !== null)  {
 
-                    member.setNickname(current[1]);
+                    member.setNickname(current[1], "Triggered by the Nickname Saver function.");
 
                     console.log("The Nickname Saver function has been triggered in " + member.guild.name + ".");
 
@@ -2407,7 +2407,7 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
 
     if  (Detected == true)  {
       
-        await member.guild.ban(member.id, {  reason: "Triggered by the Welcome Messages function.", days: 0  }).catch(error => {
+        await member.guild.ban(member.id, "Triggered by the Welcome Messages function.").catch(error => {
               ErrorBag.add(error);
               var Failed = true;
         });
@@ -7002,7 +7002,7 @@ if (CommandName.startsWith("idban "))  {
 
         if  (!message.guild.members.find(m => m.id == GivenID))  {
 
-            await message.guild.ban(GivenID, {  reason: "ID banned by " + message.author.tag + ".", days: 0  }).catch(error => { 
+            await message.guild.ban(GivenID, "ID banned by " + message.author.tag + ".").catch(error => { 
                   const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   ErrorBag.add(error); Failed = true;
@@ -7054,7 +7054,7 @@ if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
           
 if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS")) {
 
-    await message.guild.ban(MentionedMember.user.id, {  reason: " banned by " + message.author.tag + ".", days: 0  }).catch(error => { 
+    await message.guild.ban(MentionedMember.user.id, "Banned by " + message.author.tag + ".").catch(error => { 
           const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           ErrorBag.add(error); Failed = true;
