@@ -53,32 +53,29 @@ const ms         = require('parse-ms');
 const node_fetch = require('node-fetch');
 const https      = require('https');
 
-//API Variables
-const PeekyAPI              = require("./api.json");
-const Prefix                = PeekyAPI.default_prefix;
-const EventStatus           = PeekyAPI.event_status;
-const EventName             = PeekyAPI.event_name;
-const CustomBackgroundPrice = PeekyAPI.custom_background;
-const SellMultiplier        = PeekyAPI.sell_multiplier;
-const ExpNeeded             = PeekyAPI.exp_multiplier;
-const MaxServers            = PeekyAPI.server_limit;
-const InactiveWipe          = PeekyAPI.autowipe_time;
-const ProfileBoosterLength  = PeekyAPI.booster_time;
-
-//Other Variables
-const InactiveTime       = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
-const ProfileBoosterTime = (ProfileBoosterLength  / ( 60 * 60 * 1000 ));
-const DefaultFont        = "Verdana";
-const Dark               = "#36393E";
-const LessDark           = "#3f3f3f";
-const Light              = "#424549";
-const Blurple            = "#7289DA";
-const EmbedColor         = 3093047;
-const BackgroundInvLimit = 25;
-const BannedWordsLimit   = 10;
-const PlaylistLimit      = 10;
-const GameRolesLimit     = 10;
-const AutoDeleteTime     = 250;
+//Variables
+const Prefix                = "p!";
+const EventStatus           = false;
+const EventName             = "PEEKY's Birthday";
+const CustomBackgroundPrice = 1000;
+const SellMultiplier        = 2.5;
+const ExpNeeded             = 125;
+const MaxServers            = 100;
+const InactiveWipe          = 1296000000;
+const ProfileBoosterLength  = 86400000;
+const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
+const ProfileBoosterTime    = (ProfileBoosterLength  / ( 60 * 60 * 1000 ));
+const DefaultFont           = "Verdana";
+const Dark                  = "#36393E";
+const LessDark              = "#3f3f3f";
+const Light                 = "#424549";
+const Blurple               = "#7289DA";
+const EmbedColor            = 3093047;
+const BackgroundInvLimit    = 25;
+const BannedWordsLimit      = 10;
+const PlaylistLimit         = 10;
+const GameRolesLimit        = 10;
+const AutoDeleteTime        = 250;
 
 //Sets and Arrays
 const ErrorBag               = new Set();
@@ -1677,7 +1674,7 @@ if  (!WebsiteCooldowns.has("api"))  {
       "background_count": Banners.length,
 
       "event_name": "PEEKY's Birthday",
-      "event_status": false,
+      "event_status": EventStatus
 
       "server_limit": 100,
       "custom_background": 1000,
