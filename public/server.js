@@ -1661,12 +1661,12 @@ peeky.on('message', async (message) => {
 if  (!WebsiteCooldowns.has("api"))  {
       
     WebsiteCooldowns.add("api");
-    setTimeout(() => {WebsiteCooldowns.delete("api")}, 600000);
+    setTimeout(() => {WebsiteCooldowns.delete("api")}, 300000);
 
     const UpdatedApi = {
-      "bot_name": "PEEKY",
+      "bot_name": peeky.user.name,
       "bot_desc": "PEEKY is a fancy Discord bot that comes prepared to enhance your Discord servers.",
-      "default_prefix": "p!",
+      "default_prefix": Prefix,
 
       "server_count": peeky.guilds.size,
       "profile_count": peeky.userData.count,
@@ -1674,14 +1674,14 @@ if  (!WebsiteCooldowns.has("api"))  {
       "background_count": Banners.length,
 
       "event_name": "PEEKY's Birthday",
-      "event_status": EventStatus
+      "event_status": EventStatus,
 
-      "server_limit": 100,
-      "custom_background": 1000,
-      "sell_multiplier": 2.5,
-      "exp_multiplier": 125,
-      "autowipe_time": 1296000000,
-      "booster_time": 86400000
+      "server_limit": MaxServers,
+      "custom_background": CustomBackgroundPrice,
+      "sell_multiplier": SellMultiplier,
+      "exp_multiplier": ExpNeeded,
+      "autowipe_time": InactiveWipe,
+      "booster_time": ProfileBoosterLength
     };
   
     await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
