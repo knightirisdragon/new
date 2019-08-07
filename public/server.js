@@ -1918,7 +1918,7 @@ if  (!WebsiteCooldowns.has("messageheader"))  {
     var Message = "";
   
     if  (EventStatus == true)  {
-        Message = "<div class='messageheader'>You can currently participate in the " + EventName + " event!</div>";  
+        Message = '<div class="messageheader">You can currently participate in the <a href="https://peeky.glitch.me/event.html"><u>' + EventName + '</a></u> event!</div>';  
     };
 
     await fs.writeFile('public/messageheader.txt', Message, (err) => {
