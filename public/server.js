@@ -1664,7 +1664,7 @@ if  (!WebsiteCooldowns.has("api"))  {
     setTimeout(() => {WebsiteCooldowns.delete("api")}, 300000);
 
     const UpdatedApi = {
-      "bot_name": peeky.user.name,
+      "bot_name": peeky.user.username,
       "bot_desc": "PEEKY is a fancy Discord bot that comes prepared to enhance your Discord servers.",
       "default_prefix": Prefix,
 
