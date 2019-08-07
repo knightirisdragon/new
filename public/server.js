@@ -5,7 +5,7 @@ const BLSToken = process.env.BLS_TOKEN;
 const YoutubeToken = process.env.YT_TOKEN;
 
 //Discord
-const Discord = require("discord.js");
+const Discord = require('discord.js');
 const peeky   = new Discord.Client();
 
 //DDBL

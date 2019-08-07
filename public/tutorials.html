@@ -185,9 +185,11 @@ This is the format that you should use when submitting a background to the Works
 
 <br><br>
   
-Name: ...  <br>
-Credit: ...  <br>
-Price: 50 - 500
+<code>
+Name: [text] <br>
+Credit: [text]  <br>
+Price: [number]
+</code>
   
 <br><br>
   
@@ -252,17 +254,22 @@ The steps on how to issue a refund are in the Refund Policy page.
 <br>
 
 <font size="5" class="item_header">
-About the Auto Wipe system
+API
 </font>
 <div class="tutorial_item">
 
 <u>1. Node.js</u>  <br>
 <font size="2">
 
-fetch(`https://peeky.glitch.me/api.json`).then(response => response.json()).then(async (data) => {
-      console.log(data)
-      
+<pre>
+<code>
+const fetch = require('node-fetch');
+  
+fetch(`https://peeky.glitch.me/api.json`).then(response =&gt response.json()).then(async (data) =&gt {
+     console.log(data);
 });
+</code>
+</pre>
   
 </font>
 
