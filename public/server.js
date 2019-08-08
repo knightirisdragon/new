@@ -2125,20 +2125,6 @@ if  (!WebsiteCooldowns.has("staff"))  {
 
 };
 
-//Stats
-if  (!WebsiteCooldowns.has("stats"))  {
-      
-    WebsiteCooldowns.add("stats");
-    setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
-
-    await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + MaxServers + "</font> Servers</a> <br> <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a> <br> <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days Old</a>", (err) => {
-        if (err) console.log(err); 
-    });
-      
-    console.log("The stats have been updated.");
-      
-};
-
 //Random Review
 if  (!WebsiteCooldowns.has("randomreview"))  {
       
@@ -2158,13 +2144,27 @@ if  (!WebsiteCooldowns.has("randomreview"))  {
     var ReviewDate     = new Date(FilteredReviews[RandomReview].date);
     var ReviewFullDate = function_DateFormat(ReviewDate);
       
-    await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + " Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast 200 characters long to show up here.</font></center>", (err) => {
+    await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + " Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast 200 characters long to show up.</font></center>", (err) => {
         if (err) console.log(err); 
     });
       
     });
       
     console.log("The featured review have been updated.");
+      
+};
+
+//Stats
+if  (!WebsiteCooldowns.has("stats"))  {
+      
+    WebsiteCooldowns.add("stats");
+    setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
+
+    await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + MaxServers + "</font> Servers</a> <br> <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a> <br> <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days Old</a>", (err) => {
+        if (err) console.log(err); 
+    });
+      
+    console.log("The stats have been updated.");
       
 };
 
