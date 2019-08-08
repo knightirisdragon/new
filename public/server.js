@@ -1667,12 +1667,13 @@ if  (!WebsiteCooldowns.has("api"))  {
     const UpdatedApi = {
       "bot_name": peeky.user.username,
       "bot_desc": "PEEKY is a fancy Discord bot that comes prepared to enhance your Discord servers.",
+      "bot_icon": peeky.user.avatarURL,
       "default_prefix": Prefix,
 
       "server_count": peeky.guilds.size,
       "profile_count": peeky.userData.count,
       "age_count": function_TimeLeft(peeky.user.createdAt, "days", null),
-      "background_count": Banners.length,
+      "backgrounds_count": Banners.length,
 
       "event_name": "PEEKY's Birthday",
       "event_status": EventStatus,
@@ -1682,7 +1683,11 @@ if  (!WebsiteCooldowns.has("api"))  {
       "sell_multiplier": SellMultiplier,
       "exp_multiplier": ExpNeeded,
       "autowipe_time": InactiveWipe,
-      "booster_time": ProfileBoosterLength
+      "booster_time": ProfileBoosterLength,
+      
+      "all_icons": RandomAvatars,
+      "random_songs": RandomSongs,
+      "backgrounds_list": Banners
     };
   
     await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
