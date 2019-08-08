@@ -1036,19 +1036,15 @@ function Function_RemoveFormatting(text, type, sliced)  {
     if  (type == "sm")  {
 
     var FixedText = text.replace(/\n/g, ' ').replace(/\*/g, '').replace(/`/g, '').replace(/|/g, '').replace(/~/g, '');
-      
-    }
-
-    if  (FixedText !== "")  {
-      
-    if  (FixedText.length > 100)  {
-        FixedText = FixedText.slice(0, 100) + "...";
-    };
 
     if  (FixedText !== "")  {
         return FixedText;
     } else {
         return BadFormat;
+    };
+      
+    if  (FixedText.length > 100)  {
+        FixedText = FixedText.slice(0, 100) + "...";
     };
 
     } else
