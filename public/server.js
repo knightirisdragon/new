@@ -6,7 +6,7 @@ const YoutubeToken = process.env.YT_TOKEN;
 
 //Discord
 const Discord = require('discord.js');
-const peeky   = new Discord.Client({  disabledEvents: ["TYPING_START"]  });
+const peeky   = new Discord.Client({  disabledEvents: ["TYPING_START"], disableEveryone: true  });
 
 //DDBL
 const { ddblAPI } = require('ddblapi.js');
@@ -1036,13 +1036,16 @@ function Function_RemoveFormatting(text, type, sliced)  {
     if  (type == "sm")  {
 
     var FixedText = text.replace(/\n/g, ' ').replace(/\*/g, '').replace(/`/g, '').replace(/|/g, '').replace(/~/g, '');
+      
+    }
 
     if  (FixedText !== "")  {
       
-        if  (FixedText.length > 100)  {
-            FixedText = FixedText.slice(0, 100) + "...";
-        };
+    if  (FixedText.length > 100)  {
+        FixedText = FixedText.slice(0, 100) + "...";
+    };
 
+    if  (FixedText !== "")  {
         return FixedText;
     } else {
         return BadFormat;
@@ -1059,7 +1062,6 @@ function Function_RemoveFormatting(text, type, sliced)  {
     };
 
     if  (FixedText !== "")  {
-
         return FixedText;
     } else {
         return BadFormat;
@@ -1076,7 +1078,6 @@ function Function_RemoveFormatting(text, type, sliced)  {
     };
 
     if  (FixedText !== "")  {
-
         return FixedText;
     } else {
         return BadFormat;
@@ -1124,7 +1125,7 @@ function Function_RemoveFormatting(text, type, sliced)  {
         FixedText.slice(0, 50);
     };
 
-        return FixedText;
+    return FixedText;
       
     } else
 
@@ -3866,7 +3867,7 @@ var CommandName = message.content.replace(peeky.serverData.get(keySF, "prefix"),
   
 //Get
 if  (CommandName.startsWith("get "))  {
-    message.channel.send("`" + Function_RemoveFormatting(CommandName.split(peeky.serverData.get(keySF, "prefix") + "get ")[1], "get", true) + "`").catch(error => ErrorBag.add(error));
+    message.channel.send("`" + Function_RemoveFormatting(CommandName.split("get ")[1], "get", true) + "`").catch(error => ErrorBag.add(error));
 };
 
 //Eval
