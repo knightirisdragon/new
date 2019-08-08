@@ -17,6 +17,7 @@ img  {border-radius: 10px; cursor: pointer;}
 
 .inlinediv  {
     background-color: rgba(35, 39, 42, 0.5);
+    padding: 15px;
 
     overflow: scroll;
     flex-direction: initial;
