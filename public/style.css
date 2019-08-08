@@ -15,6 +15,14 @@ img  {border-radius: 10px; cursor: pointer;}
   box-sizing: border-box;
 }
 
+.scaletext  {
+    background-color: rgba(35, 39, 42, 0.5);
+    height: 150px;
+    overflow: hide;
+    flex-direction: initial;
+    display: flex;
+}
+
 .inlinediv  {
     background-color: rgba(35, 39, 42, 0.5);
     padding: 15px;
