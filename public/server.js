@@ -6277,45 +6277,54 @@ if (CommandName.startsWith("play "))  {
     setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
   
     if  (GivenSong == RandomString && ChoosingMode == true)  {
+      
         GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
         Type = "Random";
         DeleteMessage = false;
         ChoosingMode = false;
+      
     };
   
     if  ((GivenSong == "previous" || IsRandom == true) && ChoosingMode == true)  {
-    if  (peeky.serverData.has(keySF, "Link") && peeky.serverData.get(keySF, "Link") !== "None")  {    
       
-        GivenSong = peeky.serverData.get(keySF, "Link");
+        ChoosingMode = false;
         DeleteMessage = false;
-        Type = "Previous";
-        
-    } else {
-      const embed = {"description": InfoIcon + " Previous song not found, playing a random song.",  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            
-      GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
-      Type = "Random";
-      DeleteMessage = false;
-    };
+      
+        if  (peeky.serverData.has(keySF, "Link") && peeky.serverData.get(keySF, "Link") !== "None")  {  
+
+            GivenSong = peeky.serverData.get(keySF, "Link");
+            Type = "Previous";
+
+        } else {
+          const embed = {"description": InfoIcon + " Previous song not found, playing a random song.",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+          GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+          Type = "Random";
+        };
+      
     };
   
     if  ((GivenSong == "playlist" || GivenSong == peeky.userData.get(key, "PlaylistName").toLowerCase()) && ChoosingMode == true)  {
-    if  (peeky.userData.get(key, "Playlist").length > 0)  {
       
-        GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
-        Type = "Playlist";
         DeleteMessage = false;
         ChoosingMode = false;
       
-    } else {
-      const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            
-      GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
-      Type = "Random";
-      DeleteMessage = false;
-    };
+        if  (peeky.userData.get(key, "Playlist").length > 0)  {
+
+            GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
+            Type = "Playlist";
+
+        } else {
+
+          const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+          GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+          Type = "Random";
+
+        };
+      
     };
       
     search(GivenSong, SearchOptions, async function(error, results)  {
