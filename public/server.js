@@ -53,14 +53,14 @@ const ms         = require('parse-ms');
 const node_fetch = require('node-fetch');
 const https      = require('https');
 
-//Variables
+//Setting Variables
 const Prefix                = "p!";
-const EventStatus           = false;
 const EventName             = "PEEKY's Birthday";
+const EventStatus           = false;
+const MaxServers            = 100;
 const CustomBackgroundPrice = 1000;
 const SellMultiplier        = 2.5;
 const ExpNeeded             = 125;
-const MaxServers            = 100;
 const InactiveWipe          = 1296000000;
 const ProfileBoosterLength  = 86400000;
 const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
