@@ -2031,7 +2031,7 @@ if  (!WebsiteCooldowns.has("news"))  {
 
     var NewsList = [];
 
-    peeky.channels.get(AnnouncementsChannel).fetchMessages({ limit: 4 }).then(async (messages) => {
+    peeky.channels.get(AnnouncementsChannel).fetchMessages({ limit: 5 }).then(async (messages) => {
           
     await messages.forEach(m => {
         var Header = m.content.split("\n")[0];
@@ -2041,10 +2041,10 @@ if  (!WebsiteCooldowns.has("news"))  {
         var ImageLink   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern_assets.png?v=1554545063162";
           
         if  (m.attachments.size > 0)  {
-            ImageLink = m.attachments[0].url;
+            ImageLink = m.attachments.array()[0].url;
         };
 
-        NewsList.push('<div class="newsitem" style="background-image: url(' + ImageLink + ')">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", false).slice(0, 25) + '  </b>  <br>  <b class="newsauthor">  Posted by <font color="#7289DA">' + m.author.tag + '</font> on <font color="#7289DA">' + function_DateFormat(m.createdAt) + '</font>.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", true) + '  </b>  ' + '  <br><br><br>  <a class="button" href="' + m.url + '">Open in Discord</a>  </div>');
+        NewsList.push('<div class="newsitem">  <img src=' + ImageLink + ' class="newsimg">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", false).slice(0, 25) + '  </b>  <br>  <b class="newsauthor">  Posted by <font color="#7289DA">' + m.author.tag + '</font> on <font color="#7289DA">' + function_DateFormat(m.createdAt) + '</font>.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", true) + '  </b>  </div>');
     });
 
     await fs.writeFile('public/news.txt', NewsList.join(""), (err) => {

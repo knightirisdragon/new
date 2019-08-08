@@ -15,6 +15,17 @@ img  {border-radius: 10px; cursor: pointer;}
   box-sizing: border-box;
 }
 
+.inlinediv  {
+    background-color: rgba(35, 39, 42, 0.5);
+    padding: 15px;
+
+    overflow: auto;
+    flex-direction: initial;
+    display: flex; 
+
+    text-align: left;
+}
+
 .close  {  
     background-color: rgba(100, 0, 0, 0.75);
     border-radius: 25px;
