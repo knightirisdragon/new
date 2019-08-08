@@ -2117,7 +2117,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
     };
     });
 
-    await fs.writeFile('public/staff.txt', '<font size="5" class="item_header">Developers of PEEKY</font>  <br>  <div class="staffroom">  ' + DevList.join(" ") + '  </div>  <br>  <font size="5" class="item_header">Moderators of the Support Server</font>  <br>  <div class="staffroom">  ' + ModList.join(" ") + '  </div>', (err) => {
+    await fs.writeFile('public/staff.txt', '<font size="5" class="item_header">Developers of PEEKY</font>  <br>  <div class="inlinediv">  ' + DevList.join(" ") + '  </div>  <br>  <font size="5" class="item_header">Moderators of the Support Server</font>  <br>  <div class="inlinediv">  ' + ModList.join(" ") + '  </div>', (err) => {
         if (err) console.log(err);
     });
       
@@ -2281,7 +2281,13 @@ const key = `${user.id}`;
 
 //Log the ban
 if  (peeky.userData.has(key))  {
-    peeky.userData.math(key, "+", 1, "Bans");
+  
+    if  (peeky.userData.has(key, "Bans"))  {
+        peeky.userData.math(key, "+", 1, "Bans");
+    }  else  {
+       peeky.userData.set(key, 0, "Bans");
+    };
+  
 };
 
 });
