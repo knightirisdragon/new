@@ -16,7 +16,7 @@ dependencies:
   require.js: 1.0.0
   sqlite3: 4.0.9
   youtube-search: 1.1.4
-  ytdl-core: 0.29.4
+  ytdl-core: 0.29.5
   ytdl-core-discord: 1.0.3
 packages:
   /abbrev/1.1.1:
@@ -1464,7 +1464,7 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-rQTxqxF09tKGgWxVtvFfi6ga1KWcHNbUGz09yTklirhqQlsIYvaDFCEhJ0K/RlzMH12FquAAMzh+Qi35fkwbFQ==
-  /ytdl-core/0.29.4:
+  /ytdl-core/0.29.5:
     dependencies:
       html-entities: 1.2.1
       m3u8stream: 0.6.2
@@ -1474,7 +1474,7 @@ packages:
     engines:
       node: '>=6'
     resolution:
-      integrity: sha512-YvSgJS8yplbjv+TVOFTQTI/dsQxknwNHV4zt2GFrx5J71pxRKOElZy2qv7zPBM+W7QcBB5U7a21Nil0RFeP7Ig==
+      integrity: sha512-6WOoLQCeovo/aFYeMKeEXjvS/L+0j/vq85AYF86KSmkSA3lMzUzMdtmlo0GjsrOUN79S03MDkSgXEWOZBWL1Rg==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
@@ -1496,5 +1496,5 @@ specifiers:
   require.js: ^1.0.0
   sqlite3: ^4.0.8
   youtube-search: ^1.1.4
-  ytdl-core: ^0.29.4
+  ytdl-core: ^0.29.5
   ytdl-core-discord: ^1.0.3

@@ -1686,7 +1686,6 @@ if  (!WebsiteCooldowns.has("api"))  {
       "booster_time": ProfileBoosterLength,
       
       "all_icons": RandomAvatars,
-      "random_songs": RandomSongs,
       "backgrounds_list": Banners
     };
   
