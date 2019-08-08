@@ -2044,7 +2044,7 @@ if  (!WebsiteCooldowns.has("news"))  {
             ImageLink = m.attachments.array()[0].url;
         };
 
-        NewsList.push('<div class="newsitem" background-image: url("' + ImageLink + '")>  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", false).slice(0, 25) + '  </b>  <br>  <b class="newsauthor">  Posted by <font color="#7289DA">' + m.author.tag + '</font> on <font color="#7289DA">' + function_DateFormat(m.createdAt) + '</font>.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", true) + '  </b>  </div>');
+        NewsList.push('<div class="newsitem" style="background-image: url(' + ImageLink + ')">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", false).slice(0, 25) + '  </b>  <br>  <b class="newsauthor">  Posted by <font color="#7289DA">' + m.author.tag + '</font> on <font color="#7289DA">' + function_DateFormat(m.createdAt) + '</font>.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", false).slice(0, 100) + '  </b>  </div>');
     });
 
     await fs.writeFile('public/news.txt', NewsList.join(""), (err) => {
