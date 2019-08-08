@@ -1665,28 +1665,28 @@ if  (!WebsiteCooldowns.has("api"))  {
     setTimeout(() => {WebsiteCooldowns.delete("api")}, 300000);
 
     const UpdatedApi = {
-      "bot_name": peeky.user.username,
-      "bot_desc": "PEEKY is a fancy Discord bot that comes prepared to enhance your Discord servers.",
-      "bot_icon": peeky.user.avatarURL,
-      "default_prefix": Prefix,
+      "botName": peeky.user.username,
+      "botDesc": "PEEKY is a fancy Discord bot that comes prepared to enhance your Discord servers.",
+      "botAvatar": peeky.user.avatarURL,
+      "defaultPrefix": Prefix,
 
-      "server_count": peeky.guilds.size,
-      "profile_count": peeky.userData.count,
-      "age_count": function_TimeLeft(peeky.user.createdAt, "days", null),
-      "backgrounds_count": Banners.length,
+      "serverCount": peeky.guilds.size,
+      "profileCount": peeky.userData.count,
+      "ageCount": function_TimeLeft(peeky.user.createdAt, "days", null),
+      "backgroundsCount": Banners.length,
 
-      "event_name": "PEEKY's Birthday",
-      "event_status": EventStatus,
+      "eventName": "PEEKY's Birthday",
+      "eventStatus": EventStatus,
 
-      "server_limit": MaxServers,
-      "custom_background": CustomBackgroundPrice,
-      "sell_multiplier": SellMultiplier,
-      "exp_multiplier": ExpNeeded,
-      "autowipe_time": InactiveWipe,
-      "booster_time": ProfileBoosterLength,
+      "serverLimit": MaxServers,
+      "customBackground": CustomBackgroundPrice,
+      "sellMultiplier": SellMultiplier,
+      "expMultiplier": ExpNeeded,
+      "autowipeTime": InactiveWipe,
+      "boosterTime": ProfileBoosterLength,
       
-      "all_icons": RandomAvatars,
-      "backgrounds_list": Banners
+      "botAvatars": RandomAvatars,
+      "backgroundsList": Banners
     };
   
     await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
