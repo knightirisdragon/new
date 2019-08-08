@@ -6,7 +6,7 @@ const YoutubeToken = process.env.YT_TOKEN;
 
 //Discord
 const Discord = require('discord.js');
-const peeky   = new Discord.Client();
+const peeky   = new Discord.Client({  disabledEvents: ["TYPING_START"]  });
 
 //DDBL
 const { ddblAPI } = require('ddblapi.js');
