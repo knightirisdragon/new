@@ -106,17 +106,6 @@ const ClearedNames           = new Set();
 const FailedVoteChecks       = new Set();
 const LoggedMessages         = new Set();
 
-//Small Arrays
-const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
-const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
-const BannedUsers         = [  108899409365852160  ];
-const ListingServers      = [    ];
-
-//Small Objects
-var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
-var StreamOptions   = {  volume: 0.25  };
-var SearchOptions   = {  maxResults: 1,  key: YoutubeToken  };
-
 //Image Assets
 const TwitterIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ftwitter.png?1555574745120";
 const RedditIcon    = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Freddit.png?1555575444018";
@@ -223,7 +212,7 @@ const OwnerId              = "108899856889737216";
 const PeekyId              = "482945063282802698";
 const SupportServer        = "319891596772638744";
 const AnnouncementsChannel = "346710479407808524";
-const EmojiStorage         = "493048757286600716";
+const EmojiStorage1        = "493048757286600716";
 const WorkshopChannel      = "501130667078189066";
 const PurchaseLog          = "583339225001492501";
 
@@ -268,6 +257,17 @@ const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your play
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
+
+//Small Arrays
+const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
+const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
+const BannedUsers         = [  108899409365852160  ];
+const ImmuneServers       = [  SupportServer, EmojiStorage1, 454933217666007052, 264445053596991498, 330777295952543744, 387812458661937152  ];
+
+//Small Objects
+var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
+var StreamOptions   = {  volume: 0.25  };
+var SearchOptions   = {  maxResults: 1,  key: YoutubeToken  };
 
 //Large Arrays
 const Banners = [
@@ -1704,9 +1704,9 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
     const rightNow = Date.now();
   
     //Guilds
-    var filtered = peeky.serverData.filter( p => p.GuildID && p.GuildID !== EmojiStorage && p.GuildID !== SupportServer && p.lastSeen );
+    var filtered = peeky.serverData.filter( p => p.GuildID && p.lastSeen );
     var toRemoveGuilds = filtered.filter(data => {
-        return rightNow - InactiveWipe > data.lastSeen;
+        return rightNow - InactiveWipe > data.lastSeen && !ImmuneServers.includes(data.GuildID);
     });
 
     toRemoveGuilds.forEach(data => {
