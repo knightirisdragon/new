@@ -1520,10 +1520,10 @@ peeky.on('message', async (message) => {
     if  (peeky.userData.get(key, "MedallistBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
       
         //Evil
-    if  (peeky.userData.get(key, "EvilBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "EvilBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
       
         //Good
-    if  (peeky.userData.get(key, "GoodBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "GoodBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
       
         //Party
     if  (peeky.userData.get(key, "PartyBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
