@@ -2038,8 +2038,13 @@ if  (!WebsiteCooldowns.has("news"))  {
         var Body   = m.content.split("\n").join("<br>").replace(Header, "");
         var Image = [];
         var PrefixImage = "";
+        var ImageLink = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern_assets.png?v=1554545063162";
+          
+        if  (m.attachments.length > 0)  {
+            ImageLink = m.attachments[0].url;          
+        };
       
-        if  (m.attachments.size > 0)  {
+        /*if  (m.attachments.size > 0)  {
           
             PrefixImage = "<br><br>";
           
@@ -2048,12 +2053,12 @@ if  (!WebsiteCooldowns.has("news"))  {
             Image.push('<img class="newsimage" src="' + a.url + '">');
 
             });
-        };
+        };*/
 
-        NewsList.push('<div class="newsitem">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", false) + '  </b>  <br>  <b class="newsauthor">  Posted by <font color="#7289DA">' + m.author.tag + '</font> on <font color="#7289DA">' + function_DateFormat(m.createdAt) + '</font>.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", false) + '  </b>  ' + PrefixImage + Image.join(" ") + '  <br><br><br>  <a class="button" href="' + m.url + '">Open in Discord</a>  </div>');
+        NewsList.push('<div class="newsitem" style="background-image: url("' + ImageLink + '")">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", false) + '  </b>  <br>  <b class="newsauthor">  Posted by <font color="#7289DA">' + m.author.tag + '</font> on <font color="#7289DA">' + function_DateFormat(m.createdAt) + '</font>.  </b>  <br>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", false) + '  </b>  ' /*+ PrefixImage + Image.join(" ")*/ + '  <br><br><br>  <a class="button" href="' + m.url + '">Open in Discord</a>  </div>');
     });
 
-    await fs.writeFile('public/news.txt', NewsList.join("<br><br>"), (err) => {
+    await fs.writeFile('public/news.txt', NewsList.join(""), (err) => {
         if (err) console.log(err);
     });    
     
