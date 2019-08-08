@@ -2035,12 +2035,16 @@ if  (!WebsiteCooldowns.has("news"))  {
           
     await messages.forEach(m => {
         var Header = m.content.split("\n")[0];
-        var Body   = m.content.replace(Header, "").split("\n");
+        var Body   = m.content.split("\n").join(" ").replace(Header, "");
         var Image  = [];
         var PrefixImage = "";
         var ImageLink   = PrismPattern;
+      
+        if  (m.attachments.size > 0)  {
+            ImageLink = m.attachments.array()[0].url;
+        }
 
-        NewsList.push('<div class="newsitem" style="background-image: url(' + ImageLink + ')">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", true) + '  </b>  <br>  <div class="textbackground">  <b class="newsauthor">  <font color="#7289DA">' + m.author.tag + '</font> @ <font color="#7289DA">' + function_DateFormat(m.createdAt) + '</font>  </b>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", false) + '  </b>  </div>  </div>');
+        NewsList.push('<div class="newsitem" style="background-image: url(' + ImageLink + ')">  <div class="textbackground">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", true) + '  </b>  <br>  <b class="newsauthor">  <font color="#7289DA">' + m.author.tag + '</font> @ <font color="#7289DA">' + function_DateFormat(m.createdAt) + '</font>  </b>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", false) + '  </b>  </div>  </div>');
     });
 
     await fs.writeFile('public/news.txt', NewsList.join(""), (err) => {
