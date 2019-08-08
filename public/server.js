@@ -108,8 +108,8 @@ const LoggedMessages         = new Set();
 
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
-const BannedUsers         = [  108899409365852160  ];
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
+const BannedUsers         = [  108899409365852160  ];
 
 //Small Objects
 var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
@@ -2334,9 +2334,9 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
         String.push("Banned more than " + peeky.userData.get(key, "Bans") + " times in other servers.");
     };
   
-    //Account is marked
+    //Account is banned from using PEEKY
     if  (BannedUsers.includes(member.user.id))  {
-        String.push("This user has been banned from using PEEKY.");
+        String.push("Banned from using PEEKY.");
     };
 
     if  (String.length > 0)  {
@@ -3347,7 +3347,7 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
     }
      else
     {
-     const embed = {"description": ErrorIcon + " You cannot send messages through PEEKY.",  "color": EmbedColor}; 
+     const embed = {"description": ErrorIcon + " You have been banned from using PEEKY.",  "color": EmbedColor}; 
      message.channel.send({ embed })
     };
 
