@@ -2900,11 +2900,11 @@ if  (!user.bot && KarmaImages.findIndex(i => i[0] == reaction.message.id) >= 0) 
 
     var ReactionEmoji1 = reaction.message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
     var ReactionEmoji2 = reaction.message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
+    var key2 = reaction.message.author.id;
   
     if  ((ReactionEmoji1 && reaction.emoji.name == ReactionEmoji1.name) || (reaction.emoji.id == DefaultUpvote))  {
       
         var Index = KarmaImages.findIndex(i =>  i[0] == reaction.message.id);
-        var key2 = reaction.message.author.id;
 
         if  (Index >= 0)  {
             
@@ -6296,6 +6296,7 @@ if (CommandName.startsWith("play "))  {
             
       GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
       Type = "Random";
+      DeleteMessage = false;
     };
     };
   
@@ -6313,6 +6314,7 @@ if (CommandName.startsWith("play "))  {
             
       GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
       Type = "Random";
+      DeleteMessage = false;
     };
     };
       
@@ -6327,8 +6329,6 @@ if (CommandName.startsWith("play "))  {
             };
           
         };
-      
-        DeleteMessage = false;
       
     if  (!GivenSong.includes("?list="))  {
       
