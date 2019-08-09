@@ -2142,7 +2142,7 @@ if  (!WebsiteCooldowns.has("randomreview"))  {
     
     node_fetch('https://ls.terminal.ink/api/v2/bots/482945063282802698').then(response => response.json()).then(async (data) => {
       
-    var FilteredReviews = data.data.reviews.filter(r => r.text.length >= 200);
+    var FilteredReviews = data.data.reviews.filter(r => r.text.length >= 100);
       
     var Length = FilteredReviews.length;
     var RandomReview = Math.round(Math.random() * Length);
@@ -2153,7 +2153,7 @@ if  (!WebsiteCooldowns.has("randomreview"))  {
     var ReviewDate     = new Date(FilteredReviews[RandomReview].date);
     var ReviewFullDate = function_DateFormat(ReviewDate);
       
-    await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + " Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast 200 characters long to show up.</font></center>", (err) => {
+    await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + " Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast 100 characters long to show up.</font></center>", (err) => {
         if (err) console.log(err); 
     });
       
