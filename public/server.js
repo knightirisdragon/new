@@ -1683,8 +1683,7 @@ if  (!WebsiteCooldowns.has("api"))  {
       "autowipeTime": InactiveWipe,
       "boosterTime": ProfileBoosterLength,
       
-      "botAvatars": RandomAvatars,
-      "backgroundsList": Banners
+      "botAvatars": RandomAvatars
     };
   
     await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
