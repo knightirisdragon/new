@@ -1680,6 +1680,7 @@ if  (!WebsiteCooldowns.has("api"))  {
       "botAvatar": peeky.user.avatarURL,
       "defaultPrefix": Prefix,
 
+      "serverLimit": MaxServers,
       "serverCount": peeky.guilds.size,
       "profileCount": peeky.userData.count,
       "ageCount": function_TimeLeft(peeky.user.createdAt, "days", null),
@@ -1688,14 +1689,11 @@ if  (!WebsiteCooldowns.has("api"))  {
       "eventName": "PEEKY's Birthday",
       "eventStatus": EventStatus,
 
-      "serverLimit": MaxServers,
       "customBackground": CustomBackgroundPrice,
       "sellMultiplier": SellMultiplier,
       "expMultiplier": ExpNeeded,
       "autowipeTime": InactiveWipe,
-      "boosterTime": ProfileBoosterLength,
-      
-      "botAvatars": RandomAvatars
+      "boosterTime": ProfileBoosterLength
     };
   
     await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
