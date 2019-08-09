@@ -1756,13 +1756,12 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     //Update leadeboard
     var filtered         = peeky.userData.filter( p => p.Gredit && p.FashionBadge == true ).array();
     var sorted           = filtered.sort((a, b) => b.Gredit - a.Gredit);
-    const top            = sorted.splice(0, 50);
+    const top            = sorted.splice(0, 25);
     var currentplace     = 0;
     var CurrentID        = 0;
     var GotBadge         = false;
     const Leaderboard    = [];
     const LeaderboardTop = [];
-    const FillersList    = [];
   
     const toRemove = filtered.filter(data => {
           return data.MedallistBadge == true;
@@ -1803,15 +1802,8 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     };
       
     };
-      
-    var Fillers = 50 - (Leaderboard.length + LeaderboardTop.length);
-      
-    while (Fillers > 0)  {
-          FillersList.push("<div class='leaderboarditem' id='" + currentplace + "  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>EMPTY PROFILE  <br>  <font size='2'>  Your profile will show up here once you get the Fashion badge.  </font></b>  </div>");
-          Fillers -= 1;
-    };
 
-    await fs.writeFile('public/leaderboard.txt', "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>") + "  <br><br>  " + FillersList.join("<br><br>"), (err) => {
+    await fs.writeFile('public/leaderboard.txt', "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>"), (err) => {
         if (err) console.log(err);
     });
 
