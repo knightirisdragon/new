@@ -1144,6 +1144,15 @@ function Function_RemoveFormatting(text, type, sliced)  {
 
 };
 
+//Proper Slice
+function function_ProperSlice(text, amount)  {
+  
+    
+
+
+  
+};
+
 //Remove HTML Tags
 function function_RemoveTags(text)  {
       return text.replace(/(<([^>]+)>)/ig, "");
@@ -2043,7 +2052,7 @@ if  (!WebsiteCooldowns.has("news"))  {
             ImageLink = m.attachments.array()[0].url;
         }
 
-        NewsList.push('<div class="newsitem" style="background-image: url(' + ImageLink + ')">  <div class="textbackground">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", true) + '  </b>  <br>  <b class="newsauthor">  <font color="#7289DA">' + m.author.tag + '</font> @ <font color="#7289DA">' + function_DateFormat(m.createdAt) + '</font>  </b>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", false) + '  </b>  <a class="button" href="' + m.url + '">Read More</a>  </div>  </div>');
+        NewsList.push('<div class="newsitem" style="background-image: url(' + ImageLink + ')">  <div class="textbackground">  <b class="newsheader">  ' + Function_RemoveFormatting(Header, "other", true) + '  </b>  <br>  <b class="newsauthor">  <font color="#7289DA">' + m.author.tag + '</font> @ <font color="#7289DA">' + function_DateFormat(m.createdAt) + '</font>  </b>  <b class="newsbody">  ' + Function_RemoveFormatting(Body, "other", false) + '  </b>  <a class="button" href="' + m.url + '">🔍</a>  </div>  </div>');
     });
 
     await fs.writeFile('public/news.txt', NewsList.join(""), (err) => {
