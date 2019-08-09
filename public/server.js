@@ -2039,7 +2039,7 @@ if  (!WebsiteCooldowns.has("news"))  {
         var PrefixImage = "";
         var ImageLink   = PrismPattern;
       
-        if  (m.attachments.size > 0 && false == true)  {
+        if  (m.attachments.size > 0 && false == false)  {
             ImageLink = m.attachments.array()[0].url;
         }
 
