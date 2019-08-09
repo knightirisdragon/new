@@ -202,10 +202,7 @@ const SupporterRole      = "504740473185894400";
 const BoosterRole        = "589783851329650690";
 const ServerUpgradeRole  = "549190337437106176";
 const ProfileBoosterRole = "603249410532442116";
-const RedeemRole1        = "505491936401162270";
-const RedeemRole2        = "527197436746268704";
-const RedeemRole3        = "536142807702831104";
-const RedeemRole4        = "536142889189638155";
+const RedeemRoleGredit   = "505491936401162270";
 
 //Other IDs
 const OwnerId              = "108899856889737216";
@@ -2574,165 +2571,100 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
 //Store Roles System
 if  (keySF == SupportServer)  {
 
-var ExpAmount    = 100;
-var Failed       = false;
-var InfoMessages = [];
+    var ExpAmount    = 100;
+    var Failed       = false;
+    var InfoMessages = [];
 
-//Supporter
-if  (peeky.userData.has(key))  {
-    
-    var HadRole = oldMember.roles.find(r => r.id == SupporterRole);
-    var HasRole = newMember.roles.find(r => r.id == SupporterRole);
-  
-    if  (HadRole == null && HasRole)  {
+    //Supporter
+    if  (peeky.userData.has(key))  {
 
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-      
-        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-            peeky.userData.set(key, true, "ContributorBadge");
-            InfoMessages.push(InfoMessage1[0]);
-        };
-      
-        const embed = {"description": SuccessIcon + " You have been promoted to **Supporter** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
-      
-    };
-  
-};
+        var HadRole = oldMember.roles.find(r => r.id == SupporterRole);
+        var HasRole = newMember.roles.find(r => r.id == SupporterRole);
 
-//Server Upgrade
-if  (peeky.userData.has(key))  {
-    
-    var HadRole = oldMember.roles.find(r => r.id == ServerUpgradeRole);
-    var HasRole = newMember.roles.find(r => r.id == ServerUpgradeRole);
-  
-    if  (HadRole == null && HasRole)  {
+        if  (HadRole == null && HasRole)  {
 
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-      
-        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-            peeky.userData.set(key, true, "ContributorBadge");
-            InfoMessages.push(InfoMessage1[0]);
+            peeky.userData.math(key, "+", ExpAmount, "Exp");
+
+            if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+                peeky.userData.set(key, true, "ContributorBadge");
+                InfoMessages.push(InfoMessage1[0]);
+            };
+
+            const embed = {"description": SuccessIcon + " You have been promoted to **Supporter** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+
         };
 
-        const embed = {"description": SuccessIcon + " You have been awarded a **Server Upgrade** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
-      
     };
-  
-};
 
-//Profile Booster
-if  (peeky.userData.has(key))  {
-    
-    var HadRole = oldMember.roles.find(r => r.id == ProfileBoosterRole);
-    var HasRole = newMember.roles.find(r => r.id == ProfileBoosterRole);
-  
-    if  (HadRole == null && HasRole)  {
+    //Server Upgrade
+    if  (peeky.userData.has(key))  {
 
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-      
-        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-            peeky.userData.set(key, true, "ContributorBadge");
-            InfoMessages.push(InfoMessage1[0]);
+        var HadRole = oldMember.roles.find(r => r.id == ServerUpgradeRole);
+        var HasRole = newMember.roles.find(r => r.id == ServerUpgradeRole);
+
+        if  (HadRole == null && HasRole)  {
+
+            peeky.userData.math(key, "+", ExpAmount, "Exp");
+
+            if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+                peeky.userData.set(key, true, "ContributorBadge");
+                InfoMessages.push(InfoMessage1[0]);
+            };
+
+            const embed = {"description": SuccessIcon + " You have been awarded a **Server Upgrade** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+
         };
-      
-        peeky.userData.set(key, new Date(), "BoosterStart");
 
-        const embed = {"description": SuccessIcon + " You have been awarded a **Profile Booster** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
-      
     };
-  
-};
-  
-//1,000 Gredit
-if  (newMember.roles.has(RedeemRole1))  {
-    newMember.removeRole(RedeemRole1).catch(error => {ErrorBag.add(error); Failed = true});
-      
-    if  (Failed !== true)  {
-      
-        peeky.userData.math(key, "+", 1000, "Gredit");
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-      
-        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-            peeky.userData.set(key, true, "ContributorBadge");
-            InfoMessages.push(InfoMessage1[0]);
+
+    //Profile Booster
+    if  (peeky.userData.has(key))  {
+
+        var HadRole = oldMember.roles.find(r => r.id == ProfileBoosterRole);
+        var HasRole = newMember.roles.find(r => r.id == ProfileBoosterRole);
+
+        if  (HadRole == null && HasRole)  {
+
+            peeky.userData.math(key, "+", ExpAmount, "Exp");
+
+            if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+                peeky.userData.set(key, true, "ContributorBadge");
+                InfoMessages.push(InfoMessage1[0]);
+            };
+
+            peeky.userData.set(key, new Date(), "BoosterStart");
+
+            const embed = {"description": SuccessIcon + " You have been awarded a **Profile Booster** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+
         };
-      
-        const embed = {"description": SuccessIcon + " You have been awarded **1,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
-      
+
     };
+
+    //1,000 Gredit
+    if  (newMember.roles.has(RedeemRoleGredit))  {
+        newMember.removeRole(RedeemRoleGredit).catch(error => {ErrorBag.add(error); Failed = true});
+
+        if  (Failed !== true)  {
+
+            peeky.userData.math(key, "+", 1000, "Gredit");
+            peeky.userData.math(key, "+", ExpAmount, "Exp");
+
+            if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+                peeky.userData.set(key, true, "ContributorBadge");
+                InfoMessages.push(InfoMessage1[0]);
+            };
+
+            const embed = {"description": SuccessIcon + " You have been awarded **1,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+
+        };
+
+    }; 
 
 }; 
-  
-//2,000 Gredit
-if  (newMember.roles.has(RedeemRole2))  {
-    newMember.removeRole(RedeemRole2).catch(error => {ErrorBag.add(error); Failed = true});
-      
-    if  (Failed !== true)  {
-      
-        peeky.userData.math(key, "+", 2000, "Gredit");
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-      
-        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-            peeky.userData.set(key, true, "ContributorBadge");
-            InfoMessages.push(InfoMessage1[0]);
-        };
-      
-        const embed = {"description": SuccessIcon + " You have been awarded **2,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
-      
-
-    };
-
-}; 
-
-//5,000 Gredit
-if  (newMember.roles.has(RedeemRole3))  {
-    newMember.removeRole(RedeemRole3).catch(error => {ErrorBag.add(error); Failed = true});
-      
-    if  (Failed !== true)  {
-      
-        peeky.userData.math(key, "+", 5000, "Gredit");
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-      
-        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-            peeky.userData.set(key, true, "ContributorBadge");
-            InfoMessages.push(InfoMessage1[0]);
-        };
-      
-        const embed = {"description": SuccessIcon + " You have been awarded **5,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
-      
-    };
-
-}; 
-  
-//10,000 Gredit
-if  (newMember.roles.has(RedeemRole4))  {
-    newMember.removeRole(RedeemRole4).catch(error => {ErrorBag.add(error); Failed = true});
-      
-    if  (Failed !== true)  {
-  
-        peeky.userData.math(key, "+", 10000, "Gredit");
-        peeky.userData.math(key, "+", ExpAmount, "Exp");
-      
-        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-            peeky.userData.set(key, true, "ContributorBadge");
-            InfoMessages.push(InfoMessage1[0]);
-        };
-      
-        const embed = {"description": SuccessIcon + " You have been awarded **10,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
-      
-        peeky.channels.get(PurchaseLog).send(" **" + Function_RemoveFormatting(newMember.user.username, "other", true) + "** has purchased **10,000 Gredit**.").catch(error => ErrorBag.add(error));
-    };
-
-}; 
-
-};
   
 };
 });

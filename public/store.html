@@ -176,7 +176,7 @@
 
 .storesub  {
     bottom: 25px;
-    right: 100px;
+    left: 100px;
   
     position: absolute;      
     display: inline-block;
@@ -185,9 +185,11 @@
 .listitem  {
     width: 200px;
     height: 175px;
-}
+}  
   
-.textlistitem .name { 
+.textlistitem .first,
+.textlistitem .second {
+    width: 90px;
 }
 
 </style>
@@ -210,7 +212,7 @@
 <br><br><br>
   
     <center>
-    <div class="inlinediv_">
+    <div class="inlinediv">
     
     <div class="listitem" style="background-image: url('https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fstore_2_supporter.png?v=1563894620454');">
     <div class="textlistitem">
@@ -251,46 +253,16 @@
     </b>
     </div>
     </div>
-    
-    <div class="listitem" style="background-image: url('https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fstore_2_gredit_2.png?v=1563894620797')">
-    <div class="textlistitem">
-    <b>
-    <b class="name">  2,000 Gredit  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
-    <a class="second" onclick="Gredit()"> More Info </a>
-    <b class="price">€ 1.99</b>
-    </b>
-    </div>
-    </div>
-    
-    <div class="listitem" style="background-image: url('https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fstore_2_gredit_3.png?v=1563894620005')">
-    <div class="textlistitem">
-    <b>
-    <b class="name">  5,000 Gredit  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
-    <a class="second" onclick="Gredit()"> More Info </a>
-    <b class="price">€ 4.99</b>
-    </b>
-    </div>
-    </div>
-    
-    <div class="listitem" style="background-image: url('https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fstore_2_gredit_4.png?v=1563894621444')">
-    <div class="textlistitem">
-    <b>
-    <b class="name">  10,000 Gredit  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
-    <a class="second" onclick="Gredit()"> More Info </a>
-    <b class="price">€ 9.99</b>
-    </b>
-    </div>
-    </div>
       
-    </div>
+    </div>      
+    </center>
       
     <br>
-      
-    </center>
+    <br>
     
     <a onclick="Close-();">
     <div class="demo" id="fulldesc">
-    <b id="description" style="text-align: left;">Item Description</b>
+    <b id="description" style="text-align: left;"><b class="headertext">Select an item and click on More Info.</b></b>
     </div>
     </a>
   
