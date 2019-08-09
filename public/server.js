@@ -2643,7 +2643,7 @@ if  (keySF == SupportServer)  {
 
     };
 
-    //1,000 Gredit
+    //Gredit
     if  (newMember.roles.has(RedeemRoleGredit))  {
         newMember.removeRole(RedeemRoleGredit).catch(error => {ErrorBag.add(error); Failed = true});
 
