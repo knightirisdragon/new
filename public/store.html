@@ -153,6 +153,10 @@
     position: relative;
     display: inline-block;
 }
+  
+.demo  {
+    position: relative;
+}
 
 .demo  img,
 .demo  img:hover {
@@ -172,15 +176,15 @@
 
 .storesub  {
     bottom: 25px;
-    left: 100px;
+    right: 100px;
   
     position: absolute;      
     display: inline-block;
 }
   
 .listitem  {
-    width: 170px;
-    height: 150px;
+    width: 200px;
+    height: 175px;
 }
   
 .textlistitem .name { 
@@ -188,7 +192,7 @@
 
 </style>
   
-<body onload="Close()" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+<body onload="Close(); document.getElementById('fulldesc').style.display = 'block';" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
 <b>
 
     <div class="topnav" id="topnavmenu">
@@ -197,12 +201,6 @@
       <a class="button" href="refund_policy.txt" rel="noopener noreferrer"><font size="4">Refund Policy</font></a>
       </b>
     </div>
-    
-    <a onclick="Close();">
-    <div class="demo" id="fulldesc">
-    <b id="description">Item Description</b>
-    </div>
-    </a>
 
 <div class="fullsize">
   
@@ -212,7 +210,7 @@
 <br><br><br>
   
     <center>
-    <div>
+    <div class="inlinediv_">
     
     <div class="listitem" style="background-image: url('https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fstore_2_supporter.png?v=1563894620454');">
     <div class="textlistitem">
@@ -285,7 +283,16 @@
     </div>
       
     </div>
+      
+    <br>
+      
     </center>
+    
+    <a onclick="Close-();">
+    <div class="demo" id="fulldesc">
+    <b id="description" style="text-align: left;">Item Description</b>
+    </div>
+    </a>
   
 <b><center>
 <br> <font size="2">By purchasing any of the items listed above, you will automatically agree to the Refund Policy.</font>
