@@ -2039,7 +2039,7 @@ if  (!WebsiteCooldowns.has("news"))  {
         var PrefixImage = "";
         var ImageLink   = PrismPattern;
       
-        if  (m.attachments.size > 0)  {
+        if  (m.attachments.size > 0 && false == true)  {
             ImageLink = m.attachments.array()[0].url;
         }
 
@@ -3941,7 +3941,7 @@ if (CommandName.startsWith("upgrade"))  {
             const embed = {"description": SuccessIcon + " This server is now upgraded!",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-            peeky.channels.get(AnnouncementsChannel).send("**" + Function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + Function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + Function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
+            peeky.channels.get("319891596772638744").send("**" + Function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + Function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + Function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
         };
     }
      else 
