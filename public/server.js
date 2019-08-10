@@ -5862,7 +5862,7 @@ if (!ProfileCooldown.has(message.author.id)) {
     ProfileCooldown.add(message.author.id);
     setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
   
-    if  (message.guild.me.hasPermission("ATTACH_FILES"))  {
+    if  (message.channel.permissionsFor(peeky.user).has('ATTACH_FILES'))  {
       
     const canvas         = Canvas.createCanvas(500, 300);
     const ctx            = canvas.getContext('2d');
