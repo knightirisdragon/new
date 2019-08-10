@@ -1748,7 +1748,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
 };
 
 //Leaderboard
-if  (WebsiteCooldowns.has("leaderboard"))  {
+if  (!WebsiteCooldowns.has("leaderboard"))  {
 
     WebsiteCooldowns.add("leaderboard");
     setTimeout(() => {WebsiteCooldowns.delete("leaderboard")}, 600000);
@@ -1766,8 +1766,8 @@ if  (WebsiteCooldowns.has("leaderboard"))  {
         };
       
         if  (type == "Levels")  {
-            var filtered = peeky.userData.filter( p => p.Level && p.FashionBadge == true ).array();
-            var sorted   = filtered.sort((a, b) => b.Level - a.Level);
+            var filtered  = peeky.userData.filter( p => p.Level && p.FashionBadge == true ).array();
+            var sorted    = filtered.sort((a, b) => b.Level - a.Level);
         };
       
         const top            = sorted.splice(0, 25);
@@ -1780,6 +1780,8 @@ if  (WebsiteCooldowns.has("leaderboard"))  {
         for (var data of top)  {
 
             currentplace ++;
+      
+        console.log(LeaderboardTop);
 
         if  (currentplace == 1)  {CurrentID = "first";  GotBadge = true;} else if  (currentplace == 2)  {CurrentID = "second";  GotBadge = true;}  else if  (currentplace == 3){CurrentID = "third";  GotBadge = true;}  else  {CurrentID = "other";  GotBadge = false;};
 
@@ -1791,10 +1793,11 @@ if  (WebsiteCooldowns.has("leaderboard"))  {
                 peeky.userData.set(`${data.UserID}`, true, "MedallistBadge")
             };
 
+            var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Gredit').toLocaleString('en') + " Gredit";
             var TheBannerShown = DefaultBackground;
             TheBannerShown = function_GetBackground(data.UserID);
 
-            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname'>  <img src='" + CurrentUser.displayAvatarURL + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + peeky.userData.get(`${data.UserID}`, 'Gredit').toLocaleString('en') + " Gredit</b>  </div>";
+            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname'>  <img src='" + CurrentUser.displayAvatarURL + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + "</b>  </div>";
             if  (currentplace == 1 || currentplace == 2 || currentplace == 3)  {
                 LeaderboardTop.push(SavedProfile);
             } else  {
@@ -1809,29 +1812,31 @@ if  (WebsiteCooldowns.has("leaderboard"))  {
 
         };
       
+        console.log(LeaderboardTop);
+      
         if  (type == "Gredit")  {
-            return LeaderboardGredit = "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
+            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
         };
       
         if  (type == "Karma")  {
-            return LeaderboardKarma = "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
+            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
         };
       
         if  (type == "Levels")  {
-            return LeaderboardLevel = "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
+            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
         };
     
     };
   
-    var LeaderboardGredit = null;
-    var LeaderboardKarma  = null;
-    var LeaderboardLevel  = null;
+    var LeaderboardGredit = UpdateLeaderboard("Gredit");
+    var LeaderboardKarma  = UpdateLeaderboard("Karma");
+    var LeaderboardLevel  = UpdateLeaderboard("Level");
 
     peeky.userData.filter( p => p.MedallistBadge == true ).array().forEach(data => {
         peeky.userData.set(`${data.UserID}`, false, "MedallistBadge");
     });
 
-    await fs.writeFile('public/leaderboard.txt', LeaderboardGredit + "<br><br", (err) => {
+    await fs.writeFile('public/leaderboard.txt', LeaderboardGredit + "<br><br>" + LeaderboardKarma + "<br><br>" + LeaderboardLevel, (err) => {
         if (err) console.log(err);
     });
 
