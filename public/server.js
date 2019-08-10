@@ -1780,20 +1780,29 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
         for (var data of top)  {
 
             currentplace ++;
-      
-        console.log(LeaderboardTop);
 
         if  (currentplace == 1)  {CurrentID = "first";  GotBadge = true;} else if  (currentplace == 2)  {CurrentID = "second";  GotBadge = true;}  else if  (currentplace == 3){CurrentID = "third";  GotBadge = true;}  else  {CurrentID = "other";  GotBadge = false;};
 
         if  (peeky.users.has(data.UserID))  {
 
             var CurrentUser = peeky.users.get(data.UserID);
+      
+            if  (type == "Gredit")  {
+                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Gredit').toLocaleString('en') + " Gredit";
+            };
+
+            if  (type == "Karma")  {
+                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Karma').toLocaleString('en') + " Karma";
+            };
+
+            if  (type == "Levels")  {
+                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Level').toLocaleString('en') + " Levels";
+            };
 
             if  (GotBadge == true && peeky.userData.get(`${data.UserID}`, "MedallistBadge") == false)  {
                 peeky.userData.set(`${data.UserID}`, true, "MedallistBadge")
             };
 
-            var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Gredit').toLocaleString('en') + " Gredit";
             var TheBannerShown = DefaultBackground;
             TheBannerShown = function_GetBackground(data.UserID);
 
@@ -1812,8 +1821,6 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
 
         };
       
-        console.log(LeaderboardTop);
-      
         if  (type == "Gredit")  {
             return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
         };
@@ -1828,9 +1835,9 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     
     };
   
-    var LeaderboardGredit = UpdateLeaderboard("Gredit");
-    var LeaderboardKarma  = UpdateLeaderboard("Karma");
-    var LeaderboardLevel  = UpdateLeaderboard("Level");
+    var LeaderboardGredit = await UpdateLeaderboard("Gredit");
+    var LeaderboardKarma  = await UpdateLeaderboard("Karma");
+    var LeaderboardLevel  = await UpdateLeaderboard("Levels");
 
     peeky.userData.filter( p => p.MedallistBadge == true ).array().forEach(data => {
         peeky.userData.set(`${data.UserID}`, false, "MedallistBadge");
@@ -7298,4 +7305,4 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 };
 });
   
-peeky.login(DiscordToken).catch(console.error);
+peeky.login(DiscordToken).catch(console.error);t
