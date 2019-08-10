@@ -1753,6 +1753,24 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     WebsiteCooldowns.add("leaderboard");
     setTimeout(() => {WebsiteCooldowns.delete("leaderboard")}, 600000);
   
+    function UpdateLeaderboard(type)  {
+      
+        if  (type == "Gredit")  {
+            var filtered = peeky.userData.filter( p => p.Gredit && p.FashionBadge == true ).array();
+        };
+      
+        if  (type == "Karma")  {
+            var filtered = peeky.userData.filter( p => p.Karma && p.FashionBadge == true ).array();
+        };
+      
+        if  (type == "Levels")  {
+            var filtered = peeky.userData.filter( p => p.Level && p.FashionBadge == true ).array();
+        };
+    
+        
+    
+    };
+  
     //Update leadeboard
     var filtered         = peeky.userData.filter( p => p.Gredit && p.FashionBadge == true ).array();
     var sorted           = filtered.sort((a, b) => b.Gredit - a.Gredit);
