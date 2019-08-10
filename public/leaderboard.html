@@ -92,6 +92,11 @@
     width: 30px;
     height: 30px;
 }
+
+#karma,
+#levels {
+    display: none;  
+}
   
 #first  {
     border-color: #f4b744;
@@ -131,6 +136,33 @@
   
 </style>
   
+  
+<script>
+  
+function ChangeType(type)  {
+  
+    if  (type == "gredit")  {
+        document.getElementById("gredit").style.display = "block";
+        document.getElementById("karma").style.display = "none";
+        document.getElementById("levels").style.display = "none";
+    };
+  
+    if  (type == "karma")  {
+        document.getElementById("gredit").style.display = "none";
+        document.getElementById("karma").style.display = "block";
+        document.getElementById("levels").style.display = "none";
+    };
+  
+    if  (type == "levels")  {
+        document.getElementById("gredit").style.display = "none";
+        document.getElementById("karma").style.display = "none";
+        document.getElementById("levels").style.display = "block";
+    };
+    
+};
+  
+</script>
+
 <body onload="UpdateLeaderboard()" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
 <b>
 

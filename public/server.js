@@ -1843,7 +1843,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
         peeky.userData.set(`${data.UserID}`, false, "MedallistBadge");
     });
 
-    await fs.writeFile('public/leaderboard.txt', LeaderboardGredit + "<br><br>" + LeaderboardKarma + "<br><br>" + LeaderboardLevel, (err) => {
+    await fs.writeFile('public/leaderboard.txt', "<div id='gredit'>" +  LeaderboardGredit + "</div>  <br><br>  <div id='karma'>" +  LeaderboardKarma + "</div>  <br><br>  <div id='levels'>" +  LeaderboardLevel + "</div>", (err) => {
         if (err) console.log(err);
     });
 
