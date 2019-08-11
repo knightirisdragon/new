@@ -7079,45 +7079,45 @@ if (CommandName.startsWith("idban "))  {
 //Ban
 if (CommandName.startsWith("ban "))  {
 
-if  (message.member.permissions.has("BAN_MEMBERS"))  {
-    
-if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
+    if  (message.member.permissions.has("BAN_MEMBERS"))  {
 
-    var MentionedMember = message.mentions.members.first();
-          
-if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS")) {
+        if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
 
-    await message.guild.ban(MentionedMember.user.id, "Banned by " + message.author.tag + ".").catch(error => { 
-          const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-          ErrorBag.add(error); Failed = true;
-    });
+            var MentionedMember = message.mentions.members.first();
 
-    if  (Failed == false)  {
-        const embed = {"description": SuccessIcon + " I have banned **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
+            if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS"))  {
+
+                await message.guild.ban(MentionedMember.user.id, "Banned by " + message.author.tag + ".").catch(error => { 
+                      const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                      ErrorBag.add(error); Failed = true;
+                });
+
+                if  (Failed == false)  {
+                    const embed = {"description": SuccessIcon + " I have banned **" + Function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
+
+            }
+             else
+            {
+              const embed = {"description": ErrorIcon + " You cannot ban that user.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
+        }
+         else
+        {
+         const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
 
     }
      else
     {
-      const embed = {"description": ErrorIcon + " You cannot ban that user.",  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+     const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-  
-}
- else
-{
- const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-   
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 };
 
@@ -7126,24 +7126,24 @@ if (CommandName.startsWith("purge "))  {
 
     if  (message.member.permissions.has("MANAGE_MESSAGES"))  {
     
-    if  (message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+        if  (message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
-        var BulkAmount = CommandName.split("purge ")[1];
+            var BulkAmount = CommandName.split("purge ")[1];
 
-        if  (isNaN(BulkAmount) == false && BulkAmount > 0 && BulkAmount <= 100) {
+            if  (isNaN(BulkAmount) == false && BulkAmount > 0 && BulkAmount <= 100) {
 
-            await message.delete().catch(error => ErrorBag.add(error));
+                await message.delete().catch(error => ErrorBag.add(error));
 
-            message.channel.bulkDelete(BulkAmount).catch(error => {
-                const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                ErrorBag.add(error); Failed = true;
-            });
+                message.channel.bulkDelete(BulkAmount).catch(error => {
+                    const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    ErrorBag.add(error); Failed = true;
+                });
 
-            if  (Failed == false)  {
-                const embed = {"description":  SuccessIcon + " I have purged **" + BulkAmount + " messages** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };
+                if  (Failed == false)  {
+                    const embed = {"description":  SuccessIcon + " I have purged **" + BulkAmount + " messages** at **" + Function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
           
         }
          else
@@ -7171,45 +7171,46 @@ if (CommandName.startsWith("purge "))  {
 };
   
 //Lockdown
-if (CommandName.startsWith("lockdown"))  {
+if  (CommandName.startsWith("lockdown"))  {
 
-if  (message.member.permissions.has("MANAGE_CHANNELS")) {
-    
-if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
+    if  (message.member.permissions.has("MANAGE_CHANNELS"))  {
 
-    var GivenRole = message.mentions.roles.first();
-          
-if  (GivenRole && GivenRole.name !== "@everyone") {
-  
-    const embed = {"description": SuccessIcon + " The channel is now locked down for everyone except **@" + Function_RemoveFormatting(GivenRole.name, "other", true) + "**.",  "color": EmbedColor}; 
-    await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-    message.channel.setName(message.channel.name + "_locked", "Locked by @" + message.author.tag + ".").catch(error => ErrorBag.add(error));
-    
-    message.channel.overwritePermissions(message.guild.roles.find(r => r.name == "@everyone"), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
-    message.channel.overwritePermissions(message.guild.roles.find(r => r.id == GivenRole.id), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-    message.channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+        if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
 
-}
- else
-{
-  const embed = {"description": ErrorMessage3[0],  "color": EmbedColor}; 
-  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};  
+            var GivenRole = message.mentions.roles.first();
+
+        if  (GivenRole && GivenRole.name !== "@everyone") {
+
+            const embed = {"description": SuccessIcon + " The channel is now locked down for everyone except **@" + Function_RemoveFormatting(GivenRole.name, "other", true) + "**.",  "color": EmbedColor}; 
+            await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+            message.channel.setName(message.channel.name + "_locked", "Locked by @" + message.author.tag + ".").catch(error => ErrorBag.add(error));
+
+            message.channel.overwritePermissions(message.guild.roles.find(r => r.name == "@everyone"), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
+            message.channel.overwritePermissions(message.guild.roles.find(r => r.id == GivenRole.id), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+            message.channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+
+        }
+         else
+        {
+          const embed = {"description": ErrorMessage3[0],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };  
+
+        }
+         else
+        {
+         const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+    }
+     else
+    {      
+      const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
   
-}
- else
-{
- const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-   
-}
- else
-{      
-  const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
-  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 };
   
 //Prefix
