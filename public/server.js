@@ -2365,7 +2365,7 @@ const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
 //Server Message
 if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user.bot)  {
       
-    member.send((peeky.serverData.get(keySF, "server_message_bonus_setting")).replace(GuildNameTag, function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym)).catch(error => ErrorBag.add(error));
+    function_DirectMessage(member.user.id, peeky.serverData.get(keySF, "server_message_bonus_setting").replace(GuildNameTag, function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym));
 
 };
 
@@ -2393,7 +2393,7 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
     };*/
 
     if  (Reasons.length > 0)  {
-        peeky.users.get(owner).send("**Someone suspicious has joined " + function_RemoveFormatting(member.guild.name, "other", true) + "!**\nBe wary about this user but don't punish them just because you've got this message!\n\n**Suspect:** " + function_RemoveFormatting(member.user.tag, "other", true) + " (<@" + member.user.id + ">)\n**Reasons:** " + (Reasons.join(" / ") + "\n­")).catch(error => ErrorBag.add(error));   
+        function_DirectMessage(owner, "**Someone suspicious has joined " + function_RemoveFormatting(member.guild.name, "other", true) + "!**\nBe wary about this user but don't punish them just because you've got this message!\n\n**Suspect:** " + function_RemoveFormatting(member.user.tag, "other", true) + " (<@" + member.user.id + ">)\n**Reasons:** " + Reasons.join(" / ") + "\n­"); 
         console.log("The Suspicion Alert function has been triggered in " + member.guild.name + ".");
     };
   
@@ -2554,16 +2554,16 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
 
     var channel = guild.channels.find(c=> c.name == name);
     
-    if (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES')) {
+    if  (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES'))  {
       
-    if  (BlacklistedWebsites.some(word => function_RemoveFormatting(member.user.username.toLowerCase(), "other", false).includes(word)))  {
-        Detected = true;
-    };
+        if  (BlacklistedWebsites.some(word => function_RemoveFormatting(member.user.username.toLowerCase(), "other", false).includes(word)))  {
+            Detected = true;
+        };
 
-    await channel.send("", await function_WelcomeMessagesEmbed(member, "leave", Detected)).catch(error => ErrorBag.add(error));
-    
-    console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
-      
+        await channel.send("", await function_WelcomeMessagesEmbed(member, "leave", Detected)).catch(error => ErrorBag.add(error));
+
+        console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
+
     };
   
 };
@@ -2649,7 +2649,7 @@ if  (keySF == SupportServer)  {
             };
 
             const embed = {"description": SuccessIcon + " You have been promoted to **Supporter** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-            newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+            function_DirectMessage(newMember.user.id, { embed });
 
         };
 
@@ -2671,7 +2671,7 @@ if  (keySF == SupportServer)  {
             };
 
             const embed = {"description": SuccessIcon + " You have been awarded a **Server Upgrade** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-            newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+            function_DirectMessage(newMember.user.id, { embed });
 
         };
 
@@ -2695,7 +2695,7 @@ if  (keySF == SupportServer)  {
             peeky.userData.set(key, new Date(), "BoosterStart");
 
             const embed = {"description": SuccessIcon + " You have been awarded a **Profile Booster** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-            newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+            function_DirectMessage(newMember.user.id, { embed });
 
         };
 
@@ -2716,7 +2716,7 @@ if  (keySF == SupportServer)  {
             };
 
             const embed = {"description": SuccessIcon + " You have been awarded **1,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-            newMember.user.send({ embed }).catch(error => ErrorBag.add(error));
+            function_DirectMessage(newMember.user.id, { embed });
 
         };
 
@@ -2778,7 +2778,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
   
     if  (!member.user.bot && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SA2"))  {
 
-        var   Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));    
+        var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));    
 
         if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
       
@@ -2885,11 +2885,11 @@ if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reactio
 if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
   
     if  (reaction.emoji.name == "🏁")  {
-      
-        peeky.users.get(OwnerId).send('[NoBackground, ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ']').catch(error => ErrorBag.add(error));
 
         const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted and will be added shortly!",  "color": EmbedColor}; 
         function_DirectMessage(reaction.message.author.id, {  embed  });
+      
+        function_DirectMessage(OwnerId, '[NoBackground, ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ']');
       
     };
   
@@ -3491,7 +3491,7 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
             var Time = (new Date(message.guild.createdAt) - Date.now());
             var FixedTime = Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(0);
 
-            if (channel && channel.permissionsFor(peeky.user).has('CONNECT')) {
+            if  (channel && channel.permissionsFor(peeky.user).has('CONNECT'))  {
                 channel.setName("Server Age: " + FixedTime + " days", "Triggered by the Server Age function.").catch(error => ErrorBag.add(error));
 
                 console.log("The Server Age function has been triggered in " + message.guild.name + ".");
@@ -3518,7 +3518,7 @@ if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
 
             var channel = message.guild.channels.find(g => g.id == id);
 
-            if (channel && channel.permissionsFor(peeky.user).has('CONNECT')) {
+            if  (channel && channel.permissionsFor(peeky.user).has('CONNECT'))  {
                 channel.setName(Prefix + ": " + message.guild.members.filter(m => !m.user.bot).size, "Triggered by the Member Counter function.").catch(error => ErrorBag.add(error));
 
                 console.log("The Member Counter function has been triggered in " + message.guild.name + ".");
