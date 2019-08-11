@@ -1163,6 +1163,7 @@ function function_RemoveFormatting(text, type, sliced)  {
 function function_ProperSlice(text, amount)  {
   
     var EndString = "";
+    text = text.toString();
   
     if  (text.length > amount)  {
         EndString = "...";
@@ -3484,15 +3485,12 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
 
         if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
 
-            var id = peeky.serverData.get(keySF, "server_age_bonus_id");
+            var id        = peeky.serverData.get(keySF, "server_age_bonus_id");
+            var channel   = message.guild.channels.find(g => g.id == id);
+            var FinalName = "Server Age: " + function_TimeLeft(message.guild.createdAt, "days", null) + " days";
 
-            var channel = message.guild.channels.find(g => g.id == id);
-
-            var Time = (new Date(message.guild.createdAt) - Date.now());
-            var FixedTime = Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(0);
-
-            if  (channel && channel.permissionsFor(peeky.user).has('CONNECT'))  {
-                channel.setName("Server Age: " + FixedTime + " days", "Triggered by the Server Age function.").catch(error => ErrorBag.add(error));
+            if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
+                channel.setName(FinalName, "Triggered by the Server Age function.").catch(error => ErrorBag.add(error));
 
                 console.log("The Server Age function has been triggered in " + message.guild.name + ".");
             };
@@ -3513,13 +3511,13 @@ if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
 
         if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
 
-            var id = peeky.serverData.get(keySF, "member_counter_bonus_id");
-            var Prefix = peeky.serverData.get(keySF, "member_counter_bonus_setting");
+            var id         = peeky.serverData.get(keySF, "member_counter_bonus_id");
+            var Prefix     = peeky.serverData.get(keySF, "member_counter_bonus_setting");
+            var channel    = message.guild.channels.find(g => g.id == id);
+            var FinalName  = Prefix + ": " + message.guild.members.filter(m => !m.user.bot).size;
 
-            var channel = message.guild.channels.find(g => g.id == id);
-
-            if  (channel && channel.permissionsFor(peeky.user).has('CONNECT'))  {
-                channel.setName(Prefix + ": " + message.guild.members.filter(m => !m.user.bot).size, "Triggered by the Member Counter function.").catch(error => ErrorBag.add(error));
+            if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
+                channel.setName(FinalName, "Triggered by the Member Counter function.").catch(error => ErrorBag.add(error));
 
                 console.log("The Member Counter function has been triggered in " + message.guild.name + ".");
             };
@@ -3548,14 +3546,14 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
         if  (peeky.serverData.get(keySF, "event_countdown_bonus_setting") > 0 && TheDate > 0)  {
 
             var Time = (new Date(peeky.serverData.get(keySF, "event_countdown_bonus_setting")) - Date.now());
-            var FixedTime = (Math.abs(Time / (1000 * 60 * 60)).toFixed(1));
+            var FixedTime = function_TimeLeft(Time, "hours", null);
             var LengthName = "hours";
 
             if  (FixedTime > 24)  {
-                FixedTime = (Math.abs(Time / (1000 * 60 * 60 * 24)).toFixed(1)); LengthName = "days";
+                FixedTime = function_TimeLeft(Time, "days", null); LengthName = "days";
 
                 if  (FixedTime >= 365)  {
-                        FixedTime = "over"; LengthName = "a year";
+                    FixedTime = "over"; LengthName = "a year";
                 };
 
             };
