@@ -7307,4 +7307,4 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 };
 });
   
-peeky.login(DiscordToken).catch(console.error);t
+peeky.login(DiscordToken).catch(console.error);

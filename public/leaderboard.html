@@ -133,31 +133,36 @@
     background-color: #b2866a;
     border-color: rgba(35, 39, 42, 0);
 }
-  
-</style>
-  
-  
-<script>
+
+</style><script>
+
+var CurrentType = "gredit";
+var MaxSortingModes = 6;
   
 function ChangeType(type)  {
-  
+    
     if  (type == "gredit")  {
+        CurrentType = "karma";
+      
         document.getElementById("gredit").style.display = "block";
         document.getElementById("karma").style.display = "none";
         document.getElementById("levels").style.display = "none";
-    };
-  
-    if  (type == "karma")  {
-        document.getElementById("gredit").style.display = "none";
-        document.getElementById("karma").style.display = "block";
-        document.getElementById("levels").style.display = "none";
-    };
-  
-    if  (type == "levels")  {
-        document.getElementById("gredit").style.display = "none";
-        document.getElementById("karma").style.display = "none";
-        document.getElementById("levels").style.display = "block";
-    };
+      
+    } else if (type == "karma") {
+        CurrentType = "levels";
+      
+      document.getElementById("gredit").style.display = "none";
+      document.getElementById("karma").style.display = "block";
+      document.getElementById("levels").style.display = "none";
+      
+    } else if (type == "levels")  {
+      CurrentType = "gredit";
+      
+      document.getElementById("gredit").style.display = "none";
+      document.getElementById("karma").style.display = "none";
+      document.getElementById("levels").style.display = "block";
+      
+    }
     
 };
   
@@ -169,9 +174,7 @@ function ChangeType(type)  {
     <div class="topnav" id="topnavmenu">
       <b>
       <a class="button" href="https://peeky.glitch.me" rel="noopener noreferrer"><font size="4">Home</font></a>
-      <a class="button" onclick="ChangeType('gredit');"><font size="4">Gredit</font>  </a>
-      <a class="button" onclick="ChangeType('karma');"><font size="4">Karma</font>  </a>
-      <a class="button" onclick="ChangeType('levels');"><font size="4">Levels</font>  </a>
+      <a class="button" onclick="ChangeType(CurrentType);"><font size="4">Sort List</font>  </a>
       </b>
     </div>
 
