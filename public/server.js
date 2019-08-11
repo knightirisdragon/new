@@ -3424,26 +3424,26 @@ if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
 //Images Only
 if  (peeky.channelData.get(keyCF, "image_only_bonus") == true)  {
   
-if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+    if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
-if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.size < 1)  {
+        if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.size < 1)  {
 
-    message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
-  
-    if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "IO"))  {
-        
-        ResponseCooldowns.add(message.guild.id + "IO");
-        setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "IO")}, ResponseCooldownMS);
+            message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
 
-        const embed = {"description": InfoIcon + " You can only send images in this channel, **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+            if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "IO"))  {
 
+                ResponseCooldowns.add(message.guild.id + "IO");
+                setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "IO")}, ResponseCooldownMS);
+
+                const embed = {"description": InfoIcon + " You can only send images in this channel, **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+
+            };
+
+            console.log("The Images Only function has been triggered in " + message.guild.name + ".");
+
+        };
     };
-
-    console.log("The Images Only function has been triggered in " + message.guild.name + ".");
-
-};
-};
 
 };
     
@@ -3600,64 +3600,65 @@ if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
 //Flood Protection
 if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
-if  (!message.member.permissions.has('MANAGE_MESSAGES') && message.guild.me.hasPermission('MANAGE_ROLES'))  {
-  
-if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "prefix")))  {
+    if  (!message.member.permissions.has('MANAGE_MESSAGES') && message.guild.me.hasPermission('MANAGE_ROLES'))  {
 
-    const LastMsgContent = peeky.channelData.get(keyCF, "flood_protection_bonus_lastmsg");
-    const LastMsgUser    = peeky.channelData.get(keyCF, "flood_protection_bonus_lastuser");
-    const LastMsgDate    = peeky.channelData.get(keyCF, "flood_protection_bonus_lastdate");
-    const ThisMsgDate    = Date.now();
+        if  (!message.content.toLowerCase().startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
-    if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent))  {
-      
-    if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length >= 2)  {
+            const LastMsgContent = peeky.channelData.get(keyCF, "flood_protection_bonus_lastmsg");
+            const LastMsgUser    = peeky.channelData.get(keyCF, "flood_protection_bonus_lastuser");
+            const LastMsgDate    = peeky.channelData.get(keyCF, "flood_protection_bonus_lastdate");
+            const ThisMsgDate    = Date.now();
 
-    const name       = peeky.serverData.get(keySF, "muted_role");
-    const RoleExists = message.guild.roles.find(role => role.name == name);
+            if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent))  {
 
-    if  (RoleExists) {
-            
-        message.member.send("You have been muted in **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by the **Flood Protection** function.").catch(error => ErrorBag.add(error));
+            if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length >= 2)  {
 
-        message.member.addRole(message.member.guild.roles.find(role => role.name == name), "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
-      
-        if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "FP"))  {
-         
-            ResponseCooldowns.add(message.guild.id + "FP");
-            setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "FP")}, ResponseCooldownMS);
-            
-            const embed = {"description": InfoIcon + " I have muted **" + message.member.user.username + "** because of the **Flood Protection** function.",  "color": EmbedColor};
-            await message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))}); 
+            const name       = peeky.serverData.get(keySF, "muted_role");
+            const RoleExists = message.guild.roles.find(role => role.name == name);
+
+            if  (RoleExists) {
+
+                message.member.send("You have been muted in **" + Function_RemoveFormatting(message.guild.name, "other", true) + "** by the **Flood Protection** function.").catch(error => ErrorBag.add(error));
+
+                message.member.addRole(message.member.guild.roles.find(role => role.name == name), "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
+
+                if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "FP"))  {
+
+                    ResponseCooldowns.add(message.guild.id + "FP");
+                    setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "FP")}, ResponseCooldownMS);
+
+                    const embed = {"description": InfoIcon + " I have muted **" + message.member.user.username + "** because of the **Flood Protection** function.",  "color": EmbedColor};
+                    await message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))}); 
+
+                };
+
+                console.log("The Flood Protection function has been triggered in " + message.guild.name + ".");
+
+            };
+
+            }
+             else
+            {
+             FloodProtectionStrikes.push(message.author.id);
+
+             setTimeout(() => {
+                 FloodProtectionStrikes.splice(peeky.userData.get(key, "Inventory").indexOf(i), 1);
+             }, 30000); 
+
+            };
+
+            };
+
+            peeky.channelData.set(keyCF, Date.now(), "flood_protection_bonus_lastdate");
+            peeky.channelData.set(keyCF, message.author.id, "flood_protection_bonus_lastuser");
+
+            if  (message.content == "")  {
+                peeky.channelData.set(keyCF, null, "flood_protection_bonus_lastmsg");
+            } else {
+                peeky.channelData.set(keyCF, message.content, "flood_protection_bonus_lastmsg");    
+            };
 
         };
-
-        console.log("The Flood Protection function has been triggered in " + message.guild.name + ".");
-
-    };
-      
-    }
-     else
-    {
-     FloodProtectionStrikes.push(message.author.id);
-     
-     setTimeout(() => {
-         FloodProtectionStrikes.splice(peeky.userData.get(key, "Inventory").indexOf(i), 1);
-     }, 30000); 
-
-    };
-
-    };
-  
-    peeky.channelData.set(keyCF, Date.now(), "flood_protection_bonus_lastdate");
-    peeky.channelData.set(keyCF, message.author.id, "flood_protection_bonus_lastuser");
-  
-    if  (message.content == "")  {
-        peeky.channelData.set(keyCF, null, "flood_protection_bonus_lastmsg");
-    } else {
-        peeky.channelData.set(keyCF, message.content, "flood_protection_bonus_lastmsg");    
-    };
-    };
 
     };
 
@@ -3751,27 +3752,27 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
 //Banned Words
 if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true)  {
   
-if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
-    
-if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(keySF, "banned_words_bonus_setting").some(word => Function_RemoveFormatting(message.content.toLowerCase(), "bw", true).includes(word)))  {
+    if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
-     message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
-  
-     if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "BW"))  {
-         
-         ResponseCooldowns.add(message.guild.id + "BW");
-         setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "BW")}, ResponseCooldownMS);
-       
-         const embed = {"description": InfoIcon + " You cannot say that in here, **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+        if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(keySF, "banned_words_bonus_setting").some(word => Function_RemoveFormatting(message.content.toLowerCase(), "bw", true).includes(word)))  {
 
-     };
+             message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
 
-     console.log("The Banned Words function has been triggered in " + message.guild.name + ".");
-      
+             if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "BW"))  {
+
+                 ResponseCooldowns.add(message.guild.id + "BW");
+                 setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "BW")}, ResponseCooldownMS);
+
+                 const embed = {"description": InfoIcon + " You cannot say that in here, **" + Function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
+                 message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+
+             };
+
+             console.log("The Banned Words function has been triggered in " + message.guild.name + ".");
+
+        };
+
     };
-
-};
   
 };
 
@@ -3843,35 +3844,35 @@ if  (CommandName.startsWith("get "))  {
 //Eval
 if (CommandName.startsWith("eval "))  {
     
-    if (message.author.id == OwnerId) {
-       
-    function clean(text) {
-    if (typeof(text) === "string")
-      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-    else
-      return text;
-    };
-       
-    var EvalResult = CommandName.split("eval ")[1]
+  if   (message.author.id == OwnerId) {
 
-    try {
-      const code = EvalResult;
-      let evaled = eval(code);
- 
-      if (typeof evaled !== "string")
-          evaled = require("util").inspect(evaled);
+        function clean(text) {
+        if (typeof(text) === "string")
+          return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+        else
+          return text;
+        };
 
-      message.channel.send(clean(evaled), {code:"xl"});
-    } catch (err) {
-      message.channel.send(`\`Error Detected\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-    };
+        var EvalResult = CommandName.split("eval ")[1]
 
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
+        try {
+          const code = EvalResult;
+          let evaled = eval(code);
+
+          if (typeof evaled !== "string")
+              evaled = require("util").inspect(evaled);
+
+          message.channel.send(clean(evaled), {code:"xl"});
+        } catch (err) {
+          message.channel.send(`\`Error Detected\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+        };
+
+  }
+   else
+  {
+   const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  };
 
 };
 
