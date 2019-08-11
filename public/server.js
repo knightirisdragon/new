@@ -71,6 +71,7 @@ const LessDark              = "#3f3f3f";
 const Light                 = "#424549";
 const Blurple               = "#7289DA";
 const EmbedColor            = 3093047;
+const MinReviewLength       = 200;
 const BackgroundInvLimit    = 25;
 const BannedWordsLimit      = 10;
 const PlaylistLimit         = 10;
@@ -2171,7 +2172,7 @@ if  (!WebsiteCooldowns.has("randomreview"))  {
     
     node_fetch('https://ls.terminal.ink/api/v2/bots/482945063282802698').then(response => response.json()).then(async (data) => {
       
-    var FilteredReviews = data.data.reviews.filter(r => r.text.length >= 100);
+    var FilteredReviews = data.data.reviews.filter(r => r.text.length >= MinReviewLength);
       
     var Length = FilteredReviews.length;
     var RandomReview = Math.round(Math.random() * Length);
@@ -2182,7 +2183,7 @@ if  (!WebsiteCooldowns.has("randomreview"))  {
     var ReviewDate     = new Date(FilteredReviews[RandomReview].date);
     var ReviewFullDate = function_DateFormat(ReviewDate);
       
-    await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + " Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast 100 characters long to show up.</font></center>", (err) => {
+    await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + " Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast " + MinReviewLength + " characters long to show up.</font></center>", (err) => {
         if (err) console.log(err); 
     });
       
