@@ -2374,26 +2374,26 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
       
     var owner      = member.guild.owner.user.id;
     var Suspicions = 0;
-    var String     = [];
+    var Reasons     = [];
     const BanLimit = peeky.serverData.get(keySF, "suspicion_alert_bonus_setting");
   
-    //Account created less than 30 days ago
-    if  (new Date() - new Date(member.user.createdAt) <= 2592000000 )  {
-        String.push("Account created less than 30 days ago.");
+    //Account created less than 7 days ago
+    if  (new Date() - new Date(member.user.createdAt) <= 604800000 )  {
+        Reasons.push("Account created less than 7 days ago.");
     };
 
     //Account has alot of logged bans
     if  (peeky.userData.has(key) && peeky.userData.get(key, "Bans") >= BanLimit)  {
-        String.push("Banned more than " + peeky.userData.get(key, "Bans") + " times in other servers.");
+        Reasons.push("Banned more than " + peeky.userData.get(key, "Bans") + " times in other servers.");
     };
   
-    //Account is banned from using PEEKY
-    if  (BannedUsers.includes(member.user.id))  {
-        String.push("Banned from using PEEKY.");
-    };
+    //Account is banned from using PEEKY // DISABLED
+    /*if  (BannedUsers.includes(member.user.id))  {
+        Reasons.push("Banned from using PEEKY.");
+    };*/
 
-    if  (String.length > 0)  {
-        peeky.users.get(owner).send("**Someone suspicious has joined " + function_RemoveFormatting(member.guild.name, "other", true) + "!**\nBe aware of this user but don't ban them just because you've got this message!\n\n**User:** " + function_RemoveFormatting(member.user.tag, "other", true) + " (<@" + member.user.id + ">)\n**Suspicions:** " + (String.join(" / ") + "\n­")).catch(error => ErrorBag.add(error));   
+    if  (Reasons.length > 0)  {
+        peeky.users.get(owner).send("**Someone suspicious has joined " + function_RemoveFormatting(member.guild.name, "other", true) + "!**\nBe wary about this user but don't punish them just because you've got this message!\n\n**Suspect:** " + function_RemoveFormatting(member.user.tag, "other", true) + " (<@" + member.user.id + ">)\n**Reasons:** " + (Reasons.join(" / ") + "\n­")).catch(error => ErrorBag.add(error));   
         console.log("The Suspicion Alert function has been triggered in " + member.guild.name + ".");
     };
   
@@ -2584,16 +2584,20 @@ if (member.user.id !== PeekyId && peeky.serverData.has(keySF))  {
     
 //Role Saver
 if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
-  
-    if  (peeky.serverData.has(keySF, "role_saver_array"))  {
 
-        var SavedRoles  = peeky.serverData.get(keySF, "role_saver_array");
-        var MemberIndex = SavedRoles.findIndex(i => i[0] == member.user.id);
-      
-        if  (MemberIndex >= 0)  {
-            SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name !== "@everyone").map(r => r.id);
-        } else {
-          SavedRoles.push([member.user.id, member.roles.filter(r => r.name !== "@everyone").map(r => r.id)]);
+    if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
+  
+        if  (peeky.serverData.has(keySF, "role_saver_array"))  {
+
+            var SavedRoles  = peeky.serverData.get(keySF, "role_saver_array");
+            var MemberIndex = SavedRoles.findIndex(i => i[0] == member.user.id);
+
+            if  (MemberIndex >= 0)  {
+                SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name !== "@everyone").map(r => r.id);
+            } else {
+              SavedRoles.push([member.user.id, member.roles.filter(r => r.name !== "@everyone").map(r => r.id)]);
+            };
+
         };
       
     };
@@ -2602,16 +2606,20 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
     
 //Nickname Saver
 if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
+
+    if  (member.guild.me.hasPermission("MANAGE_NICKNAMES"))  {
   
-    if  (peeky.serverData.has(keySF, "nick_saver_array"))  {
+        if  (peeky.serverData.has(keySF, "nick_saver_array"))  {
 
-        var SavedNicks  = peeky.serverData.get(keySF, "nick_saver_array");
-        var MemberIndex = SavedNicks.findIndex(i => i[0] == member.user.id);
+            var SavedNicks  = peeky.serverData.get(keySF, "nick_saver_array");
+            var MemberIndex = SavedNicks.findIndex(i => i[0] == member.user.id);
 
-        if  (MemberIndex >= 0)  {
-                SavedNicks[MemberIndex][1] = member.nickname;
-        } else {
-              SavedNicks.push([member.user.id, member.nickname]);
+            if  (MemberIndex >= 0)  {
+                    SavedNicks[MemberIndex][1] = member.nickname;
+            } else {
+                  SavedNicks.push([member.user.id, member.nickname]);
+            };
+
         };
       
     };
@@ -2772,7 +2780,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
         var   Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));    
 
-        if  (Channel)  {
+        if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
       
             if  (member.presence.game !== null && member.presence.game.streaming == true)  {
 
