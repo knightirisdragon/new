@@ -6308,7 +6308,8 @@ if (CommandName.startsWith("play "))  {
 
         if  (ChoosingMode == true)  {
           
-            if  (results.length > 0)  {          
+            if  (results.length > 0)  {  
+                DeleteMessage = false;        
                 GivenSong = results[0].link;
             };
           
