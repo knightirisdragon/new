@@ -95,6 +95,7 @@ a.button:hover {
 
 .listitem  {
     background-color: #7289DA;
+    background-position: center;
     border: rgba(35, 39, 42, 1) 2px solid;
     border-radius: 0px;
     background-size: cover;
