@@ -136,8 +136,14 @@
 
 </style><script>
 
-var CurrentType = "gredit";
-var MaxSortingModes = 6;
+var CurrentType = "karma";
+var MaxTypes = 3;
+  
+function Loaded()  {
+
+    document.getElementById("sort_mode").innerHTML = "Type: Gredit (1/" + MaxTypes + ")";
+  
+};
   
 function ChangeType(type)  {
     
@@ -148,12 +154,16 @@ function ChangeType(type)  {
         document.getElementById("karma").style.display = "none";
         document.getElementById("levels").style.display = "none";
       
+        document.getElementById("sort_mode").innerHTML = "Type: Gredit (1/" + MaxTypes + ")";
+      
     } else if (type == "karma") {
         CurrentType = "levels";
       
       document.getElementById("gredit").style.display = "none";
       document.getElementById("karma").style.display = "block";
       document.getElementById("levels").style.display = "none";
+      
+      document.getElementById("sort_mode").innerHTML = "Type: Karma (2/" + MaxTypes + ")";
       
     } else if (type == "levels")  {
       CurrentType = "gredit";
@@ -162,26 +172,30 @@ function ChangeType(type)  {
       document.getElementById("karma").style.display = "none";
       document.getElementById("levels").style.display = "block";
       
+      document.getElementById("sort_mode").innerHTML = "Type: Levels (3/" + MaxTypes + ")";
+      
     }
     
 };
   
 </script>
 
-<body onload="UpdateLeaderboard()" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+<body onload="Loaded(); UpdateLeaderboard();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
 <b>
 
     <div class="topnav" id="topnavmenu">
       <b>
       <a class="button" href="https://peeky.glitch.me" rel="noopener noreferrer"><font size="4">Home</font></a>
-      <a class="button" onclick="ChangeType(CurrentType);"><font size="4">Sort List</font>  </a>
+      <a class="button" onclick="ChangeType(CurrentType);"><font size="4">Change Type</font>  </a>
       </b>
     </div>
 
 <div class="fullsize">
   
 <font size="7" class="headertext">Leaderboard</font>
-<font size="4" class="headersub">To show up in the Leaderboard, you'll need to obtain the Fashion badge.  <br></font>
+<font size="4" class="headersub">To show up in the Leaderboard, you'll need to obtain the Fashion badge.
+<br>
+<font size="2" id="sort_mode"></font></font>
 
 <br><br><br>
   
