@@ -260,7 +260,7 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
-const BannedUsers         = [  108899409365852160  ];
+const BannedUsers         = [  108899409365852160, 316313623813423104  ];
 const ImmuneServers       = [  SupportServer, EmojiStorage1, 454933217666007052, 264445053596991498, 330777295952543744, 387812458661937152  ];
 
 //Small Objects
@@ -3327,7 +3327,7 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
            QueuedSOSMessages.delete(message.author.id);
 
            const embed = {"description": ErrorIcon + " Your message was not sent because the time limit has ran out.",  "color": EmbedColor}; 
-           message.channel.send({ embed })
+           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         });
           
         });
@@ -3336,7 +3336,8 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
      else
     {
      const embed = {"description": ErrorIcon + " You have been banned from using PEEKY.",  "color": EmbedColor}; 
-     message.channel.send({ embed })
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+     console.log(message.author.username);
     };
 
     };
