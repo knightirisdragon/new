@@ -2761,7 +2761,7 @@ if  (keySF == SupportServer)  {
 
 //CHANNEL CREATE EVENTS
 peeky.on("channelCreate", async (channel) => {
-  
+
 const keySF = `${channel.guild.id}`;
 const keyCF = `${channel.id}`;
 
@@ -2770,7 +2770,7 @@ function_ChannelData(keyCF, channel.id);
 //FUNCTIONS
   
 //Dash Remover
-if  (peeky.serverData.has(keySF))  {
+if  (peeky.serverData.has(keySF) && 1 == 2)  {
 
     if  (channel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
   
