@@ -99,6 +99,7 @@ const ServerAgeCooldown      = new Set();
 const ResponseCooldowns      = new Set();  const ResponseCooldownMS = 5000;
 const FloodProtectionStrikes = [];
 const KarmaImages            = [];
+const CheckedDataCreations   = new Set();
 const QueuedSOSMessages      = new Set();
 const ActiveMinigames        = new Set();
 const CurrentlyPlaying       = new Set();
@@ -1228,6 +1229,7 @@ function function_RemoveFormatting(text, type, sliced)  {
 
 };
 
+//Create Server Data
 function function_ServerData(key, GuildId)  {
   
     peeky.serverData.ensure(key , {
@@ -1290,6 +1292,24 @@ function function_ServerData(key, GuildId)  {
         server_age_bonus: false,
         server_age_bonus_id: null,
         dash_remover_bonus: false
+    });
+  
+};
+
+//Create Channel Data
+function function_ChannelData(key, ChannelId)  {
+
+    peeky.channelData.ensure(key , {
+        ChannelID: ChannelId,
+
+        automatic_reactions_bonus: false,
+        image_only_bonus: false,
+        message_log_bonus: false,
+        banned_words_bonus: false,
+        spoiler_only_bonus: false,
+        flood_protection_bonus_lastdate: null,
+        flood_protection_bonus_lastuser: null,
+        flood_protection_bonus_lastmsg: null
     });
   
 };
@@ -2326,29 +2346,12 @@ const keySF = `${guild.id}`;
   
 if  (peeky.guilds.size > MaxServers)  {
   
-    await guild.owner.user.send("I have left your server because there are no open server slots.").catch(error => ErrorBag.add(error));
+    await function_DirectMessage(guild.owner.user.id, "I have left your server because there are no open server slots.");
     guild.leave().catch(error => ErrorBag.add(error));
 
+} else {
+  function_ServerData(keySF, guild.id);
 };
-
-});
-
-peeky.on("channelCreate", async (channel) => {
-
-const keyCF = `${channel.id}`;
-
-peeky.channelData.ensure(keyCF , {
-    ChannelID: channel.id,
-
-    automatic_reactions_bonus: false,
-    image_only_bonus: false,
-    message_log_bonus: false,
-    banned_words_bonus: false,
-    spoiler_only_bonus: false,
-    flood_protection_bonus_lastdate: null,
-    flood_protection_bonus_lastuser: null,
-    flood_protection_bonus_lastmsg: null
-});
 
 });
 
@@ -2760,14 +2763,21 @@ if  (keySF == SupportServer)  {
 peeky.on("channelCreate", async (channel) => {
   
 const keySF = `${channel.guild.id}`;
+const keyCF = `${channel.id}`;
+
+function_ChannelData(keyCF, channel.id);
   
 //FUNCTIONS
 if  (peeky.serverData.has(keySF))  {
+
+    if  (channel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
   
-    if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
-      
-        channel.setName(channel.name.replace(/[-_]/g, ''));
-        console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
+        if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
+
+            channel.setName(channel.name.replace(/[-_]/g, ' ')).catch(error => ErrorBag.add(error));
+            console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
+
+        };
       
     };
   
@@ -2782,11 +2792,15 @@ const keySF = `${newChannel.guild.id}`;
   
 //FUNCTIONS
 if  (peeky.serverData.has(keySF))  {
+
+    if  (newChannel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
   
-    if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
-      
-        newChannel.setName(newChannel.name.replace(/[-_]/g, ''));
-        console.log("The Dash Remover function has been triggered in " + newChannel.guild.name + ".");
+        if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
+
+            newChannel.setName(newChannel.name.replace(/[-_]/g, ' ')).catch(error => ErrorBag.add(error));
+            console.log("The Dash Remover function has been triggered in " + newChannel.guild.name + ".");
+
+        };
       
     };
   
@@ -3431,6 +3445,22 @@ if  (!message.author.bot && message.guild.owner !== undefined)  {
 };
   
 //MISCELLANEOUS
+  
+//Server Data Checker
+if  (!CheckedDataCreations.has(message.guild.id))  {
+    
+    CheckedDataCreations.add(message.guild.id);
+    function_ServerData(keyCF, message.guild.id);
+  
+};
+  
+//Channel Data Checker
+if  (!CheckedDataCreations.has(message.channel.id))  {
+    
+    CheckedDataCreations.add(message.channel.id);
+    function_ChannelData(keyCF, message.channel.id);
+  
+};
     
 //Workshop Auto-Management
 if  (message.channel.id == WorkshopChannel)  {
