@@ -1398,15 +1398,18 @@ fetch('https://peeky.glitch.me/messageheader.txt')
 
 peeky.on('ready', () => {
 
-	  console.log("Ready.");
+	  console.log("PEEKY is now online.");
     peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
-
-    //Update Banned Users
-    setTimeout(() => {
+  
+    function UpdateBannedUser()  {
         BannedUsers = [];
         peeky.guilds.get(SupportServer).fetchBans().then(banned => {
             BannedUsers.push(banned.user.id);
         });
+        console.log("Banned Users have been updated.");};
+
+    //Update Banned Users
+    setTimeout(() => {
     }, 30000);
 
     setInterval(() => {
@@ -1414,27 +1417,30 @@ peeky.on('ready', () => {
         //Set user info
         peeky.user.setAvatar(RandomAvatars[Math.floor(Math.random()*RandomAvatars.length)]).catch(error => ErrorBag.add(error));
         peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
+        console.log("Updated PEEKY's avatar.");
 
         //Post Server Counts
         ddbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DDBL."); ErrorBag.add(err)});
         bls.postServerCount(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to BLS."); ErrorBag.add(err)});
+        console.log("Stats posted to Bot Lists.");
       
         //Update Banned Users
         BannedUsers = [];
         peeky.guilds.get(SupportServer).fetchBans().then(banned => {
             BannedUsers.push(banned.user.id);
         });
+        console.log("Banned Users have been updated.");
       
     }, 7200000);
   
 });
 
 peeky.on('reconnecting', () => {
-	  console.log('Reconnecting.');
+	  console.log("PEEKY is now reconnecting.");
 });
 
 peeky.on('disconnect', () => {
-	  console.log('Disconnected.');
+	  console.log("PEEKY is now disconnected.");
 });
 
 //Fixes
