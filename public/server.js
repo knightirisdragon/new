@@ -80,7 +80,6 @@ const AutoDeleteTime        = 250;
 
 //Sets and Arrays
 const ErrorBag               = new Set();
-const BannedUsers            = [];
 const WebsiteCooldowns       = new Set();
 const GainCooldown           = new Set();
 const ProfileBoosterCooldown = new Set();
@@ -261,6 +260,7 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
+const BannedUsers         = [  108899409365852160  ];
 const ImmuneServers       = [  SupportServer, EmojiStorage1, 454933217666007052, 264445053596991498, 330777295952543744, 387812458661937152  ];
 
 //Small Objects
@@ -2388,10 +2388,10 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
         Reasons.push("Banned more than " + peeky.userData.get(key, "Bans") + " times in other servers.");
     };
   
-    //Account is banned from using PEEKY // DISABLED
-    /*if  (BannedUsers.includes(member.user.id))  {
+    //Account is banned from using PEEKY
+    if  (BannedUsers.includes(member.user.id))  {
         Reasons.push("Banned from using PEEKY.");
-    };*/
+    };
 
     if  (Reasons.length > 0)  {
         function_DirectMessage(owner, "**Someone suspicious has joined " + function_RemoveFormatting(member.guild.name, "other", true) + "!**\nBe wary about this user but don't punish them just because you've got this message!\n\n**Suspect:** " + function_RemoveFormatting(member.user.tag, "other", true) + " (<@" + member.user.id + ">)\n**Reasons:** " + Reasons.join(" / ") + "\n­"); 
