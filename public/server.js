@@ -2770,16 +2770,20 @@ function_ChannelData(keyCF, channel.id);
 //FUNCTIONS
   
 //Dash Remover
-if  (peeky.serverData.has(keySF) && 1 == 2)  {
+if  (peeky.serverData.has(keySF))  {
 
     if  (channel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
   
         if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
           
             var FinalName = channel.name.replace(/[-_]/g, ' ');
+          
+            if  (channel.name !== FinalName)  {
 
-            await channel.setName(FinalName).catch(error => ErrorBag.add(error));
-            console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
+                await channel.setName(FinalName).catch(error => ErrorBag.add(error));
+                console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
+              
+            };
 
         };
       
@@ -2804,9 +2808,13 @@ if  (peeky.serverData.has(keySF))  {
         if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
           
             var FinalName = newChannel.name.replace(/[-_]/g, ' ');
+          
+            if  (newChannel.name !== FinalName)  {
 
-            await newChannel.setName(FinalName).catch(error => ErrorBag.add(error));
-            console.log("The Dash Remover function has been triggered in " + newChannel.guild.name + ".");
+                await newChannel.setName(FinalName).catch(error => ErrorBag.add(error));
+                console.log("The Dash Remover function has been triggered in " + newChannel.guild.name + ".");
+              
+            };
 
         };
       
