@@ -1228,6 +1228,72 @@ function function_RemoveFormatting(text, type, sliced)  {
 
 };
 
+function function_ServerData(key, GuildId)  {
+  
+    peeky.serverData.ensure(key , {
+        GuildID: GuildId,
+        lastSeen: Date.now(),
+        server_invite: "no_invite",
+        prefix: Prefix,
+        muted_role: "Muted",
+      
+        Title: "None",
+        Thumbnail: DefaultBackground,
+        Author: "No one",
+        Length: 60,
+        Started: new Date(),
+        Link: "None",
+
+        welcome_messages_bonus: false,
+        welcome_messages_bonus_setting: "user_feed",
+        join_role_bonus: false,
+        join_role_bonus_setting: "Member",
+        streamer_role_bonus: false,
+        streamer_role_bonus_setting: "Streamer",
+        automatic_reactions_bonus_setting: "peeky",
+        server_message_bonus: false,
+        image_only_bonus_setting: 0,
+        server_message_bonus_setting: "Welcome to **" + GuildNameTag + "**!",
+        notification_bonus: false,
+        message_log_bonus_setting: "message_log",
+        member_counter_bonus: false,
+        member_counter_bonus_setting: "Members",
+        member_counter_bonus_id: null,
+        clear_nicknames_bonus: false,
+        clear_nicknames_bonus_setting: "Cleared Nickname",
+        suspicion_alert_bonus: false,
+        suspicion_alert_bonus_setting: 10,
+        flood_protection_bonus: false,
+        donor_wall_bonus_setting: "Moderator",
+        donor_wall_bonus: false,
+        donor_wall_bonus_id: null,
+        donor_wall_bonus_channel: "moderators",
+        donor_wall_bonus_array: [],
+        banned_words_bonus_setting: [],
+        spoiler_lock_bonus_setting: 0,
+        server_upgraded: false,
+        event_countdown_bonus: false,
+        event_countdown_bonus_setting: 0,
+        event_countdown_bonus_id: 0,
+        vote_kick_bonus_bonus: false,
+        vote_kick_bonus_setting: 10,
+        server_trial_bonus_bonus: false,
+        server_trial_bonus_setting: 60,
+        stream_announcements_bonus: false,
+        stream_announcements_bonus_setting: "twitch",
+        role_saver_bonus: false,
+        role_saver_array: [],
+        game_roles_bonus: false,
+        game_roles_bonus_setting: [],
+        nick_saver_bonus: false,
+        nick_saver_array: [],
+        server_age_bonus: false,
+        server_age_bonus_id: null,
+        dash_remover_bonus: false
+    });
+  
+};
+
 //Remove HTML Tags
 function function_RemoveTags(text)  {
       return text.replace(/(<([^>]+)>)/ig, "");
@@ -2263,69 +2329,6 @@ if  (peeky.guilds.size > MaxServers)  {
     await guild.owner.user.send("I have left your server because there are no open server slots.").catch(error => ErrorBag.add(error));
     guild.leave().catch(error => ErrorBag.add(error));
 
-} else {
-      
-    peeky.serverData.ensure(keySF , {
-        GuildID: guild.id,
-        lastSeen: Date.now(),
-        server_invite: "no_invite",
-        prefix: Prefix,
-        muted_role: "Muted",
-      
-        Title: "None",
-        Thumbnail: DefaultBackground,
-        Author: "No one",
-        Length: 60,
-        Started: new Date(),
-        Link: "None",
-
-        welcome_messages_bonus: false,
-        welcome_messages_bonus_setting: "user_feed",
-        join_role_bonus: false,
-        join_role_bonus_setting: "Member",
-        streamer_role_bonus: false,
-        streamer_role_bonus_setting: "Streamer",
-        automatic_reactions_bonus_setting: "peeky",
-        server_message_bonus: false,
-        image_only_bonus_setting: 0,
-        server_message_bonus_setting: "Welcome to **" + GuildNameTag + "**!",
-        notification_bonus: false,
-        message_log_bonus_setting: "message_log",
-        member_counter_bonus: false,
-        member_counter_bonus_setting: "Members",
-        member_counter_bonus_id: null,
-        clear_nicknames_bonus: false,
-        clear_nicknames_bonus_setting: "Cleared Nickname",
-        suspicion_alert_bonus: false,
-        suspicion_alert_bonus_setting: 10,
-        flood_protection_bonus: false,
-        donor_wall_bonus_setting: "Moderator",
-        donor_wall_bonus: false,
-        donor_wall_bonus_id: null,
-        donor_wall_bonus_channel: "moderators",
-        donor_wall_bonus_array: [],
-        banned_words_bonus_setting: [],
-        spoiler_lock_bonus_setting: 0,
-        server_upgraded: false,
-        event_countdown_bonus: false,
-        event_countdown_bonus_setting: 0,
-        event_countdown_bonus_id: 0,
-        vote_kick_bonus_bonus: false,
-        vote_kick_bonus_setting: 10,
-        server_trial_bonus_bonus: false,
-        server_trial_bonus_setting: 60,
-        stream_announcements_bonus: false,
-        stream_announcements_bonus_setting: "twitch",
-        role_saver_bonus: false,
-        role_saver_array: [],
-        game_roles_bonus: false,
-        game_roles_bonus_setting: [],
-        nick_saver_bonus: false,
-        nick_saver_array: [],
-        server_age_bonus: false,
-        server_age_bonus_id: null
-    });
-  
 };
 
 });
@@ -2763,7 +2766,27 @@ if  (peeky.serverData.has(keySF))  {
   
     if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
       
-        channel.setName("test test");
+        channel.setName(channel.name.replace(/[-_]/g, ''));
+        console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
+      
+    };
+  
+};
+
+});
+
+//CHANNEL UPDATE EVENTS
+peeky.on("channelUpdate", async (oldChannel, newChannel) => {
+  
+const keySF = `${newChannel.guild.id}`;
+  
+//FUNCTIONS
+if  (peeky.serverData.has(keySF))  {
+  
+    if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
+      
+        newChannel.setName(newChannel.name.replace(/[-_]/g, ''));
+        console.log("The Dash Remover function has been triggered in " + newChannel.guild.name + ".");
       
     };
   
@@ -3051,6 +3074,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "flood_protection_bonus") == true)       { var FP = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var FP = DisabledIcon};
         if (peeky.serverData.get(keySF, "event_countdown_bonus") == true)        { var EC = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var EC = DisabledIcon};
         if (peeky.serverData.get(keySF, "server_message_bonus") == true)         { var SM = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SM = DisabledIcon};
+        if (peeky.serverData.get(keySF, "dash_remover_bonus") == true)           { var DR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var DR = DisabledIcon};
         if (peeky.serverData.get(keySF, "vote_kick_bonus") == true)              { var VT = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var VT = DisabledIcon};
         if (peeky.serverData.get(keySF, "join_role_bonus") == true)              { var JR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var JR = DisabledIcon};
         if (peeky.serverData.get(keySF, "game_roles_bonus") == true)             { var GR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var GR = DisabledIcon};
@@ -3105,6 +3129,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Event Countdown** " + EC + "\n" + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`" + "\n\n" +
                                 "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(ServerMessage, "sm", true) + "`" + "\n\n" +
+                                "**Dash Remover** " + DR + "\n" + "No setting" + "\n\n" +
                                 "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
@@ -4266,13 +4291,28 @@ if  (FunctioName.startsWith("role saver"))  {
 else
 
 //Toggle Images Only
-if  (FunctioName.startsWith("images only")) {
+if  (FunctioName.startsWith("images only"))  {
 
     if(peeky.channelData.get(keyCF, "image_only_bonus") == true) {peeky.channelData.set(keyCF, false, "image_only_bonus");}
     else peeky.channelData.set(keyCF, true, "image_only_bonus");
       
     if  (peeky.channelData.get(keyCF, "image_only_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
     const embed = {"description": SuccessIcon + " The **Images Only** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+
+//Toggle Dash Remover
+if  (FunctioName.startsWith("dash remover"))  {
+
+    if(peeky.channelData.get(keyCF, "dash_remover_bonus") == true) {peeky.channelData.set(keyCF, false, "dash_remover_bonus");}
+    else peeky.channelData.set(keyCF, true, "dash_remover_bonus");
+      
+    if  (peeky.channelData.get(keyCF, "dash_remover_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Dash Remover** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
