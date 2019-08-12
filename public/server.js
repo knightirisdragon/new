@@ -1117,109 +1117,109 @@ function function_RemoveFormatting(text, type, sliced)  {
     
     if  (type == "sm")  {
 
-    var FixedText = text.replace(/\n/g, ' ').replace(/\*/g, '').replace(/`/g, '').replace(/|/g, '').replace(/~/g, '');
+        var FixedText = text.replace(/\n/g, ' ').replace(/\*/g, '').replace(/`/g, '').replace(/|/g, '').replace(/~/g, '');
 
-    if  (FixedText !== "")  {
-        return FixedText;
-    } else {
-        return BadFormat;
-    };
-      
-    if  (FixedText.length > 100)  {
-        FixedText = FixedText.slice(0, 100) + "...";
-    };
+        if  (FixedText !== "")  {
+            return FixedText;
+        } else {
+            return BadFormat;
+        };
+
+        if  (FixedText.length > 100)  {
+            FixedText = FixedText.slice(0, 100) + "...";
+        };
 
     } else
   
     if  (type == "get")  {
 
-    var FixedText = text.toLowerCase().replace(/`/g, '');
-      
-    if  (sliced == true)  {
-        FixedText.slice(0, 1900);
-    };
+        var FixedText = text.toLowerCase().replace(/`/g, '');
 
-    if  (FixedText !== "")  {
-        return FixedText;
-    } else {
-        return BadFormat;
-    };
+        if  (sliced == true)  {
+            FixedText.slice(0, 1900);
+        };
+
+        if  (FixedText !== "")  {
+            return FixedText;
+        } else {
+            return BadFormat;
+        };
       
     } else
   
     if  (type == "channel")  {
 
-    var FixedText = text.toLowerCase().replace(/[~*|` ]/g, '').replace(/\n/g, '');
-      
-    if  (sliced == true)  {
-        FixedText.slice(0, 100);
-    };
+        var FixedText = text.toLowerCase().replace(/[~*|` ]/g, '').replace(/\n/g, '');
 
-    if  (FixedText !== "")  {
-        return FixedText;
-    } else {
-        return BadFormat;
-    };
+        if  (sliced == true)  {
+            FixedText.slice(0, 100);
+        };
+
+        if  (FixedText !== "")  {
+            return FixedText;
+        } else {
+            return BadFormat;
+        };
       
     } else
       
     if  (type == "role")  {
 
-    var FixedText = text.replace(/[~*|`]/g, '').replace(/\n/g, '');
-      
-    if  (sliced == true)  {
-        FixedText.slice(0, 32);
-    };
+        var FixedText = text.replace(/[~*|`]/g, '').replace(/\n/g, '');
 
-    if  (FixedText !== "")  {
-        return FixedText;
-    } else {
-        return BadFormat;
-    };
+        if  (sliced == true)  {
+            FixedText.slice(0, 32);
+        };
+
+        if  (FixedText !== "")  {
+            return FixedText;
+        } else {
+            return BadFormat;
+        };
       
     } else
       
     if  (type == "other")  {
 
-    var FixedText = text.replace(/[~*|`_]/g, '').replace(/\n/g, '');
-      
-    if  (sliced == true)  {
-        FixedText.slice(0, 100);
-    };
+        var FixedText = text.replace(/[~*|`_]/g, '').replace(/\n/g, '');
 
-    if  (FixedText !== "")  {
-        return FixedText;
-    } else {
-        return BadFormat;
-    };
+        if  (sliced == true)  {
+            FixedText.slice(0, 100);
+        };
+
+        if  (FixedText !== "")  {
+            return FixedText;
+        } else {
+            return BadFormat;
+        };
       
     } else
       
     if  (type == "bw")  {
 
-    var FixedText = text.replace(/[ ]/g, '').replace(/\n/g, '');
-      
-    if  (sliced == true)  {
-        FixedText.slice(0, 50);
-    };
+        var FixedText = text.replace(/[ ]/g, '').replace(/\n/g, '');
 
-    return FixedText;
+        if  (sliced == true)  {
+            FixedText.slice(0, 50);
+        };
+
+        return FixedText;
       
     } else
 
     if  (type == "cw")  {
 
-    var FixedText = text.replace(/[~*|`_]/g, '').replace(/\n/g, '');
-      
-    if  (FixedText.length > 100)  {
-        FixedText = FixedText.slice(0, 100) + "...";
-    };
+        var FixedText = text.replace(/[~*|`_]/g, '').replace(/\n/g, '');
 
-    if  (FixedText !== "")  {
-        return FixedText;
-    } else {
-        return BadFormat;
-    };
+        if  (FixedText.length > 100)  {
+            FixedText = FixedText.slice(0, 100) + "...";
+        };
+
+        if  (FixedText !== "")  {
+            return FixedText;
+        } else {
+            return BadFormat;
+        };
       
     };
 
@@ -2485,7 +2485,7 @@ if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
 
     if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
 
-        var name = "Trial";
+        var name = "Server Trial";
         var RoleExist = member.guild.roles.find(role => role.name == name);
 
         if  (RoleExist) {
@@ -3589,7 +3589,7 @@ if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
 
         if  (Guild.me.hasPermission('KICK_MEMBERS'))  {
 
-            var OnTrial = function_ShuffleArray((Guild.members.filter(m => !m.user.bot && !m.permissions.has('MANAGE_GUILD') && m.roles.find(r => r.name == "Trial")).map(m => m))).slice(0, 5);
+            var OnTrial = function_ShuffleArray((Guild.members.filter(m => !m.user.bot && !m.permissions.has('MANAGE_GUILD') && m.roles.find(r => r.name == "Server Trial")).map(m => m))).slice(0, 5);
             var TrialTime = peeky.serverData.get(keySF, "server_trial_bonus_setting");
 
             OnTrial.forEach(async m => {
