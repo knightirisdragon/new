@@ -2598,7 +2598,6 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
 };
 });
 
-
 //GUILD MEMBER UPDATE EVENTS
 peeky.on("guildMemberUpdate", async (oldMember, newMember) => {
   
@@ -2752,6 +2751,24 @@ if  (keySF == SupportServer)  {
 }; 
   
 };
+});
+
+//CHANNEL CREATE EVENTS
+peeky.on("channelCreate", async (channel) => {
+  
+const keySF = `${channel.guild.id}`;
+  
+//FUNCTIONS
+if  (peeky.serverData.has(keySF))  {
+  
+    if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
+      
+        channel.setName("test test");
+      
+    };
+  
+};
+
 });
 
 //PRESENCE UPDATE EVENTS
