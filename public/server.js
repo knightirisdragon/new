@@ -3304,49 +3304,39 @@ if  (message.channel.type == "dm")  {
 if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !message.webhookID && message.content.toLowerCase() !== "accept")  {
   
     if  (!BannedUsers.includes(message.author.id))  {
-
-        const embed = {"description": InfoIcon + " Do you want to send your message to PEEKY's owner?\n" + Hollow + " Type **Accept** in under 30 seconds if you do.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).then(() => {
           
         QueuedSOSMessages.add(message.author.id);
+
+        const embed = {"description": InfoIcon + " Do you want to send your message to PEEKY's owner?\n" + Hollow + " Type **Accept** in under 30 seconds if you do.",  "color": EmbedColor}; 
+        function_DirectMessage(message.author.id, {  embed  });
 
         message.channel.awaitMessages(response => response.content.toLowerCase() == "accept", {
           max: 1,
           time: 30000,
           errors: ['time'],
-        })
-        .then((collected) => {
+        }).then((collected) => {
 
             if  (message.attachments.size > 0) {
                 const image = message.attachments.array()[0].url;
-                peeky.users.get("108899856889737216").send("**" + message.author.tag + ":** " + message.content, {  files: [image]}) .catch(error => ErrorBag.add(error));
+                function_DirectMessage(OwnerId, "**" + function_RemoveFormatting(message.author.tag, "other", true), {  files: [image]});
             }
              else
             {
-             peeky.users.get("108899856889737216").send("**" + message.author.tag + ":** " + message.content).catch(error => ErrorBag.add(error));
+                function_DirectMessage(OwnerId, "**" + function_RemoveFormatting(message.author.tag, "other", true) + ":** " + message.content);
             };
 
             const embed = {"description": SuccessIcon + " Your message has been successfuly sent to my owner!",  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            function_DirectMessage(message.author.id, {  embed  });
 
             QueuedSOSMessages.delete(message.author.id);
           
-        })
-        .catch(() => {
+        }).catch(() => {
            QueuedSOSMessages.delete(message.author.id);
 
            const embed = {"description": ErrorIcon + " Your message was not sent because the time limit has ran out.",  "color": EmbedColor}; 
-           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        });
-          
+           function_DirectMessage(message.author.id, {  embed  });
         });
       
-    }
-     else
-    {
-     const embed = {"description": ErrorIcon + " You have been banned from using PEEKY.",  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-     console.log(message.author.username);
     };
 
     };
@@ -3618,6 +3608,7 @@ if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
                 };
 
             });
+
         };
 
         };
