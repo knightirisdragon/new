@@ -451,7 +451,7 @@ th, td {
 
 .container:hover {
     z-index: 1;
-    transform: scale(0.95);
+    transform: scale(0.975);
     cursor: pointer;
 }
 
@@ -496,7 +496,7 @@ th, td {
     background-color: rgba(35, 39, 42, 0.75);
     border-left: #7289DA 2px solid;
     padding: 10px;
-    width: 90%;
+    width: 85%;
     position: absolute;
     left: 50%;
     top: 50%;
