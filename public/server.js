@@ -3533,9 +3533,9 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
 
     if  (!EventCountdownCooldown.has(message.guild.id))  {
 
-        var ChannelExists = message.guild.channels.find(c => c.id == peeky.serverData.get(keySF, "event_countdown_bonus_id"));
+        var channel = message.guild.channels.find(c => c.id == peeky.serverData.get(keySF, "event_countdown_bonus_id"));
 
-        if  (ChannelExists && ChannelExists.permissionsFor(peeky.user).has('CONNECT'))  {
+        if  (channel && channel.permissionsFor(peeky.user).has('CONNECT'))  {
 
             EventCountdownCooldown.add(message.guild.id);
             setTimeout(() => {EventCountdownCooldown.delete(message.guild.id)}, 300000);
@@ -3545,7 +3545,7 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
 
         if  (peeky.serverData.get(keySF, "event_countdown_bonus_setting") > 0 && TheDate > 0)  {
 
-            var Time = (new Date(peeky.serverData.get(keySF, "event_countdown_bonus_setting")) - Date.now());
+            var Time = peeky.serverData.get(keySF, "event_countdown_bonus_setting");
             var FixedTime = function_TimeLeft(Time, "hours", null);
             var LengthName = "hours";
 
@@ -3557,14 +3557,20 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
                 };
 
             };
+          
+            var FinalName = "Starting in " + FixedTime + " " + LengthName;
+          
+            if  (channel.name !== FinalName)  {
 
-            ChannelExists.setName("Starting in " + FixedTime + " " + LengthName, "Triggered by the Event Countdown function.").catch(error => ErrorBag.add(error));
-            console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
+                channel.setName(FinalName, "Triggered by the Event Countdown function.").catch(error => ErrorBag.add(error));
+                console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
+              
+            };
 
             }
-             else if (ChannelExists.name !== EndName)
+             else if (channel.name !== EndName)
             {
-             ChannelExists.setName(EndName).catch(error => ErrorBag.add(error));
+             channel.setName(EndName).catch(error => ErrorBag.add(error));
              console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
             };
 
@@ -3643,7 +3649,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
             if  (RoleExists) {
 
-                message.member.send("You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by the **Flood Protection** function.").catch(error => ErrorBag.add(error));
+                function_DirectMessage(message.member.user.id, "You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by the **Flood Protection** function.");
 
                 message.member.addRole(message.member.guild.roles.find(role => role.name == name), "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
 
@@ -3700,40 +3706,41 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 
     if  (Role && Channel)  {
 
-    if  (!DonorWallCooldown.has(message.guild.id))  {
+        if  (!DonorWallCooldown.has(message.guild.id))  {
 
-        DonorWallCooldown.add(message.guild.id);
-        setTimeout(() => {DonorWallCooldown.delete(message.guild.id)}, 300000);
+            DonorWallCooldown.add(message.guild.id);
+            setTimeout(() => {DonorWallCooldown.delete(message.guild.id)}, 300000);
 
-        peeky.guilds.get(message.guild.id).members.forEach(function(guildMember, guildMemberId) {
-        if  (guildMember.roles.has(Role.id))  {
-        if  (guildMember.user.bot)                                {  Tag = BotTag;  };
-        if  (guildMember.user.id == message.guild.owner.user.id)  {  Tag = OwnerTag;  };
-            WallList.push(function_RemoveFormatting(guildMember.user.username, "cw", true) +  "#" + guildMember.user.discriminator + " " + Tag);
-            Tag = "";
-        };
-        });
+            peeky.guilds.get(message.guild.id).members.forEach(function(guildMember, guildMemberId) {
+            if  (guildMember.roles.has(Role.id))  {
+            if  (guildMember.user.bot)                                {  Tag = BotTag;  };
+            if  (guildMember.user.id == message.guild.owner.user.id)  {  Tag = OwnerTag;  };
+                WallList.push(function_RemoveFormatting(guildMember.user.username, "cw", true) +  "#" + guildMember.user.discriminator + " " + Tag);
+                Tag = "";
+            };
+            });
 
-        const SupportersAmount = WallList.length;
+            const SupportersAmount = WallList.length;
 
-        if  (SupportersAmount >= 50)  {  EndString = " and " + (SupportersAmount - 50) + " more..."  };
-        if  (SupportersAmount == 0)  {  WallList = ["No one."]  };
+            if  (SupportersAmount >= 50)  {  EndString = " and " + (SupportersAmount - 50) + " more..."  };
+            if  (SupportersAmount == 0)  {  WallList = ["No one."]  };
 
-        Channel.fetchMessages({ limit: 1 }).then(messages => {
+            Channel.fetchMessages({ limit: 1 }).then(messages => {
 
-        var Message = messages.array()[0];
+            var Message = messages.array()[0];
 
-        if  (Message.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
+            if  (Message.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
 
-            Message.edit("**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error));
+                Message.edit("**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error));
 
-            console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
+                console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
 
-        };
+            };
 
-        }).catch(error => ErrorBag.add(error));
+            }).catch(error => ErrorBag.add(error));
 
-      };
+          };
+      
       };
   
 };
@@ -3743,33 +3750,34 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
 
     if  (message.guild.me.hasPermission("MANAGE_NICKNAMES") && !message.member.permissions.has("MANAGE_NICKNAMES") && message.member.nickname == null && !message.author.bot)  {
 
-    if  (!ClearedNames.has(message.author.tag)) {
+        if  (!ClearedNames.has(message.author.tag))  {
 
-        ClearedNames.add(message.author.tag);
+            ClearedNames.add(message.author.tag);
 
-        var Username = message.author.username.toLowerCase().toString();
-        var NewNickname = Username.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789 ]/g)
-        
-        if  (NewNickname !== null) {
-            NewNickname = NewNickname.join("");
-        };
-      
-        if  (Username !== NewNickname)  {
-          
-            if  (NewNickname == null)  {
-                NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
+            var Username = message.author.username.toLowerCase().toString();
+            var NewNickname = Username.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789 ]/g)
+
+            if  (NewNickname !== null) {
+                NewNickname = NewNickname.join("");
             };
 
-            message.member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
+            if  (Username !== NewNickname)  {
 
-            const embed = {"description": InfoIcon + " I have cleared **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s nickname of fancy letters.",  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+                if  (NewNickname == null)  {
+                    NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
+                };
 
-            console.log("The Clear Nicknames function has been triggered in " + message.guild.name + ".");
-          
+                message.member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
+
+                const embed = {"description": InfoIcon + " I have cleared **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s nickname of fancy letters.",  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+
+                console.log("The Clear Nicknames function has been triggered in " + message.guild.name + ".");
+
+            };
+
         };
 
-    };
     };
 
 };
@@ -6935,7 +6943,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
         });
 
         if  (Failed == false)  {
-            MentionedMember.user.send("You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
+            function_DirectMessage(MentionedMember.user.id, "You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + function_RemoveFormatting(message.author.username, "other", true) + "**.");
           
             const embed = {"description": SuccessIcon + " I have muted **" + function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
@@ -7002,7 +7010,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
         });
 
         if  (Failed == false)  {
-            MentionedMember.user.send("You have been unmuted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + function_RemoveFormatting(message.author.username, "other", true) + "**.").catch(error => ErrorBag.add(error));
+            function_DirectMessage(MentionedMember.user.id, "You have been unmuted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + function_RemoveFormatting(message.author.username, "other", true) + "**.");
           
             const embed = {"description": SuccessIcon + " I have unmuted **" + function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7156,36 +7164,34 @@ if (CommandName.startsWith("purge "))  {
 
             var BulkAmount = CommandName.split("purge ")[1];
 
-            if  (isNaN(BulkAmount) == false && BulkAmount > 0 && BulkAmount <= 100) {
+            if  (isNaN(BulkAmount) == false && BulkAmount > 0 && BulkAmount <= 100)  {
 
-                await message.delete().catch(error => ErrorBag.add(error));
+                    await message.delete().catch(error => ErrorBag.add(error));
 
-                message.channel.bulkDelete(BulkAmount).catch(error => {
-                    const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                    ErrorBag.add(error); Failed = true;
-                });
+                    message.channel.bulkDelete(BulkAmount).catch(error => {
+                        const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        ErrorBag.add(error); Failed = true;
+                    });
 
-                if  (Failed == false)  {
-                    const embed = {"description":  SuccessIcon + " I have purged **" + BulkAmount + " messages** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                };
-          
+                    if  (Failed == false)  {
+                        const embed = {"description":  SuccessIcon + " I have purged **" + BulkAmount + " messages** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    };
+
+            }
+             else
+            {
+              const embed = {"description": ErrorIcon + " You can only purge 1 to 100 messages.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
         }
          else
         {
-          
-         const embed = {"description": ErrorIcon + " You can only purge 1 to 100 messages.",  "color": EmbedColor}; 
+         const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        
         };
-      
-    }
-     else
-    {
-     const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
    
 }
  else
