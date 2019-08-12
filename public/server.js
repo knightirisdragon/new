@@ -1808,7 +1808,7 @@ if  (!WebsiteCooldowns.has("api"))  {
       "serverCount": peeky.guilds.size,
       "profileCount": peeky.userData.count,
       "ageCount": function_TimeLeft(peeky.user.createdAt, "days", null),
-      "backgroundsCount": Banners.length + 1,
+      "backgroundsCount": Banners.length,
 
       "eventName": "PEEKY's Birthday",
       "eventStatus": EventStatus,
