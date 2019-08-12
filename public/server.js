@@ -2770,7 +2770,7 @@ function_ChannelData(keyCF, channel.id);
 //FUNCTIONS
   
 //Dash Remover
-if  (peeky.serverData.has(keySF))  {
+if  (peeky.serverData.has(keySF) && 12 == 1)  {
 
     if  (channel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
   
@@ -2797,7 +2797,7 @@ const keySF = `${newChannel.guild.id}`;
 //FUNCTIONS
   
 //Dash Remover
-if  (peeky.serverData.has(keySF))  {
+if  (peeky.serverData.has(keySF) && 12 == 1)  {
 
     if  (newChannel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
   
