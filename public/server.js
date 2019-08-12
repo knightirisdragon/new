@@ -80,6 +80,7 @@ const AutoDeleteTime        = 250;
 
 //Sets and Arrays
 const ErrorBag               = new Set();
+const BannedUsers            = new Array();
 const WebsiteCooldowns       = new Set();
 const GainCooldown           = new Set();
 const ProfileBoosterCooldown = new Set();
@@ -97,8 +98,8 @@ const MessageLogCooldown     = new Set();
 const DonorWallCooldown      = new Set();
 const ServerAgeCooldown      = new Set();
 const ResponseCooldowns      = new Set();  const ResponseCooldownMS = 5000;
-const FloodProtectionStrikes = [];
-const KarmaImages            = [];
+const FloodProtectionStrikes = new Array();
+const KarmaImages            = new Array();
 const CheckedDataCreations   = new Set();
 const QueuedSOSMessages      = new Set();
 const ActiveMinigames        = new Set();
@@ -261,7 +262,6 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
-const BannedUsers         = [  108899409365852160  ];
 const ImmuneServers       = [  SupportServer, EmojiStorage1, 454933217666007052, 264445053596991498, 330777295952543744, 387812458661937152  ];
 
 //Small Objects
@@ -2764,34 +2764,34 @@ peeky.on("channelCreate", async (channel) => {
 
 if  (channel)  {
   
-    const keySF = `${channel.guild.id}`;
-    const keyCF = `${channel.id}`;
+const keySF = `${channel.guild.id}`;
+const keyCF = `${channel.id}`;
 
-    function_ChannelData(keyCF, channel.id);
+function_ChannelData(keyCF, channel.id);
 
-    //FUNCTIONS
+//FUNCTIONS
 
-    //Dash Remover
-    if  (peeky.serverData.has(keySF))  {
+//Dash Remover
+if  (peeky.serverData.has(keySF))  {
 
-        if  (channel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
+    if  (channel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
 
-            if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
+        if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
 
-                var FinalName = channel.name.replace(/[-_]/g, ' ');
+            var FinalName = channel.name.replace(/[-_]/g, ' ');
 
-                if  (channel.name !== FinalName)  {
+            if  (channel.name !== FinalName)  {
 
-                    await channel.setName(FinalName).catch(error => ErrorBag.add(error));
-                    console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
-
-                };
+                await channel.setName(FinalName, "Triggered by the Dash Remover function.").catch(error => ErrorBag.add(error));
+                console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
 
             };
 
         };
 
     };
+
+};
   
 };
 
@@ -2800,27 +2800,23 @@ if  (channel)  {
 //CHANNEL UPDATE EVENTS
 peeky.on("channelUpdate", async (oldChannel, newChannel) => {
   
-if  (newChannel)  {
-  
-    const keySF = `${newChannel.guild.id}`;
+const keySF = `${newChannel.guild.id}`;
 
-    //FUNCTIONS
+//FUNCTIONS
 
-    //Dash Remover
-    if  (peeky.serverData.has(keySF))  {
+//Dash Remover
+if  (peeky.serverData.has(keySF))  {
 
-        if  (newChannel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
+    if  (newChannel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
 
-            if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
+        if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
 
-                var FinalName = newChannel.name.replace(/[-_]/g, ' ');
+            var FinalName = newChannel.name.replace(/[-_]/g, ' ');
 
-                if  (newChannel.name !== FinalName)  {
+            if  (newChannel.name !== FinalName)  {
 
-                    await newChannel.setName(FinalName).catch(error => ErrorBag.add(error));
-                    console.log("The Dash Remover function has been triggered in " + newChannel.guild.name + ".");
-
-                };
+                await newChannel.setName(FinalName, "Triggered by the Dash Remover function.").catch(error => ErrorBag.add(error));
+                console.log("The Dash Remover function has been triggered in " + newChannel.guild.name + ".");
 
             };
 
