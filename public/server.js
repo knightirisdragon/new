@@ -1029,21 +1029,87 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
 };
-
-//Direct Message
-function  function_DirectMessage(id, message)  {
   
-    if  (!FailedDMs.has(id))  {
+function UpdateLeaderboardTypes(type)  {
       
-        peeky.users.get(id).send(message).catch(err => {
-            ErrorBag.add(err); 
+        if  (type == "Gredit")  {
+            var filtered = peeky.userData.filter( p => p.Gredit && p.FashionBadge == true ).array();
+            var sorted   = filtered.sort((a, b) => b.Gredit - a.Gredit);
+        };
+      
+        if  (type == "Karma")  {
+            var filtered = peeky.userData.filter( p => p.Karma && p.FashionBadge == true ).array();
+            var sorted   = filtered.sort((a, b) => b.Karma - a.Karma);
+        };
+      
+        if  (type == "Levels")  {
+            var filtered  = peeky.userData.filter( p => p.Level && p.FashionBadge == true ).array();
+            var sorted    = filtered.sort((a, b) => b.Level - a.Level);
+        };
+      
+        const top            = sorted.splice(0, 25);
+        var currentplace     = 0;
+        var CurrentID        = 0;
+        var GotBadge         = false;
+        const Leaderboard    = [];
+        const LeaderboardTop = [];
 
-            FailedDMs.add(id);
-            setTimeout(() => {FailedDMs.delete(id)}, 300000);          
-        });
+        for (var data of top)  {
+
+            currentplace ++;
+
+        if  (currentplace == 1)  {CurrentID = "first";  GotBadge = true;} else if  (currentplace == 2)  {CurrentID = "second";  GotBadge = true;}  else if  (currentplace == 3){CurrentID = "third";  GotBadge = true;}  else  {CurrentID = "other";  GotBadge = false;};
+
+        if  (peeky.users.has(data.UserID))  {
+
+            var CurrentUser = peeky.users.get(data.UserID);
       
-    };
-  
+            if  (type == "Gredit")  {
+                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Gredit').toLocaleString('en') + " Gredit";
+            };
+
+            if  (type == "Karma")  {
+                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Karma').toLocaleString('en') + " Karma";
+            };
+
+            if  (type == "Levels")  {
+                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Level').toLocaleString('en') + " Levels";
+            };
+
+            if  (GotBadge == true && peeky.userData.get(`${data.UserID}`, "MedallistBadge") == false)  {
+                peeky.userData.set(`${data.UserID}`, true, "MedallistBadge")
+            };
+
+            var TheBannerShown = DefaultBackground;
+            TheBannerShown = function_GetBackground(data.UserID);
+
+            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname'>  <img src='" + CurrentUser.displayAvatarURL + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + "</b>  </div>";
+            if  (currentplace == 1 || currentplace == 2 || currentplace == 3)  {
+                LeaderboardTop.push(SavedProfile);
+            } else  {
+                Leaderboard.push(SavedProfile);
+            };
+
+        }
+         else
+        {
+         Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "'  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNAVAILABLE PROFILE  <br>  <font size='2'>  If this profiles stays unavailable for " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days", InactiveTime) + " more days, it will get deleted.  </font></b>  </div>");
+        };
+
+        };
+      
+        if  (type == "Gredit")  {
+            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
+        };
+      
+        if  (type == "Karma")  {
+            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
+        };
+      
+        if  (type == "Levels")  {
+            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
+        };
+    
 };
 
 //Remove Formatting
@@ -1159,6 +1225,18 @@ function function_RemoveFormatting(text, type, sliced)  {
 
 };
 
+//Remove HTML Tags
+function function_RemoveTags(text)  {
+      return text.replace(/(<([^>]+)>)/ig, "");
+};
+
+//Fix Capitalization
+function function_FixCapitalization(text)  {
+
+    return text.slice(0, 1).toUpperCase() + text.slice(1, text.length).toLowerCase();
+      
+};
+
 //Proper Slice
 function function_ProperSlice(text, amount)  {
   
@@ -1173,42 +1251,46 @@ function function_ProperSlice(text, amount)  {
   
 };
 
-//Remove HTML Tags
-function function_RemoveTags(text)  {
-      return text.replace(/(<([^>]+)>)/ig, "");
-};
-
-//Fix Capitalization
-function function_FixCapitalization(text)  {
-
-    return text.slice(0, 1).toUpperCase() + text.slice(1, text.length).toLowerCase();
-      
-};
-
 //Random Description
 function function_RandomDescription()  {
     return DefaultDescriptions[Math.floor(Math.random()*DefaultDescriptions.length)];
 };
 
+//Direct Message
+function  function_DirectMessage(id, message)  {
+  
+    if  (!FailedDMs.has(id))  {
+      
+        peeky.users.get(id).send(message).catch(err => {
+            ErrorBag.add(err); 
+
+            FailedDMs.add(id);
+            setTimeout(() => {FailedDMs.delete(id)}, 300000);          
+        });
+      
+    };
+  
+};
+
 //Get Background
 function function_GetBackground(key)  {
 
-if  (peeky.userData.has(key))  {
-  
-if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
-      
-    for  (var i = 0; i < Banners.length; i++) {
-       if   (peeky.userData.get(key, "Background") == i + 1) {
-            return Banners[i][Banner.Source];
-            break;
-       };
+    if  (peeky.userData.has(key))  {
+
+        if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
+
+            for  (var i = 0; i < Banners.length; i++) {
+               if   (peeky.userData.get(key, "Background") == i + 1) {
+                    return Banners[i][Banner.Source];
+                    break;
+               };
+            };
+
+        } else {
+            return peeky.userData.get(key, "Background");
+        };
+
     };
-  
-} else {
-    return peeky.userData.get(key, "Background");
-};
-      
-};
   
 };
 
@@ -1400,17 +1482,6 @@ peeky.on('ready', () => {
 
 	  console.log("PEEKY is now online.");
     peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
-  
-    function UpdateBannedUser()  {
-        BannedUsers = [];
-        peeky.guilds.get(SupportServer).fetchBans().then(banned => {
-            BannedUsers.push(banned.user.id);
-        });
-        console.log("Banned Users have been updated.");};
-
-    //Update Banned Users
-    setTimeout(() => {
-    }, 30000);
 
     setInterval(() => {
       
@@ -1423,13 +1494,6 @@ peeky.on('ready', () => {
         ddbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DDBL."); ErrorBag.add(err)});
         bls.postServerCount(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to BLS."); ErrorBag.add(err)});
         console.log("Stats posted to Bot Lists.");
-      
-        //Update Banned Users
-        BannedUsers = [];
-        peeky.guilds.get(SupportServer).fetchBans().then(banned => {
-            BannedUsers.push(banned.user.id);
-        });
-        console.log("Banned Users have been updated.");
       
     }, 7200000);
   
@@ -1790,91 +1854,9 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     WebsiteCooldowns.add("leaderboard");
     setTimeout(() => {WebsiteCooldowns.delete("leaderboard")}, 600000);
   
-    function UpdateLeaderboard(type)  {
-      
-        if  (type == "Gredit")  {
-            var filtered = peeky.userData.filter( p => p.Gredit && p.FashionBadge == true ).array();
-            var sorted   = filtered.sort((a, b) => b.Gredit - a.Gredit);
-        };
-      
-        if  (type == "Karma")  {
-            var filtered = peeky.userData.filter( p => p.Karma && p.FashionBadge == true ).array();
-            var sorted   = filtered.sort((a, b) => b.Karma - a.Karma);
-        };
-      
-        if  (type == "Levels")  {
-            var filtered  = peeky.userData.filter( p => p.Level && p.FashionBadge == true ).array();
-            var sorted    = filtered.sort((a, b) => b.Level - a.Level);
-        };
-      
-        const top            = sorted.splice(0, 25);
-        var currentplace     = 0;
-        var CurrentID        = 0;
-        var GotBadge         = false;
-        const Leaderboard    = [];
-        const LeaderboardTop = [];
-
-        for (var data of top)  {
-
-            currentplace ++;
-
-        if  (currentplace == 1)  {CurrentID = "first";  GotBadge = true;} else if  (currentplace == 2)  {CurrentID = "second";  GotBadge = true;}  else if  (currentplace == 3){CurrentID = "third";  GotBadge = true;}  else  {CurrentID = "other";  GotBadge = false;};
-
-        if  (peeky.users.has(data.UserID))  {
-
-            var CurrentUser = peeky.users.get(data.UserID);
-      
-            if  (type == "Gredit")  {
-                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Gredit').toLocaleString('en') + " Gredit";
-            };
-
-            if  (type == "Karma")  {
-                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Karma').toLocaleString('en') + " Karma";
-            };
-
-            if  (type == "Levels")  {
-                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Level').toLocaleString('en') + " Levels";
-            };
-
-            if  (GotBadge == true && peeky.userData.get(`${data.UserID}`, "MedallistBadge") == false)  {
-                peeky.userData.set(`${data.UserID}`, true, "MedallistBadge")
-            };
-
-            var TheBannerShown = DefaultBackground;
-            TheBannerShown = function_GetBackground(data.UserID);
-
-            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname'>  <img src='" + CurrentUser.displayAvatarURL + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + "</b>  </div>";
-            if  (currentplace == 1 || currentplace == 2 || currentplace == 3)  {
-                LeaderboardTop.push(SavedProfile);
-            } else  {
-                Leaderboard.push(SavedProfile);
-            };
-
-        }
-         else
-        {
-         Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "'  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNAVAILABLE PROFILE  <br>  <font size='2'>  If this profiles stays unavailable for " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days", InactiveTime) + " more days, it will get deleted.  </font></b>  </div>");
-        };
-
-        };
-      
-        if  (type == "Gredit")  {
-            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
-        };
-      
-        if  (type == "Karma")  {
-            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
-        };
-      
-        if  (type == "Levels")  {
-            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
-        };
-    
-    };
-  
-    var LeaderboardGredit = await UpdateLeaderboard("Gredit");
-    var LeaderboardKarma  = await UpdateLeaderboard("Karma");
-    var LeaderboardLevel  = await UpdateLeaderboard("Levels");
+    var LeaderboardGredit = await UpdateLeaderboardTypes("Gredit");
+    var LeaderboardKarma  = await UpdateLeaderboardTypes("Karma");
+    var LeaderboardLevel  = await UpdateLeaderboardTypes("Levels");
 
     peeky.userData.filter( p => p.MedallistBadge == true ).array().forEach(data => {
         peeky.userData.set(`${data.UserID}`, false, "MedallistBadge");
