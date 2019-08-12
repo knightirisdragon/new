@@ -1393,6 +1393,21 @@ function function_ShuffleArray(array) {
     return array;
 };
 
+function function_UpdateBans()  {
+  
+    BannedUsers.splice(0, BannedUsers.length);
+    peeky.guilds.get(SupportServer).fetchBans().then(banned => {
+        
+        banned.array().forEach(i => {
+            BannedUsers.push(i.id);
+        });
+
+    });
+      
+    console.log("The banned users have been updated.");
+  
+};
+
 function UpdateBackgrounds()  {
 
     fetch('https://peeky.glitch.me/backgrounds.txt')
@@ -1485,14 +1500,7 @@ peeky.on('ready', () => {
 
     //Update Banned Users
     setTimeout(() => {
-        BannedUsers.splice(0, BannedUsers.length);
-        peeky.guilds.get(SupportServer).fetchBans().then(banned => {
-        
-            banned.array().forEach(i => {
-                BannedUsers.push(i.id);
-            });
-
-        });
+        function_UpdateBans();
     }, 10000);
 
     setInterval(() => {
@@ -1506,6 +1514,9 @@ peeky.on('ready', () => {
         ddbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DDBL."); ErrorBag.add(err)});
         bls.postServerCount(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to BLS."); ErrorBag.add(err)});
         console.log("Stats posted to Bot Lists.");
+
+        //Update Banned Users
+        function_UpdateBans();
       
     }, 7200000);
   
