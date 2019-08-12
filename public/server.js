@@ -3130,7 +3130,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             });
 
             reaction.message.edit("**Server Settings**", newEmbed).catch(error => ErrorBag.add(error));
-            reaction.remove(user).catch(error => ErrorBag.add(error));
 
         } else 
         if  (reaction.emoji.name == "2⃣")  {
@@ -3151,7 +3150,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             });
 
             reaction.message.edit("**Server functions** `Page 1/2`", newEmbed).catch(error => ErrorBag.add(error));
-            reaction.remove(user).catch(error => ErrorBag.add(error));
 
         } else 
         if  (reaction.emoji.name == "3⃣")  {
@@ -3171,7 +3169,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             });
 
             reaction.message.edit("**Server functions** `Page 2/2`", newEmbed).catch(error => ErrorBag.add(error));
-            reaction.remove(user).catch(error => ErrorBag.add(error));
 
         } else 
         if  (reaction.emoji.name == "4⃣")  {
@@ -3187,7 +3184,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             });
 
             reaction.message.edit("**Channel functions**", newEmbed).catch(error => ErrorBag.add(error));
-            reaction.remove(user).catch(error => ErrorBag.add(error));
 
         };
       
@@ -4124,20 +4120,24 @@ if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
 if  (CommandName.startsWith("overview"))  {
   
     if  (!OverviewCooldown.has(message.guild.id))  {
+      
+        if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
 
-        OverviewCooldown.add(message.guild.id);
-        setTimeout(() => {OverviewCooldown.delete(message.guild.id)}, 10000);
+            OverviewCooldown.add(message.guild.id);
+            setTimeout(() => {OverviewCooldown.delete(message.guild.id)}, 10000);
 
-        const embed = {"description": "**Overview Menu**" + "\n\n" + "1⃣ Server Settings" + "\n\n" + "2⃣ Server Functions `[1/2]`" + "\n\n" + "3⃣ Server Functions `[2/2]`" + "\n\n" + "4⃣ Channel Functions",  "color": EmbedColor}; 
-        await message.channel.send({  embed  }).catch(error => {ErrorBag.add(error);}).then(async m => {
+            const embed = {"description": "**Overview Menu**" + "\n\n" + "1⃣ Server Settings" + "\n\n" + "2⃣ Server Functions `[1/2]`" + "\n\n" + "3⃣ Server Functions `[2/2]`" + "\n\n" + "4⃣ Channel Functions",  "color": EmbedColor}; 
+            await message.channel.send({  embed  }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
-              peeky.userData.set(key, m.id, "OverviewID");
-              await m.react("1⃣").catch(error => {ErrorBag.add(error)});
-              await m.react("2⃣").catch(error => {ErrorBag.add(error)});
-              await m.react("3⃣").catch(error => {ErrorBag.add(error)});
-              await m.react("4⃣").catch(error => {ErrorBag.add(error)});
+                  peeky.userData.set(key, m.id, "OverviewID");
+                  await m.react("1⃣").catch(error => {ErrorBag.add(error)});
+                  await m.react("2⃣").catch(error => {ErrorBag.add(error)});
+                  await m.react("3⃣").catch(error => {ErrorBag.add(error)});
+                  await m.react("4⃣").catch(error => {ErrorBag.add(error)});
 
-        }).catch(error => {ErrorBag.add(error)});
+            }).catch(error => {ErrorBag.add(error)});
+          
+        };
 
     }
      else 
