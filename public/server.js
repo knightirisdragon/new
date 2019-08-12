@@ -1483,6 +1483,18 @@ peeky.on('ready', () => {
 	  console.log("PEEKY is now online.");
     peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
 
+    //Update Banned Users
+    setTimeout(() => {
+        BannedUsers.splice(0, BannedUsers.length);
+        peeky.guilds.get(SupportServer).fetchBans().then(banned => {
+        
+            banned.array().forEach(i => {
+                BannedUsers.push(i.id);
+            });
+
+        });
+    }, 10000);
+
     setInterval(() => {
       
         //Set user info
