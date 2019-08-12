@@ -6511,54 +6511,6 @@ if  (CommandName.startsWith("current"))  {
 
 };
 
-/*
-//Search
-if (CommandName.startsWith("search "))  {
-      
-    if  (!MusicCmdCooldown.has(message.author.id))  {
-      
-        MusicCmdCooldown.add(message.author.id);
-        setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 30000);
-      
-        var SearchPhrase = CommandName.replace("search ", "");
-      
-        search(SearchPhrase, SearchOptions, function(error, results) {
-          
-        if  (error) return ErrorBag.add(error);
-        
-        if  (results.length > 0)  {
-          
-            results.forEach(video => {
-              
-                var embed = {
-                  "title": video.title,
-                  "description": video.description.slice(0, 100),
-                  "url": video.link,
-                  "color": 16711680,
-                  "thumbnail": {
-                    "url": video.thumbnails.high.url
-                  }
-                };
-              
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-              
-            });
-          
-        } else {
-          const embed = {"description": ErrorIcon + " No video found - Try different key words!",  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
-          
-        });
-
-    } else {
-      const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-
-};
-*/
-
 //Playlist
 if (CommandName.startsWith("playlist"))  {
 
@@ -6925,67 +6877,67 @@ if (CommandName.startsWith("drawandguess"))  {
 //Mute
 if (CommandName.startsWith("mute "))  {
 
-if  (message.member.permissions.has("MUTE_MEMBERS"))  {
-    
-if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
-      
-    var MentionedMember = message.mentions.members.first();
-    var name = peeky.serverData.get(keySF, "muted_role");
-    var RoleExists = message.guild.roles.find(role => role.name == name);
+    if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 
-    if  (MentionedMember) {
+        if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 
-    if  (RoleExists) {
-      
-    if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
+            var MentionedMember = message.mentions.members.first();
+            var name = peeky.serverData.get(keySF, "muted_role");
+            var RoleExists = message.guild.roles.find(role => role.name == name);
 
-        await MentionedMember.addRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => {
-            const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            ErrorBag.add(error); Failed = true;
-        });
+            if  (MentionedMember) {
 
-        if  (Failed == false)  {
-            function_DirectMessage(MentionedMember.user.id, "You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + function_RemoveFormatting(message.author.username, "other", true) + "**.");
-          
-            const embed = {"description": SuccessIcon + " I have muted **" + function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
-        };
+            if  (RoleExists) {
+
+            if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
+
+                await MentionedMember.addRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => {
+                    const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    ErrorBag.add(error); Failed = true;
+                });
+
+                if  (Failed == false)  {
+                    function_DirectMessage(MentionedMember.user.id, "You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + function_RemoveFormatting(message.author.username, "other", true) + "**.");
+
+                    const embed = {"description": SuccessIcon + " I have muted **" + function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
+                };
+
+                }
+                 else
+                {
+                  const embed = {"description": ErrorIcon + " You cannot mute that user.",  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
+
+                }
+                 else
+                {
+                  const embed = {"description": ErrorIcon + " I cannot find a role called **" + name + "**.",  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
+                };
+
+                }
+                 else
+                {
+                  const embed = {"description": ErrorMessage3[0],  "color": EmbedColor};  
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
 
         }
          else
         {
-          const embed = {"description": ErrorIcon + " You cannot mute that user.",  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+         const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
-        }
-         else
-        {
-          const embed = {"description": ErrorIcon + " I cannot find a role called **" + name + "**.",  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
-        };
-
-        }
-         else
-        {
-          const embed = {"description": ErrorMessage3[0],  "color": EmbedColor};  
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
-  
-}
- else
-{
- const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-      
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
+    }
+     else
+    {
+     const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
 };
 
