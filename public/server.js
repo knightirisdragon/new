@@ -3711,7 +3711,7 @@ if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
 
                     setTimeout(async () => {
 
-                    await m.send("Your trial on **" + function_RemoveFormatting(Guild.name, "other", true) + "** has ended.").catch(error => ErrorBag.add(error));  
+                    await function_DirectMessage(m.user.id, "Your trial on **" + function_RemoveFormatting(Guild.name, "other", true) + "** has ended.");
                     m.kick("Triggered by the Server Trial function.").catch(error => ErrorBag.add(error));
 
                     console.log("The Server Trial function has been triggered in " + m.guild.name + ".");                
@@ -3753,7 +3753,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
             if  (RoleExists) {
 
-                function_DirectMessage(message.member.user.id, "You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by the **Flood Protection** function.");
+                //function_DirectMessage(message.member.user.id, "You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by the **Flood Protection** function.");
 
                 message.member.addRole(message.member.guild.roles.find(role => role.name == name), "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
 
@@ -4077,7 +4077,7 @@ if (CommandName.startsWith("setinvite"))  {
 if  (!SetInviteCooldown.has(message.guild.id))  {
 
     SetInviteCooldown.add(message.guild.id);
-    setTimeout(() => {SetInviteCooldown.delete(message.guild.id)}, 300000);
+    setTimeout(() => {SetInviteCooldown.delete(message.guild.id)}, 60000);
 
 if  (message.author.id == message.guild.owner.user.id)  {
     
@@ -7014,7 +7014,7 @@ if (CommandName.startsWith("mute "))  {
                 });
 
                 if  (Failed == false)  {
-                    function_DirectMessage(MentionedMember.user.id, "You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + function_RemoveFormatting(message.author.username, "other", true) + "**.");
+                    //function_DirectMessage(MentionedMember.user.id, "You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + function_RemoveFormatting(message.author.username, "other", true) + "**.");
 
                     const embed = {"description": SuccessIcon + " I have muted **" + function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
@@ -7081,7 +7081,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
         });
 
         if  (Failed == false)  {
-            function_DirectMessage(MentionedMember.user.id, "You have been unmuted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + function_RemoveFormatting(message.author.username, "other", true) + "**.");
+            //function_DirectMessage(MentionedMember.user.id, "You have been unmuted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by **" + function_RemoveFormatting(message.author.username, "other", true) + "**.");
           
             const embed = {"description": SuccessIcon + " I have unmuted **" + function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
