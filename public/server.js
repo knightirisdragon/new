@@ -2762,31 +2762,35 @@ if  (keySF == SupportServer)  {
 //CHANNEL CREATE EVENTS
 peeky.on("channelCreate", async (channel) => {
 
-const keySF = `${channel.guild.id}`;
-const keyCF = `${channel.id}`;
-
-function_ChannelData(keyCF, channel.id);
+if  (channel)  {
   
-//FUNCTIONS
-  
-//Dash Remover
-if  (peeky.serverData.has(keySF))  {
+    const keySF = `${channel.guild.id}`;
+    const keyCF = `${channel.id}`;
 
-    if  (channel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
-  
-        if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
-          
-            var FinalName = channel.name.replace(/[-_]/g, ' ');
-          
-            if  (channel.name !== FinalName)  {
+    function_ChannelData(keyCF, channel.id);
 
-                await channel.setName(FinalName).catch(error => ErrorBag.add(error));
-                console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
-              
+    //FUNCTIONS
+
+    //Dash Remover
+    if  (peeky.serverData.has(keySF))  {
+
+        if  (channel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
+
+            if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
+
+                var FinalName = channel.name.replace(/[-_]/g, ' ');
+
+                if  (channel.name !== FinalName)  {
+
+                    await channel.setName(FinalName).catch(error => ErrorBag.add(error));
+                    console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
+
+                };
+
             };
 
         };
-      
+
     };
   
 };
@@ -2796,30 +2800,34 @@ if  (peeky.serverData.has(keySF))  {
 //CHANNEL UPDATE EVENTS
 peeky.on("channelUpdate", async (oldChannel, newChannel) => {
   
-const keySF = `${newChannel.guild.id}`;
+if  (newChannel)  {
   
-//FUNCTIONS
-  
-//Dash Remover
-if  (peeky.serverData.has(keySF))  {
+    const keySF = `${newChannel.guild.id}`;
 
-    if  (newChannel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
-  
-        if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
-          
-            var FinalName = newChannel.name.replace(/[-_]/g, ' ');
-          
-            if  (newChannel.name !== FinalName)  {
+    //FUNCTIONS
 
-                await newChannel.setName(FinalName).catch(error => ErrorBag.add(error));
-                console.log("The Dash Remover function has been triggered in " + newChannel.guild.name + ".");
-              
+    //Dash Remover
+    if  (peeky.serverData.has(keySF))  {
+
+        if  (newChannel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
+
+            if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
+
+                var FinalName = newChannel.name.replace(/[-_]/g, ' ');
+
+                if  (newChannel.name !== FinalName)  {
+
+                    await newChannel.setName(FinalName).catch(error => ErrorBag.add(error));
+                    console.log("The Dash Remover function has been triggered in " + newChannel.guild.name + ".");
+
+                };
+
             };
 
         };
-      
+
     };
-  
+
 };
 
 });
@@ -2827,7 +2835,7 @@ if  (peeky.serverData.has(keySF))  {
 //PRESENCE UPDATE EVENTS
 peeky.on("presenceUpdate", async (oldMember, newMember) => {
   
-const key = `${newMember.user.id}`;
+const key   = `${newMember.user.id}`;
 const keySF = `${newMember.guild.id}`;
   
 //FUNCTIONS
