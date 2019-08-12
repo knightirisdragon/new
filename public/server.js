@@ -80,6 +80,7 @@ const AutoDeleteTime        = 250;
 
 //Sets and Arrays
 const ErrorBag               = new Set();
+const BannedUsers            = [];
 const WebsiteCooldowns       = new Set();
 const GainCooldown           = new Set();
 const ProfileBoosterCooldown = new Set();
@@ -260,7 +261,6 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
-const BannedUsers         = [  108899409365852160, 316313623813423104  ];
 const ImmuneServers       = [  SupportServer, EmojiStorage1, 454933217666007052, 264445053596991498, 330777295952543744, 387812458661937152  ];
 
 //Small Objects
@@ -1401,17 +1401,29 @@ peeky.on('ready', () => {
 	  console.log("Ready.");
     peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
 
+    //Update Banned Users
+    setTimeout(() => {
+        BannedUsers = [];
+        peeky.guilds.get(SupportServer).fetchBans().then(banned => {
+            BannedUsers.push(banned.user.id);
+        });
+    }, 30000);
+
     setInterval(() => {
       
         //Set user info
         peeky.user.setAvatar(RandomAvatars[Math.floor(Math.random()*RandomAvatars.length)]).catch(error => ErrorBag.add(error));
         peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
 
-        //DDBL
+        //Post Server Counts
         ddbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DDBL."); ErrorBag.add(err)});
-
-        //BLS
         bls.postServerCount(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to BLS."); ErrorBag.add(err)});
+      
+        //Update Banned Users
+        BannedUsers = [];
+        peeky.guilds.get(SupportServer).fetchBans().then(banned => {
+            BannedUsers.push(banned.user.id);
+        });
       
     }, 7200000);
   
