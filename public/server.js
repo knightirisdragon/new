@@ -653,7 +653,10 @@ const Banners = [
     ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground380.jpg?v=1564448048338", 425, "Japaneese terrace", "Unknown", undefined],
     ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground381.png?v=1564448236674", 400, "Desolate park", "Zach Soza", undefined],
     ["http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground382.jpg?v=1564448921669", 250, "Playful dogs", "Unknown", undefined],
-    ["http://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground383.png?v=1565240397152", 500, "Dedicated", "Call of Duty Modern Warfare", undefined]
+    ["http://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground383.png?v=1565240397152", 500, "Dedicated", "Call of Duty Modern Warfare", undefined],
+    ["http://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground384.png?v=1565616356300", 500, "Breaking point", "Ghost Recon Breakpoint", undefined],
+    ["http://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground385.png?v=1565616359450", 450, "Conflict", "Total War", undefined],
+    ["http://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground386.png?v=1565616365518", 475, "Interrogation", "Ghost Recon Wildlands", undefined]
 
 ];
 
@@ -1805,7 +1808,7 @@ if  (!WebsiteCooldowns.has("api"))  {
       "serverCount": peeky.guilds.size,
       "profileCount": peeky.userData.count,
       "ageCount": function_TimeLeft(peeky.user.createdAt, "days", null),
-      "backgroundsCount": Banners.length,
+      "backgroundsCount": Banners.length + 1,
 
       "eventName": "PEEKY's Birthday",
       "eventStatus": EventStatus,
