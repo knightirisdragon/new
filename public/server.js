@@ -2768,13 +2768,17 @@ const keyCF = `${channel.id}`;
 function_ChannelData(keyCF, channel.id);
   
 //FUNCTIONS
+  
+//Dash Remover
 if  (peeky.serverData.has(keySF))  {
 
     if  (channel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
   
         if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
+          
+            var FinalName = channel.name.replace(/[-_]/g, ' ');
 
-            channel.setName(channel.name.replace(/[-_]/g, ' ')).catch(error => ErrorBag.add(error));
+            await channel.setName(FinalName).catch(error => ErrorBag.add(error));
             console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
 
         };
@@ -2791,13 +2795,17 @@ peeky.on("channelUpdate", async (oldChannel, newChannel) => {
 const keySF = `${newChannel.guild.id}`;
   
 //FUNCTIONS
+  
+//Dash Remover
 if  (peeky.serverData.has(keySF))  {
 
     if  (newChannel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
   
         if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
+          
+            var FinalName = newChannel.name.replace(/[-_]/g, ' ');
 
-            newChannel.setName(newChannel.name.replace(/[-_]/g, ' ')).catch(error => ErrorBag.add(error));
+            await newChannel.setName(FinalName).catch(error => ErrorBag.add(error));
             console.log("The Dash Remover function has been triggered in " + newChannel.guild.name + ".");
 
         };
@@ -4338,10 +4346,10 @@ else
 //Toggle Dash Remover
 if  (FunctioName.startsWith("dash remover"))  {
 
-    if(peeky.channelData.get(keyCF, "dash_remover_bonus") == true) {peeky.channelData.set(keyCF, false, "dash_remover_bonus");}
-    else peeky.channelData.set(keyCF, true, "dash_remover_bonus");
+    if(peeky.serverData.get(keySF, "dash_remover_bonus") == true) {peeky.serverData.set(keySF, false, "dash_remover_bonus");}
+    else peeky.serverData.set(keySF, true, "dash_remover_bonus");
       
-    if  (peeky.channelData.get(keyCF, "dash_remover_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
     const embed = {"description": SuccessIcon + " The **Dash Remover** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
