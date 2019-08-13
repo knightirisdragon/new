@@ -3565,7 +3565,6 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
 
             if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
                 channel.setName(FinalName, "Triggered by the Server Age function.").catch(error => ErrorBag.add(error));
-
                 console.log("The Server Age function has been triggered in " + message.guild.name + ".");
             };
 
@@ -3591,8 +3590,7 @@ if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
             var FinalName  = Prefix + ": " + message.guild.members.filter(m => !m.user.bot).size;
 
             if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
-                channel.setName(FinalName, "Triggered by the Member Counter function.").catch(error => ErrorBag.add(error));
-              
+                channel.setName(FinalName, "Triggered by the Member Counter function.").catch(error => ErrorBag.add(error));              
                 console.log("The Member Counter function has been triggered in " + message.guild.name + ".");
             };
 
@@ -3635,10 +3633,8 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
             var FinalName = "Starting in " + FixedTime + " " + LengthName;
           
             if  (channel.name !== FinalName)  {
-
                 channel.setName(FinalName, "Triggered by the Event Countdown function.").catch(error => ErrorBag.add(error));
-                console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
-              
+                console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");    
             };
 
             }
@@ -3913,15 +3909,19 @@ if  (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true)  {
                      console.log("The Spoiler Lock function has been triggered in " + message.guild.name + ".");
 
                 };
+              
             };
+          
         };
+      
     };
+  
 };
   
 };
 
 //COMMANDS
-if  (!message.author.bot && !message.webhookID && !BannedUsers.includes(message.author.id) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.author.id) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
   
 //Mention Commands
   
