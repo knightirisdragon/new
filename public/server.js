@@ -1121,7 +1121,7 @@ function function_RemoveFormatting(text, type, sliced)  {
     
     if  (type == "sm")  {
 
-        var FixedText = function_ProperSlice(text.replace(/[~*|`]/g, '').replace(/\n/g, '').replace(/\n/g, ' '), 100);
+        var FixedText = function_ProperSlice(text.replace(/[`]/g, '').replace(/\n/g, ' '), 100);
 
         if  (FixedText !== "")  {
             return FixedText;
@@ -2746,7 +2746,7 @@ if  (keySF == SupportServer)  {
 //CHANNEL CREATE EVENTS
 peeky.on("channelCreate", async (channel) => {
 
-if  (channel)  {
+if  (channel.guild)  {
   
 const keySF = `${channel.guild.id}`;
 const keyCF = `${channel.id}`;
