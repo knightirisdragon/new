@@ -657,7 +657,10 @@ const Banners = [
     ["http://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground383.png?v=1565240397152", 500, "Dedicated", "Call of Duty Modern Warfare", undefined],
     ["http://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground384.png?v=1565616356300", 500, "Breaking point", "Ghost Recon Breakpoint", undefined],
     ["http://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground385.png?v=1565616359450", 450, "Conflict", "Total War", undefined],
-    ["http://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground386.png?v=1565616365518", 475, "Interrogation", "Ghost Recon Wildlands", undefined]
+    ["http://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground386.png?v=1565616365518", 475, "Interrogation", "Ghost Recon Wildlands", undefined],
+    ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground387.png?v=1565715186242", 400, "Father's pose", "JoJo's Bizarre Adventure Golden Wind", undefined],
+    ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground388.png?v=1565715181405", 500, "Beyond", "No Man's Sky", undefined],
+    ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground389.png?v=1565715183258", 425, "Steve hunt", "RobenSikk", undefined]
 
 ];
 
