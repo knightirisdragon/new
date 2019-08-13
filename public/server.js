@@ -1121,16 +1121,12 @@ function function_RemoveFormatting(text, type, sliced)  {
     
     if  (type == "sm")  {
 
-        var FixedText = text.replace(/\n/g, ' ').replace(/\*/g, '').replace(/`/g, '').replace(/|/g, '').replace(/~/g, '');
+        var FixedText = function_ProperSlice(text.replace(/\n/g, ' ').replace(/\*/g, '').replace(/`/g, '').replace(/|/g, '').replace(/~/g, ''), 100);
 
         if  (FixedText !== "")  {
             return FixedText;
         } else {
             return BadFormat;
-        };
-
-        if  (FixedText.length > 100)  {
-            FixedText = FixedText.slice(0, 100) + "...";
         };
 
     } else
@@ -1140,7 +1136,7 @@ function function_RemoveFormatting(text, type, sliced)  {
         var FixedText = text.toLowerCase().replace(/`/g, '');
 
         if  (sliced == true)  {
-            FixedText.slice(0, 1900);
+            FixedText.slice(0, 1000);
         };
 
         if  (FixedText !== "")  {
@@ -1199,7 +1195,7 @@ function function_RemoveFormatting(text, type, sliced)  {
       
     } else
       
-    if  (type == "bw")  {
+    /*if  (type == "bw")  {
 
         var FixedText = text.replace(/[ ]/g, '').replace(/\n/g, '');
 
@@ -1209,14 +1205,13 @@ function function_RemoveFormatting(text, type, sliced)  {
 
         return FixedText;
       
-    } else
+    } else*/
 
     if  (type == "cw")  {
 
         var FixedText = text.replace(/[~*|`_]/g, '').replace(/\n/g, '');
 
-        if  (FixedText.length > 100)  {
-            FixedText = FixedText.slice(0, 100) + "...";
+        var FixedText = function_ProperSlice(text.replace(/\n/g, ' ').replace(/\*/g, '').replace(/`/g, '').replace(/|/g, '').replace(/~/g, ''), 100);
         };
 
         if  (FixedText !== "")  {
@@ -2348,17 +2343,29 @@ if  (peeky.guilds.size > MaxServers)  {
   
     await function_DirectMessage(guild.owner.user.id, "I have left your server because there are no open server slots.");
     guild.leave().catch(error => ErrorBag.add(error));
-  
-    const embed = {"description": SuccessIcon + " I have joined " + function_RemoveSymbols() + "** for your purchase!",  "color": EmbedColor}; 
-    peeky.channels.get(ServerLogChannel).send({ embed });
 
 } else {
+  
   function_ServerData(keySF, guild.id);
+  
+  const embed = {"description": SuccessIcon + " I have joined " + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
+  peeky.channels.get(ServerLogChannel).send({ embed });
+
 };
 
 });
 
+peeky.on("guildDelete", async (guild) =>  {
+  
+const keySF = `${guild.id}`;
+  
+const embed = {"description": ErrorIcon + " I have left " + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
+peeky.channels.get(ServerLogChannel).send({ embed });
+
+});
+
 peeky.on("channelDelete", async (channel) => {
+  
 const keyCF = `${channel.id}`;
 
 if  (peeky.channelData.has(keyCF))  {
@@ -2369,6 +2376,7 @@ if  (peeky.channelData.has(keyCF))  {
 });
 
 peeky.on("guildBanAdd", async (guild, user) => {
+  
 const key = `${user.id}`;
 
 //Log the ban
