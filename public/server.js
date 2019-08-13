@@ -4049,49 +4049,49 @@ if (CommandName.startsWith("upgrade"))  {
 //SetInvite
 if (CommandName.startsWith("setinvite"))  {
   
-if  (!SetInviteCooldown.has(message.guild.id))  {
+    if  (!SetInviteCooldown.has(message.guild.id))  {
 
-    SetInviteCooldown.add(message.guild.id);
-    setTimeout(() => {SetInviteCooldown.delete(message.guild.id)}, 60000);
+        SetInviteCooldown.add(message.guild.id);
+        setTimeout(() => {SetInviteCooldown.delete(message.guild.id)}, 60000);
 
-if  (message.author.id == message.guild.owner.user.id)  {
-    
-if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
+        if  (message.author.id == message.guild.owner.user.id)  {
 
-    await message.channel.fetchInvites().then(function(Invites)  {
-    Invites = Invites.array();
+            if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
 
-    if  (Invites.length > 0) {
-        peeky.serverData.set(keySF, Invites[0].code, "server_invite");
-        const embed = {"description": SuccessIcon + " The server's invite code has been set to **" + Invites[0].code + "**.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    } else {
-        const embed = {"description": ErrorIcon + " I could not find any server invites in this channel.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                await message.channel.fetchInvites().then(function(Invites)  {
+                Invites = Invites.array();
+
+                if  (Invites.length > 0) {
+                    peeky.serverData.set(keySF, Invites[0].code, "server_invite");
+                    const embed = {"description": SuccessIcon + " The server's invite code has been set to **" + Invites[0].code + "**.",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                } else {
+                    const embed = {"description": ErrorIcon + " I could not find any server invites in this channel.",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
+
+            });
+
+            }
+             else
+            {
+             const embed = {"description": ErrorIcon + " This command is only allowed on upgraded servers.",  "color": EmbedColor}; 
+             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
+        }
+         else
+        {
+         const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+    }
+     else
+    {
+     const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-
-});
-
-}
- else
-{
- const embed = {"description": ErrorIcon + " This command is only allowed on upgraded servers.",  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-
-}
- else
-{
- const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 };
       
