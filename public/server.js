@@ -1121,7 +1121,7 @@ function function_RemoveFormatting(text, type, sliced)  {
     
     if  (type == "sm")  {
 
-        var FixedText = function_ProperSlice(text.replace(/\n/g, ' ').replace(/\*/g, '').replace(/`/g, '').replace(/|/g, '').replace(/~/g, ''), 100);
+        var FixedText = function_ProperSlice(text.replace(/[~*|` ]/g, '').replace(/\n/g, '').replace(/\n/g, ' '), 100);
 
         if  (FixedText !== "")  {
             return FixedText;
@@ -1184,34 +1184,7 @@ function function_RemoveFormatting(text, type, sliced)  {
         var FixedText = text.replace(/[~*|`_]/g, '').replace(/\n/g, '');
 
         if  (sliced == true)  {
-            FixedText.slice(0, 100);
-        };
-
-        if  (FixedText !== "")  {
-            return FixedText;
-        } else {
-            return BadFormat;
-        };
-      
-    } else
-      
-    /*if  (type == "bw")  {
-
-        var FixedText = text.replace(/[ ]/g, '').replace(/\n/g, '');
-
-        if  (sliced == true)  {
-            FixedText.slice(0, 50);
-        };
-
-        return FixedText;
-      
-    } else*/
-
-    if  (type == "cw")  {
-
-        var FixedText = text.replace(/[~*|`_]/g, '').replace(/\n/g, '');
-
-        var FixedText = function_ProperSlice(text.replace(/\n/g, ' ').replace(/\*/g, '').replace(/`/g, '').replace(/|/g, '').replace(/~/g, ''), 100);
+            FixedText = function_ProperSlice(FixedText, 100);
         };
 
         if  (FixedText !== "")  {
@@ -3830,7 +3803,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
             if  (guildMember.roles.has(Role.id))  {
             if  (guildMember.user.bot)                                {  Tag = BotTag;  };
             if  (guildMember.user.id == message.guild.owner.user.id)  {  Tag = OwnerTag;  };
-                WallList.push(function_RemoveFormatting(guildMember.user.username, "cw", true) +  "#" + guildMember.user.discriminator + " " + Tag);
+                WallList.push(function_RemoveFormatting(guildMember.user.username, "other", true) +  "#" + guildMember.user.discriminator + " " + Tag);
                 Tag = "";
             };
             });
@@ -3845,10 +3818,13 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
             var Message = messages.array()[0];
 
             if  (Message.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
+              
+                var FinalText = function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString;
 
-                Message.edit("**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error));
-
-                console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
+                if  (Message.content !== FinalText)  {
+                    Message.edit("**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString).catch(error => ErrorBag.add(error));
+                    console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
+                };
 
             };
 
