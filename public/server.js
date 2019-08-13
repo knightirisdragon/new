@@ -1121,7 +1121,7 @@ function function_RemoveFormatting(text, type, sliced)  {
     
     if  (type == "sm")  {
 
-        var FixedText = function_ProperSlice(text.replace(/[~*|` ]/g, '').replace(/\n/g, '').replace(/\n/g, ' '), 100);
+        var FixedText = function_ProperSlice(text.replace(/[~*|`]/g, '').replace(/\n/g, '').replace(/\n/g, ' '), 100);
 
         if  (FixedText !== "")  {
             return FixedText;
@@ -2352,7 +2352,7 @@ peeky.on("guildBanAdd", async (guild, user) => {
   
 const key = `${user.id}`;
 
-//Log the ban
+//Log Bans
 if  (peeky.userData.has(key))  {
   
     if  (peeky.userData.has(key, "Bans"))  {
@@ -2501,7 +2501,7 @@ if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
 
     if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
 
-        var name = "Server Trial";
+        var name = "Trial";
         var RoleExist = member.guild.roles.find(role => role.name == name);
 
         if  (RoleExist) {
@@ -3192,7 +3192,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
       
         if  (MemberExists && !reaction.message.member.permissions.has("KICK_MEMBERS"))  {
           
-            if  (reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting") && MemberExists.user.id !== PeekyId && reaction.message.guild.me.hasPermission("KICK_MEMBERS"))  {
+            if  (reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting") && MemberExists.user.id !== PeekyId && reaction.message.guild.me.hasPermission("KICK_MEMBERS") && reaction.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
                 await reaction.message.member.send("You have been vote kicked from **" + function_RemoveFormatting(reaction.message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
@@ -3249,8 +3249,6 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
     if  (!LoggedMessages.has(reaction.message.id))  {
       
     if  (!MessageLogCooldown.has(reaction.message.author.id))  {
-      
-    if  (!reaction.message.content.includes("@everyone") && !reaction.message.content.includes("@here") && reaction.message.mentions.users.size == 0)  {
         
         LoggedMessages.add(reaction.message.id);
          
@@ -3332,16 +3330,6 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
         {
           reaction.remove(user).catch(error => ErrorBag.add(error));
             
-          const embed = {"description": ErrorIcon + " I cannot log messages with mentions, **" + function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
-          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
-          
-        };
-            
-        }
-         else
-        {
-          reaction.remove(user).catch(error => ErrorBag.add(error));
-            
           const embed = {"description": CooldownMessage4[0],  "color": EmbedColor}; 
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
@@ -3361,7 +3349,6 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {
 };
 
 };
-  
 });
 
 //MESSAGE  DELETE EVENTS
@@ -3397,6 +3384,8 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
           errors: ['time'],
         }).then((collected) => {
 
+            QueuedSOSMessages.delete(message.author.id);
+
             if  (message.attachments.size > 0) {
                 const image = message.attachments.array()[0].url;
                 function_DirectMessage(OwnerId, "**" + function_RemoveFormatting(message.author.tag, "other", true), {  files: [image]});
@@ -3408,8 +3397,6 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
 
             const embed = {"description": SuccessIcon + " Your message has been successfuly sent to my owner!",  "color": EmbedColor}; 
             function_DirectMessage(message.author.id, {  embed  });
-
-            QueuedSOSMessages.delete(message.author.id);
           
         }).catch(() => {
            QueuedSOSMessages.delete(message.author.id);
@@ -3605,7 +3592,7 @@ if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
 
             if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
                 channel.setName(FinalName, "Triggered by the Member Counter function.").catch(error => ErrorBag.add(error));
-
+              
                 console.log("The Member Counter function has been triggered in " + message.guild.name + ".");
             };
 
@@ -3686,7 +3673,7 @@ if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
 
         if  (Guild.me.hasPermission('KICK_MEMBERS'))  {
 
-            var OnTrial = function_ShuffleArray((Guild.members.filter(m => !m.user.bot && !m.permissions.has('MANAGE_GUILD') && m.roles.find(r => r.name == "Server Trial")).map(m => m))).slice(0, 5);
+            var OnTrial = function_ShuffleArray((Guild.members.filter(m => !m.user.bot && !m.permissions.has('MANAGE_GUILD') && m.roles.find(r => r.name == "Trial")).map(m => m))).slice(0, 5);
             var TrialTime = peeky.serverData.get(keySF, "server_trial_bonus_setting");
 
             OnTrial.forEach(async m => {
