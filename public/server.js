@@ -2763,7 +2763,7 @@ if  (peeky.serverData.has(keySF))  {
 
         if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
 
-            var FinalName = channel.name.replace(/[-_]/g, ' ');
+            var FinalName = channel.name.replace(/[-]/g, ' ');
 
             if  (channel.name !== FinalName)  {
 
@@ -2796,7 +2796,7 @@ if  (peeky.serverData.has(keySF))  {
 
         if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
 
-            var FinalName = newChannel.name.replace(/[-_]/g, ' ');
+            var FinalName = newChannel.name.replace(/[-]/g, ' ');
 
             if  (newChannel.name !== FinalName)  {
 
