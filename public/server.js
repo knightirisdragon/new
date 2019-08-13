@@ -215,7 +215,7 @@ const SupportServer        = "319891596772638744";
 const AnnouncementsChannel = "346710479407808524";
 const EmojiStorage1        = "493048757286600716";
 const WorkshopChannel      = "501130667078189066";
-const PurchaseLog          = "583339225001492501";
+const ServerLogChannel     = "610672449738244102";
 
 //Server Message Tags
 const GuildNameTag         = "[GuildName]";
@@ -2348,6 +2348,9 @@ if  (peeky.guilds.size > MaxServers)  {
   
     await function_DirectMessage(guild.owner.user.id, "I have left your server because there are no open server slots.");
     guild.leave().catch(error => ErrorBag.add(error));
+  
+    const embed = {"description": SuccessIcon + " I have joined " + function_RemoveSymbols() + "** for your purchase!",  "color": EmbedColor}; 
+    peeky.channels.get(ServerLogChannel).send({ embed });
 
 } else {
   function_ServerData(keySF, guild.id);
