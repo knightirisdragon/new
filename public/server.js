@@ -1476,8 +1476,6 @@ function function_UpdateAutowipe(key, type)  {
         peeky.userData.set(key, Date.now(), 'lastSeen');
     };
   
-    console.log()
-  
 };
 
 function UpdateBackgrounds()  {
