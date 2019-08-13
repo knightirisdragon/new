@@ -1054,7 +1054,7 @@ function UpdateLeaderboardTypes(type)  {
         const top            = sorted.splice(0, 25);
         var currentplace     = 0;
         var CurrentID        = 0;
-        var GotBadge         = false;
+        var GotBadge         = true;
         const Leaderboard    = [];
         const LeaderboardTop = [];
 
@@ -1062,7 +1062,8 @@ function UpdateLeaderboardTypes(type)  {
 
             currentplace ++;
 
-        if  (currentplace == 1)  {CurrentID = "first";  GotBadge = true;} else if  (currentplace == 2)  {CurrentID = "second";  GotBadge = true;}  else if  (currentplace == 3){CurrentID = "third";  GotBadge = true;}  else  {CurrentID = "other";  GotBadge = false;};
+        if  (currentplace == 1)  {CurrentID = "first"} else if  (currentplace == 2)  {CurrentID = "second"}  else if  (currentplace == 3){CurrentID = "third"}  else  {CurrentID = "other"};
+        if  (currentplace > 3)  {GotBadge = false};
 
         if  (peeky.users.has(data.UserID))  {
 
@@ -1080,8 +1081,8 @@ function UpdateLeaderboardTypes(type)  {
                 var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Level').toLocaleString('en') + " Levels";
             };
 
-            if  (GotBadge == true && peeky.userData.get(`${data.UserID}`, "MedallistBadge") == false)  {
-                peeky.userData.set(`${data.UserID}`, true, "MedallistBadge")
+            if  (GotBadge == true)  {
+                peeky.userData.set(`${data.UserID}`, true, "MedallistBadge");
             };
 
             var TheBannerShown = DefaultBackground;
@@ -1933,14 +1934,14 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
 
     WebsiteCooldowns.add("leaderboard");
     setTimeout(() => {WebsiteCooldowns.delete("leaderboard")}, 600000);
-  
-    var LeaderboardGredit = await UpdateLeaderboardTypes("Gredit");
-    var LeaderboardKarma  = await UpdateLeaderboardTypes("Karma");
-    var LeaderboardLevel  = await UpdateLeaderboardTypes("Levels");
 
     peeky.userData.filter( p => p.MedallistBadge == true ).array().forEach(data => {
         peeky.userData.set(`${data.UserID}`, false, "MedallistBadge");
     });
+  
+    var LeaderboardGredit = await UpdateLeaderboardTypes("Gredit");
+    var LeaderboardKarma  = await UpdateLeaderboardTypes("Karma");
+    var LeaderboardLevel  = await UpdateLeaderboardTypes("Levels");
 
     await fs.writeFile('public/leaderboard.txt', "<div id='gredit'>" +  LeaderboardGredit + "</div>  <div id='karma'>" +  LeaderboardKarma + "</div>  <div id='levels'>" +  LeaderboardLevel + "</div>", (err) => {
         if (err) console.log(err);
