@@ -3767,7 +3767,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
             const name       = peeky.serverData.get(keySF, "muted_role");
             const RoleExists = message.guild.roles.find(role => role.name == name);
 
-            if  (RoleExists && message.author) {
+            if  (RoleExists && message.member.roles.array().includes(RoleExists) == false)  {
 
                 //function_DirectMessage(message.member.user.id, "You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by the **Flood Protection** function.");
 
