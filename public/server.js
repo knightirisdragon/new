@@ -7394,25 +7394,26 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
     var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
     var InfoMessages = [];
   
-    if  (!RoleExist && message.guild.me.hasPermission("MANAGE_ROLES")) {
+    if  (!RoleExist && message.guild.me.hasPermission("MANAGE_ROLES"))  {
 
-    if  (!RoleCooldown.has(message.guild.id)) {
+        if  (!RoleCooldown.has(message.guild.id))  {
 
-        RoleCooldown.add(message.guild.id);
-        setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
+            RoleCooldown.add(message.guild.id);
+            setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
 
-        message.guild.createRole({
-            name: MutedRole,
-            color: "#943148"
-       }).catch(error => ErrorBag.add(error));
+            message.guild.createRole({
+                name: MutedRole,
+                color: "#943148"
+           }).catch(error => ErrorBag.add(error));
 
-        InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "** with the default Permissions.");
 
-        }
-         else
-        {
-         InfoMessages.push(CooldownMessage3[0]);
-        };
+           InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "** with the default Permissions.");
+
+           }
+            else
+           {
+            InfoMessages.push(CooldownMessage3[0]);
+           };
 
     };
 
