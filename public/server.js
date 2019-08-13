@@ -2322,7 +2322,7 @@ if  (peeky.guilds.size > MaxServers)  {
   
   function_ServerData(keySF, guild.id);
   
-  const embed = {"description": SuccessIcon + " I have joined " + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
+  const embed = {"description": SuccessIcon + " I have joined **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
   peeky.channels.get(ServerLogChannel).send({ embed });
 
 };
@@ -2333,7 +2333,7 @@ peeky.on("guildDelete", async (guild) =>  {
   
 const keySF = `${guild.id}`;
   
-const embed = {"description": ErrorIcon + " I have left " + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
+const embed = {"description": ErrorIcon + " I have left **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
 peeky.channels.get(ServerLogChannel).send({ embed });
 
 });
