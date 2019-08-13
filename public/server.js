@@ -2765,7 +2765,7 @@ if  (peeky.serverData.has(keySF))  {
 
             var FinalName = channel.name.replace(/[-]/g, ' ');
 
-            if  (channel.name !== FinalName)  {
+            if  (channel.type == "text" && channel.name !== FinalName)  {
 
                 await channel.setName(FinalName, "Triggered by the Dash Remover function.").catch(error => ErrorBag.add(error));
                 console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
@@ -2798,7 +2798,7 @@ if  (peeky.serverData.has(keySF))  {
 
             var FinalName = newChannel.name.replace(/[-]/g, ' ');
 
-            if  (newChannel.name !== FinalName)  {
+            if  (newChannel.type == "text" &&newChannel.name !== FinalName)  {
 
                 await newChannel.setName(FinalName, "Triggered by the Dash Remover function.").catch(error => ErrorBag.add(error));
                 console.log("The Dash Remover function has been triggered in " + newChannel.guild.name + ".");
@@ -3862,7 +3862,7 @@ if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true)  {
   
     if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
-        if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(keySF, "banned_words_bonus_setting").some(word => function_RemoveFormatting(message.content.toLowerCase(), "bw", true).includes(word)))  {
+        if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(keySF, "banned_words_bonus_setting").some(word => function_RemoveFormatting(message.content.toLowerCase(), "other", false).includes(word)))  {
 
              message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
 
