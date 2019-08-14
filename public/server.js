@@ -61,7 +61,7 @@ const MaxServers            = 100;
 const CustomBackgroundPrice = 1000;
 const SellMultiplier        = 2.5;
 const ExpNeeded             = 125;
-const InactiveWipe          = 2592000000;
+const InactiveWipe          = 1728000000;
 const ProfileBoosterLength  = 86400000;
 const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 const ProfileBoosterTime    = (ProfileBoosterLength  / ( 60 * 60 * 1000 ));
@@ -1210,85 +1210,93 @@ function function_RemoveFormatting(text, type, sliced)  {
 //Create Server Data
 function function_ServerData(key, GuildId)  {
   
-    peeky.serverData.ensure(key , {
-        GuildID: GuildId,
-        lastSeen: Date.now(),
-        server_invite: "no_invite",
-        prefix: Prefix,
-        muted_role: "Muted",
-      
-        Title: "None",
-        Thumbnail: DefaultBackground,
-        Author: "No one",
-        Length: 60,
-        Started: new Date(),
-        Link: "None",
+    if  (!peeky.channelData.has(key))  {
 
-        welcome_messages_bonus: false,
-        welcome_messages_bonus_setting: "user_feed",
-        join_role_bonus: false,
-        join_role_bonus_setting: "Member",
-        streamer_role_bonus: false,
-        streamer_role_bonus_setting: "Streamer",
-        automatic_reactions_bonus_setting: "peeky",
-        server_message_bonus: false,
-        image_only_bonus_setting: 0,
-        server_message_bonus_setting: "Welcome to **" + GuildNameTag + "**!",
-        notification_bonus: false,
-        message_log_bonus_setting: "message_log",
-        member_counter_bonus: false,
-        member_counter_bonus_setting: "Members",
-        member_counter_bonus_id: null,
-        clear_nicknames_bonus: false,
-        clear_nicknames_bonus_setting: "Cleared Nickname",
-        suspicion_alert_bonus: false,
-        suspicion_alert_bonus_setting: 10,
-        flood_protection_bonus: false,
-        donor_wall_bonus_setting: "Moderator",
-        donor_wall_bonus: false,
-        donor_wall_bonus_id: null,
-        donor_wall_bonus_channel: "moderators",
-        donor_wall_bonus_array: [],
-        banned_words_bonus_setting: [],
-        spoiler_lock_bonus_setting: 0,
-        server_upgraded: false,
-        event_countdown_bonus: false,
-        event_countdown_bonus_setting: 0,
-        event_countdown_bonus_id: 0,
-        vote_kick_bonus_bonus: false,
-        vote_kick_bonus_setting: 10,
-        server_trial_bonus_bonus: false,
-        server_trial_bonus_setting: 60,
-        stream_announcements_bonus: false,
-        stream_announcements_bonus_setting: "twitch",
-        role_saver_bonus: false,
-        role_saver_array: [],
-        game_roles_bonus: false,
-        game_roles_bonus_setting: [],
-        nick_saver_bonus: false,
-        nick_saver_array: [],
-        server_age_bonus: false,
-        server_age_bonus_id: null,
-        dash_remover_bonus: false
-    });
+        peeky.serverData.ensure(key , {
+            GuildID: GuildId,
+            lastSeen: Date.now(),
+            server_invite: "no_invite",
+            prefix: Prefix,
+            muted_role: "Muted",
+
+            Title: "None",
+            Thumbnail: DefaultBackground,
+            Author: "No one",
+            Length: 60,
+            Started: new Date(),
+            Link: "None",
+
+            welcome_messages_bonus: false,
+            welcome_messages_bonus_setting: "user_feed",
+            join_role_bonus: false,
+            join_role_bonus_setting: "Member",
+            streamer_role_bonus: false,
+            streamer_role_bonus_setting: "Streamer",
+            automatic_reactions_bonus_setting: "peeky",
+            server_message_bonus: false,
+            image_only_bonus_setting: 0,
+            server_message_bonus_setting: "Welcome to **" + GuildNameTag + "**!",
+            notification_bonus: false,
+            message_log_bonus_setting: "message_log",
+            member_counter_bonus: false,
+            member_counter_bonus_setting: "Members",
+            member_counter_bonus_id: null,
+            clear_nicknames_bonus: false,
+            clear_nicknames_bonus_setting: "Cleared Nickname",
+            suspicion_alert_bonus: false,
+            suspicion_alert_bonus_setting: 10,
+            flood_protection_bonus: false,
+            donor_wall_bonus_setting: "Moderator",
+            donor_wall_bonus: false,
+            donor_wall_bonus_id: null,
+            donor_wall_bonus_channel: "moderators",
+            donor_wall_bonus_array: [],
+            banned_words_bonus_setting: [],
+            spoiler_lock_bonus_setting: 0,
+            server_upgraded: false,
+            event_countdown_bonus: false,
+            event_countdown_bonus_setting: 0,
+            event_countdown_bonus_id: 0,
+            vote_kick_bonus_bonus: false,
+            vote_kick_bonus_setting: 10,
+            server_trial_bonus_bonus: false,
+            server_trial_bonus_setting: 60,
+            stream_announcements_bonus: false,
+            stream_announcements_bonus_setting: "twitch",
+            role_saver_bonus: false,
+            role_saver_array: [],
+            game_roles_bonus: false,
+            game_roles_bonus_setting: [],
+            nick_saver_bonus: false,
+            nick_saver_array: [],
+            server_age_bonus: false,
+            server_age_bonus_id: null,
+            dash_remover_bonus: false
+        });
+  
+    };
   
 };
 
 //Create Channel Data
 function function_ChannelData(key, ChannelId)  {
+  
+    if  (!peeky.channelData.has(key))  {
 
-    peeky.channelData.ensure(key , {
-        ChannelID: ChannelId,
+        peeky.channelData.ensure(key , {
+            ChannelID: ChannelId,
 
-        automatic_reactions_bonus: false,
-        image_only_bonus: false,
-        message_log_bonus: false,
-        banned_words_bonus: false,
-        spoiler_only_bonus: false,
-        flood_protection_bonus_lastdate: null,
-        flood_protection_bonus_lastuser: null,
-        flood_protection_bonus_lastmsg: null
-    });
+            automatic_reactions_bonus: false,
+            image_only_bonus: false,
+            message_log_bonus: false,
+            banned_words_bonus: false,
+            spoiler_only_bonus: false,
+            flood_protection_bonus_lastdate: null,
+            flood_protection_bonus_lastuser: null,
+            flood_protection_bonus_lastmsg: null
+        });
+      
+    };
   
 };
 
@@ -1596,6 +1604,16 @@ peeky.on('ready', () => {
 
         //Update Banned Users
         function_UpdateBans();
+      
+        //Fix ServerData
+        peeky.guilds.forEach(guild => {
+            function_ServerData(`${guild.id}`, guild.id);
+        });
+      
+        //Fix ChannelData
+        peeky.channels.forEach(channel => {
+            function_ChannelData(`${channel.id}`, channel.id);
+        });
       
     }, 7200000);
   
