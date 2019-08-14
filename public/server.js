@@ -1060,7 +1060,7 @@ function UpdateLeaderboardTypes(type)  {
             var sorted    = filtered.sort((a, b) => b.Level - a.Level);
         };
       
-        const top            = sorted.splice(0, 25);
+        const top            = sorted.splice(0, 50);
         var currentplace     = 0;
         var CurrentID        = 0;
         var GotBadge         = true;
