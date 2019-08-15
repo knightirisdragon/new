@@ -4359,7 +4359,7 @@ if  (FunctioName.startsWith("join role"))  {
     color: Blurple
     }).catch(error => ErrorBag.add(error));
       
-    InfoMessages.push(InfoIcon + " Created a role called **" + name + "** with the default Permissions for the **Join Role** function.");
+    InfoMessages.push(InfoIcon + " Created a role called **" + name + "** for the **Join Role** function.");
 
     };
     }
@@ -4815,7 +4815,7 @@ if  (FunctioName.startsWith("streamer role"))  {
     color: "#6441A4"
     }).catch(error => ErrorBag.add(error));
       
-    InfoMessages.push(InfoIcon + " Created a role called **" + name + "** with the default Permissions for the **Streamer Role** function.");
+    InfoMessages.push(InfoIcon + " Created a role called **" + name + "** for the **Streamer Role** function.");
 
     };
     }
@@ -4859,7 +4859,7 @@ if  (FunctioName.startsWith("server trial"))  {
     color: "#d3d3d3"
     }).catch(error => ErrorBag.add(error));
       
-    InfoMessages.push(InfoIcon + " Created a role called **" + name + "** with the default Permissions for the **Server server_trial** function.");
+    InfoMessages.push(InfoIcon + " Created a role called **" + name + "** for the **Server server_trial** function.");
 
     };
     }
@@ -7431,7 +7431,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
            }).catch(error => ErrorBag.add(error));
 
 
-           InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "** with the default Permissions.");
+           InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "**.");
 
            }
             else
