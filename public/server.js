@@ -6455,18 +6455,21 @@ if (CommandName.startsWith("play "))  {
 
     var GivenSong = CommandName.replace("play ", "");
     var Type = "Started";
-    var DeleteMessage = true;
+    var DeleteMessage = false;
     var ChoosingMode = true;
     var IsRandom = false;
       
     MusicCmdCooldown.add(message.guild.id);
     setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
   
+    if  (GivenSong.includes("youtube.com") || GivenSong.includes("youtu.be"))  {
+        DeleteMessage = true;
+    };
+  
     if  (GivenSong == RandomString && ChoosingMode == true)  {
       
         GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
         Type = "Random";
-        DeleteMessage = false;
         ChoosingMode = false;
       
     };
@@ -6474,7 +6477,6 @@ if (CommandName.startsWith("play "))  {
     if  ((GivenSong == "previous" || IsRandom == true) && ChoosingMode == true)  {
       
         ChoosingMode = false;
-        DeleteMessage = false;
       
         if  (peeky.serverData.has(keySF, "Link") && peeky.serverData.get(keySF, "Link") !== "None")  {  
 
@@ -6494,7 +6496,6 @@ if (CommandName.startsWith("play "))  {
     if  ((GivenSong == "playlist" || GivenSong == peeky.userData.get(key, "PlaylistName").toLowerCase()) && ChoosingMode == true)  {
       
         DeleteMessage = false;
-        ChoosingMode = false;
       
         if  (peeky.userData.get(key, "Playlist").length > 0)  {
 
