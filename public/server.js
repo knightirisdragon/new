@@ -1051,17 +1051,17 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
 
 async function function_Profile(SomeoneTagged, message, background)  {
       
-    const canvas         = Canvas.createCanvas(500, 300);
-    const ctx            = canvas.getContext('2d');
-    var   ProfileColor   = null;
-    const StatsColor     = "lightgray"
+    const canvas       = Canvas.createCanvas(500, 300);
+    const ctx          = canvas.getContext('2d');
+    var   ProfileColor = null;
+    const StatsColor   = "lightgray";
 
     //Vars
     const ProfileName = SomeoneTagged.username;
     const key2        = SomeoneTagged.id;
     var   Failed      = false;
 
-    var TheBannerShown = backgroundfunction_GetBackground(key2);
+    var TheBannerShown = background;
 
     var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  message.channel.stopTyping();  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
       
@@ -5822,46 +5822,48 @@ if (CommandName.startsWith("custombackground"))  {
 //SetBackground
 if (CommandName.startsWith("setbackground "))  {
 
-for (var i = 1; i <= Banners.length; i++) {
-  
-if  (message.content == peeky.serverData.get(keySF, "prefix") + "setbackground " + i)  {
+    for (var i = 1; i <= Banners.length; i++) {
 
-if  (peeky.userData.get(key, "Inventory").includes(i))  {
-  
-    var InfoMessages = [];
-    var i = Number(i);
-  
-    if  (peeky.userData.get(key, "FashionBadge") == false && i !== 1)  {
+        if  (message.content == peeky.serverData.get(keySF, "prefix") + "setbackground " + i)  {
 
-        InfoMessages.push(InfoMessage1[0]);
-        peeky.userData.set(key, true, "FashionBadge");    
+            if  (peeky.userData.get(key, "Inventory").includes(i))  {
+
+                var InfoMessages = [];
+                var i = Number(i);
+
+                if  (peeky.userData.get(key, "FashionBadge") == false && i !== 1)  {
+
+                    InfoMessages.push(InfoMessage1[0]);
+                    peeky.userData.set(key, true, "FashionBadge");    
+
+                };
+
+                if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
+                    InfoMessages.push(InfoIcon + " You have lost your custom background.");
+                };
+
+                peeky.userData.set(key, i, "Background");
+
+                const embed = {"description": SuccessIcon + " You have set the **" + Banners[i - 1][Banner.Name] + "** background." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                break;
+
+            }
+             else
+            { 
+
+              const embed = {"description": ErrorMessage5[0],  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+              break;
+
+            };
+
+        };
 
     };
 
-    if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
-        InfoMessages.push(InfoIcon + " You have lost your custom background.");
-    };
-
-    peeky.userData.set(key, i, "Background");
-  
-    const embed = {"description": SuccessIcon + " You have set the **" + Banners[i - 1][Banner.Name] + "** background." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-    break;
-  
-    }
-     else
-    { 
-  
-      const embed = {"description": ErrorMessage5[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    
-      break;
-
-    };
-  
-};
-};
 };
   
 //SellBackground
@@ -6402,7 +6404,7 @@ if (!ProfileCooldown.has(message.author.id))  {
       
     message.channel.startTyping();
 
-    await message.channel.send("", await function_Profile(SomeoneTagged, message)).catch(error => ErrorBag.add(error)).then(async function (m)  {
+    await message.channel.send("", await function_Profile(SomeoneTagged, message, function_GetBackground(key2))).catch(error => ErrorBag.add(error)).then(async function (m)  {
 
     if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(ProfileBoosterRole))  {
         const embed = {"description": InfoIcon + " The **Profile Booster** for this profile will remain active for **" + function_TimeLeft(peeky.userData.get(key2, "BoosterStart"),  "hours", ProfileBoosterTime) + " hours**.",  "color": EmbedColor}; 
