@@ -671,7 +671,8 @@ const Banners = [
     ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground397.png?v=1565844176033", 450, "Turtle friend", "Jojo's Bizarre Adventures Golden Wind", undefined],
     ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground398.jpg?v=1565844185444", 450, "Penguin trip", "Unknown", undefined],
     ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground399.png?v=1565844196700", 425, "Quail", "Unknown", undefined],
-    ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground400.png?v=1565844199887", 450, "Tiger", "Jack Merlin", undefined]
+    ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground400.png?v=1565844199887", 450, "Tiger", "Jack Merlin", undefined],
+    ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground401.png?v=1565953633386", 500, "Monster of the east", "Fallout New Vegas", undefined]
 
 ];
 
@@ -7449,15 +7450,13 @@ if  (CommandName.startsWith("muterole "))  {
                                   Failed = true;
                           };
                              
-                          if  (Failed == false && Amount <= 25)  {
+                          if  (Failed == false && Amount <= 20)  {
                              
                               channel.overwritePermissions(MuteRole, {
                                   'SEND_MESSAGES': false,
                               }).catch(error => ErrorBag.add(error));
                             
                               Amount ++;
-
-                              console.log(channel.name);
                               
                           };
 
