@@ -7417,6 +7417,7 @@ if  (CommandName.startsWith("muterole "))  {
             var FixedMutedRole = function_RemoveFormatting(MutedRole, "role", true);
             var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
             var InfoMessages = [];
+            var FilteredChannels = message.guild.channels.array().filter(channel => channel.type == "text" || channel.type == "voice");
 
             if  (!RoleExist && message.guild.me.hasPermission("MANAGE_ROLES"))  {
 
@@ -7432,48 +7433,40 @@ if  (CommandName.startsWith("muterole "))  {
 
                    InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "**.");
 
-                   if  (message.guild.me.hasPermission("MANAGE_CHANNELS") && message.guild.roles.find(role => role.name == MutedRole))  {
-                     
-                       var FilteredChannels = message.guild.channels.array().filter(channel => channel.type == "text" || channel.type == "voice");
-                     
-                       if  (FilteredChannels.length <= 20)  {
-                     
-                           FilteredChannels.forEach(channel => {
-                             
-                              var Failed = false;
-                             
-                              if  (channel.type == "voice" && !channel.permissionsFor(message.guild.me).has("CONNECT"))  {
-                                  Failed = true;
-                              };
-                             
-                              if  (Failed == false)  {
-                             
-                                  channel.overwritePermissions(RoleExist, {
-                                      'SEND_MESSAGES': false,
-                                  }).catch(error => ErrorBag.add(error));
-
-                                  console.log(channel.name);
-                              
-                              };
-
-                           });
-
-                           InfoMessages.push(InfoIcon + " Edited permissions for the **" + MutedRole + "** role.");
+                   if  (message.guild.roles.find(role => role.name == MutedRole) && FilteredChannels.length <= 20 && message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
                          
-                       }
-                        else
-                       {
-                        InfoMessages.push(ErrorIcon + " Could not edited permissions for the **" + MutedRole + "** role.");
-                       };
-                       
-                   };
+                       var Amount = 0;
+                     
+                       FilteredChannels.forEach(channel => {
+                             
+                          var Failed = false;
+                             
+                          if  (channel.type == "voice" && !channel.permissionsFor(message.guild.me).has("CONNECT"))  {
+                                  Failed = true;
+                          };
+                             
+                          if  (Failed == false)  {
+                             
+                              channel.overwritePermissions(RoleExist, {
+                                  'SEND_MESSAGES': false,
+                              }).catch(error => ErrorBag.add(error));
 
-                   }
-                    else
-                   {
-                    InfoMessages.push(CooldownMessage3[0]);
-                   };
+                              console.log(channel.name);
+                              
+                          };
 
+                       });
+
+                       InfoMessages.push(InfoIcon + " Edited " + Amount + " channels for the **" + MutedRole + "** role.");                       
+                  };
+
+               }
+                else
+               {
+                const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+               };
+              
             };
 
             peeky.serverData.set(keySF, MutedRole, "muted_role");
