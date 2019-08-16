@@ -1049,31 +1049,23 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
 
 };
 
-function function_Profile(key2)  {
+async function function_Profile(SomeoneTagged, message, background)  {
       
     const canvas         = Canvas.createCanvas(500, 300);
     const ctx            = canvas.getContext('2d');
-    var   SomeoneTagged  = null;
-    const StatsColor     = "lightgray"
     var   ProfileColor   = null;
-    
-    var MentionedMember = message.mentions.users.first();
-    if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.author;  };
+    const StatsColor     = "lightgray"
 
     //Vars
-    const ProfileName        = SomeoneTagged.username;
-    const key2               = SomeoneTagged.id;
-    var   Failed             = false;
-      
-    if  (peeky.userData.has(key2))  {
+    const ProfileName = SomeoneTagged.username;
+    const key2        = SomeoneTagged.id;
+    var   Failed      = false;
 
-    var TheBannerShown = function_GetBackground(key2);
+    var TheBannerShown = backgroundfunction_GetBackground(key2);
 
     var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  message.channel.stopTyping();  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
       
     if  (Failed == false)  {
-      
-    message.channel.startTyping();
 
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
@@ -1367,6 +1359,10 @@ function function_Profile(key2)  {
     ctx.shadowOffsetY = 1;
     ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
     ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
+      
+    return new Discord.Attachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
+      
+    };
     
 };
   
@@ -6391,16 +6387,22 @@ if  (!ProfileCooldown.has(message.author.id)) {
 //Profile
 if (CommandName.startsWith("profile"))  {
   
-if (!ProfileCooldown.has(message.author.id)) {
+if (!ProfileCooldown.has(message.author.id))  {
       
     ProfileCooldown.add(message.author.id);
     setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
+    
+    var MentionedMember = message.mentions.users.first();
+    if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.author;  };
+    var key2 = SomeoneTagged.id;
+      
+    if  (peeky.userData.has(key2))  {
   
     if  (message.channel.permissionsFor(peeky.user).has('ATTACH_FILES'))  {
       
-    const attachment = new Discord.Attachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
+    message.channel.startTyping();
 
-    await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
+    await message.channel.send("", await function_Profile(SomeoneTagged, message)).catch(error => ErrorBag.add(error)).then(async function (m)  {
 
     if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(ProfileBoosterRole))  {
         const embed = {"description": InfoIcon + " The **Profile Booster** for this profile will remain active for **" + function_TimeLeft(peeky.userData.get(key2, "BoosterStart"),  "hours", ProfileBoosterTime) + " hours**.",  "color": EmbedColor}; 
@@ -6433,24 +6435,21 @@ if (!ProfileCooldown.has(message.author.id)) {
 
     message.channel.stopTyping();
       
-    };
-
-    }
-    else {
-           const embed = {"description": ErrorMessage7[0],  "color": EmbedColor}; 
-           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-         };
-      
     } else {
       const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
+      
+    } else {
+      const embed = {"description": ErrorMessage7[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
   
-    }
-    else {
+    } else {
           const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-         };
+    };
+
 };
 
 //Play 
