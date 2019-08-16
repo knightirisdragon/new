@@ -7407,58 +7407,64 @@ if (CommandName.startsWith("prefix "))  {
 };
   
 //MuteRole
-if (CommandName.startsWith("muterole "))  {
+if  (CommandName.startsWith("muterole "))  {
 
-if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+    if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
-if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined) {
-  
-    var MutedRole = CommandName.split("muterole ")[1];
-    var FixedMutedRole = function_RemoveFormatting(MutedRole, "role", true);
-    var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
-    var InfoMessages = [];
-  
-    if  (!RoleExist && message.guild.me.hasPermission("MANAGE_ROLES"))  {
+        if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-        if  (!RoleCooldown.has(message.guild.id))  {
+            var MutedRole = CommandName.split("muterole ")[1];
+            var FixedMutedRole = function_RemoveFormatting(MutedRole, "role", true);
+            var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
+            var InfoMessages = [];
 
-            RoleCooldown.add(message.guild.id);
-            setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
+            if  (!RoleExist && message.guild.me.hasPermission("MANAGE_ROLES"))  {
 
-            message.guild.createRole({
-                name: MutedRole,
-                color: "#943148"
-           }).catch(error => ErrorBag.add(error));
+                if  (!RoleCooldown.has(message.guild.id))  {
+
+                    RoleCooldown.add(message.guild.id);
+                    setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
+
+                    message.guild.createRole({
+                        name: MutedRole,
+                        color: "#943148"
+                   }).catch(error => ErrorBag.add(error));
+
+                   if  (message.guild.me.hasPermission("MANAGE_CHANNELS") && message.guild.roles.find(role => role.name == MutedRole))  {
+                     
+                       message.guild.channels.forEach(channel )
+                       
+                   };
 
 
-           InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "**.");
+                   InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "**.");
 
-           }
-            else
-           {
-            InfoMessages.push(CooldownMessage3[0]);
-           };
+                   }
+                    else
+                   {
+                    InfoMessages.push(CooldownMessage3[0]);
+                   };
 
+            };
+
+            peeky.serverData.set(keySF, MutedRole, "muted_role");
+
+            const embed = {"description": SuccessIcon + " The server's mute role is now called **@" + MutedRole + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+            await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+        }
+         else
+        {
+         const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+    }
+     else
+    {      
+      const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-
-    peeky.serverData.set(keySF, MutedRole, "muted_role");
-  
-    const embed = {"description": SuccessIcon + " The server's mute role is now called **@" + MutedRole + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
-    await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-}
- else
-{
- const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-
-}
- else
-{      
-  const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
-  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 };
   
