@@ -7425,19 +7425,48 @@ if  (CommandName.startsWith("muterole "))  {
                     RoleCooldown.add(message.guild.id);
                     setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
 
-                    message.guild.createRole({
+                   await message.guild.createRole({
                         name: MutedRole,
                         color: "#943148"
                    }).catch(error => ErrorBag.add(error));
 
+                   InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "**.");
+
                    if  (message.guild.me.hasPermission("MANAGE_CHANNELS") && message.guild.roles.find(role => role.name == MutedRole))  {
                      
-                       message.guild.channels.forEach(channel )
+                       var FilteredChannels = message.guild.channels.array().filter(channel => channel.type == "text" || channel.type == "voice");
+                     
+                       if  (FilteredChannels.length <= 20)  {
+                     
+                           FilteredChannels.forEach(channel => {
+                             
+                              var Failed = false;
+                             
+                              if  (channel.type == "voice" && !channel.permissionsFor(message.guild.me).has("CONNECT"))  {
+                                  Failed = true;
+                              };
+                             
+                              if  (Failed == false)  {
+                             
+                                  channel.overwritePermissions(RoleExist, {
+                                      'SEND_MESSAGES': false,
+                                  }).catch(error => ErrorBag.add(error));
+
+                                  console.log(channel.name);
+                              
+                              };
+
+                           });
+
+                           InfoMessages.push(InfoIcon + " Edited permissions for the **" + MutedRole + "** role.");
+                         
+                       }
+                        else
+                       {
+                        InfoMessages.push(ErrorIcon + " Could not edited permissions for the **" + MutedRole + "** role.");
+                       };
                        
                    };
-
-
-                   InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "**.");
 
                    }
                     else
