@@ -5341,117 +5341,118 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
 
     for(var i = NewLinesCount = 0; i<str.length; NewLinesCount+=+(MaxLines===str[i++]));
         
-if  (peeky.userData.get(key, "Gredit") >= UpdatedAmount)  {
-  
-if  (NewDescription !== RandomString)  {
-  
-if  (NewLinesCount < 2)  {
-  
-    const embed = {"description": SuccessIcon + " You have bought a new description for **" + UpdatedAmount.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    if  (peeky.userData.get(key, "Gredit") >= UpdatedAmount)  {
 
-    peeky.userData.set(key, NewDescription, "Description");
-    peeky.userData.math(key, "-", UpdatedAmount, "Gredit");
-      
+        if  (NewDescription !== RandomString)  {
+
+            if  (NewLinesCount < 2)  {
+
+                const embed = {"description": SuccessIcon + " You have bought a new description for **" + UpdatedAmount.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                peeky.userData.set(key, NewDescription, "Description");
+                peeky.userData.math(key, "-", UpdatedAmount, "Gredit");
+
+                }
+                 else 
+                {
+                  const embed = {"description": ErrorMessage2[0],  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
+
+            }
+             else
+            {
+
+              const embed = {"description": SuccessIcon + " You have bought a random description for **" + UpdatedAmount.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+              peeky.userData.set(key, function_RandomDescription(), "Description");
+              peeky.userData.math(key, "-", UpdatedAmount, "Gredit");
+
+            };
+
     }
-     else 
+     else
     {
-      const embed = {"description": ErrorMessage2[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+     const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-
-}
- else
-{
-  
-  const embed = {"description": SuccessIcon + " You have bought a random description for **" + UpdatedAmount.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
-  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-  peeky.userData.set(key, function_RandomDescription(), "Description");
-  peeky.userData.math(key, "-", UpdatedAmount, "Gredit");
-
-};
-
-}
- else
-{
- const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
   
 };
   
 //BuyBackground  
-if (CommandName.startsWith("buybackground "))  {
+if  (CommandName.startsWith("buybackground "))  {
 
-for(var i = 1; i <= Banners.length; i++) {
-  
-if  (message.content == peeky.serverData.get(keySF, "prefix") + "buybackground " + i)  {
-  
-if  ((i !== 1) && (Banners[i - 1][Banner.Price] !== Exclusive))  {
-  
-if  (!peeky.userData.get(key, "Inventory").includes(i))  {
-  
-if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
-  
-    var InfoMessages = [];
-    var i = Number(i);
-  
-    if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
-        var CustomBackgroundAmount = 1;
-    } else {  var CustomBackgroundAmount = 0;  };
+    for(var i = 1; i <= Banners.length; i++) {
 
-    if  (peeky.userData.get(key, "HorderBadge") == false && (peeky.userData.get(key, "Inventory").length + CustomBackgroundAmount) >= 10)  {
-    
-        InfoMessages.push(InfoMessage1[0]);
-        peeky.userData.set(key, true, "HorderBadge");
-      
+        if  (message.content == peeky.serverData.get(keySF, "prefix") + "buybackground " + i)  {
+
+            if  ((i !== 1) && (Banners[i - 1][Banner.Price] !== Exclusive))  {
+
+                if  (!peeky.userData.get(key, "Inventory").includes(i))  {
+
+                    if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
+
+                        var InfoMessages = [];
+                        var i = Number(i);
+
+                        if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
+                            var CustomBackgroundAmount = 1;
+                        } else {  var CustomBackgroundAmount = 0;  };
+
+                        if  (peeky.userData.get(key, "HorderBadge") == false && (peeky.userData.get(key, "Inventory").length + CustomBackgroundAmount) >= 10)  {
+
+                            InfoMessages.push(InfoMessage1[0]);
+                            peeky.userData.set(key, true, "HorderBadge");
+
+                        };
+
+                        if  (peeky.userData.get(key, "MinerBadge") == false && i == 283)  {
+
+                            InfoMessages.push(InfoMessage1[0]);
+                            peeky.userData.set(key, true, "MinerBadge");
+
+                        };
+
+                        var RevenueID = Banners[i - 1][Banner.RevenueID];
+                        if  (RevenueID !== undefined && peeky.userData.has(RevenueID) && message.author.id !== RevenueID && peeky.users.has(RevenueID))  {
+                            peeky.userData.math(RevenueID, "-", (Banners[i - 1][Banner.Price] / SellMultiplier), "Gredit");
+                                InfoMessages.push(InfoIcon + " Your purchase has generated **" + (Banners[i - 1][Banner.Price] / SellMultiplier).toLocaleString('en') + " " + GreditIcon + "** of revenue for **" + function_RemoveFormatting(peeky.users.get(RevenueID).username, "other", true) + "**.");
+                        };
+
+                        peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
+                        peeky.userData.get(key, "Inventory").push(i);
+
+                        var embed = {"description": SuccessIcon + " You have bought the **" + Banners[i - 1][Banner.Name] + "** background bought for **" + Banners[i - 1][Banner.Price].toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                        break;
+
+                    } else {
+                      const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                      break;
+                    };
+
+                } else { 
+                  const embed = {"description": ErrorMessage14[0], "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                  break;
+            };
+
+            } else {
+              const embed = {"description": ErrorIcon + " You cannot buy the default and exclusive backgrounds.", "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+              break;
+            };
+
+        };
+
     };
-
-    if  (peeky.userData.get(key, "MinerBadge") == false && i == 283)  {
-    
-        InfoMessages.push(InfoMessage1[0]);
-        peeky.userData.set(key, true, "MinerBadge");
-      
-    };
-
-    var RevenueID = Banners[i - 1][Banner.RevenueID];
-    if  (RevenueID !== undefined && peeky.userData.has(RevenueID) && message.author.id !== RevenueID && peeky.users.has(RevenueID))  {
-        peeky.userData.math(RevenueID, "-", (Banners[i - 1][Banner.Price] / SellMultiplier), "Gredit");
-            InfoMessages.push(InfoIcon + " Your purchase has generated **" + (Banners[i - 1][Banner.Price] / SellMultiplier).toLocaleString('en') + " " + GreditIcon + "** of revenue for **" + function_RemoveFormatting(peeky.users.get(RevenueID).username, "other", true) + "**.");
-    };
-      
-    peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
-    peeky.userData.get(key, "Inventory").push(i);
-  
-    var embed = {"description": SuccessIcon + " You have bought the **" + Banners[i - 1][Banner.Name] + "** background bought for **" + Banners[i - 1][Banner.Price].toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-    break;
-  
-} else {
-  const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
-  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-  break;
-};
-  
-} else { 
-  const embed = {"description": ErrorMessage14[0], "color": EmbedColor}; 
-  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-  break;
-};
-  
-} else {
-  const embed = {"description": ErrorIcon + " You cannot buy the default and exclusive backgrounds.", "color": EmbedColor}; 
-  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-  break;
-};
-
-};
-};
 
 };
   
@@ -5505,46 +5506,48 @@ if (CommandName.startsWith("custombackground"))  {
 //SetBackground
 if (CommandName.startsWith("setbackground "))  {
 
-for (var i = 1; i <= Banners.length; i++) {
-  
-if  (message.content == peeky.serverData.get(keySF, "prefix") + "setbackground " + i)  {
+    for (var i = 1; i <= Banners.length; i++) {
 
-if  (peeky.userData.get(key, "Inventory").includes(i))  {
-  
-    var InfoMessages = [];
-    var i = Number(i);
-  
-    if  (peeky.userData.get(key, "FashionBadge") == false && i !== 1)  {
+        if  (message.content == peeky.serverData.get(keySF, "prefix") + "setbackground " + i)  {
 
-        InfoMessages.push(InfoMessage1[0]);
-        peeky.userData.set(key, true, "FashionBadge");    
+            if  (peeky.userData.get(key, "Inventory").includes(i))  {
+
+                var InfoMessages = [];
+                var i = Number(i);
+
+                if  (peeky.userData.get(key, "FashionBadge") == false && i !== 1)  {
+
+                    InfoMessages.push(InfoMessage1[0]);
+                    peeky.userData.set(key, true, "FashionBadge");    
+
+                };
+
+                if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
+                    InfoMessages.push(InfoIcon + " You have lost your custom background.");
+                };
+
+                peeky.userData.set(key, i, "Background");
+
+                const embed = {"description": SuccessIcon + " You have set the **" + Banners[i - 1][Banner.Name] + "** background." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                break;
+
+            }
+             else
+            { 
+
+              const embed = {"description": ErrorMessage5[0],  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+              break;
+
+            };
+
+        };
 
     };
-
-    if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
-        InfoMessages.push(InfoIcon + " You have lost your custom background.");
-    };
-
-    peeky.userData.set(key, i, "Background");
   
-    const embed = {"description": SuccessIcon + " You have set the **" + Banners[i - 1][Banner.Name] + "** background." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-    break;
-  
-    }
-     else
-    { 
-  
-      const embed = {"description": ErrorMessage5[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    
-      break;
-
-    };
-  
-};
-};
 };
   
 //SellBackground
@@ -5554,83 +5557,83 @@ if (CommandName.startsWith("sellbackground "))  {
     var InfoMessages = []; 
   
 if  (i !== AllString)  {
-  
-if  (isNaN(i) == false)  {  i = Number(i)  };
-  
-if  (peeky.userData.get(key, "Inventory").includes(i))  {
-  
-if  (i !== 1)  {
-  
-    var BackgroundIndex  = peeky.userData.get(key, "Inventory").indexOf(i);
-    var FinalPrice       = Banners[i - 1][Banner.Price];
-    var i                = Number(i);
-  
-    if  (FinalPrice == Exclusive)  {
-        FinalPrice = 0;
-    } else {
-        FinalPrice = Math.round(FinalPrice / SellMultiplier);
-    };
 
-    peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
-    peeky.userData.math(key, "+", FinalPrice, "Gredit");
+    if  (isNaN(i) == false)  {  i = Number(i)  };
 
-    if  (i == peeky.userData.get(key, "Background"))  {
-        peeky.userData.set(key, 1, "Background");
-        InfoMessages.push(InfoMessage2[0]);
-    };
+        if  (peeky.userData.get(key, "Inventory").includes(i))  {
 
-    const embed = {"description": SuccessIcon + " You have sold the **" + Banners[i - 1][Banner.Name] + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-    }
-     else
-    {
-      const embed = {"description": ErrorIcon + " You cannot sell the default background.",  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
+            if  (i !== 1)  {
 
-    }
-     else
-    {
-      const embed = {"description": ErrorMessage5[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
+                var BackgroundIndex  = peeky.userData.get(key, "Inventory").indexOf(i);
+                var FinalPrice       = Banners[i - 1][Banner.Price];
+                var i                = Number(i);
+
+                if  (FinalPrice == Exclusive)  {
+                    FinalPrice = 0;
+                } else {
+                    FinalPrice = Math.round(FinalPrice / SellMultiplier);
+                };
+
+                peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
+                peeky.userData.math(key, "+", FinalPrice, "Gredit");
+
+                if  (i == peeky.userData.get(key, "Background"))  {
+                    peeky.userData.set(key, 1, "Background");
+                    InfoMessages.push(InfoMessage2[0]);
+                };
+
+                const embed = {"description": SuccessIcon + " You have sold the **" + Banners[i - 1][Banner.Name] + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+            }
+             else
+            {
+              const embed = {"description": ErrorIcon + " You cannot sell the default background.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
+        }
+         else
+        {
+          const embed = {"description": ErrorMessage5[0],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
 
 }
  else
 {
   if  (peeky.userData.get(key, "Inventory").filter(i => Banners[i - 1][Banner.Price] !== Exclusive).length > 1)  {
   
-  if (!ProfileCooldown.has(message.author.id)) {
-      
-      ProfileCooldown.add(message.author.id);
-      setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
-    
-      var MaxBackgrounds    = peeky.userData.get(key, "Inventory").length;
-      var CurrentBackground = 0;
-      var FullPrice         = 0;
-    
-      peeky.userData.get(key, "Inventory").filter(i => Banners[i - 1][Banner.Price] !== Exclusive).forEach(i => {
-          FullPrice += Math.round(Banners[i - 1][Banner.Price] / SellMultiplier);        
-      });
+      if (!ProfileCooldown.has(message.author.id))  {
 
-      peeky.userData.set(key, [1], "Inventory");
-      peeky.userData.math(key, "+", FullPrice, "Gredit");
+          ProfileCooldown.add(message.author.id);
+          setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
 
-      if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
-          peeky.userData.set(key, 1, "Background");
-          InfoMessages.push(InfoMessage2[0]);
+          var MaxBackgrounds    = peeky.userData.get(key, "Inventory").length;
+          var CurrentBackground = 0;
+          var FullPrice         = 0;
+
+          peeky.userData.get(key, "Inventory").filter(i => Banners[i - 1][Banner.Price] !== Exclusive).forEach(i => {
+              FullPrice += Math.round(Banners[i - 1][Banner.Price] / SellMultiplier);        
+          });
+
+          peeky.userData.set(key, [1], "Inventory");
+          peeky.userData.math(key, "+", FullPrice, "Gredit");
+
+          if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
+              peeky.userData.set(key, 1, "Background");
+              InfoMessages.push(InfoMessage2[0]);
+          };
+
+          const embed = {"description": SuccessIcon + " You have sold all your backgrounds for **" + FullPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+      }
+       else
+      {
+        const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       };
-      
-      const embed = {"description": SuccessIcon + " You have sold all your backgrounds for **" + FullPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    
-  }
-   else
-  {
-    const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  };
         
   }
    else
@@ -5646,53 +5649,68 @@ if  (i !== 1)  {
 //Open
 if (CommandName.startsWith("open"))  {
 
-if  (!ProfileCooldown.has(message.author.id))  {
-  
-if  (peeky.userData.get(key, "Chests") >= 1)  {
+    if  (!ProfileCooldown.has(message.author.id))  {
 
-      ProfileCooldown.add(message.author.id);
-      setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
+    if  (peeky.userData.get(key, "Chests") >= 1)  {
 
-      //Loot Variables
-      var PeekyCoinsOpened = Math.round(Math.random() * 100);
-      var PeekyCoinsSupporter = Math.round(Math.random() * 50);
-      var PeekyCoinsUpgraded = Math.round(Math.random() * 25);
-      var PeekyCoinsLevel = peeky.userData.get(key, "Level");
-      var TotalAmount = PeekyCoinsOpened + PeekyCoinsLevel;
-      
-      //Other
-      var Tokens = CommandName.split("open ");
-      var InfoMessages = [];
-      
-      //Supporter
-      if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {
-          TotalAmount += PeekyCoinsSupporter;
-      };
+          ProfileCooldown.add(message.author.id);
+          setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
 
-      //Upgraded Server
-      if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
-          TotalAmount += PeekyCoinsUpgraded;
-      };
-  
-      //Profile Booster
-      if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
-          TotalAmount += PeekyCoinsOpened;
-      };
+          //Loot Variables
+          var PeekyCoinsOpened = Math.round(Math.random() * 100);
+          var PeekyCoinsSupporter = Math.round(Math.random() * 50);
+          var PeekyCoinsUpgraded = Math.round(Math.random() * 25);
+          var PeekyCoinsLevel = peeky.userData.get(key, "Level");
+          var TotalAmount = PeekyCoinsOpened + PeekyCoinsLevel;
 
-      var ChestAmount   = 0;
-      var BadgeProgress = 0;
-  
-      //Count Rewards
-      if  (Tokens[1] == AllString)  {
-        
-          ChestAmount = peeky.userData.get(key, "Chests");
-          var CurrentChest = 0;
-          var TotalLoot = 0;
+          //Other
+          var Tokens = CommandName.split("open ");
+          var InfoMessages = [];
 
-          do {            
-            TotalLoot += TotalAmount;
-            CurrentChest ++;
-            
+          //Supporter
+          if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {
+              TotalAmount += PeekyCoinsSupporter;
+          };
+
+          //Upgraded Server
+          if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
+              TotalAmount += PeekyCoinsUpgraded;
+          };
+
+          //Profile Booster
+          if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
+              TotalAmount += PeekyCoinsOpened;
+          };
+
+          var ChestAmount   = 0;
+          var BadgeProgress = 0;
+
+          //Count Rewards
+          if  (Tokens[1] == AllString)  {
+
+              ChestAmount = peeky.userData.get(key, "Chests");
+              var CurrentChest = 0;
+              var TotalLoot = 0;
+
+              do {            
+                TotalLoot += TotalAmount;
+                CurrentChest ++;
+
+                peeky.userData.math(key, "+", 1, "GamblerBadge");
+
+                if  (peeky.userData.get(key, "GamblerBadge") == 10)  {
+
+                    InfoMessages.push(InfoMessage1[0]);
+
+                };
+              } while (CurrentChest < ChestAmount);
+
+          }
+           else  
+          {
+            ChestAmount = 1;
+            TotalLoot = TotalAmount;
+
             peeky.userData.math(key, "+", 1, "GamblerBadge");
 
             if  (peeky.userData.get(key, "GamblerBadge") == 10)  {
@@ -5700,42 +5718,27 @@ if  (peeky.userData.get(key, "Chests") >= 1)  {
                 InfoMessages.push(InfoMessage1[0]);
 
             };
-          } while (CurrentChest < ChestAmount);
-          
+          };
+
+          peeky.userData.math(key, "-", ChestAmount, "Chests");
+          peeky.userData.math(key, "+", TotalLoot, "Gredit");
+
+          const embed = {"description": SuccessIcon + " You have opened **" + ChestAmount.toLocaleString('en') + " " + ChestIcon + "** for **" + TotalLoot.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+          await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
       }
-       else  
+       else
       {
-        ChestAmount = 1;
-        TotalLoot = TotalAmount;
-        
-        peeky.userData.math(key, "+", 1, "GamblerBadge");
-        
-        if  (peeky.userData.get(key, "GamblerBadge") == 10)  {
-
-            InfoMessages.push(InfoMessage1[0]);
-
-        };
+        const embed = {"description": ErrorMessage6[0],  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       };
-  
-      peeky.userData.math(key, "-", ChestAmount, "Chests");
-      peeky.userData.math(key, "+", TotalLoot, "Gredit");
 
-      const embed = {"description": SuccessIcon + " You have opened **" + ChestAmount.toLocaleString('en') + " " + ChestIcon + "** for **" + TotalLoot.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-      await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-  }
-   else
-  {
-    const embed = {"description": ErrorMessage6[0],  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  };
-
-}
- else
-{
-  const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
-  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
+    }
+     else
+    {
+      const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
   
 };
 
@@ -6070,7 +6073,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
 //Profile
 if (CommandName.startsWith("profile"))  {
   
-if (!ProfileCooldown.has(message.author.id)) {
+if (!ProfileCooldown.has(message.author.id))  {
       
     ProfileCooldown.add(message.author.id);
     setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
@@ -6205,10 +6208,10 @@ if (!ProfileCooldown.has(message.author.id)) {
       
     //Badges
     var   BadgeYpos    = 201.5;
-    var   BadgeXpos    = -26.5;
-    const BadgeXposAmt = 35;
+    var   BadgeXpos    = -24;
+    const BadgeXposAmt = 32.5;
     var   BadgeAmount  = 0;
-    const MaxBadges    = 14;
+    const MaxBadges    = 15;
     const BadgeSize    = 25;
 
     //PEEKY Staff Icon
