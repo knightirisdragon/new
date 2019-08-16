@@ -6529,7 +6529,7 @@ if (CommandName.startsWith("play "))  {
       
     if  (!GivenSong.includes("?list="))  {
       
-    if  (GivenSong)  {
+    if  ((GivenSong) && (ytdl.validateURL(GivenSong) == true))  {
 
     if  (message.member.voiceChannel)  {
 
@@ -6537,13 +6537,13 @@ if (CommandName.startsWith("play "))  {
     
     if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT') && voiceChannel.permissionsFor(peeky.user).has('SPEAK'))  {
 
-            //await ytdl.getBasicInfo(GivenSong).then(async (info) => {
-            //info = info.player_response.videoDetails;
+            await ytdl.getBasicInfo(GivenSong).then(async (info) => {
+            info = info.player_response.videoDetails;
               
-            const Thumbnail  = results[0].thumbnails.high.url;
-            const Title      = results[0].title
-            const Author     = results[0].channelTitle;
-            const Length     = 1;
+            const Thumbnail  = info.thumbnail.thumbnails[info.thumbnail.thumbnails.length - 1].url;
+            const Title      = info.title;
+            const Author     = info.author;
+            const Length     = info.lengthSeconds;
             const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
             const Started    = new Date();
           
@@ -6572,11 +6572,10 @@ if (CommandName.startsWith("play "))  {
                 message.guild.me.setNickname("🎵 " + "Playing in " + function_RemoveFormatting(voiceChannel.name, "other", false).slice(0, 14) + " 🎵");
             };
 
-            const dispatcher = await connection.playStream(GivenSong, StreamOptions);
+            const stream = ytdl(GivenSong);
+            const dispatcher = await connection.playStream(stream, StreamOptions);
 
             dispatcher.on('end', async reason => {
-              
-            console.log(reason)
               
             CurrentlyPlaying.delete(message.guild.id);
             voiceChannel.leave();
@@ -6585,7 +6584,7 @@ if (CommandName.startsWith("play "))  {
                 message.guild.me.setNickname(null);
             };
               
-            const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
+            const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id)
               
             const embed = {"description": InfoIcon + " The song has now finished with **" + Listeners.length + " listeners**.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -6613,14 +6612,17 @@ if (CommandName.startsWith("play "))  {
             } else {
               const embed = {"description": ErrorIcon + " You cannot play livestreams or songs longer than 10 minutes.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              
+              console.log(info);
+              console.log(results[0]);
             };
 
-        /*}).catch(async (error) => {
+        }).catch(async (error) => {
             ErrorBag.add(error);
           
             const embed = {"description": ErrorIcon + " Failed to get the YouTube video.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        });*/
+        });
 
     } else {
       const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
