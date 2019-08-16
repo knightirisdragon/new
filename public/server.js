@@ -6587,7 +6587,7 @@ if (CommandName.startsWith("play "))  {
                 message.guild.me.setNickname(null);
             };
               
-            const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id)
+            const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
               
             const embed = {"description": InfoIcon + " The song has now finished with **" + Listeners.length + " listeners**.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
