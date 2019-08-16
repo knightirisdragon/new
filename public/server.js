@@ -7433,9 +7433,13 @@ if  (CommandName.startsWith("muterole "))  {
 
                    InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "**.");
 
-                   if  (message.guild.roles.find(role => role.name == MutedRole) && FilteredChannels.length <= 20 && message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
+                   if  (message.guild.roles.find(role => role.name == MutedRole) && message.guild.me.hasPermission("MANAGE_CHANNELS") && !RoleCooldown.has(message.guild.id + "muterole"))  {
+                       
+                       RoleCooldown.add(message.guild.id + "muterole");
+                       setTimeout(() => {RoleCooldown.delete(message.guild.id + "muterole")}, 300000);
                          
                        var Amount = 0;
+                       var MuteRole = message.guild.roles.find(role => role.name == MutedRole);
                      
                        FilteredChannels.forEach(channel => {
                              
@@ -7445,11 +7449,13 @@ if  (CommandName.startsWith("muterole "))  {
                                   Failed = true;
                           };
                              
-                          if  (Failed == false)  {
+                          if  (Failed == false && Amount <= 25)  {
                              
-                              channel.overwritePermissions(RoleExist, {
+                              channel.overwritePermissions(MuteRole, {
                                   'SEND_MESSAGES': false,
                               }).catch(error => ErrorBag.add(error));
+                            
+                              Amount ++;
 
                               console.log(channel.name);
                               
@@ -7457,13 +7463,18 @@ if  (CommandName.startsWith("muterole "))  {
 
                        });
 
-                       InfoMessages.push(InfoIcon + " Edited " + Amount + " channels for the **" + MutedRole + "** role.");                       
+                       InfoMessages.push(InfoIcon + " Edited **" + Amount + "/" + FilteredChannels.length + " channels** for the **" + MutedRole + "** role.");     
+
+                  }
+                   else
+                  {
+                   InfoMessages.push(ErrorIcon + " Couldn't edit channels for the **" + MutedRole + "** role.");  
                   };
 
                }
                 else
                {
-                const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+                const embed = {"description": CooldownMessage3[0],  "color": EmbedColor}; 
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                };
               
