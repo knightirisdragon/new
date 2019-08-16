@@ -1048,6 +1048,327 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
 };
+
+function function_Profile(key2)  {
+      
+    const canvas         = Canvas.createCanvas(500, 300);
+    const ctx            = canvas.getContext('2d');
+    var   SomeoneTagged  = null;
+    const StatsColor     = "lightgray"
+    var   ProfileColor   = null;
+    
+    var MentionedMember = message.mentions.users.first();
+    if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.author;  };
+
+    //Vars
+    const ProfileName        = SomeoneTagged.username;
+    const key2               = SomeoneTagged.id;
+    var   Failed             = false;
+      
+    if  (peeky.userData.has(key2))  {
+
+    var TheBannerShown = function_GetBackground(key2);
+
+    var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  message.channel.stopTyping();  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
+      
+    if  (Failed == false)  {
+      
+    message.channel.startTyping();
+
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+    await dominant_color(TheBannerShown, {format: 'hex'}, function(err, color)  {
+              
+          ProfileColor = color;
+
+          if  (color == "000000")  {
+              ProfileColor = LessDark.replace("#", "");            
+          };
+
+    });
+      
+    var layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout_2.5.png");
+    ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
+
+    //Draw Events
+      
+    //String Setting
+    ctx.fillStyle = StatsColor;
+    ctx.textAlign = "left";
+    ctx.fillStyle = "white";
+    ctx.shadowColor = "black";
+    ctx.shadowOffsetX = 1; 
+    ctx.shadowOffsetY = 1;
+    ctx.globalAlpha = 1;
+
+    //Name String
+    ctx.font = "19px " + DefaultFont;
+    ctx.fillText(ProfileName, 83, 25, canvas.width - 95);
+      
+    //Coins String
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Gredit").toLocaleString('en') + " Gredit", 45, 105, canvas.width / 2 - 50);
+      
+    //Chests String
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 45, 140, canvas.width / 2 - 50);
+      
+    //Karma String
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Karma") + " Karma", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
+      
+    //Badges String
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
+
+    /*
+    //Exp String
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Exp").toLocaleString('en') + " Exp", canvas.width / 2 + 45, 175, canvas.width / 2 - 50);
+    */
+
+    //Backpack String
+    if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
+        var CustomBackgroundAmount = 1;
+    } else {  var CustomBackgroundAmount = 0;  };
+      
+    ctx.font = "15px " + DefaultFont;
+    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 45, 175, canvas.width / 2 - 50);
+    
+    //Description String
+    var text = peeky.userData.get(key2, "Description");
+    var fontsize = 16;
+    var y_position = 50;      
+    ctx.fillStyle = "white";
+    ctx.textAlign = "left";
+      
+    if (text.includes("\n")) {  y_position = 45;  };
+    ctx.fillText(peeky.userData.get(key2, "Description"), 83, y_position, canvas.width - 95);
+      
+    //Draw Images
+      
+    //Coin Icon
+    const coin_icon = await Canvas.loadImage(CoinImage);
+    ctx.drawImage(coin_icon, 10, 85, 27, 27);
+      
+    //Chest Icon
+    const chest_icon = await Canvas.loadImage(ChestImage);
+    ctx.drawImage(chest_icon, 10, 120, 27, 27);
+
+    //Backpack Icon
+    const backpack_icon = await Canvas.loadImage(BackpackImage);
+    ctx.drawImage(backpack_icon, 10, 155, 27, 27);
+
+    //Karma Icon
+    const karma_icon = await Canvas.loadImage(KarmaImage);
+    ctx.drawImage(karma_icon, canvas.width / 2 + 10, 85, 27, 27);
+
+    //Badges Icon
+    const badges_icon = await Canvas.loadImage(BadgesImage);
+    ctx.drawImage(badges_icon, canvas.width / 2 + 10, 120, 27, 27);
+
+    /*
+    //Exp Icon
+    const exp_icon = await Canvas.loadImage(ExpImage);
+    ctx.drawImage(exp_icon, canvas.width / 2 + 10, 155, 27, 27);
+    */
+
+    //Progress Bar
+    const progress_bar = await Canvas.loadImage(XPImage);
+    const progress_bar_background = await Canvas.loadImage(LightField);
+      
+    //Badges
+    var   BadgeYpos    = 201.5;
+    var   BadgeXpos    = -24;
+    const BadgeXposAmt = 32.5;
+    var   BadgeAmount  = 0;
+    const MaxBadges    = 15;
+    const BadgeSize    = 25;
+
+    //PEEKY Staff Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const moderator_icon = await Canvas.loadImage(ModeratorImage);
+    if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(StaffRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(moderator_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Veteran Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const veteran_icon = await Canvas.loadImage(VeteranImage);
+    if  (peeky.userData.get(key2, "VeteranBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(veteran_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Supporter Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const supporter_icon = await Canvas.loadImage(SupporterImage);
+    if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(SupporterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(supporter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Booster Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const supporter_icon = await Canvas.loadImage(BoosterImage);
+    if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(BoosterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(supporter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Bug Hunter Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const bughunter_icon = await Canvas.loadImage(BugCHunterImage);
+    if  (peeky.userData.get(key2, "BugHunterBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(bughunter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Contributor Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const contributor_icon = await Canvas.loadImage(ContributorImage);
+    if  (peeky.userData.get(key2, "ContributorBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(contributor_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Celebrator Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const celebrator_icon = await Canvas.loadImage(CelebratorImage);
+    if  (peeky.userData.get(key2, "CelebratorBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(celebrator_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Movie Nighter Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const movienighter_icon = await Canvas.loadImage(MovieNighterImage);
+    if  (peeky.userData.get(key2, "MovieNighterBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(movienighter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Medallist Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const medalist_icon = await Canvas.loadImage(MedallistImage);
+    if  (peeky.userData.get(key2, "MedallistBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(medalist_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Evil  Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const evil_icon = await Canvas.loadImage(EvilImage);
+    if  (peeky.userData.get(key2, "EvilBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(evil_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Good Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const good_icon = await Canvas.loadImage(GoodImage);
+    if  (peeky.userData.get(key2, "GoodBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(good_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Party Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const publisher_icon = await Canvas.loadImage(PartyImage);
+    if  (peeky.userData.get(key2, "PartyBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(publisher_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Poller Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const poller_icon = await Canvas.loadImage(PollerImage);
+    if  (peeky.userData.get(key2, "PollerBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(poller_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Voter Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const voter_icon = await Canvas.loadImage(VoterImage);
+    if  (peeky.userData.get(key2, "VoterBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(voter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Publisher Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const publisher_icon = await Canvas.loadImage(PublisherImage);
+    if  (peeky.userData.get(key2, "PublisherBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(publisher_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+      
+    //Ownership Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const gambler_icon = await Canvas.loadImage(OwnershipImage);
+    if  (peeky.userData.get(key2, "OwnershipBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(gambler_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Horder Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const horder_icon = await Canvas.loadImage(HorderImage);
+    if  (peeky.userData.get(key2, "HorderBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(horder_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Miner Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const miner_icon = await Canvas.loadImage(MinerImage);
+    if  (peeky.userData.get(key2, "MinerBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(miner_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Gamer Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const gamer_icon = await Canvas.loadImage(GamerImage);
+    if  (peeky.userData.get(key2, "GamerBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(gamer_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Gambler Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const gambler_icon = await Canvas.loadImage(GamblerImage);
+    if  (peeky.userData.get(key2, "GamblerBadge") >= 10)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(gambler_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Charity Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const charity_icon = await Canvas.loadImage(CharityImage);
+    if  (peeky.userData.get(key2, "CharityBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(charity_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //PainterIcon
+    if  (BadgeAmount < MaxBadges)  {
+    const painter_icon = await Canvas.loadImage(PainterImage);
+    if  (peeky.userData.get(key2, "PainterBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(painter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    //Fashion Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const fashion_icon = await Canvas.loadImage(FashionImage);
+    if  (peeky.userData.get(key2, "FashionBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(fashion_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+
+    ctx.globalAlpha = 1;
+    ctx.shadowOffsetX = 0; 
+    ctx.shadowOffsetY = 0;
+
+    ctx.fillStyle = "#" + ProfileColor;
+    ctx.fillRect(63, 253, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 127), 26); //Body
+  
+    //Avatar
+    const avatar = await Canvas.loadImage(SomeoneTagged.displayAvatarURL.replace("https", "http"));
+    ctx.shadowOffsetX = 0; 
+    ctx.shadowOffsetY = 0;
+    ctx.drawImage(avatar, 6, 6, 64, 64);
+
+    //Exp Text
+    ctx.font = "22px " + DefaultFont;
+    ctx.textAlign = "center";
+    ctx.fillStyle = "white";
+    ctx.shadowOffsetX = 1; 
+    ctx.shadowOffsetY = 1;
+    ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
+    ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
+    
+};
   
 function UpdateLeaderboardTypes(type)  {
       
@@ -6077,329 +6398,12 @@ if (!ProfileCooldown.has(message.author.id)) {
   
     if  (message.channel.permissionsFor(peeky.user).has('ATTACH_FILES'))  {
       
-    const canvas         = Canvas.createCanvas(500, 300);
-    const ctx            = canvas.getContext('2d');
-    var   SomeoneTagged  = null;
-    const StatsColor     = "lightgray"
-    var   ProfileColor   = null;
-    
-    var MentionedMember = message.mentions.users.first();
-    if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.author;  };
-
-    //Vars
-    const ProfileName        = SomeoneTagged.username;
-    const key2               = SomeoneTagged.id;
-    var   Failed             = false;
-      
-    if  (peeky.userData.has(key2))  {
-
-    var TheBannerShown = function_GetBackground(key2);
-
-    var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  message.channel.stopTyping();  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
-      
-    if  (Failed == false)  {
-      
-    message.channel.startTyping();
-
-    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-    await dominant_color(TheBannerShown, {format: 'hex'}, function(err, color)  {
-              
-          ProfileColor = color;
-
-          if  (color == "000000")  {
-              ProfileColor = LessDark.replace("#", "");            
-          };
-
-    });
-      
-    var layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout_2.5.png");
-    ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
-
-    //Draw Events
-      
-    //String Setting
-    ctx.fillStyle = StatsColor;
-    ctx.textAlign = "left";
-    ctx.fillStyle = "white";
-    ctx.shadowColor = "black";
-    ctx.shadowOffsetX = 1; 
-    ctx.shadowOffsetY = 1;
-    ctx.globalAlpha = 1;
-
-    //Name String
-    ctx.font = "19px " + DefaultFont;
-    ctx.fillText(ProfileName, 83, 25, canvas.width - 95);
-      
-    //Coins String
-    ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Gredit").toLocaleString('en') + " Gredit", 45, 105, canvas.width / 2 - 50);
-      
-    //Chests String
-    ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 45, 140, canvas.width / 2 - 50);
-      
-    //Karma String
-    ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Karma") + " Karma", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
-      
-    //Badges String
-    ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
-
-    /*
-    //Exp String
-    ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Exp").toLocaleString('en') + " Exp", canvas.width / 2 + 45, 175, canvas.width / 2 - 50);
-    */
-
-    //Backpack String
-    if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
-        var CustomBackgroundAmount = 1;
-    } else {  var CustomBackgroundAmount = 0;  };
-      
-    ctx.font = "15px " + DefaultFont;
-    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 45, 175, canvas.width / 2 - 50);
-    
-    //Description String
-    var text = peeky.userData.get(key2, "Description");
-    var fontsize = 16;
-    var y_position = 50;      
-    ctx.fillStyle = "white";
-    ctx.textAlign = "left";
-      
-    if (text.includes("\n")) {  y_position = 45;  };
-    ctx.fillText(peeky.userData.get(key2, "Description"), 83, y_position, canvas.width - 95);
-      
-    //Draw Images
-      
-    //Coin Icon
-    const coin_icon = await Canvas.loadImage(CoinImage);
-    ctx.drawImage(coin_icon, 10, 85, 27, 27);
-      
-    //Chest Icon
-    const chest_icon = await Canvas.loadImage(ChestImage);
-    ctx.drawImage(chest_icon, 10, 120, 27, 27);
-
-    //Backpack Icon
-    const backpack_icon = await Canvas.loadImage(BackpackImage);
-    ctx.drawImage(backpack_icon, 10, 155, 27, 27);
-
-    //Karma Icon
-    const karma_icon = await Canvas.loadImage(KarmaImage);
-    ctx.drawImage(karma_icon, canvas.width / 2 + 10, 85, 27, 27);
-
-    //Badges Icon
-    const badges_icon = await Canvas.loadImage(BadgesImage);
-    ctx.drawImage(badges_icon, canvas.width / 2 + 10, 120, 27, 27);
-
-    /*
-    //Exp Icon
-    const exp_icon = await Canvas.loadImage(ExpImage);
-    ctx.drawImage(exp_icon, canvas.width / 2 + 10, 155, 27, 27);
-    */
-
-    //Progress Bar
-    const progress_bar = await Canvas.loadImage(XPImage);
-    const progress_bar_background = await Canvas.loadImage(LightField);
-      
-    //Badges
-    var   BadgeYpos    = 201.5;
-    var   BadgeXpos    = -26.5;
-    const BadgeXposAmt = 35;
-    var   BadgeAmount  = 0;
-    const MaxBadges    = 14;
-    const BadgeSize    = 25;
-
-    //PEEKY Staff Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const moderator_icon = await Canvas.loadImage(ModeratorImage);
-    if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(StaffRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(moderator_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Veteran Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const veteran_icon = await Canvas.loadImage(VeteranImage);
-    if  (peeky.userData.get(key2, "VeteranBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(veteran_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Supporter Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const supporter_icon = await Canvas.loadImage(SupporterImage);
-    if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(SupporterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(supporter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Booster Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const supporter_icon = await Canvas.loadImage(BoosterImage);
-    if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(BoosterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(supporter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Bug Hunter Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const bughunter_icon = await Canvas.loadImage(BugCHunterImage);
-    if  (peeky.userData.get(key2, "BugHunterBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(bughunter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Contributor Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const contributor_icon = await Canvas.loadImage(ContributorImage);
-    if  (peeky.userData.get(key2, "ContributorBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(contributor_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Celebrator Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const celebrator_icon = await Canvas.loadImage(CelebratorImage);
-    if  (peeky.userData.get(key2, "CelebratorBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(celebrator_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Movie Nighter Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const movienighter_icon = await Canvas.loadImage(MovieNighterImage);
-    if  (peeky.userData.get(key2, "MovieNighterBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(movienighter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Medallist Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const medalist_icon = await Canvas.loadImage(MedallistImage);
-    if  (peeky.userData.get(key2, "MedallistBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(medalist_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Evil  Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const evil_icon = await Canvas.loadImage(EvilImage);
-    if  (peeky.userData.get(key2, "EvilBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(evil_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Good Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const good_icon = await Canvas.loadImage(GoodImage);
-    if  (peeky.userData.get(key2, "GoodBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(good_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Party Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const publisher_icon = await Canvas.loadImage(PartyImage);
-    if  (peeky.userData.get(key2, "PartyBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(publisher_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Poller Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const poller_icon = await Canvas.loadImage(PollerImage);
-    if  (peeky.userData.get(key2, "PollerBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(poller_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Voter Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const voter_icon = await Canvas.loadImage(VoterImage);
-    if  (peeky.userData.get(key2, "VoterBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(voter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Publisher Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const publisher_icon = await Canvas.loadImage(PublisherImage);
-    if  (peeky.userData.get(key2, "PublisherBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(publisher_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-      
-    //Ownership Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const gambler_icon = await Canvas.loadImage(OwnershipImage);
-    if  (peeky.userData.get(key2, "OwnershipBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(gambler_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Horder Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const horder_icon = await Canvas.loadImage(HorderImage);
-    if  (peeky.userData.get(key2, "HorderBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(horder_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Miner Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const miner_icon = await Canvas.loadImage(MinerImage);
-    if  (peeky.userData.get(key2, "MinerBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(miner_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Gamer Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const gamer_icon = await Canvas.loadImage(GamerImage);
-    if  (peeky.userData.get(key2, "GamerBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(gamer_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Gambler Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const gambler_icon = await Canvas.loadImage(GamblerImage);
-    if  (peeky.userData.get(key2, "GamblerBadge") >= 10)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(gambler_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Charity Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const charity_icon = await Canvas.loadImage(CharityImage);
-    if  (peeky.userData.get(key2, "CharityBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(charity_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //PainterIcon
-    if  (BadgeAmount < MaxBadges)  {
-    const painter_icon = await Canvas.loadImage(PainterImage);
-    if  (peeky.userData.get(key2, "PainterBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(painter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Fashion Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const fashion_icon = await Canvas.loadImage(FashionImage);
-    if  (peeky.userData.get(key2, "FashionBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(fashion_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    ctx.globalAlpha = 1;
-    ctx.shadowOffsetX = 0; 
-    ctx.shadowOffsetY = 0;
-
-    ctx.fillStyle = "#" + ProfileColor;
-    ctx.fillRect(63, 253, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 127), 26); //Body
-  
-    //Avatar
-    const avatar = await Canvas.loadImage(SomeoneTagged.displayAvatarURL.replace("https", "http"));
-    ctx.shadowOffsetX = 0; 
-    ctx.shadowOffsetY = 0;
-    ctx.drawImage(avatar, 6, 6, 64, 64);
-
-    //Exp Text
-    ctx.font = "22px " + DefaultFont;
-    ctx.textAlign = "center";
-    ctx.fillStyle = "white";
-    ctx.shadowOffsetX = 1; 
-    ctx.shadowOffsetY = 1;
-    ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
-    ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
-      
     const attachment = new Discord.Attachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
 
     await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
 
     if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(ProfileBoosterRole))  {
-        const embed = {"description": InfoIcon + " The **Profile Booster** for this profile will remain active for **" + function_TimeLeft(peeky.userData.get(key, "BoosterStart"),  "hours", ProfileBoosterTime) + " hours**.",  "color": EmbedColor}; 
+        const embed = {"description": InfoIcon + " The **Profile Booster** for this profile will remain active for **" + function_TimeLeft(peeky.userData.get(key2, "BoosterStart"),  "hours", ProfileBoosterTime) + " hours**.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
