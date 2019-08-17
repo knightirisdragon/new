@@ -2468,10 +2468,10 @@ if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
     if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
       
         var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
-        var RoleExist = member.guild.roles.find(role => role.name == name);
+        var Role = member.guild.roles.find(role => role.name == name);
 
-        if  (RoleExist) {
-            member.addRole(RoleExist, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
+        if  (Role) {
+            member.addRole(Role.id, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
           
             console.log("The Join Role function has been triggered in " + member.guild.name + ".");
             function_UpdateAutowipe(keySF, "server");
@@ -2891,7 +2891,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
             if  (member.presence.game !== null && member.presence.game.streaming == true)  {
 
             if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
-                 member.addRole(GuildRole).catch(error => ErrorBag.add(error));
+                 member.addRole(GuildRole.id).catch(error => ErrorBag.add(error));
 
                  CurrentlyStreaming.add(member.user.id + member.guild.id + "SR");
                  setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 1800000);
@@ -2903,7 +2903,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
             }  else  { 
 
                if  (HasRole)  {
-                   member.removeRole(GuildRole).catch(error => ErrorBag.add(error));
+                   member.removeRole(GuildRole.id).catch(error => ErrorBag.add(error));
                };
 
             };
@@ -2960,14 +2960,14 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 
         var GameName   = GameName.toLowerCase();
         var HasRole    = member.roles.find(r => r.name.toLowerCase() == GameName);
-        var RoleExists = member.guild.roles.find(r => r.name.toLowerCase() == GameName);
+        var Role = member.guild.roles.find(r => r.name.toLowerCase() == GameName);
 
-        if  (RoleExists)  {
+        if  (Role)  {
           
         if  (member.presence.game !== null && member.presence.game.name.toLowerCase() == GameName)  {
 
             if  (!HasRole && !RoleCooldown.has(member.user.id + member.guild.id))  {
-                member.addRole(RoleExists, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
+                member.addRole(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
               
                 console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
                 function_UpdateAutowipe(keySF, "server");
@@ -2979,7 +2979,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
         } else { 
 
           if  (HasRole)  {
-                member.removeRole(RoleExists, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
+                member.removeRole(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
           };
 
         };
@@ -3788,14 +3788,14 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
             if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length >= 2)  {
 
-            const name       = peeky.serverData.get(keySF, "muted_role");
-            const RoleExists = message.guild.roles.find(role => role.name == name);
+            const name = peeky.serverData.get(keySF, "muted_role");
+            const Role = message.guild.roles.find(role => role.name == name);
 
-            if  (RoleExists && message.member.roles.array().includes(RoleExists) == false)  {
+            if  (Role && message.member.roles.has(Role.id))  {
 
                 //function_DirectMessage(message.member.user.id, "You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by the **Flood Protection** function.");
 
-                message.member.addRole(message.member.guild.roles.find(role => role.name == name), "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
+                message.member.addRole(Role.id, "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
 
                 if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "FP"))  {
 
@@ -7062,15 +7062,15 @@ if (CommandName.startsWith("mute "))  {
 
             var MentionedMember = message.mentions.members.first();
             var name = peeky.serverData.get(keySF, "muted_role");
-            var RoleExists = message.guild.roles.find(role => role.name == name);
+            var Role = message.guild.roles.find(role => role.name == name);
 
             if  (MentionedMember)  {
 
-            if  (RoleExists)  {
+            if  (Role)  {
 
-            if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && MentionedMember.roles.find(r => r.name == name))  {
+            if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && !MentionedMember.roles.has(Role.id))  {
 
-                await MentionedMember.addRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => {
+                await MentionedMember.addRole(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => {
                     const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     ErrorBag.add(error); Failed = true;
@@ -7129,15 +7129,15 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
       
     var MentionedMember = message.mentions.members.first();
     var name = peeky.serverData.get(keySF, "muted_role");
-    var RoleExists = message.guild.roles.find(role => role.name == name);
+    var Role = message.guild.roles.find(role => role.name == name);
 
     if  (MentionedMember)  {
   
-    if  (RoleExists)  {
+    if  (Role)  {
       
-    if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && !MentionedMember.roles.find(r => r.name == name))  {
+    if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && MentionedMember.roles.has(Role.id))  {
 
-        await MentionedMember.removeRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => { 
+        await MentionedMember.removeRole(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => { 
             const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             ErrorBag.add(error); Failed = true;
