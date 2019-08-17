@@ -2591,7 +2591,7 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
 
     var channel = guild.channels.find(c=> c.name == name);
     
-    if (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES')) {
+    if  (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES' && 'ATTACH_FILES'))  {
       
     if  (BlacklistedWebsites.some(word => function_RemoveFormatting(member.user.username.toLowerCase(), "other", false).includes(word)))  {
         Detected = true;
@@ -2641,7 +2641,7 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
 
     var channel = guild.channels.find(c=> c.name == name);
     
-    if  (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && channel.permissionsFor(peeky.user).has('ATTACH_FILES'))  {
+    if  (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES' && 'ATTACH_FILES'))  {
       
         if  (BlacklistedWebsites.some(word => function_RemoveFormatting(member.user.username.toLowerCase(), "other", false).includes(word)))  {
             Detected = true;
@@ -3575,7 +3575,7 @@ if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
   
     if  ((message.attachments.size > 0 || function_DetectLink(message.content) == true) && !message.author.bot)  {
 
-    if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS') && message.channel.permissionsFor(peeky.user).has('EXTERNAL_EMOJIS'))  {
+    if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS' && 'EXTERNAL_EMOJIS'))  {
 
         var ReactionEmoji1 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
         var ReactionEmoji2 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
@@ -6558,7 +6558,7 @@ if (CommandName.startsWith("play "))  {
 
         const voiceChannel  = message.member.voiceChannel;
     
-    if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT') && voiceChannel.permissionsFor(peeky.user).has('SPEAK'))  {
+    if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
 
             await ytdl.getBasicInfo(GivenSong).then(async (info) => {
             info = info.player_response.videoDetails;
@@ -6905,7 +6905,7 @@ if (CommandName.startsWith("guessthesong"))  {
             setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)
                               ActiveMinigames.delete(message.guild.id)}, 30000);
           
-            if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT') && voiceChannel.permissionsFor(peeky.user).has('SPEAK'))  {
+            if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
   
                 await voiceChannel.join().then(async connection => {
 
