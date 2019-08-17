@@ -1165,7 +1165,7 @@ function function_RemoveFormatting(text, type, sliced)  {
   
     if  (type == "channel")  {
 
-        var FixedText = text.toLowerCase().replace(/[~*|` ]/g, '').replace(/\n/g, '');
+        var FixedText = text.toLowerCase().replace(/[~*|`]/g, '').replace(/[ ]/g, '_').replace(/\n/g, '');
 
         if  (sliced == true)  {
             FixedText.slice(0, 100);
