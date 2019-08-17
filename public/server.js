@@ -2554,7 +2554,7 @@ if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
         var RoleExist = member.guild.roles.find(role => role.name == name);
 
         if  (RoleExist) {
-            member.addRole(RoleExist, "Triggered by the Server Trial function.").catch(error => ErrorBag.add(error));
+            member.addRole(RoleExist.id, "Triggered by the Server Trial function.").catch(error => ErrorBag.add(error));
         };
 
     };
@@ -3791,7 +3791,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
             const name = peeky.serverData.get(keySF, "muted_role");
             const Role = message.guild.roles.find(role => role.name == name);
 
-            if  (Role && message.member.roles.has(Role.id))  {
+            if  (Role && !message.member.roles.has(Role.id))  {
 
                 //function_DirectMessage(message.member.user.id, "You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by the **Flood Protection** function.");
 
