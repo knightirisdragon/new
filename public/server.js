@@ -2,6 +2,7 @@
 const DiscordToken = process.env.BOT_TOKEN;
 const DDBLToken = process.env.DDBL_TOKEN;
 const BLSToken = process.env.BLS_TOKEN;
+const CBLToken = process.env.CBL_TOKEN;
 const YoutubeToken = process.env.YT_TOKEN;
 
 //Discord
@@ -1598,14 +1599,29 @@ peeky.on('ready', () => {
 
     setInterval(() => {
       
+        var GuildSize = peeky.guilds.size;
+      
         //Set user info
         peeky.user.setAvatar(RandomAvatars[Math.floor(Math.random()*RandomAvatars.length)]).catch(error => ErrorBag.add(error));
         peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
         console.log("Updated PEEKY's avatar.");
 
         //Post Server Counts
-        ddbl.postStats(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to DDBL."); ErrorBag.add(err)});
-        bls.postServerCount(peeky.guilds.size).catch(err => {console.log("Failed to post the serverCount to BLS."); ErrorBag.add(err)});
+        ddbl.postStats(GuildSize).catch(err => {console.log("Failed to post the serverCount to DDBL."); ErrorBag.add(err)});
+        bls.postServerCount(GuildSize).catch(err => {console.log("Failed to post the serverCount to BLS."); ErrorBag.add(err)});
+        request.post('https://crystalbotlist.uk/api/bot/482945063282802698/' + process.env.CBL_TOKEN, {
+          json: {
+            server_count: GuildSize
+          };
+        }, (error, res, body) => {
+          if (error) {
+            console.error(error)
+            return
+          }
+          console.log(`statusCode: ${res.statusCode}`)
+          console.log(body)
+        });
+      
         console.log("Stats posted to Bot Lists.");
 
         //Update Banned Users
