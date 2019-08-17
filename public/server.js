@@ -3051,7 +3051,7 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
     if  (reaction.emoji.name == "🏁")  {
 
         const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted and will be added shortly!",  "color": EmbedColor}; 
-        function_DirectMessage(reaction.message.author.id, {  embed  });
+        function_DirectMessage(reaction.message.author.id, { embed });
       
         function_DirectMessage(OwnerId, '[NoBackground, ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ']');
       
@@ -3439,7 +3439,7 @@ if  (message)  {
 //Workshop Response
 if  (message.channel.id == WorkshopChannel && message.author.id !== PeekyId)  {
     const embed = {"description": ErrorIcon + " Your submission in the Workshop has been denied.",  "color": EmbedColor}; 
-    function_DirectMessage(message.author.id, {  embed  });
+    function_DirectMessage(message.author.id, { embed });
 };
   
 };
@@ -3457,7 +3457,7 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
         QueuedSOSMessages.add(message.author.id);
 
         const embed = {"description": InfoIcon + " Do you want to send your message to PEEKY's owner?\n" + Hollow + " Type **Accept** in under 30 seconds if you do.",  "color": EmbedColor}; 
-        function_DirectMessage(message.author.id, {  embed  });
+        function_DirectMessage(message.author.id, { embed });
 
         message.channel.awaitMessages(response => response.content.toLowerCase() == "accept", {
           max: 1,
@@ -3477,13 +3477,13 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
             };
 
             const embed = {"description": SuccessIcon + " Your message has been successfuly sent to my owner!",  "color": EmbedColor}; 
-            function_DirectMessage(message.author.id, {  embed  });
+            function_DirectMessage(message.author.id, { embed });
           
         }).catch(() => {
            QueuedSOSMessages.delete(message.author.id);
 
            const embed = {"description": ErrorIcon + " Your message was not sent because the time limit has ran out.",  "color": EmbedColor}; 
-           function_DirectMessage(message.author.id, {  embed  });
+           function_DirectMessage(message.author.id, { embed });
         });
       
     };
@@ -3568,7 +3568,7 @@ if  (!ProfileBoosterCooldown.has("cooldown"))  {
 };  
   
 //FUNCTIONS
-if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF))  {
+if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF) && message.channel.permissionsFor(peeky.user).has('EMBED_LINKS'))  {
   
 //Automatic Reactions
 if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
@@ -4020,7 +4020,7 @@ if  (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true)  {
 };
 
 //COMMANDS
-if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.author.id) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.author.id) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES' && 'EMBED_LINKS'))  {
   
 //Mention Commands
   
@@ -4037,7 +4037,7 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
                      "color": 7506394 
     };
   
-    message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 };
   
@@ -4207,7 +4207,7 @@ if  (CommandName.startsWith("overview"))  {
             setTimeout(() => {OverviewCooldown.delete(message.guild.id)}, 10000);
 
             const embed = {"description": "**Overview Menu**" + "\n\n" + "1⃣ Server Settings" + "\n\n" + "2⃣ Server Functions `[1/2]`" + "\n\n" + "3⃣ Server Functions `[2/2]`" + "\n\n" + "4⃣ Channel Functions",  "color": EmbedColor}; 
-            await message.channel.send({  embed  }).catch(error => {ErrorBag.add(error);}).then(async m => {
+            await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                   peeky.userData.set(key, m.id, "OverviewID");
                   await m.react("1⃣").catch(error => {ErrorBag.add(error)});
@@ -6847,7 +6847,7 @@ if (CommandName.startsWith("playlist"))  {
             "name": "­\nSongs",
             "value": FinalizedPlaylist + "\n­"
           }],  "color": EmbedColor}; 
-          message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           
       } else {
         const embed = {"description": ErrorMessage7[0],  "color": EmbedColor}; 
@@ -6923,7 +6923,7 @@ if (CommandName.startsWith("guessthesong"))  {
                     peeky.serverData.set(keySF, "", "Link");
 
                     const embed = {"description": "**Try to guess the name of this song!**" + "\n" + GuessTheSong[ChosenSong][2],  "color": EmbedColor}; 
-                    message.channel.send({  embed  });
+                    message.channel.send({ embed });
 
                     message.channel.awaitMessages(response => response.content.toLowerCase() == GuessTheSong[ChosenSong][1].toLowerCase(), { maxMatches: 1, time: 30000, errors: ['time'] })
                     .then(collected => {
@@ -6942,12 +6942,12 @@ if (CommandName.startsWith("guessthesong"))  {
                       voiceChannel.leave();
                       
                       const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().author.username, "other", true) + "** has guessed the song's name!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                      message.channel.send({  embed  });
+                      message.channel.send({ embed });
                       
                     })
                     .catch(collected => {
                       const embed = {"description": ErrorIcon + " The song's name was **" + GuessTheSong[ChosenSong][1] + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                      message.channel.send({  embed  });
+                      message.channel.send({ embed });
                       
                       voiceChannel.leave();
                     });
@@ -6982,7 +6982,7 @@ if (CommandName.startsWith("triviaquestions"))  {
         setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 30000);
       
         const embed = {"description": "**" + TriviaQuestions[ChosenQuestion][0] + "**\n" + TriviaQuestions[ChosenQuestion][4] + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
-        message.channel.send({  embed  });
+        message.channel.send({ embed });
     
         message.channel.awaitMessages(response => response.content.toLowerCase() == TriviaQuestions[ChosenQuestion][1][0].toLowerCase(), { maxMatches: 1, time: 30000, errors: ['time'] })
         .then(collected => {
@@ -6999,11 +6999,11 @@ if (CommandName.startsWith("triviaquestions"))  {
              };
 
              const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().author.username, "other", true) + "** has chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-             message.channel.send({  embed  });
+             message.channel.send({ embed });
         })
         .catch(collected => {
               const embed = {"description": ErrorIcon + " The question's answer was **" + TriviaQuestions[ChosenQuestion][1][0] + "**.",  "color": EmbedColor}; 
-              message.channel.send({  embed  });
+              message.channel.send({ embed });
         });
 
       
@@ -7029,13 +7029,13 @@ if (CommandName.startsWith("drawandguess"))  {
         await function_DirectMessage(message.author.id, {  embed,  file: "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fempty_canvas.png"  });
 
         var embed = {"description": InfoIcon + " **" + function_RemoveFormatting(message.author.username, "other", true) + "** has **1 minute** to draw their word!",  "color": EmbedColor}; 
-        message.channel.send({  embed  });
+        message.channel.send({ embed });
     
         message.channel.awaitMessages(response => response.author.id == message.author.id && response.attachments.array().length > 0, { maxMatches: 1, time: 60000, errors: ['time'] })
         .then(collected => {
 
             const embed = {"description": InfoIcon + " Try to guess the word that **" + function_RemoveFormatting(message.author.username, "other", true) + "** has drawn!",  "color": EmbedColor}; 
-            message.channel.send({  embed  });
+            message.channel.send({ embed });
           
             message.channel.awaitMessages(response => response.author.id !== message.author.id && response.content.toLowerCase() == DrawAndGuess[ChosenQuestion].toLowerCase(), { maxMatches: 1, time: 30000, errors: ['time'] })
             .then(collected => {
@@ -7052,17 +7052,17 @@ if (CommandName.startsWith("drawandguess"))  {
                  };
 
                  const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().author.username, "other", true) + "** has guessed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                 message.channel.send({  embed  });
+                 message.channel.send({ embed });
             })
             .catch(collected => {
                 const embed = {"description": ErrorIcon + " The word was **" + DrawAndGuess[ChosenQuestion] + "**.",  "color": EmbedColor}; 
-                message.channel.send({  embed  });
+                message.channel.send({ embed });
             });
              
         })
         .catch(collected => {          
               const embed = {"description": ErrorIcon + " Sorry, but **" + function_RemoveFormatting(message.author.username, "other", true) + "** has ran out of time to draw.",  "color": EmbedColor}; 
-              message.channel.send({  embed  });
+              message.channel.send({ embed });
         });
 
       
