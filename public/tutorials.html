@@ -241,7 +241,9 @@ API
 <code>
 const fetch = require('node-fetch');
   
-fetch(`https://peeky.glitch.me/api.json`).then(response =&gt response.json()).then(async (data) =&gt {
+fetch(`https://peeky.glitch.me/api.json`, {
+    method: 'GET'
+}).then(response =&gt response.json()).then(async (data) =&gt {
      console.log(data);
 });
 </code>
