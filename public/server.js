@@ -1606,12 +1606,21 @@ peeky.on('ready', () => {
         peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
         console.log("Updated PEEKY's avatar.");
 
-        //Post Server Counts
+        //Post Server Counts - DDBL
         ddbl.postStats(GuildSize).catch(err => {console.log("Failed to post the server count to DDBL."); ErrorBag.add(err)});
-        bls.postServerCount(GuildSize).catch(err => {console.log("Failed to post the server count to BLS."); ErrorBag.add(err)});
       
-        const options = {};
-        request.post('https://crystalbotlist.uk/api/bot/482945063282802698/' + process.env.CBL_TOKEN, {  json: {  server_count: GuildSize  }  }).catch(err => {console.log("Failed to post the server count to CBL."); ErrorBag.add(err)});
+        //Post Server Counts - BLS
+        bls.postServerCount(GuildSize).catch(err => {console.log("Failed to post the server count to BLS."); ErrorBag.add(err)});
+
+        //Post Server Counts - CBL
+        node_fetch(`https://crystalbotlist.uk/api/bot/${peeky.user.id}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': process.env.CBL_TOKEN,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({  server_count: peeky.guild.size  })
+        }).catch(err => {console.log("Failed to post the server count to CBL."); ErrorBag.add(err)});
       
         console.log("Stats posted to Bot Lists.");
 
