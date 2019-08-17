@@ -2327,8 +2327,10 @@ if  (!WebsiteCooldowns.has("randomreview"))  {
       
     WebsiteCooldowns.add("randomreview");
     setTimeout(() => {WebsiteCooldowns.delete("randomreview")}, 600000);
-    
-    node_fetch('https://ls.terminal.ink/api/v2/bots/482945063282802698').then(response => response.json()).then(async (data) => {
+  
+    node_fetch(`https://ls.terminal.ink/api/v2/bots/${peeky.user.id}`, {
+        method: 'GET'
+    }).then(response => response.json()).then(async (data) => {
       
     var FilteredReviews = data.data.reviews.filter(r => r.text.length >= MinReviewLength);
       
@@ -2345,6 +2347,8 @@ if  (!WebsiteCooldowns.has("randomreview"))  {
         if (err) console.log(err); 
     });
       
+    }).catch(err => {
+        ErrorBag.add(err);
     });
       
     console.log("The featured review have been updated.");
