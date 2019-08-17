@@ -263,7 +263,7 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
-const ImmuneServers       = [  SupportServer, EmojiStorage1, 454933217666007052, 264445053596991498, 330777295952543744, 387812458661937152  ];
+const ImmuneServers       = [  SupportServer, EmojiStorage1, 454933217666007052, 264445053596991498, 330777295952543744, 387812458661937152, 597531758657011743  ];
 
 //Small Objects
 var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
