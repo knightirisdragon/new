@@ -7064,11 +7064,11 @@ if (CommandName.startsWith("mute "))  {
             var name = peeky.serverData.get(keySF, "muted_role");
             var RoleExists = message.guild.roles.find(role => role.name == name);
 
-            if  (MentionedMember) {
+            if  (MentionedMember)  {
 
-            if  (RoleExists) {
+            if  (RoleExists)  {
 
-            if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
+            if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && MentionedMember.roles.find(r => r.name == name))  {
 
                 await MentionedMember.addRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => {
                     const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
@@ -7131,11 +7131,11 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
     var name = peeky.serverData.get(keySF, "muted_role");
     var RoleExists = message.guild.roles.find(role => role.name == name);
 
-    if  (MentionedMember) {
+    if  (MentionedMember)  {
   
-    if  (RoleExists) {
+    if  (RoleExists)  {
       
-    if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id)  {
+    if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && !MentionedMember.roles.find(r => r.name == name))  {
 
         await MentionedMember.removeRole(message.member.guild.roles.find(role => role.name == name), "Unmuted by " + message.author.tag + ".").catch(error => { 
             const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
