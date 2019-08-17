@@ -7188,7 +7188,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 };
 
 //IDBan
-if (CommandName.startsWith("idban "))  {
+if  (CommandName.startsWith("idban "))  {
 
     if  (message.member.permissions.has("BAN_MEMBERS")) {
     
