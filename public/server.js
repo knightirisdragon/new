@@ -6514,11 +6514,16 @@ if (!ProfileCooldown.has(message.author.id))  {
 };
 
 //Play 
-if (CommandName.startsWith("play "))  {
+if (CommandName.startsWith("play"))  {
   
     if  (!CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
 
-    var GivenSong = CommandName.split("play ")[1];
+    var GivenSong = CommandName.split("play")[1];
+      
+    if  (GivenSong.startsWith(" "))  {
+      
+        GivenSong = GivenSong.replace(" ", "");
+      
     var Type = "Started";
     var DeleteMessage = false;
     var ChoosingMode = true;
@@ -6705,7 +6710,9 @@ if (CommandName.startsWith("play "))  {
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
-    });
+    });      
+      
+    };
       
     }
      else
