@@ -4210,13 +4210,13 @@ if  (CommandName.startsWith("overview"))  {
 //Toggle
 if (CommandName.startsWith("toggle"))  {
   
-if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
-  
     var FunctioName = CommandName.split("toggle")[1];
   
 if  (FunctioName.startsWith(" "))  {
   
     FunctioName = FunctioName.replace(" ", "");
+  
+if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
@@ -4924,13 +4924,6 @@ if  (FunctioName.startsWith("spoiler lock"))  {
  const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
-  
-}
- else if (FunctioName == "")
-{
- const embed = {"description": ErrorMessage17[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
  else
@@ -4939,20 +4932,25 @@ if  (FunctioName.startsWith("spoiler lock"))  {
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
+}
+ else if (FunctioName == "")
+{
+ const embed = {"description": ErrorMessage17[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+  
 };
 
 //Set
 if (CommandName.startsWith("set"))  {
   
-if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
-  
     var FunctioName = CommandName.split("set")[1];
-  
-    console.log(FunctioName)
   
 if  (FunctioName.startsWith(" "))  {
   
     FunctioName = FunctioName.replace(" ", "");
+  
+if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
       
@@ -5282,19 +5280,18 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < GameRolesL
  const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
-  
-}
- else if (FunctioName == "")
-{
- const embed = {"description": ErrorMessage17[0],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-  
 
 }
  else
 {
  const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+  
+}
+ else if (FunctioName == "")
+{
+ const embed = {"description": ErrorMessage17[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
@@ -7137,9 +7134,11 @@ if (CommandName.startsWith("drawandguess"))  {
 //Mute
 if (CommandName.startsWith("mute"))  {
 
-    if  (message.member.permissions.has("MUTE_MEMBERS"))  {
+if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 
-        if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
+if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
+
+if  (CommandName.startsWith("mute "))  {
 
             var MentionedMember = message.mentions.members.first();
             var name = peeky.serverData.get(keySF, "muted_role");
@@ -7185,30 +7184,37 @@ if (CommandName.startsWith("mute"))  {
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
-        }
-         else
-        {
-         const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
+}
+ else if (CommandName == "mute")
+{
+ const embed = {"description": ErrorIcon + " You must specify who to mute.",  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
 
-    }
-     else
-    {
-     const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+ else
+{
+ const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
 
 };
 
 //Unmute
 if (CommandName.startsWith("unmute"))  {
-  
-if  (CommandName.startsWith("unmute "))  {
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
     
 if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
+  
+if  (CommandName.startsWith("unmute "))  {
       
     var MentionedMember = message.mentions.members.first();
     var name = peeky.serverData.get(keySF, "muted_role");
@@ -7253,6 +7259,13 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
           const embed = {"description": ErrorMessage3[0],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
+
+}
+ else if (CommandName == "unmute")
+{
+ const embed = {"description": ErrorIcon + " You must specify who to unmute.",  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
   
 }
  else
@@ -7268,13 +7281,6 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
-}
- else if (CommandName == "unmute")
-{
- const embed = {"description": ErrorIcon + " ",  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-
 };
 
 //IDBan
@@ -7284,7 +7290,7 @@ if  (CommandName.startsWith("idban"))  {
 
     if  (GivenID.startsWith(" "))  {
 
-    if  (message.member.permissions.has("BAN_MEMBERS")) {
+    if  (message.member.permissions.has("BAN_MEMBERS"))  {
     
     if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
 
