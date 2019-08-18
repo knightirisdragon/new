@@ -4231,16 +4231,18 @@ if  (CommandName.startsWith("overview"))  {
 };
 
 //Toggle
-if (CommandName.startsWith("toggle "))  {
+if (CommandName.startsWith("toggle"))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
-    var FunctioName = CommandName.split("toggle ")[1];
+    var FunctioName = CommandName.split("toggle")[1].replace(" ", "");
     var InfoMessages = [];
     var ManageChannels = false;
     var ManageRoles = false;
+  
+    console.log(FunctioName);
   
     if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
         ManageChannels = true;  
@@ -4251,7 +4253,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
     };
       
 //Toggle Automatic Reactions
-if  (FunctioName.startsWith("automatic reactions")) {
+if  (FunctioName == "automatic reactions")  {
         
     if   (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true) {peeky.channelData.set(keyCF, false, "automatic_reactions_bonus")}
     else peeky.channelData.set(keyCF, true, "automatic_reactions_bonus");
@@ -4953,13 +4955,13 @@ if  (FunctioName.startsWith("spoiler lock"))  {
 };
 
 //Set
-if (CommandName.startsWith("set "))  {
+if (CommandName.startsWith("set"))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
-    var FunctioName = CommandName.split("set ")[1];
+    var FunctioName = CommandName.split("set")[1].replace(" ", "");
       
 //Set Welcome Messages
 if  (FunctioName.startsWith("welcome messages "))  {
@@ -5298,9 +5300,9 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < GameRolesL
 };
 
 //Clear
-if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "clear "))  {
+if  (CommandName.startsWith("clear"))  {
   
-    var FunctioName = CommandName.split("clear ")[1];
+    var FunctioName = CommandName.split("clear")[1].replace(" ", "");
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
@@ -5404,7 +5406,7 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
 };
   
 //BuyBackground  
-if  (CommandName.startsWith("buybackground "))  {
+if  (CommandName.startsWith("buybackground"))  {
 
     var Failed = true;
   
@@ -5535,7 +5537,7 @@ if (CommandName.startsWith("custombackground"))  {
 };
   
 //SetBackground
-if (CommandName.startsWith("setbackground "))  {
+if (CommandName.startsWith("setbackground"))  {
 
     var Failed = true;
 
@@ -5591,7 +5593,7 @@ if (CommandName.startsWith("setbackground "))  {
 };
   
 //SellBackground
-if (CommandName.startsWith("sellbackground "))  {
+if (CommandName.startsWith("sellbackground"))  {
   
     var i = CommandName.split("sellbackground ")[1]; 
     var InfoMessages = [];
@@ -5884,7 +5886,7 @@ if (CommandName.startsWith("daily"))  {
 };
 
 //Gift
-if (CommandName.startsWith("gift "))  {
+if (CommandName.startsWith("gift"))  {
 
 if  (!ProfileCooldown.has(message.author.id))  {
       
@@ -6508,11 +6510,11 @@ if (!ProfileCooldown.has(message.author.id))  {
 };
 
 //Play 
-if (CommandName.startsWith("play "))  {
+if (CommandName.startsWith("play"))  {
   
     if  (!CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
 
-    var GivenSong = CommandName.replace("play ", "");
+    var GivenSong = CommandName.replace(" ", "").replace("play", "");
     var Type = "Started";
     var DeleteMessage = false;
     var ChoosingMode = true;
@@ -6670,9 +6672,6 @@ if (CommandName.startsWith("play "))  {
             } else {
               const embed = {"description": ErrorIcon + " You cannot play livestreams or songs longer than 10 minutes.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-              
-              console.log(info);
-              console.log(results[0]);
             };
 
         }).catch(async (error) => {
