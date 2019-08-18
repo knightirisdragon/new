@@ -7123,9 +7123,11 @@ if (CommandName == "drawandguess")  {
 //Mute
 if  (CommandName.startsWith("mute"))  {
     
-    var CommandArgument = CommandName;
-
-if  (CommandArgument.startsWith("mute "))  {
+    var CommandArgument = CommandName.split("mute")[1];;
+  
+if  (CommandArgument.startsWith(" "))  {
+      
+    CommandArgument = CommandArgument.replace(" ", "");
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 
@@ -7190,7 +7192,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 };
 
 }
- else if (CommandArgument == "mute")
+ else if (CommandArgument == "")
 {
  const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7201,9 +7203,11 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 //Unmute
 if  (CommandName.startsWith("unmute"))  {
     
-    var CommandArgument = CommandName;
+    var CommandArgument = CommandName.split("unmute")[1];;
   
-if  (CommandArgument.startsWith("unmute "))  {
+if  (CommandArgument.startsWith(" "))  {
+      
+    CommandArgument = CommandArgument.replace(" ", "");
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
     
@@ -7259,7 +7263,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
  const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
-      
+
 }
  else
 {      
@@ -7268,7 +7272,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 };
 
 }
- else if (CommandArgument == "unmute")
+ else if (CommandArgument == "")
 {
  const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
