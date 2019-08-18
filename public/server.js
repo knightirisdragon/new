@@ -6515,14 +6515,14 @@ if (!ProfileCooldown.has(message.author.id))  {
 
 //Play 
 if (CommandName.startsWith("play"))  {
-  
-    if  (!CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
 
     var GivenSong = CommandName.split("play")[1];
       
     if  (GivenSong.startsWith(" "))  {
       
         GivenSong = GivenSong.replace(" ", "");
+  
+    if  (!CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
       
         var Type = "Started";
         var DeleteMessage = false;
@@ -6711,19 +6711,19 @@ if (CommandName.startsWith("play"))  {
         };
 
         });      
-
-    }
-     else if (GivenSong == "")
-    {
-     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
       
     }
      else
     {
       const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+    }
+     else if (GivenSong == "")
+    {
+     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 };
