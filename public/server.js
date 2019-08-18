@@ -250,7 +250,7 @@ const ErrorMessage6  = [ErrorIcon + " You do not have enough chests."];
 const ErrorMessage7  = [ErrorIcon + " The mentioned user has no profile."];
 const ErrorMessage8  = [ErrorIcon + " Mentions are not allowed for this command."];
 const ErrorMessage9  = [ErrorIcon + " You must enter a valid amount."];
-const ErrorMessage10 = [ErrorIcon + " Make sure the Function's name is all in lowercase."];
+const ErrorMessage10 = [ErrorIcon + " Make sure the function's name is all in lowercase."];
 const ErrorMessage11 = [ErrorIcon + " You need to be a Supporter to do that."];
 const ErrorMessage12 = [ErrorIcon + " There are no songs currently playing."];
 const ErrorMessage13 = [ErrorIcon + " Something has gone unexpectedly wrong."];
@@ -258,6 +258,7 @@ const ErrorMessage14 = [ErrorIcon + " You already own that background."];
 const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist."];
 const ErrorMessage16 = [ErrorIcon + " That background doesn't exist."]
 const ErrorMessage17 = [ErrorIcon + " You need to specify the function."];
+const ErrorMessage18 = [ErrorIcon + " You ne."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -7430,49 +7431,6 @@ if  (CommandName.startsWith("purge"))  {
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
-};
-  
-//Lockdown
-if  (CommandName.startsWith("lockdown"))  {
-
-    if  (message.member.permissions.has("MANAGE_CHANNELS"))  {
-
-        if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
-
-            var GivenRole = message.mentions.roles.first();
-
-        if  (GivenRole && GivenRole.name !== "@everyone") {
-
-            const embed = {"description": SuccessIcon + " The channel is now locked down for everyone except **@" + function_RemoveFormatting(GivenRole.name, "other", true) + "**.",  "color": EmbedColor}; 
-            await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-            message.channel.setName(message.channel.name + "_locked", "Locked by @" + message.author.tag + ".").catch(error => ErrorBag.add(error));
-
-            message.channel.overwritePermissions(message.guild.roles.find(r => r.name == "@everyone"), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
-            message.channel.overwritePermissions(message.guild.roles.find(r => r.id == GivenRole.id), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-            message.channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-
-        }
-         else
-        {
-          const embed = {"description": ErrorMessage3[0],  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };  
-
-        }
-         else
-        {
-         const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
-
-    }
-     else
-    {      
-      const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-  
 };
   
 //Prefix
