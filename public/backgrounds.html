@@ -58,14 +58,6 @@
     cursor: pointer;
 }
   
-#sort_old,
-#sort_cheap,
-#sort_revenue,
-#sort_exclusive,
-#sort_random {
-    display: none;  
-}
-  
 .workshop  {
     padding: 10px;
     overflow: auto;
@@ -92,99 +84,12 @@
   
 </style>
   
-<script>
-
-var CurrentSortMode = "old";
-var MaxSortingModes = 6;
-  
-function Loaded()  {
-
-  document.getElementById("sort_mode").innerHTML = "Sorting: Newest (1/" + MaxSortingModes + ")";
-  document.getElementById("sort_desc").innerHTML = "These are all the backgrounds, sorted by the newest.";
-  
-};
-  
-function ChangeSorting(current)  {
-  
-    if  (current == "new")  {
-        CurrentSortMode = "old";
-        document.getElementById("sort_new").style.display = "block";
-        document.getElementById("sort_old").style.display = "none";
-        document.getElementById("sort_random").style.display = "none";
-        document.getElementById("sort_cheap").style.display = "none";
-        document.getElementById("sort_revenue").style.display = "none";
-        document.getElementById("sort_exclusive").style.display = "none";
-      
-        document.getElementById("sort_mode").innerHTML = "Sorting: Newest (1/" + MaxSortingModes + ")";
-        document.getElementById("sort_desc").innerHTML = "These are all the backgrounds, sorted by the newest.";
-    } else if (current == "old") {
-        CurrentSortMode = "random";
-        document.getElementById("sort_new").style.display = "none";
-        document.getElementById("sort_old").style.display = "block";
-        document.getElementById("sort_random").style.display = "none";
-        document.getElementById("sort_cheap").style.display = "none";
-        document.getElementById("sort_revenue").style.display = "none";
-        document.getElementById("sort_exclusive").style.display = "none";
-      
-        document.getElementById("sort_mode").innerHTML = "Sorting: Oldest (2/" + MaxSortingModes + ")";
-        document.getElementById("sort_desc").innerHTML = "These are all the backgrounds, sorted by the oldest.";
-    } else if (current == "random") {
-        CurrentSortMode = "cheap";
-        document.getElementById("sort_new").style.display = "none";
-        document.getElementById("sort_old").style.display = "none";
-        document.getElementById("sort_random").style.display = "none";
-        document.getElementById("sort_cheap").style.display = "block";
-        document.getElementById("sort_revenue").style.display = "none";
-        document.getElementById("sort_exclusive").style.display = "none";
-      
-        document.getElementById("sort_mode").innerHTML = "Sorting: Under 250 Gredit (3/" + MaxSortingModes + ")";
-        document.getElementById("sort_desc").innerHTML = "These are all the backgrounds under 250 Gredit.";
-    } else if (current == "cheap") {
-        CurrentSortMode = "exclusive";
-        document.getElementById("sort_new").style.display = "none";
-        document.getElementById("sort_old").style.display = "none";
-        document.getElementById("sort_random").style.display = "none";
-        document.getElementById("sort_cheap").style.display = "none";
-        document.getElementById("sort_revenue").style.display = "block";
-        document.getElementById("sort_exclusive").style.display = "none";
-      
-        document.getElementById("sort_mode").innerHTML = "Sorting: Revenue Enabled (4/" + MaxSortingModes + ")";
-        document.getElementById("sort_desc").innerHTML = "These are all the backgrounds with Revenue Enabled.";
-    } else if (current == "exclusive") {
-        CurrentSortMode = "revenue";
-        document.getElementById("sort_new").style.display = "none";
-        document.getElementById("sort_old").style.display = "none";
-        document.getElementById("sort_random").style.display = "none";
-        document.getElementById("sort_cheap").style.display = "none";
-        document.getElementById("sort_revenue").style.display = "none";
-        document.getElementById("sort_exclusive").style.display = "block";
-      
-        document.getElementById("sort_mode").innerHTML = "Sorting: Exclusive (5/" + MaxSortingModes + ")";
-        document.getElementById("sort_desc").innerHTML = "These are all the exclusive backgrounds.";
-    } else if (current == "revenue") {
-        CurrentSortMode = "new";
-        document.getElementById("sort_new").style.display = "none";
-        document.getElementById("sort_old").style.display = "none";
-        document.getElementById("sort_random").style.display = "block";
-        document.getElementById("sort_cheap").style.display = "none";
-        document.getElementById("sort_revenue").style.display = "none";
-        document.getElementById("sort_exclusive").style.display = "none";
-      
-        document.getElementById("sort_mode").innerHTML = "Sorting: Shuffled (6/" + MaxSortingModes + ")";
-        document.getElementById("sort_desc").innerHTML = "These are all the backgrounds, but shuffled.";
-    };
-    
-};
-  
-</script>
-  
-<body onload="UpdateBackgrounds(); Loaded();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+<body onload="UpdateBackgrounds();" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
 <b>
     
 <div class="topnav" id="topnavmenu">
   <b>
   <a class="button" href="https://peeky.glitch.me" rel="noopener noreferrer"><font size="4">Home</font></a>
-  <a class="button" onclick="ChangeSorting(CurrentSortMode);"><font size="4">Change Sorting</font>  </a>
   </b>
 </div>
 
@@ -205,9 +110,7 @@ function ChangeSorting(current)  {
   
 <font size="7" class="headertext">Backgrounds</font>
 <font class="headersub">
-    <font size="4" id="sort_desc"></font>
-    <br>
-    <font size="2" id="sort_mode"></font>
+Here are all the backgrounds that you can use on your profile.
 </font>
 
 <br><br><br>

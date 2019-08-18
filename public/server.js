@@ -2,7 +2,6 @@
 const DiscordToken = process.env.BOT_TOKEN;
 const DDBLToken = process.env.DDBL_TOKEN;
 const BLSToken = process.env.BLS_TOKEN;
-const CBLToken = process.env.CBL_TOKEN;
 const YoutubeToken = process.env.YT_TOKEN;
 
 //Discord
@@ -1612,16 +1611,6 @@ peeky.on('ready', () => {
       
         //Post Server Counts - BLS
         bls.postServerCount(GuildSize).catch(err => {console.log("Failed to post the server count to BLS."); ErrorBag.add(err)});
-
-        //Post Server Counts - CBL
-        node_fetch(`https://crystalbotlist.uk/api/bot/${peeky.user.id}`, {
-            method: 'POST',
-            headers: {
-                'Authorization': process.env.CBL_TOKEN,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({  server_count: peeky.guild.size  })
-        }).catch(err => {console.log("Failed to post the server count to CBL."); ErrorBag.add(err)});
       
         console.log("Stats posted to Bot Lists.");
 
