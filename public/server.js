@@ -257,6 +257,7 @@ const ErrorMessage13 = [ErrorIcon + " Something has gone unexpectedly wrong."];
 const ErrorMessage14 = [ErrorIcon + " You already own that background."];
 const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist."];
 const ErrorMessage16 = [ErrorIcon + " That background doesn't exist."]
+const ErrorMessage17 = [ErrorIcon + " You need to specify the function."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -4214,6 +4215,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     var FunctioName = CommandName.split("toggle")[1];
   
 if  (FunctioName.startsWith(" "))  {
+  
+    FunctioName = FunctioName.replace(" ", "");
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
@@ -4922,6 +4925,11 @@ if  (FunctioName.startsWith("spoiler lock"))  {
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
+}
+ else if (FunctioName == "")
+{
+ const embed = {"description": ErrorMessage17[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 }
@@ -4943,6 +4951,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     console.log(FunctioName)
   
 if  (FunctioName.startsWith(" "))  {
+  
+    FunctioName = FunctioName.replace(" ", "");
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
       
@@ -5273,7 +5283,13 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < GameRolesL
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
+}
+ else if (FunctioName == "")
+{
+ const embed = {"description": ErrorMessage17[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
+  
 
 }
  else
@@ -5290,6 +5306,8 @@ if  (CommandName.startsWith("clear"))  {
     var FunctioName = CommandName.split("clear")[1];
   
 if  (FunctioName.startsWith(" "))  {
+  
+    FunctioName = FunctioName.replace(" ", "");
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
@@ -5336,6 +5354,11 @@ if  (FunctioName.startsWith("game roles"))  {
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
+}
+ else if (FunctioName == "")
+{
+ const embed = {"description": ErrorMessage17[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 };
@@ -5843,7 +5866,7 @@ if (CommandName.startsWith("daily"))  {
             CountedVotes ++;
 
         };
-                  
+
     });
 
     //Event Reward
