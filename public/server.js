@@ -4207,25 +4207,26 @@ if  (CommandName.startsWith("overview"))  {
 };
 
 //Toggle
-if (CommandName.startsWith("toggle "))  {
+if (CommandName.startsWith("toggle"))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+  
+    var FunctioName = CommandName.split("toggle")[1];
+  
+if  (FunctioName.startsWith(" "))  {
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
-  
-    var FunctioName = CommandName.split("toggle ")[1];
+
     var InfoMessages = [];
     var ManageChannels = false;
     var ManageRoles = false;
-  
-    console.log(FunctioName);
   
     if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
         ManageChannels = true;  
     };
   
     if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
-        ManageRoles = true;  
+        ManageRoles = true;
     };
       
 //Toggle Automatic Reactions
@@ -4920,6 +4921,8 @@ if  (FunctioName.startsWith("spoiler lock"))  {
  const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
+  
+};
 
 }
  else
@@ -4931,13 +4934,17 @@ if  (FunctioName.startsWith("spoiler lock"))  {
 };
 
 //Set
-if (CommandName.startsWith("set "))  {
+if (CommandName.startsWith("set"))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+  
+    var FunctioName = CommandName.split("set")[1];
+  
+    console.log(FunctioName)
+  
+if  (FunctioName.startsWith(" "))  {
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
-  
-    var FunctioName = CommandName.split("set ")[1];
       
 //Set Welcome Messages
 if  (FunctioName.startsWith("welcome messages "))  {
@@ -5265,6 +5272,8 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < GameRolesL
  const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
+  
+};
 
 }
  else
@@ -5276,9 +5285,11 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < GameRolesL
 };
 
 //Clear
-if  (CommandName.startsWith("clear "))  {
+if  (CommandName.startsWith("clear"))  {
   
-    var FunctioName = CommandName.split("clear ")[1];
+    var FunctioName = CommandName.split("clear")[1];
+  
+if  (FunctioName.startsWith(" "))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
@@ -5323,6 +5334,8 @@ if  (FunctioName.startsWith("game roles"))  {
 {
  const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
 };
 
 };
