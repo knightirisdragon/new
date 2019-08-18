@@ -4237,7 +4237,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
-    var FunctioName = CommandName.split("toggle")[1].replace(" ", "");
+    var FunctioName = CommandName.replace(" ", "").split("toggle")[1];
     var InfoMessages = [];
     var ManageChannels = false;
     var ManageRoles = false;
@@ -4624,7 +4624,7 @@ if  (FunctioName.startsWith("server age"))  {
     //Channel Creating    
     if (!channel) {
 
-    if  (!ChannelCooldown.has(message.guild.id)) {
+    if  (!ChannelCooldown.has(message.guild.id))  {
       
     if  (ManageChannels == true)  {
 
@@ -4674,7 +4674,7 @@ if  (FunctioName.startsWith("event countdown"))  {
     //Channel Creating    
     if (!channel) {
 
-    if  (!ChannelCooldown.has(message.guild.id)) {
+    if  (!ChannelCooldown.has(message.guild.id))  {
 
     if  (ManageChannels == true)  {
 
@@ -4710,7 +4710,7 @@ if  (FunctioName.startsWith("event countdown"))  {
 else
   
 //Toggle Notifications
-if  (FunctioName.startsWith("notifications")) {
+if  (FunctioName.startsWith("notifications"))  {
         
     if(peeky.serverData.get(keySF, "notifications") == true) {peeky.serverData.set(keySF, false, "notifications")}
     else peeky.serverData.set(keySF, true, "notifications");
@@ -4725,7 +4725,7 @@ if  (FunctioName.startsWith("notifications")) {
 else
   
 //Toggle Game Roles
-if  (FunctioName.startsWith("game roles")) {
+if  (FunctioName.startsWith("game roles"))  {
         
     if(peeky.serverData.get(keySF, "game_roles_bonus") == true) {peeky.serverData.set(keySF, false, "game_roles_bonus")}
     else peeky.serverData.set(keySF, true, "game_roles_bonus");
@@ -4740,7 +4740,7 @@ if  (FunctioName.startsWith("game roles")) {
 else
 
 //Toggle Clear Nicknames
-if  (FunctioName.startsWith("clear nicknames")) {
+if  (FunctioName.startsWith("clear nicknames"))  {
         
     if(peeky.serverData.get(keySF, "clear_nicknames_bonus") == true) {peeky.serverData.set(keySF, false, "clear_nicknames_bonus");}
     else peeky.serverData.set(keySF, true, "clear_nicknames_bonus");
@@ -4756,7 +4756,7 @@ if  (FunctioName.startsWith("clear nicknames")) {
 else
 
 //Toggle Suspicion Alert
-if  (FunctioName.startsWith("suspicion alert")) {
+if  (FunctioName.startsWith("suspicion alert"))  {
         
     if(peeky.serverData.get(keySF, "suspicion_alert_bonus") == true) {peeky.serverData.set(keySF, false, "suspicion_alert_bonus");}
     else peeky.serverData.set(keySF, true, "suspicion_alert_bonus");
@@ -4961,7 +4961,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
-    var FunctioName = CommandName.split("set")[1].replace(" ", "");
+    var FunctioName = CommandName.replace(" ", "").split("set")[1];
       
 //Set Welcome Messages
 if  (FunctioName.startsWith("welcome messages "))  {
@@ -5302,7 +5302,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < GameRolesL
 //Clear
 if  (CommandName.startsWith("clear"))  {
   
-    var FunctioName = CommandName.split("clear")[1].replace(" ", "");
+    var FunctioName = CommandName.replace(" ", "").split("clear")[1];
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
@@ -5352,9 +5352,9 @@ if  (FunctioName.startsWith("game roles"))  {
 };
 
 //BuyDescription
-if (CommandName.startsWith("buydescription "))  {
+if (CommandName.startsWith("buydescription"))  {
       
-    var NewDescription = CommandName.split("buydescription ")[1];
+    var NewDescription = CommandName.replace(" ", "").split("buydescription")[1];
 
     var UpdatedAmount = NewDescription.length;
     var NewLinesCount = 0;
@@ -7108,7 +7108,7 @@ if (CommandName.startsWith("drawandguess"))  {
 };
 
 //Mute
-if (CommandName.startsWith("mute "))  {
+if (CommandName.startsWith("mute"))  {
 
     if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 
@@ -7175,7 +7175,7 @@ if (CommandName.startsWith("mute "))  {
 };
 
 //Unmute
-if (CommandName.startsWith("unmute "))  {
+if (CommandName.startsWith("unmute"))  {
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
     
@@ -7242,13 +7242,13 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 };
 
 //IDBan
-if  (CommandName.startsWith("idban "))  {
+if  (CommandName.startsWith("idban"))  {
 
     if  (message.member.permissions.has("BAN_MEMBERS")) {
     
     if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
 
-        var GivenID = CommandName.split("idban ")[1];
+        var GivenID = CommandName.replace(" ", "").split("idban")[1];
         var ValidID = 0;
 
         await peeky.fetchUser(GivenID, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
@@ -7299,7 +7299,7 @@ if  (CommandName.startsWith("idban "))  {
 };
   
 //Ban
-if (CommandName.startsWith("ban "))  {
+if (CommandName.startsWith("ban"))  {
 
     if  (message.member.permissions.has("BAN_MEMBERS"))  {
 
@@ -7344,13 +7344,13 @@ if (CommandName.startsWith("ban "))  {
 };
 
 //Purge
-if (CommandName.startsWith("purge "))  {
+if (CommandName.startsWith("purge"))  {
 
     if  (message.member.permissions.has("MANAGE_MESSAGES"))  {
     
         if  (message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
-            var BulkAmount = CommandName.split("purge ")[1];
+            var BulkAmount = CommandName.replace(" ", "").split("purge ")[1];
 
             if  (isNaN(BulkAmount) == false && BulkAmount > 0 && BulkAmount <= 100)  {
 
@@ -7434,14 +7434,14 @@ if  (CommandName.startsWith("lockdown"))  {
 };
   
 //Prefix
-if (CommandName.startsWith("prefix "))  {
+if (CommandName.startsWith("prefix"))  {
 
     if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
             const InfoMessages = [InfoIcon + " If the server prefix is broken, join the Support Server."];
-            var   NewPrefix    = CommandName.split("prefix ")[1].toLowerCase();
+            var   NewPrefix    = CommandName.replace(" ", "").split("prefix ")[1].toLowerCase();
 
             peeky.serverData.set(keySF, NewPrefix, "prefix");
 
@@ -7465,13 +7465,13 @@ if (CommandName.startsWith("prefix "))  {
 };
   
 //MuteRole
-if  (CommandName.startsWith("muterole "))  {
+if  (CommandName.startsWith("muterole"))  {
 
     if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-            var MutedRole = CommandName.split("muterole ")[1];
+            var MutedRole = CommandName.replace(" ", "").split("muterole")[1];
             var FixedMutedRole = function_RemoveFormatting(MutedRole, "role", true);
             var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
             var InfoMessages = [];
