@@ -2857,23 +2857,24 @@ if  (peeky.serverData.has(keySF))  {
 //CHANNEL UPDATE EVENTS
 peeky.on("channelUpdate", async (oldChannel, newChannel) => {
   
-const keySF = `${newChannel.guild.id}`;
+const keySF   = `${newChannel.guild.id}`;
+const channel = newChannel;
 
 //FUNCTIONS
 
 //Dash Remover
 if  (peeky.serverData.has(keySF))  {
 
-    if  (newChannel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
+    if  (channel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
 
         if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
 
-            var FinalName = newChannel.name.replace(/[-]/g, ' ');
+            var FinalName = channel.name.replace(/[-]/g, ' ');
 
-            if  (newChannel.type == "text" &&newChannel.name !== FinalName)  {
+            if  (channel.type == "text" && channel.name !== FinalName)  {
 
-                await newChannel.setName(FinalName, "Triggered by the Dash Remover function.").catch(error => ErrorBag.add(error));
-                console.log("The Dash Remover function has been triggered in " + newChannel.guild.name + ".");
+                await channel.setName(FinalName, "Triggered by the Dash Remover function.").catch(error => ErrorBag.add(error));
+                console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
         
                 function_UpdateAutowipe(keySF, "server");
 
@@ -5404,9 +5405,13 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
 //BuyBackground  
 if  (CommandName.startsWith("buybackground "))  {
 
-    for(var i = 1; i <= Banners.length; i++) {
+    var Failed = true;
+  
+    for(var i = 1; i <= Banners.length; i++)  {
 
         if  (message.content == peeky.serverData.get(keySF, "prefix") + "buybackground " + i)  {
+          
+            var Failed = false;
 
             if  ((i !== 1) && (Banners[i - 1][Banner.Price] !== Exclusive))  {
 
@@ -5473,6 +5478,8 @@ if  (CommandName.startsWith("buybackground "))  {
         };
 
     };
+  
+    if  (Failed == true)  {};
 
 };
   
