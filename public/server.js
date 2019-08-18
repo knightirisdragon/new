@@ -6513,11 +6513,11 @@ if (!ProfileCooldown.has(message.author.id))  {
 //Play 
 if (CommandName.startsWith("play"))  {
 
-    var GivenSong = CommandName.split("play")[1];
+    var CommandArgument = CommandName.split("play")[1];
       
-    if  (GivenSong.startsWith(" "))  {
+    if  (CommandArgument.startsWith(" "))  {
       
-        GivenSong = GivenSong.replace(" ", "");
+        CommandArgument = CommandArgument.replace(" ", "");
   
     if  (!CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
       
@@ -6529,44 +6529,44 @@ if (CommandName.startsWith("play"))  {
         MusicCmdCooldown.add(message.guild.id);
         setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
 
-        if  (GivenSong.includes("youtube.com") || GivenSong.includes("youtu.be"))  {
+        if  (CommandArgument.includes("youtube.com") || CommandArgument.includes("youtu.be"))  {
             DeleteMessage = true;
         };
 
-        if  (GivenSong == RandomString && ChoosingMode == true)  {
+        if  (CommandArgument == RandomString && ChoosingMode == true)  {
 
-            GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+            CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
             Type = "Random";
             ChoosingMode = false;
 
         };
 
-        if  ((GivenSong == "previous" || IsRandom == true) && ChoosingMode == true)  {
+        if  ((CommandArgument == "previous" || IsRandom == true) && ChoosingMode == true)  {
 
             ChoosingMode = false;
 
             if  (peeky.serverData.has(keySF, "Link") && peeky.serverData.get(keySF, "Link") !== "None")  {  
 
-                GivenSong = peeky.serverData.get(keySF, "Link");
+                CommandArgument = peeky.serverData.get(keySF, "Link");
                 Type = "Previous";
 
             } else {
               const embed = {"description": InfoIcon + " Previous song not found, playing a random song.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-              GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+              CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
               Type = "Random";
             };
 
         };
 
-        if  ((GivenSong == "playlist" || GivenSong == peeky.userData.get(key, "PlaylistName").toLowerCase()) && ChoosingMode == true)  {
+        if  ((CommandArgument == "playlist" || CommandArgument == peeky.userData.get(key, "PlaylistName").toLowerCase()) && ChoosingMode == true)  {
 
             DeleteMessage = false;
 
             if  (peeky.userData.get(key, "Playlist").length > 0)  {
 
-                GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
+                CommandArgument = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
                 Type = "Playlist";
 
             } else {
@@ -6574,28 +6574,28 @@ if (CommandName.startsWith("play"))  {
               const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-              GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+              CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
               Type = "Random";
 
             };
 
         };
 
-        search(GivenSong, SearchOptions, async function(error, results)  {
+        search(CommandArgument, SearchOptions, async function(error, results)  {
 
             if  (error) return ErrorBag.add(error);
 
             if  (ChoosingMode == true)  {
 
                 if  (results.length > 0)  {      
-                    GivenSong = results[0].link;
+                    CommandArgument = results[0].link;
                 };
 
             };
 
-        if  (!GivenSong.includes("?list="))  {
+        if  (!CommandArgument.includes("?list="))  {
 
-        if  ((GivenSong) && (ytdl.validateURL(GivenSong) == true))  {
+        if  ((CommandArgument) && (ytdl.validateURL(CommandArgument) == true))  {
 
         if  (message.member.voiceChannel)  {
 
@@ -6603,7 +6603,7 @@ if (CommandName.startsWith("play"))  {
 
         if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
 
-                await ytdl.getBasicInfo(GivenSong).then(async (info) => {
+                await ytdl.getBasicInfo(CommandArgument).then(async (info) => {
                 info = info.player_response.videoDetails;
 
                 const Thumbnail  = info.thumbnail.thumbnails[info.thumbnail.thumbnails.length - 1].url;
@@ -6624,7 +6624,7 @@ if (CommandName.startsWith("play"))  {
                 peeky.serverData.set(keySF, Author, "Author");
                 peeky.serverData.set(keySF, LengthDate, "Length");
                 peeky.serverData.set(keySF, Started, "Started");
-                peeky.serverData.set(keySF, GivenSong, "Link");
+                peeky.serverData.set(keySF, CommandArgument, "Link");
 
                 if  (DeleteMessage == true)  {
                     message.delete().catch(error => ErrorBag.add(error));
@@ -6638,7 +6638,7 @@ if (CommandName.startsWith("play"))  {
                     message.guild.me.setNickname("🎵 " + "Playing in " + function_RemoveFormatting(voiceChannel.name, "other", false).slice(0, 14) + " 🎵");
                 };
 
-                const stream = ytdl(GivenSong);
+                const stream = ytdl(CommandArgument);
                 const dispatcher = await connection.playStream(stream, StreamOptions);
 
                 dispatcher.on('end', async reason => {
@@ -6717,7 +6717,7 @@ if (CommandName.startsWith("play"))  {
     };
 
     }
-     else if (GivenSong == "")
+     else if (CommandArgument == "")
     {
      const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -6760,13 +6760,13 @@ if (CommandName == "current")  {
 //Playlist
 if (CommandName.startsWith("playlist"))  {
 
-    var PlaylistAction = CommandName.split("playlist")[1];
+    var CommandArgument = CommandName.split("playlist")[1];
   
-    if  (PlaylistAction.startsWith(" add "))  {
+    if  (CommandArgument.startsWith(" add "))  {
       
     if  (!MusicCmdCooldown.has(message.author.id))  {
       
-        var PlaylistRequest = PlaylistAction.replace(" add ", "");
+        var PlaylistRequest = CommandArgument.replace(" add ", "");
       
         MusicCmdCooldown.add(message.author.id);
         setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 30000);
@@ -6826,9 +6826,9 @@ if (CommandName.startsWith("playlist"))  {
     };
 
     } else 
-    if  (PlaylistAction.startsWith(" remove "))  {
+    if  (CommandArgument.startsWith(" remove "))  {
       
-        var PlaylistRequest = PlaylistAction.replace(" remove ", "");
+        var PlaylistRequest = CommandArgument.replace(" remove ", "");
 
         if  (peeky.userData.get(key, "Playlist").includes(PlaylistRequest))  {
 
@@ -6845,9 +6845,9 @@ if (CommandName.startsWith("playlist"))  {
         };
     
     } else  
-    if  (PlaylistAction.startsWith(" rename "))  {
+    if  (CommandArgument.startsWith(" rename "))  {
       
-        var PlaylistRequest = function_RemoveFormatting(PlaylistAction.replace(" rename ", ""), "other", true);
+        var PlaylistRequest = function_RemoveFormatting(CommandArgument.replace(" rename ", ""), "other", true);
 
         peeky.userData.set(key, PlaylistRequest, "PlaylistName")
 
@@ -6855,7 +6855,7 @@ if (CommandName.startsWith("playlist"))  {
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     } else
-    if  (PlaylistAction.startsWith(" clear"))  {
+    if  (CommandArgument.startsWith(" clear"))  {
 
         const embed = {"description": SuccessIcon + " You have cleared **" + peeky.userData.get(key, "Playlist").length + " songs** from your playlist.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7098,7 +7098,7 @@ if (CommandName == "drawandguess")  {
                      peeky.userData.math(key, "+", 50, "Gredit");
                  };
 
-                 const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().author.username, "other", true) + "** has guessed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                 const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(collected.first().author.username, "other", true) + "** has guessed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                  message.channel.send({ embed });
             })
             .catch(collected => {
