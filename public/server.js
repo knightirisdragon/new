@@ -7166,7 +7166,7 @@ if  (CommandName.startsWith("mute "))  {
 }
  else if (CommandName == "mute")
 {
- const embed = {"description": ErrorIcon + " You must specify who to mute.",  "color": EmbedColor}; 
+ const embed = {"description": ErrorIcon + " You must specify whom to mute.",  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
@@ -7242,7 +7242,7 @@ if  (CommandName.startsWith("unmute "))  {
 }
  else if (CommandName == "unmute")
 {
- const embed = {"description": ErrorIcon + " You must specify who to unmute.",  "color": EmbedColor}; 
+ const embed = {"description": ErrorIcon + " You must specify whom to unmute.",  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
