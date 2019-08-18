@@ -2,6 +2,7 @@
 const DiscordToken = process.env.BOT_TOKEN;
 const DDBLToken = process.env.DDBL_TOKEN;
 const BLSToken = process.env.BLS_TOKEN;
+const BFDToken = process.env.BFD_TOKEN;
 const YoutubeToken = process.env.YT_TOKEN;
 
 //Discord
@@ -1611,6 +1612,16 @@ peeky.on('ready', () => {
       
         //Post Server Counts - BLS
         bls.postServerCount(GuildSize).catch(err => {console.log("Failed to post the server count to BLS."); ErrorBag.add(err)});
+
+        //Post Server Counts - BFD
+        node_fetch(`https://botsfordiscord.com/api/bot/${peeky.user.id}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': BFDToken,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({  server_count: peeky.guild.size  })
+        }).catch(err => {console.log("Failed to post the server count to CBL."); ErrorBag.add(err)});
       
         console.log("Stats posted to Bot Lists.");
 
