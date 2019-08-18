@@ -4008,7 +4008,8 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
 //Prefixed Commands
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
-var CommandName = message.content.replace(peeky.serverData.get(keySF, "prefix"), "");
+var CommandName     = message.content.replace(peeky.serverData.get(keySF, "prefix"), "");
+var CommandArgument = CommandName.split(CommandName.split(" ")[0])[1];
 
 function_UpdateAutowipe(key, "user");
 function_UpdateAutowipe(keySF, "server");
@@ -7455,11 +7456,9 @@ if  (CommandName.startsWith("purge"))  {
 //Prefix
 if (CommandName.startsWith("prefix"))  {
   
-    var CommandArgument = CommandName.split("prefix")[1].toLowerCase();
-  
     if  (CommandArgument.startsWith(" "))  {
 
-        CommandArgument = CommandArgument.replace(" ", "");
+        CommandArgument = CommandArgument.replace(" ", "").toLowerCase();;
 
     if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
 
