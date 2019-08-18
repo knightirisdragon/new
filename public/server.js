@@ -1620,7 +1620,7 @@ peeky.on('ready', () => {
                 'Authorization': BFDToken,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({  server_count: peeky.guild.size  })
+            body: JSON.stringify({  server_count: GuildSize  })
         }).catch(err => {console.log("Failed to post the server count to CBL."); ErrorBag.add(err)});
       
         console.log("Stats posted to Bot Lists.");
