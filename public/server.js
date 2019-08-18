@@ -5593,10 +5593,10 @@ if (CommandName.startsWith("setbackground"))  {
   
 //SellBackground
 if (CommandName.startsWith("sellbackground"))  {
-
-    var Failed = true;
   
-if  (IsNaN() == false)  {
+    var i = CommandName.split("sellbackground ")[1];
+  
+if  (i !== AllString)  {
 
     for (var i = 1; i <= Banners.length; i++)  {
       
