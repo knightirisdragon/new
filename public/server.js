@@ -6524,194 +6524,199 @@ if (CommandName.startsWith("play"))  {
       
         GivenSong = GivenSong.replace(" ", "");
       
-    var Type = "Started";
-    var DeleteMessage = false;
-    var ChoosingMode = true;
-    var IsRandom = false;
-      
-    MusicCmdCooldown.add(message.guild.id);
-    setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
-  
-    if  (GivenSong.includes("youtube.com") || GivenSong.includes("youtu.be"))  {
-        DeleteMessage = true;
-    };
-  
-    if  (GivenSong == RandomString && ChoosingMode == true)  {
-      
-        GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
-        Type = "Random";
-        ChoosingMode = false;
-      
-    };
-  
-    if  ((GivenSong == "previous" || IsRandom == true) && ChoosingMode == true)  {
-      
-        ChoosingMode = false;
-      
-        if  (peeky.serverData.has(keySF, "Link") && peeky.serverData.get(keySF, "Link") !== "None")  {  
+        var Type = "Started";
+        var DeleteMessage = false;
+        var ChoosingMode = true;
+        var IsRandom = false;
 
-            GivenSong = peeky.serverData.get(keySF, "Link");
-            Type = "Previous";
+        MusicCmdCooldown.add(message.guild.id);
+        setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
 
-        } else {
-          const embed = {"description": InfoIcon + " Previous song not found, playing a random song.",  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-          GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
-          Type = "Random";
+        if  (GivenSong.includes("youtube.com") || GivenSong.includes("youtu.be"))  {
+            DeleteMessage = true;
         };
-      
-    };
-  
-    if  ((GivenSong == "playlist" || GivenSong == peeky.userData.get(key, "PlaylistName").toLowerCase()) && ChoosingMode == true)  {
-      
-        DeleteMessage = false;
-      
-        if  (peeky.userData.get(key, "Playlist").length > 0)  {
 
-            GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
-            Type = "Playlist";
+        if  (GivenSong == RandomString && ChoosingMode == true)  {
 
-        } else {
-
-          const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-          GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
-          Type = "Random";
+            GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+            Type = "Random";
+            ChoosingMode = false;
 
         };
-      
-    };
-      
-    search(GivenSong, SearchOptions, async function(error, results)  {
 
-        if  (error) return ErrorBag.add(error);
+        if  ((GivenSong == "previous" || IsRandom == true) && ChoosingMode == true)  {
 
-        if  (ChoosingMode == true)  {
-          
-            if  (results.length > 0)  {      
-                GivenSong = results[0].link;
+            ChoosingMode = false;
+
+            if  (peeky.serverData.has(keySF, "Link") && peeky.serverData.get(keySF, "Link") !== "None")  {  
+
+                GivenSong = peeky.serverData.get(keySF, "Link");
+                Type = "Previous";
+
+            } else {
+              const embed = {"description": InfoIcon + " Previous song not found, playing a random song.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+              GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+              Type = "Random";
             };
-          
+
         };
-      
-    if  (!GivenSong.includes("?list="))  {
-      
-    if  ((GivenSong) && (ytdl.validateURL(GivenSong) == true))  {
 
-    if  (message.member.voiceChannel)  {
+        if  ((GivenSong == "playlist" || GivenSong == peeky.userData.get(key, "PlaylistName").toLowerCase()) && ChoosingMode == true)  {
 
-        const voiceChannel  = message.member.voiceChannel;
-    
-    if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
+            DeleteMessage = false;
 
-            await ytdl.getBasicInfo(GivenSong).then(async (info) => {
-            info = info.player_response.videoDetails;
-              
-            const Thumbnail  = info.thumbnail.thumbnails[info.thumbnail.thumbnails.length - 1].url;
-            const Title      = info.title;
-            const Author     = info.author;
-            const Length     = info.lengthSeconds;
-            const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
-            const Started    = new Date();
-          
-            if  (Length <= 600 && Length > 0)  {
-              
-            await voiceChannel.join().then(async connection => {
+            if  (peeky.userData.get(key, "Playlist").length > 0)  {
 
-            CurrentlyPlaying.add(message.guild.id);
-          
-            peeky.serverData.set(keySF, Title, "Title");
-            peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
-            peeky.serverData.set(keySF, Author, "Author");
-            peeky.serverData.set(keySF, LengthDate, "Length");
-            peeky.serverData.set(keySF, Started, "Started");
-            peeky.serverData.set(keySF, GivenSong, "Link");
-              
-            if  (DeleteMessage == true)  {
-                message.delete().catch(error => ErrorBag.add(error));
-            };            
+                GivenSong = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
+                Type = "Playlist";
 
-            message.channel.startTyping();
-            await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
-            message.channel.stopTyping();
-              
-            if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
-                message.guild.me.setNickname("🎵 " + "Playing in " + function_RemoveFormatting(voiceChannel.name, "other", false).slice(0, 14) + " 🎵");
+            } else {
+
+              const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+              GivenSong = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+              Type = "Random";
+
             };
 
-            const stream = ytdl(GivenSong);
-            const dispatcher = await connection.playStream(stream, StreamOptions);
+        };
 
-            dispatcher.on('end', async reason => {
-              
-            CurrentlyPlaying.delete(message.guild.id);
-            voiceChannel.leave();
-              
-            if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 "))))  {
-                message.guild.me.setNickname(null);
+        search(GivenSong, SearchOptions, async function(error, results)  {
+
+            if  (error) return ErrorBag.add(error);
+
+            if  (ChoosingMode == true)  {
+
+                if  (results.length > 0)  {      
+                    GivenSong = results[0].link;
+                };
+
             };
-              
-            const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
-              
-            const embed = {"description": InfoIcon + " The song has now finished with **" + Listeners.length + " listeners**.",  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-              
-            if  (Listeners.length >= 5)  {
-              
-                Listeners.forEach(id => {
 
-                    if  (peeky.userData.has(id) && peeky.userData.get(id, "PartyBadge") == false)  {
-                        peeky.userData.set(id, true, "PartyBadge");
-                    };
+        if  (!GivenSong.includes("?list="))  {
+
+        if  ((GivenSong) && (ytdl.validateURL(GivenSong) == true))  {
+
+        if  (message.member.voiceChannel)  {
+
+            const voiceChannel  = message.member.voiceChannel;
+
+        if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
+
+                await ytdl.getBasicInfo(GivenSong).then(async (info) => {
+                info = info.player_response.videoDetails;
+
+                const Thumbnail  = info.thumbnail.thumbnails[info.thumbnail.thumbnails.length - 1].url;
+                const Title      = info.title;
+                const Author     = info.author;
+                const Length     = info.lengthSeconds;
+                const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
+                const Started    = new Date();
+
+                if  (Length <= 600 && Length > 0)  {
+
+                await voiceChannel.join().then(async connection => {
+
+                CurrentlyPlaying.add(message.guild.id);
+
+                peeky.serverData.set(keySF, Title, "Title");
+                peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
+                peeky.serverData.set(keySF, Author, "Author");
+                peeky.serverData.set(keySF, LengthDate, "Length");
+                peeky.serverData.set(keySF, Started, "Started");
+                peeky.serverData.set(keySF, GivenSong, "Link");
+
+                if  (DeleteMessage == true)  {
+                    message.delete().catch(error => ErrorBag.add(error));
+                };            
+
+                message.channel.startTyping();
+                await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
+                message.channel.stopTyping();
+
+                if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
+                    message.guild.me.setNickname("🎵 " + "Playing in " + function_RemoveFormatting(voiceChannel.name, "other", false).slice(0, 14) + " 🎵");
+                };
+
+                const stream = ytdl(GivenSong);
+                const dispatcher = await connection.playStream(stream, StreamOptions);
+
+                dispatcher.on('end', async reason => {
+
+                CurrentlyPlaying.delete(message.guild.id);
+                voiceChannel.leave();
+
+                if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 "))))  {
+                    message.guild.me.setNickname(null);
+                };
+
+                const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
+
+                const embed = {"description": InfoIcon + " The song has now finished with **" + Listeners.length + " listeners**.",  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                if  (Listeners.length >= 5)  {
+
+                    Listeners.forEach(id => {
+
+                        if  (peeky.userData.has(id) && peeky.userData.get(id, "PartyBadge") == false)  {
+                            peeky.userData.set(id, true, "PartyBadge");
+                        };
+
+                    });
+
+                };
 
                 });
 
-            };
-               
-            });
+                }).catch(error => { 
+                    const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    ErrorBag.add(error);
+                });
 
-            }).catch(error => { 
-                const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                } else {
+                  const embed = {"description": ErrorIcon + " You cannot play livestreams or songs longer than 10 minutes.",  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
+
+            }).catch(async (error) => {
                 ErrorBag.add(error);
+
+                const embed = {"description": ErrorIcon + " Failed to get the YouTube video.",  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             });
 
-            } else {
-              const embed = {"description": ErrorIcon + " You cannot play livestreams or songs longer than 10 minutes.",  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };
+        } else {
+          const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
 
-        }).catch(async (error) => {
-            ErrorBag.add(error);
-          
-            const embed = {"description": ErrorIcon + " Failed to get the YouTube video.",  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        });
+        } else {
+          const embed = {"description": ErrorIcon + " You need to join a voice channel.",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
 
-    } else {
-      const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
+        } else {
+          const embed = {"description": ErrorMessage4[0],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
 
-    } else {
-      const embed = {"description": ErrorIcon + " You need to join a voice channel.",  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-      
-    } else {
-      const embed = {"description": ErrorMessage4[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-      
-    } else {
-      const embed = {"description": ErrorIcon + " You cannot play a YouTube playlist.",  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
+        } else {
+          const embed = {"description": ErrorIcon + " You cannot play a YouTube playlist.",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
 
-    });      
-      
+        });      
+
+    }
+     else if (GivenSong == "")
+    {
+     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
       
     }
@@ -7276,6 +7281,8 @@ if  (CommandName.startsWith("idban"))  {
     var GivenID = CommandName.split("idban")[1];
 
     if  (GivenID.startsWith(" "))  {
+      
+        GivenID = GivenID.replace(" ", "");
 
     if  (message.member.permissions.has("BAN_MEMBERS"))  {
     
@@ -7329,7 +7336,7 @@ if  (CommandName.startsWith("idban"))  {
     };
       
     }
-     else
+     else if (GivenID == "")
     {
      const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7432,7 +7439,7 @@ if  (CommandName.startsWith("purge"))  {
         };
 
     }
-     else
+     else if (BulkAmount == "")
     {
      const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7475,7 +7482,7 @@ if (CommandName.startsWith("prefix"))  {
     };
   
     }
-     else
+     else if (NewPrefix == "")
     {      
      const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7580,7 +7587,7 @@ if  (CommandName.startsWith("muterole"))  {
     };
   
     }
-     else
+     else if (MutedRole == "")
     {      
      const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
