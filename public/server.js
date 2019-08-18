@@ -674,7 +674,10 @@ const Banners = [
     ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground398.jpg?v=1565844185444", 450, "Penguin trip", "Unknown", undefined],
     ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground399.png?v=1565844196700", 425, "Quail", "Unknown", undefined],
     ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground400.png?v=1565844199887", 450, "Tiger", "Jack Merlin", undefined],
-    ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground401.png?v=1565953633386", 500, "Monster of the east", "Fallout New Vegas", undefined]
+    ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground401.png?v=1565953633386", 500, "Monster of the east", "Fallout New Vegas", undefined],
+    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground402.png?v=1566128627988", 450, "Los thanos", "Harry Osborn", undefined],
+    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground403.png?v=1566128632167", 475, "To the rescue", "Ghost Recond Breakpoint", undefined],
+    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground404.png?v=1566128626627", 225, "Torture dance", "u/Arbitrarium_", undefined],
 
 ];
 
@@ -4210,7 +4213,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
-    var FunctioName = CommandName.replace(" ", "").split("toggle")[1];
+    var FunctioName = CommandName.split("toggle ")[1];
     var InfoMessages = [];
     var ManageChannels = false;
     var ManageRoles = false;
@@ -4928,13 +4931,13 @@ if  (FunctioName.startsWith("spoiler lock"))  {
 };
 
 //Set
-if (CommandName.startsWith("set"))  {
+if (CommandName.startsWith("set "))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
-    var FunctioName = CommandName.replace(" ", "").split("set")[1];
+    var FunctioName = CommandName.split("set ")[1];
       
 //Set Welcome Messages
 if  (FunctioName.startsWith("welcome messages "))  {
@@ -5273,9 +5276,9 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < GameRolesL
 };
 
 //Clear
-if  (CommandName.startsWith("clear"))  {
+if  (CommandName.startsWith("clear "))  {
   
-    var FunctioName = CommandName.replace(" ", "").split("clear")[1];
+    var FunctioName = CommandName.split("clear ")[1];
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
