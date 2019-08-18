@@ -5364,9 +5364,13 @@ if  (FunctioName.startsWith("game roles"))  {
 };
 
 //BuyDescription
-if (CommandName.startsWith("buydescription "))  {
+if (CommandName.startsWith("buydescription"))  {
       
-    var NewDescription = CommandName.split("buydescription ")[1];
+    var NewDescription = CommandName.split("buydescription")[1];
+  
+if  (NewDescription.startsWith(" "))  {
+  
+    NewDescription = NewDescription.replace(" ", "");
 
     var UpdatedAmount = NewDescription.length;
     var NewLinesCount = 0;
@@ -5413,7 +5417,14 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
     {
      const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
+    };  
+  
+}
+ else
+{
+ const embed = {"description": ErrorIcon + " You cannot have a blank description.",  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
   
 };
   
@@ -5650,6 +5661,8 @@ if  (i !== AllString)  {
                 {
                   const embed = {"description": ErrorIcon + " You cannot sell the default background.",  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                  
+                  break;
                 };
 
             }
@@ -5657,6 +5670,8 @@ if  (i !== AllString)  {
             {
               const embed = {"description": ErrorMessage5[0],  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                  
+              break;
             };            
           
         };      
@@ -7254,7 +7269,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 };
 
 //IDBan
-if  (CommandName.startsWith("idban "))  {
+if  (CommandName.startsWith("idban"))  {
 
     if  (message.member.permissions.has("BAN_MEMBERS")) {
     
@@ -7311,7 +7326,7 @@ if  (CommandName.startsWith("idban "))  {
 };
   
 //Ban
-if (CommandName.startsWith("ban "))  {
+if (CommandName.startsWith("ban"))  {
 
     if  (message.member.permissions.has("BAN_MEMBERS"))  {
 
@@ -7356,7 +7371,7 @@ if (CommandName.startsWith("ban "))  {
 };
 
 //Purge
-if (CommandName.startsWith("purge "))  {
+if (CommandName.startsWith("purge"))  {
 
     if  (message.member.permissions.has("MANAGE_MESSAGES"))  {
     
@@ -7403,7 +7418,7 @@ if (CommandName.startsWith("purge "))  {
 };
   
 //Lockdown
-if  (CommandName.startsWith("lockdown "))  {
+if  (CommandName.startsWith("lockdown"))  {
 
     if  (message.member.permissions.has("MANAGE_CHANNELS"))  {
 
@@ -7446,13 +7461,16 @@ if  (CommandName.startsWith("lockdown "))  {
 };
   
 //Prefix
-if (CommandName.startsWith("prefix " ))  {
+if (CommandName.startsWith("prefix" ))  {
+  
+    var NewPrefix = CommandName.split("prefix")[1].toLowerCase();
+  
+if  (MutedRole.startsWith(" "))  {
 
     if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-            var   NewPrefix    = CommandName.split("prefix ")[1].toLowerCase();
             const InfoMessages = [InfoIcon + " If the server prefix is broken, join the Support Server."];
 
             peeky.serverData.set(keySF, NewPrefix, "prefix");
@@ -7473,17 +7491,29 @@ if (CommandName.startsWith("prefix " ))  {
       const embed = {"description": PermissionsMessageError2[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
+  
+}
+ else
+{      
+ const embed = {"description": ErrorIcon + " You need to specify the new server prefix.",  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};  
 
 };
   
 //MuteRole
-if  (CommandName.startsWith("muterole "))  {
+if  (CommandName.startsWith("muterole"))  {
+  
+    var MutedRole = CommandName.split("muterole")[1];
+  
+if  (MutedRole.startsWith(" "))  {
+  
+    MutedRole = MutedRole.replace(" ", "");
 
     if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-            var MutedRole = CommandName.split("muterole")[1];
             var FixedMutedRole = function_RemoveFormatting(MutedRole, "role", true);
             var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
             var InfoMessages = [];
@@ -7565,7 +7595,14 @@ if  (CommandName.startsWith("muterole "))  {
     {      
       const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
+    };  
+  
+}
+ else
+{      
+ const embed = {"description": ErrorIcon + " You need to specify the Mute Role's name.",  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};  
 
 };
   
