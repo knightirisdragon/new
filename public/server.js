@@ -4606,8 +4606,7 @@ if  (FunctioName.startsWith("server age"))  {
      else
     {
      const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
-     message.channel.send({ embed })
-     .catch(error => ErrorBag.add(error));
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
     };
       
@@ -5343,16 +5342,16 @@ if  (FunctioName.startsWith("game roles"))  {
 //BuyDescription
 if (CommandName.startsWith("buydescription"))  {
       
-    var NewDescription = CommandName.split("buydescription")[1];
+    var CommandArgument = CommandName.split("buydescription")[1];
   
-if  (NewDescription.startsWith(" "))  {
+if  (CommandArgument.startsWith(" "))  {
   
-    NewDescription = NewDescription.replace(" ", "");
+    CommandArgument = CommandArgument.replace(" ", "");
 
-    var UpdatedAmount = NewDescription.length;
+    var UpdatedAmount = CommandArgument.length;
     var NewLinesCount = 0;
     var MaxLines = "\n";
-    var str = NewDescription;
+    var str = CommandArgument;
   
 if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {  UpdatedAmount = 0;  };
 
@@ -5360,14 +5359,14 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
         
     if  (peeky.userData.get(key, "Gredit") >= UpdatedAmount)  {
 
-        if  (NewDescription !== RandomString)  {
+        if  (CommandArgument !== RandomString)  {
 
             if  (NewLinesCount < 2)  {
 
                 const embed = {"description": SuccessIcon + " You have bought a new description for **" + UpdatedAmount.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-                peeky.userData.set(key, NewDescription, "Description");
+                peeky.userData.set(key, CommandArgument, "Description");
                 peeky.userData.math(key, "-", UpdatedAmount, "Gredit");
 
                 }
@@ -5397,7 +5396,7 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
     };  
   
 }
- else if (NewDescription == "")
+ else if (CommandArgument == "")
 {
  const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7124,9 +7123,11 @@ if (CommandName == "drawandguess")  {
 };
 
 //Mute
-if (CommandName.startsWith("mute"))  {
+if  (CommandName.startsWith("mute"))  {
+    
+    var CommandArgument = CommandName;
 
-if  (CommandName.startsWith("mute "))  {
+if  (CommandArgument.startsWith("mute "))  {
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 
@@ -7191,7 +7192,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 };
 
 }
- else if (CommandName == "mute")
+ else if (CommandArgument == "mute")
 {
  const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7200,9 +7201,11 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 };
 
 //Unmute
-if (CommandName.startsWith("unmute"))  {
+if  (CommandName.startsWith("unmute"))  {
+    
+    var CommandArgument = CommandName;
   
-if  (CommandName.startsWith("unmute "))  {
+if  (CommandArgument.startsWith("unmute "))  {
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
     
@@ -7267,7 +7270,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 };
 
 }
- else if (CommandName == "unmute")
+ else if (CommandArgument == "unmute")
 {
  const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7278,11 +7281,11 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 //IDBan
 if  (CommandName.startsWith("idban"))  {
 
-    var GivenID = CommandName.split("idban")[1];
+    var CommandArgument = CommandName.split("idban")[1];
 
-    if  (GivenID.startsWith(" "))  {
+    if  (CommandArgument.startsWith(" "))  {
       
-        GivenID = GivenID.replace(" ", "");
+        CommandArgument = CommandArgument.replace(" ", "");
 
     if  (message.member.permissions.has("BAN_MEMBERS"))  {
     
@@ -7290,20 +7293,20 @@ if  (CommandName.startsWith("idban"))  {
 
         var ValidID = 0;
 
-        await peeky.fetchUser(GivenID, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
+        await peeky.fetchUser(CommandArgument, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
       
         if  (ValidID == 0) {
 
-        if  (!message.guild.members.find(m => m.id == GivenID))  {
+        if  (!message.guild.members.find(m => m.id == CommandArgument))  {
 
-            await message.guild.ban(GivenID, "ID banned by " + message.author.tag + ".").catch(error => { 
+            await message.guild.ban(CommandArgument, "ID banned by " + message.author.tag + ".").catch(error => { 
                   const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   ErrorBag.add(error); Failed = true;
             });
 
             if  (Failed == false)  {
-                const embed = {"description": SuccessIcon + " I have ID banned **" + function_RemoveFormatting(peeky.users.get(GivenID).username, "other", true) + "** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                const embed = {"description": SuccessIcon + " I have ID banned **" + function_RemoveFormatting(peeky.users.get(CommandArgument).username, "other", true) + "** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
             
@@ -7336,7 +7339,7 @@ if  (CommandName.startsWith("idban"))  {
     };
       
     }
-     else if (GivenID == "")
+     else if (CommandArgument == "")
     {
      const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7392,28 +7395,28 @@ if (CommandName.startsWith("ban"))  {
 //Purge
 if  (CommandName.startsWith("purge"))  {
 
-    var BulkAmount = CommandName.split("purge")[1];
+    var CommandArgument = CommandName.split("purge")[1];
 
-    if  (BulkAmount.startsWith(" "))  {
+    if  (CommandArgument.startsWith(" "))  {
 
     if  (message.member.permissions.has("MANAGE_MESSAGES"))  {
     
         if  (message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
-            BulkAmount = BulkAmount.replace(" ", "");
+            CommandArgument = CommandArgument.replace(" ", "");
 
-            if  (isNaN(BulkAmount) == false && BulkAmount > 0 && BulkAmount <= 100)  {
+            if  (isNaN(CommandArgument) == false && CommandArgument > 0 && CommandArgument <= 100)  {
 
                     await message.delete().catch(error => ErrorBag.add(error));
 
-                    message.channel.bulkDelete(BulkAmount).catch(error => {
+                    message.channel.bulkDelete(CommandArgument).catch(error => {
                         const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                         ErrorBag.add(error); Failed = true;
                     });
 
                     if  (Failed == false)  {
-                        const embed = {"description":  SuccessIcon + " I have purged **" + BulkAmount + " messages** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                        const embed = {"description":  SuccessIcon + " I have purged **" + CommandArgument + " messages** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
 
@@ -7439,7 +7442,7 @@ if  (CommandName.startsWith("purge"))  {
         };
 
     }
-     else if (BulkAmount == "")
+     else if (CommandArgument == "")
     {
      const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7450,11 +7453,11 @@ if  (CommandName.startsWith("purge"))  {
 //Prefix
 if (CommandName.startsWith("prefix"))  {
   
-    var NewPrefix = CommandName.split("prefix")[1].toLowerCase();
+    var CommandArgument = CommandName.split("prefix")[1].toLowerCase();
   
-    if  (NewPrefix.startsWith(" "))  {
+    if  (CommandArgument.startsWith(" "))  {
 
-        NewPrefix = NewPrefix.replace(" ", "");
+        CommandArgument = CommandArgument.replace(" ", "");
 
     if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
 
@@ -7462,9 +7465,9 @@ if (CommandName.startsWith("prefix"))  {
 
             const InfoMessages = [InfoIcon + " If the server prefix is broken, join the Support Server."];
 
-            peeky.serverData.set(keySF, NewPrefix, "prefix");
+            peeky.serverData.set(keySF, CommandArgument, "prefix");
 
-            const embed = {"description": SuccessIcon + " The server prefix is now **" + NewPrefix + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            const embed = {"description": SuccessIcon + " The server prefix is now **" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
@@ -7476,13 +7479,13 @@ if (CommandName.startsWith("prefix"))  {
 
     }
      else
-    {      
+    {
       const embed = {"description": PermissionsMessageError2[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
     }
-     else if (NewPrefix == "")
+     else if (CommandArgument == "")
     {      
      const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7493,18 +7496,18 @@ if (CommandName.startsWith("prefix"))  {
 //MuteRole
 if  (CommandName.startsWith("muterole"))  {
   
-    var MutedRole = CommandName.split("muterole")[1];
+    var CommandArgument = CommandName.split("muterole")[1];
 
-    if  (MutedRole.startsWith(" "))  {
+    if  (CommandArgument.startsWith(" "))  {
 
     if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
-        MutedRole = MutedRole.replace(" ", "");
+        CommandArgument = CommandArgument.replace(" ", "");
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-            var FixedMutedRole = function_RemoveFormatting(MutedRole, "role", true);
-            var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
+            var FixedMutedRole = function_RemoveFormatting(CommandArgument, "role", true);
+            var RoleExist = message.guild.roles.find(role => role.name == CommandArgument);
             var InfoMessages = [];
             var FilteredChannels = message.guild.channels.array().filter(channel => channel.type == "text" || channel.type == "voice");
 
@@ -7516,19 +7519,19 @@ if  (CommandName.startsWith("muterole"))  {
                     setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
 
                    await message.guild.createRole({
-                        name: MutedRole,
+                        name: CommandArgument,
                         color: "#943148"
                    }).catch(error => ErrorBag.add(error));
 
-                   InfoMessages.push(InfoIcon + " Created a role called **" + MutedRole + "**.");
+                   InfoMessages.push(InfoIcon + " Created a role called **" + CommandArgument + "**.");
 
-                   if  (message.guild.roles.find(role => role.name == MutedRole) && message.guild.me.hasPermission("MANAGE_CHANNELS") && !RoleCooldown.has(message.guild.id + "muterole"))  {
+                   if  (message.guild.roles.find(role => role.name == CommandArgument) && message.guild.me.hasPermission("MANAGE_CHANNELS") && !RoleCooldown.has(message.guild.id + "muterole"))  {
                        
                        RoleCooldown.add(message.guild.id + "muterole");
                        setTimeout(() => {RoleCooldown.delete(message.guild.id + "muterole")}, 300000);
                          
                        var Amount = 0;
-                       var MuteRole = message.guild.roles.find(role => role.name == MutedRole);
+                       var MuteRole = message.guild.roles.find(role => role.name == CommandArgument);
                      
                        FilteredChannels.forEach(channel => {
                              
@@ -7550,12 +7553,12 @@ if  (CommandName.startsWith("muterole"))  {
 
                        });
 
-                       InfoMessages.push(InfoIcon + " Edited **" + Amount + "/" + FilteredChannels.length + " channels** for the **" + MutedRole + "** role.");     
+                       InfoMessages.push(InfoIcon + " Edited **" + Amount + "/" + FilteredChannels.length + " channels** for the **" + CommandArgument + "** role.");     
 
                   }
                    else
                   {
-                   InfoMessages.push(ErrorIcon + " Couldn't edit channels for the **" + MutedRole + "** role.");  
+                   InfoMessages.push(ErrorIcon + " Couldn't edit channels for the **" + CommandArgument + "** role.");  
                   };
 
                }
@@ -7567,9 +7570,9 @@ if  (CommandName.startsWith("muterole"))  {
               
             };
 
-            peeky.serverData.set(keySF, MutedRole, "muted_role");
+            peeky.serverData.set(keySF, CommandArgument, "muted_role");
           
-            const embed = {"description": SuccessIcon + " The Mute Role for this server is now **@" + MutedRole + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+            const embed = {"description": SuccessIcon + " The Mute Role for this server is now **@" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
@@ -7587,7 +7590,7 @@ if  (CommandName.startsWith("muterole"))  {
     };
   
     }
-     else if (MutedRole == "")
+     else if (CommandArgument == "")
     {      
      const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
