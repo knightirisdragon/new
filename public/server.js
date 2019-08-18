@@ -258,7 +258,7 @@ const ErrorMessage14 = [ErrorIcon + " You already own that background."];
 const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist."];
 const ErrorMessage16 = [ErrorIcon + " That background doesn't exist."]
 const ErrorMessage17 = [ErrorIcon + " You need to specify the function."];
-const ErrorMessage18 = [ErrorIcon + " You are missing the command arguments."];
+const ErrorMessage18 = [ErrorIcon + " Please provide arguments for the command."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -4008,8 +4008,7 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
 //Prefixed Commands
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
-var CommandName     = message.content.replace(peeky.serverData.get(keySF, "prefix"), "");
-var CommandArgument = CommandName.split(CommandName.split(" ")[0])[1];
+var CommandName = message.content.replace(peeky.serverData.get(keySF, "prefix"), "");
 
 function_UpdateAutowipe(key, "user");
 function_UpdateAutowipe(keySF, "server");
@@ -5342,7 +5341,7 @@ if  (FunctioName.startsWith("game roles"))  {
 
 //BuyDescription
 if (CommandName.startsWith("buydescription"))  {
-      
+  
     var CommandArgument = CommandName.split("buydescription")[1];
   
 if  (CommandArgument.startsWith(" "))  {
@@ -6513,8 +6512,6 @@ if (!ProfileCooldown.has(message.author.id))  {
 
 //Play 
 if (CommandName.startsWith("play"))  {
-
-    var CommandArgument = CommandName.split("play")[1];
       
     if  (CommandArgument.startsWith(" "))  {
       
@@ -6760,8 +6757,6 @@ if (CommandName == "current")  {
 
 //Playlist
 if (CommandName.startsWith("playlist"))  {
-
-    var CommandArgument = CommandName.split("playlist")[1];
   
     if  (CommandArgument.startsWith(" add "))  {
       
@@ -7123,8 +7118,8 @@ if (CommandName == "drawandguess")  {
 
 //Mute
 if  (CommandName.startsWith("mute"))  {
-    
-    var CommandArgument = CommandName.split("mute")[1];;
+  
+    var CommandArgument = CommandName.split("mute")[1];
   
 if  (CommandArgument.startsWith(" "))  {
       
@@ -7203,8 +7198,8 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 
 //Unmute
 if  (CommandName.startsWith("unmute"))  {
-    
-    var CommandArgument = CommandName.split("unmute")[1];;
+  
+    var CommandArgument = CommandName.split("unmute")[1];
   
 if  (CommandArgument.startsWith(" "))  {
       
@@ -7283,7 +7278,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 
 //IDBan
 if  (CommandName.startsWith("idban"))  {
-
+  
     var CommandArgument = CommandName.split("idban")[1];
 
     if  (CommandArgument.startsWith(" "))  {
@@ -7397,7 +7392,7 @@ if (CommandName.startsWith("ban"))  {
 
 //Purge
 if  (CommandName.startsWith("purge"))  {
-
+  
     var CommandArgument = CommandName.split("purge")[1];
 
     if  (CommandArgument.startsWith(" "))  {
@@ -7455,6 +7450,8 @@ if  (CommandName.startsWith("purge"))  {
   
 //Prefix
 if (CommandName.startsWith("prefix"))  {
+  
+    var CommandArgument = CommandName.split("prefix")[1];
   
     if  (CommandArgument.startsWith(" "))  {
 
