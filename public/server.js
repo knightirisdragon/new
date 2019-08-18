@@ -258,7 +258,7 @@ const ErrorMessage14 = [ErrorIcon + " You already own that background."];
 const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist."];
 const ErrorMessage16 = [ErrorIcon + " That background doesn't exist."]
 const ErrorMessage17 = [ErrorIcon + " You need to specify the function."];
-const ErrorMessage18 = [ErrorIcon + " Missing command arguments."];
+const ErrorMessage18 = [ErrorIcon + " You are missing the command arguments."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -5399,7 +5399,7 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
 }
  else
 {
- const embed = {"description": ErrorIcon + " You cannot have a blank description.",  "color": EmbedColor}; 
+ const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
