@@ -5397,7 +5397,7 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
     };  
   
 }
- else
+ else if (NewDescription == "")
 {
  const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
