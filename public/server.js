@@ -1366,6 +1366,7 @@ function function_GetBackground(key)  {
   
 };
 
+//Detect Link
 function function_DetectLink(string)  {
 
   if  (string.length > 0)  {
