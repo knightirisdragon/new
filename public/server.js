@@ -3989,7 +3989,7 @@ if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.
 //Mention Commands
   
 //Help
-if  ((message.mentions.members.first() && message.mentions.members.first().id == PeekyId) || (message.content.startsWith(peeky.serverData.get(keySF, "prefix") + "help")))  {
+if  ((message.mentions.members.first() && message.mentions.members.first().id == PeekyId) || (message.content == peeky.serverData.get(keySF, "prefix") + "help"))  {
     
     const embed = {  "description": 
                      "**Website** [[Open]](https://peeky.glitch.me/)\nYou can visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related." + 
@@ -4049,7 +4049,7 @@ if (CommandName.startsWith("eval "))  {
 };
 
 //EventRewards
-if (CommandName.startsWith("eventrewards"))  {
+if (CommandName == "eventrewards")  {
   
     if  (EventStatus == true)  {
       
@@ -4107,7 +4107,7 @@ if (CommandName.startsWith("upgrade"))  {
 };
 
 //SetInvite
-if (CommandName.startsWith("setinvite"))  {
+if (CommandName == "setinvite")  {
   
     if  (!SetInviteCooldown.has(message.guild.id))  {
 
@@ -4156,7 +4156,7 @@ if (CommandName.startsWith("setinvite"))  {
 };
       
 //Overview
-if  (CommandName.startsWith("overview"))  {
+if (CommandName == "overview")  {
   
     if  (!OverviewCooldown.has(message.guild.id))  {
       
@@ -5804,7 +5804,7 @@ if (CommandName.startsWith("open"))  {
 };
 
 //Daily
-if (CommandName.startsWith("daily"))  {
+if (CommandName == "daily")  {
 
     let cooldown     = 8.64e+7;
     let lastDaily    = peeky.userData.get(key, "DailyRewarded");
@@ -6729,7 +6729,7 @@ if (CommandName.startsWith("play"))  {
 };
 
 //Current
-if  (CommandName.startsWith("current"))  {
+if (CommandName == "current")  {
       
     if  (!MusicCmdCooldown.has(message.author.id))  {
 
@@ -6909,7 +6909,7 @@ if (CommandName.startsWith("playlist"))  {
 };
 
 //Skip
-if (CommandName.startsWith("skip"))  {
+if (CommandName == "skip")  {
       
     if  (CurrentlyPlaying.has(message.guild.id))  {
       
@@ -6940,7 +6940,7 @@ if (CommandName.startsWith("skip"))  {
 };
 
 //GuessTheSong  
-if (CommandName.startsWith("guessthesong"))  {
+if (CommandName == "guessthesong")  {
 
     if  (!CurrentlyPlaying.has(message.guild.id) && !ActiveMinigames.has(message.guild.id))  {
 
@@ -7020,7 +7020,7 @@ if (CommandName.startsWith("guessthesong"))  {
 };
 
 //TriviaQuestions  
-if (CommandName.startsWith("triviaquestions"))  {
+if (CommandName == "triviaquestions")  {
 
     if  (!ActiveMinigames.has(message.guild.id))  {
 
@@ -7065,7 +7065,7 @@ if (CommandName.startsWith("triviaquestions"))  {
 };
 
 //DrawAndGuess  
-if (CommandName.startsWith("drawandguess"))  {
+if (CommandName == "drawandguess")  {
 
     if  (!ActiveMinigames.has(message.guild.id))  {
 
