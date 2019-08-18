@@ -1153,22 +1153,6 @@ function function_RemoveFormatting(text, type, sliced)  {
 
     } else
   
-    if  (type == "get")  {
-
-        var FixedText = text.toLowerCase().replace(/`/g, '');
-
-        if  (sliced == true)  {
-            FixedText.slice(0, 1000);
-        };
-
-        if  (FixedText !== "")  {
-            return FixedText;
-        } else {
-            return BadFormat;
-        };
-      
-    } else
-  
     if  (type == "channel")  {
 
         var FixedText = text.toLowerCase().replace(/[~*|`]/g, '').replace(/[ ]/g, '_').replace(/\n/g, '');
@@ -4027,11 +4011,6 @@ var CommandName = message.content.replace(peeky.serverData.get(keySF, "prefix"),
 
 function_UpdateAutowipe(key, "user");
 function_UpdateAutowipe(keySF, "server");
-  
-//Get
-if  (CommandName.startsWith("get "))  {
-    message.channel.send("`" + function_RemoveFormatting(CommandName.split("get ")[1], "get", true) + "`").catch(error => ErrorBag.add(error));
-};
 
 //Eval
 if (CommandName.startsWith("eval "))  {
