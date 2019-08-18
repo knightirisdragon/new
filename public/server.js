@@ -5593,13 +5593,10 @@ if (CommandName.startsWith("setbackground"))  {
   
 //SellBackground
 if (CommandName.startsWith("sellbackground"))  {
-  
-    var i = CommandName.split("sellbackground ")[1]; 
-    var InfoMessages = [];
-  
-if  (i !== AllString)  {
 
     var Failed = true;
+  
+if  (IsNaN() == false)  {
 
     for (var i = 1; i <= Banners.length; i++)  {
       
@@ -5614,6 +5611,7 @@ if  (i !== AllString)  {
                     var BackgroundIndex  = peeky.userData.get(key, "Inventory").indexOf(i);
                     var FinalPrice       = Banners[i - 1][Banner.Price];
                     var i                = Number(i);
+                    var InfoMessages = [];
 
                     if  (FinalPrice == Exclusive)  {
                         FinalPrice = 0;
