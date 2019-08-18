@@ -258,7 +258,7 @@ const ErrorMessage14 = [ErrorIcon + " You already own that background."];
 const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist."];
 const ErrorMessage16 = [ErrorIcon + " That background doesn't exist."]
 const ErrorMessage17 = [ErrorIcon + " You need to specify the function."];
-const ErrorMessage18 = [ErrorIcon + " You ne."];
+const ErrorMessage18 = [ErrorIcon + " Missing command arguments."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -7114,11 +7114,11 @@ if (CommandName.startsWith("drawandguess"))  {
 //Mute
 if (CommandName.startsWith("mute"))  {
 
+if  (CommandName.startsWith("mute "))  {
+
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 
 if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
-
-if  (CommandName.startsWith("mute "))  {
 
             var MentionedMember = message.mentions.members.first();
             var name = peeky.serverData.get(keySF, "muted_role");
@@ -7165,13 +7165,6 @@ if  (CommandName.startsWith("mute "))  {
                 };
 
 }
- else if (CommandName == "mute")
-{
- const embed = {"description": ErrorIcon + " You must specify whom to mute.",  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-
-}
  else
 {
  const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
@@ -7185,16 +7178,23 @@ if  (CommandName.startsWith("mute "))  {
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
+}
+ else if (CommandName == "mute")
+{
+ const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
 };
 
 //Unmute
 if (CommandName.startsWith("unmute"))  {
+  
+if  (CommandName.startsWith("unmute "))  {
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
     
 if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
-  
-if  (CommandName.startsWith("unmute "))  {
       
     var MentionedMember = message.mentions.members.first();
     var name = peeky.serverData.get(keySF, "muted_role");
@@ -7239,13 +7239,6 @@ if  (CommandName.startsWith("unmute "))  {
           const embed = {"description": ErrorMessage3[0],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
-
-}
- else if (CommandName == "unmute")
-{
- const embed = {"description": ErrorIcon + " You must specify whom to unmute.",  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
   
 }
  else
@@ -7259,6 +7252,13 @@ if  (CommandName.startsWith("unmute "))  {
 {      
   const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+ else if (CommandName == "unmute")
+{
+ const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 };
@@ -7324,7 +7324,7 @@ if  (CommandName.startsWith("idban"))  {
     }
      else
     {
-     const embed = {"description": ErrorIcon + " You need to specify the User ID to Ban.",  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -7427,7 +7427,7 @@ if  (CommandName.startsWith("purge"))  {
     }
      else
     {
-     const embed = {"description": ErrorIcon + " You need to specify the amount of messages to purge.",  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -7470,7 +7470,7 @@ if (CommandName.startsWith("prefix"))  {
     }
      else
     {      
-     const embed = {"description": ErrorIcon + " You need to specify the new server prefix.",  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };  
 
@@ -7575,7 +7575,7 @@ if  (CommandName.startsWith("muterole"))  {
     }
      else
     {      
-     const embed = {"description": ErrorIcon + " You need to specify the Mute Role's name.",  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };  
 
