@@ -5539,7 +5539,7 @@ if (CommandName.startsWith("setbackground "))  {
 
     var Failed = true;
 
-    for (var i = 1; i <= Banners.length; i++) {
+    for (var i = 1; i <= Banners.length; i++)  {
 
         if  (message.content == peeky.serverData.get(keySF, "prefix") + "setbackground " + i)  {
           
@@ -5594,13 +5594,17 @@ if (CommandName.startsWith("setbackground "))  {
 if (CommandName.startsWith("sellbackground "))  {
   
     var i = CommandName.split("sellbackground ")[1]; 
-    var InfoMessages = []; 
+    var InfoMessages = [];
   
 if  (i !== AllString)  {
-  
-    if  (i <= Banners.length)  {
 
-        if  (isNaN(i) == false)  {  i = Number(i)  };
+    var Failed = true;
+
+    for (var i = 1; i <= Banners.length; i++)  {
+      
+        if  (message.content == peeky.serverData.get(keySF, "prefix") + "sellbackground " + i)  {
+            
+            Failed = false;
 
             if  (peeky.userData.get(key, "Inventory").includes(i))  {
 
@@ -5639,13 +5643,15 @@ if  (i !== AllString)  {
             {
               const embed = {"description": ErrorMessage5[0],  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };
-    
-    }
-     else
-    {
-     const embed = {"description": ErrorMessage16[0], "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };            
+          
+        };      
+      
+    };
+  
+    if  (Failed == true)  {
+        const embed = {"description": ErrorMessage16[0], "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 }
