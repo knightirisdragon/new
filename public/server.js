@@ -7135,7 +7135,7 @@ if (CommandName.startsWith("drawandguess"))  {
 };
 
 //Mute
-if (CommandName.startsWith("mute "))  {
+if (CommandName.startsWith("mute"))  {
 
     if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 
@@ -7202,7 +7202,7 @@ if (CommandName.startsWith("mute "))  {
 };
 
 //Unmute
-if (CommandName.startsWith("unmute "))  {
+if (CommandName.startsWith("unmute"))  {
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
     
@@ -7275,7 +7275,11 @@ if  (CommandName.startsWith("idban"))  {
     
     if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
 
-        var GivenID = CommandName.split("idban ")[1];
+        var GivenID = CommandName.split("idban")[1];
+
+    if  (GivenID.startsWith(" "))  {
+      
+        GivenID = GivenID.replace(" ", "");
         var ValidID = 0;
 
         await peeky.fetchUser(GivenID, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
@@ -7308,6 +7312,13 @@ if  (CommandName.startsWith("idban"))  {
          const embed = {"description": ErrorIcon + " You must enter a valid user ID.",  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
+      
+    }
+     else
+    {
+     const embed = {"description": ErrorIcon + " You need to specify the User ID to Ban.",  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
       
     }
      else
@@ -7377,7 +7388,11 @@ if (CommandName.startsWith("purge"))  {
     
         if  (message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
-            var BulkAmount = CommandName.split("purge ")[1];
+            var BulkAmount = CommandName.split("purge")[1];
+
+        if  (BulkAmount.startsWith(" "))  {
+      
+            BulkAmount = BulkAmount.replace(" ", "");
 
             if  (isNaN(BulkAmount) == false && BulkAmount > 0 && BulkAmount <= 100)  {
 
@@ -7400,6 +7415,13 @@ if (CommandName.startsWith("purge"))  {
               const embed = {"description": ErrorIcon + " You can only purge 1 to 100 messages.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
+
+        }
+         else
+        {
+         const embed = {"description": ErrorIcon + " You need to specify the amount of messages to purge.",  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
 
         }
          else
@@ -7462,12 +7484,14 @@ if  (CommandName.startsWith("lockdown"))  {
   
 //Prefix
 if (CommandName.startsWith("prefix" ))  {
-  
-    var NewPrefix = CommandName.split("prefix")[1].toLowerCase();
-  
-if  (MutedRole.startsWith(" "))  {
 
     if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
+  
+        var NewPrefix = CommandName.split("prefix")[1].toLowerCase();
+  
+    if  (NewPrefix.startsWith(" "))  {
+      
+        NewPrefix = NewPrefix.replace(" ", "");
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
@@ -7484,6 +7508,13 @@ if  (MutedRole.startsWith(" "))  {
          const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
+  
+    }
+     else
+    {      
+     const embed = {"description": ErrorIcon + " You need to specify the new server prefix.",  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };  
 
     }
      else
@@ -7491,13 +7522,6 @@ if  (MutedRole.startsWith(" "))  {
       const embed = {"description": PermissionsMessageError2[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-  
-}
- else
-{      
- const embed = {"description": ErrorIcon + " You need to specify the new server prefix.",  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};  
 
 };
   
@@ -7505,12 +7529,12 @@ if  (MutedRole.startsWith(" "))  {
 if  (CommandName.startsWith("muterole"))  {
   
     var MutedRole = CommandName.split("muterole")[1];
-  
-if  (MutedRole.startsWith(" "))  {
-  
-    MutedRole = MutedRole.replace(" ", "");
 
     if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+
+    if  (MutedRole.startsWith(" "))  {
+
+        MutedRole = MutedRole.replace(" ", "");
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
@@ -7589,20 +7613,20 @@ if  (MutedRole.startsWith(" "))  {
          const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
+  
+        }
+         else
+        {      
+         const embed = {"description": ErrorIcon + " You need to specify the Mute Role's name.",  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };  
 
     }
      else
     {      
       const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };  
-  
-}
- else
-{      
- const embed = {"description": ErrorIcon + " You need to specify the Mute Role's name.",  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};  
+    };
 
 };
   
