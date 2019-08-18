@@ -2018,10 +2018,6 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 600000);
 
     const BackgroundList            = [];
-    const CheapBackgrounds          = [];
-    const RevenueBackgrounds        = [];
-    var   ExclusiveBackgrounds      = [];
-    var   AddToExclusiveBackgrounds = [];
     var   Current                   = 0;            
     var   Fillers                   = 0;
 
@@ -2046,33 +2042,10 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
           var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="full">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + FixedPrice + ' ' + RevenueString + '  </font>  <br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
     
           BackgroundList.push(BackgroundString);
-
-          if  (background_info[1] <= 250 && Current !== 1)  {
-              CheapBackgrounds.push(BackgroundString);
-          };
-
-          if  (background_info[4] !== undefined)  {
-              RevenueBackgrounds.push(BackgroundString);
-          };
-
-          if  (background_info[1] == Exclusive)  {
-              AddToExclusiveBackgrounds.push(BackgroundString);
-          };
     
     });
 
-    AddToExclusiveBackgrounds.reverse();
-    Fillers = 100 - AddToExclusiveBackgrounds.length;
-    if  (AddToExclusiveBackgrounds.length < 100)  {
-        while (Fillers > 0)  {
-            Fillers --;
-            ExclusiveBackgrounds.push('<div class="filler">  <img src="' + DarkField + '"  width="500" height="300" class="background_image">  </div>')
-        };
-    };
-    AddToExclusiveBackgrounds = AddToExclusiveBackgrounds.join(" ");
-    ExclusiveBackgrounds.push(AddToExclusiveBackgrounds);
-
-    await fs.writeFile('public/backgrounds.txt', "<div id='sort_old'> " + BackgroundList.join(" ") + " </div>" + "<div id='sort_new'> " + BackgroundList.reverse().join(" ") + " </div>" + "<div id='sort_random'> " + function_ShuffleArray(BackgroundList).join(" ") + " </div>" + "<div id='sort_cheap'> " + CheapBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_revenue'> " + RevenueBackgrounds.reverse().join(" ") + " </div>" + "<div id='sort_exclusive'> " + ExclusiveBackgrounds.reverse().join(" ") + " </div>", (err) => {
+    await fs.writeFile('public/backgrounds.txt', "<div> " + BackgroundList.reverse().join(" ") + " </div>", (err) => {
         if (err) console.log(err);
     });
 
