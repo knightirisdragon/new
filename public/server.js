@@ -4207,7 +4207,7 @@ if  (CommandName.startsWith("overview"))  {
 };
 
 //Toggle
-if (CommandName.startsWith("toggle"))  {
+if (CommandName.startsWith("toggle "))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
@@ -5328,9 +5328,9 @@ if  (FunctioName.startsWith("game roles"))  {
 };
 
 //BuyDescription
-if (CommandName.startsWith("buydescription"))  {
+if (CommandName.startsWith("buydescription "))  {
       
-    var NewDescription = CommandName.replace(" ", "").split("buydescription")[1];
+    var NewDescription = CommandName.split("buydescription ")[1];
 
     var UpdatedAmount = NewDescription.length;
     var NewLinesCount = 0;
@@ -6018,7 +6018,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
 };
   
 //Inventory
-if (CommandName.startsWith("inventory"))  {
+if  (CommandName.startsWith("inventory"))  {
   
 if  (!ProfileCooldown.has(message.author.id)) {
       
@@ -6486,11 +6486,11 @@ if (!ProfileCooldown.has(message.author.id))  {
 };
 
 //Play 
-if (CommandName.startsWith("play"))  {
+if (CommandName.startsWith("play "))  {
   
     if  (!CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
 
-    var GivenSong = CommandName.replace(" ", "").replace("play", "");
+    var GivenSong = CommandName.split("play ")[1];
     var Type = "Started";
     var DeleteMessage = false;
     var ChoosingMode = true;
@@ -7084,7 +7084,7 @@ if (CommandName.startsWith("drawandguess"))  {
 };
 
 //Mute
-if (CommandName.startsWith("mute"))  {
+if (CommandName.startsWith("mute "))  {
 
     if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 
@@ -7151,7 +7151,7 @@ if (CommandName.startsWith("mute"))  {
 };
 
 //Unmute
-if (CommandName.startsWith("unmute"))  {
+if (CommandName.startsWith("unmute "))  {
 
 if  (message.member.permissions.has("MUTE_MEMBERS"))  {
     
@@ -7218,13 +7218,13 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 };
 
 //IDBan
-if  (CommandName.startsWith("idban"))  {
+if  (CommandName.startsWith("idban "))  {
 
     if  (message.member.permissions.has("BAN_MEMBERS")) {
     
     if  (message.guild.me.hasPermission("BAN_MEMBERS"))  {
 
-        var GivenID = CommandName.replace(" ", "").split("idban")[1];
+        var GivenID = CommandName.split("idban ")[1];
         var ValidID = 0;
 
         await peeky.fetchUser(GivenID, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
@@ -7275,7 +7275,7 @@ if  (CommandName.startsWith("idban"))  {
 };
   
 //Ban
-if (CommandName.startsWith("ban"))  {
+if (CommandName.startsWith("ban "))  {
 
     if  (message.member.permissions.has("BAN_MEMBERS"))  {
 
@@ -7320,13 +7320,13 @@ if (CommandName.startsWith("ban"))  {
 };
 
 //Purge
-if (CommandName.startsWith("purge"))  {
+if (CommandName.startsWith("purge "))  {
 
     if  (message.member.permissions.has("MANAGE_MESSAGES"))  {
     
         if  (message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
-            var BulkAmount = CommandName.replace(" ", "").split("purge ")[1];
+            var BulkAmount = CommandName.split("purge ")[1];
 
             if  (isNaN(BulkAmount) == false && BulkAmount > 0 && BulkAmount <= 100)  {
 
@@ -7367,7 +7367,7 @@ if (CommandName.startsWith("purge"))  {
 };
   
 //Lockdown
-if  (CommandName.startsWith("lockdown"))  {
+if  (CommandName.startsWith("lockdown "))  {
 
     if  (message.member.permissions.has("MANAGE_CHANNELS"))  {
 
@@ -7410,14 +7410,14 @@ if  (CommandName.startsWith("lockdown"))  {
 };
   
 //Prefix
-if (CommandName.startsWith("prefix"))  {
+if (CommandName.startsWith("prefix " ))  {
 
     if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
+            var   NewPrefix    = CommandName.split("prefix ")[1].toLowerCase();
             const InfoMessages = [InfoIcon + " If the server prefix is broken, join the Support Server."];
-            var   NewPrefix    = CommandName.replace(" ", "").split("prefix ")[1].toLowerCase();
 
             peeky.serverData.set(keySF, NewPrefix, "prefix");
 
@@ -7441,13 +7441,13 @@ if (CommandName.startsWith("prefix"))  {
 };
   
 //MuteRole
-if  (CommandName.startsWith("muterole"))  {
+if  (CommandName.startsWith("muterole "))  {
 
     if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-            var MutedRole = CommandName.replace(" ", "").split("muterole")[1];
+            var MutedRole = CommandName.split("muterole")[1];
             var FixedMutedRole = function_RemoveFormatting(MutedRole, "role", true);
             var RoleExist = message.guild.roles.find(role => role.name == MutedRole);
             var InfoMessages = [];
