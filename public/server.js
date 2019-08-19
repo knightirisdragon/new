@@ -1961,7 +1961,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
       
         var ChosenGuild = peeky.guilds.get(data.GuildID);
 
-        if  (ChosenGuild)  {
+        if  (ChosenGuild !== undefined)  {
           
             if  (ChosenGuild.owner)  {
                 await function_DirectMessage(ChosenGuild.owner.user.id, "I'm leaving your server called **" + ChosenGuild.name + "** because of inactivity.");
