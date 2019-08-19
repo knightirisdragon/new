@@ -5580,7 +5580,7 @@ if  (i !== AllString)  {
 };
 
 //Open
-if (CommandName.startsWith("open"))  {
+if (CommandName.startsWith("open ") || CommandName == "open")  {
 
     if  (!ProfileCooldown.has(message.author.id))  {
 
