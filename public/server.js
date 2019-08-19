@@ -1952,10 +1952,8 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
     const rightNow = Date.now();
   
     //Guilds
-    var filtered = peeky.serverData.filter( p => p.GuildID && p.lastSeen );
-    var toRemoveGuilds = filtered.filter(data => {
-        return rightNow - InactiveWipe > data.lastSeen && !data.server_upgraded && !ImmuneServers.includes(data.GuildID);
-    });
+    var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen && !p.server_Upgraded );
+    var toRemoveGuilds = filtered.filter(data => Date.now() - InactiveWipe > data.lastSeen);
 
     toRemoveGuilds.forEach(async data => {
       
@@ -1983,7 +1981,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
 
     toRemoveProfiles.forEach(data => {
         if  (!peeky.users.has(data.UserID) || data.FashionBadge == false)  {
-            console.log("I have wiped a profile because it was inactive and unavailable.");
+            console.log("I have wiped an inactive profile.");
             peeky.userData.delete(`${data.UserID}`);
         };
     });
