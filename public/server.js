@@ -2777,8 +2777,10 @@ peeky.on("voiceStateUpdate", async (oldMember, newMember) => {
     
   if  (oldMember.voiceChannel && !newMember.voiceChannel)  {
     
-      if  (oldMember.voiceChannel.members.map(member => member.id).includes(PeekyId))  {
-          oldMember.voiceChannel.leave();
+      var ChannelMap = oldMember.voiceChannel.members.map(member => member.id);
+    
+      if  (ChannelMap.length == 1 && ChannelMap.includes(PeekyId))  {
+          oldMember.voiceChannel.disconnect().catch(error => ErrorBag.add(error));
       };    
   };
   
