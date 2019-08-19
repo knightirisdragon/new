@@ -2816,6 +2816,8 @@ peeky.on("channelUpdate", async (oldChannel, newChannel) => {
   
 const keySF   = `${newChannel.guild.id}`;
 const channel = newChannel;
+  
+console.log(newChannel.name + " " + newChannel.members.size);
 
 //FUNCTIONS
 
