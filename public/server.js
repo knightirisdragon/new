@@ -5723,23 +5723,29 @@ if (CommandName == "daily")  {
     }).catch(err => ErrorBag.add(err));
       
     //Vote BFD
-    node_fetch(`https://botsfordiscord.com/api/bot/${peeky.user.id}/votes`, {
-        method: 'GET',
-        headers: {
-             'Authorization': BFDToken
-        }
-    }).then(response => response.json()).then(AllVotes => {
-
-        if  (AllVotes.hasVoted24.includes(message.author.id))  {
-          
-            InfoMessages.push(InfoIcon + " Added a bonus reward for voting on BFD today.");
-
-            peeky.userData.math(key, "+", 1, "Chests");
-            CountedVotes ++;
-
-        };
+    function BFD()  {
       
-    }).catch(err => ErrorBag.add(err));
+          node_fetch(`https://botsfordiscord.com/api/bot/${peeky.user.id}/votes`, {
+              method: 'GET',
+              headers: {
+                   'Authorization': BFDToken
+              }
+          }).then(response => response.json()).then(AllVotes => {
+
+              if  (AllVotes.hasVoted24.includes(message.author.id))  {
+
+                  InfoMessages.push(InfoIcon + " Added a bonus reward for voting on BFD today.");
+
+                  peeky.userData.math(key, "+", 1, "Chests");
+                  CountedVotes ++;
+
+              };
+
+          }).catch(err => ErrorBag.add(err));
+      
+    };
+      
+    BFD();
 
     //Event Reward
     if  (EventStatus == true)  {
