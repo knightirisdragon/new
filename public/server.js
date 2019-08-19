@@ -1961,7 +1961,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
         var ChosenGuild = peeky.guilds.get(data.GuildID);
 
         if  (ChosenGuild !== undefined)  {
-            ChosenGuild.leave().catch(error => ErrorBag.add(error));
+            ChosenGuild.leave();
         };
       
         if  (data.server_upgraded == false)  {
@@ -2352,7 +2352,7 @@ const keySF = `${guild.id}`;
 if  (peeky.guilds.size > MaxServers)  {
   
     await function_DirectMessage(guild.owner.user.id, "I have left your server because there are no open server slots.");
-    guild.leave().catch(error => ErrorBag.add(error));
+    guild.leave();
 
 } else {
   
