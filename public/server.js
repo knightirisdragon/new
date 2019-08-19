@@ -1252,7 +1252,6 @@ function function_ServerData(key, GuildId)  {
             donor_wall_bonus_array: [],
             banned_words_bonus_setting: [],
             spoiler_lock_bonus_setting: 0,
-            server_upgraded: false,
             event_countdown_bonus: false,
             event_countdown_bonus_setting: 0,
             event_countdown_bonus_id: 0,
@@ -1953,7 +1952,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
   
     //Guilds
     var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen && !p.server_Upgraded );
-    var toRemoveGuilds = filtered.filter(data => Date.now() - InactiveWipe > data.lastSeen);
+    var toRemoveGuilds = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
 
     toRemoveGuilds.forEach(async data => {
       
@@ -1974,10 +1973,8 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
     });
       
     //Profiles
-    var filtered = function_ShuffleArray(peeky.userData.filter( p => p.UserID && p.lastSeen ));
-    var toRemoveProfiles = filtered.filter(data => {
-        return (rightNow - InactiveWipe > data.lastSeen);
-    });
+    var filtered         = peeky.userData.filter( p => p.UserID && p.lastSeen );
+    var toRemoveProfiles = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
 
     toRemoveProfiles.forEach(data => {
         if  (!peeky.users.has(data.UserID) || data.FashionBadge == false)  {
