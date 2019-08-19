@@ -5703,7 +5703,7 @@ if (CommandName == "daily")  {
 
         };
                   
-    });
+    }).catch(err => ErrorBag.add(err));
 
     //Vote BLS
     await bls.getUpvotes().then(AllVotes => {
@@ -5720,7 +5720,19 @@ if (CommandName == "daily")  {
 
         };
 
-    });
+    }).catch(err => ErrorBag.add(err));
+      
+    //Vote BFD
+    node_fetch(`https://botsfordiscord.com/api/bot/${peeky.user.id}/votes`, {
+        method: 'GET',
+        headers: {
+             'Authorization': BFDToken
+        }
+    }).then(AllVotes => {
+
+        console.log(AllVotes)
+      
+    }).catch(err => ErrorBag.add(err));
 
     //Event Reward
     if  (EventStatus == true)  {
