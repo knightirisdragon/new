@@ -1208,11 +1208,12 @@ function function_RemoveFormatting(text, type, sliced)  {
 //Create Server Data
 function function_ServerData(key, GuildId)  {
   
-    if  (!peeky.channelData.has(key))  {
+    if  (!peeky.serverData.has(key))  {
 
         peeky.serverData.ensure(key , {
             GuildID: GuildId,
             lastSeen: Date.now(),
+            server_upgraded: false,
             server_invite: "no_invite",
             prefix: Prefix,
             muted_role: "Muted",
@@ -1953,14 +1954,14 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
     //Guilds
     var filtered = peeky.serverData.filter( p => p.GuildID && p.lastSeen );
     var toRemoveGuilds = filtered.filter(data => {
-        return rightNow - InactiveWipe > data.lastSeen && !ImmuneServers.includes(data.GuildID);
+        return rightNow - InactiveWipe > data.lastSeen && !data.server_upgraded && !ImmuneServers.includes(data.GuildID);
     });
 
     toRemoveGuilds.forEach(async data => {
       
         var ChosenGuild = peeky.guilds.get(data.GuildID);
 
-        if  (ChosenGuild !== undefined)  {
+        if  (ChosenGuild)  {
           
             if  (ChosenGuild.owner)  {
                 await function_DirectMessage(ChosenGuild.owner.user.id, "I'm leaving your server called **" + ChosenGuild.name + "** because of inactivity.");
@@ -1969,13 +1970,8 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
             ChosenGuild.leave();
           
         };
-      
-        if  (data.server_upgraded == false)  {
-            peeky.serverData.delete(data.GuildID);
-            console.log("I have wiped the settings of a guild and left it because it was inactive.");
-        }  else  {
-           console.log("I have left a guild it because it was inactive but also ugpraded.");        
-        }
+          
+        console.log("I have left an inactive server.");    
 
     });
       
@@ -2135,8 +2131,7 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
 
     WebsiteCooldowns.add("serverlist");
     setTimeout(() => {WebsiteCooldowns.delete("serverlist")}, 600000);
-  
-    //Update leadeboard
+
     var serverlist = peeky.serverData.filter( p => p.server_upgraded == true ).array();
     var currentplace = 0;
     var CurrentID = 0;
@@ -4046,6 +4041,8 @@ if (CommandName.startsWith("upgrade"))  {
         TheUserWithRole.removeRole(ServerUpgradeRole).catch(error => {ErrorBag.add(error); Failed = true});
 
         if  (Failed == false)  {
+            
+            peeky.serverData.set(keySF, true, "server_upgraded")
             peeky.userData.math(key, "+", 1, "UpgradedServers");
           
             const embed = {"description": SuccessIcon + " This server is now upgraded!",  "color": EmbedColor}; 
