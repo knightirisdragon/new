@@ -5721,31 +5721,6 @@ if (CommandName == "daily")  {
         };
 
     }).catch(err => ErrorBag.add(err));
-      
-    //Vote BFD
-    function BFD()  {
-      
-          node_fetch(`https://botsfordiscord.com/api/bot/${peeky.user.id}/votes`, {
-              method: 'GET',
-              headers: {
-                   'Authorization': BFDToken
-              }
-          }).then(response => response.json()).then(AllVotes => {
-
-              if  (AllVotes.hasVoted24.includes(message.author.id))  {
-
-                  InfoMessages.push(InfoIcon + " Added a bonus reward for voting on BFD today.");
-
-                  peeky.userData.math(key, "+", 1, "Chests");
-                  CountedVotes ++;
-
-              };
-
-          }).catch(err => ErrorBag.add(err));
-      
-    };
-      
-    BFD();
 
     //Event Reward
     if  (EventStatus == true)  {
@@ -5777,7 +5752,13 @@ if (CommandName == "daily")  {
 
 //Gift
 if (CommandName.startsWith("gift"))  {
-
+  
+    var CommandArgument = CommandName.split("gift")[1];
+      
+if  (CommandArgument.startsWith(" "))  {
+      
+    CommandArgument = CommandArgument.replace(" ", "");
+  
 if  (!ProfileCooldown.has(message.author.id))  {
       
     ProfileCooldown.add(message.author.id);
@@ -5929,10 +5910,17 @@ if  (!ProfileCooldown.has(message.author.id))  {
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
+}
+ else if (CommandArgument == "")
+{
+  const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+  
 };
   
 //Inventory
-if  (CommandName.startsWith("inventory"))  {
+if  (CommandName.startsWith("inventory ") || CommandName == "inventory")  {
   
 if  (!ProfileCooldown.has(message.author.id)) {
       
@@ -6010,15 +5998,16 @@ if  (!ProfileCooldown.has(message.author.id)) {
     };
 
 }
-    else {
-          const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-         };
+ else
+{
+ const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
 
 };
 
 //Profile
-if (CommandName.startsWith("profile"))  {
+if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
   
 if (!ProfileCooldown.has(message.author.id))  {
       
@@ -6401,6 +6390,8 @@ if (!ProfileCooldown.has(message.author.id))  {
 
 //Play 
 if (CommandName.startsWith("play"))  {
+  
+    var CommandArgument = CommandName.split("play")[1];
       
     if  (CommandArgument.startsWith(" "))  {
       
@@ -6645,7 +6636,9 @@ if (CommandName == "current")  {
 };
 
 //Playlist
-if (CommandName.startsWith("playlist"))  {
+if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
+  
+    var CommandArgument = CommandName.split("playlist")[1];
   
     if  (CommandArgument.startsWith(" add "))  {
       
