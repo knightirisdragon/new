@@ -1256,8 +1256,6 @@ function function_ServerData(key, GuildId)  {
             event_countdown_bonus_id: 0,
             vote_kick_bonus_bonus: false,
             vote_kick_bonus_setting: 10,
-            server_trial_bonus_bonus: false,
-            server_trial_bonus_setting: 60,
             stream_announcements_bonus: false,
             stream_announcements_bonus_setting: "twitch",
             role_saver_bonus: false,
@@ -2528,22 +2526,6 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
     };
 
 };
-    
-//Server Trial
-if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
-
-    if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
-
-        var name = "Trial";
-        var RoleExist = member.guild.roles.find(role => role.name == name);
-
-        if  (RoleExist) {
-            member.addRole(RoleExist.id, "Triggered by the Server Trial function.").catch(error => ErrorBag.add(error));
-        };
-
-    };
-
-};
 
 //Welcome Messages
 if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
@@ -3142,7 +3124,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "game_roles_bonus") == true)             { var GR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var GR = DisabledIcon};
         if (peeky.serverData.get(keySF, "role_saver_bonus") == true)             { var RS = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var RS = DisabledIcon};
         if (peeky.serverData.get(keySF, "nick_saver_bonus") == true)             { var NS = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var NS = DisabledIcon};
-        if (peeky.serverData.get(keySF, "server_trial_bonus") == true)           { var ST = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var ST = DisabledIcon};
         if (peeky.serverData.get(keySF, "streamer_role_bonus") == true)          { var SR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SR = DisabledIcon};
         if (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)   { var SA2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA2 = DisabledIcon};
         if (peeky.serverData.get(keySF, "server_age_bonus") == true)             { var SA3 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA3 = DisabledIcon};
@@ -3170,10 +3151,11 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                   description:  "**Welcome Messages** " + WM + "\n" + "`#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`" + "\n\n" +
                                 "**Member Counter** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`" + "\n\n" +
                                 "**Server Age** " + SA3 + "\n" + "No setting" + "\n\n" +
+                                "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(ServerMessage, "sm", true) + "`" + "\n\n" +
+                                "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
                                 "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
                                 "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n\n" +
-                                "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
-                                "**Server Trial** " + ST + "\n" + "`" + peeky.serverData.get(keySF, "server_trial_bonus_setting") + " minutes`" + "\n\n" +
+                                "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 "**Flood Protection** " + FP + "\n" + "No Setting." + "\n\n" +
                                 "**Role Saver** " + RS + "\n" + "No Setting." + "\n\n" +
                                 "**Nickname Saver** " + NS + "\n" + "No Setting.",
@@ -3188,9 +3170,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
 
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Event Countdown** " + EC + "\n" + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`" + "\n\n" +
-                                "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(ServerMessage, "sm", true) + "`" + "\n\n" +
                                 "**Dash Remover** " + DR + "\n" + "No setting" + "\n\n" +
-                                "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
                                 "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
@@ -3702,56 +3682,6 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
             };
 
         };
-
-    };
-
-};
-
-//Server Trial
-if  (peeky.serverData.get(keySF, "server_trial_bonus") == true)  {
-
-    if  (!ServerTrialCooldown.has("cooldown"))  {
-
-        ServerTrialCooldown.add("cooldown");
-        setTimeout(() => {ServerTrialCooldown.delete("cooldown")}, 600000);
-
-        var filtered = peeky.serverData.filter( p => p.server_trial_bonus == true );
-        var ValidGuilds = function_ShuffleArray(filtered.map(i => i.GuildID));
-
-        ValidGuilds.forEach(g => {
-
-        if  (peeky.guilds.has(g))  {
-
-            var Guild = peeky.guilds.get(g);
-
-        if  (Guild.me.hasPermission('KICK_MEMBERS'))  {
-
-            var OnTrial = function_ShuffleArray((Guild.members.filter(m => !m.user.bot && !m.permissions.has('MANAGE_GUILD') && m.roles.find(r => r.name == "Trial")).map(m => m))).slice(0, 5);
-            var TrialTime = peeky.serverData.get(keySF, "server_trial_bonus_setting");
-
-            OnTrial.forEach(async m => {
-
-                if  (new Date() - m.joinedAt >= (TrialTime * 60 * 1000))  {
-
-                    setTimeout(async () => {
-
-                    await function_DirectMessage(m.user.id, "Your trial on **" + function_RemoveFormatting(Guild.name, "other", true) + "** has ended.");
-                    m.kick("Triggered by the Server Trial function.").catch(error => ErrorBag.add(error));
-
-                    console.log("The Server Trial function has been triggered in " + m.guild.name + ".");   
-                    function_UpdateAutowipe(keySF, "server");             
-
-                    }, 5000);
-
-                };
-
-            });
-
-        };
-
-        };
-
-        });
 
     };
 
@@ -4819,50 +4749,6 @@ if  (FunctioName.startsWith("streamer role"))  {
 }
   
 else
-
-//Toggle Server Trial
-if  (FunctioName.startsWith("server trial"))  {
-        
-    const guild = message.guild;
-    var name = "Trial";
-    var role = guild.roles.find(c=> c.name == name);
-
-    if(peeky.serverData.get(keySF, "server_trial_bonus") == true) {peeky.serverData.set(keySF, false, "server_trial_bonus");}
-    else peeky.serverData.set(keySF, true, "server_trial_bonus");
-      
-    if (!role) {
-
-    if  (!RoleCooldown.has(message.guild.id)) {
-      
-    if  (ManageRoles == true)  {
-
-    RoleCooldown.add(message.guild.id);
-    setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
-      
-    message.guild.createRole({
-    name: name,
-    color: "#d3d3d3"
-    }).catch(error => ErrorBag.add(error));
-      
-    InfoMessages.push(InfoIcon + " Created a role called **" + name + "** for the **Server server_trial** function.");
-
-    };
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage3[0],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-    };
-      
-    if  (peeky.serverData.get(keySF, "server_trial_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Server Trial** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-}
-  
-else
   
 //Toggle Banned Words
 if  (FunctioName.startsWith("banned words"))  {
@@ -5060,29 +4946,6 @@ if  (FunctioName.startsWith("spoiler lock "))  {
     {
       const embed = {"description": ErrorMessage9[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-
-}
-  
-else
-      
-//Set Server Trial
-if  (FunctioName.startsWith("server trial "))  {
-    
-    var GivenMinutes = CommandName.split("server trial ")[1];
-
-    if  (!isNaN(GivenMinutes) && GivenMinutes > 0)   {
-
-        peeky.serverData.set(keySF, GivenMinutes, "server_trial_bonus_setting");
-
-        const embed = {"description": SuccessIcon + " The **Server Trial** setting has been set to **" + GivenMinutes + " minutes**.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-    }
-     else
-    {
-     const embed = {"description": ErrorMessage9[0],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 }
