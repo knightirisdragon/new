@@ -2771,6 +2771,19 @@ if  (keySF == SupportServer)  {
 };
 });
 
+peeky.on("voiceStateUpdate", async (oldMember, newMember) => {
+  
+  const member = newMember;
+    
+  if  (oldMember.voiceChannel && !newMember.voiceChannel)  {
+    
+      if  (oldMember.voiceChannel.members.map(member => member.id).includes(PeekyId))  {
+          oldMember.voiceChannel.leave();
+      };    
+  };
+  
+});
+
 //CHANNEL CREATE EVENTS
 peeky.on("channelCreate", async (channel) => {
 
@@ -2816,8 +2829,6 @@ peeky.on("channelUpdate", async (oldChannel, newChannel) => {
   
 const keySF   = `${newChannel.guild.id}`;
 const channel = newChannel;
-  
-console.log(newChannel.name + " " + newChannel.members.size);
 
 //FUNCTIONS
 
