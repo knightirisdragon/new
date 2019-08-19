@@ -7362,7 +7362,7 @@ if (CommandName.startsWith("prefix"))  {
   
     if  (CommandArgument.startsWith(" "))  {
 
-        CommandArgument = CommandArgument.replace(" ", "").toLowerCase();;
+        CommandArgument = CommandArgument.replace(" ", "").slice(0, 5).toLowerCase();
 
     if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
 
