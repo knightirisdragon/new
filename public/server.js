@@ -5728,9 +5728,16 @@ if (CommandName == "daily")  {
         headers: {
              'Authorization': BFDToken
         }
-    }).then(AllVotes => {
+    }).then(response => response.json()).then(AllVotes => {
 
-        console.log(AllVotes)
+        if  (AllVotes.hasVoted24.includes(message.author.id))  {
+          
+            InfoMessages.push(InfoIcon + " Added a bonus reward for voting on BFD today.");
+
+            peeky.userData.math(key, "+", 1, "Chests");
+            CountedVotes ++;
+
+        };
       
     }).catch(err => ErrorBag.add(err));
 
