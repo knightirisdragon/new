@@ -1956,18 +1956,16 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
 
     toRemoveGuilds.forEach(async data => {
       
-        var ChosenGuild = peeky.guilds.get(data.GuildID);
-
-        if  (ChosenGuild !== undefined)  {
-          
-            if  (ChosenGuild.owner)  {
-                await function_DirectMessage(ChosenGuild.owner.user.id, "I'm leaving your server called **" + ChosenGuild.name + "** because of inactivity.");
+        peeky.serverData.delete(data.GuildID);
+      
+        var Guild = peeky.guilds.get(data.GuildID);
+        if  (Guild !== undefined)  {
+            if  (Guild.owner)  {
+                await function_DirectMessage(Guild.owner.user.id, "I'm leaving your server called **" + Guild.name + "** because of inactivity.");
             };
-          
-            ChosenGuild.leave();
-          
+            Guild.leave();
         };
-          
+      
         console.log("I have left an inactive server.");    
 
     });
