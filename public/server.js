@@ -1956,12 +1956,18 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
         return rightNow - InactiveWipe > data.lastSeen && !ImmuneServers.includes(data.GuildID);
     });
 
-    toRemoveGuilds.forEach(data => {
+    toRemoveGuilds.forEach(async data => {
       
         var ChosenGuild = peeky.guilds.get(data.GuildID);
 
         if  (ChosenGuild !== undefined)  {
+          
+            if  (ChosenGuild.owner)  {
+                await function_DirectMessage(ChosenGuild.owner.user.id, "I'm leaving your server called **" + ChosenGuild.name + "** because of inactivity.");
+            };
+          
             ChosenGuild.leave();
+          
         };
       
         if  (data.server_upgraded == false)  {
