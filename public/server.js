@@ -1238,12 +1238,12 @@ function function_RemoveFormatting(text, type, sliced)  {
 };
 
 //Create Server Data
-function function_ServerData(key, GuildId)  {
+function function_ServerData(key)  {
   
     if  (!peeky.serverData.has(key))  {
 
         peeky.serverData.ensure(key , {
-            GuildID: GuildId,
+            GuildID: key,
             lastSeen: Date.now(),
             server_upgraded: false,
             server_invite: "no_invite",
@@ -1307,12 +1307,12 @@ function function_ServerData(key, GuildId)  {
 };
 
 //Create Channel Data
-function function_ChannelData(key, ChannelId)  {
+function function_ChannelData(key)  {
   
     if  (!peeky.channelData.has(key))  {
 
         peeky.channelData.ensure(key , {
-            ChannelID: ChannelId,
+            ChannelID: key,
 
             automatic_reactions_bonus: false,
             image_only_bonus: false,
@@ -1670,12 +1670,12 @@ peeky.on('ready', () => {
       
         //Fix ServerData
         peeky.guilds.forEach(guild => {
-            function_ServerData(`${guild.id}`, guild.id);
+            function_ServerData(`${guild.id}`);
         });
       
         //Fix ChannelData
         peeky.channels.forEach(channel => {
-            function_ChannelData(`${channel.id}`, channel.id);
+            function_ChannelData(`${channel.id}`);
         });
       
     }, 7200000);
@@ -2414,7 +2414,7 @@ if  (peeky.guilds.size > MaxServers)  {
 
 } else {
   
-  function_ServerData(keySF, guild.id);
+  function_ServerData(keySF);
   
   const embed = {"description": SuccessIcon + " I have joined **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
   peeky.channels.get(ServerLogChannel).send({ embed });
@@ -3545,7 +3545,7 @@ if  (!message.author.bot && message.guild.owner !== undefined)  {
 if  (!CheckedDataCreations.has(message.guild.id))  {
     
     CheckedDataCreations.add(message.guild.id);
-    function_ServerData(keyCF, message.guild.id);
+    function_ServerData(keyCF);
   
 };
   
@@ -3553,7 +3553,7 @@ if  (!CheckedDataCreations.has(message.guild.id))  {
 if  (!CheckedDataCreations.has(message.channel.id))  {
     
     CheckedDataCreations.add(message.channel.id);
-    function_ChannelData(keyCF, message.channel.id);
+    function_ChannelData(keyCF);
   
 };
     
