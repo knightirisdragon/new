@@ -2166,8 +2166,6 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
     for (var data of serverlist) {
 
     if  (peeky.guilds.has(data.GuildID))  {
-        
-        var CurrentUser = peeky.users.get(data.UserID);
   
         if  (peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
             var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
@@ -2186,6 +2184,36 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
     });
 
     console.log("The server list has been updated.");
+
+};
+
+//Server Log
+if  (!WebsiteCooldowns.has("serverlog"))  {
+
+    WebsiteCooldowns.add("serverlog");
+    setTimeout(() => {WebsiteCooldowns.delete("serverlog")}, 600000);
+
+    var serverlist = peeky.serverData.filter( p => p.server_upgraded == false ).array();
+    var currentplace = 0;
+    var CurrentID = 0;
+    var GotBadge = false;
+    const ServerList = [];
+
+    for (var data of serverlist) {
+
+    if  (peeky.guilds.has(data.GuildID))  {
+
+        ServerList.push("<div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' id='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b></div>");
+    
+    };
+      
+    };
+
+    await fs.writeFile('public/server_list.txt', ServerList.join(" "), (err) => {
+        if (err) console.log(err);
+    });
+
+    console.log("The server log has been updated.");
 
 };
   
