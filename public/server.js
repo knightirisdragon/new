@@ -1162,8 +1162,8 @@ function function_StreamAnnouncements(type, member)  {
 
         var GameName   = member.presence.game.name;
         var GameLink   = member.presence.game.url;
-        var GameColor  = 6570404;
-        var GameBanner = TwitchBanner;
+        var GameColor  = 7506394;
+        var GameBanner = DiscordBanner;
         var GameHost   = "Discord";
 
     } else  {
@@ -2958,7 +2958,8 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
                 if  (AlreadyStreaming !== true)  {
 
-                    Channel.send(function_StreamAnnouncements("twitch", member)).catch(error => ErrorBag.add(error));
+                    const embed = function_StreamAnnouncements("twitch", member);
+                    Channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                     console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
                     function_UpdateAutowipe(keySF, "server");
@@ -4002,37 +4003,37 @@ function_UpdateAutowipe(key, "user");
 function_UpdateAutowipe(keySF, "server");
 
 //Eval
-if (CommandName.startsWith("eval "))  {
+if  (CommandName.startsWith("eval "))  {
     
-  if   (message.author.id == OwnerId) {
+    if   (message.author.id == OwnerId) {
 
-        function clean(text) {
-        if (typeof(text) === "string")
-          return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-        else
-          return text;
-        };
+            function clean(text) {
+            if (typeof(text) === "string")
+            return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+            else
+            return text;
+            };
 
-        var EvalResult = CommandName.split("eval ")[1]
+            var EvalResult = CommandName.split("eval ")[1]
 
-        try {
-          const code = EvalResult;
-          let evaled = eval(code);
+            try {
+            const code = EvalResult;
+            let evaled = eval(code);
 
-          if (typeof evaled !== "string")
-              evaled = require("util").inspect(evaled);
+            if (typeof evaled !== "string")
+                evaled = require("util").inspect(evaled);
 
-          message.channel.send(clean(evaled), {code:"xl"});
-        } catch (err) {
-          message.channel.send(`\`Error Detected\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-        };
+            message.channel.send(clean(evaled), {code:"xl"});
+            } catch (err) {
+            message.channel.send(`\`Error Detected\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+            };
 
-  }
-   else
-  {
-   const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
-   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  };
+    }
+    else
+    {
+    const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
 };
 
