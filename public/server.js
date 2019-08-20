@@ -2199,10 +2199,10 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
     WebsiteCooldowns.add("serverlog");
     setTimeout(() => {WebsiteCooldowns.delete("serverlog")}, 600000);
 
-    var serverloglist = peeky.serverData.filter( p => p.server_upgraded == false && p.GuildID > 0 ).array();
+    var serverloglist = peeky.serverData.filter( p => p.server_upgraded == false && p.GuildID ).array();
     var ServerLogList = [];
 
-    for (var data of serverloglist)  {
+    serverloglist.forEach(data =>  {
       
         if  (peeky.guilds.has(data.GuildID))  {
 
@@ -2211,7 +2211,7 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
           
         };
       
-    };
+    });
 
     await fs.writeFile('public/server_log.txt', ServerLogList.join(" "), (err) => {
         if (err) console.log(err);
