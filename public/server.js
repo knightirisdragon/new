@@ -2167,18 +2167,22 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
     setTimeout(() => {WebsiteCooldowns.delete("serverlist")}, 600000);
 
     var serverlist = peeky.serverData.filter( p => p.server_upgraded == true && p.GuildID ).array();
-    var ServerList = [];
+    var ServerList = []; 
 
     for (var data of serverlist)  {
-
-        if  (peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
-            var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
-        }  else  {
-            var ServerInfo = "<font size='2' color='pink'>No Invite</font>";    
-        };
-
-        ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'><div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b></div></a>");
       
+        if  (peeky.guilds.has(data.GuildID))  {
+
+            if  (peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
+                var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
+            }  else  {
+                var ServerInfo = "<font size='2' color='pink'>No Invite</font>";    
+            };
+
+            ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'><div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b></div></a>");
+      
+        };
+          
     };
 
     await fs.writeFile('public/server_list.txt', ServerList.join(" "), (err) => {
@@ -2195,19 +2199,21 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
     WebsiteCooldowns.add("serverlog");
     setTimeout(() => {WebsiteCooldowns.delete("serverlog")}, 600000);
 
-    var serverlist = peeky.serverData.filter( p => p.server_upgraded == false && p.GuildID ).array();
-    var ServerList = [];
-  
-    console.log(serverlist.map(data => data.GuildID));
+    var serverloglist = peeky.serverData.filter( p => p.server_upgraded == false && p.GuildID > 0 ).array();
+    var ServerLogList = [];
 
-    for (var data of serverlist)  {
+    for (var data of serverloglist)  {
+      
+        if  (peeky.guilds.has(data.GuildID))  {
 
-        ServerList.push("<div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + "  <br>  " + peeky.guilds.get(data.GuildID).members.filter(m => m.user.bot).size + " bots" + "   </b></div>");
-        
+            ServerLogList.push("<div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + "  <br>  " + peeky.guilds.get(data.GuildID).members.filter(m => m.user.bot).size + " bots" + "   </b></div>");
+            console.log(ServerLogList.length);
+          
+        };
       
     };
 
-    await fs.writeFile('public/server_log.txt', ServerList.join(" "), (err) => {
+    await fs.writeFile('public/server_log.txt', ServerLogList.join(" "), (err) => {
         if (err) console.log(err);
     });
 
