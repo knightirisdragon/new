@@ -1992,7 +1992,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
     const rightNow = Date.now();
   
     //Guilds
-    var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen && !p.server_Upgraded );
+    var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen && !p.server_Upgraded && !ImmuneServers.includes(p.GuildID) );
     var toRemoveGuilds = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen && !ImmuneServers.includes(data.GuildID));
 
     toRemoveGuilds.forEach(async data => {
@@ -2166,22 +2166,18 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
     WebsiteCooldowns.add("serverlist");
     setTimeout(() => {WebsiteCooldowns.delete("serverlist")}, 600000);
 
-    var serverlist = peeky.serverData.filter( p => p.server_upgraded == true ).array();
+    var serverlist = peeky.serverData.filter( p => p.server_upgraded == true && p.GuildID ).array();
     var ServerList = [];
 
-    for (var data of serverlist) {
+    for (var data of serverlist)  {
 
-        if  (peeky.guilds.has(data.GuildID))  {
-
-            if  (peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
-                var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
-            }  else  {
-                var ServerInfo = "<font size='2' color='pink'>No Invite</font>";    
-            };
-
-            ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'><div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b></div></a>");
-
+        if  (peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
+            var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
+        }  else  {
+            var ServerInfo = "<font size='2' color='pink'>No Invite</font>";    
         };
+
+        ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'><div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b></div></a>");
       
     };
 
@@ -2199,17 +2195,15 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
     WebsiteCooldowns.add("serverlog");
     setTimeout(() => {WebsiteCooldowns.delete("serverlog")}, 600000);
 
-    var serverlist = peeky.serverData.filter( p => p.server_upgraded == false ).array();
+    var serverlist = peeky.serverData.filter( p => p.server_upgraded == false && p.GuildID ).array();
     var ServerList = [];
+  
+    console.log(serverlist.map(data => data.GuildID));
 
-    for (var data of serverlist) {
+    for (var data of serverlist)  {
 
-        if  (peeky.guilds.has(data.GuildID))  {
-
-            ServerList.push("<div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + "  </b></div>");
-            
-          
-        };
+        ServerList.push("<div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + "  <br>  " + peeky.guilds.get(data.GuildID).members.filter(m => m.user.bot).size + " bots" + "   </b></div>");
+        
       
     };
 
