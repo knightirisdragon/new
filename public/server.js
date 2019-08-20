@@ -1166,14 +1166,6 @@ function function_StreamAnnouncements(type, member)  {
         var GameBanner = DiscordBanner;
         var GameHost   = "Discord";
 
-    } else  {
-
-        var GameName   = "Unknown";
-        var GameLink   = "Unknown";
-        var GameColor  = 6570404;
-        var GameBanner = TwitchBanner;
-        var GameHost   = "Unknown";
-        
     };
                   
     return embed = {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
