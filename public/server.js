@@ -1266,7 +1266,7 @@ function function_ServerData(key)  {
             automatic_reactions_bonus_setting: "peeky",
             server_message_bonus: false,
             image_only_bonus_setting: 0,
-            server_message_bonus_setting: "Welcome to **" + GuildNameTag + "**!",
+            server_message_bonus_setting: "Welcome to the server!",
             notification_bonus: false,
             message_log_bonus_setting: "message_log",
             member_counter_bonus: false,
