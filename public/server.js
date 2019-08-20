@@ -1575,6 +1575,15 @@ function UpdateServerList()  {
 
 };
 
+function UpdateServerLog()  {
+
+    fetch('https://peeky.glitch.me/server_log.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("ServerList").innerHTML = data;
+    });
+  
+};
+
 function UpdateHome(text)  {
   
 fetch('https://peeky.glitch.me/stats.txt')
@@ -1984,7 +1993,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
   
     //Guilds
     var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen && !p.server_Upgraded );
-    var toRemoveGuilds = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
+    var toRemoveGuilds = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen && !ImmuneServers.includes(data.GuildID));
 
     toRemoveGuilds.forEach(async data => {
       
@@ -2158,24 +2167,21 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
     setTimeout(() => {WebsiteCooldowns.delete("serverlist")}, 600000);
 
     var serverlist = peeky.serverData.filter( p => p.server_upgraded == true ).array();
-    var currentplace = 0;
-    var CurrentID = 0;
-    var GotBadge = false;
-    const ServerList = [];
+    var ServerList = [];
 
     for (var data of serverlist) {
 
-    if  (peeky.guilds.has(data.GuildID))  {
-  
-        if  (peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
-            var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
-        }  else  {
-            var ServerInfo = "<font size='2' color='pink'>No Invite</font>";    
-        };
+        if  (peeky.guilds.has(data.GuildID))  {
 
-        ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'><div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' id='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b></div></a>");
-    
-    };
+            if  (peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
+                var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
+            }  else  {
+                var ServerInfo = "<font size='2' color='pink'>No Invite</font>";    
+            };
+
+            ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'><div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b></div></a>");
+
+        };
       
     };
 
@@ -2194,22 +2200,20 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
     setTimeout(() => {WebsiteCooldowns.delete("serverlog")}, 600000);
 
     var serverlist = peeky.serverData.filter( p => p.server_upgraded == false ).array();
-    var currentplace = 0;
-    var CurrentID = 0;
-    var GotBadge = false;
-    const ServerList = [];
+    var ServerList = [];
 
     for (var data of serverlist) {
 
-    if  (peeky.guilds.has(data.GuildID))  {
+        if  (peeky.guilds.has(data.GuildID))  {
 
-        ServerList.push("<div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' id='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b></div>");
-    
-    };
+            ServerList.push("<div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + "  </b></div>");
+            
+          
+        };
       
     };
 
-    await fs.writeFile('public/server_list.txt', ServerList.join(" "), (err) => {
+    await fs.writeFile('public/server_log.txt', ServerList.join(" "), (err) => {
         if (err) console.log(err);
     });
 
