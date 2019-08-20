@@ -2205,6 +2205,8 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
     serverloglist.forEach(data =>  {
       
         if  (peeky.guilds.has(data.GuildID))  {
+          
+            if  (ImmuneServers.includes(data.GuildID))  {} elsse {}
 
             ServerLogList.push("<div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + "  <br>  " + peeky.guilds.get(data.GuildID).members.filter(m => m.user.bot).size + " bots" + "   </b></div>");
             console.log(ServerLogList.length);
@@ -3540,7 +3542,7 @@ if  (!message.author.bot && message.guild.owner !== undefined)  {
 };
   
 //MISCELLANEOUS
-  
+
 //Server Data Checker
 if  (!CheckedDataCreations.has(message.guild.id))  {
     
