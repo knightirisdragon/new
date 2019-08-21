@@ -3501,7 +3501,7 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
 
             if  (message.attachments.size > 0) {
                 const image = message.attachments.array()[0].url;
-                function_DirectMessage(OwnerId, "**" + function_RemoveFormatting(message.author.tag, "other", true), {  files: [image]});
+                function_DirectMessage(OwnerId, "**" + function_RemoveFormatting(message.author.tag, "other", true) + ":** " + message.content, {  files: [image]});
             }
              else
             {
