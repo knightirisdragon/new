@@ -268,6 +268,7 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const ImmuneServers       = [  SupportServer, EmojiStorage1, `454933217666007052`, `264445053596991498`, `330777295952543744`, `387812458661937152`, `374071874222686211`, `439866052684283905`  ];
+const BannedServers       = [  610951946597040128  ];
 
 //Small Objects
 var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
@@ -2412,10 +2413,12 @@ peeky.on("guildCreate", async (guild) =>  {
 
 const keySF = `${guild.id}`;
   
-if  (peeky.guilds.size > MaxServers)  {
+if  (peeky.guilds.size > MaxServers || BannedServers.includes(guild.id))  {
   
-    await function_DirectMessage(guild.owner.user.id, "I have left your server because there are no open server slots.");
+    await function_DirectMessage(guild.owner.user.id, "Something went wrong when joining your server.");
     guild.leave();
+  
+    console.log("lol rekt");
 
 } else {
   
