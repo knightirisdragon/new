@@ -674,15 +674,15 @@ const Banners = [
     ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground394.jpg?v=1565715561043", 300, "Elven kingdom", "Unknown", undefined],
     ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground395.png?v=1565715568265", 475, "Three kingdoms", "Total War", undefined],
     ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground396.png?v=1565844170105", 475, "Midnight", "u/SnookyZun", undefined],
-    ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground397.png?v=1565844176033", 450, "Turtle friend", "Jojo's Bizarre Adventures Golden Wind", undefined],
+    ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground397.png?v=1565844176033", 475, "Turtle friend", "Jojo's Bizarre Adventures Golden Wind", undefined],
     ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground398.jpg?v=1565844185444", 450, "Penguin trip", "Unknown", undefined],
     ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground399.png?v=1565844196700", 425, "Quail", "Unknown", undefined],
     ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground400.png?v=1565844199887", 450, "Tiger", "Jack Merlin", undefined],
     ["http://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground401.png?v=1565953633386", 500, "Monster of the east", "Fallout New Vegas", undefined],
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground402.png?v=1566128627988", 450, "Los thanos", "Harry Osborn", undefined],
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground403.png?v=1566128632167", 475, "To the rescue", "Ghost Recond Breakpoint", undefined],
-    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground404.png?v=1566128626627", 325, "Torture dance", "u/Arbitrarium_", undefined],
-    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground405.png?v=1566354593896", 250, "Alliance flag", "Azalta", `347895514471202827`]
+    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground404.png?v=1566128626627", 350, "Torture dance", "u/Arbitrarium_", undefined],
+    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground405.png?v=1566354593896", 100, "Alliance flag", "Azalta", `347895514471202827`]
 
 ];
 
@@ -2414,17 +2414,17 @@ peeky.on("guildCreate", async (guild) =>  {
 
 const keySF = `${guild.id}`;
   
+const embed = {"description": SuccessIcon + " I have joined **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
+peeky.channels.get(ServerLogChannel).send({ embed });
+  
 if  (peeky.guilds.size > MaxServers || BannedServers.includes(guild.id))  {
   
-    await function_DirectMessage(guild.owner.user.id, "Something went wrong when joining your server.");
+    await function_DirectMessage(guild.owner.user.id, "Something went wrong when joining your server, try again later.");
     guild.leave();
 
 } else {
   
   function_ServerData(keySF);
-  
-  const embed = {"description": SuccessIcon + " I have joined **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
-  peeky.channels.get(ServerLogChannel).send({ embed });
 
 };
 
