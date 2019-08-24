@@ -268,6 +268,7 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const ImmuneServers       = [  SupportServer, EmojiStorage1, `454933217666007052`, `264445053596991498`, `330777295952543744`, `387812458661937152`, `374071874222686211`, `439866052684283905`  ];
+const NoLevelUpServers    = [  `614850525317431328`  ];
 const BannedServers       = [  `610951946597040128`  ];
 
 //Small Objects
@@ -1880,7 +1881,7 @@ peeky.on('message', async (message) => {
         peeky.userData.math(key, "+", 1, "Level");
         peeky.userData.math(key, "+", 1, "Chests");
     
-    if  (peeky.serverData.get(keySF, "notifications") == true)  {
+    if  (peeky.serverData.get(keySF, "notifications") == true && !NoLevelUpServers.includes(keySF))  {
         
         const canvas = Canvas.createCanvas(500, 95);
         const ctx = canvas.getContext('2d');
