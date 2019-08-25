@@ -58,7 +58,7 @@ const https      = require('https');
 //Setting Variables
 const Prefix                = "p!";
 const EventName             = "PEEKY's Birthday";
-const EventStatus           = false;
+const EventStatus           = true;
 const MaxServers            = 1000;
 const CustomBackgroundPrice = 1000;
 const SellMultiplier        = 2.5;
@@ -4078,7 +4078,7 @@ if (CommandName == "eventrewards")  {
         if  (peeky.userData.get(key, "CelebratorBadge") == false)  {
       
             peeky.userData.set(key, true, "CelebratorBadge");
-            peeky.userData.get(key, true, "Inventory").push(333);
+            peeky.userData.get(key, "Inventory").push(333);
 
             const embed = {"description": SuccessIcon + " You have received the rewards for the **" + EventName + "** event!"
                                           + "\n\n" + InfoIcon + " The **" + Banners[333 - 1][Banner.Name] + "** background."
