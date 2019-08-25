@@ -2131,7 +2131,7 @@ if  (!WebsiteCooldowns.has("messageheader"))  {
     var Message = "";
   
     if  (EventStatus == true)  {
-        Message = '<div class="messageheader">You can currently participate in the ' + EventName + ' event!</div>';  
+        Message = '<b class="messageheader">You can currently participate in the ' + EventName + ' event!</b>';  
     };
 
     await fs.writeFile('public/messageheader.txt', Message, (err) => {
