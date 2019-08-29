@@ -683,7 +683,7 @@ const Banners = [
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground402.png?v=1566128627988", 450, "Los thanos", "Harry Osborn", undefined],
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground403.png?v=1566128632167", 475, "To the rescue", "Ghost Recond Breakpoint", undefined],
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground404.png?v=1566128626627", 350, "Torture dance", "u/Arbitrarium_", undefined],
-    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground405.png?v=1566354593896", 100, "Alliance flag", "Azalta", `347895514471202827`]
+    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground405.png?v=1567050251316", 500, "Left hanging", "Dead by Daylight", undefined]
 
 ];
 
