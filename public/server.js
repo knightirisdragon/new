@@ -57,8 +57,8 @@ const https      = require('https');
 
 //Setting Variables
 const Prefix                = "p!";
-const EventName             = "PEEKY's Birthday";
-const EventStatus           = true;
+const EventName             = "None";
+const EventStatus           = false;
 const MaxServers            = 1000;
 const CustomBackgroundPrice = 1000;
 const SellMultiplier        = 2.5;
