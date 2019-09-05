@@ -6585,7 +6585,7 @@ if (CommandName.startsWith("play"))  {
                 const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
                 const Started    = new Date();
 
-                if  (Length <= 600 && Length > 0)  {
+                if  (Length <= 1800 && Length > 0)  {
 
                 await voiceChannel.join().then(async connection => {
 
