@@ -1150,9 +1150,8 @@ function function_StreamAnnouncements(type, member)  {
     CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
     setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
     
-    const TwitchBanner  = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fsa_twitch.png?v=1566236062639";
+    const TwitchBanner = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fsa_twitch.png?v=1566236062639";
     const DiscordBanner = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fsa_discord.png?v=1566236061585";
-    var   embed         = embed;
 
     if  (type == "twitch")  {
 
@@ -2994,24 +2993,6 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                 if  (AlreadyStreaming !== true)  {
 
                     const embed = function_StreamAnnouncements("twitch", member);
-                    Channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-                    console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
-                    function_UpdateAutowipe(keySF, "server");
-
-                };
-
-            }
-             else
-            {
-
-                if  (oldMember.presence.game !== null && oldMember.presence.game.url !== null)  {
-                    var AlreadyStreaming = true;
-                };
-
-                if  (AlreadyStreaming !== true)  {
-
-                    const embed = function_StreamAnnouncements("discord", member);
                     Channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                     console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");

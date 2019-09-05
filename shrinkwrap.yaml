@@ -14,9 +14,9 @@ dependencies:
   parse-ms: 2.1.0
   request: 2.88.0
   require.js: 1.0.0
-  sqlite3: 4.1.0
+  sqlite3: 4.0.9
   youtube-search: 1.1.4
-  ytdl-core: 0.29.6
+  ytdl-core: 0.29.5
   ytdl-core-discord: 1.0.3
 packages:
   /abbrev/1.1.1:
@@ -1235,7 +1235,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-dyycG9fvwtSJqKPfMVOpXt+60qvMGe7vWLwOJDiSJaiAx+hs2EnFChG2bXCWn7ulz+zGzrHdN9/yeEb0YqEPww==
-  /sqlite3/4.1.0:
+  /sqlite3/4.0.9:
     dependencies:
       nan: 2.14.0
       node-pre-gyp: 0.11.0
@@ -1243,7 +1243,7 @@ packages:
     dev: false
     requiresBuild: true
     resolution:
-      integrity: sha512-RvqoKxq+8pDHsJo7aXxsFR18i+dU2Wp5o12qAJOV5LNcDt+fgJsc2QKKg3sIRfXrN9ZjzY1T7SNe/DFVqAXjaw==
+      integrity: sha512-IkvzjmsWQl9BuBiM4xKpl5X8WCR4w0AeJHRdobCdXZ8dT/lNc1XS6WqvY35N6+YzIIgzSBeY5prdFObID9F9tA==
   /sshpk/1.16.1:
     dependencies:
       asn1: 0.2.4
@@ -1464,7 +1464,7 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-rQTxqxF09tKGgWxVtvFfi6ga1KWcHNbUGz09yTklirhqQlsIYvaDFCEhJ0K/RlzMH12FquAAMzh+Qi35fkwbFQ==
-  /ytdl-core/0.29.6:
+  /ytdl-core/0.29.5:
     dependencies:
       html-entities: 1.2.1
       m3u8stream: 0.6.2
@@ -1474,7 +1474,7 @@ packages:
     engines:
       node: '>=6'
     resolution:
-      integrity: sha512-MCZasv6+d3eb7CG53GwIlFI4Ii07EYzFWszZZVCHLgt4LFFM82KstTdKDfY3PctsS/Y+/ID1boC5CSAMyd8zVQ==
+      integrity: sha512-6WOoLQCeovo/aFYeMKeEXjvS/L+0j/vq85AYF86KSmkSA3lMzUzMdtmlo0GjsrOUN79S03MDkSgXEWOZBWL1Rg==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
@@ -1494,7 +1494,7 @@ specifiers:
   parse-ms: ^2.0.0
   request: ^2.88.0
   require.js: ^1.0.0
-  sqlite3: ^4.1.0
+  sqlite3: ^4.0.8
   youtube-search: ^1.1.4
-  ytdl-core: ^0.29.6
+  ytdl-core: ^0.29.5
   ytdl-core-discord: ^1.0.3
