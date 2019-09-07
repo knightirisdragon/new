@@ -1174,9 +1174,12 @@ function function_StreamAnnouncements(type, member)  {
         var GameHost   = "Discord";
 
     };
+  
+    setTimeout(() => {
+      return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
+    }, 60000);
                   
-    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
-
+    
 };
 
 //Remove Formatting
@@ -3429,17 +3432,17 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
 
               };
             
-            });
+        });
   
-            if  (peeky.serverData.get(keySF, "notifications") == true)  {
+        if  (peeky.serverData.get(keySF, "notifications") == true)  {
                   
-                const embed = {"description": InfoIcon + " **" + function_RemoveFormatting(user.username, "other", true) + "** has logged **" + function_RemoveFormatting(reaction.message.author.username, "other", true) + "**'s message.",  "color": EmbedColor}; 
-                reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+             const embed = {"description": InfoIcon + " **" + function_RemoveFormatting(user.username, "other", true) + "** has logged **" + function_RemoveFormatting(reaction.message.author.username, "other", true) + "**'s message.",  "color": EmbedColor}; 
+             reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
-            };
+        };
 
-            console.log("The Message Log function has been triggered in " + reaction.message.guild.name + ".");
-            function_UpdateAutowipe(keySF, "server");
+        console.log("The Message Log function has been triggered in " + reaction.message.guild.name + ".");
+        function_UpdateAutowipe(keySF, "server");
 
     };
               
@@ -4851,6 +4854,29 @@ if  (FunctioName.startsWith("banned words"))  {
         
     if   (peeky.channelData.get(keyCF, "banned_words_bonus") == true) {peeky.channelData.set(keyCF, false, "banned_words_bonus")}
     else peeky.channelData.set(keyCF, true, "banned_words_bonus");
+Channel.fetchWebhooks().then(webhook =>  {
+            
+              var FoundHook = webhook.find(w => w.name == "PEEKY");
+
+              if  (FoundHook)  {
+            
+                 var Webhook = webhook.find(w => w.name == "PEEKY");
+
+                 Webhook.send(OriginalMessageEdited + "\n­", {
+
+                 "username": message.author.tag,
+                 "avatarURL": message.author.displayAvatarURL
+
+                 "embeds":  [{
+                     "description": "[🔍](" + reaction.message.url + ")",
+                     "color": EmbedColor
+                 }]
+
+                 }).catch(error => ErrorBag.add(error));
+
+              };
+            
+        });
       
     if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
     const embed = {"description": SuccessIcon + " The **Banned Words** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
