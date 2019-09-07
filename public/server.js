@@ -1305,7 +1305,9 @@ function function_ServerData(key)  {
             server_age_bonus: false,
             server_age_bonus_id: null,
             dash_remover_bonus: false,
-            reddit_posts_bonus_setting: 
+            reddit_posts_bonus: false,
+            reddit_posts_bonus_setting: "discordapp",
+            reddit_posts_bonus_last: null
         });
   
     };
@@ -1327,8 +1329,7 @@ function function_ChannelData(key)  {
             spoiler_only_bonus: false,
             flood_protection_bonus_lastdate: null,
             flood_protection_bonus_lastuser: null,
-            flood_protection_bonus_lastmsg: null,
-            reddit_posts_bonus: false
+            flood_protection_bonus_lastmsg: null
         });
       
     };
@@ -4615,6 +4616,54 @@ if  (FunctioName.startsWith("member counter"))  {
   
 else
       
+//Toggle Reddit Posts
+if  (FunctioName.startsWith("reddit posts"))  {
+  
+    const guild = message.guild;
+    const name = "r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "";
+    var channel = guild.channels.find(c=> c.id == id);
+
+    if(peeky.serverData.get(keySF, "reddit_posts_bonus") == true) {peeky.serverData.set(keySF, false, "reddit_posts_bonus");}
+    else peeky.serverData.set(keySF, true, "reddit_posts_bonus");
+
+    //Channel Creating    
+    if (!channel) {
+
+    if  (!ChannelCooldown.has(message.guild.id)) {
+      
+    if  (ManageChannels == true)  {
+
+    ChannelCooldown.add(message.guild.id);
+    setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
+      
+    await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+    .then(async function (channel)  {
+          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
+          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+    }).catch(function(err) {  ErrorBag.add(err);  });
+      
+    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Reddit Posts** function.")
+    
+    };
+    
+    }
+     else
+    {
+     const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
+     message.channel.send({ embed })
+     .catch(error => ErrorBag.add(error));
+    };
+    };
+      
+    if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Reddit Posts** function has been **"  + StatusString + "**."+ "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+      
 //Toggle Server Age
 if  (FunctioName.startsWith("server age"))  {
   
@@ -5127,7 +5176,7 @@ if  (FunctioName.startsWith("message log "))  {
   
 else
 
-//Set Message Log
+//Set Stream Announcements
 if  (FunctioName.startsWith("stream announcements "))  {
 
     var ChannelName = CommandName.split("stream announcements ")[1];
@@ -5136,6 +5185,21 @@ if  (FunctioName.startsWith("stream announcements "))  {
     peeky.serverData.set(keySF, FixedChannelName, "stream_announcements_bonus_setting");
 
     const embed = {"description": SuccessIcon + " The **Stream Announcements** setting has been set to **#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "**.",  "color": EmbedColor}; 
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+
+//Set Reddit Posts
+if  (FunctioName.startsWith("reddit posts "))  {
+
+    var ChannelName = CommandName.split("reddit posts ")[1];
+    var FixedChannelName = function_RemoveFormatting("r/" + ChannelName, "channel", true);
+
+    peeky.serverData.set(keySF, FixedChannelName, "reddit_posts_bonus_setting");
+
+    const embed = {"description": SuccessIcon + " The **Stream Announcements** setting has been set to **#" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
