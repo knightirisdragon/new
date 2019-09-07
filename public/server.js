@@ -6528,7 +6528,7 @@ if (CommandName.startsWith("play"))  {
                 Type = "Previous";
 
             } else {
-              const embed = {"description": InfoIcon + " Previous song not found, playing a random song.",  "color": EmbedColor}; 
+              const embed = {"description": InfoIcon + " Previous song not found - playing a random song.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
               CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
@@ -6539,7 +6539,7 @@ if (CommandName.startsWith("play"))  {
 
         if  ((CommandArgument == "playlist" || CommandArgument == peeky.userData.get(key, "PlaylistName").toLowerCase()) && ChoosingMode == true)  {
 
-            DeleteMessage = false;
+            ChoosingMode = false;
 
             if  (peeky.userData.get(key, "Playlist").length > 0)  {
 
@@ -6548,7 +6548,7 @@ if (CommandName.startsWith("play"))  {
 
             } else {
 
-              const embed = {"description": InfoIcon + " Your playlist is empty, playing a random song.",  "color": EmbedColor}; 
+              const embed = {"description": InfoIcon + " Your playlist is empty - playing a random song.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
               CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
