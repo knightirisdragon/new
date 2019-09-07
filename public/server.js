@@ -1306,7 +1306,7 @@ function function_ServerData(key)  {
             server_age_bonus_id: null,
             dash_remover_bonus: false,
             reddit_posts_bonus: false,
-            reddit_posts_bonus_setting: "discordapp",
+            reddit_posts_bonus_setting: "r/discordapp",
             reddit_posts_bonus_last: null
         });
   
@@ -3689,6 +3689,41 @@ if  (peeky.channelData.get(keyCF, "image_only_bonus") == true)  {
         };
     };
 
+};
+    
+//Reddit Posts
+if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
+
+    if  (!ServerAgeCooldown.has(message.guild.id))  {
+
+        ServerAgeCooldown.add(message.guild.id);
+        setTimeout(() => {ServerAgeCooldown.delete(message.guild.id)}, 3600000);
+
+            var name    = peeky.serverData.get(keySF, "reddit_posts_bonus_setting");
+            var channel = message.guild.channels.find(c => c.name == name);
+
+            if  (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+              
+                node_fetch('https://www.reddit.com/' + name + '.json?limit=1&?sort=top').then(res => res.json()).then(json => json.data.children.map(v => v.data.url)).then(urls => {
+                  
+                    var Post = urls[0];
+
+                    if  (Post !== peeky.serverData.get(keySF, "reddit_posts_bonus_last") && Post.length > 0)  {
+
+                        peeky.serverData.set(keySF, Post, "reddit_posts_bonus_last");
+                      
+                        
+
+                    };
+                  
+                });
+              
+                console.log("The Reddit Posts function has been triggered in " + message.guild.name + ".");
+                function_UpdateAutowipe(keySF, "server");
+            };
+
+    };
+  
 };
     
 //Server Age
