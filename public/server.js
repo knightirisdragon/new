@@ -3718,7 +3718,7 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
                         peeky.serverData.set(keySF, Post.url, "reddit_posts_bonus_last");
                           
                       	const embed = {
-                          "description": "**" + Post.title +"** \n u/" + Post.author + " \n ­", //  + " \n\n [" + Post.url + "](" + Post.url + ")"
+                          "description": "**" + Post.title +"** \n u/" + Post.author, //  + " \n\n [" + Post.url + "](" + Post.url + ")"
                           "color": EmbedColor,
                           "image": {
                             "url": Post.url
