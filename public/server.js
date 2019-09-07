@@ -3441,8 +3441,8 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
                   
         };
 
-        console.log("The Message Log function has been triggered in " + reaction.message.guild.name + ".");
-        function_UpdateAutowipe(keySF, "server");
+            console.log("The Message Log function has been triggered in " + reaction.message.guild.name + ".");
+            function_UpdateAutowipe(keySF, "server");
 
     };
               
@@ -4854,29 +4854,6 @@ if  (FunctioName.startsWith("banned words"))  {
         
     if   (peeky.channelData.get(keyCF, "banned_words_bonus") == true) {peeky.channelData.set(keyCF, false, "banned_words_bonus")}
     else peeky.channelData.set(keyCF, true, "banned_words_bonus");
-Channel.fetchWebhooks().then(webhook =>  {
-            
-              var FoundHook = webhook.find(w => w.name == "PEEKY");
-
-              if  (FoundHook)  {
-            
-                 var Webhook = webhook.find(w => w.name == "PEEKY");
-
-                 Webhook.send(OriginalMessageEdited + "\n­", {
-
-                 "username": message.author.tag,
-                 "avatarURL": message.author.displayAvatarURL
-
-                 "embeds":  [{
-                     "description": "[🔍](" + reaction.message.url + ")",
-                     "color": EmbedColor
-                 }]
-
-                 }).catch(error => ErrorBag.add(error));
-
-              };
-            
-        });
       
     if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
     const embed = {"description": SuccessIcon + " The **Banned Words** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
@@ -6615,68 +6592,75 @@ if (CommandName.startsWith("play"))  {
 
                 if  (Length <= 1800 && Length > 0)  {
 
-                await voiceChannel.join().then(async connection => {
+                  if  (!Title.toLowerCase().includes("earrape" || "ear rape"))  {
 
-                CurrentlyPlaying.add(message.guild.id);
+                      await voiceChannel.join().then(async connection => {
 
-                peeky.serverData.set(keySF, Title, "Title");
-                peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
-                peeky.serverData.set(keySF, Author, "Author");
-                peeky.serverData.set(keySF, LengthDate, "Length");
-                peeky.serverData.set(keySF, Started, "Started");
-                peeky.serverData.set(keySF, CommandArgument, "Link");
+                      CurrentlyPlaying.add(message.guild.id);
 
-                if  (DeleteMessage == true)  {
-                    message.delete().catch(error => ErrorBag.add(error));
-                };            
+                      peeky.serverData.set(keySF, Title, "Title");
+                      peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
+                      peeky.serverData.set(keySF, Author, "Author");
+                      peeky.serverData.set(keySF, LengthDate, "Length");
+                      peeky.serverData.set(keySF, Started, "Started");
+                      peeky.serverData.set(keySF, CommandArgument, "Link");
 
-                message.channel.startTyping();
-                await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
-                message.channel.stopTyping();
+                      if  (DeleteMessage == true)  {
+                          message.delete().catch(error => ErrorBag.add(error));
+                      };            
 
-                if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
-                    message.guild.me.setNickname("🎵 " + "Playing in " + function_RemoveFormatting(voiceChannel.name, "other", false).slice(0, 14) + " 🎵");
-                };
+                      message.channel.startTyping();
+                      await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
+                      message.channel.stopTyping();
 
-                const stream = ytdl(CommandArgument);
-                const dispatcher = await connection.playStream(stream, StreamOptions);
+                      if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
+                          message.guild.me.setNickname("🎵 " + "Playing in " + function_RemoveFormatting(voiceChannel.name, "other", false).slice(0, 14) + " 🎵");
+                      };
 
-                dispatcher.on('end', async reason => {
+                      const stream = ytdl(CommandArgument);
+                      const dispatcher = await connection.playStream(stream, StreamOptions);
 
-                CurrentlyPlaying.delete(message.guild.id);
-                voiceChannel.leave();
+                      dispatcher.on('end', async reason => {
 
-                if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 "))))  {
-                    message.guild.me.setNickname(null);
-                };
+                      CurrentlyPlaying.delete(message.guild.id);
+                      voiceChannel.leave();
 
-                const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
+                      if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 "))))  {
+                          message.guild.me.setNickname(null);
+                      };
 
-                const embed = {"description": InfoIcon + " The song has now finished with **" + Listeners.length + " listeners**.",  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                      const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
 
-                if  (Listeners.length >= 5)  {
+                      const embed = {"description": InfoIcon + " The song has now finished with **" + Listeners.length + " listeners**.",  "color": EmbedColor}; 
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-                    Listeners.forEach(id => {
+                      if  (Listeners.length >= 5)  {
 
-                        if  (peeky.userData.has(id) && peeky.userData.get(id, "PartyBadge") == false)  {
-                            peeky.userData.set(id, true, "PartyBadge");
-                        };
+                          Listeners.forEach(id => {
 
-                    });
+                              if  (peeky.userData.has(id) && peeky.userData.get(id, "PartyBadge") == false)  {
+                                  peeky.userData.set(id, true, "PartyBadge");
+                              };
 
-                };
+                          });
 
-                });
+                      };
 
-                }).catch(error => { 
-                    const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                      });
+
+                      }).catch(error => { 
+                          const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                          ErrorBag.add(error);
+                      });
+
+                  } else {
+                    const embed = {"description": ErrorIcon + " You cannot play loud or annoying songs.",  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                    ErrorBag.add(error);
-                });
+                  };
 
                 } else {
-                  const embed = {"description": ErrorIcon + " You cannot play livestreams or songs longer than 10 minutes.",  "color": EmbedColor}; 
+                  const embed = {"description": ErrorIcon + " You cannot play livestreams or songs longer than 30 minutes.",  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
