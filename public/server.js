@@ -1173,7 +1173,7 @@ function function_StreamAnnouncements(type, member)  {
 
     };
 
-    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n **Preview:** Loading\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
+    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
 
 };
 
@@ -3001,14 +3001,12 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                           
                         m.edit("", new Discord.RichEmbed({
                             title: embed.title,
-                            description: embed.description.replace("**Preview:** loading", "**Preview:** Loaded"),
+                            description: embed.description,
                             color:  embed.color,
                             "image":  {
                                 "url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + SavedMember.presence.game.url.replace("https://www.twitch.tv/", "") + ".png"
                             },
-                            "author":  {
-                                "name": function_RemoveFormatting(SavedMember.user.username, "other", true) + " has started live streaming on " + "Twitch" + "!"
-                            }
+                            "author":  embed.author
                         }));
                           
                         }, 60000);
