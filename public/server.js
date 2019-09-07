@@ -2995,13 +2995,21 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                     var SavedMember = member;
 
                     const embed = function_StreamAnnouncements("twitch", member);
-                    Channel.send({ embed }).catch(error => ErrorBag.add(error)).then(message => {
+                    Channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
 
                         setTimeout(() => {
-                            message.embeds[0].image.url = "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + SavedMember.presence.game.url.replace("https://www.twitch.tv/", "") + ".png";
                           
-                            console.log("test");
-                        }, 60000);
+                            const newEmbed = new Discord.RichEmbed({
+                              title: "",
+                              description: "yeet",//embed.description,
+                              color:  embed.color,
+                              "image":  {
+                                  "url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + SavedMember.presence.game.url.replace("https://www.twitch.tv/", "") + ".png"
+                              }
+                            });
+                          
+                            m.edit("Updated", { newEmbed });
+                        }, 5000);
                       
                     });
                   
