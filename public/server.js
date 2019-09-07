@@ -3694,25 +3694,33 @@ if  (peeky.channelData.get(keyCF, "image_only_bonus") == true)  {
 //Reddit Posts
 if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
 
-    if  (!ServerAgeCooldown.has(message.guild.id))  {
+    if  (!RedditPostsCooldown.has(message.guild.id))  {
 
-        ServerAgeCooldown.add(message.guild.id);
-        setTimeout(() => {ServerAgeCooldown.delete(message.guild.id)}, 3600000);
+        RedditPostsCooldown.add(message.guild.id);
+        setTimeout(() => {RedditPostsCooldown.delete(message.guild.id)}, 1800000);
 
             var name    = peeky.serverData.get(keySF, "reddit_posts_bonus_setting");
             var channel = message.guild.channels.find(c => c.name == name);
 
             if  (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
-              
-                node_fetch('https://www.reddit.com/' + name + '.json?limit=1&?sort=top').then(res => res.json()).then(json => json.data.children.map(v => v.data.url)).then(urls => {
-                  
-                    var Post = urls[0];
-
-                    if  (Post !== peeky.serverData.get(keySF, "reddit_posts_bonus_last") && Post.length > 0)  {
-
-                        peeky.serverData.set(keySF, Post, "reddit_posts_bonus_last");
                       
-                        
+                node_fetch("https://api.reddit.com/r/reddevils/top.json?sort=top&limit=1").then(response => response.json()).then(response => {
+                  
+                    var Post = response.data.children[0].data;
+
+                    if  (Post.url !== peeky.serverData.get(keySF, "reddit_posts_bonus_last") && Post.length > 0)  {
+
+                        peeky.serverData.set(keySF, Post.url, "reddit_posts_bonus_last");
+                          
+                      	const embed = {
+                          "description": "**" + Post.title +"** \n u/" + Post.author + " \n\n [" + Post.url + "](" + Post.url + ")",
+                          "color": 16098851,
+                          "image": {
+                            "url": Post.url
+                          }
+                        };
+                      
+                        channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                     };
                   
