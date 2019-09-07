@@ -1154,11 +1154,13 @@ function function_StreamAnnouncements(type, member)  {
     const DiscordBanner = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fsa_discord.png?v=1566236061585";
 
     if  (type == "twitch")  {
+      
+        var TwitchName = member.presence.game.url.replace("https://www.twitch.tv/", "");
 
         var GameName   = member.presence.game.name;
         var GameLink   = member.presence.game.url;
         var GameColor  = 6570404;
-        var GameBanner = "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + member.presence.game.url.replace("https://www.twitch.tv/", "") + ".png"; //TwitchBanner
+        var GameBanner = "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + TwitchName + ".png"; //TwitchBanner
         var GameHost   = "Twitch";
 
     } else
