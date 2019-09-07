@@ -1155,7 +1155,7 @@ function function_StreamAnnouncements(type, member)  {
 
     if  (type == "twitch")  {
 
-        var GameName   = member.presence.game.name;
+        var GameName   = function_RemoveFormatting(member.presence.game.name, "other", false);
         var GameLink   = member.presence.game.url;
         var GameColor  = 6570404;
         var GameBanner = TwitchBanner
@@ -1165,7 +1165,7 @@ function function_StreamAnnouncements(type, member)  {
 
     if  (type == "discord")  {
 
-        var GameName   = member.presence.game.name;
+        var GameName   = function_RemoveFormatting(member.presence.game.name, "other", false);
         var GameLink   = "https://discordapp.com/channels/" + member.guild.id +  "/" + member.voiceChannel.id;
         var GameColor  = 7506394;
         var GameBanner = DiscordBanner;
@@ -1173,7 +1173,7 @@ function function_StreamAnnouncements(type, member)  {
 
     };
 
-    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
+    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n **Preview:** Loading\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
 
 };
 
@@ -2997,19 +2997,21 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                     const embed = function_StreamAnnouncements("twitch", member);
                     Channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
 
-                        setTimeout(() => {
+                    setTimeout(() => {
                           
-                            const newEmbed = new Discord.RichEmbed({
-                              title: "",
-                              description: "yeet",//embed.description,
-                              color:  embed.color,
-                              "image":  {
-                                  "url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + SavedMember.presence.game.url.replace("https://www.twitch.tv/", "") + ".png"
-                              }
-                            });
+                        m.edit("", new Discord.RichEmbed({
+                            title: embed.title,
+                            description: embed.description.replace("**Preview:** loading", "**Preview:** Loaded"),
+                            color:  embed.color,
+                            "image":  {
+                                "url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + SavedMember.presence.game.url.replace("https://www.twitch.tv/", "") + ".png"
+                            },
+                            "author":  {
+                                "name": function_RemoveFormatting(SavedMember.user.username, "other", true) + " has started live streaming on " + "Twitch" + "!"
+                            }
+                        }));
                           
-                            m.edit("Updated", { newEmbed });
-                        }, 5000);
+                        }, 60000);
                       
                     });
                   
