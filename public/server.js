@@ -1166,14 +1166,14 @@ function function_StreamAnnouncements(type, member)  {
     if  (type == "discord")  {
 
         var GameName   = member.presence.game.name;
-        var GameLink   = member.voiceChannel.id;
+        var GameLink   = "https://discordapp.com/channels/" + member.guild.id +  "/" + member.voiceChannel.id;
         var GameColor  = 7506394;
         var GameBanner = DiscordBanner;
         var GameHost   = "Discord";
 
     };
                   
-    return embed = {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
+    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
 
 };
 
