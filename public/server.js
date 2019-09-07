@@ -1154,13 +1154,11 @@ function function_StreamAnnouncements(type, member)  {
     const DiscordBanner = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fsa_discord.png?v=1566236061585";
 
     if  (type == "twitch")  {
-      
-        var TwitchName = member.presence.game.url.replace("https://www.twitch.tv/", "");
 
         var GameName   = member.presence.game.name;
         var GameLink   = member.presence.game.url;
         var GameColor  = 6570404;
-        var GameBanner = "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + TwitchName + ".png"; //TwitchBanner
+        var GameBanner = TwitchBanner
         var GameHost   = "Twitch";
 
     } else
@@ -1174,12 +1172,9 @@ function function_StreamAnnouncements(type, member)  {
         var GameHost   = "Discord";
 
     };
-  
-    setTimeout(() => {
-      return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
-    }, 60000);
-                  
-    
+
+    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
+
 };
 
 //Remove Formatting
@@ -2996,10 +2991,20 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                 };
 
                 if  (AlreadyStreaming !== true)  {
+                  
+                    var SavedMember = member;
 
                     const embed = function_StreamAnnouncements("twitch", member);
-                    Channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    Channel.send({ embed }).catch(error => ErrorBag.add(error)).then(message => {
 
+                        setTimeout(() => {
+                            message.embeds[0].image.url = "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + SavedMember.presence.game.url.replace("https://www.twitch.tv/", "") + ".png";
+                          
+                            console.log("test");
+                        }, 60000);
+                      
+                    });
+                  
                     console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
                     function_UpdateAutowipe(keySF, "server");
 
