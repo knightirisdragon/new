@@ -3706,29 +3706,28 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
             var channel = message.guild.channels.find(c => c.name == name);
 
             if  (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+              
+                const Channel = channel;
                       
                 node_fetch("https://api.reddit.com/r/" + name + "/top.json?sort=top&limit=1").then(response => response.json()).then(response => {
                   
                     var Post = response.data.children[0].data;
-                  
-                    console.log(Post);
 
                     if  (Post.url !== peeky.serverData.get(keySF, "reddit_posts_bonus_last") && Post.url !== undefined)  {
 
                         peeky.serverData.set(keySF, Post.url, "reddit_posts_bonus_last");
                           
                       	const embed = {
-                          "description": "**" + Post.title +"** \n u/" + Post.author + " \n\n [" + Post.url + "](" + Post.url + ")",
-                          "color": 16098851,
+                          "description": "**" + Post.title +"** \n u/" + Post.author + " \n ­", //  + " \n\n [" + Post.url + "](" + Post.url + ")"
+                          "color": EmbedColor,
                           "image": {
                             "url": Post.url
                           }
                         };
                       
-                        channel.send("test").catch(error => ErrorBag.add(error));
-                        //channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        Channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-                    };
+                   };
                   
                 });
               
