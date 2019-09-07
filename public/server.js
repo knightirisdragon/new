@@ -1166,7 +1166,7 @@ function function_StreamAnnouncements(type, member)  {
     if  (type == "discord")  {
 
         var GameName   = member.presence.game.name;
-        var GameLink   = member.presence.game.url;
+        var GameLink   = member.voiceChannel.id;
         var GameColor  = 7506394;
         var GameBanner = DiscordBanner;
         var GameHost   = "Discord";
