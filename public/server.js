@@ -1158,7 +1158,7 @@ function function_StreamAnnouncements(type, member)  {
         var GameName   = member.presence.game.name;
         var GameLink   = member.presence.game.url;
         var GameColor  = 6570404;
-        var GameBanner = TwitchBanner;
+        var GameBanner = "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + member.presence.game.url.replace("https://www.twitch.tv/", "") + ".png"; //TwitchBanner
         var GameHost   = "Twitch";
 
     } else
