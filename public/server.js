@@ -1304,7 +1304,8 @@ function function_ServerData(key)  {
             nick_saver_array: [],
             server_age_bonus: false,
             server_age_bonus_id: null,
-            dash_remover_bonus: false
+            dash_remover_bonus: false,
+            reddit_posts_bonus_setting: 
         });
   
     };
@@ -1326,7 +1327,8 @@ function function_ChannelData(key)  {
             spoiler_only_bonus: false,
             flood_protection_bonus_lastdate: null,
             flood_protection_bonus_lastuser: null,
-            flood_protection_bonus_lastmsg: null
+            flood_protection_bonus_lastmsg: null,
+            reddit_posts_bonus: false
         });
       
     };
