@@ -6643,8 +6643,7 @@ if (CommandName.startsWith("play"))  {
         var Type = "Started";
         var DeleteMessage = false;
         var ChoosingMode = true;
-        var IsRandom = false;
-
+        
         MusicCmdCooldown.add(message.guild.id);
         setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
 
@@ -6654,13 +6653,14 @@ if (CommandName.startsWith("play"))  {
 
         if  (CommandArgument == RandomString && ChoosingMode == true)  {
 
+            ChoosingMode = false;
+          
             CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
             Type = "Random";
-            ChoosingMode = false;
 
         };
 
-        if  ((CommandArgument == "previous" || IsRandom == true) && ChoosingMode == true)  {
+        if  (CommandArgument == "previous" && ChoosingMode == true)  {
 
             ChoosingMode = false;
 
@@ -6678,8 +6678,12 @@ if (CommandName.startsWith("play"))  {
             };
 
         };
+          
+            console.log("1");
 
-        if  ((CommandArgument == "playlist" || CommandArgument == peeky.userData.get(key, "PlaylistName").toLowerCase()) && ChoosingMode == true)  {
+        if  (CommandArgument == "playlist" && ChoosingMode == true)  {
+          
+            console.log("2");
 
             ChoosingMode = false;
 
@@ -6687,6 +6691,8 @@ if (CommandName.startsWith("play"))  {
 
                 CommandArgument = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
                 Type = "Playlist";
+          
+            console.log("3");
 
             } else {
 
