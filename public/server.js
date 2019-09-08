@@ -3734,8 +3734,8 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
                             if  ((Post.url.includes(".png") || Post.url.includes(".gif") || Post.url.includes(".jpg")))  {  var image = Post.url;  }  else  {  var image = HollowImage;  }; 
 
                             const embed = {  
-                              "title": Post.title,
-                              "description": "u/" + Post.author + " \n ­",
+                              "title": function_FixCapitalization(function_RemoveFormatting(Post.title, "other", false)),
+                              "description": "u/" + function_RemoveFormatting(Post.author, "other", false) + " \n ­",
                               "color": EmbedColor,
                               "image": {
                                 "url": image
