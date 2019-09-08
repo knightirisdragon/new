@@ -6632,7 +6632,7 @@ if (!ProfileCooldown.has(message.author.id))  {
 //Play 
 if (CommandName.startsWith("play"))  {
   
-    var CommandArgument = CommandName.split("play")[1];
+    var CommandArgument = CommandName.replace("play", ""); //split("play")[1];
       
     if  (CommandArgument.startsWith(" "))  {
       
@@ -6679,11 +6679,10 @@ if (CommandName.startsWith("play"))  {
 
         };
           
-            console.log("1");
+            console.log(ChoosingMode);
+            console.log(CommandArgument);
 
         if  (CommandArgument == "playlist" && ChoosingMode == true)  {
-          
-            console.log("2");
 
             ChoosingMode = false;
 
@@ -6691,8 +6690,6 @@ if (CommandName.startsWith("play"))  {
 
                 CommandArgument = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
                 Type = "Playlist";
-          
-            console.log("3");
 
             } else {
 
