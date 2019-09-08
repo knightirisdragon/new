@@ -3717,12 +3717,25 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
 
                         peeky.serverData.set(keySF, Post.url, "reddit_posts_bonus_last");
                           
-                      	const embed = {
-                          "description": "**" + Post.title +"** \n u/" + Post.author, //  + " \n\n [" + Post.url + "](" + Post.url + ")"
+                      	const embed = {  
+                          "title": Post.title,
+                          "description": "u/" + Post.author + " \n ­",
                           "color": EmbedColor,
                           "image": {
                             "url": Post.url
-                          }
+                          },
+                          "fields": [
+                            {
+                              "name": "Original Post",
+                              "value": "[Click](" + "www.reddit.com/" + ")",
+                              "inline": true
+                            },
+                            {
+                              "name": "Rating",
+                              "value":  Post.ups + " " + DefaultUpvote + " • " + Post.downs + " " + DefaultDownvote,
+                              "inline": true
+                            }
+                          ]
                         };
                       
                         Channel.send({ embed }).catch(error => ErrorBag.add(error));
