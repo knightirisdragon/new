@@ -914,7 +914,9 @@ const DrawAndGuess = [
     "Trophy",
     "Friends",
     "Doctor",
-    ""
+    "Donkey",
+    "Shrek",
+    "JoJo"
   
 ];
 
