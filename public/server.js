@@ -1320,7 +1320,7 @@ function function_ServerData(key)  {
             dash_remover_bonus: false,
             reddit_posts_bonus: false,
             reddit_posts_bonus_setting: "discordapp",
-            reddit_posts_bonus_last: null
+            reddit_posts_bonus_last: []
         });
   
     };
@@ -3296,7 +3296,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
 
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Event Countdown** " + EC + "\n" + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`" + "\n\n" +
-                                "**Reddit Posts** " + RP + "\n" + "`" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "`" + "\n\n" +
+                                "**Reddit Posts** " + RP + "\n" + "`r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "`" + "\n\n" +
                                 "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(ServerMessage, "sm", true) + "`" + "\n\n" +
                                 "**Dash Remover** " + DR + "\n" + "No setting" + "\n\n" +
                                 "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
@@ -3727,9 +3727,9 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
                   
                         var Post = response.data.children[i].data;
 
-                        if  (Post.url !== peeky.serverData.get(keySF, "reddit_posts_bonus_last") && Post.pinned == false)  {
+                        if  (!peeky.serverData.get(keySF, "reddit_posts_bonus_last").includes(Post.url) && Post.pinned == false)  {
 
-                            peeky.serverData.set(keySF, Post.url, "reddit_posts_bonus_last");
+                            peeky.serverData.get(keySF, "reddit_posts_bonus_last").push(Post.url);
 
                             if  ((Post.url.includes(".png") || Post.url.includes(".gif") || Post.url.includes(".jpg")))  {  var image = Post.url;  }  else  {  var image = HollowImage;  }; 
 
@@ -4701,8 +4701,8 @@ else
 if  (FunctioName.startsWith("reddit posts"))  {
   
     const guild = message.guild;
-    const name = peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "";
-    var channel = guild.channels.find(c=> c.id == id);
+    const name = peeky.serverData.get(keySF, "reddit_posts_bonus_setting");
+    var channel = guild.channels.find(c=> c.name == name);
 
     if(peeky.serverData.get(keySF, "reddit_posts_bonus") == true) {peeky.serverData.set(keySF, false, "reddit_posts_bonus");}
     else peeky.serverData.set(keySF, true, "reddit_posts_bonus");
@@ -5280,7 +5280,7 @@ if  (FunctioName.startsWith("reddit posts "))  {
 
     peeky.serverData.set(keySF, FixedChannelName, "reddit_posts_bonus_setting");
 
-    const embed = {"description": SuccessIcon + " The **Stream Announcements** setting has been set to **#" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " The **Reddit Posts** setting has been set to **r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
