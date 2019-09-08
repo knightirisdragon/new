@@ -3416,7 +3416,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
       
     if  (Channel && reaction.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))  {
 
-    if  (reaction.message.attachments.size > 0)  {  image = reaction.message.attachments.array()[0].url;  }  else  {  image = DarkField;  }; 
+    if  (reaction.message.attachments.size > 0)  {  image = reaction.message.attachments.array()[0].url;  }  else  {  image = HollowImage;  }; 
             
         Channel.fetchWebhooks().then(webhook =>  {
             
