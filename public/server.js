@@ -907,7 +907,14 @@ const DrawAndGuess = [
     "Minecraft",
     "Weapon",
     "Sleep",
-    "Fruit"
+    "Fruit",
+    "Flower",
+    "Lover",
+    "Number",
+    "Trophy",
+    "Friends",
+    "Doctor",
+    ""
   
 ];
 
@@ -3734,7 +3741,7 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
                             },
                             {
                               "name": "Rating",
-                              "value":  RedditUpvote + Post.ups + " \n " + RedditDownvote + Post.downs,
+                              "value":  RedditUpvote + " " + Post.ups + " \n " + RedditDownvote + " " + Post.downs,
                               "inline": true
                             }
                           ]
@@ -6678,9 +6685,6 @@ if (CommandName.startsWith("play"))  {
             };
 
         };
-          
-            console.log(ChoosingMode);
-            console.log(CommandArgument);
 
         if  (CommandArgument == "playlist" && ChoosingMode == true)  {
 
