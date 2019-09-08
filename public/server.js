@@ -3723,15 +3723,15 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
                       
                 node_fetch("https://api.reddit.com/r/" + name + "/top.json?sort=top&limit=5").then(response => response.json()).then(response => {
                   
-                    response.data.children.forEach(Post => {
+                    for (i = 0; i < response.data.children.length; i++)  {
                   
-                        var Post = Post.data;
+                        var Post = response.data.children[i].data;
 
                         if  (Post.url !== peeky.serverData.get(keySF, "reddit_posts_bonus_last") && Post.pinned == false)  {
 
                             peeky.serverData.set(keySF, Post.url, "reddit_posts_bonus_last");
 
-                            if  (Post.media !== null && Post.is_video == false)  {  var image = Post.url;  }  else  {  var image = HollowImage;  }; 
+                            if  ((Post.url.includes(".png") || Post.url.includes(".gif") || Post.url.includes(".jpg")))  {  var image = Post.url;  }  else  {  var image = HollowImage;  }; 
 
                             const embed = {  
                               "title": Post.title,
@@ -3755,10 +3755,12 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
                             };
 
                             Channel.send({ embed }).catch(error => ErrorBag.add(error));
+                          
+                            break;
 
                         };
                     
-                    });
+                    };
                   
                 });
               
