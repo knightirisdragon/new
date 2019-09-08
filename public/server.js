@@ -202,7 +202,7 @@ const ChestIcon    = "<:chest:561511603305185280>";
 const EnabledIcon  = "<:enabled:538295053940948993>";
 const DisabledIcon = "<:disabled:538295054431813662>";
 const SettingsIcon = "<:settings:586612320839532573>";
-const RedditUpvote    = "<:RedditUpvote:620122349408223262>";
+const RedditUpvote    = "<:RedditUpvote:620124949855600640>";
 const RedditDownvote  = "<:RedditDownvote:620122348745523200>";
 
 //Role IDs
@@ -3728,13 +3728,13 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
                           },
                           "fields": [
                             {
-                              "name": "Original Post",
-                              "value": "[Click](" + "https://www.reddit.com/" + Post.permalink + ")",
+                              "name": "Links",
+                              "value": "[Post](" + "https://www.reddit.com/" + Post.permalink + ") \n [Media](" + Post.url + ")",
                               "inline": true
                             },
                             {
                               "name": "Rating",
-                              "value":  Post.ups + " " + RedditUpvote + " " + Post.downs + " " + RedditDownvote,
+                              "value":  RedditUpvote + Post.ups + " \n " + RedditDownvote + Post.downs,
                               "inline": true
                             }
                           ]
