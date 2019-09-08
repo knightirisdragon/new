@@ -75,6 +75,7 @@ const Blurple               = "#7289DA";
 const EmbedColor            = 3093047;
 const MinReviewLength       = 200;
 const BackgroundInvLimit    = 25;
+const MemeLimit             = 25;
 const BannedWordsLimit      = 10;
 const PlaylistLimit         = 10;
 const GameRolesLimit        = 10;
@@ -3721,7 +3722,7 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
               
                 const Channel = channel;
                       
-                node_fetch("https://api.reddit.com/r/" + name + "/top.json?sort=top&limit=5").then(response => response.json()).then(response => {
+                node_fetch("https://api.reddit.com/r/" + name + "/top.json?sort=top&limit=" + MemeLimit).then(response => response.json()).then(response => {
                   
                     for (i = 0; i < response.data.children.length; i++)  {
                   
@@ -3729,12 +3730,16 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
 
                         if  (!peeky.serverData.get(keySF, "reddit_posts_bonus_last").includes(Post.url) && Post.pinned == false)  {
 
+                            if  (peeky.serverData.get(keySF, "reddit_posts_bonus_last").length > MemeLimit)  {
+                                peeky.serverData.set(keySF, [], "reddit_posts_bonus_last");
+                            };
+                          
                             peeky.serverData.get(keySF, "reddit_posts_bonus_last").push(Post.url);
 
                             if  ((Post.url.includes(".png") || Post.url.includes(".gif") || Post.url.includes(".jpg")))  {  var image = Post.url;  }  else  {  var image = HollowImage;  }; 
 
                             const embed = {  
-                              "title": function_FixCapitalization(function_RemoveFormatting(Post.title, "other", false)),
+                              "title": function_FixCapitalization(function_RemoveFormatting(function_ProperSlice(Post.title, 100), "other", false)),
                               "description": "u/" + function_RemoveFormatting(Post.author, "other", false) + " \n ­",
                               "color": EmbedColor,
                               "image": {
