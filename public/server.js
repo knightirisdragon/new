@@ -689,7 +689,9 @@ const Banners = [
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground403.png?v=1566128632167", 475, "To the rescue", "Ghost Recond Breakpoint", undefined],
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground404.png?v=1566128626627", 350, "Torture dance", "u/Arbitrarium_", undefined],
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground405.png?v=1567050251316", 500, "Left hanging", "Dead by Daylight", undefined],
-    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground406.png?v=1567528259333", 425, "Battle zone", "Vojtěch Jílovec", `108899856889737216`]
+    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground406.png?v=1567528259333", 425, "Battle zone", "Vojtěch Jílovec", `108899856889737216`],
+    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground407.png?v=1567938140089", 400, "Death #162009", "Vojtěch Jílovec", `108899856889737216`],
+    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground408.png?v=1567938199867", 500, "Ice breaker", "u/neytirixx", undefined]
 
 ];
 
