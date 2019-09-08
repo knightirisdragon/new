@@ -122,6 +122,7 @@ const DiscordIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6e
 const DarkField  = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fdarkfield.png?1558421870621";
 const LightField = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Flightfield.png?1558421869640";
 
+const HollowImage       = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2FHollowImage.png?v=1567927053949";
 const DefaultBackground = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground1.png?1558721841453";
 const NoBackground      = "http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2FNA%20Background.png?v=1563929199191"
 const PrismPattern      = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern_assets.png?1554545063162";
@@ -3415,7 +3416,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
       
     if  (Channel && reaction.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))  {
 
-    if  (reaction.message.attachments.size > 0)  {  image = reaction.message.attachments.array()[0].url;  }  else  {  image = "https://cdn.discordapp.com/attachments/471346376089927700/508681498271154198/unknown.png";  }; 
+    if  (reaction.message.attachments.size > 0)  {  image = reaction.message.attachments.array()[0].url;  }  else  {  image = DarkField;  }; 
             
         Channel.fetchWebhooks().then(webhook =>  {
             
@@ -3724,16 +3725,18 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
                   
                     var Post = response.data.children[0].data;
 
-                    if  (Post.url !== peeky.serverData.get(keySF, "reddit_posts_bonus_last") && Post.url !== undefined)  {
+                    if  (Post.url !== peeky.serverData.get(keySF, "reddit_posts_bonus_last"))  {
 
                         peeky.serverData.set(keySF, Post.url, "reddit_posts_bonus_last");
+                        
+                        if  (Post.media !== null && Post.is_video == false)  {  var image = Post.url;  }  else  {  var image = HollowImage;  }; 
                           
                       	const embed = {  
                           "title": Post.title,
                           "description": "u/" + Post.author + " \n ­",
                           "color": EmbedColor,
                           "image": {
-                            "url": Post.url
+                            "url": image
                           },
                           "fields": [
                             {
