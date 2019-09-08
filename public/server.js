@@ -3721,40 +3721,44 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
               
                 const Channel = channel;
                       
-                node_fetch("https://api.reddit.com/r/" + name + "/top.json?sort=top&limit=1").then(response => response.json()).then(response => {
+                node_fetch("https://api.reddit.com/r/" + name + "/top.json?sort=top&limit=5").then(response => response.json()).then(response => {
                   
-                    var Post = response.data.children[0].data;
+                    response.data.children.forEach(Post => {
+                  
+                        var Post = Post.data;
 
-                    if  (Post.url !== peeky.serverData.get(keySF, "reddit_posts_bonus_last"))  {
+                        if  (Post.url !== peeky.serverData.get(keySF, "reddit_posts_bonus_last") && Post.pinned == false)  {
 
-                        peeky.serverData.set(keySF, Post.url, "reddit_posts_bonus_last");
-                        
-                        if  (Post.media !== null && Post.is_video == false)  {  var image = Post.url;  }  else  {  var image = HollowImage;  }; 
-                          
-                      	const embed = {  
-                          "title": Post.title,
-                          "description": "u/" + Post.author + " \n ­",
-                          "color": EmbedColor,
-                          "image": {
-                            "url": image
-                          },
-                          "fields": [
-                            {
-                              "name": "Links",
-                              "value": "[Post](" + "https://www.reddit.com/" + Post.permalink + ") \n [Media](" + Post.url + ")",
-                              "inline": true
-                            },
-                            {
-                              "name": "Rating",
-                              "value":  RedditUpvote + " " + Post.ups + " \n " + RedditDownvote + " " + Post.downs,
-                              "inline": true
-                            }
-                          ]
+                            peeky.serverData.set(keySF, Post.url, "reddit_posts_bonus_last");
+
+                            if  (Post.media !== null && Post.is_video == false)  {  var image = Post.url;  }  else  {  var image = HollowImage;  }; 
+
+                            const embed = {  
+                              "title": Post.title,
+                              "description": "u/" + Post.author + " \n ­",
+                              "color": EmbedColor,
+                              "image": {
+                                "url": image
+                              },
+                              "fields": [
+                                {
+                                  "name": "Links",
+                                  "value": "[Post](" + "https://www.reddit.com" + Post.permalink + ") \n [Media](" + Post.url + ")",
+                                  "inline": true
+                                },
+                                {
+                                  "name": "Rating",
+                                  "value":  RedditUpvote + " " + Post.ups + " \n " + RedditDownvote + " " + Post.downs,
+                                  "inline": true
+                                }
+                              ]
+                            };
+
+                            Channel.send({ embed }).catch(error => ErrorBag.add(error));
+
                         };
-                      
-                        Channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-                   };
+                    
+                    });
                   
                 });
               
