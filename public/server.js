@@ -210,7 +210,7 @@ const RedditDownvote  = "<:RedditDownvote:620122348745523200>";
 //Role IDs
 const StaffRole          = "494429609874685983";
 const SupporterRole      = "504740473185894400";
-const BoosterRole        = "589783851329650690";
+const BoosterRole        = "620654437081415686";
 const ServerUpgradeRole  = "549190337437106176";
 const ProfileBoosterRole = "603249410532442116";
 const RedeemRoleGredit   = "505491936401162270";
