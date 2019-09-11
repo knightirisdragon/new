@@ -2016,8 +2016,8 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
     const rightNow = Date.now();
   
     //Guilds
-    var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen && !p.server_Upgraded && !ImmuneServers.includes(p.GuildID) );
-    var toRemoveGuilds = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen && !ImmuneServers.includes(data.GuildID));
+    var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen && p.server_Upgraded !== true && !ImmuneServers.includes(p.GuildID) );
+    var toRemoveGuilds = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
 
     toRemoveGuilds.forEach(async data => {
       
