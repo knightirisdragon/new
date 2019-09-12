@@ -7219,6 +7219,7 @@ if (CommandName == "drawandguess")  {
 
         var ChosenQuestion = Math.floor((Math.random() * DrawAndGuess.length));
         var InfoMessages = [];
+        var Active = false;
 
         ActiveMinigames.add(message.guild.id);
         setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 90000);
@@ -7235,9 +7236,38 @@ if (CommandName == "drawandguess")  {
             const embed = {"description": InfoIcon + " Try to guess the word that **" + function_RemoveFormatting(message.author.username, "other", true) + "** has drawn!",  "color": EmbedColor}; 
             message.channel.send({ embed });
           
+            Active = true;
+          
+            setTimeout(() => { 
+          
+                if  (Active == false)  {
+                  
+                    var Hint = "";
+                    
+                    for (var i = 0; i < DrawAndGuess[ChosenQuestion].length; i++) {
+                      
+                        if  (i == 0)  {
+                            Hint = Hint + " " + DrawAndGuess[ChosenQuestion][i] + " ";   
+                        }
+                         else  
+                        {
+                         Hint = Hint + " - ";   
+                        };
+                      
+                    };
+
+                    const embed = {"description": InfoIcon +  " Hint: " + Hint,  "color": EmbedColor}; 
+                    message.channel.send({ embed });
+                  
+                };
+            
+            }, 20000);
+          
             message.channel.awaitMessages(response => response.author.id !== message.author.id && response.content.toLowerCase() == DrawAndGuess[ChosenQuestion].toLowerCase(), { maxMatches: 1, time: 30000, errors: ['time'] })
             .then(collected => {
                  var key = collected.first().author.id;
+              
+                Active = false;
 
                  //Gamer Badge
                  if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
