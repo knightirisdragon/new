@@ -894,7 +894,7 @@ const DrawAndGuess = [
     "Rose",
     "Car",
     "Donuts",
-    "Golfing",
+    "Golf",
     "Deer",
     "Storage",
     "Spiderman",
@@ -7238,9 +7238,9 @@ if (CommandName == "drawandguess")  {
           
             Active = true;
           
-            setTimeout(() => { 
+            setTimeout(() => {
           
-                if  (Active == false)  {
+                if  (Active == true)  {
                   
                     var Hint = "";
                     
@@ -7256,12 +7256,12 @@ if (CommandName == "drawandguess")  {
                       
                     };
 
-                    const embed = {"description": InfoIcon +  " Hint: " + Hint,  "color": EmbedColor}; 
+                    const embed = {"description": InfoIcon + " " + Hint,  "color": EmbedColor}; 
                     message.channel.send({ embed });
                   
                 };
             
-            }, 20000);
+            }, 10000);
           
             message.channel.awaitMessages(response => response.author.id !== message.author.id && response.content.toLowerCase() == DrawAndGuess[ChosenQuestion].toLowerCase(), { maxMatches: 1, time: 30000, errors: ['time'] })
             .then(collected => {
