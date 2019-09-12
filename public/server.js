@@ -2031,7 +2031,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
             Guild.leave();
         };
       
-        console.log("I have left an inactive server.");    
+        console.log("I have removed an inactive server.");    
 
     });
       
