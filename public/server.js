@@ -3027,16 +3027,20 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                     Channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
 
                     setTimeout(() => {
+                      
+                        if  (m)  {
                           
-                        m.edit("", new Discord.RichEmbed({
-                            title: embed.title,
-                            description: embed.description,
-                            color:  embed.color,
-                            "image":  {
-                                "url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + SavedMember.presence.game.url.replace("https://www.twitch.tv/", "") + ".png?" + Math.floor((Math.random() * 100000) + 1)
-                            },
-                            "author":  embed.author
-                        }));
+                            m.edit("", new Discord.RichEmbed({
+                                title: embed.title,
+                                description: embed.description,
+                                color:  embed.color,
+                                "image":  {
+                                    "url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + SavedMember.presence.game.url.replace("https://www.twitch.tv/", "") + ".png?" + Math.floor((Math.random() * 100000) + 1)
+                                },
+                                "author":  embed.author
+                            }));
+                          
+                        };
                           
                         }, 60000);
                       
