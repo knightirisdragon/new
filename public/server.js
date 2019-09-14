@@ -3033,7 +3033,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                             description: embed.description,
                             color:  embed.color,
                             "image":  {
-                                "url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + SavedMember.presence.game.url.replace("https://www.twitch.tv/", "") + ".png"
+                                "url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + SavedMember.presence.game.url.replace("https://www.twitch.tv/", "") + ".png?" + Math.floor((Math.random() * 100000) + 1)
                             },
                             "author":  embed.author
                         }));
