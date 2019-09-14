@@ -788,7 +788,8 @@ const RandomSongs = [
     "https://www.youtube.com/watch?v=zKFzKIa_pIM",
     "https://www.youtube.com/watch?v=PoVgCOCt4KA",
     "https://www.youtube.com/watch?v=Sk-U8ruIQyA",
-    "https://www.youtube.com/watch?v=y8a65a-B5Zw"
+    "https://www.youtube.com/watch?v=y8a65a-B5Zw",
+    "https://www.youtube.com/watch?v=eFVj0Z6ahcI"
   
 ];
 
@@ -830,7 +831,8 @@ const GuessTheSong = [
     ["https://www.youtube.com/watch?v=gBRi6aZJGj4", "Bellyache", "Hard"],
     ["https://www.youtube.com/watch?v=k1ATPhkVWi0", "My Strange Addiction", "Medium"],
     ["https://www.youtube.com/watch?v=PoVgCOCt4KA", "Alien Boy", "Medium"],
-    ["https://www.youtube.com/watch?v=Sk-U8ruIQyA", "Blood // Water", "hard"]
+    ["https://www.youtube.com/watch?v=Sk-U8ruIQyA", "Blood // Water", "hard"],
+    ["https://www.youtube.com/watch?v=eFVj0Z6ahcI", "Last Surprise", "medium"]
   
 ];
 
@@ -920,7 +922,15 @@ const DrawAndGuess = [
     "Doctor",
     "Donkey",
     "Shrek",
-    "JoJo"
+    "JoJo",
+    "Bus",
+    "Rat",
+    "Fedora",
+    "Money",
+    "Gems",
+    "Cocktail",
+    "Dance",
+    "Inventory"
   
 ];
 
