@@ -156,7 +156,7 @@ const PartyImage        = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602
 const HorderImage       = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fhorder.png?1558727721673";
 const PainterImage      = "http://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpainter.png?1558728694985";
 const MinerImage        = "http://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2FMiner.png?1559015350668";
-const BoosterImage      = "http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbooster.png?v=1560691400942";
+const BoosterImage      = "http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbooster.png?v=1568469682712";
 const GamerImage        = "http://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2FGamer.png?v=1564176885010";
 const EvilImage         = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fevil.png?v=1564270118631";
 const GoodImage         = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581";
@@ -186,7 +186,7 @@ const PartyEmote        = "<:party:578689336116248618>";
 const HorderEmote       = "<:horder:581571252070776844>";
 const PainterEmote      = "<:painter:581575158855368724>";
 const MinerEmote        = "<:miner:582777441592934410>";
-const BoosterEmote      = "<:booster:589786301759488050>";
+const BoosterEmote      = "<:booster:622431477384085514>";
 const GamerEmote        = "<:gamer:604426153524068354>";
 const EvilEmote         = "<:evil:604817305247023117>";
 const GoodEmote         = "<:good:605138883138551838>";
