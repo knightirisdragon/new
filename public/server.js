@@ -2981,6 +2981,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
             if  (member.presence.game !== null && member.presence.game.streaming == true)  {
 
             if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
+              
                  member.addRole(GuildRole.id).catch(error => ErrorBag.add(error));
 
                  CurrentlyStreaming.add(member.user.id + member.guild.id + "SR");
@@ -2988,6 +2989,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
 
                  console.log("The Streamer Role function has been triggered in " + member.guild.name + ".");
                  function_UpdateAutowipe(keySF, "server");
+              
             };
 
             }  else  { 
@@ -3030,12 +3032,14 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                       
                         if  (m)  {
                           
+                            var RandomNumber = Math.floor((Math.random() * 10000) + 1);
+                          
                             m.edit("", new Discord.RichEmbed({
                                 title: embed.title,
                                 description: embed.description,
                                 color:  embed.color,
                                 "image":  {
-                                    "url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + SavedMember.presence.game.url.replace("https://www.twitch.tv/", "") + ".png?" + Math.floor((Math.random() * 100000) + 1)
+                                    "url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + SavedMember.presence.game.url.replace("https://www.twitch.tv/", "") + ".png?r=" + RandomNumber
                                 },
                                 "author":  embed.author
                             }));
