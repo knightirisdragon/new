@@ -3251,7 +3251,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (BWArray.length < 1)  {  BWArray = "none";  }  else  {  BWArray = BWArray.join("` `");  };
 
         var GRArray = peeky.serverData.get(keySF, "game_roles_bonus_setting");
-        if  (GRArray.length < 1)  {  GRArray = "none";  }  else  {  GRArray = GRArray.join("` `");  };
+        if  (GRArray.length < 1)  {  GRArray = "none";  }  else  {  GRArray = "@" + GRArray.join("` `@");  };
 
         var GivenMinutes = peeky.serverData.get(keySF, "spoiler_lock_bonus_setting");
         if  (GivenMinutes == 0)  {GivenMinutes = "never"}  else  {GivenMinutes = GivenMinutes + " minutes"}
@@ -5384,7 +5384,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < GameRolesL
 
     var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "game_roles_bonus_setting");
   
-    const embed = {"description": SuccessIcon + " The **Game Roles** setting has been set to **" + FixedArray.join("**, **") + EndString + "**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " The **Game Roles** setting has been set to **@" + FixedArray.join("**, **@") + EndString + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
