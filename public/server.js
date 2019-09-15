@@ -1265,6 +1265,18 @@ function function_RemoveFormatting(text, type, sliced)  {
             return BadFormat;
         };
       
+    } else
+      
+    if  (type == "strict")  {
+
+        var FixedText = text.replace(/[ ~*|`_]/g, '').replace(/\n/g, '');
+
+        if  (FixedText !== "")  {
+            return FixedText;
+        } else {
+            return BadFormat;
+        };
+      
     };
 
 };
@@ -3766,7 +3778,7 @@ if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)  {
 
         if  (!message.member.permissions.has("MANAGE_MESSAGES"))  {
       
-            if  (VulgarPhrases.some(text => function_RemoveFormatting(message.content.toLowerCase(), "other", false).includes(text)))  {
+            if  (VulgarPhrases.some(text => function_RemoveFormatting(message.content.toLowerCase(), "strict", false).includes(text)))  {
 
                 message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
 
@@ -4163,7 +4175,7 @@ if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true)  {
   
     if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
-        if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(keySF, "banned_words_bonus_setting").some(word => function_RemoveFormatting(message.content.toLowerCase(), "other", false).includes(word)))  {
+        if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(keySF, "banned_words_bonus_setting").some(word => function_RemoveFormatting(message.content.toLowerCase(), "strict", false).includes(word)))  {
 
              message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
 
