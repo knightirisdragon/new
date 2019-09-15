@@ -13,6 +13,29 @@
     <script src="/server.js" defer></script>
 
     <script>
+    function ServerBoost()
+    {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<b class="headertext">Nitro Boost</b>  <br><br>  '
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbadges.png?v=1564245176155'>"
+                                                      + "<b class='storeheader'>The Booster Badge</b>"
+                                                      + "<b class='storesub'>Nitro Boosters receive the Booster badge.</b>"
+                                                      + "</div>"
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_supporterspage.png?1558536914096'>"
+                                                      + "<b class='storeheader'>Classification Wall</b>"
+                                                      + "<b class='storesub'>Nitro Boosters will have their names displayed in the #nitro_boosters channel of the Support Server.</b>"
+                                                      + "</div>"
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_dailybonus.png?1558536850473'>"
+                                                      + "<b class='storeheader'>Daily Bonus</b>"
+                                                      + "<b class='storesub'>Supporters receive an additional chest every day.</b>"
+                                                      + "</div>"
+    };
     function Supporter()
     {
      document.getElementById('fulldesc').style.display = "block";
@@ -60,6 +83,7 @@
                                                       + "<b class='storesub'>Supporters receive an additional chest every day.</b>"
                                                       + "</div>"
     };
+      
     function ServerUpgrade()
     {    
      document.getElementById('fulldesc').style.display = "block";
@@ -114,7 +138,7 @@
                                                       + "</div>"
     };
 
-    function Booster()
+    function ProfileBooster()
     { 
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="headertext">Profile Booster</b>  <br><br>  '
@@ -267,12 +291,12 @@
     </div>
     </div>
     
-    <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2FlapelpinTEST.jpg?v=1568384871070')">
+    <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_nitroboost.png?v=1568535360407')">
     <div class="textlistitem">
     <b>
-    <b class="name">  Server Boost  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
-    <a class="second" onclick="LapelPin()"> More Info </a>
-    <b class="price">TEST</b>
+    <b class="name">  Nitro Boost  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+    <a class="second" onclick="ServerBoost()"> More Info </a>
+    <b class="price">Monthly</b>
     </b>
     </div>
     </div>
