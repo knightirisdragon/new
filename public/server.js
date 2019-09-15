@@ -2815,7 +2815,7 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
           
-            var PurchaseHeader = "**You have purchased 'Supporter' in the [Store](https://peeky.glitch.me/store.html)!**";
+            var PurchaseHeader = "**You have purchased 'Supporter' from the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["The 'Supporter' role"];
 
         };
@@ -2832,7 +2832,7 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
           
-            var PurchaseHeader = "**You have purchased Server Upgrade in the [Store](https://peeky.glitch.me/store.html)!**";
+            var PurchaseHeader = "**You have purchased Server Upgrade from the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["Server Upgrade"];
 
         };
@@ -2849,7 +2849,7 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
           
-            var PurchaseHeader = "**You have purchased Profile Booster in the [Store](https://peeky.glitch.me/store.html)!**";
+            var PurchaseHeader = "**You have purchased Profile Booster from the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["Profile Booster"];
 
             peeky.userData.set(key, new Date(), "BoosterStart");
@@ -2869,7 +2869,7 @@ if  (keySF == SupportServer)  {
           
             var GreditAmount = 1000 + (10 * Math.floor((Math.random() * 900) + 1));
 
-            var PurchaseHeader = "**You have purchased Additional Gredit in the [Store](https://peeky.glitch.me/store.html)!**";
+            var PurchaseHeader = "**You have purchased Additional Gredit from the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["" + GreditAmount + " " + GreditIcon + ""];
 
             peeky.userData.math(key, "+", GreditAmount, "Gredit");
@@ -2894,7 +2894,7 @@ if  (keySF == SupportServer)  {
                 + "\n\n"
                 + "**These are your rewards!**"
                 + "\n"
-                + "> " + Rewards.join("\n> "),  
+                + "" + Rewards.join("\n"),  
           
             "color": EmbedColor
         };
