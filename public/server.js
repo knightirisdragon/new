@@ -2784,9 +2784,9 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
 //Store Rewards System
 if  (keySF == SupportServer)  {
 
-    var ExpAmount    = 100;
+    var PurchaseComplete = false;
     var Failed       = false;
-    var InfoMessages = [];
+    var Rewards = [];
 
     //Nitro Boost
     if  (peeky.userData.has(key))  {
@@ -2796,21 +2796,8 @@ if  (keySF == SupportServer)  {
 
         if  (HadRole == null && HasRole)  {
           
+            var PurchaseHeader = "**Thank you for boosting the [Support Server](https://peeky.glitch.me/server.html)!**";
             var Rewards = ["The 'Nitro Booster' role"];
-
-            if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-                peeky.userData.set(key, true, "ContributorBadge");
-                Rewards.push("Contributor Badge " + ContributorEmote);
-            };
-          
-            const embed = {
-                "description": "**Thank you for boosting the [Support Server](https://peeky.glitch.me/server.html)!**"
-                + "\n\n"
-                + "• " + Rewards.join("\n• ")
-                ,  "color": EmbedColor
-            }; 
-
-            function_DirectMessage(newMember.user.id, { embed });
 
         };
 
@@ -2824,21 +2811,8 @@ if  (keySF == SupportServer)  {
 
         if  (HadRole == null && HasRole)  {
           
+            var PurchaseHeader = "**Thank you for purchasing Supporter in the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["The 'Supporter' role"];
-
-            if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-                peeky.userData.set(key, true, "ContributorBadge");
-                Rewards.push("Contributor Badge " + ContributorEmote);
-            };
-          
-            const embed = {
-                "description": "**Thank you for purchasing __" + "Supporter" + "__ from the [Store](https://peeky.glitch.me/store.html)!**"
-                + "\n\n"
-                + "• " + Rewards.join("\n• ")
-                ,  "color": EmbedColor
-            }; 
-
-            function_DirectMessage(newMember.user.id, { embed });
 
         };
 
@@ -2852,21 +2826,8 @@ if  (keySF == SupportServer)  {
 
         if  (HadRole == null && HasRole)  {
           
+            var PurchaseHeader = "**Thank you for purchasing Server Upgrade in the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["Server Upgrade"];
-
-            if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-                peeky.userData.set(key, true, "ContributorBadge");
-                Rewards.push("Contributor Badge " + ContributorEmote);
-            };
-          
-            const embed = {
-                "description": "**Thank you for purchasing __" + "Server Upgrade" + "__ from the [Store](https://peeky.glitch.me/store.html)!**"
-                + "\n\n"
-                + "• " + Rewards.join("\n• ")
-                ,  "color": EmbedColor
-            }; 
-
-            function_DirectMessage(newMember.user.id, { embed });
 
         };
 
@@ -2880,23 +2841,10 @@ if  (keySF == SupportServer)  {
 
         if  (HadRole == null && HasRole)  {
           
+            var PurchaseHeader = "**Thank you for purchasing Profile Booster in the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["Profile Booster"];
 
             peeky.userData.set(key, new Date(), "BoosterStart");
-
-            if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-                peeky.userData.set(key, true, "ContributorBadge");
-                Rewards.push("Contributor Badge " + ContributorEmote);
-            };
-          
-            const embed = {
-                "description": "**Thank you for purchasing __" + "Profile Booster" + "__ from the [Store](https://peeky.glitch.me/store.html)!**"
-                + "\n\n"
-                + "• " + Rewards.join("\n• ")
-                ,  "color": EmbedColor
-            }; 
-
-            function_DirectMessage(newMember.user.id, { embed });
 
         };
 
@@ -2910,27 +2858,38 @@ if  (keySF == SupportServer)  {
         if  (Failed !== true)  {
           
             var GreditAmount = 1000 + (10 * Math.floor((Math.random() * 900) + 1));
+          
+            var PurchaseHeader = "**Thank you for purchasing Additional Gredit in the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["" + GreditAmount + " " + GreditIcon + ""];
 
             peeky.userData.math(key, "+", GreditAmount, "Gredit");
 
-            if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-                peeky.userData.set(key, true, "ContributorBadge");
-                Rewards.push("Contributor Badge " + ContributorEmote);
-            };
-          
-            const embed = {
-                "description": "**Thank you for purchasing __" + "Additional Gredit" + "__ from the [Store](https://peeky.glitch.me/store.html)!**"
-                + "\n\n"
-                + "• " + Rewards.join("\n• ")
-                ,  "color": EmbedColor
-            }; 
-
-            function_DirectMessage(newMember.user.id, { embed });
-
         };
 
     }; 
+  
+    //Complete Purchase
+    if  (PurchaseComplete == true)  {
+
+        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+            peeky.userData.set(key, true, "ContributorBadge");
+            Rewards.push("Contributor Badge " + ContributorEmote);
+        };
+  
+        const embed = {
+            "description": 
+                  PurchaseHeader
+                + "\n\n"
+                + "> **Here are your rewards**"
+                + "\n"
+                + "• " + Rewards.join("\n• "),  
+          
+            "color": EmbedColor
+        };
+      
+        function_DirectMessage(newMember.user.id, { embed });
+      
+    };
 
 }; 
   
