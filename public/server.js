@@ -272,7 +272,7 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
-const VulgarPhrases       = [  "anal", "anus", "arse", "ass", "ballsack", "balls", "bastard", "bitch", "biatch", "bloody", "blowjob", "blow", "job", "bollock", "bollok", "boner", "boob", "bugger", "bum", "butt", "buttplug", "clitoris", "cock", "coon", "crap", "cunt", "damn", "dick", "dildo", "dyke", "fag", "feck", "fellate", "fellatio", "felching", "fuck", "f", "u", "c", "k", "fudgepacker", "fudge", "packer", "flange", "Goddamn", "God", "damn", "hell", "homo", "jerk", "jizz", "knobend", "knob", "end", "labia", "lmao", "lmfao", "muff", "nigger", "nigga", "omg", "penis", "piss", "poop", "prick", "pube", "pussy", "queer", "scrotum", "sex", "shit", "s", "hit", "sh1t", "slut", "smegma", "spunk", "tit", "tosser", "turd", "twat", "vagina", "wank", "whore", "wtf"  ];
+const VulgarPhrases       = [  "anal", "anus", "arse", "ass", "ballsack", "balls", "bastard", "bitch", "biatch", "bloody", "blowjob", "blow", "job", "bollock", "bollok", "boner", "boob", "bugger", "bum", "butt", "buttplug", "clitoris", "cock", "coon", "crap", "cunt", "damn", "dick", "dildo", "dyke", "fag", "feck", "fellate", "fellatio", "felching", "fuck", "fudgepacker", "fudge", "packer", "flange", "Goddamn", "God", "damn", "hell", "homo", "jerk", "jizz", "knobend", "knob", "end", "labia", "lmao", "lmfao", "muff", "nigger", "nigga", "penis", "piss", "poop", "prick", "pube", "pussy", "queer", "scrotum", "sex", "shit", "sh1t", "slut", "smegma", "spunk", "tit", "tosser", "turd", "twat", "vagina", "wank", "whore", "wtf"  ];
 const ImmuneServers       = [  SupportServer, EmojiStorage1, `454933217666007052`, `264445053596991498`, `330777295952543744`, `387812458661937152`, `374071874222686211`, `439866052684283905`, `534551489595703306`  ];
 const NoLevelUpServers    = [  `486194248849293312`  ];
 const BannedServers       = [  `610951946597040128`  ];
@@ -1356,7 +1356,8 @@ function function_ChannelData(key)  {
             spoiler_only_bonus: false,
             flood_protection_bonus_lastdate: null,
             flood_protection_bonus_lastuser: null,
-            flood_protection_bonus_lastmsg: null
+            flood_protection_bonus_lastmsg: null,
+            safe_chat_bonus: false
         });
       
     };
@@ -3335,6 +3336,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.channelData.get(keyCF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
         if (peeky.channelData.get(keyCF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
         if (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true)          { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
+        if (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)             { var SC = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SC = DisabledIcon};
         if (peeky.serverData.get(keySF, "notifications") == true)                { var N_ = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var N_ = DisabledIcon};
 
         if  (reaction.emoji.name == "1⃣")  {
@@ -3393,6 +3395,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Automatic Reactions** " + AR + "\n" + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
                                 "**Message Log** " + ML + "\n" + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`" + "\n\n" +
+                                "**Safe Chat** " + SC + "\n" + "No setting." + "\n\n" +
                                 "**Images Only** " + IO + "\n" + "No setting." + "\n\n" +
                                 "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`" + "\n\n" +
                                 "**Banned Words** " + BW + "\n" + "`" + BWArray + "`",
@@ -3750,6 +3753,38 @@ if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
          function_UpdateAutowipe(keySF, "server");
         };
 
+        };
+
+    };
+
+};
+  
+//Safe Chat
+if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)  {
+
+    if  (message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+
+        if  (!message.member.permissions.has("MANAGE_MESSAGES"))  {
+      
+            if  (VulgarPhrases.some(text => message.content.includes(text)))  {
+
+                message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
+
+                if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "SC"))  {
+
+                    ResponseCooldowns.add(message.guild.id + "SC");
+                    setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SC")}, ResponseCooldownMS);
+
+                    const embed = {"description": InfoIcon + " You cannot say that in here **" + function_RemoveFormatting(message.author.username, "other", true) + "**!",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+
+                };
+
+                console.log("The Safe Chat function has been triggered in " + message.guild.name + ".");
+                function_UpdateAutowipe(keySF, "server");            
+          
+            };
+          
         };
 
     };
@@ -4428,6 +4463,21 @@ if  (FunctioName == "automatic reactions")  {
       
     if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
     const embed = {"description": SuccessIcon + " The **Automatic Reactions** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+      
+//Toggle Safe Chat
+if  (FunctioName == "safe chat")  {
+        
+    if   (peeky.channelData.get(keyCF, "safe_chat_bonus") == true) {peeky.channelData.set(keyCF, false, "safe_chat_bonus")}
+    else peeky.channelData.set(keyCF, true, "safe_chat_bonus");
+      
+    if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Safe Chat** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 

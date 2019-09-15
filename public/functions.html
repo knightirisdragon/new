@@ -222,6 +222,11 @@ function BW_Popup() {
      document.getElementById('description').innerHTML = '<b class="functionname">Banned Words</b>  <br>  <b class="functiondescription">Deletes any messages that includes a banned word.</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle banned words</b>  <br>  <b class="functioncommand">p!set banned words [text]</b>  <br>  <b class="functioncommand">p!clear banned words</b>' + Note; 
 };
 
+function SC_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<b class="functionname">Safe Chat</b>  <br>  <b class="functiondescription">Deletes any messages that includes profanity.</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle banned words</b>  <br>  <b class="functioncommand">p!set banned words [text]</b>  <br>  <b class="functioncommand">p!clear banned words</b>' + Note; 
+};
+
 function N_Popup() {
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="functionname">Notifications</b>  <br>  <b class="functiondescription">Sends a message when a certain functions are triggered.  <br>  Also shows level up notifications.</b>  ' + Ignores + '  <b class="functioncommand">Depends</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle notifications</b>' + Note; 
