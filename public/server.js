@@ -2833,7 +2833,7 @@ if  (keySF == SupportServer)  {
             PurchaseComplete = true;
           
             var PurchaseHeader = "**You have purchased Server Upgrade from the [Store](https://peeky.glitch.me/store.html)!**";
-            var Rewards = ["Server Upgrade"];
+            var Rewards = ["The 'Server Upgrade' role"];
 
         };
 
@@ -2850,7 +2850,7 @@ if  (keySF == SupportServer)  {
             PurchaseComplete = true;
           
             var PurchaseHeader = "**You have purchased Profile Booster from the [Store](https://peeky.glitch.me/store.html)!**";
-            var Rewards = ["Profile Booster"];
+            var Rewards = ["The 'Profile Booster' role (24 Hours)"];
 
             peeky.userData.set(key, new Date(), "BoosterStart");
 
@@ -2883,7 +2883,7 @@ if  (keySF == SupportServer)  {
 
         if  (peeky.userData.get(key, "ContributorBadge") == false)  {
             peeky.userData.set(key, true, "ContributorBadge");
-            Rewards.push("The Contributor Badge " + ContributorEmote);
+            Rewards.push("The 'Contributor' Badge " + ContributorEmote);
         };
   
         const embed = {
