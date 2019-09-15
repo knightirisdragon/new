@@ -2798,7 +2798,7 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
           
-            var PurchaseHeader = "**Thank you for boosting the [Support Server](https://peeky.glitch.me/server.html)!**";
+            var PurchaseHeader = "**You have nitro boosted the [Support Server](https://peeky.glitch.me/server.html)!**";
             var Rewards = ["The 'Nitro Booster' role"];
 
         };
@@ -2815,7 +2815,7 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
           
-            var PurchaseHeader = "**Thank you for purchasing Supporter in the [Store](https://peeky.glitch.me/store.html)!**";
+            var PurchaseHeader = "**You have purchased 'Supporter' in the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["The 'Supporter' role"];
 
         };
@@ -2832,7 +2832,7 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
           
-            var PurchaseHeader = "**Thank you for purchasing Server Upgrade in the [Store](https://peeky.glitch.me/store.html)!**";
+            var PurchaseHeader = "**You have purchased Server Upgrade in the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["Server Upgrade"];
 
         };
@@ -2849,7 +2849,7 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
           
-            var PurchaseHeader = "**Thank you for purchasing Profile Booster in the [Store](https://peeky.glitch.me/store.html)!**";
+            var PurchaseHeader = "**You have purchased Profile Booster in the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["Profile Booster"];
 
             peeky.userData.set(key, new Date(), "BoosterStart");
@@ -2869,7 +2869,7 @@ if  (keySF == SupportServer)  {
           
             var GreditAmount = 1000 + (10 * Math.floor((Math.random() * 900) + 1));
 
-            var PurchaseHeader = "**Thank you for purchasing Additional Gredit in the [Store](https://peeky.glitch.me/store.html)!**";
+            var PurchaseHeader = "**You have purchased Additional Gredit in the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["" + GreditAmount + " " + GreditIcon + ""];
 
             peeky.userData.math(key, "+", GreditAmount, "Gredit");
@@ -2889,8 +2889,10 @@ if  (keySF == SupportServer)  {
         const embed = {
             "description": 
                   "" + PurchaseHeader
+                + "\n"
+                + "Thank you *very* much!"
                 + "\n\n"
-                + "**Here are your rewards**"
+                + "**These are your rewards!**"
                 + "\n"
                 + "" + Rewards.join("\n"),  
           
