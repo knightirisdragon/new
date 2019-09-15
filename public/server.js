@@ -2774,6 +2774,34 @@ if  (keySF == SupportServer)  {
     var Failed       = false;
     var InfoMessages = [];
 
+    //Nitro Boost
+    if  (peeky.userData.has(key))  {
+
+        var HadRole = oldMember.roles.find(r => r.id == BoosterRole);
+        var HasRole = newMember.roles.find(r => r.id == BoosterRole);
+
+        if  (HadRole == null && HasRole)  {
+          
+            var Rewards = ["The 'Nitro Booster' role"];
+
+            if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+                peeky.userData.set(key, true, "ContributorBadge");
+                Rewards.push("Contributor Badge " + ContributorEmote);
+            };
+          
+            const embed = {
+                "description": "**Thank you for boosting the [Support Server](https://peeky.glitch.me/server.html)!**"
+                + "\n\n"
+                + "• " + Rewards.join("\n• ")
+                ,  "color": EmbedColor
+            }; 
+
+            function_DirectMessage(newMember.user.id, { embed });
+
+        };
+
+    };
+
     //Supporter
     if  (peeky.userData.has(key))  {
 
@@ -2782,7 +2810,7 @@ if  (keySF == SupportServer)  {
 
         if  (HadRole == null && HasRole)  {
           
-            var Rewards = ["Supporter"];
+            var Rewards = ["The 'Supporter' role"];
 
             if  (peeky.userData.get(key, "ContributorBadge") == false)  {
                 peeky.userData.set(key, true, "ContributorBadge");
