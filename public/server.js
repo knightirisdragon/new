@@ -2847,8 +2847,10 @@ if  (keySF == SupportServer)  {
         newMember.removeRole(RedeemRoleGredit).catch(error => {ErrorBag.add(error); Failed = true});
 
         if  (Failed !== true)  {
+          
+            var GreditAmount = 10 * Math.floor((Math.random() * 1000) + 1);
 
-            peeky.userData.math(key, "+", 1000, "Gredit");
+            peeky.userData.math(key, "+", GreditAmount, "Gredit");
             peeky.userData.math(key, "+", ExpAmount, "Exp");
 
             if  (peeky.userData.get(key, "ContributorBadge") == false)  {
@@ -2856,7 +2858,7 @@ if  (keySF == SupportServer)  {
                 InfoMessages.push(InfoMessage1[0]);
             };
 
-            const embed = {"description": SuccessIcon + " You have been awarded **1,000 " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            const embed = {"description": SuccessIcon + " You have been awarded **" + GreditAmount + " " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             function_DirectMessage(newMember.user.id, { embed });
 
         };
