@@ -2894,7 +2894,7 @@ if  (keySF == SupportServer)  {
                 + "\n\n"
                 + "**These are your rewards!**"
                 + "\n"
-                + "" + Rewards.join("\n"),  
+                + "> " + Rewards.join("\n> "),  
           
             "color": EmbedColor
         };
