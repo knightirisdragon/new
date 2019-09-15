@@ -2856,7 +2856,7 @@ if  (keySF == SupportServer)  {
 
         if  (Failed !== true)  {
           
-            var GreditAmount = 10 * Math.floor((Math.random() * 1000) + 1);
+            var GreditAmount = 10 * Math.floor((Math.random() * 9000) + 1) + 1000;
             var Rewards = ["" + GreditAmount + " " + GreditIcon + ""];
 
             peeky.userData.math(key, "+", GreditAmount, "Gredit");
