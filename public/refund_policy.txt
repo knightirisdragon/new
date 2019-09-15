@@ -9,6 +9,7 @@ HOW TO ISSUE A REFUND
 • We'll go on from there.
 
 REFUND CANNOT BE ACCEPTED IF
+• The item hasn't been purchased on https://donatebot.io/checkout/319891596772638744.
 • It has been over 15 work days since the purchase.
 • You threaten someone over the refund.
 
