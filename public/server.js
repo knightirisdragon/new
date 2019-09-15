@@ -2832,7 +2832,7 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
           
-            var PurchaseHeader = "**You have purchased Server Upgrade from the [Store](https://peeky.glitch.me/store.html)!**";
+            var PurchaseHeader = "**You have purchased 'Server Upgrade' from the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["The 'Server Upgrade' role"];
 
         };
@@ -2849,8 +2849,8 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
           
-            var PurchaseHeader = "**You have purchased Profile Booster from the [Store](https://peeky.glitch.me/store.html)!**";
-            var Rewards = ["The 'Profile Booster' role (24 Hours)"];
+            var PurchaseHeader = "**You have purchased 'Profile Booster' from the [Store](https://peeky.glitch.me/store.html)!**";
+            var Rewards = ["The 'Profile Booster' role"];
 
             peeky.userData.set(key, new Date(), "BoosterStart");
 
@@ -2869,7 +2869,7 @@ if  (keySF == SupportServer)  {
           
             var GreditAmount = 1000 + (10 * Math.floor((Math.random() * 900) + 1));
 
-            var PurchaseHeader = "**You have purchased Additional Gredit from the [Store](https://peeky.glitch.me/store.html)!**";
+            var PurchaseHeader = "**You have purchased 'Additional Gredit' from the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["" + GreditAmount + " " + GreditIcon + ""];
 
             peeky.userData.math(key, "+", GreditAmount, "Gredit");
@@ -2883,7 +2883,7 @@ if  (keySF == SupportServer)  {
 
         if  (peeky.userData.get(key, "ContributorBadge") == false)  {
             peeky.userData.set(key, true, "ContributorBadge");
-            Rewards.push("The 'Contributor' Badge " + ContributorEmote);
+            Rewards.push("The 'Contributor' badge");
         };
   
         const embed = {
