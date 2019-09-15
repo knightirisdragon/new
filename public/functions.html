@@ -224,7 +224,7 @@ function BW_Popup() {
 
 function SC_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Safe Chat</b>  <br>  <b class="functiondescription">Deletes any messages that includes profanity.</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle banned words</b>  <br>  <b class="functioncommand">p!set banned words [text]</b>  <br>  <b class="functioncommand">p!clear banned words</b>' + Note; 
+     document.getElementById('description').innerHTML = '<b class="functionname">Safe Chat</b>  <br>  <b class="functiondescription">Deletes any messages that includes profanity.</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle safe chat</b>' + Note; 
 };
 
 function N_Popup() {
@@ -452,6 +452,14 @@ function Close()  {
       <div class="centered">
         
     <div class="popup" onclick="BW_Popup()">  Banned Words  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="SC_Popup()">  Safe Chat  </div>
         
       </div>
     </div>
