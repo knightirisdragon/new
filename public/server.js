@@ -213,7 +213,7 @@ const SupporterRole      = "504740473185894400";
 const BoosterRole        = "620654437081415686";
 const ServerUpgradeRole  = "549190337437106176";
 const ProfileBoosterRole = "603249410532442116";
-const RedeemRoleGredit   = "505491936401162270";
+const RedeemRoleChests   = "505491936401162270";
 
 //Other IDs
 const OwnerId              = "108899856889737216";
@@ -2858,21 +2858,19 @@ if  (keySF == SupportServer)  {
 
     };
 
-    //Gredit
-    if  (newMember.roles.has(RedeemRoleGredit))  {
+    //Chests
+    if  (newMember.roles.has(RedeemRoleChests))  {
 
-        newMember.removeRole(RedeemRoleGredit).catch(error => {ErrorBag.add(error); Failed = true});
+        newMember.removeRole(RedeemRoleChests).catch(error => {ErrorBag.add(error); Failed = true});
 
         if  (Failed !== true)  {
           
             PurchaseComplete = true;
-          
-            var GreditAmount = 1000 + (10 * Math.floor((Math.random() * 900) + 1));
 
-            var PurchaseHeader = "**You have purchased 'Additional Gredit' from the [Store](https://peeky.glitch.me/store.html)!**";
-            var Rewards = ["" + GreditAmount + " Gredit"];
+            var PurchaseHeader = "**You have purchased 'Additional Chests' from the [Store](https://peeky.glitch.me/store.html)!**";
+            var Rewards = ["10 Chests"];
 
-            peeky.userData.math(key, "+", GreditAmount, "Gredit");
+            peeky.userData.math(key, "+", 10, "Chests");
 
         };
 
