@@ -2799,7 +2799,7 @@ if  (keySF == SupportServer)  {
             PurchaseComplete = true;
           
             var PurchaseHeader = "**You have nitro boosted the [Support Server](https://peeky.glitch.me/server.html)!**";
-            var Rewards = ["The 'Nitro Booster' role"];
+            var Rewards = ["The Nitro Booster role"];
 
         };
 
@@ -2815,8 +2815,8 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
           
-            var PurchaseHeader = "**You have purchased 'Supporter' from the [Store](https://peeky.glitch.me/store.html)!**";
-            var Rewards = ["The 'Supporter' role"];
+            var PurchaseHeader = "**You have purchased Supporter from the [store](https://peeky.glitch.me/store.html)!**";
+            var Rewards = ["The Supporter role"];
 
         };
 
@@ -2832,8 +2832,8 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
           
-            var PurchaseHeader = "**You have purchased 'Server Upgrade' from the [Store](https://peeky.glitch.me/store.html)!**";
-            var Rewards = ["The 'Server Upgrade' role"];
+            var PurchaseHeader = "**You have purchased Server Upgrade from the [store](https://peeky.glitch.me/store.html)!**";
+            var Rewards = ["The Server Upgrade role"];
 
         };
 
@@ -2849,8 +2849,8 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
           
-            var PurchaseHeader = "**You have purchased 'Profile Booster' from the [Store](https://peeky.glitch.me/store.html)!**";
-            var Rewards = ["The 'Profile Booster' role"];
+            var PurchaseHeader = "**You have purchased Profile Booster from the [store](https://peeky.glitch.me/store.html)!**";
+            var Rewards = ["The Profile Booster role"];
 
             peeky.userData.set(key, new Date(), "BoosterStart");
 
@@ -2867,7 +2867,7 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
 
-            var PurchaseHeader = "**You have purchased 'Additional Chests' from the [Store](https://peeky.glitch.me/store.html)!**";
+            var PurchaseHeader = "**You have purchased Additional Chests from the [store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["10 Chests"];
 
             peeky.userData.math(key, "+", 10, "Chests");
@@ -2881,7 +2881,7 @@ if  (keySF == SupportServer)  {
 
         if  (peeky.userData.get(key, "ContributorBadge") == false)  {
             peeky.userData.set(key, true, "ContributorBadge");
-            Rewards.push("The 'Contributor' badge");
+            Rewards.push("The Contributor badge");
         };
   
         const embed = {
