@@ -79,7 +79,7 @@ const MemeLimit             = 25;
 const BannedWordsLimit      = 10;
 const PlaylistLimit         = 10;
 const GameRolesLimit        = 10;
-const AutoDeleteTime        = 1000;
+const AutoDeleteTime        = 100;
 
 //Sets and Arrays
 const ErrorBag               = new Set();
