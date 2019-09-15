@@ -2796,6 +2796,8 @@ if  (keySF == SupportServer)  {
 
         if  (HadRole == null && HasRole)  {
           
+            PurchaseComplete = true;
+          
             var PurchaseHeader = "**Thank you for boosting the [Support Server](https://peeky.glitch.me/server.html)!**";
             var Rewards = ["The 'Nitro Booster' role"];
 
@@ -2810,6 +2812,8 @@ if  (keySF == SupportServer)  {
         var HasRole = newMember.roles.find(r => r.id == SupporterRole);
 
         if  (HadRole == null && HasRole)  {
+          
+            PurchaseComplete = true;
           
             var PurchaseHeader = "**Thank you for purchasing Supporter in the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["The 'Supporter' role"];
@@ -2826,6 +2830,8 @@ if  (keySF == SupportServer)  {
 
         if  (HadRole == null && HasRole)  {
           
+            PurchaseComplete = true;
+          
             var PurchaseHeader = "**Thank you for purchasing Server Upgrade in the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["Server Upgrade"];
 
@@ -2840,6 +2846,8 @@ if  (keySF == SupportServer)  {
         var HasRole = newMember.roles.find(r => r.id == ProfileBoosterRole);
 
         if  (HadRole == null && HasRole)  {
+          
+            PurchaseComplete = true;
           
             var PurchaseHeader = "**Thank you for purchasing Profile Booster in the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["Profile Booster"];
@@ -2857,8 +2865,10 @@ if  (keySF == SupportServer)  {
 
         if  (Failed !== true)  {
           
-            var GreditAmount = 1000 + (10 * Math.floor((Math.random() * 900) + 1));
+            PurchaseComplete = true;
           
+            var GreditAmount = 1000 + (10 * Math.floor((Math.random() * 900) + 1));
+
             var PurchaseHeader = "**Thank you for purchasing Additional Gredit in the [Store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["" + GreditAmount + " " + GreditIcon + ""];
 
@@ -2878,11 +2888,11 @@ if  (keySF == SupportServer)  {
   
         const embed = {
             "description": 
-                  PurchaseHeader
-                + "\n\n"
+                  "> " + PurchaseHeader
+                + "\n"
                 + "> **Here are your rewards**"
                 + "\n"
-                + "• " + Rewards.join("\n• "),  
+                + "> " + Rewards.join("\n> "),  
           
             "color": EmbedColor
         };
