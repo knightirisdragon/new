@@ -2870,7 +2870,7 @@ if  (keySF == SupportServer)  {
             var GreditAmount = 1000 + (10 * Math.floor((Math.random() * 900) + 1));
 
             var PurchaseHeader = "**You have purchased 'Additional Gredit' from the [Store](https://peeky.glitch.me/store.html)!**";
-            var Rewards = ["" + GreditAmount + " " + GreditIcon + ""];
+            var Rewards = ["" + GreditAmount + " Gredit"];
 
             peeky.userData.math(key, "+", GreditAmount, "Gredit");
 
