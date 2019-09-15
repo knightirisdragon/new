@@ -5953,6 +5953,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
           var PeekyCoinsOpened = Math.round(Math.random() * 100);
           var PeekyCoinsSupporter = Math.round(Math.random() * 50);
           var PeekyCoinsUpgraded = Math.round(Math.random() * 25);
+          var PeekyCoinsBooster = Math.round(Math.random() * 25);
           var PeekyCoinsLevel = peeky.userData.get(key, "Level");
           var TotalAmount = PeekyCoinsOpened + PeekyCoinsLevel;
 
@@ -5965,14 +5966,19 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
               TotalAmount += PeekyCoinsSupporter;
           };
 
-          //Upgraded Server
-          if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
-              TotalAmount += PeekyCoinsUpgraded;
+          //Nitro Booster
+          if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
+              TotalAmount += PeekyCoinsSupporter;
           };
 
           //Profile Booster
           if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
               TotalAmount += PeekyCoinsOpened;
+          };
+
+          //Upgraded Server
+          if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
+              TotalAmount += PeekyCoinsUpgraded;
           };
 
           var ChestAmount   = 0;
