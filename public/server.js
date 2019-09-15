@@ -3756,7 +3756,7 @@ if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)  {
                     ResponseCooldowns.add(message.guild.id + "SC");
                     setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SC")}, ResponseCooldownMS);
 
-                    const embed = {"description": InfoIcon + " You cannot say that in here **" + function_RemoveFormatting(message.author.username, "other", true) + "**!",  "color": EmbedColor}; 
+                    const embed = {"description": InfoIcon + " Please restrain yourself from using profanity, **" + function_RemoveFormatting(message.author.username, "other", true) + "**.",  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
                 };
