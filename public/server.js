@@ -3766,7 +3766,7 @@ if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)  {
 
         if  (!message.member.permissions.has("MANAGE_MESSAGES"))  {
       
-            if  (VulgarPhrases.some(text => message.content.includes(text)))  {
+            if  (VulgarPhrases.some(text => function_RemoveFormatting(message.content.toLowerCase(), "other", false).includes(text)))  {
 
                 message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
 
