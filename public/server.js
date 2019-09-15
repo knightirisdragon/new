@@ -6045,6 +6045,12 @@ if (CommandName == "daily")  {
         InfoMessages.push(InfoIcon + " Added a bonus reward for being a Supporter.");   
     };
 
+    //Nitro Booster Reward
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
+        peeky.userData.math(key, "+", 1, "Chests");
+        InfoMessages.push(InfoIcon + " Added a bonus reward for being a Nitro Booster.");   
+    };
+
     if  (CountedVotes == 0)  {
         InfoMessages.push(InfoIcon + " Vote for me using the **" + peeky.serverData.get(keySF, "prefix") + "help** command to get more rewards!");
     } else {
