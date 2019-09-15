@@ -2767,7 +2767,7 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
 
 };
   
-//Store Roles System
+//Store Rewards System
 if  (keySF == SupportServer)  {
 
     var ExpAmount    = 100;
@@ -2781,15 +2781,21 @@ if  (keySF == SupportServer)  {
         var HasRole = newMember.roles.find(r => r.id == SupporterRole);
 
         if  (HadRole == null && HasRole)  {
-
-            peeky.userData.math(key, "+", ExpAmount, "Exp");
+          
+            var Rewards = ["Supporter"];
 
             if  (peeky.userData.get(key, "ContributorBadge") == false)  {
                 peeky.userData.set(key, true, "ContributorBadge");
-                InfoMessages.push(InfoMessage1[0]);
+                Rewards.push("Contributor Badge " + ContributorEmote);
             };
+          
+            const embed = {
+                "description": "**Thank you for purchasing __" + "Supporter" + "__ from the [Store](https://peeky.glitch.me/store.html)!**"
+                + "\n\n"
+                + "• " + Rewards.join("\n• ")
+                ,  "color": EmbedColor
+            }; 
 
-            const embed = {"description": SuccessIcon + " You have been promoted to **Supporter** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             function_DirectMessage(newMember.user.id, { embed });
 
         };
@@ -2803,15 +2809,21 @@ if  (keySF == SupportServer)  {
         var HasRole = newMember.roles.find(r => r.id == ServerUpgradeRole);
 
         if  (HadRole == null && HasRole)  {
-
-            peeky.userData.math(key, "+", ExpAmount, "Exp");
+          
+            var Rewards = ["Server Upgrade"];
 
             if  (peeky.userData.get(key, "ContributorBadge") == false)  {
                 peeky.userData.set(key, true, "ContributorBadge");
-                InfoMessages.push(InfoMessage1[0]);
+                Rewards.push("Contributor Badge " + ContributorEmote);
             };
+          
+            const embed = {
+                "description": "**Thank you for purchasing __" + "Server Upgrade" + "__ from the [Store](https://peeky.glitch.me/store.html)!**"
+                + "\n\n"
+                + "• " + Rewards.join("\n• ")
+                ,  "color": EmbedColor
+            }; 
 
-            const embed = {"description": SuccessIcon + " You have been awarded a **Server Upgrade** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             function_DirectMessage(newMember.user.id, { embed });
 
         };
@@ -2826,10 +2838,8 @@ if  (keySF == SupportServer)  {
 
         if  (HadRole == null && HasRole)  {
           
-            var GreditAmount = 10 * Math.floor((Math.random() * 1000) + 1);
-            var Rewards = ["" + GreditAmount + " " + GreditIcon + ""];
+            var Rewards = ["Profile Booster"];
 
-            peeky.userData.math(key, "+", ExpAmount, "Exp");
             peeky.userData.set(key, new Date(), "BoosterStart");
 
             if  (peeky.userData.get(key, "ContributorBadge") == false)  {
@@ -2852,6 +2862,7 @@ if  (keySF == SupportServer)  {
 
     //Gredit
     if  (newMember.roles.has(RedeemRoleGredit))  {
+
         newMember.removeRole(RedeemRoleGredit).catch(error => {ErrorBag.add(error); Failed = true});
 
         if  (Failed !== true)  {
@@ -2860,7 +2871,6 @@ if  (keySF == SupportServer)  {
             var Rewards = ["" + GreditAmount + " " + GreditIcon + ""];
 
             peeky.userData.math(key, "+", GreditAmount, "Gredit");
-            peeky.userData.math(key, "+", ExpAmount, "Exp");
 
             if  (peeky.userData.get(key, "ContributorBadge") == false)  {
                 peeky.userData.set(key, true, "ContributorBadge");
