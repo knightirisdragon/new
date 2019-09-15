@@ -2883,16 +2883,16 @@ if  (keySF == SupportServer)  {
 
         if  (peeky.userData.get(key, "ContributorBadge") == false)  {
             peeky.userData.set(key, true, "ContributorBadge");
-            Rewards.push("Contributor Badge " + ContributorEmote);
+            Rewards.push("The Contributor Badge " + ContributorEmote);
         };
   
         const embed = {
             "description": 
                   "" + PurchaseHeader
                 + "\n"
-                + "Thank you *very* much!"
+                + "Thank you very much!"
                 + "\n\n"
-                + "**These are your rewards!**"
+                + "**These are your rewards:**"
                 + "\n"
                 + "" + Rewards.join("\n"),  
           
