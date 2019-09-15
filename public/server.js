@@ -2888,11 +2888,11 @@ if  (keySF == SupportServer)  {
   
         const embed = {
             "description": 
-                  "> " + PurchaseHeader
+                  "" + PurchaseHeader
+                + "\n\n"
+                + "**Here are your rewards**"
                 + "\n"
-                + "> **Here are your rewards**"
-                + "\n"
-                + "> " + Rewards.join("\n> "),  
+                + "" + Rewards.join("\n"),  
           
             "color": EmbedColor
         };
