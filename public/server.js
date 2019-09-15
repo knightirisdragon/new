@@ -2825,17 +2825,25 @@ if  (keySF == SupportServer)  {
         var HasRole = newMember.roles.find(r => r.id == ProfileBoosterRole);
 
         if  (HadRole == null && HasRole)  {
+          
+            var GreditAmount = 10 * Math.floor((Math.random() * 1000) + 1);
+            var Rewards = ["" + GreditAmount + " " + GreditIcon + ""];
 
             peeky.userData.math(key, "+", ExpAmount, "Exp");
+            peeky.userData.set(key, new Date(), "BoosterStart");
 
             if  (peeky.userData.get(key, "ContributorBadge") == false)  {
                 peeky.userData.set(key, true, "ContributorBadge");
-                InfoMessages.push(InfoMessage1[0]);
+                Rewards.push("Contributor Badge " + ContributorEmote);
             };
+          
+            const embed = {
+                "description": "**Thank you for purchasing __" + "Profile Booster" + "__ from the [Store](https://peeky.glitch.me/store.html)!**"
+                + "\n\n"
+                + "• " + Rewards.join("\n• ")
+                ,  "color": EmbedColor
+            }; 
 
-            peeky.userData.set(key, new Date(), "BoosterStart");
-
-            const embed = {"description": SuccessIcon + " You have been awarded a **Profile Booster** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             function_DirectMessage(newMember.user.id, { embed });
 
         };
@@ -2849,16 +2857,23 @@ if  (keySF == SupportServer)  {
         if  (Failed !== true)  {
           
             var GreditAmount = 10 * Math.floor((Math.random() * 1000) + 1);
+            var Rewards = ["" + GreditAmount + " " + GreditIcon + ""];
 
             peeky.userData.math(key, "+", GreditAmount, "Gredit");
             peeky.userData.math(key, "+", ExpAmount, "Exp");
 
             if  (peeky.userData.get(key, "ContributorBadge") == false)  {
                 peeky.userData.set(key, true, "ContributorBadge");
-                InfoMessages.push(InfoMessage1[0]);
+                Rewards.push("Contributor Badge " + ContributorEmote);
             };
+          
+            const embed = {
+                "description": "**Thank you for purchasing __" + "Additional Gredit" + "__ from the [Store](https://peeky.glitch.me/store.html)!**"
+                + "\n\n"
+                + "• " + Rewards.join("\n• ")
+                ,  "color": EmbedColor
+            }; 
 
-            const embed = {"description": SuccessIcon + " You have been awarded **" + GreditAmount + " " + GreditIcon + "** for your purchase!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             function_DirectMessage(newMember.user.id, { embed });
 
         };
