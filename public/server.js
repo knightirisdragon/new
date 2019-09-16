@@ -3739,34 +3739,36 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
             
             var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon, "color": EmbedColor}; 
             channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {
-              
-                const filter = (reaction, user) => {
-                    return reaction.emoji.name == TreasureIcon;
-                };
 
                 await m.react(TreasureId).catch(error => ErrorBag.add(error));
               
-                m.awaitReactions(reaction => filter, { max: 1, time: 60000, errors: ['time'] })
-                    .then(collected => {    
-                          var user = collected.reaction
+                const filter = (reaction, user) => {  return reaction.emoji.name == TreasureIcon;  };
+                const collector = m.createReactionCollector(filter, { time: 60000 });
+
+                collector.on('collect', (reaction, reactionCollector) => {
+                    
+                    var user = reaction.user;
                   
-                    console.log(user)
-                  
-                          if  (peeky.userData.has(user.id))  {
+                    if  (peeky.userData.has(user.id))  {
                         
-                              var embed = {"description": SuccessIcon + " **" + user.username + "** has got the treasure!", "color": EmbedColor}; 
-                              m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+                        var embed = {"description": SuccessIcon + " **" + user.username + "** has got the treasure!", "color": EmbedColor}; 
+                        m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
                             
-                              peeky.userData.math(user.id, "+", Amount, "Gredit");
+                        peeky.userData.math(user.id, "+", Amount, "Gredit");
                             
-                          };
-                  
-                          
-                    })
-                    .catch(collected => {  console.log(collected);
-                          var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
-                          m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+                    };
+
+                    collector.on('end', collected => {
+                        
+                        var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
+                        m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+                      
+                        m.delete().catch(error => ErrorBag.add(error));
+                      
                     });
+                  
+                });
+              
             });
             
         };
