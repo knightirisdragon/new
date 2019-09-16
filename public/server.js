@@ -3748,7 +3748,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
               
                 m.awaitReactions(reaction => filter, { max: 1, time: 60000, errors: ['time'] })
                     .then(collected => {    
-                          var user = collected.message
+                          var user = collected.reaction
                   
                     console.log(user)
                   
