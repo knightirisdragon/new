@@ -3723,16 +3723,23 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
     RandomTreasuresCooldown.add("cooldown");
     setTimeout(() => {RandomTreasuresCooldown.delete("cooldown")}, 7200000);
   
-    peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(ProfileBoosterRole)).forEach(m => {
-      
-        if  (peeky.userData.has(m.user.id, "BoosterStart") && new Date() - new Date(peeky.userData.get(m.user.id, "BoosterStart")) >= ProfileBoosterLength)  {
-            m.removeRole(ProfileBoosterRole).catch(error => ErrorBag.add(error));
+    var serverlist = peeky.serverData.filter( p => p.server_upgraded == true && p.GuildID ).array();
+    var chosenServer = serverlist[Math.floor(Math.random()*serverlist.length)];
+    var server = serverlist[chosenServer];
+
+    if  (peeky.guilds.has(server.GuildID) && peeky.serverData.has(`${server.GuildID}`))  {
+
+        var name = "";
+        var guild = peeky.guilds.get(server.GuildID);
+        var channel = guild.channels.find(c => c.name == name);
           
-            const embed = {"description": InfoIcon + " Your **Profile Booster** has just expired.",  "color": EmbedColor}; 
-            m.send({ embed }).catch(error => ErrorBag.add(error));
+        if  (channel)  {
+            
+            channel.send()
+            
         };
-      
-    });
+          
+    };
 
 };  
   
