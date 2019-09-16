@@ -2240,6 +2240,36 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
     console.log("The server list has been updated.");
 
 };
+  
+//Supporters
+if  (!WebsiteCooldowns.has("supporters"))  {
+      
+    WebsiteCooldowns.add("supporters");
+    setTimeout(() => {WebsiteCooldowns.delete("supporters")}, 600000);
+
+    var SupporterList = [];
+    peeky.guilds.get(SupportServer).members.forEach(function(guildMember, guildMemberId) {
+    if  (guildMember.roles.has(SupporterRole) && peeky.userData.has(guildMemberId))  {
+
+        var TheBannerShown = DefaultBackground;
+        //TheBannerShown = function_GetBackground(guildMemberId);
+
+        SupporterList.push("<div class='serveritem' style='background-image: url(" + guildMember.user.displayAvatarURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b></div>");
+      
+    };
+    });
+  
+    if  (SupporterList.length == 0)  {
+        SupporterList.push('<center><font size="4">  You can become a supporter in the store!  </font></center>')
+    };
+
+    await fs.writeFile('public/supporters.txt', SupporterList.join("<br><br>"), (err) => {
+        if (err) console.log(err);
+    });
+      
+    console.log("The supporters list has been updated.");
+
+};
 
 //Server Log
 if  (!WebsiteCooldowns.has("serverlog"))  {
@@ -2271,36 +2301,6 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
     });
 
     console.log("The server log has been updated.");
-
-};
-  
-//Supporters
-if  (!WebsiteCooldowns.has("supporters"))  {
-      
-    WebsiteCooldowns.add("supporters");
-    setTimeout(() => {WebsiteCooldowns.delete("supporters")}, 600000);
-
-    var SupporterList = [];
-    peeky.guilds.get(SupportServer).members.forEach(function(guildMember, guildMemberId) {
-    if  (guildMember.roles.has(SupporterRole) && peeky.userData.has(guildMemberId))  {
-
-        var TheBannerShown = DefaultBackground;
-        TheBannerShown = function_GetBackground(guildMemberId);
-
-        SupporterList.push('<div class="supporter" style="background-image: url(' + TheBannerShown + ')">  <div class="supporterinfo">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="30px" height="30px" class="supportericon"' + '>  <b>' + function_RemoveTags(guildMember.user.username) + '</b>  </div>  </div>');
-    
-    };
-    });
-  
-    if  (SupporterList.length == 0)  {
-        SupporterList.push('<center><font size="4">  You can become a supporter in the store!  </font></center>')
-    };
-
-    await fs.writeFile('public/supporters.txt', SupporterList.join("<br><br>"), (err) => {
-        if (err) console.log(err);
-    });
-      
-    console.log("The supporters list has been updated.");
 
 };
   
