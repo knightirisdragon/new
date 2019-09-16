@@ -3725,22 +3725,30 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
     setTimeout(() => {RandomTreasuresCooldown.delete("cooldown")}, 7200000);
   
     var serverlist = peeky.serverData.filter( p => p.server_upgraded == true && p.GuildID ).array();
-    var chosenServer = serverlist[Math.floor(Math.random()*serverlist.length)];
-    var server = serverlist[chosenServer];
+    var server = serverlist[Math.floor(Math.random()*serverlist.length)];
 
     if  (peeky.guilds.has(server.GuildID) && peeky.serverData.has(`${server.GuildID}`))  {
 
-        var name = "";
+        var name = peeky.serverData.get(`${server.GuildID}`, "highlighted_channel");
         var guild = peeky.guilds.get(server.GuildID);
         var channel = guild.channels.find(c => c.name == name);
           
         if  (channel && channel.permissionsFor(peeky.user).has('ADD_REACTIONS' && 'SEND_MESSAGES'))  {
-          
+
             var Amount = 10 * Math.floor((Math.random() * 100));
             
             const embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon, "color": EmbedColor}; 
-            channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(m => {
-                m.addReaction(TreasureId).catch(error => ErrorBag.add(error));
+            channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {
+                await m.react(TreasureId).catch(error => ErrorBag.add(error));
+                m.awaitReactions(reaction => reaction.emoji.id == TreasureId, { max: 1, time: 60000, errors: ['time'] })
+                    .then(collected => {
+                          m.delete();
+                  
+                  
+                    })
+                    .catch(collected => {
+                          console.log("no");
+                    });
             });
             
         };
