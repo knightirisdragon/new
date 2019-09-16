@@ -82,37 +82,38 @@ const GameRolesLimit        = 10;
 const AutoDeleteTime        = 100;
 
 //Sets and Arrays
-const ErrorBag               = new Set();
-const BannedUsers            = new Array();
-const WebsiteCooldowns       = new Set();
-const GainCooldown           = new Set();
-const ProfileBoosterCooldown = new Set();
-const OverviewCooldown       = new Set();
-const SetInviteCooldown      = new Set();
-const ProfileCooldown        = new Set();  const ProfileCooldownMS = 5000;
-const MusicCmdCooldown       = new Set();
-const PeekyCmdCooldown       = new Set();
-const ChannelCooldown        = new Set();  const ChannelCooldownMS   = 10000;
-const RoleCooldown           = new Set();  const RoleCooldownMS      = 10000;
-const ServerTrialCooldown    = new Set();
-const EventCountdownCooldown = new Set();
-const MemberCounterCooldown  = new Set();
-const MessageLogCooldown     = new Set();
-const DonorWallCooldown      = new Set();
-const ServerAgeCooldown      = new Set();
-const RedditPostsCooldown    = new Set();
-const ResponseCooldowns      = new Set();  const ResponseCooldownMS = 5000;
-const FloodProtectionStrikes = new Array();
-const KarmaImages            = new Array();
-const CheckedDataCreations   = new Set();
-const QueuedSOSMessages      = new Set();
-const ActiveMinigames        = new Set();
-const CurrentlyPlaying       = new Set();
-const CurrentlyStreaming     = new Set();
-const ClearedNames           = new Set();
-const FailedVoteChecks       = new Set();
-const FailedDMs              = new Set();
-const LoggedMessages         = new Set();
+const ErrorBag                = new Set();
+const BannedUsers             = new Array();
+const WebsiteCooldowns        = new Set();
+const GainCooldown            = new Set();
+const ProfileBoosterCooldown  = new Set();
+const RandomTreasuresCooldown = new Set();
+const OverviewCooldown        = new Set();
+const SetInviteCooldown       = new Set();
+const ProfileCooldown         = new Set();  const ProfileCooldownMS = 5000;
+const MusicCmdCooldown        = new Set();
+const PeekyCmdCooldown        = new Set();
+const ChannelCooldown         = new Set();  const ChannelCooldownMS   = 10000;
+const RoleCooldown            = new Set();  const RoleCooldownMS      = 10000;
+const ServerTrialCooldown     = new Set();
+const EventCountdownCooldown  = new Set();
+const MemberCounterCooldown   = new Set();
+const MessageLogCooldown      = new Set();
+const DonorWallCooldown       = new Set();
+const ServerAgeCooldown       = new Set();
+const RedditPostsCooldown     = new Set();
+const ResponseCooldowns       = new Set();  const ResponseCooldownMS = 5000;
+const FloodProtectionStrikes  = new Array();
+const KarmaImages             = new Array();
+const CheckedDataCreations    = new Set();
+const QueuedSOSMessages       = new Set();
+const ActiveMinigames         = new Set();
+const CurrentlyPlaying        = new Set();
+const CurrentlyStreaming      = new Set();
+const ClearedNames            = new Set();
+const FailedVoteChecks        = new Set();
+const FailedDMs               = new Set();
+const LoggedMessages          = new Set();
 
 //Image Assets
 const TwitterIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ftwitter.png?1555574745120";
@@ -3338,7 +3339,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
 
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Prefix** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "prefix") + "`" + "\n\n" +
-                                "**Mute Role** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "muted_role") + "`",
+                                "**Mute Role** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "muted_role") + "`" + "\n\n" +
+                                "**Highlighted Channel** " + SettingsIcon + "\n" + "`#" + peeky.serverData.get(keySF, "highlighted_channel") + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -3701,6 +3703,25 @@ if  (!ProfileBoosterCooldown.has("cooldown"))  {
 
     ProfileBoosterCooldown.add("cooldown");
     setTimeout(() => {ProfileBoosterCooldown.delete("cooldown")}, 1800000);
+  
+    peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(ProfileBoosterRole)).forEach(m => {
+      
+        if  (peeky.userData.has(m.user.id, "BoosterStart") && new Date() - new Date(peeky.userData.get(m.user.id, "BoosterStart")) >= ProfileBoosterLength)  {
+            m.removeRole(ProfileBoosterRole).catch(error => ErrorBag.add(error));
+          
+            const embed = {"description": InfoIcon + " Your **Profile Booster** has just expired.",  "color": EmbedColor}; 
+            m.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+      
+    });
+
+};  
+    
+//Random Treasures
+if  (!RandomTreasuresCooldown.has("cooldown"))  {
+
+    RandomTreasuresCooldown.add("cooldown");
+    setTimeout(() => {RandomTreasuresCooldown.delete("cooldown")}, 7200000);
   
     peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(ProfileBoosterRole)).forEach(m => {
       
@@ -7819,8 +7840,10 @@ if (CommandName.startsWith("highlightedchannel"))  {
     if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+          
+            var InfoMessages = [];
 
-            peeky.serverData.set(keySF, CommandArgument, "prefix");
+            peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
 
             const embed = {"description": SuccessIcon + " The highlighted channel is now called **#" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
