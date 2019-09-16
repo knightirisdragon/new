@@ -3739,29 +3739,34 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
             
             var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon, "color": EmbedColor}; 
             channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {
+              
+                const filter = (reaction, user) => {
+                    return reaction.emoji.name == TreasureIcon;
+                };
 
                 await m.react(TreasureId).catch(error => ErrorBag.add(error));
-
-               const filter = (reaction, user) => {
-                  return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
-              };
-
-              m.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
-                  .then(collected => {
-                      const reaction = collected.first();
-
-                      if (reaction.emoji.name === '👍') {
-                          message.reply('you reacted with a thumbs up.');
-                      }
-                      else {
-                          message.reply('you reacted with a thumbs down.');
-                      }
-                  })
-                  .catch(collected => {
-                      console.log(`After a minute, only ${collected.size} out of 4 reacted.`);
-                      message.reply('you didn\'t react with neither a thumbs up, nor a thumbs down.');
-                  });
               
+                m.awaitReactions(reaction => filter, { max: 1, time: 60000, errors: ['time'] })
+                    .then(collected => {    
+                          var user = collected.message
+                  
+                    console.log(user)
+                  
+                          if  (peeky.userData.has(user.id))  {
+                        
+                              var embed = {"description": SuccessIcon + " **" + user.username + "** has got the treasure!", "color": EmbedColor}; 
+                              m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+                            
+                              peeky.userData.math(user.id, "+", Amount, "Gredit");
+                            
+                          };
+                  
+                          
+                    })
+                    .catch(collected => {  console.log(collected);
+                          var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
+                          m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+                    });
             });
             
         };
