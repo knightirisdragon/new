@@ -1757,7 +1757,6 @@ peeky.on('message', async (message) => {
         UserID: message.author.id,
         OverviewID: null,
         lastSeen: new Date(),
-        DailyRewarded: 0,
 
         Background: 1,
         Description: function_RandomDescription(),
@@ -1769,6 +1768,9 @@ peeky.on('message', async (message) => {
         Chests: 0,
         Badges: 0,
         UpgradedServers: 0,
+        SupporterSince: 0,
+        BoosterStart: 0,
+        DailyRewarded: 0,
       
         //Music
         Playlist: [],
@@ -2248,13 +2250,13 @@ if  (!WebsiteCooldowns.has("supporters"))  {
     setTimeout(() => {WebsiteCooldowns.delete("supporters")}, 600000);
 
     var SupporterList = [];
-    peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(SupporterRole)).forEach(function(guildMember, guildMemberId) {
-    if  (peeky.userData.has(guildMemberId))  {
+    peeky.guilds.get(SupportServer).members.forEach(function(guildMember, guildMemberId) {
+    if  (guildMember.roles.has(SupporterRole) && peeky.userData.has(guildMemberId))  {
 
         var TheBannerShown = DefaultBackground;
         //TheBannerShown = function_GetBackground(guildMemberId);
 
-        SupporterList.push("<div class='displayitem' style='background-image: url(" + guildMember.user.displayAvatarURL + ")'>  <b class='displayname' value='" + guildMember.user.id + "'>" + function_RemoveTags(guildMember.user.username) + "  <br>  <font size='2' color='grey'>  #" + guildMember.user.discriminator + "  </font>  </b>  </div>");
+        SupporterList.push("<div class='displayitem' style='background-image: url(" + guildMember.user.displayAvatarURL + ")'>  <b class='displayname' value='" + guildMember.user.id + "'>" + function_RemoveTags(guildMember.user.username) + "  <br>  <font size='1' color='grey'>  Supporter since " + function_DateFormat(peeky.userData.get(guildMemberId, "SupporterSince")) + "  </font>  </b>  </div>");
       
     };
     });
@@ -2817,6 +2819,8 @@ if  (keySF == SupportServer)  {
           
             var PurchaseHeader = "**You have purchased Supporter from the [store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["The Supporter role"];
+
+            peeky.userData.set(key, new Date(), "SupporterSince");
 
         };
 
