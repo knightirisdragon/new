@@ -3748,9 +3748,9 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
               
                 m.awaitReactions(reaction => filter, { max: 1, time: 60000, errors: ['time'] })
                     .then(collected => {    
-                          var user = collected.first();
+                          var user = collected.message
                   
-                    console.log(collected.first())
+                    console.log(user)
                   
                           if  (peeky.userData.has(user.id))  {
                         
