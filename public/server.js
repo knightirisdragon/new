@@ -1462,6 +1462,8 @@ function function_DetectLink(string)  {
 
 //Date Format
 function function_DateFormat(value)  {
+  
+    value = new Date(value);
       
     var ThisDate  = value.getUTCDate();
     var ThisMonth = value.getUTCMonth() + 1;
@@ -2250,13 +2252,20 @@ if  (!WebsiteCooldowns.has("supporters"))  {
     setTimeout(() => {WebsiteCooldowns.delete("supporters")}, 600000);
 
     var SupporterList = [];
-    peeky.guilds.get(SupportServer).members.forEach(function(guildMember, guildMemberId) {
-    if  (guildMember.roles.has(SupporterRole) && peeky.userData.has(guildMemberId))  {
+    peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(SupporterRole)).forEach(function(guildMember, guildMemberId) {
+    if  (peeky.userData.has(guildMemberId))  {
 
+        /*
         var TheBannerShown = DefaultBackground;
-        //TheBannerShown = function_GetBackground(guildMemberId);
+        TheBannerShown = function_GetBackground(guildMemberId);
+        */
+      
+        var SupporterDate = new Date();
+        if  (peeky.userData.has(guildMemberId, "SupporterSince"))  {
+            var SupporterDate = peeky.userData.get(guildMemberId, "SupporterSince");
+        };
 
-        SupporterList.push("<div class='displayitem' style='background-image: url(" + guildMember.user.displayAvatarURL + ")'>  <b class='displayname' value='" + guildMember.user.id + "'>" + function_RemoveTags(guildMember.user.username) + "  <br>  <font size='1' color='grey'>  Supporter since " + function_DateFormat(peeky.userData.get(guildMemberId, "SupporterSince")) + "  </font>  </b>  </div>");
+        SupporterList.push("<div class='displayitem' style='background-image: url(" + guildMember.user.displayAvatarURL + ")'>  <b class='displayname' value='" + guildMember.user.id + "'>" + function_RemoveTags(guildMember.user.username) + "  <br>  <font size='1' color='grey'>  Supporter since " + function_DateFormat(SupporterDate) + ".  </font>  </b>  </div>");
       
     };
     });
@@ -2265,7 +2274,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
         SupporterList.push('<center><font size="4">  You can become a supporter in the store!  </font></center>')
     };
 
-    await fs.writeFile('public/supporters.txt', SupporterList.join("<br><br>"), (err) => {
+    await fs.writeFile('public/supporters.txt', SupporterList.join(" "), (err) => {
         if (err) console.log(err);
     });
       
