@@ -2227,7 +2227,7 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
                 var ServerInfo = "<font size='2' color='pink'>No Invite</font>";    
             };
 
-            ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'><div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b></div></a>");
+            ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'><div class='displayitem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b></div></a>");
       
         };
           
@@ -2248,13 +2248,13 @@ if  (!WebsiteCooldowns.has("supporters"))  {
     setTimeout(() => {WebsiteCooldowns.delete("supporters")}, 600000);
 
     var SupporterList = [];
-    peeky.guilds.get(SupportServer).members.forEach(function(guildMember, guildMemberId) {
-    if  (guildMember.roles.has(SupporterRole) && peeky.userData.has(guildMemberId))  {
+    peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(SupporterRole)).forEach(function(guildMember, guildMemberId) {
+    if  (peeky.userData.has(guildMemberId))  {
 
         var TheBannerShown = DefaultBackground;
         //TheBannerShown = function_GetBackground(guildMemberId);
 
-        SupporterList.push("<div class='serveritem' style='background-image: url(" + guildMember.user.displayAvatarURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b></div>");
+        SupporterList.push("<div class='displayitem' style='background-image: url(" + guildMember.user.displayAvatarURL + ")'>  <b class='displayname' value='" + guildMember.user.id + "'>" + function_RemoveTags(guildMember.user.username) + "  <br>  <font size='2' color='grey'>  #" + guildMember.user.discriminator + "  </font>  </b>  </div>");
       
     };
     });
@@ -2290,7 +2290,7 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
               var ImmuneString = "Not Immune";
             };
 
-            ServerLogList.push("<div class='serveritem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='servername' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + "  <br>  " + peeky.guilds.get(data.GuildID).members.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "   </b></div>");
+            ServerLogList.push("<div class='displayitem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + "  <br>  " + peeky.guilds.get(data.GuildID).members.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "   </b></div>");
           
         };
       
