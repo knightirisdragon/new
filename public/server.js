@@ -3741,33 +3741,26 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
             channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {
 
                 await m.react(TreasureId).catch(error => ErrorBag.add(error));
-              
-                const filter = (reaction, user) => {  return reaction.emoji.name == TreasureIcon;  };
-                const collector = m.createReactionCollector(filter, { time: 60000 });
 
-                collector.on('collect', (reaction, reactionCollector) => {
-                    
-                    var user = reaction.user;
-                  
-                    if  (peeky.userData.has(user.id))  {
-                        
-                        var embed = {"description": SuccessIcon + " **" + user.username + "** has got the treasure!", "color": EmbedColor}; 
-                        m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
-                            
-                        peeky.userData.math(user.id, "+", Amount, "Gredit");
-                            
-                    };
+               const filter = (reaction, user) => {
+                  return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
+              };
 
-                    collector.on('end', collected => {
-                        
-                        var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
-                        m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
-                      
-                        m.delete().catch(error => ErrorBag.add(error));
-                      
-                    });
-                  
-                });
+              m.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+                  .then(collected => {
+                      const reaction = collected.first();
+
+                      if (reaction.emoji.name === '👍') {
+                          message.reply('you reacted with a thumbs up.');
+                      }
+                      else {
+                          message.reply('you reacted with a thumbs down.');
+                      }
+                  })
+                  .catch(collected => {
+                      console.log(`After a minute, only ${collected.size} out of 4 reacted.`);
+                      message.reply('you didn\'t react with neither a thumbs up, nor a thumbs down.');
+                  });
               
             });
             
