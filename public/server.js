@@ -1293,6 +1293,7 @@ function function_ServerData(key)  {
             server_invite: "no_invite",
             prefix: Prefix,
             muted_role: "Muted",
+            highlighted_channel: "general",
 
             Title: "None",
             Thumbnail: DefaultBackground,
@@ -7781,6 +7782,47 @@ if (CommandName.startsWith("prefix"))  {
             peeky.serverData.set(keySF, CommandArgument, "prefix");
 
             const embed = {"description": SuccessIcon + " The server prefix is now **" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+        }
+         else
+        {
+         const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+    }
+     else
+    {
+      const embed = {"description": PermissionsMessageError2[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+  
+    }
+     else if (CommandArgument == "")
+    {      
+     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };  
+
+};
+  
+//HighlightedChannel
+if (CommandName.startsWith("highlightedchannel"))  {
+  
+    var CommandArgument = CommandName.split("highlightedchannel")[1];
+  
+    if  (CommandArgument.startsWith(" "))  {
+
+        CommandArgument = function_RemoveFormatting(CommandArgument, "channel", true);
+
+    if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
+
+        if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+
+            peeky.serverData.set(keySF, CommandArgument, "prefix");
+
+            const embed = {"description": SuccessIcon + " The highlighted channel is now called **#" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
