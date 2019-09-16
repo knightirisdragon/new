@@ -3737,17 +3737,32 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
 
             var Amount = 10 * Math.floor((Math.random() * 100));
             
-            const embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon, "color": EmbedColor}; 
+            var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon, "color": EmbedColor}; 
             channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {
+              
+                const filter = (reaction, user) => {
+                    return reaction.emoji.id  == TreasureId;
+                };
                 await m.react(TreasureId).catch(error => ErrorBag.add(error));
-                m.awaitReactions(reaction => reaction.emoji.id == TreasureId, { max: 1, time: 60000, errors: ['time'] })
-                    .then(collected => {
-                          m.delete();
+              
+                m.awaitReactions(reaction => filter, { max: 1, time: 60000, errors: ['time'] })
+                    .then(collected => {    
+                          var user = collected.first().user;
                   
+                          if  (peeky.userData.has(user.id))  {
+                        
+                              var embed = {"description": SuccessIcon + " **" + user.username + "** has got the treasure!", "color": EmbedColor}; 
+                              channel.send({  embed  }).catch(error => ErrorBag.add(error));
+                            
+                              peeky.userData.math(user.id, "+", Amount, "Gredit");
+                            
+                          };
                   
+                          
                     })
-                    .catch(collected => {
-                          console.log("no");
+                    .catch(collected => {  console.log(collected);
+                          var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
+                          channel.send({  embed  }).catch(error => ErrorBag.add(error));
                     });
             });
             
@@ -7856,7 +7871,7 @@ if (CommandName.startsWith("highlightedchannel"))  {
   
     if  (CommandArgument.startsWith(" "))  {
 
-        CommandArgument = function_RemoveFormatting(CommandArgument, "channel", true);
+        CommandArgument = function_RemoveFormatting(CommandArgument.replace(" ", ""), "channel", true);
 
     if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
 
