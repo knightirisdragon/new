@@ -200,6 +200,7 @@ const Hollow       = "<:peeky_hollow:506921440067452928>";
 const WhiteSquare  = "<:peeky_white:529305474604990464>";
 const BotTag       = "<:bot:541014775468130336>";
 const OwnerTag     = "<:owner:543001955921035274>";
+const TreasureIcon = "<:treasure:623186257404755969>";  const TreasureId = "623186257404755969";
 const GreditIcon   = "<:gredit:558673809343774720>";
 const ChestIcon    = "<:chest:561511603305185280>";
 const EnabledIcon  = "<:enabled:538295053940948993>";
@@ -3735,11 +3736,12 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
           
         if  (channel && channel.permissionsFor(peeky.user).has('ADD_REACTIONS' && 'SEND_MESSAGES'))  {
           
-            var Amount = Math.floor((Math.random() * 10) + 1);
-          
+            var Amount = 10 * Math.floor((Math.random() * 100));
             
             const embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon, "color": EmbedColor}; 
-            channel.send().catch(error => ErrorBag.add(error));
+            channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(m => {
+                m.addReaction(TreasureId).catch(error => ErrorBag.add(error));
+            });
             
         };
           
