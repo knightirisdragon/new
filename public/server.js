@@ -3741,7 +3741,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
             channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {
               
                 const filter = (reaction, user) => {
-                    return reaction.emoji.id == TreasureId && reaction.user.id !== PeekyId;
+                    return reaction.emoji.id == TreasureId && !user.bot;
                 };
 
                 await m.react(TreasureId).catch(error => ErrorBag.add(error));
