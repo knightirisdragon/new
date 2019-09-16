@@ -3733,9 +3733,13 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
         var guild = peeky.guilds.get(server.GuildID);
         var channel = guild.channels.find(c => c.name == name);
           
-        if  (channel)  {
+        if  (channel && channel.permissionsFor(peeky.user).has('ADD_REACTIONS' && 'SEND_MESSAGES'))  {
+          
+            var Amount = Math.floor((Math.random() * 10) + 1);
+          
             
-            channel.send()
+            const embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon, "color": EmbedColor}; 
+            channel.send().catch(error => ErrorBag.add(error));
             
         };
           
