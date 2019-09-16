@@ -3741,14 +3741,14 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
             channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {
               
                 const filter = (reaction, user) => {
-                    return reaction.emoji.id == TreasureId;
+                    return reaction.emoji.id == TreasureId && reaction.user.id !== PeekyId;
                 };
 
                 await m.react(TreasureId).catch(error => ErrorBag.add(error));
               
-                m.awaitReactions(reaction => filter, { max: 1, time: 60000, errors: ['time'] })
+                m.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
                     .then(collected => {    
-                          var user = collected.first();
+                          var user = collected.first().users.first();
                   
                           console.log(user);
                   
