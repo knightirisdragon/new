@@ -3741,16 +3741,16 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
             channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {
               
                 const filter = (reaction, user) => {
-                    return reaction.emoji.name == TreasureIcon;
+                    return reaction.emoji.id == TreasureId;
                 };
 
                 await m.react(TreasureId).catch(error => ErrorBag.add(error));
               
                 m.awaitReactions(reaction => filter, { max: 1, time: 60000, errors: ['time'] })
                     .then(collected => {    
-                          var user = collected.message
+                          var user = collected.first();
                   
-                    console.log(user)
+                          console.log(user);
                   
                           if  (peeky.userData.has(user.id))  {
                         
