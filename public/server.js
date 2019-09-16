@@ -3741,18 +3741,21 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
             channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {
               
                 const filter = (reaction, user) => {
-                    return reaction.emoji.id  == TreasureId;
+                    return reaction.emoji.name == TreasureIcon;
                 };
+
                 await m.react(TreasureId).catch(error => ErrorBag.add(error));
               
                 m.awaitReactions(reaction => filter, { max: 1, time: 60000, errors: ['time'] })
                     .then(collected => {    
-                          var user = collected.first().user;
+                          var user = collected.first();
+                  
+                    console.log(collected.first())
                   
                           if  (peeky.userData.has(user.id))  {
                         
                               var embed = {"description": SuccessIcon + " **" + user.username + "** has got the treasure!", "color": EmbedColor}; 
-                              channel.send({  embed  }).catch(error => ErrorBag.add(error));
+                              m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
                             
                               peeky.userData.math(user.id, "+", Amount, "Gredit");
                             
@@ -3762,7 +3765,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
                     })
                     .catch(collected => {  console.log(collected);
                           var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
-                          channel.send({  embed  }).catch(error => ErrorBag.add(error));
+                          m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
                     });
             });
             
