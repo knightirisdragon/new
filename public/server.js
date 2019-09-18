@@ -6087,11 +6087,12 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
               if  (BackgroundChance == 1)  {
 
                   var Background = Math.round(Math.random() * Banners.length);
+                  console.log(Background)
 
                   if  (Background !== 0 && Banners[Background][Banner.Price] !== Exclusive && Banners[Background][Banner.Price] <= 500)  {
 
-                      peeky.userData.get(key, "Inventory").push(Background);
-                      InfoMessages.push(InfoIcon + " You have got the **" + Banners[Background][Banner.Name] + "** background for free.");
+                      peeky.userData.get(key, "Inventory").push(Background + 1);
+                      InfoMessages.push(InfoIcon + " You have found the **" + Banners[Background][Banner.Name] + "** background.");
 
                   };
 
