@@ -6088,7 +6088,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
 
                   var Background = Math.round(Math.random() * Banners.length);
 
-                  if  (Background !== 0 && Banners[Background][Banner.Price] !== Exclusive)  {
+                  if  (Background !== 0 && Banners[Background][Banner.Price] !== Exclusive && Banners[Background][Banner.Price] <= 500)  {
 
                       peeky.userData.get(key, "Inventory").push(Background);
                       InfoMessages.push(InfoIcon + " You have got the **" + Banners[Background][Banner.Name] + "** background for free.");
