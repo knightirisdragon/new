@@ -132,6 +132,7 @@ const CoinImage         = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873
 const ExpImage          = "https://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fexp.png?v=1564224431507";
 const LevelImage        = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_level.png?1541260281702";
 const ChestImage        = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051";
+const TreasureImage     = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ftreasures.png?v=1568646809345";
 const BadgesImage       = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbadges.png?v=1564245176155";
 const KarmaImage        = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fkarma.png?v=1564244903816";
 const XPImage           = "http://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2FScreenshot_141.png?1543781509470";
@@ -200,7 +201,7 @@ const Hollow       = "<:peeky_hollow:506921440067452928>";
 const WhiteSquare  = "<:peeky_white:529305474604990464>";
 const BotTag       = "<:bot:541014775468130336>";
 const OwnerTag     = "<:owner:543001955921035274>";
-const TreasureIcon = "<:treasure:623186257404755969>";  const TreasureId = "623186257404755969";
+const TreasureIcon = "<:treasure:623186257404755969>";
 const GreditIcon   = "<:gredit:558673809343774720>";
 const ChestIcon    = "<:chest:561511603305185280>";
 const EnabledIcon  = "<:enabled:538295053940948993>";
@@ -3737,36 +3738,29 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
 
             var Amount = 10 * Math.floor((Math.random() * 100));
             
-            var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon, "color": EmbedColor}; 
-            channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {
+            var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type **claim** to claim this treasure!"  }, "color": EmbedColor}; 
+            channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
               
-                const filter = (reaction, user) => {
-                    return reaction.emoji.id == TreasureId && !user.bot;
-                };
-
-                await m.react(TreasureId).catch(error => ErrorBag.add(error));
-              
-                m.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
-                    .then(collected => {    
-                          var user = collected.first().users.first();
+                m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 60000, errors: ['time'] })
+                .then(collected => {
                   
-                          console.log(user);
+                      var user = collected.first().author;
                   
-                          if  (peeky.userData.has(user.id))  {
+                      if  (peeky.userData.has(user.id))  {
                         
-                              var embed = {"description": SuccessIcon + " **" + user.username + "** has got the treasure!", "color": EmbedColor}; 
-                              m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
-                            
-                              peeky.userData.math(user.id, "+", Amount, "Gredit");
-                            
-                          };
-                  
-                          
-                    })
-                    .catch(collected => {  console.log(collected);
-                          var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
+                          var embed = {"description": SuccessIcon + " **" + user.username + "** has claimed the treasure!", "color": EmbedColor}; 
                           m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
-                    });
+                            
+                          peeky.userData.math(user.id, "+", Amount, "Gredit");
+                        
+                      };
+                  
+                })
+                .catch(collected => {
+                      var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
+                      m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+                });
+              
             });
             
         };
