@@ -5906,12 +5906,23 @@ if (CommandName.startsWith("previewbackground"))  {
           
             Failed = false;
           
+            var Price = Exclusive;
+            var ChestLoot = "no";
+            if  (Banners[i - 1][Banner.Price] !== Exclusive)  {
+                Price = (Banners[i - 1][Banner.Price]).toLocaleString('en') + " " + GreditIcon;    
+                ChestLoot = "yes";           
+            };
+          
             const embed = {"description": 
                            "**" + Banners[i - 1][Banner.Name] + "**"
                            + "\n" 
-                           + "" + Banners[i - 1][Banner.Credit] + " " + GreditIcon
+                           + "" + Banners[i - 1][Banner.Credit]
                            + "\n\n"
-                           + "" + Banners[i - 1][Banner.Price]
+                           + "**Information**"
+                           + "\n"
+                           + "Price: " + Price
+                           + "\n"
+                           + "Chest Loot: " + ChestLoot
                            + "\n­",
                           "image": {
                             "url": Banners[i - 1][Banner.Source]
