@@ -3738,7 +3738,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
 
             var Amount = 10 * Math.floor((Math.random() * 100));
             
-            var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type **claim** to claim this treasure!"  }, "color": EmbedColor}; 
+            var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
             channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
               
                 m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 60000, errors: ['time'] })
