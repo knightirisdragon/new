@@ -2012,7 +2012,7 @@ if  (!WebsiteCooldowns.has("api"))  {
 
     const UpdatedApi = {
       "botName": peeky.user.username,
-      "botDesc": "A Discord bot to to defend and improve your amazing servers!",
+      "botDesc": "Hello, my name is PEEKY and I am here to make your Discord servers absolutely perfect!",
       "botAvatar": peeky.user.avatarURL,
       "defaultPrefix": Prefix,
 
