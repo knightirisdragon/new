@@ -5895,6 +5895,43 @@ if (CommandName.startsWith("setbackground"))  {
   
 };
   
+//PreviewBackground
+if (CommandName.startsWith("previewbackground"))  {
+
+    var Failed = true;
+
+    for (var i = 1; i <= Banners.length; i++)  {
+
+        if  (message.content == peeky.serverData.get(keySF, "prefix") + "previewbackground " + i)  {
+          
+            Failed = false;
+          
+            const embed = {"description": 
+                           "**" + Banners[i - 1][Banner.Name] + "**"
+                           + "\n" 
+                           + "" + Banners[i - 1][Banner.Credit] + " " + GreditIcon
+                           + "\n\n"
+                           + "" + Banners[i - 1][Banner.Price]
+                           + "\n­",
+                          "image": {
+                            "url": Banners[i - 1][Banner.Source]
+                          },
+                          "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          
+            break;
+
+        };
+
+    };
+  
+    if  (Failed == true)  {
+        const embed = {"description": ErrorMessage16[0], "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+  
+};
+  
 //SellBackground
 if (CommandName.startsWith("sellbackground"))  {
   
