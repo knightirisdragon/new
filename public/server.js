@@ -6076,15 +6076,20 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
               };
             
               //Background Drop
-              var BackgroundChance = Math.round(Math.random() * 10) + 1;
+              if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
+                  var BackgroundChance = Math.round(Math.random() * 4);
+              } else {
+                var BackgroundChance = Math.round(Math.random() * 10);
+              };
+              BackgroundChance = BackgroundChance + 1;
 
               if  (BackgroundChance == 1)  {
 
                   var Background = Math.round(Math.random() * Banners.length);
 
-                  if  (Banners[Background][Banner.Price] !== Exclusive)  {
+                  if  (Background !== 0 && Banners[Background][Banner.Price] !== Exclusive)  {
 
-                      peeky.userData.get(key, "Inventory").push(Banners[Background]);
+                      peeky.userData.get(key, "Inventory").push(Background);
                       InfoMessages.push(InfoIcon + " You have got the **" + Banners[Background][Banner.Name] + "** background for free.");
 
                   };
