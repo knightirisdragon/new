@@ -6051,7 +6051,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
 
           var BadgeProgress = 0;
 
-          //Count Rewards
+          //Opening System
           var ChestAmount = 1;
           if  (Tokens[1] == AllString)  {
               ChestAmount = peeky.userData.get(key, "Chests");
@@ -6060,11 +6060,13 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
           var CurrentChest = 0;
           var TotalLoot = 0;
 
-          do {     
+          do {
 
+              //Count Rewards
               TotalLoot += TotalAmount;
               CurrentChest ++;
 
+              //Gambler Badge Progress
               peeky.userData.math(key, "+", 1, "GamblerBadge");
 
               if  (peeky.userData.get(key, "GamblerBadge") == 10)  {
@@ -6072,28 +6074,24 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
                   InfoMessages.push(InfoMessage1[0]);
 
               };
-                
-          } while (CurrentChest < ChestAmount);
             
-          //Background Drop
-          var BackgroundChance = Math.round(Math.random() * 10);
-            
-          if  (BackgroundChance == 0)  {
-            
-              console.log("yeah")
-                
-              var Background = Math.round(Math.random() * Banners.length);
-                
-              if  (Banners[Background][Banner.Price] !== Exclusive)  {
-            
-              console.log("mhm")
-                    
-                  peeky.userData.get(key, "Inventory").push(Banners[Background]);
-                  InfoMessages.push(InfoIcon + " You have got the **" + Banners[Background][Banner.Name] + "** background for free.");
-                    
+              //Background Drop
+              var BackgroundChance = Math.round(Math.random() * 10) + 1;
+
+              if  (BackgroundChance == 1)  {
+
+                  var Background = Math.round(Math.random() * Banners.length);
+
+                  if  (Banners[Background][Banner.Price] !== Exclusive)  {
+
+                      peeky.userData.get(key, "Inventory").push(Banners[Background]);
+                      InfoMessages.push(InfoIcon + " You have got the **" + Banners[Background][Banner.Name] + "** background for free.");
+
+                  };
+
               };
                 
-          };
+          } while (CurrentChest < ChestAmount);
 
           peeky.userData.math(key, "-", ChestAmount, "Chests");
           peeky.userData.math(key, "+", TotalLoot, "Gredit");
