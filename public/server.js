@@ -6049,50 +6049,50 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
               TotalAmount += PeekyCoinsUpgraded;
           };
 
-          var ChestAmount   = 0;
           var BadgeProgress = 0;
 
           //Count Rewards
+          var ChestAmount = 1;
           if  (Tokens[1] == AllString)  {
-
               ChestAmount = peeky.userData.get(key, "Chests");
-              var CurrentChest = 0;
-              var TotalLoot = 0;
+          };
 
-              do {            
-                TotalLoot += TotalAmount;
-                CurrentChest ++;
+          var CurrentChest = 0;
+          var TotalLoot = 0;
 
-                peeky.userData.math(key, "+", 1, "GamblerBadge");
+          do {     
 
-                if  (peeky.userData.get(key, "GamblerBadge") == 10)  {
+              TotalLoot += TotalAmount;
+              CurrentChest ++;
 
-                    InfoMessages.push(InfoMessage1[0]);
+              peeky.userData.math(key, "+", 1, "GamblerBadge");
 
-                };
-              } while (CurrentChest < ChestAmount);
-            
-              var BackgroundChance = Math.round(Math.random() * 10);
-            
-              if  (BackgroundChance == 0)  {
-                
-                  var 
-                
+              if  (peeky.userData.get(key, "GamblerBadge") == 10)  {
+
+                  InfoMessages.push(InfoMessage1[0]);
+
               };
-
-          }
-           else  
-          {
-            ChestAmount = 1;
-            TotalLoot = TotalAmount;
-
-            peeky.userData.math(key, "+", 1, "GamblerBadge");
-
-            if  (peeky.userData.get(key, "GamblerBadge") == 10)  {
-
-                InfoMessages.push(InfoMessage1[0]);
-
-            };
+                
+          } while (CurrentChest < ChestAmount);
+            
+          //Background Drop
+          var BackgroundChance = Math.round(Math.random() * 10);
+            
+          if  (BackgroundChance == 0)  {
+            
+              console.log("yeah")
+                
+              var Background = Math.round(Math.random() * Banners.length);
+                
+              if  (Banners[Background][Banner.Price] !== Exclusive)  {
+            
+              console.log("mhm")
+                    
+                  peeky.userData.get(key, "Inventory").push(Banners[Background]);
+                  InfoMessages.push(InfoIcon + " You have got the **" + Banners[Background][Banner.Name] + "** background for free.");
+                    
+              };
+                
           };
 
           peeky.userData.math(key, "-", ChestAmount, "Chests");
