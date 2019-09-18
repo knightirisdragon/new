@@ -5907,10 +5907,8 @@ if (CommandName.startsWith("previewbackground"))  {
             Failed = false;
           
             var Price = Exclusive;
-            var ChestLoot = "no";
             if  (Banners[i - 1][Banner.Price] !== Exclusive)  {
-                Price = (Banners[i - 1][Banner.Price]).toLocaleString('en') + " " + GreditIcon;    
-                ChestLoot = "yes";           
+                Price = (Banners[i - 1][Banner.Price]).toLocaleString('en') + " " + GreditIcon;
             };
           
             const embed = {"description": 
@@ -5921,8 +5919,6 @@ if (CommandName.startsWith("previewbackground"))  {
                            + "**Information**"
                            + "\n"
                            + "Price: " + Price
-                           + "\n"
-                           + "Chest Loot: " + ChestLoot
                            + "\n­",
                           "image": {
                             "url": Banners[i - 1][Banner.Source]
