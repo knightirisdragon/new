@@ -6071,6 +6071,14 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
 
                 };
               } while (CurrentChest < ChestAmount);
+            
+              var BackgroundChance = Math.round(Math.random() * 10);
+            
+              if  (BackgroundChance == 0)  {
+                
+                  var 
+                
+              };
 
           }
            else  
