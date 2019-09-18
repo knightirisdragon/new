@@ -2012,7 +2012,7 @@ if  (!WebsiteCooldowns.has("api"))  {
 
     const UpdatedApi = {
       "botName": peeky.user.username,
-      "botDesc": "PEEKY is a fancy Discord bot that comes prepared to enhance your Discord servers.",
+      "botDesc": "PEEKY is an amazing tool that has everything that you'll need for a great Discord server.",
       "botAvatar": peeky.user.avatarURL,
       "defaultPrefix": Prefix,
 
