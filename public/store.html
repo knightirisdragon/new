@@ -210,6 +210,8 @@
           x[i].style.display = "none";
         }
       
+        //Close();
+      
         var Element = document.getElementById(id);
       
         if  (Element)  {  
@@ -285,7 +287,7 @@
 
 </style>
   
-<body onload="ServerBoost(); document.getElementById('fulldesc').style.display = 'block';" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
+<body onload="Supporter(); document.getElementById('fulldesc').style.display = 'block';" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
 <b>
 
     <div class="topnav" id="topnavmenu">
@@ -300,23 +302,12 @@
 <font size="7" class="headertext">Store</font>
 <font size="4" class="headersub">Here you can buy some cool rewards and support PEEKY while doing it.</font>
 
-<br><br><br>
+    <br><br>
   
     <center>
       
-      
-    <font class="table_description">Monthly <a class="show" onclick="ToggleCategory('monthly');">Open</a>  </font> <br>
+    <font class="headersub"><a class="show" onclick="ToggleCategory('monthly');">Open</a>  Monthly</font> <br>
     <div class="inlinediv" id="monthly">
-    
-        <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_nitroboost.png?v=1568535360407')">
-        <div class="textlistitem">
-        <b>
-        <b class="name">  Nitro Boost  </b>  <a class="first" href="https://peeky.glitch.me/server.html"> Purchase </a>
-        <a class="second" onclick="ServerBoost()"> More Info </a>
-        <b class="price">9.99€/m</b>
-        </b>
-        </div>
-        </div>
     
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_supporter.png?v=1568471013875');">
         <div class="textlistitem">
@@ -328,40 +319,20 @@
         </div>
         </div>
     
-    </div>
-      
-    <font class="table_description">Merch</font> <br>
-    <div class="inlinediv" id="merch" onlick="ToggleCategory(this.id);">
-    
-        <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_woodenlapelpinpng.png?v=1568566975690')">
+        <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_nitroboost.png?v=1568535360407')">
         <div class="textlistitem">
         <b>
-        <b class="name">  Lapel Pin  </b>  <a class="first"> TESTING </a>
-        <a class="second" onclick="LapelPin()"> More Info </a>
-        <b class="price">~ 2.49€</b>
-        </b>
-        </div>
-        </div>
-    
-    </div>
-
-    <font class="table_description">Additional items</font> <br>
-    <div class="inlinediv" id="additionalitems">
-    
-        <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_chestspng.png?v=1568566368250')">
-        <div class="textlistitem">
-        <b>
-        <b class="name">  Additional Chests  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
-        <a class="second" onclick="Chests()"> More Info </a>
-        <b class="price">0.99€</b>
+        <b class="name">  Nitro Boost  </b>  <a class="first" href="https://peeky.glitch.me/server.html"> Purchase </a>
+        <a class="second" onclick="ServerBoost()"> More Info </a>
+        <b class="price">9.99€/m</b>
         </b>
         </div>
         </div>
     
     </div>
       
-    <font class="table_description">Other</font> <br>
-    <div class="inlinediv" id="other">
+    <font class="headersub"><a class="show" onclick="ToggleCategory('upgrades');">Open</a>  Upgrades</font> <br>
+    <div class="inlinediv" id="upgrades">
 
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_serverupgrade.png?v=1568471043510')">
         <div class="textlistitem">
@@ -384,8 +355,42 @@
         </div>
     
     </div>
+
+    <font class="headersub"><a class="show" onclick="ToggleCategory('additionalitems');">Open</a>  Additional items</font> <br>
+    <div class="inlinediv" id="additionalitems">
+    
+        <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_chestspng.png?v=1568566368250')">
+        <div class="textlistitem">
+        <b>
+        <b class="name">  Additional Chests  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+        <a class="second" onclick="Chests()"> More Info </a>
+        <b class="price">0.99€</b>
+        </b>
+        </div>
+        </div>
+    
+    </div>
+      
+    <font class="headersub"><a class="show" onclick="ToggleCategory('merch');">Open</a>  Merch</font> <br>
+    <div class="inlinediv" id="merch">
+    
+        <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_woodenlapelpinpng.png?v=1568566975690')">
+        <div class="textlistitem">
+        <b>
+        <b class="name">  Lapel Pin  </b>  <a class="first"> TESTING </a>
+        <a class="second" onclick="LapelPin()"> More Info </a>
+        <b class="price">~ 2.49€</b>
+        </b>
+        </div>
+        </div>
+    
+    </div>
+
+    <font class="headersub"><a class="close" onclick="ToggleCategory('close');">Close</a></font> <br>
       
     </center>
+
+    <br>
     
     <a>
     <div class="demo" id="fulldesc">
