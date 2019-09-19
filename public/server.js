@@ -3743,7 +3743,7 @@ if  (!LimitedRolesCooldown.has("cooldown"))  {
 if  (!RandomTreasuresCooldown.has("cooldown"))  {
 
     RandomTreasuresCooldown.add("cooldown");
-    setTimeout(() => {RandomTreasuresCooldown.delete("cooldown")}, 7200000);
+    setTimeout(() => {RandomTreasuresCooldown.delete("cooldown")}, 1800000);
   
     var serverlist = peeky.serverData.filter( p => p.server_upgraded == true && p.GuildID ).array();
     var server = serverlist[Math.floor(Math.random()*serverlist.length)];
