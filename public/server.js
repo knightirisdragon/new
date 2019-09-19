@@ -2815,7 +2815,6 @@ if  (keySF == SupportServer)  {
             PurchaseComplete = true;
           
             var PurchaseHeader = "**You have nitro boosted the [Support Server](https://peeky.glitch.me/server.html)!**";
-            var Rewards = ["The Nitro Booster role"];
 
         };
 
@@ -2832,7 +2831,6 @@ if  (keySF == SupportServer)  {
             PurchaseComplete = true;
           
             var PurchaseHeader = "**You have purchased Supporter from the [store](https://peeky.glitch.me/store.html)!**";
-            var Rewards = ["The Supporter status"];
 
             peeky.userData.set(key, new Date(), "SupporterLastPurchase");
             
@@ -2856,7 +2854,6 @@ if  (keySF == SupportServer)  {
             PurchaseComplete = true;
           
             var PurchaseHeader = "**You have purchased Server Upgrade from the [store](https://peeky.glitch.me/store.html)!**";
-            var Rewards = ["The Server Upgrade role"];
 
         };
 
@@ -2873,7 +2870,6 @@ if  (keySF == SupportServer)  {
             PurchaseComplete = true;
           
             var PurchaseHeader = "**You have purchased Profile Booster from the [store](https://peeky.glitch.me/store.html)!**";
-            var Rewards = ["The Profile Booster role"];
 
             peeky.userData.set(key, new Date(), "BoosterStart");
 
@@ -2891,7 +2887,6 @@ if  (keySF == SupportServer)  {
             PurchaseComplete = true;
 
             var PurchaseHeader = "**You have purchased Additional Chests from the [store](https://peeky.glitch.me/store.html)!**";
-            var Rewards = ["10 Chests"];
 
             peeky.userData.math(key, "+", 10, "Chests");
 
@@ -2906,14 +2901,18 @@ if  (keySF == SupportServer)  {
             peeky.userData.set(key, true, "ContributorBadge");
             Rewards.push("The Contributor badge");
         };
-  
+      
+        if  (Rewards.length == 0)  {
+            Rewards = ["None"];
+        };
+
         const embed = {
             "description": 
                   "" + PurchaseHeader
                 + "\n"
                 + "Thank you very much!"
                 + "\n\n"
-                + "**These are your rewards:**"
+                + "**Bonus rewards:**"
                 + "\n"
                 + "" + Rewards.join("\n"),  
           
@@ -6139,13 +6138,24 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
               };
             
               //Background Drop
-              var Background
-              if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
-                  var BackgroundChance = Math.round(Math.random() * 4);
-              } else {
-                var BackgroundChance = Math.round(Math.random() * 10);
+              var BackgroundNumber = 10;
+            
+              //Supporter
+              if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {
+                  BackgroundNumber = BackgroundNumber - 1;
               };
-              BackgroundChance = BackgroundChance + 1;
+            
+              //Nitro Booster
+              if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
+                  BackgroundNumber = BackgroundNumber - 1;
+              };
+            
+              //Profile Booster
+              if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
+                  BackgroundNumber = BackgroundNumber - 1;
+              };
+            
+              var BackgroundChance = Math.round(Math.random() * BackgroundNumber) + 1;
 
               if  (BackgroundChance == 1)  {
 

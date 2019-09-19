@@ -37,6 +37,12 @@
                                                       + "</div>"
 
                                                       + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051'>"
+                                                      + "<b class='storeheader'>Chest Bonus</b>"
+                                                      + "<b class='storesub'>The chance of getting a background from opening chests is increased.</b>"
+                                                      + "</div>"
+
+                                                      + "<div class='storecategory'>"
                                                       + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_dailybonus.png?1558536850473'>"
                                                       + "<b class='storeheader'>Daily Bonus</b>"
                                                       + "<b class='storesub'>You will receive an additional chest every day.</b>"
@@ -87,6 +93,12 @@
                                                       + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051'>"
                                                       + "<b class='storeheader'>Chest Bonus</b>"
                                                       + "<b class='storesub'>Opening a chest will grant you up to 50 more Gredit.</b>"
+                                                      + "</div>"
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051'>"
+                                                      + "<b class='storeheader'>Chest Bonus</b>"
+                                                      + "<b class='storesub'>The chance of getting a background from opening chests is increased.</b>"
                                                       + "</div>"
 
                                                       + "<div class='storecategory'>"
@@ -182,7 +194,7 @@
                                                       + "<div class='storecategory'>"
                                                       + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051'>"
                                                       + "<b class='storeheader'>Chest Bonus</b>"
-                                                      + "<b class='storesub'>The chance of getting a background from opening chests is increased to 25%.</b>"
+                                                      + "<b class='storesub'>The chance of getting a background from opening chests is increased.</b>"
                                                       + "</div>"
     };
 
@@ -281,7 +293,7 @@
     display: none;    
 }
   
-#monthly  {
+#upgrades  {
     display: block;    
 }
 
@@ -306,33 +318,18 @@
   
     <center>
       
-    <font class="headersub"><a class="show" onclick="ToggleCategory('monthly');">Open</a>  Monthly</font> <br>
-    <div class="inlinediv" id="monthly">
+    <font class="headersub"><a class="show" onclick="ToggleCategory('upgrades');">Open</a>  Upgrades</font> <br>
+    <div class="inlinediv" id="upgrades">
     
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_supporter.png?v=1568471013875');">
         <div class="textlistitem">
         <b>
         <b class="name">  Supporter  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
         <a class="second" onclick="Supporter()" href="#fulldesc"> More Info </a>
-        <b class="price">4.99€/m</b>
+        <b class="price">4.99€ / 30d</b>
         </b>
         </div>
         </div>
-    
-        <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_nitroboost.png?v=1568535360407')">
-        <div class="textlistitem">
-        <b>
-        <b class="name">  Nitro Boost  </b>  <a class="first" href="https://peeky.glitch.me/server.html"> Purchase </a>
-        <a class="second" onclick="ServerBoost()" href="#fulldesc"> More Info </a>
-        <b class="price">9.99€/m</b>
-        </b>
-        </div>
-        </div>
-    
-    </div>
-      
-    <font class="headersub"><a class="show" onclick="ToggleCategory('upgrades');">Open</a>  Upgrades</font> <br>
-    <div class="inlinediv" id="upgrades">
 
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_serverupgrade.png?v=1568471043510')">
         <div class="textlistitem">
@@ -349,7 +346,7 @@
         <b>
         <b class="name">  Profile Booster  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
         <a class="second" onclick="ProfileBooster()" href="#fulldesc"> More Info </a>
-        <b class="price">0.99€</b>
+        <b class="price">0.99€ / 1d</b>
         </b>
         </div>
         </div>
@@ -379,7 +376,22 @@
         <b>
         <b class="name">  Lapel Pin  </b>  <a class="first"> TESTING </a>
         <a class="second" onclick="LapelPin()" href="#fulldesc"> More Info </a>
-        <b class="price">~ 2.49€</b>
+        <b class="price"></b>
+        </b>
+        </div>
+        </div>
+    
+    </div>
+      
+    <font class="headersub"><a class="show" onclick="ToggleCategory('other');">Open</a>  Other</font> <br>
+    <div class="inlinediv" id="other">
+    
+        <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_nitroboost.png?v=1568535360407')">
+        <div class="textlistitem">
+        <b>
+        <b class="name">  Nitro Boost  </b>  <a class="first" href="https://peeky.glitch.me/server.html"> Purchase </a>
+        <a class="second" onclick="ServerBoost()" href="#fulldesc"> More Info </a>
+        <b class="price"></b>
         </b>
         </div>
         </div>
