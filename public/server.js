@@ -2832,7 +2832,7 @@ if  (keySF == SupportServer)  {
             PurchaseComplete = true;
           
             var PurchaseHeader = "**You have purchased Supporter from the [store](https://peeky.glitch.me/store.html)!**";
-            var Rewards = ["The Supporter role"];
+            var Rewards = ["The Supporter status"];
 
             peeky.userData.set(key, new Date(), "SupporterLastPurchase");
             
