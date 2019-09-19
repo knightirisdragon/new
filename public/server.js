@@ -6139,6 +6139,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
               };
             
               //Background Drop
+              var Background
               if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
                   var BackgroundChance = Math.round(Math.random() * 4);
               } else {
