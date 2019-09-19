@@ -63,10 +63,6 @@ const MaxServers            = 1000;
 const CustomBackgroundPrice = 1000;
 const SellMultiplier        = 2.5;
 const ExpNeeded             = 125;
-const InactiveWipe          = 1728000000;
-const ProfileBoosterLength  = 86400000;
-const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
-const ProfileBoosterTime    = (ProfileBoosterLength  / ( 60 * 60 * 1000 ));
 const DefaultFont           = "Verdana";
 const Dark                  = "#36393E";
 const LessDark              = "#3f3f3f";
@@ -79,9 +75,12 @@ const MemeLimit             = 25;
 const BannedWordsLimit      = 10;
 const PlaylistLimit         = 10;
 const GameRolesLimit        = 10;
-const AutoDeleteTime        = 100;
+const AutoDeleteTime        = 250;
 const DayMs                 = 86400000;
-const MonthMs               = 2592000000;
+const MonthMs               = 2592000000;  //30 Days
+const InactiveWipe          = 1728000000;  //20 Days
+const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
+const ProfileBoosterTime    = (DayMs  / ( 60 * 60 * 1000 ));
 
 //Sets and Arrays
 const ErrorBag                = new Set();
@@ -2030,9 +2029,7 @@ if  (!WebsiteCooldowns.has("api"))  {
 
       "customBackground": CustomBackgroundPrice,
       "sellMultiplier": SellMultiplier,
-      "expMultiplier": ExpNeeded,
-      "autowipeTime": InactiveWipe,
-      "boosterTime": ProfileBoosterLength
+      "expMultiplier": ExpNeeded
     };
   
     await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
@@ -3715,20 +3712,22 @@ if  (!LimitedRolesCooldown.has("cooldown"))  {
     LimitedRolesCooldown.add("cooldown");
     setTimeout(() => {LimitedRolesCooldown.delete("cooldown")}, 1800000);
   
+    //Supporter
     await peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(SupporterRole)).forEach(m => {
       
-        if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= ProfileBoosterLength))  {
+        if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= MonthMs))  {
             m.removeRole(ProfileBoosterRole).catch(error => ErrorBag.add(error));
           
-            const embed = {"description": InfoIcon + " Your **Supporter** has just expired, be sure to re-purchase it in under 5 days by going to the Store.",  "color": EmbedColor}; 
+            const embed = {"description": InfoIcon + " Your **Supporter** status has just expired, visit the [Store](https://peeky.glitch.me/store.html) to renew it.",  "color": EmbedColor}; 
             m.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
     });
   
+    //Profile Booster
     await peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(ProfileBoosterRole)).forEach(m => {
       
-        if  (peeky.userData.has(m.user.id, "BoosterStart") && (new Date() - new Date(peeky.userData.get(m.user.id, "BoosterStart")) >= ProfileBoosterLength))  {
+        if  (peeky.userData.has(m.user.id, "BoosterStart") && (new Date() - new Date(peeky.userData.get(m.user.id, "BoosterStart")) >= DayMs))  {
             m.removeRole(ProfileBoosterRole).catch(error => ErrorBag.add(error));
           
             const embed = {"description": InfoIcon + " Your **Profile Booster** has just expired.",  "color": EmbedColor}; 
