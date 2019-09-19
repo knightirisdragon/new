@@ -88,7 +88,7 @@ const ErrorBag                = new Set();
 const BannedUsers             = new Array();
 const WebsiteCooldowns        = new Set();
 const GainCooldown            = new Set();
-const ProfileBoosterCooldown  = new Set();
+const LimitedRolesCooldown  = new Set();
 const RandomTreasuresCooldown = new Set();
 const OverviewCooldown        = new Set();
 const SetInviteCooldown       = new Set();
@@ -2839,7 +2839,7 @@ if  (keySF == SupportServer)  {
 
             peeky.userData.set(key, new Date(), "SupporterLastPurchase");
             
-            if  (new Date(peeky.userData.get(key, "SupporterSince")) - new Date(new Date().getTime() + (35*(24*60*60*1000))) )  {
+            if  ( (peeky.userData.has(key, "SupporterSince") == false) && (new Date(peeky.userData.get(key, "SupporterSince")) - new Date() > (MonthMs + (DayMs * 5))) )  {
                 peeky.userData.set(key, new Date(), "SupporterSince");
             };
             
@@ -3709,15 +3709,26 @@ if  (message.channel.id == WorkshopChannel)  {
 
 };
     
-//Profile Booster Auto-Management
-if  (!ProfileBoosterCooldown.has("cooldown"))  {
+//Limited Roles Auto-Management
+if  (!LimitedRolesCooldown.has("cooldown"))  {
 
-    ProfileBoosterCooldown.add("cooldown");
-    setTimeout(() => {ProfileBoosterCooldown.delete("cooldown")}, 1800000);
+    LimitedRolesCooldown.add("cooldown");
+    setTimeout(() => {LimitedRolesCooldown.delete("cooldown")}, 1800000);
   
-    peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(ProfileBoosterRole)).forEach(m => {
+    await peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(SupporterRole)).forEach(m => {
       
-        if  (peeky.userData.has(m.user.id, "BoosterStart") && new Date() - new Date(peeky.userData.get(m.user.id, "BoosterStart")) >= ProfileBoosterLength)  {
+        if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= ProfileBoosterLength))  {
+            m.removeRole(ProfileBoosterRole).catch(error => ErrorBag.add(error));
+          
+            const embed = {"description": InfoIcon + " Your **Supporter** has just expired, be sure to re-purchase it in under 5 days by going to the Store.",  "color": EmbedColor}; 
+            m.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+      
+    });
+  
+    await peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(ProfileBoosterRole)).forEach(m => {
+      
+        if  (peeky.userData.has(m.user.id, "BoosterStart") && (new Date() - new Date(peeky.userData.get(m.user.id, "BoosterStart")) >= ProfileBoosterLength))  {
             m.removeRole(ProfileBoosterRole).catch(error => ErrorBag.add(error));
           
             const embed = {"description": InfoIcon + " Your **Profile Booster** has just expired.",  "color": EmbedColor}; 
