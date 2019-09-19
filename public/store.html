@@ -231,6 +231,12 @@
         };
       
     };
+      
+    function Alert() {
+
+        document.getElementById("alert").style.display = "block";
+      
+    };
     </script>
     
   </head>
@@ -299,10 +305,11 @@
 
 #alert {
     width: 50%;
-    height: 25%;
+    height: 13.5%;
     left: 25%;
     top: 40%;
     position: fixed;
+    display: none;
 }
 
 </style>
@@ -332,7 +339,7 @@
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_supporter.png?v=1568471013875');">
         <div class="textlistitem">
         <b>
-        <b class="name">  Supporter  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+        <b class="name">  Supporter  </b>  <a class="first" onclick="Alert();"> Purchase </a>
         <a class="second" onclick="Supporter()" href="#fulldesc"> More Info </a>
         <b class="price">4.99€ / 30d</b>
         </b>
@@ -342,7 +349,7 @@
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_serverupgrade.png?v=1568471043510')">
         <div class="textlistitem">
         <b>
-        <b class="name">  Server Upgrade  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+        <b class="name">  Server Upgrade  </b>  <a class="first" onclick="Alert();"> Purchase </a>
         <a class="second" onclick="ServerUpgrade()" href="#fulldesc"> More Info </a>
         <b class="price">2.49€</b>
         </b>
@@ -352,7 +359,7 @@
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_profilebooster.png?v=1568471175865')">
         <div class="textlistitem">
         <b>
-        <b class="name">  Profile Booster  </b>  <a class="first"> Purchase </a>
+        <b class="name">  Profile Booster  </b>  <a class="first" onclick="Alert();"> Purchase </a>
         <a class="second" onclick="ProfileBooster()" href="#fulldesc"> More Info </a>
         <b class="price">0.99€ / 1d</b>
         </b>
@@ -367,7 +374,7 @@
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_chestspng.png?v=1568566368250')">
         <div class="textlistitem">
         <b>
-        <b class="name">  Additional Chests  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+        <b class="name">  Additional Chests  </b>  <a class="first" onclick="Alert();"> Purchase </a>
         <a class="second" onclick="Chests()" href="#fulldesc"> More Info </a>
         <b class="price">0.99€</b>
         </b>
@@ -419,15 +426,11 @@
     </a>
   
     <div class="demo" id="alert">
-    <b>By purchasing any of the listed items, you automatically agree to the <a href="refund_policy.txt" rel="noopener noreferrer"><u>Refund Policy</u></a>.</b>
+    <b>By purchasing any of the listed items, you will automatically agree to the <a href="refund_policy.txt" rel="noopener noreferrer"><u>Refund Policy</u></a>.</b>
     <br>
     <br>
-    <a class="button" href="https://donatebot.io/checkout/319891596772638744">Accept</a>  <a class="button">Cancel</a>
+    <a class="button" href="https://donatebot.io/checkout/319891596772638744">Accept</a>  <a class="button" onclick="this.parentElement.style.display = 'none';">Cancel</a>
     </div>
-  
-<b><center>
-<br> <font size="2">By purchasing any of the items listed above, you will automatically agree to the Refund Policy.</font>
-</center></b>
   
 </div>
 
