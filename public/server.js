@@ -80,6 +80,8 @@ const BannedWordsLimit      = 10;
 const PlaylistLimit         = 10;
 const GameRolesLimit        = 10;
 const AutoDeleteTime        = 100;
+const DayMs                 = 86400000;
+const MonthMs               = 2592000000;
 
 //Sets and Arrays
 const ErrorBag                = new Set();
@@ -1776,6 +1778,7 @@ peeky.on('message', async (message) => {
         Badges: 0,
         UpgradedServers: 0,
         SupporterSince: 0,
+        SupporterLastPurchase: 0,
         BoosterStart: 0,
         DailyRewarded: 0,
       
@@ -2801,7 +2804,7 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
 if  (keySF == SupportServer)  {
 
     var PurchaseComplete = false;
-    var Failed       = false;
+    var Failed = false;
     var Rewards = [];
 
     //Nitro Boost
@@ -2834,7 +2837,12 @@ if  (keySF == SupportServer)  {
             var PurchaseHeader = "**You have purchased Supporter from the [store](https://peeky.glitch.me/store.html)!**";
             var Rewards = ["The Supporter role"];
 
-            peeky.userData.set(key, new Date(), "SupporterSince");
+            peeky.userData.set(key, new Date(), "SupporterLastPurchase");
+            
+            if  (new Date(peeky.userData.get(key, "SupporterSince")) - new Date(new Date().getTime() + (35*(24*60*60*1000))) )  {
+                peeky.userData.set(key, new Date(), "SupporterSince");
+            };
+            
 
         };
 
