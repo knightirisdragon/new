@@ -697,7 +697,8 @@ const Banners = [
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground406.png?v=1567528259333", 400, "Battle zone", "Vojtěch Jílovec", `108899856889737216`],
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground407.png?v=1567938140089", 425, "Death #162009", "Vojtěch Jílovec", `108899856889737216`],
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground408.png?v=1567938199867", 500, "Ice breaker", "u/neytirixx", undefined],
-    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground409.png?v=1568824760554", 425, "Copper sööp", "Unknown", undefined]
+    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground409.png?v=1568824760554", 425, "Copper sööp", "Unknown", undefined],
+    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground410.png?v=1568913126645", 450, "Link's awakening", "The Legend of Zelda Link's Awakening", undefined]
 
 ];
 
@@ -5913,14 +5914,14 @@ if (CommandName.startsWith("setbackground"))  {
   
 };
   
-//PreviewBackground
-if (CommandName.startsWith("previewbackground"))  {
+//SeeBackground
+if (CommandName.startsWith("seebackground"))  {
 
     var Failed = true;
 
     for (var i = 1; i <= Banners.length; i++)  {
 
-        if  (message.content == peeky.serverData.get(keySF, "prefix") + "previewbackground " + i)  {
+        if  (message.content == peeky.serverData.get(keySF, "prefix") + "seebackground " + i)  {
           
             Failed = false;
           
@@ -5928,6 +5929,16 @@ if (CommandName.startsWith("previewbackground"))  {
             if  (Banners[i - 1][Banner.Price] !== Exclusive)  {
                 Price = (Banners[i - 1][Banner.Price]).toLocaleString('en') + " " + GreditIcon;
             };
+
+            await dominant_color(TheBannerShown, {format: 'hex'}, function(err, color)  {
+
+                  ProfileColor = color;
+
+                  if  (color == "000000")  {
+                      ProfileColor = LessDark.replace("#", "");            
+                  };
+
+            });
           
             const embed = {"description": 
                            "**" + Banners[i - 1][Banner.Name] + "**"
