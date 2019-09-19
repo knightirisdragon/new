@@ -2814,7 +2814,7 @@ if  (keySF == SupportServer)  {
           
             PurchaseComplete = true;
           
-            var PurchaseHeader = "**You have nitro boosted the [Support Server](https://peeky.glitch.me/server.html)!**";
+            var PurchaseHeader = "**You have Nitro Boosted the [Support Server](https://peeky.glitch.me/server.html)!**";
 
         };
 
@@ -2834,7 +2834,7 @@ if  (keySF == SupportServer)  {
 
             peeky.userData.set(key, new Date(), "SupporterLastPurchase");
             
-            if  ( (peeky.userData.has(key, "SupporterSince") == false) && (new Date(peeky.userData.get(key, "SupporterSince")) - new Date() > (MonthMs + (DayMs * 5))) )  {
+            if  ( (peeky.userData.has(key, "SupporterSince") == false) || (peeky.userData.has(key, "SupporterSince") && (new Date(peeky.userData.get(key, "SupporterSince")) - new Date() > (MonthMs + (DayMs * 5)))) )  {
                 peeky.userData.set(key, new Date(), "SupporterSince");
             };
             
@@ -2928,6 +2928,7 @@ if  (keySF == SupportServer)  {
 };
 });
 
+//VOICE STATE UPDATE EVENTS
 peeky.on("voiceStateUpdate", async (oldMember, newMember) => {
   
   const member = newMember;
