@@ -3718,7 +3718,7 @@ if  (!LimitedRolesCooldown.has("cooldown"))  {
         if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= MonthMs))  {
             m.removeRole(ProfileBoosterRole).catch(error => ErrorBag.add(error));
           
-            const embed = {"description": InfoIcon + " Your **Supporter** status has just expired, visit the [Store](https://peeky.glitch.me/store.html) to renew it.",  "color": EmbedColor}; 
+            const embed = {"description": InfoIcon + " Your **Supporter** status has just expired.",  "color": EmbedColor}; 
             m.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
