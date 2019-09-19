@@ -297,6 +297,14 @@
     display: flex;    
 }
 
+#alert {
+    width: 50%;
+    height: 25%;
+    left: 25%;
+    top: 40%;
+    position: fixed;
+}
+
 </style>
   
 <body onload="Supporter(); document.getElementById('fulldesc').style.display = 'block';" background="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894" class="imagebackground">
@@ -344,7 +352,7 @@
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_profilebooster.png?v=1568471175865')">
         <div class="textlistitem">
         <b>
-        <b class="name">  Profile Booster  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+        <b class="name">  Profile Booster  </b>  <a class="first"> Purchase </a>
         <a class="second" onclick="ProfileBooster()" href="#fulldesc"> More Info </a>
         <b class="price">0.99€ / 1d</b>
         </b>
@@ -409,6 +417,13 @@
     <b id="description" style="text-align: left;"><b class="headertext"></b></b>
     </div>
     </a>
+  
+    <div class="demo" id="alert">
+    <b>By purchasing any of the listed items, you automatically agree to the <a href="refund_policy.txt" rel="noopener noreferrer"><u>Refund Policy</u></a>.</b>
+    <br>
+    <br>
+    <a class="button" href="https://donatebot.io/checkout/319891596772638744">Accept</a>  <a class="button">Cancel</a>
+    </div>
   
 <b><center>
 <br> <font size="2">By purchasing any of the items listed above, you will automatically agree to the Refund Policy.</font>
