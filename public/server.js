@@ -4318,7 +4318,8 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
 //Prefixed Commands
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
-var CommandName = message.content.replace(peeky.serverData.get(keySF, "prefix"), "");
+var Prefix = peeky.serverData.get(keySF, "prefix");
+var CommandName = message.content.replace(Prefix, "");
 
 function_UpdateAutowipe(key, "user");
 function_UpdateAutowipe(keySF, "server");
@@ -5734,7 +5735,7 @@ if  (CommandName.startsWith("buybackground"))  {
   
     for(var i = 1; i <= Banners.length; i++)  {
 
-        if  (message.content == peeky.serverData.get(keySF, "prefix") + "buybackground " + i)  {
+        if  (message.content == Prefix + "buybackground " + i)  {
           
             Failed = false;
 
@@ -5865,7 +5866,7 @@ if (CommandName.startsWith("setbackground"))  {
 
     for (var i = 1; i <= Banners.length; i++)  {
 
-        if  (message.content == peeky.serverData.get(keySF, "prefix") + "setbackground " + i)  {
+        if  (message.content == Prefix + "setbackground " + i)  {
           
             Failed = false;
 
@@ -5920,12 +5921,8 @@ if (CommandName.startsWith("seebackground"))  {
     var Failed = true;
 
     for (var i = 1; i <= Banners.length; i++)  {
-  
-    if  (i == "current")  {
-        i = peeky.userData.get("Background");
-    };
 
-        if  (message.content == peeky.serverData.get(keySF, "prefix") + "seebackground " + i)  {
+        if  (message.content == Prefix + "seebackground " + i)  {
           
             Failed = false;
           
@@ -5978,7 +5975,7 @@ if  (i !== AllString)  {
 
     for (var i = 1; i <= Banners.length; i++)  {
       
-        if  (message.content == peeky.serverData.get(keySF, "prefix") + "sellbackground " + i)  {
+        if  (message.content == Prefix + "sellbackground " + i)  {
             
             Failed = false;
 
@@ -6285,7 +6282,7 @@ if (CommandName == "daily")  {
     };
 
     if  (CountedVotes == 0)  {
-        InfoMessages.push(InfoIcon + " Vote for me using the **" + peeky.serverData.get(keySF, "prefix") + "help** command to get more rewards!");
+        InfoMessages.push(InfoIcon + " Vote for me using the **" + Prefix + "help** command to get more rewards!");
     } else {
       if  (peeky.userData.get(key, "VoterBadge") == false)  {
           peeky.userData.set(key, true, "VoterBadge");       
