@@ -202,6 +202,21 @@
     {
      document.getElementById('fulldesc').style.display = "none";
     };
+      
+    function ToggleCategory(id) {
+      
+        var x = document.getElementsByClassName("inlinediv");
+        for (var i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+      
+        var Element = document.getElementById(id);
+      
+        if  (Element)  {  
+            Element.style.display = "block";
+        };
+      
+    };
     </script>
     
   </head>
@@ -260,6 +275,7 @@
 }
   
 .inlinediv  {
+    position: relative;
     display: none;    
 }
   
@@ -289,7 +305,7 @@
     <center>
       
       
-    <font class="table_description">Monthly</font> <br>
+    <font class="table_description">Monthly <a class="show" onclick="ToggleCategory('monthly');">Open</a>  </font> <br>
     <div class="inlinediv" id="monthly">
     
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_nitroboost.png?v=1568535360407')">
@@ -315,7 +331,7 @@
     </div>
       
     <font class="table_description">Merch</font> <br>
-    <div class="inlinediv" id="merch">
+    <div class="inlinediv" id="merch" onlick="ToggleCategory(this.id);">
     
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_woodenlapelpinpng.png?v=1568566975690')">
         <div class="textlistitem">
@@ -370,9 +386,6 @@
     </div>
       
     </center>
-      
-    <br>
-    <br>
     
     <a>
     <div class="demo" id="fulldesc">
