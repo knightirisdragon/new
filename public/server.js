@@ -5920,6 +5920,10 @@ if (CommandName.startsWith("seebackground"))  {
     var Failed = true;
 
     for (var i = 1; i <= Banners.length; i++)  {
+  
+    if  (i == "current")  {
+        i = peeky.userData.get("Background");
+    };
 
         if  (message.content == peeky.serverData.get(keySF, "prefix") + "seebackground " + i)  {
           
@@ -5930,30 +5934,27 @@ if (CommandName.startsWith("seebackground"))  {
                 Price = (Banners[i - 1][Banner.Price]).toLocaleString('en') + " " + GreditIcon;
             };
 
-            await dominant_color(TheBannerShown, {format: 'hex'}, function(err, color)  {
+            var NewEmbedColor = 0;
+            await dominant_color(Banners[i - 1][Banner.Source], {format: 'hex'}, function(err, color)  {
 
-                  ProfileColor = color;
-
-                  if  (color == "000000")  {
-                      ProfileColor = LessDark.replace("#", "");            
-                  };
+                  NewEmbedColor = parseInt(color.replace("#", ""), 16);
+          
+                  const embed = {"description": 
+                                 "**" + Banners[i - 1][Banner.Name] + "**"
+                                 + "\n" 
+                                 + "" + Banners[i - 1][Banner.Credit]
+                                 + "\n\n"
+                                 + "**Information**"
+                                 + "\n"
+                                 + "Price: " + Price
+                                 + "\n­",
+                                "image": {
+                                  "url": Banners[i - 1][Banner.Source]
+                                },
+                                "color": NewEmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             });
-          
-            const embed = {"description": 
-                           "**" + Banners[i - 1][Banner.Name] + "**"
-                           + "\n" 
-                           + "" + Banners[i - 1][Banner.Credit]
-                           + "\n\n"
-                           + "**Information**"
-                           + "\n"
-                           + "Price: " + Price
-                           + "\n­",
-                          "image": {
-                            "url": Banners[i - 1][Banner.Source]
-                          },
-                          "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           
             break;
 
