@@ -87,8 +87,9 @@ const ErrorBag                = new Set();
 const BannedUsers             = new Array();
 const WebsiteCooldowns        = new Set();
 const GainCooldown            = new Set();
-const LimitedRolesCooldown  = new Set();
+const LimitedRolesCooldown    = new Set();
 const RandomTreasuresCooldown = new Set();
+const BadgeCheckCooldown      = new Set();
 const OverviewCooldown        = new Set();
 const SetInviteCooldown       = new Set();
 const ProfileCooldown         = new Set();  const ProfileCooldownMS = 5000;
@@ -163,6 +164,7 @@ const BoosterImage      = "http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df
 const GamerImage        = "http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgamer.png?v=1568922624710";
 const EvilImage         = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fevil.png?v=1564270118631";
 const GoodImage         = "http://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581";
+const GopbotImage       = "http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgopbot.png?v=1568997070177";
 
 //Vote Emotes
 const DefaultUpvote   = "529413730874949632";
@@ -193,6 +195,7 @@ const BoosterEmote      = "<:booster:622431477384085514>";
 const GamerEmote        = "<:gamer:624330470288654337>";
 const EvilEmote         = "<:evil:604817305247023117>";
 const GoodEmote         = "<:good:605138883138551838>";
+const GopbotEmote       = "<:gopbot:624643543037771841>";
 
 //Other Emotes
 const ErrorIcon    = "<:peeky_error:529412267343872031>";
@@ -227,6 +230,9 @@ const AnnouncementsChannel = "346710479407808524";
 const EmojiStorage1        = "493048757286600716";
 const WorkshopChannel      = "501130667078189066";
 const ServerLogChannel     = "610672449738244102";
+
+//Collab Bot IDs
+const GopbotId = "458404920970969098";
 
 //Server Message Tags
 const GuildNameTag         = "[GuildName]";
@@ -1806,6 +1812,7 @@ peeky.on('message', async (message) => {
         GamerBadge: false,
         EvilBadge: false,
         GoodBadge: false,
+        GopbotBadge: false,
       
         BadgeGredit: 0,
         BadgeExp: 0,
@@ -1886,6 +1893,9 @@ peeky.on('message', async (message) => {
       
         //Ownership
     if  (peeky.userData.get(key, "OwnershipBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  };
+      
+        //Gopbot
+    if  (peeky.userData.get(key, "GopbotBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  };
       
         //Miner
     if  (peeky.userData.get(key, "MinerBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  };
@@ -3660,16 +3670,6 @@ const keySF  = `${message.guild.id}`;
 var   Failed = false;
 
 if  (!message.webhookID)  {
-
-//BADGES
-if  (!message.author.bot && message.guild.owner !== undefined)  {
-
-    //Ownership Badge
-    if  (peeky.userData.get(key, "OwnershipBadge") == false && message.author.id == message.guild.owner.user.id)  {
-        peeky.userData.set(key, true, "OwnershipBadge");
-    };
-  
-};
   
 //MISCELLANEOUS
 
@@ -3686,6 +3686,28 @@ if  (!CheckedDataCreations.has(message.channel.id))  {
     
     CheckedDataCreations.add(message.channel.id);
     function_ChannelData(keyCF);
+  
+};
+
+//Badge Checkers
+if  (!message.author.bot && message.guild.owner !== undefined)  {
+  
+    if  (!BadgeCheckCooldown.has(message.guild.id))  {
+
+        BadgeCheckCooldown.add(message.guild.id);
+        setTimeout(() => {BadgeCheckCooldown.delete(message.guild.id)}, 300000);
+
+        //Ownership Badge
+        if  (peeky.userData.get(key, "OwnershipBadge") == false && message.author.id == message.guild.owner.user.id)  {
+            peeky.userData.set(key, true, "OwnershipBadge");
+        };
+
+        //Gopbot Badge
+        if  (peeky.userData.get(key, "GopbotBadge") == false && message.author.id == message.guild.owner.user.id && message.guild.members.filter(m => m.user.id == GopbotId).size > 0)  {
+            peeky.userData.set(key, true, "GopbotBadge");
+        };
+
+    };
   
 };
     
@@ -3743,7 +3765,7 @@ if  (!LimitedRolesCooldown.has("cooldown"))  {
 if  (!RandomTreasuresCooldown.has("cooldown"))  {
 
     RandomTreasuresCooldown.add("cooldown");
-    setTimeout(() => {RandomTreasuresCooldown.delete("cooldown")}, 1800000);
+    setTimeout(() => {RandomTreasuresCooldown.delete("cooldown")}, 3600000);
   
     var serverlist = peeky.serverData.filter( p => p.server_upgraded == true && p.GuildID ).array();
     var server = serverlist[Math.floor(Math.random()*serverlist.length)];
@@ -6505,6 +6527,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (peeky.userData.get(key2, "EvilBadge") == true)                                                  {  Badges.push(EvilEmote + " Evil")  };
     if  (peeky.userData.get(key2, "GoodBadge") == true)                                                  {  Badges.push(GoodEmote + " Good")  };
     if  (peeky.userData.get(key2, "OwnershipBadge") == true)                                             {  Badges.push(OwnershipEmote + " Ownership")  };
+    if  (peeky.userData.get(key2, "GopbotBadge") == true)                                                {  Badges.push(GopbotEmote + " Gopbot")  };
     if  (peeky.userData.get(key2, "MinerBadge") == true)                                                 {  Badges.push(MinerEmote + " Miner")  };
     if  (peeky.userData.get(key2, "GamerBadge") == true)                                                 {  Badges.push(GamerEmote + " Gamer")  };
     if  (peeky.userData.get(key2, "HorderBadge") == true)                                                {  Badges.push(HorderEmote + " Horder")  };
@@ -6804,9 +6827,16 @@ if (!ProfileCooldown.has(message.author.id))  {
       
     //Ownership Icon
     if  (BadgeAmount < MaxBadges)  {
-    const gambler_icon = await Canvas.loadImage(OwnershipImage);
+    const ownership_icon = await Canvas.loadImage(OwnershipImage);
     if  (peeky.userData.get(key2, "OwnershipBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(gambler_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    ctx.drawImage(ownership_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+      
+    //Gopbot Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const gopbot_icon = await Canvas.loadImage(GopbotImage);
+    if  (peeky.userData.get(key2, "GopbotBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(gopbot_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
     };
 
     //Horder Icon
