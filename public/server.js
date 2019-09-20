@@ -4353,6 +4353,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
 var Prefix = peeky.serverData.get(keySF, "prefix");
 var CommandName = message.content.replace(Prefix, "");
+var InfoMessages = [];
 
 function_UpdateAutowipe(key, "user");
 function_UpdateAutowipe(keySF, "server");
@@ -4546,7 +4547,6 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-    var InfoMessages = [];
     var ManageChannels = false;
     var ManageRoles = false;
   
@@ -5778,7 +5778,6 @@ if  (CommandName.startsWith("buybackground"))  {
 
                     if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
 
-                        var InfoMessages = [];
                         var i = Number(i);
 
                         if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
@@ -5854,8 +5853,6 @@ if (CommandName.startsWith("custombackground"))  {
     
     if  (message.attachments.size > 0)  {
   
-        var InfoMessages = [];
-  
         if  (peeky.userData.get(key, "PainterBadge") == false)  {
 
             InfoMessages.push(InfoMessage1[0]);
@@ -5904,8 +5901,7 @@ if (CommandName.startsWith("setbackground"))  {
             Failed = false;
 
             if  (peeky.userData.get(key, "Inventory").includes(i))  {
-
-                var InfoMessages = [];
+              
                 var i = Number(i);
 
                 if  (peeky.userData.get(key, "FashionBadge") == false && i !== 1)  {
@@ -6019,7 +6015,6 @@ if  (i !== AllString)  {
                     var BackgroundIndex  = peeky.userData.get(key, "Inventory").indexOf(i);
                     var FinalPrice       = Banners[i - 1][Banner.Price];
                     var i                = Number(i);
-                    var InfoMessages = [];
 
                     if  (FinalPrice == Exclusive)  {
                         FinalPrice = 0;
@@ -6132,7 +6127,6 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
 
           //Other
           var Tokens = CommandName.split("open ");
-          var InfoMessages = [];
 
           //Supporter
           if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {
@@ -6243,7 +6237,6 @@ if (CommandName == "daily")  {
 
     let cooldown     = 8.64e+7;
     let lastDaily    = peeky.userData.get(key, "DailyRewarded");
-    var InfoMessages = [];
     var CountedVotes = 0;
 
     if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
@@ -6345,7 +6338,6 @@ if  (!ProfileCooldown.has(message.author.id))  {
     setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
 
     var DonatedUser = message.mentions.members.first();
-    var InfoMessages = [];
     
     if  (DonatedUser && DonatedUser.id !== message.author.id && !DonatedUser.bot)  {
 
@@ -7418,7 +7410,8 @@ if (CommandName == "guessthesong")  {
           
             const voiceChannel  = message.member.voiceChannel;
             var ChosenSong = Math.floor((Math.random() * GuessTheSong.length));
-            var InfoMessages = [InfoIcon + " Full Song: <" + GuessTheSong[ChosenSong][0] + ">"];
+          
+            InfoMessages.push(InfoIcon + " Full Song: <" + GuessTheSong[ChosenSong][0] + ">");
 
             CurrentlyPlaying.add(message.guild.id);
             ActiveMinigames.add(message.guild.id);
@@ -7495,7 +7488,6 @@ if (CommandName == "triviaquestions")  {
     if  (!ActiveMinigames.has(message.guild.id))  {
 
         var ChosenQuestion = Math.floor((Math.random() * TriviaQuestions.length));
-        var InfoMessages = [];
         var Answers = function_ShuffleArray(TriviaQuestions[ChosenQuestion].slice(1, 4));
 
         ActiveMinigames.add(message.guild.id);
@@ -7540,7 +7532,6 @@ if (CommandName == "drawandguess")  {
     if  (!ActiveMinigames.has(message.guild.id))  {
 
         var ChosenQuestion = Math.floor((Math.random() * DrawAndGuess.length));
-        var InfoMessages = [];
         var Active = false;
 
         ActiveMinigames.add(message.guild.id);
@@ -8010,8 +8001,6 @@ if (CommandName.startsWith("highlightedchannel"))  {
     if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
-          
-            var InfoMessages = [];
 
             peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
 
@@ -8056,7 +8045,6 @@ if  (CommandName.startsWith("muterole"))  {
 
             var FixedMutedRole = function_RemoveFormatting(CommandArgument, "role", true);
             var RoleExist = message.guild.roles.find(role => role.name == CommandArgument);
-            var InfoMessages = [];
             var FilteredChannels = message.guild.channels.array().filter(channel => channel.type == "text" || channel.type == "voice");
 
             if  (!RoleExist && message.guild.me.hasPermission("MANAGE_ROLES"))  {
