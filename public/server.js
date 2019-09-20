@@ -3692,10 +3692,10 @@ if  (!CheckedDataCreations.has(message.channel.id))  {
 //Badge Checkers
 if  (!message.author.bot && message.guild.owner !== undefined)  {
   
-    if  (!BadgeCheckCooldown.has(message.guild.id))  {
+    if  (!BadgeCheckCooldown.has(message.guild.id + message.author.id))  {
 
-        BadgeCheckCooldown.add(message.guild.id);
-        setTimeout(() => {BadgeCheckCooldown.delete(message.guild.id)}, 300000);
+        BadgeCheckCooldown.add(message.guild.id + message.author.id);
+        setTimeout(() => {BadgeCheckCooldown.delete(message.guild.id + message.author.id)}, 300000);
 
         //Ownership Badge
         if  (peeky.userData.get(key, "OwnershipBadge") == false && message.author.id == message.guild.owner.user.id)  {
