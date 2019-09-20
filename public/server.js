@@ -2814,6 +2814,7 @@ if  (keySF == SupportServer)  {
     var PurchaseComplete = false;
     var Failed = false;
     var Rewards = [];
+    var Notes = [];
 
     //Nitro Boost
     if  (peeky.userData.has(key))  {
@@ -2844,6 +2845,7 @@ if  (keySF == SupportServer)  {
             var PurchaseHeader = "**You have purchased Supporter from the [store](https://peeky.glitch.me/store.html)!**";
 
             peeky.userData.set(key, new Date(), "SupporterLastPurchase");
+            Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs)) + "**.");
             
             if  ( (peeky.userData.has(key, "SupporterSince") == false) || (peeky.userData.has(key, "SupporterSince") && (new Date(peeky.userData.get(key, "SupporterSince")) - new Date() > (MonthMs + (DayMs * 5)))) )  {
                 peeky.userData.set(key, new Date(), "SupporterSince");
@@ -2881,6 +2883,7 @@ if  (keySF == SupportServer)  {
             PurchaseComplete = true;
           
             var PurchaseHeader = "**You have purchased Profile Booster from the [store](https://peeky.glitch.me/store.html)!**";
+            Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (1 * DayMs)) + "**.");
 
             peeky.userData.set(key, new Date(), "BoosterStart");
 
@@ -2910,11 +2913,15 @@ if  (keySF == SupportServer)  {
 
         if  (peeky.userData.get(key, "ContributorBadge") == false)  {
             peeky.userData.set(key, true, "ContributorBadge");
-            Rewards.push("The Contributor badge");
+            Rewards.push("The **Contributor** badge");
         };
       
         if  (Rewards.length == 0)  {
             Rewards = ["None"];
+        };
+      
+        if  (Notes.length == 0)  {
+            Notes = ["None"];
         };
 
         const embed = {
@@ -2925,7 +2932,11 @@ if  (keySF == SupportServer)  {
                 + "\n\n"
                 + "**Bonus rewards:**"
                 + "\n"
-                + "" + Rewards.join("\n"),  
+                + "" + Rewards.join("\n")
+                + "\n\n"
+                + "**Notes:**"
+                + "\n"
+                + "" + Notes.join("\n"),  
           
             "color": EmbedColor
         };
