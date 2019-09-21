@@ -2817,7 +2817,7 @@ if  (keySF == SupportServer)  {
     var Rewards = [];
     var Notes = [];
   
-    if  (new Date() - new Date() > 10)  {
+    if  (new Date() - new Date(member.joinedAt) > 10000)  {
 
         //Nitro Boost
         if  (peeky.userData.has(key))  {
