@@ -2602,7 +2602,7 @@ if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
         var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
         var Role = member.guild.roles.find(role => role.name == name);
 
-        if  (Role) {
+        if  (Role && !member.user.bot) {
             member.addRole(Role.id, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
           
             console.log("The Join Role function has been triggered in " + member.guild.name + ".");
