@@ -1761,7 +1761,7 @@ peeky.on('error', function (err)  {  ErrorBag.add(err) });
 //Stats System
 peeky.on('message', async (message) => {
   
-    if(message.channel.type !== "dm") {
+    if  (message.channel.type !== "dm")  {
 
     const key   = `${message.author.id}`;
     const keyCF = `${message.channel.id}`;
