@@ -2816,135 +2816,139 @@ if  (keySF == SupportServer)  {
     var Failed = false;
     var Rewards = [];
     var Notes = [];
-
-    //Nitro Boost
-    if  (peeky.userData.has(key))  {
-
-        var HadRole = oldMember.roles.find(r => r.id == BoosterRole);
-        var HasRole = newMember.roles.find(r => r.id == BoosterRole);
-
-        if  (HadRole == null && HasRole)  {
-          
-            PurchaseComplete = true;
-          
-            var PurchaseHeader = "**You have Nitro Boosted the [Support Server](https://peeky.glitch.me/server.html)!**";
-
-        };
-
-    };
-
-    //Supporter
-    if  (peeky.userData.has(key))  {
-
-        var HadRole = oldMember.roles.find(r => r.id == SupporterRole);
-        var HasRole = newMember.roles.find(r => r.id == SupporterRole);
-
-        if  (HadRole == null && HasRole)  {
-          
-            PurchaseComplete = true;
-          
-            var PurchaseHeader = "**You have purchased Supporter from the [store](https://peeky.glitch.me/store.html)!**";
-
-            peeky.userData.set(key, new Date(), "SupporterLastPurchase");
-            Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs)) + "**.");
-            
-            if  ( (peeky.userData.has(key, "SupporterSince") == false) || (peeky.userData.has(key, "SupporterSince") && (new Date(peeky.userData.get(key, "SupporterSince")) - new Date() > (MonthMs + (DayMs * 5)))) )  {
-                peeky.userData.set(key, new Date(), "SupporterSince");
-            };
-            
-
-        };
-
-    };
-
-    //Server Upgrade
-    if  (peeky.userData.has(key))  {
-
-        var HadRole = oldMember.roles.find(r => r.id == ServerUpgradeRole);
-        var HasRole = newMember.roles.find(r => r.id == ServerUpgradeRole);
-
-        if  (HadRole == null && HasRole)  {
-          
-            PurchaseComplete = true;
-          
-            var PurchaseHeader = "**You have purchased Server Upgrade from the [store](https://peeky.glitch.me/store.html)!**";
-
-        };
-
-    };
-
-    //Profile Booster
-    if  (peeky.userData.has(key))  {
-
-        var HadRole = oldMember.roles.find(r => r.id == ProfileBoosterRole);
-        var HasRole = newMember.roles.find(r => r.id == ProfileBoosterRole);
-
-        if  (HadRole == null && HasRole)  {
-          
-            PurchaseComplete = true;
-          
-            var PurchaseHeader = "**You have purchased Profile Booster from the [store](https://peeky.glitch.me/store.html)!**";
-            Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (1 * DayMs)) + "**.");
-
-            peeky.userData.set(key, new Date(), "BoosterStart");
-
-        };
-
-    };
-
-    //Chests
-    if  (newMember.roles.has(RedeemRoleChests))  {
-
-        newMember.removeRole(RedeemRoleChests).catch(error => {ErrorBag.add(error); Failed = true});
-
-        if  (Failed !== true)  {
-          
-            PurchaseComplete = true;
-
-            var PurchaseHeader = "**You have purchased Additional Chests from the [store](https://peeky.glitch.me/store.html)!**";
-
-            peeky.userData.math(key, "+", 10, "Chests");
-
-        };
-
-    }; 
   
-    //Complete Purchase
-    if  (PurchaseComplete == true)  {
+    if  (new Date() - new Date() > 10)  {
 
-        if  (peeky.userData.get(key, "ContributorBadge") == false)  {
-            peeky.userData.set(key, true, "ContributorBadge");
-            Rewards.push("The **Contributor** badge");
-        };
-      
-        if  (Rewards.length == 0)  {
-            Rewards = ["None"];
-        };
-      
-        if  (Notes.length == 0)  {
-            Notes = ["None"];
+        //Nitro Boost
+        if  (peeky.userData.has(key))  {
+
+            var HadRole = oldMember.roles.find(r => r.id == BoosterRole);
+            var HasRole = newMember.roles.find(r => r.id == BoosterRole);
+
+            if  (HadRole == null && HasRole)  {
+
+                PurchaseComplete = true;
+
+                var PurchaseHeader = "**You have Nitro Boosted the [Support Server](https://peeky.glitch.me/server.html)!**";
+
+            };
+
         };
 
-        const embed = {
-            "description": 
-                  "" + PurchaseHeader
-                + "\n"
-                + "Thank you very much!"
-                + "\n\n"
-                + "**Bonus rewards:**"
-                + "\n"
-                + "" + Rewards.join("\n")
-                + "\n\n"
-                + "**Notes:**"
-                + "\n"
-                + "" + Notes.join("\n"),  
-          
-            "color": EmbedColor
+        //Supporter
+        if  (peeky.userData.has(key))  {
+
+            var HadRole = oldMember.roles.find(r => r.id == SupporterRole);
+            var HasRole = newMember.roles.find(r => r.id == SupporterRole);
+
+            if  (HadRole == null && HasRole)  {
+
+                PurchaseComplete = true;
+
+                var PurchaseHeader = "**You have purchased Supporter from the [store](https://peeky.glitch.me/store.html)!**";
+
+                peeky.userData.set(key, new Date(), "SupporterLastPurchase");
+                Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs)) + "**.");
+
+                if  ( (peeky.userData.has(key, "SupporterSince") == false) || (peeky.userData.has(key, "SupporterSince") && (new Date(peeky.userData.get(key, "SupporterSince")) - new Date() > (MonthMs + (DayMs * 5)))) )  {
+                    peeky.userData.set(key, new Date(), "SupporterSince");
+                };
+
+
+            };
+
         };
-      
-        function_DirectMessage(newMember.user.id, { embed });
-      
-    };
+
+        //Server Upgrade
+        if  (peeky.userData.has(key))  {
+
+            var HadRole = oldMember.roles.find(r => r.id == ServerUpgradeRole);
+            var HasRole = newMember.roles.find(r => r.id == ServerUpgradeRole);
+
+            if  (HadRole == null && HasRole)  {
+
+                PurchaseComplete = true;
+
+                var PurchaseHeader = "**You have purchased Server Upgrade from the [store](https://peeky.glitch.me/store.html)!**";
+
+            };
+
+        };
+
+        //Profile Booster
+        if  (peeky.userData.has(key))  {
+
+            var HadRole = oldMember.roles.find(r => r.id == ProfileBoosterRole);
+            var HasRole = newMember.roles.find(r => r.id == ProfileBoosterRole);
+
+            if  (HadRole == null && HasRole)  {
+
+                PurchaseComplete = true;
+
+                var PurchaseHeader = "**You have purchased Profile Booster from the [store](https://peeky.glitch.me/store.html)!**";
+                Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (1 * DayMs)) + "**.");
+
+                peeky.userData.set(key, new Date(), "BoosterStart");
+
+            };
+
+        };
+
+        //Chests
+        if  (newMember.roles.has(RedeemRoleChests))  {
+
+            newMember.removeRole(RedeemRoleChests).catch(error => {ErrorBag.add(error); Failed = true});
+
+            if  (Failed !== true)  {
+
+                PurchaseComplete = true;
+
+                var PurchaseHeader = "**You have purchased Additional Chests from the [store](https://peeky.glitch.me/store.html)!**";
+
+                peeky.userData.math(key, "+", 10, "Chests");
+
+            };
+
+        }; 
+
+        //Complete Purchase
+        if  (PurchaseComplete == true)  {
+
+            if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+                peeky.userData.set(key, true, "ContributorBadge");
+                Rewards.push("The **Contributor** badge");
+            };
+
+            if  (Rewards.length == 0)  {
+                Rewards = ["None"];
+            };
+
+            if  (Notes.length == 0)  {
+                Notes = ["None"];
+            };
+
+            const embed = {
+                "description": 
+                      "" + PurchaseHeader
+                    + "\n"
+                    + "Thank you very much!"
+                    + "\n\n"
+                    + "**Bonus rewards:**"
+                    + "\n"
+                    + "" + Rewards.join("\n")
+                    + "\n\n"
+                    + "**Notes:**"
+                    + "\n"
+                    + "" + Notes.join("\n"),  
+
+                "color": EmbedColor
+            };
+
+            function_DirectMessage(newMember.user.id, { embed });
+
+        };        
+         
+    }
 
 }; 
   
