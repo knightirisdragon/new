@@ -71,12 +71,13 @@ const Blurple               = "#7289DA";
 const EmbedColor            = 3093047;
 const MinReviewLength       = 200;
 const BackgroundInvLimit    = 25;
-const MemeLimit             = 25;
+const RedditLimit           = 25;
 const BannedWordsLimit      = 10;
 const PlaylistLimit         = 10;
 const GameRolesLimit        = 10;
 const AutoDeleteTime        = 250;
 const DayMs                 = 86400000;
+const WeekMs                = 604800000;  //7 Days
 const MonthMs               = 2592000000;  //30 Days
 const InactiveWipe          = 1728000000;  //20 Days
 const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
@@ -3935,7 +3936,7 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
               
                 const Channel = channel;
                       
-                node_fetch("https://api.reddit.com/r/" + name + "/top.json?sort=top&limit=" + MemeLimit).then(response => response.json()).then(response => {
+                node_fetch("https://api.reddit.com/r/" + name + "/top.json?sort=top&limit=" + RedditLimit).then(response => response.json()).then(response => {
                   
                     for (i = 0; i < response.data.children.length; i++)  {
                   
@@ -3943,7 +3944,7 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
 
                         if  (!peeky.serverData.get(keySF, "reddit_posts_bonus_last").includes(Post.url) && Post.pinned == false)  {
 
-                            if  (peeky.serverData.get(keySF, "reddit_posts_bonus_last").length > MemeLimit)  {
+                            if  (peeky.serverData.get(keySF, "reddit_posts_bonus_last").length > RedditLimit)  {
                                 peeky.serverData.set(keySF, [], "reddit_posts_bonus_last");
                             };
                           
