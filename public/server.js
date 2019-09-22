@@ -2349,7 +2349,7 @@ if  (!WebsiteCooldowns.has("news"))  {
         var PrefixImage = "";
         var ImageLink   = PrismPattern;
       
-        if  (m.attachments.size > 0 && false == false)  {
+        if  (m.attachments.size > 0)  {
             ImageLink = m.attachments.array()[0].url;
         }
 
