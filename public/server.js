@@ -2340,7 +2340,7 @@ if  (!WebsiteCooldowns.has("news"))  {
 
     var NewsList = [];
 
-    peeky.channels.get(AnnouncementsChannel).fetchMessages({ limit: 5 }).then(async (messages) => {
+    peeky.channels.get(AnnouncementsChannel).fetchMessages({ limit: 10 }).then(async (messages) => {
           
     await messages.forEach(m => {
         var Header = m.content.split("\n")[0];
