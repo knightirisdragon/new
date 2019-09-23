@@ -3791,36 +3791,45 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
         var name = peeky.serverData.get(`${server.GuildID}`, "highlighted_channel");
         var guild = peeky.guilds.get(server.GuildID);
         var channel = guild.channels.find(c => c.name == name);
-          
-        if  (channel && channel.permissionsFor(peeky.user).has('ADD_REACTIONS' && 'SEND_MESSAGES'))  {
+      
+        if  (channel)  {
+      
+            var ChannelActive = true;
+            if  (channel.lastMessage !== null && channel.lastMessage.author.id == PeekyId)  {
+                ChannelActive = false;
+            };
 
-            var Amount = 10 * Math.floor((Math.random() * 100));
-            
-            var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
-            channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
-              
-                m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 60000, errors: ['time'] })
-                .then(collected => {
-                  
-                      var user = collected.first().author;
-                  
-                      if  (peeky.userData.has(user.id))  {
-                        
-                          var embed = {"description": SuccessIcon + " **" + user.username + "** has claimed the treasure!", "color": EmbedColor}; 
+            if  (channel.permissionsFor(peeky.user).has('ADD_REACTIONS' && 'SEND_MESSAGES') && ChannelActive == true)  {
+
+                var Amount = 100 + (10 * Math.floor((Math.random() * 90)));
+
+                var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
+                channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
+
+                    m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 60000, errors: ['time'] })
+                    .then(collected => {
+
+                          var user = collected.first().author;
+
+                          if  (peeky.userData.has(user.id))  {
+
+                              var embed = {"description": SuccessIcon + " **" + user.username + "** has claimed the treasure!", "color": EmbedColor}; 
+                              m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+
+                              peeky.userData.math(user.id, "+", Amount, "Gredit");
+
+                          };
+
+                    })
+                    .catch(collected => {
+                          var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
                           m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
-                            
-                          peeky.userData.math(user.id, "+", Amount, "Gredit");
-                        
-                      };
-                  
-                })
-                .catch(collected => {
-                      var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
-                      m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+                    });
+
                 });
-              
-            });
-            
+
+            };
+          
         };
           
     };
