@@ -105,6 +105,7 @@ const MessageLogCooldown      = new Set();
 const DonorWallCooldown       = new Set();
 const ServerAgeCooldown       = new Set();
 const RedditPostsCooldown     = new Set();
+const GameLogsCooldown        = new Set();
 const ResponseCooldowns       = new Set();  const ResponseCooldownMS = 5000;
 const FloodProtectionStrikes  = new Array();
 const KarmaImages             = new Array();
@@ -3114,6 +3115,9 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                 };
 
                 if  (AlreadyStreaming !== true)  {
+
+                   CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
+                   setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
                   
                     var SavedMember = member;
 
@@ -3149,6 +3153,36 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
             };
   
+        };
+  
+    };
+      
+};
+
+//Game Announcements
+if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
+  
+    if  (!member.user.bot && !GameLogsCooldown.has(member.user.id + member.guild.id))  {
+
+        var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));    
+
+        if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+      
+            if  (member.presence.game !== null && member.presence.game.type == 0)  {
+                  
+                var SavedMember = member;
+
+                GameLogsCooldown.add(member.user.id + member.guild.id);
+                setTimeout(() => {GameLogsCooldown.delete(member.user.id + member.guild.id)}, 10000);
+
+                const embed = function_StreamAnnouncements("twitch", member);
+                Channel.send({ embed }).catch(error => ErrorBag.add(error));
+                  
+                console.log("The Game Announcements function has been triggered in " + member.guild.name + ".");
+                function_UpdateAutowipe(keySF, "server");
+
+            };
+
         };
   
     };
