@@ -4,7 +4,7 @@ const DDBLToken = process.env.DDBL_TOKEN;
 const BLSToken = process.env.BLS_TOKEN;
 const BFDToken = process.env.BFD_TOKEN;
 const DBToken = process.env.DB_TOKEN;
-const YoutubeToken = process.env.YT_TOKEN;
+const GoogleToken = process.env.GOOGLE_TOKEN;
 
 //Discord
 const Discord = require('discord.js');
@@ -40,7 +40,6 @@ const fs           = require('fs');
 const ms           = require('parse-ms');
 const node_fetch   = require('node-fetch');
 const https        = require('https');
-const GoogleImages = require('google-images');
 
 //Website
 const http    = require('http');
@@ -294,7 +293,7 @@ const BannedServers       = [  `610951946597040128`  ];
 //Small Objects
 var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
 var StreamOptions   = {  volume: 0.25  };
-var SearchOptions   = {  maxResults: 1,  key: YoutubeToken  };
+var SearchOptions   = {  maxResults: 1,  key: GoogleToken  };
 
 //Large Arrays
 const Banners = [
