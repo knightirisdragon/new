@@ -1215,7 +1215,7 @@ function function_StreamAnnouncements(type, member)  {
 
     };
 
-    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.user.username, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
+    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.displayName, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
 
 };
 
@@ -1959,7 +1959,7 @@ peeky.on('message', async (message) => {
         ctx.globalAlpha = 0.75;
 
         var TheBannerShown = DefaultBackground;
-        var ProfileName = message.author.username;
+        var ProfileName = message.member.displayName;
 
         message.channel.startTyping();
 
@@ -2415,7 +2415,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
             StaffButton.push('<a href="https://www.instagram.com/vraagtekenss/" target="_blank">  ' + InstagramBody + '  </a>');
         };
       
-        var CurrentContact = '<div class="staffwindow" id="' + guildMemberId + '_window" style="background-image: url(' + function_GetBackground(guildMemberId) + '); background-size: cover;  background-repeat: no-repeat;">  <a class="close" onclick="MoreInfo(`none`)">Close</a>  <img class="stafficon_w" src="' + guildMember.user.avatarURL +'">  <b class="staffname_w">' + function_RemoveTags(guildMember.user.username) + '<font color="#7289DA">#' + guildMember.user.discriminator + '</font> </b>  <b class="staffdesc_w">' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '</b>  <div class="staffcontacts">' + StaffButton.join("<br>") + '</div>  </div>' + '<div class="container">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="3"> ' + function_RemoveTags(guildMember.user.username) + '  </font>  <br>  <a style="font-size: 10px;" id="' + guildMemberId + '" onclick="MoreInfo(this.id)">Staff Profile</a>  </b>  </div>';  
+        var CurrentContact = '<div class="staffwindow" id="' + guildMemberId + '_window" style="background-image: url(' + function_GetBackground(guildMemberId) + '); background-size: cover;  background-repeat: no-repeat;">  <a class="close" onclick="MoreInfo(`none`)">Close</a>  <img class="stafficon_w" src="' + guildMember.user.avatarURL +'">  <b class="staffname_w">' + function_RemoveTags(guildMember.user.username) + '<font color="#7289DA">#' + guildMember.user.discriminator + '</font> </b>  <b class="staffdesc_w">' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '</b>  <div class="staffcontacts">' + StaffButton.join("<br>") + '</div>  </div>' + '<div class="container">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="3"> ' + function_RemoveTags(guildMember.displayName) + '  </font>  <br>  <a style="font-size: 10px;" id="' + guildMemberId + '" onclick="MoreInfo(this.id)">Staff Profile</a>  </b>  </div>';  
       
         if  (guildMember.roles.has("574255080069398543"))  {
             DevList.push(CurrentContact);
@@ -7013,7 +7013,7 @@ if (!ProfileCooldown.has(message.author.id))  {
     ctx.fillRect(63, 253, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 127), 26); //Body
   
     //Avatar
-    const avatar = await Canvas.loadImage(SomeoneTagged.displayAvatarURL.replace("https", "http"));
+    const avatar = await Canvas.loadImage(SomeoneTagged.user.displayAvatarURL.replace("https", "http"));
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
     ctx.drawImage(avatar, 6, 6, 64, 64);
@@ -7209,7 +7209,7 @@ if (CommandName.startsWith("play"))  {
                       message.channel.stopTyping();
 
                       if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
-                          message.guild.me.setNickname("🎵 " + "Playing in " + function_RemoveFormatting(voiceChannel.name, "other", false).slice(0, 14) + " 🎵");
+                          message.guild.me.setNickname("🎵 " + " PEEKY " + "🎵");
                       };
 
                       const stream = ytdl(CommandArgument);
@@ -7967,7 +7967,7 @@ if (CommandName.startsWith("ban"))  {
                 });
 
                 if  (Failed == false)  {
-                    const embed = {"description": SuccessIcon + " I have banned **" + function_RemoveFormatting(MentionedMember.user.username, "other", true) + "** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                    const embed = {"description": SuccessIcon + " I have banned **" + function_RemoveFormatting(MentionedMember.displayName, "other", true) + "** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
@@ -8018,7 +8018,7 @@ if  (CommandName.startsWith("purge"))  {
                     });
 
                     if  (Failed == false)  {
-                        const embed = {"description":  SuccessIcon + " I have purged **" + CommandArgument + " messages** at **" + function_RemoveFormatting(message.author.username, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                        const embed = {"description":  SuccessIcon + " I have purged **" + CommandArgument + " messages** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
 
