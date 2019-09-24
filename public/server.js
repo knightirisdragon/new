@@ -101,6 +101,7 @@ const RoleCooldown            = new Set();  const RoleCooldownMS      = 10000;
 const ServerTrialCooldown     = new Set();
 const EventCountdownCooldown  = new Set();
 const MemberCounterCooldown   = new Set();
+const GameLogsCooldown        = new Set();
 const MessageLogCooldown      = new Set();
 const DonorWallCooldown       = new Set();
 const ServerAgeCooldown       = new Set();
@@ -3114,6 +3115,9 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                   
                     var SavedMember = member;
 
+                    CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
+                    setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
+
                     const embed = function_StreamAnnouncements("twitch", member);
                     Channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
 
@@ -3146,6 +3150,36 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
             };
   
+        };
+  
+    };
+      
+};
+
+//Game Announcements
+if  (peeky.serverData.get(keySF, "game_announcements_bonus") == true)  {
+  
+    if  (!member.user.bot && !GameLogsCooldown.has(member.user.id + member.guild.id))  {
+
+        var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "game_announcements_bonus_setting"));    
+
+        if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+      
+            if  (member.presence.game !== null && member.presence.game.type == 0 && member.presence.game.name !== oldMember.presence.game.name)  {
+                  
+                var SavedMember = member;
+
+                GameLogsCooldown.add(member.user.id + member.guild.id);
+                setTimeout(() => {GameLogsCooldown.delete(member.user.id + member.guild.id)}, 10000);
+
+                const embed = {"description": "**" + function_RemoveFormatting(SavedMember.user.username, "other", true) + "** has started playing **" + function_RemoveFormatting(SavedMember.presence.game.name, "other", true) + "**",  "color": member.displayColor };
+                Channel.send({ embed }).catch(error => ErrorBag.add(error));
+                  
+                console.log("The Game Announcements function has been triggered in " + member.guild.name + ".");
+                function_UpdateAutowipe(keySF, "server");
+
+            };
+
         };
   
     };
@@ -4604,7 +4638,7 @@ if  (FunctioName == "safe chat")  {
 else
    
 //Toggle Welcome Messages
-if  (FunctioName.startsWith("welcome messages")) {
+if  (FunctioName.startsWith("welcome messages"))  {
   
     const guild = message.guild;
     var name = peeky.serverData.get(keySF, "welcome_messages_bonus_setting");
@@ -4643,6 +4677,53 @@ if  (FunctioName.startsWith("welcome messages")) {
       
     if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
     const embed = {"description": SuccessIcon + " The **Welcome Messages** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+   
+//Toggle Game Announcements
+if  (FunctioName.startsWith("game announcements"))  {
+  
+    const guild = message.guild;
+    var name = peeky.serverData.get(keySF, "game_announcements_bonus_setting");
+    var channel = guild.channels.find(c=> c.name == name);
+        
+    if   (peeky.serverData.get(keySF, "game_announcements_bonus") == true) {peeky.serverData.set(keySF, false, "game_announcements_bonus")}
+    else peeky.serverData.set(keySF, true, "game_announcements_bonus");
+    
+    //Channel Creating
+    if (!channel) {
+    
+    if  (!ChannelCooldown.has(message.guild.id)) {
+      
+    if  (ManageChannels == true)  {
+
+    ChannelCooldown.add(message.guild.id);
+    setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
+      
+    await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+    .then(async function (channel)  {
+          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
+          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+    }).catch(function(err) {  ErrorBag.add(err);  });
+      
+    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Game Announcements** function.");
+    
+    };
+    }
+     else
+    {
+     const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
+     message.channel.send({ embed })
+     .catch(error => ErrorBag.add(error));
+    };
+    };
+      
+    if  (peeky.serverData.get(keySF, "game_announcements_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Game Announcements** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
