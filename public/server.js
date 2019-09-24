@@ -3166,7 +3166,7 @@ if  (peeky.serverData.get(keySF, "game_announcements_bonus") == true)  {
         if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
       
             var NotDuplicate = true;
-            if  (oldMember.presence.game.name)  {
+            if  (oldMember.presence.game !== null && member.presence.game !== null)  {
                 if  (member.presence.game.name == oldMember.presence.game.name)  {
                     NotDuplicate = false;
                 };
