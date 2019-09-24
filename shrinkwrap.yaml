@@ -8,6 +8,7 @@ dependencies:
   dominant-color: 0.0.1
   enmap: 5.1.0
   express: 4.17.1
+  free-google-image-search: 1.0.0
   https: 1.0.0
   node-fetch: 2.6.0
   node-opus: 0.3.2
@@ -503,6 +504,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
+  /free-google-image-search/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha1-emJ4vo7cZG7ZanEiUdsyZxckyBU=
   /fresh/0.5.2:
     dev: false
     engines:
@@ -1488,6 +1493,7 @@ specifiers:
   dominant-color: ^0.0.1
   enmap: ^5.1.0
   express: ^4.16.4
+  free-google-image-search: ^1.0.0
   https: ^1.0.0
   node-fetch: ^2.6.0
   node-opus: ^0.3.2

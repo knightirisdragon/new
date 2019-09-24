@@ -35,6 +35,13 @@ peeky.userData = new Enmap({name: "userData"});
 peeky.serverData = new Enmap({name: "serverData"});
 peeky.channelData = new Enmap({name: "channelData"});
 
+//Miscellaneous
+const fs           = require('fs');
+const ms           = require('parse-ms');
+const node_fetch   = require('node-fetch');
+const https        = require('https');
+const GoogleImages = require('google-images');
+
 //Website
 const http    = require('http');
 const express = require('express');
@@ -48,12 +55,6 @@ app.get('/', function(request, response) {
 app.listen(process.env.PORT);
   setInterval(() => { http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 280000);
-
-//Miscellaneous
-const fs         = require('fs');
-const ms         = require('parse-ms');
-const node_fetch = require('node-fetch');
-const https      = require('https');
 
 //Setting Variables
 const Prefix                = "p!";
@@ -3175,7 +3176,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                 GameLogsCooldown.add(member.user.id + member.guild.id);
                 setTimeout(() => {GameLogsCooldown.delete(member.user.id + member.guild.id)}, 10000);
 
-                const embed = function_StreamAnnouncements("twitch", member);
+                const embed = {"description": "**" + function_RemoveFormatting(SavedMember.user.username, "other", true) + "** has started playing **" + function_RemoveFormatting(SavedMember.presence.game.name, "other", true) + "**",  "color": EmbedColor};
                 Channel.send({ embed }).catch(error => ErrorBag.add(error));
                   
                 console.log("The Game Announcements function has been triggered in " + member.guild.name + ".");
