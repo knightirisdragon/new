@@ -4,7 +4,7 @@ const DDBLToken = process.env.DDBL_TOKEN;
 const BLSToken = process.env.BLS_TOKEN;
 const BFDToken = process.env.BFD_TOKEN;
 const DBToken = process.env.DB_TOKEN;
-const GoogleToken = process.env.GOOGLE_TOKEN;
+const YoutubeToken = process.env.YT_TOKEN;
 
 //Discord
 const Discord = require('discord.js');
@@ -35,12 +35,6 @@ peeky.userData = new Enmap({name: "userData"});
 peeky.serverData = new Enmap({name: "serverData"});
 peeky.channelData = new Enmap({name: "channelData"});
 
-//Miscellaneous
-const fs           = require('fs');
-const ms           = require('parse-ms');
-const node_fetch   = require('node-fetch');
-const https        = require('https');
-
 //Website
 const http    = require('http');
 const express = require('express');
@@ -54,6 +48,12 @@ app.get('/', function(request, response) {
 app.listen(process.env.PORT);
   setInterval(() => { http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 280000);
+
+//Miscellaneous
+const fs         = require('fs');
+const ms         = require('parse-ms');
+const node_fetch = require('node-fetch');
+const https      = require('https');
 
 //Setting Variables
 const Prefix                = "p!";
@@ -105,7 +105,6 @@ const MessageLogCooldown      = new Set();
 const DonorWallCooldown       = new Set();
 const ServerAgeCooldown       = new Set();
 const RedditPostsCooldown     = new Set();
-const GameLogsCooldown        = new Set();
 const ResponseCooldowns       = new Set();  const ResponseCooldownMS = 5000;
 const FloodProtectionStrikes  = new Array();
 const KarmaImages             = new Array();
@@ -283,7 +282,6 @@ const InfoMessage2 = [InfoIcon + " You have set the default background."];
 
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
-const VerifiedGames       = [    ];
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const VulgarPhrases       = [  "anal", "anus", "arse", "ass", "ballsack", "balls", "bastard", "bitch", "biatch", "bloody", "blowjob", "blow", "job", "bollock", "bollok", "boner", "boob", "bugger", "bum", "butt", "buttplug", "clitoris", "cock", "coon", "crap", "cunt", "damn", "dick", "dildo", "dyke", "fag", "feck", "fellate", "fellatio", "felching", "fuck", "fudgepacker", "fudge", "packer", "flange", "Goddamn", "God", "damn", "hell", "homo", "jerk", "jizz", "knobend", "knob", "end", "labia", "lmao", "lmfao", "muff", "nigger", "nigga", "penis", "piss", "poop", "prick", "pube", "pussy", "queer", "scrotum", "sex", "shit", "sh1t", "slut", "smegma", "spunk", "tit", "tosser", "turd", "twat", "vagina", "wank", "whore", "wtf"  ];
 const ImmuneServers       = [  SupportServer, EmojiStorage1, `454933217666007052`, `264445053596991498`, `330777295952543744`, `387812458661937152`, `374071874222686211`, `439866052684283905`, `534551489595703306`  ];
@@ -293,7 +291,7 @@ const BannedServers       = [  `610951946597040128`  ];
 //Small Objects
 var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
 var StreamOptions   = {  volume: 0.25  };
-var SearchOptions   = {  maxResults: 1,  key: GoogleToken  };
+var SearchOptions   = {  maxResults: 1,  key: YoutubeToken  };
 
 //Large Arrays
 const Banners = [
@@ -708,7 +706,7 @@ const Banners = [
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground408.png?v=1567938199867", 500, "Ice breaker", "u/neytirixx", undefined],
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground409.png?v=1568824760554", 425, "Copper sööp", "Unknown", undefined],
     ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground410.png?v=1568913126645", 450, "Link's awakening", "The Legend of Zelda Link's Awakening", undefined],
-    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground411.png?v=1569261662317", 250, "Pudla", "Vlaďka Lišková", undefined]
+    ["http://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground411.png?v=1569261662317", 0, "Pudla", "Vlaďka Lišková", undefined]
 
 ];
 
@@ -1363,9 +1361,7 @@ function function_ServerData(key)  {
             dash_remover_bonus: false,
             reddit_posts_bonus: false,
             reddit_posts_bonus_setting: "discordapp",
-            reddit_posts_bonus_last: [],
-            game_announcements_bonus: false,
-            game_announcements_bonus_setting: "game_feed"
+            reddit_posts_bonus_last: []
         });
   
     };
@@ -3115,9 +3111,6 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                 };
 
                 if  (AlreadyStreaming !== true)  {
-
-                   CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
-                   setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
                   
                     var SavedMember = member;
 
@@ -3153,36 +3146,6 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
             };
   
-        };
-  
-    };
-      
-};
-
-//Game Announcements
-if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
-  
-    if  (!member.user.bot && !GameLogsCooldown.has(member.user.id + member.guild.id))  {
-
-        var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));    
-
-        if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
-      
-            if  (member.presence.game !== null && member.presence.game.type == 0)  {
-                  
-                var SavedMember = member;
-
-                GameLogsCooldown.add(member.user.id + member.guild.id);
-                setTimeout(() => {GameLogsCooldown.delete(member.user.id + member.guild.id)}, 10000);
-
-                const embed = {"description": "**" + function_RemoveFormatting(SavedMember.user.username, "other", true) + "** has started playing **" + function_RemoveFormatting(SavedMember.presence.game.name, "other", true) + "**",  "color": EmbedColor};
-                Channel.send({ embed }).catch(error => ErrorBag.add(error));
-                  
-                console.log("The Game Announcements function has been triggered in " + member.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
-
-            };
-
         };
   
     };
