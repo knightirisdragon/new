@@ -3177,7 +3177,7 @@ if  (peeky.serverData.get(keySF, "game_announcements_bonus") == true)  {
                 var SavedMember = member;
 
                 GameLogsCooldown.add(member.user.id + member.guild.id);
-                setTimeout(() => {GameLogsCooldown.delete(member.user.id + member.guild.id)}, 10000);
+                setTimeout(() => {GameLogsCooldown.delete(member.user.id + member.guild.id)}, 60000);
 
                 const embed = {"description": "**" + function_RemoveFormatting(SavedMember.displayName, "other", true) + "** has started playing **" + function_RemoveFormatting(SavedMember.presence.game.name, "other", true) + "**",  "color": member.displayColor };
                 Channel.send({ embed }).catch(error => ErrorBag.add(error));
