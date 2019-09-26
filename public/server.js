@@ -1309,8 +1309,8 @@ function function_ServerData(key)  {
             prefix: Prefix,
             muted_role: "Muted",
             highlighted_channel: "general",
-            function_notificato: false,
-            server_upgraded: false,
+            function_notifications: false,
+            level_notifications: false,
 
             Title: "None",
             Thumbnail: DefaultBackground,
@@ -1329,7 +1329,6 @@ function function_ServerData(key)  {
             server_message_bonus: false,
             image_only_bonus_setting: 0,
             server_message_bonus_setting: "Welcome to the server!",
-            notification_bonus: false,
             message_log_bonus_setting: "message_log",
             member_counter_bonus: false,
             member_counter_bonus_setting: "Members",
@@ -3413,14 +3412,15 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.channelData.get(keyCF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
         if (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true)          { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
         if (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)             { var SC = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SC = DisabledIcon};
-        if (peeky.serverData.get(keySF, "notifications") == true)                { var N_ = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var N_ = DisabledIcon};
 
         if  (reaction.emoji.name == "1⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Prefix** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "prefix") + "`" + "\n\n" +
                                 "**Mute Role** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "muted_role") + "`" + "\n\n" +
-                                "**Highlighted Channel** " + SettingsIcon + "\n" + "`#" + peeky.serverData.get(keySF, "highlighted_channel") + "`",
+                                "**Highlighted Channel** " + SettingsIcon + "\n" + "`#" + peeky.serverData.get(keySF, "highlighted_channel") + "`" + "\n\n" +
+                                "**Function Notifications** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "function_notifications") + "`" + "\n\n" +
+                                "**Level Notifications** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "level_notifications") + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -3459,8 +3459,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
                                 "**Game Announcements** " + GA + "\n" + "`#" + peeky.serverData.get(keySF, "game_announcements_bonus_setting") + "`" + "\n\n" +
                                 "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
-                                "**Streamer Role** " + SR + "\n" + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`" + "\n\n" +
-                                "**Notifications** " + N_ + "\n" + "No setting",
+                                "**Streamer Role** " + SR + "\n" + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
