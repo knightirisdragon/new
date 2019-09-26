@@ -8055,7 +8055,7 @@ if  (CommandName.startsWith("prefix"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "prefix");
 
-            const embed = {"description": SuccessIcon + " The server prefix is now **" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            const embed = {"description": SuccessIcon + " The **Prefix** is now **" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
@@ -8096,7 +8096,7 @@ if  (CommandName.startsWith("highlightedchannel"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
 
-            const embed = {"description": SuccessIcon + " The highlighted channel is now called **#" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            const embed = {"description": SuccessIcon + " The **Highlighted Channel** is now called **#" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
@@ -8130,7 +8130,7 @@ if  (CommandName.startsWith("functionnotifications"))  {
         if(peeky.serverData.get(keySF, "function_notifications") == true) {peeky.serverData.set(keySF, false, "function_notifications");}
         else peeky.serverData.set(keySF, true, "function_notifications");
 
-        const embed = {"description": SuccessIcon + " The Function Notificaitons are now set to **" + peeky.serverData.get(keySF, "function_notifications") + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+        const embed = {"description": SuccessIcon + " The **Function Notifications** are now set to **" + peeky.serverData.get(keySF, "function_notifications") + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
@@ -8150,7 +8150,7 @@ if  (CommandName.startsWith("levelnotifications"))  {
         if(peeky.serverData.get(keySF, "level_notifications") == true) {peeky.serverData.set(keySF, false, "level_notifications");}
         else peeky.serverData.set(keySF, true, "level_notifications");
 
-        const embed = {"description": SuccessIcon + " The Level Notificaitons are now set to **" + peeky.serverData.get(keySF, "level_notifications") + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+        const embed = {"description": SuccessIcon + " The **Level Notifications** are now set to **" + peeky.serverData.get(keySF, "level_notifications") + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
@@ -8240,7 +8240,7 @@ if  (CommandName.startsWith("muterole"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "muted_role");
           
-            const embed = {"description": SuccessIcon + " The Mute Role for this server is now **@" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+            const embed = {"description": SuccessIcon + " The **Mute Role** for this server is now **@" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
