@@ -1309,6 +1309,8 @@ function function_ServerData(key)  {
             prefix: Prefix,
             muted_role: "Muted",
             highlighted_channel: "general",
+            function_notificato: false,
+            server_upgraded: false,
 
             Title: "None",
             Thumbnail: DefaultBackground,
