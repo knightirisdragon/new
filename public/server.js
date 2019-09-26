@@ -1951,7 +1951,7 @@ peeky.on('message', async (message) => {
         peeky.userData.math(key, "+", 1, "Level");
         peeky.userData.math(key, "+", 1, "Chests");
     
-    if  (peeky.serverData.get(keySF, "notifications") == true && !NoLevelUpServers.includes(keySF))  {
+    if  (peeky.serverData.get(keySF, "level_notifications") == true)  {
         
         const canvas = Canvas.createCanvas(500, 95);
         const ctx = canvas.getContext('2d');
@@ -3509,7 +3509,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
                 reaction.message.clearReactions().catch(error => ErrorBag.add(error));
               
-                if  (peeky.serverData.get(keySF, "notifications") == true)  {
+                if  (peeky.serverData.get(keySF, "function_notifications") == true)  {
 
                     const embed = {"description": InfoIcon + " **" + function_RemoveFormatting(reaction.message.member.displayName, "other", true) + "** has been vote kicked with **" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes**.",  "color": EmbedColor};
                     reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
@@ -3521,7 +3521,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
             } else if (reaction.count == 1)  {
 
-              if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(reaction.message.guild.id + "VK"))  {
+              if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(reaction.message.guild.id + "VK"))  {
          
                   ResponseCooldowns.add(reaction.message.guild.id + "VK");
                   setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id + "VK")}, ResponseCooldownMS);
@@ -3622,7 +3622,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
             
         });
   
-        if  (peeky.serverData.get(keySF, "notifications") == true)  {
+        if  (peeky.serverData.get(keySF, "function_notifications") == true)  {
                   
              const embed = {"description": InfoIcon + " **" + function_RemoveFormatting(user.username, "other", true) + "** has logged **" + function_RemoveFormatting(reaction.message.member.displayName, "other", true) + "**'s message.",  "color": EmbedColor}; 
              reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
@@ -3926,7 +3926,7 @@ if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)  {
 
                 message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
 
-                if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "SC"))  {
+                if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "SC"))  {
 
                     ResponseCooldowns.add(message.guild.id + "SC");
                     setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SC")}, ResponseCooldownMS);
@@ -3956,7 +3956,7 @@ if  (peeky.channelData.get(keyCF, "image_only_bonus") == true)  {
 
             message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
 
-            if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "IO"))  {
+            if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "IO"))  {
 
                 ResponseCooldowns.add(message.guild.id + "IO");
                 setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "IO")}, ResponseCooldownMS);
@@ -4178,7 +4178,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
                 message.member.addRole(Role.id, "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
 
-                if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "FP"))  {
+                if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "FP"))  {
 
                     ResponseCooldowns.add(message.guild.id + "FP");
                     setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "FP")}, ResponseCooldownMS);
@@ -4323,7 +4323,7 @@ if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true)  {
 
              message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
 
-             if  (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "BW"))  {
+             if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "BW"))  {
 
                  ResponseCooldowns.add(message.guild.id + "BW");
                  setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "BW")}, ResponseCooldownMS);
@@ -4355,7 +4355,7 @@ if  (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true)  {
 
                      message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
 
-                     if   (peeky.serverData.get(keySF, "notifications") == true && !ResponseCooldowns.has(message.guild.id + "SO"))  {
+                     if   (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "SO"))  {
 
                          ResponseCooldowns.add(message.guild.id + "SO");
                          setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SO")}, ResponseCooldownMS);
@@ -5171,21 +5171,6 @@ if  (FunctioName.startsWith("event countdown"))  {
       
     if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
     const embed = {"description": SuccessIcon + " The **Event Countdown** function has been **"  + StatusString + "**."+ "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-    
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-}
-  
-else
-  
-//Toggle Notifications
-if  (FunctioName.startsWith("notifications"))  {
-        
-    if(peeky.serverData.get(keySF, "notifications") == true) {peeky.serverData.set(keySF, false, "notifications")}
-    else peeky.serverData.set(keySF, true, "notifications");
-
-    if  (peeky.serverData.get(keySF, "notifications") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Notifications** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
