@@ -3419,8 +3419,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                   description:  "**Prefix** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "prefix") + "`" + "\n\n" +
                                 "**Mute Role** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "muted_role") + "`" + "\n\n" +
                                 "**Highlighted Channel** " + SettingsIcon + "\n" + "`#" + peeky.serverData.get(keySF, "highlighted_channel") + "`" + "\n\n" +
-                                "**Function Notifications** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "function_notifications") + "`" + "\n\n" +
-                                "**Level Notifications** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "level_notifications") + "`",
+                                "**Function Notifications** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "function_notifications") + "`" + "\n\n" +
+                                "**Level Notifications** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "level_notifications") + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -8039,7 +8039,7 @@ if  (CommandName.startsWith("purge"))  {
 };
   
 //Prefix
-if (CommandName.startsWith("prefix"))  {
+if  (CommandName.startsWith("prefix"))  {
   
     var CommandArgument = CommandName.split("prefix")[1];
   
@@ -8056,7 +8056,7 @@ if (CommandName.startsWith("prefix"))  {
             peeky.serverData.set(keySF, CommandArgument, "prefix");
 
             const embed = {"description": SuccessIcon + " The server prefix is now **" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-            await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
          else
@@ -8082,7 +8082,7 @@ if (CommandName.startsWith("prefix"))  {
 };
   
 //HighlightedChannel
-if (CommandName.startsWith("highlightedchannel"))  {
+if  (CommandName.startsWith("highlightedchannel"))  {
   
     var CommandArgument = CommandName.split("highlightedchannel")[1];
   
@@ -8097,7 +8097,7 @@ if (CommandName.startsWith("highlightedchannel"))  {
             peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
 
             const embed = {"description": SuccessIcon + " The highlighted channel is now called **#" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-            await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
          else
@@ -8119,6 +8119,46 @@ if (CommandName.startsWith("highlightedchannel"))  {
      const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };  
+
+};
+  
+//FunctionNotifications
+if  (CommandName.startsWith("functionnotifications"))  {
+
+    if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+
+        if(peeky.serverData.get(keySF, "function_notifications") == true) {peeky.serverData.set(keySF, false, "function_notifications");}
+        else peeky.serverData.set(keySF, true, "function_notifications");
+
+        const embed = {"description": SuccessIcon + " The Function Notificaitons are now set to **" + peeky.serverData.get(keySF, "function_notifications") + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+    }
+     else
+    {      
+      const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+  
+//LevelNotifications
+if  (CommandName.startsWith("levelnotifications"))  {
+
+    if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+
+        if(peeky.serverData.get(keySF, "level_notifications") == true) {peeky.serverData.set(keySF, false, "level_notifications");}
+        else peeky.serverData.set(keySF, true, "level_notifications");
+
+        const embed = {"description": SuccessIcon + " The Level Notificaitons are now set to **" + peeky.serverData.get(keySF, "level_notifications") + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+    }
+     else
+    {      
+      const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
 };
   
@@ -8201,7 +8241,7 @@ if  (CommandName.startsWith("muterole"))  {
             peeky.serverData.set(keySF, CommandArgument, "muted_role");
           
             const embed = {"description": SuccessIcon + " The Mute Role for this server is now **@" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
-            await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
          else
