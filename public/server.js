@@ -3838,8 +3838,13 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
         var channel = guild.channels.find(c => c.name == name);
       
         if  (channel)  {
+      
+            var InactiveChannel = false;
+            if  (channel.lastMessage !== null && channel.lastMessage.author.id == PeekyId)  {
+                InactiveChannel = true;
+            };
 
-            if  (channel.permissionsFor(peeky.user).has('ADD_REACTIONS' && 'SEND_MESSAGES'))  {
+            if  (channel.permissionsFor(peeky.user).has('ADD_REACTIONS' && 'SEND_MESSAGES') && InactiveChannel == false)  {
 
                 var Amount = 100 + (10 * Math.floor((Math.random() * 90)));
 
