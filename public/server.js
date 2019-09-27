@@ -2858,47 +2858,46 @@ if  (peeky.serverData.get(keySF, "role_sync_bonus") == true)  {
       
     if  (member.roles.array().length !== oldMember.roles.array().length)  {
   
-        var SecondServer = peeky.serverData.get(keySF, "role_sync_bonus_setting");
-      
-        if  (peeky.guilds.has(SecondServer))  {
-          
-            var guild     = member.guild;
-            var guild_two = peeky.guilds.get(SecondServer);
-          
-            if  (guild_two.members.find(m => m.user.id == member.user.id))  {
+            var SecondServer = peeky.serverData.get(keySF, "role_sync_bonus_setting");
 
-                var member_two = guild_two.members.get(member.user.id);
-              
-                if  (peeky.guilds.has(guild_two.id) && peeky.serverData.has(guild_two.id))  {
+            if  (peeky.guilds.has(SecondServer))  {
 
-                if  (peeky.serverData.get(guild_two.id, "role_sync_bonus_setting") == guild.id)  {
+                var guild     = member.guild;
+                var guild_two = peeky.guilds.get(SecondServer);
 
-                    const MemberRoles = member.roles.filter(r => r.name !== "@everyone").array().map(r => r.name);
-                    const ValidRoles  = member_two.roles.filter(r => r.name !== "@everyone" && !MemberRoles.includes(r.name)).array().map(r => r.id);
-                    const NewRoles = [];
+                if  (guild_two.members.find(m => m.user.id == member.user.id))  {
 
-                    NewRoles.forEach(role => {
+                    var member_two = guild_two.members.get(member.user.id);
 
-                        var CurrentRole = guild_two.roles.find(r => r.name == role);
-                        if  (CurrentRole)  {
-                            NewRoles.push();
-                        };                  
+                    if  (peeky.guilds.has(guild_two.id) && peeky.serverData.has(guild_two.id))  {
 
-                    });
+                        if  (peeky.serverData.get(guild_two.id, "role_sync_bonus_setting") == guild.id)  {
 
-                    member_two.setRoles(NewRoles, "Triggered by the Role Sync function.").catch(error => ErrorBag.add(error));
+                            const ValidRoles = [];
+                            const OldRoles = oldMember.roles.array().map(r => r.name);
+                          
+                            for (var i = 0; i < member.roles.array().length; i++)  {
+                              
+                                var r = member.roles.array()[i];
+                              
+                                if  (!OldRoles.includes(r.name))  {
+                                    
+                                    
+                                  
+                                    break;
+                                  
+                                };
+                                
+                            };
 
-                    console.log("The Role Sync function has been triggered in " + guild_two.name + ".");
-                    function_UpdateAutowipe(guild_two.id, "server");
+                        };
 
                     };
 
                 };
-              
+
             };
-          
-        };
-      
+
     };
 
 };
