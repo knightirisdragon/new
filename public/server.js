@@ -2873,19 +2873,20 @@ if  (peeky.serverData.get(keySF, "role_sync_bonus") == true)  {
 
                 if  (peeky.serverData.get(guild_two.id, "role_sync_bonus_setting") == guild.id)  {
 
-                    const ValidRoles  = member_two.roles.filter(r => r.name !== "@everyone").array().map(r => r.id);
                     const MemberRoles = member.roles.filter(r => r.name !== "@everyone").array().map(r => r.name);
+                    const ValidRoles  = member_two.roles.filter(r => r.name !== "@everyone" && !MemberRoles.includes(r.name)).array().map(r => r.id);
+                    const NewRoles = [];
 
-                    MemberRoles.forEach(role => {
+                    NewRoles.forEach(role => {
 
                         var CurrentRole = guild_two.roles.find(r => r.name == role);
                         if  (CurrentRole)  {
-                            ValidRoles.push(CurrentRole.id);
+                            NewRoles.push();
                         };                  
 
                     });
 
-                    member_two.setRoles(ValidRoles, "Triggered by the Role Sync function.").catch(error => ErrorBag.add(error));
+                    member_two.setRoles(NewRoles, "Triggered by the Role Sync function.").catch(error => ErrorBag.add(error));
 
                     console.log("The Role Sync function has been triggered in " + guild_two.name + ".");
                     function_UpdateAutowipe(guild_two.id, "server");
