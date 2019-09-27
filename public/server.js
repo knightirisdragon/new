@@ -3174,11 +3174,11 @@ if  (peeky.serverData.get(keySF, "game_announcements_bonus") == true)  {
             };
           
             if  (member.presence.game !== null && member.presence.game.type == 0 && NotDuplicate == true)  {
-                  
-                var SavedMember = member;
 
                 GameLogsCooldown.add(member.user.id + member.guild.id);
                 setTimeout(() => {GameLogsCooldown.delete(member.user.id + member.guild.id)}, 180000);
+                  
+                var SavedMember = member;
 
                 const embed = {"description": "**" + function_RemoveFormatting(SavedMember.displayName, "other", true) + "** has started playing **" + function_RemoveFormatting(SavedMember.presence.game.name, "other", true) + "**",  "color": member.displayColor };
                 Channel.send({ embed }).catch(error => ErrorBag.add(error));
