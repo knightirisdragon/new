@@ -1104,26 +1104,33 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
 
 };
 
-function function_RoleSync(guild, role, member)  {
+function function_RoleSync(guild, guild_two, member, member_two)  {
                   
-    if  (peeky.guilds.has(guild.id) && peeky.serverData.has(guild.id))  {
+    if  (peeky.guilds.has(guild_two.id) && peeky.serverData.has(guild_two.id))  {
       
-        const ValidRoles = [];
-                
-        member.forEach(role => {
-                      
-            if  (member.guild.roles.find(r => r.id == role))  {
-                ValidRoles.push(role);
-            };                  
-
-        });
+        if  (peeky.serverData.get(guild_two.id, "role_sync_bonus_setting") == guild.id)  {
       
-        if  (ValidRoles.length > 0)  {
-                
-            member.setRoles(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
+            const ValidRoles = [];
+            const MemberRoles = member.roles.array().map(r => r.id);
 
-            console.log("The Role Saver function has been triggered in " + member.guild.name + ".");
-            function_UpdateAutowipe(guild.id, "server");
+            MemberRoles.forEach(role => {
+
+                if  (guild_two.roles.find(r => r.id == role))  {
+                    ValidRoles.push(role);
+                };                  
+
+            });
+
+            if  (ValidRoles.length > 0)  {
+
+                member_two.setRoles(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
+
+                console.log("The Role Sync function has been triggered in " + guild.name + ".");
+                console.log("The Role Sync function has been triggered in " + guild_two.name + ".");
+                function_UpdateAutowipe(guild.id, "server");
+                function_UpdateAutowipe(guild_two.id, "server");
+
+            };
           
         };
       
@@ -2705,11 +2712,15 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
                     };                  
                     
                   });
+
+                  if  (ValidRoles.length > 0)  {
                 
-                  member.setRoles(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
-    
-                  console.log("The Role Saver function has been triggered in " + member.guild.name + ".");
-                  function_UpdateAutowipe(keySF, "server");
+                      member.setRoles(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
+
+                      console.log("The Role Saver function has been triggered in " + member.guild.name + ".");
+                      function_UpdateAutowipe(keySF, "server");
+                    
+                  };
                 
               };
             
@@ -2911,6 +2922,26 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
                   SavedNicks.push([member.user.id, member.nickname]);
             };
 
+        };
+      
+    };
+
+};
+    
+//Role Sync System
+if  (peeky.serverData.get(keySF, "role_sync_bonus") == true)  {
+      
+    if  (member.roles.array().length !== oldMember.roles.array().length)  {
+  
+        var SecondServer = peeky.serverData.get(keySF, "role_sync_bonus_setting");
+      
+        if  (peeky.guilds.has(SecondServer) && SecondGuild.members.find(m => m.user.id == member.user.id))  {
+          
+            var SecondGuild  = peeky.guilds.get(SecondServer);
+            var SecondMember = SecondGuild.guild.members.get(member.user.id);
+
+            function_RoleSync(member.guild, SecondGuild, member, SecondMember);
+          
         };
       
     };
