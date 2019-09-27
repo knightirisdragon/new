@@ -1104,42 +1104,6 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
 
 };
 
-//FUNCTION: Role Sync
-function function_RoleSync(guild, guild_two, member, member_two)  {
-                  
-    if  (peeky.guilds.has(guild_two.id) && peeky.serverData.has(guild_two.id))  {
-      
-        if  (peeky.serverData.get(guild_two.id, "role_sync_bonus_setting") == guild.id)  {
-      
-            const MemberRoles = member.roles.array().map(r => r.name);
-            const ValidRoles = [member_two.roles.array().map(r => r.name);
-
-            MemberRoles.forEach(role => {
-
-                var CurrentRole = guild_two.roles.find(r => r.name == role && r.name !== "@everyone");
-                if  (CurrentRole)  {
-                    ValidRoles.push(CurrentRole.id);
-                };                  
-
-            });
-
-            if  (ValidRoles.length > 0)  {
-
-                member_two.setRoles(ValidRoles, "Triggered by the Role Sync function.").catch(error => ErrorBag.add(error));
-
-                console.log("The Role Sync function has been triggered in " + guild.name + ".");
-                console.log("The Role Sync function has been triggered in " + guild_two.name + ".");
-                function_UpdateAutowipe(guild.id, "server");
-                function_UpdateAutowipe(guild_two.id, "server");
-
-            };
-          
-        };
-      
-    };
-  
-};
-
 //FUNCTION: Stream Announcements
 function function_StreamAnnouncements(type, member)  {
                   
@@ -2898,13 +2862,37 @@ if  (peeky.serverData.get(keySF, "role_sync_bonus") == true)  {
       
         if  (peeky.guilds.has(SecondServer))  {
           
-            var SecondGuild  = peeky.guilds.get(SecondServer);
+            var guild     = member.guild;
+            var guild_two = peeky.guilds.get(SecondServer);
           
-            if  (SecondGuild.members.find(m => m.user.id == member.user.id))  {
-              
-                var SecondMember = SecondGuild.members.get(member.user.id);
+            if  (guild_two.members.find(m => m.user.id == member.user.id))  {
 
-                function_RoleSync(member.guild, SecondGuild, member, SecondMember);
+                var member_two = guild_two.members.get(member.user.id);
+              
+                if  (peeky.guilds.has(guild_two.id) && peeky.serverData.has(guild_two.id))  {
+
+                if  (peeky.serverData.get(guild_two.id, "role_sync_bonus_setting") == guild.id)  {
+
+                    const ValidRoles  = member_two.roles.filter(r => r.name !== "@everyone").array().map(r => r.id);
+                    const MemberRoles = member.roles.filter(r => r.name !== "@everyone").array().map(r => r.name);
+
+                    MemberRoles.forEach(role => {
+
+                        var CurrentRole = guild_two.roles.find(r => r.name == role);
+                        if  (CurrentRole)  {
+                            ValidRoles.push(CurrentRole.id);
+                        };                  
+
+                    });
+
+                    member_two.setRoles(ValidRoles, "Triggered by the Role Sync function.").catch(error => ErrorBag.add(error));
+
+                    console.log("The Role Sync function has been triggered in " + guild_two.name + ".");
+                    function_UpdateAutowipe(guild_two.id, "server");
+
+                    };
+
+                };
               
             };
           
