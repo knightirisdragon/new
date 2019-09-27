@@ -1111,13 +1111,14 @@ function function_RoleSync(guild, guild_two, member, member_two)  {
       
         if  (peeky.serverData.get(guild_two.id, "role_sync_bonus_setting") == guild.id)  {
       
-            const ValidRoles = [];
             const MemberRoles = member.roles.array().map(r => r.name);
+            const ValidRoles = [member_two.roles.array().map(r => r.name);
 
             MemberRoles.forEach(role => {
 
-                if  (guild_two.roles.find(r => r.name == role))  {
-                    ValidRoles.push(role);
+                var CurrentRole = guild_two.roles.find(r => r.name == role && r.name !== "@everyone");
+                if  (CurrentRole)  {
+                    ValidRoles.push(CurrentRole.id);
                 };                  
 
             });
