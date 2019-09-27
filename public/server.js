@@ -1477,12 +1477,20 @@ function function_GetBackgroundInfo(ID, args)  {
                 Background.push(Banners[i][Banner.Name]);
             };
 
+            if  (args.includes("credit"))  {
+                Background.push(Banners[i][Banner.Credit]);
+            };
+
             if  (args.includes("id"))  {
                 Background.push("`" + ID + "`");
             };
 
             if  (args.includes("price"))  {
-                Background.push("`" + Banners[i][Banner.Price] + " Gredit`");
+                Background.push(Banners[i][Banner.Price].toLocaleString('en') + " " + GreditIcon);
+            };
+
+            if  (args.includes("source"))  {
+                Background.push(Banners[i][Banner.Source]);
             };
 
             return Background.join(" ");
@@ -5943,7 +5951,7 @@ if  (CommandName.startsWith("buybackground"))  {
                         peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
                         peeky.userData.get(key, "Inventory").push(i);
 
-                        var embed = {"description": SuccessIcon + " You have bought the **" + function_GetBackgroundInfo(i, ["name"]) + "** background bought for **" + Banners[i - 1][Banner.Price].toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                        var embed = {"description": SuccessIcon + " You have bought the **" + function_GetBackgroundInfo(i, ["name"]) + "** background bought for **" + function_GetBackgroundInfo(i, ["price"]) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                         break;
@@ -6092,8 +6100,8 @@ if (CommandName.startsWith("seebackground"))  {
             Failed = false;
           
             var Price = Exclusive;
-            if  (Banners[i - 1][Banner.Price] !== Exclusive)  {
-                Price = (Banners[i - 1][Banner.Price]).toLocaleString('en') + " " + GreditIcon;
+            if  (function_GetBackgroundInfo(i, ["price"]) !== Exclusive)  {
+                Price = function_GetBackgroundInfo(i, ["price"]);
             };
 
             var NewEmbedColor = 0;
@@ -6102,16 +6110,16 @@ if (CommandName.startsWith("seebackground"))  {
                   NewEmbedColor = parseInt(color.replace("#", ""), 16);
           
                   const embed = {"description": 
-                                 "**" + Banners[i - 1][Banner.Name] + "**"
+                                 "**" + function_GetBackgroundInfo(i, ["name"]) + "**"
                                  + "\n" 
-                                 + "" + Banners[i - 1][Banner.Credit]
+                                 + "" + function_GetBackgroundInfo(i, ["credit"])
                                  + "\n\n"
                                  + "**Information**"
                                  + "\n"
                                  + "Price: " + Price
                                  + "\n­",
                                 "image": {
-                                  "url": Banners[i - 1][Banner.Source]
+                                  "url": function_GetBackgroundInfo(i, ["source"])
                                 },
                                 "color": NewEmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -6554,7 +6562,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
                 InfoMessages.push(InfoMessage2[0]);
             };
 
-            const embed = {"description": SuccessIcon + " You have given the **" + Banners[DonatedAmount - 1][Banner.Name] + "** background to **" + function_RemoveFormatting(DonatedUser.displayName, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            const embed = {"description": SuccessIcon + " You have given the **" + function_GetBackgroundInfo(DonatedAmount, ["name"]) + "** background to **" + function_RemoveFormatting(DonatedUser.displayName, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           
         }
