@@ -1448,14 +1448,16 @@ function function_GetBackground(key)  {
         if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
 
             for  (var i = 0; i < Banners.length; i++) {
-               if   (peeky.userData.get(key, "Background") == i + 1) {
-                    return Banners[i][Banner.Source];
-                    break;
-               };
+              
+                 if   (peeky.userData.get(key, "Background") == i + 1) {
+                      return Banners[i][Banner.Source];
+                      break;
+                 };
+              
             };
 
         } else {
-            return peeky.userData.get(key, "Background");
+          return peeky.userData.get(key, "Background");
         };
 
     };
@@ -1463,37 +1465,31 @@ function function_GetBackground(key)  {
 };
 
 //Get Background
-function function_GetBackgroundInfo(key, args)  {
+function function_GetBackgroundInfo(ID, args)  {
 
-    if  (peeky.userData.has(key))  {
+    for (var i = 0; i < Banners.length; i++)  {
 
-        if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
+        if  (ID == i + 1)  {
 
-            for  (var i = 0; i < Banners.length; i++) {
-               if   (peeky.userData.get(key, "Background") == i + 1) {
-                    
-                    var Background = [];
-                 
-                   if  (args.includes("name"))  {
-                       Background.push(Banners[i][Banner.Name]);
-                   };
-                 
-                   if  (args.includes("id"))  {
-                       Background.push("`" + Banners[i][Banner.Name] + "`");
-                   };
-                 
-                   if  (args.includes("price"))  {
-                       Background.push("`" + Banners[i][Banner.Price] + " Gredit`");
-                   };
-                   
-                    break;
-               };
+            var Background = [];
+
+            if  (args.includes("name"))  {
+                Background.push(Banners[i][Banner.Name]);
             };
 
-        } else {
-            return "Custom Background";
-        };
+            if  (args.includes("id"))  {
+                Background.push("`" + ID + "`");
+            };
 
+            if  (args.includes("price"))  {
+                Background.push("`" + Banners[i][Banner.Price] + " Gredit`");
+            };
+
+            return Background.join(" ");
+            break;
+
+        };
+              
     };
   
 };
@@ -4498,7 +4494,7 @@ if (CommandName == "eventrewards")  {
             peeky.userData.get(key, "Inventory").push(333);
 
             const embed = {"description": SuccessIcon + " You have received the rewards for the **" + EventName + "** event!"
-                                          + "\n\n" + InfoIcon + " The **" + Banners[333 - 1][Banner.Name] + "** background."
+                                          + "\n\n" + InfoIcon + " The **" + function_GetBackgroundInfo(333, ["name", "id"]) + "** background."
                                           + "\n\n" + InfoIcon + " The **Celebrator** badge.",  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));          
           
@@ -5947,7 +5943,7 @@ if  (CommandName.startsWith("buybackground"))  {
                         peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
                         peeky.userData.get(key, "Inventory").push(i);
 
-                        var embed = {"description": SuccessIcon + " You have bought the **" + Banners[i - 1][Banner.Name] + "** background bought for **" + Banners[i - 1][Banner.Price].toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                        var embed = {"description": SuccessIcon + " You have bought the **" + function_GetBackgroundInfo(i, ["name"]) + "** background bought for **" + Banners[i - 1][Banner.Price].toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                         break;
@@ -6057,7 +6053,7 @@ if (CommandName.startsWith("setbackground"))  {
 
                 peeky.userData.set(key, i, "Background");
 
-                const embed = {"description": SuccessIcon + " You have set the **" + Banners[i - 1][Banner.Name] + "** background." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                const embed = {"description": SuccessIcon + " You have set the **" + function_GetBackgroundInfo(i, ["name"]) + "** background." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 break;
@@ -6170,7 +6166,7 @@ if  (i !== AllString)  {
                         InfoMessages.push(InfoMessage2[0]);
                     };
 
-                    const embed = {"description": SuccessIcon + " You have sold the **" + Banners[i - 1][Banner.Name] + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                    const embed = {"description": SuccessIcon + " You have sold the **" + function_GetBackgroundInfo(i, ["name"]) + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 }
@@ -6342,7 +6338,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
                   if  (Background !== 0 && Banners[Background][Banner.Price] !== Exclusive)  {
 
                       peeky.userData.get(key, "Inventory").push(Background + 1);
-                      InfoMessages.push(InfoIcon + " You have found the **" + Banners[Background][Banner.Name] + "** background.");
+                      InfoMessages.push(InfoIcon + " You have found the **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
 
                   };
 
@@ -6696,7 +6692,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
 
     peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
         Current ++;
-        FixedBackgrounds.push(Banners[banner - 1][Banner.Name] + " `" + banner + "`");
+        FixedBackgrounds.push(function_GetBackgroundInfo(i, ["name"]) + " `" + banner + "`");
     });
       
     if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > BackgroundInvLimit)  {  EndString = " and some more.."  };
