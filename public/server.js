@@ -2082,7 +2082,7 @@ if  (!WebsiteCooldowns.has("api"))  {
       "ageCount": function_TimeLeft(peeky.user.createdAt, "days", null),
       "backgroundsCount": Banners.length,
 
-      "eventName": "PEEKY's Birthday",
+      "eventName": "Vojtěch's Birthday",
       "eventStatus": EventStatus,
 
       "customBackground": CustomBackgroundPrice,
