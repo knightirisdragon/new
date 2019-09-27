@@ -1103,6 +1103,44 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
 };
+
+function function_RoleSync(guild, owner, role, member)  {
+                  
+    
+  
+};
+
+function function_StreamAnnouncements(type, member)  {
+                  
+    CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
+    setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
+    
+    const TwitchBanner = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fsa_twitch.png?v=1566236062639";
+    const DiscordBanner = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fsa_discord.png?v=1566236061585";
+
+    if  (type == "twitch")  {
+
+        var GameName   = function_RemoveFormatting(member.presence.game.name, "other", false);
+        var GameLink   = member.presence.game.url;
+        var GameColor  = 6570404;
+        var GameBanner = TwitchBanner
+        var GameHost   = "Twitch";
+
+    } else
+
+    if  (type == "discord")  {
+
+        var GameName   = function_RemoveFormatting(member.presence.game.name, "other", false);
+        var GameLink   = "https://discordapp.com/channels/" + member.guild.id +  "/" + member.voiceChannel.id;
+        var GameColor  = 7506394;
+        var GameBanner = DiscordBanner;
+        var GameHost   = "Discord";
+
+    };
+
+    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.displayName, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
+
+};
   
 function UpdateLeaderboardTypes(type)  {
       
@@ -1185,70 +1223,6 @@ function UpdateLeaderboardTypes(type)  {
             return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
         };
     
-};
-
-function function_StreamAnnouncements(type, member)  {
-                  
-    CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
-    setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
-    
-    const TwitchBanner = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fsa_twitch.png?v=1566236062639";
-    const DiscordBanner = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fsa_discord.png?v=1566236061585";
-
-    if  (type == "twitch")  {
-
-        var GameName   = function_RemoveFormatting(member.presence.game.name, "other", false);
-        var GameLink   = member.presence.game.url;
-        var GameColor  = 6570404;
-        var GameBanner = TwitchBanner
-        var GameHost   = "Twitch";
-
-    } else
-
-    if  (type == "discord")  {
-
-        var GameName   = function_RemoveFormatting(member.presence.game.name, "other", false);
-        var GameLink   = "https://discordapp.com/channels/" + member.guild.id +  "/" + member.voiceChannel.id;
-        var GameColor  = 7506394;
-        var GameBanner = DiscordBanner;
-        var GameHost   = "Discord";
-
-    };
-
-    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.displayName, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
-
-};
-
-function function_RoleSync(guild,)  {
-                  
-    CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
-    setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
-    
-    const TwitchBanner = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fsa_twitch.png?v=1566236062639";
-    const DiscordBanner = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fsa_discord.png?v=1566236061585";
-
-    if  (type == "twitch")  {
-
-        var GameName   = function_RemoveFormatting(member.presence.game.name, "other", false);
-        var GameLink   = member.presence.game.url;
-        var GameColor  = 6570404;
-        var GameBanner = TwitchBanner
-        var GameHost   = "Twitch";
-
-    } else
-
-    if  (type == "discord")  {
-
-        var GameName   = function_RemoveFormatting(member.presence.game.name, "other", false);
-        var GameLink   = "https://discordapp.com/channels/" + member.guild.id +  "/" + member.voiceChannel.id;
-        var GameColor  = 7506394;
-        var GameBanner = DiscordBanner;
-        var GameHost   = "Discord";
-
-    };
-
-    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.displayName, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
-
 };
 
 //Remove Formatting
