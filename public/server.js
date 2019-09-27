@@ -1462,6 +1462,42 @@ function function_GetBackground(key)  {
   
 };
 
+//Get Background
+function function_GetBackgroundInfo(key, args)  {
+
+    if  (peeky.userData.has(key))  {
+
+        if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
+
+            for  (var i = 0; i < Banners.length; i++) {
+               if   (peeky.userData.get(key, "Background") == i + 1) {
+                    
+                    var Background = [];
+                 
+                   if  (args.includes("name"))  {
+                       Background.push(Banners[i][Banner.Name]);
+                   };
+                 
+                   if  (args.includes("id"))  {
+                       Background.push("`" + Banners[i][Banner.Name] + "`");
+                   };
+                 
+                   if  (args.includes("price"))  {
+                       Background.push("`" + Banners[i][Banner.Price] + " Gredit`");
+                   };
+                   
+                    break;
+               };
+            };
+
+        } else {
+            return "Custom Background";
+        };
+
+    };
+  
+};
+
 //Detect Link
 function function_DetectLink(string)  {
 
@@ -2694,14 +2730,22 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
 
         if  (Username !== NewNickname)  {
 
-            if  (NewNickname == null)  {
-                NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
-            };
+            peeky.serverData.get(keySF, "nick_saver_array").forEach(current => {
+              
+                if  (current[0] == member.user.id && current[1] == null)  {
 
-            member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
+                    if  (NewNickname == null)  {
+                        NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
+                    };
 
-            console.log("The Clear Nicknames function has been triggered in " + member.guild.name + ".");
-            function_UpdateAutowipe(keySF, "server");
+                    member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
+
+                    console.log("The Clear Nicknames function has been triggered in " + member.guild.name + ".");
+                    function_UpdateAutowipe(keySF, "server");
+
+                };
+              
+            }); 
 
         };
 
