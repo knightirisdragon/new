@@ -1104,9 +1104,30 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
 
 };
 
-function function_RoleSync(guild, owner, role, member)  {
+function function_RoleSync(guild, role, member)  {
                   
-    
+    if  (peeky.guilds.has(guild.id) && peeky.serverData.has(guild.id))  {
+      
+        const ValidRoles = [];
+                
+        member.forEach(role => {
+                      
+            if  (member.guild.roles.find(r => r.id == role))  {
+                ValidRoles.push(role);
+            };                  
+
+        });
+      
+        if  (ValidRoles.length > 0)  {
+                
+            member.setRoles(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
+
+            console.log("The Role Saver function has been triggered in " + member.guild.name + ".");
+            function_UpdateAutowipe(guild.id, "server");
+          
+        };
+      
+    };
   
 };
 
@@ -2693,6 +2714,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
               };
             
           });  
+
       };
 
   };
