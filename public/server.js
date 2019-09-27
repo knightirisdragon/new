@@ -2679,6 +2679,35 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
     };
 
 };
+  
+//Clear Nicknames
+if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
+
+    if  (member.guild.me.hasPermission("MANAGE_NICKNAMES") && !member.user.bot)  {
+
+        var Username = member.user.username.toLowerCase().toString();
+        var NewNickname = Username.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789 ]/g); 
+
+        if  (NewNickname !== null)  {
+            NewNickname = NewNickname.join("");
+        };
+
+        if  (Username !== NewNickname)  {
+
+            if  (NewNickname == null)  {
+                NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
+            };
+
+            member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
+
+            console.log("The Clear Nicknames function has been triggered in " + member.guild.name + ".");
+            function_UpdateAutowipe(keySF, "server");
+
+        };
+
+    };
+
+};
 
 //Welcome Messages
 if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
@@ -4279,44 +4308,6 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
       
       };
   
-};
-  
-//Clear Nicknames
-if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
-
-    if  (message.guild.me.hasPermission("MANAGE_NICKNAMES") && !message.member.permissions.has("MANAGE_NICKNAMES") && message.member.nickname == null && !message.author.bot)  {
-
-        if  (!ClearedNames.has(message.author.tag))  {
-
-            ClearedNames.add(message.author.tag);
-
-            var Username = message.member.displayName.toLowerCase().toString();
-            var NewNickname = Username.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789 ]/g)
-
-            if  (NewNickname !== null) {
-                NewNickname = NewNickname.join("");
-            };
-
-            if  (Username !== NewNickname)  {
-
-                if  (NewNickname == null)  {
-                    NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
-                };
-
-                message.member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
-
-                const embed = {"description": InfoIcon + " I have cleared **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s nickname of fancy letters.",  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
-
-                console.log("The Clear Nicknames function has been triggered in " + message.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
-
-            };
-
-        };
-
-    };
-
 };
 
 //Banned Words
