@@ -1104,6 +1104,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
 
 };
 
+//FUNCTION: Role Sync
 function function_RoleSync(guild, guild_two, member, member_two)  {
                   
     if  (peeky.guilds.has(guild_two.id) && peeky.serverData.has(guild_two.id))  {
@@ -1111,11 +1112,11 @@ function function_RoleSync(guild, guild_two, member, member_two)  {
         if  (peeky.serverData.get(guild_two.id, "role_sync_bonus_setting") == guild.id)  {
       
             const ValidRoles = [];
-            const MemberRoles = member.roles.array().map(r => r.id);
+            const MemberRoles = member.roles.array().map(r => r.name);
 
             MemberRoles.forEach(role => {
 
-                if  (guild_two.roles.find(r => r.id == role))  {
+                if  (guild_two.roles.find(r => r.name == role))  {
                     ValidRoles.push(role);
                 };                  
 
@@ -1123,7 +1124,7 @@ function function_RoleSync(guild, guild_two, member, member_two)  {
 
             if  (ValidRoles.length > 0)  {
 
-                member_two.setRoles(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
+                member_two.setRoles(ValidRoles, "Triggered by the Role Sync function.").catch(error => ErrorBag.add(error));
 
                 console.log("The Role Sync function has been triggered in " + guild.name + ".");
                 console.log("The Role Sync function has been triggered in " + guild_two.name + ".");
@@ -1138,6 +1139,7 @@ function function_RoleSync(guild, guild_two, member, member_two)  {
   
 };
 
+//FUNCTION: Stream Announcements
 function function_StreamAnnouncements(type, member)  {
                   
     CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
@@ -1397,7 +1399,9 @@ function function_ServerData(key)  {
             dash_remover_bonus: false,
             reddit_posts_bonus: false,
             reddit_posts_bonus_setting: "discordapp",
-            reddit_posts_bonus_last: []
+            reddit_posts_bonus_last: [],
+            role_sync_bonus: false,
+            role_sync_bonus_setting: 0,
         });
   
     };
@@ -2884,6 +2888,31 @@ const member = newMember;
 //FUNCTIONS
 if (member.user.id !== PeekyId && peeky.serverData.has(keySF))  {
     
+//Role Sync System
+if  (peeky.serverData.get(keySF, "role_sync_bonus") == true)  {
+      
+    if  (member.roles.array().length !== oldMember.roles.array().length)  {
+  
+        var SecondServer = peeky.serverData.get(keySF, "role_sync_bonus_setting");
+      
+        if  (peeky.guilds.has(SecondServer))  {
+          
+            var SecondGuild  = peeky.guilds.get(SecondServer);
+          
+            if  (SecondGuild.members.find(m => m.user.id == member.user.id))  {
+              
+                var SecondMember = SecondGuild.members.get(member.user.id);
+
+                function_RoleSync(member.guild, SecondGuild, member, SecondMember);
+              
+            };
+          
+        };
+      
+    };
+
+};
+    
 //Role Saver System
 if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
 
@@ -2922,26 +2951,6 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
                   SavedNicks.push([member.user.id, member.nickname]);
             };
 
-        };
-      
-    };
-
-};
-    
-//Role Sync System
-if  (peeky.serverData.get(keySF, "role_sync_bonus") == true)  {
-      
-    if  (member.roles.array().length !== oldMember.roles.array().length)  {
-  
-        var SecondServer = peeky.serverData.get(keySF, "role_sync_bonus_setting");
-      
-        if  (peeky.guilds.has(SecondServer) && SecondGuild.members.find(m => m.user.id == member.user.id))  {
-          
-            var SecondGuild  = peeky.guilds.get(SecondServer);
-            var SecondMember = SecondGuild.guild.members.get(member.user.id);
-
-            function_RoleSync(member.guild, SecondGuild, member, SecondMember);
-          
         };
       
     };
@@ -4976,13 +4985,28 @@ if  (FunctioName.startsWith("dash remover"))  {
 else
 
 //Toggle Server Message
-if  (FunctioName.startsWith("server message")) {
+if  (FunctioName.startsWith("server message"))  {
         
     if(peeky.serverData.get(keySF, "server_message_bonus") == true) {peeky.serverData.set(keySF, false, "server_message_bonus");}
     else peeky.serverData.set(keySF, true, "server_message_bonus");
       
     if  (peeky.serverData.get(keySF, "server_message_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
     const embed = {"description": SuccessIcon + " The **Server Message** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+
+//Toggle Role Sync
+if  (FunctioName.startsWith("role sync"))  {
+        
+    if(peeky.serverData.get(keySF, "role_sync_bonus") == true) {peeky.serverData.set(keySF, false, "role_sync_bonus");}
+    else peeky.serverData.set(keySF, true, "role_sync_bonus");
+      
+    if  (peeky.serverData.get(keySF, "role_sync_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Role Sync** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5613,13 +5637,36 @@ if  (FunctioName.startsWith("spoiler lock "))  {
 
     var GivenMinutes = CommandName.split("spoiler lock ")[1];
 
-    if  (!isNaN(GivenMinutes) && GivenMinutes >= 0)   {
+    if  (!isNaN(GivenMinutes) && GivenMinutes >= 0)  {
 
         peeky.serverData.set(keySF, GivenMinutes, "spoiler_lock_bonus_setting");
 
         if  (GivenMinutes == 0)  {GivenMinutes = "never"}  else  {GivenMinutes = GivenMinutes + " minutes"}
 
         const embed = {"description": SuccessIcon + " The **Spoiler Lock** setting has been set to **" + GivenMinutes + "**.",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+    }
+     else
+    {
+      const embed = {"description": ErrorMessage9[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+}
+  
+else
+      
+//Set Role Sync
+if  (FunctioName.startsWith("role sync "))  {
+
+    var GivenMinutes = CommandName.split("role sync ")[1];
+
+    if  (!isNaN(GivenMinutes) && GivenMinutes > 0)  {
+
+        peeky.serverData.set(keySF, GivenMinutes, "role_sync_bonus_setting");
+
+        const embed = {"description": SuccessIcon + " The **Role Sync** setting has been set to **" + peeky.serverData.get(keySF, "role_sync_bonus_setting") + "**.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
