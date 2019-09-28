@@ -1372,6 +1372,8 @@ function function_ServerData(key)  {
             role_sync_bonus: false,
             role_sync_bonus_setting: 0,
         });
+      
+        console.log("Created server data for " + key);
   
     };
   
@@ -1395,6 +1397,8 @@ function function_ChannelData(key)  {
             flood_protection_bonus_lastmsg: null,
             safe_chat_bonus: false
         });
+      
+        console.log("Created channel data for " + key);
       
     };
   
