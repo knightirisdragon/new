@@ -2538,7 +2538,7 @@ const keySF = `${guild.id}`;
 const embed = {"description": SuccessIcon + " I have joined **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
 peeky.channels.get(ServerLogChannel).send({ embed });
   
-if  (peeky.guilds.size > MaxServers || BannedServers.includes(guild.id))  {
+if  (peeky.guilds.size > MaxServers || BannedServers.includes(guild.id) || BannedUsers.includes(guild.owner.user.id))  {
   
     await function_DirectMessage(guild.owner.user.id, "Something went wrong when joining your server, try again later.");
     guild.leave();
