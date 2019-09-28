@@ -1373,7 +1373,7 @@ function function_ServerData(key)  {
             role_sync_bonus_setting: 0,
         });
       
-        console.log("Created server data for " + key);
+        console.log("Created server data for " + key + ".");
   
     };
   
@@ -1398,7 +1398,7 @@ function function_ChannelData(key)  {
             safe_chat_bonus: false
         });
       
-        console.log("Created channel data for " + key);
+        console.log("Created channel data for " + key + ".");
       
     };
   
@@ -1634,10 +1634,12 @@ function function_UpdateAutowipe(key, type)  {
 
     if  (type == "server")  {
         peeky.serverData.set(key, Date.now(), 'lastSeen');
+        console.log("updated autowipe for " + key + ".");
     };
 
     if  (type == "user")  {
         peeky.userData.set(key, Date.now(), 'lastSeen');
+        console.log("updated autowipe for " + key + ".");
     };
   
 };
@@ -2757,6 +2759,8 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
 
                     if  (NewNickname == null)  {
                         NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
+                    } else {
+                      NewNickname = function_FixCapitalization(NewNickname);
                     };
 
                     member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
