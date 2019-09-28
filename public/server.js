@@ -7099,7 +7099,7 @@ if (!ProfileCooldown.has(message.author.id))  {
         WebsiteCooldowns.add("featuredprofile");
 
         var FeaturedDate = new Date();
-        var data = "<font size='4' class='headersub'>" + function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "'s profile got featured on " + function_DateFormat(FeaturedDate) + ".</font>  <br><br><br>  <img src='" + m.attachments.array()[0].url + "' class='featuredprofile'>";
+        var data = "<font size='4' class='headersub'>" + function_RemoveFormatting(SomeoneTagged.user.username, "other", true) + "'s profile got featured on " + function_DateFormat(FeaturedDate) + ".</font>  <br><br><br>  <img src='" + m.attachments.array()[0].url + "' class='featuredprofile'>";
 
         fs.writeFile('public/featured_profile.txt', data, (err) => {
             if (err) console.log(err); 
