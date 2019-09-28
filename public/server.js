@@ -286,8 +286,6 @@ const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thur
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const VulgarPhrases       = [  "anal", "anus", "arse", "ass", "ballsack", "balls", "bastard", "bitch", "biatch", "bloody", "blowjob", "blow", "job", "bollock", "bollok", "boner", "boob", "bugger", "bum", "butt", "buttplug", "clitoris", "cock", "coon", "crap", "cunt", "damn", "dick", "dildo", "dyke", "fag", "feck", "fellate", "fellatio", "felching", "fuck", "fudgepacker", "fudge", "packer", "flange", "Goddamn", "God", "damn", "hell", "homo", "jerk", "jizz", "knobend", "knob", "end", "labia", "lmao", "lmfao", "muff", "nigger", "nigga", "penis", "piss", "poop", "prick", "pube", "pussy", "queer", "scrotum", "sex", "shit", "sh1t", "slut", "smegma", "spunk", "tit", "tosser", "turd", "twat", "vagina", "wank", "whore", "wtf"  ];
 const ImmuneServers       = [  SupportServer, EmojiStorage1, `454933217666007052`, `264445053596991498`, `330777295952543744`, `387812458661937152`, `374071874222686211`, `439866052684283905`, `534551489595703306`  ];
-const NoLevelUpServers    = [  `486194248849293312`  ];
-const BannedServers       = [  `610951946597040128`  ];
 
 //Small Objects
 var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4  };
@@ -2538,7 +2536,7 @@ const keySF = `${guild.id}`;
 const embed = {"description": SuccessIcon + " I have joined **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
 peeky.channels.get(ServerLogChannel).send({ embed });
   
-if  (peeky.guilds.size > MaxServers || BannedServers.includes(guild.id) || BannedUsers.includes(guild.owner.user.id))  {
+if  (peeky.guilds.size > MaxServers || BannedUsers.includes(guild.owner.user.id))  {
   
     await function_DirectMessage(guild.owner.user.id, "Something went wrong when joining your server, try again later.");
     guild.leave();
