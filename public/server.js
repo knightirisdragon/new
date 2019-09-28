@@ -6412,16 +6412,28 @@ if (CommandName == "daily")  {
     //Reward
     InfoMessages.push(SuccessIcon + " Here's your daily reward, a chest!");
     peeky.userData.math(key, "+", 1, "Chests");
+      
+    //Vote DBL
+    dbl.hasVoted(key).then(voted => {
+        if  (voted)  {
+          
+            InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DBL today.");
+
+            peeky.userData.math(key, "+", 1, "Chests");
+            CountedVotes ++;
+            
+        };
+    });
 
     //Vote DDBL
     await ddbl.getVotes().then(AllVotes => {
       
         var Now = new Date();
-        AllVotes = AllVotes.filter(i => i.id == message.author.id && Now - new Date(i.timestamp) <= 86400000);
+        AllVotes = AllVotes.filter(i => i.id == key && Now - new Date(i.timestamp) <= 86400000);
 
         if  (AllVotes.length > 0 == true)  {
           
-            InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DDB today.");
+            InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DDBL today.");
 
             peeky.userData.math(key, "+", 1, "Chests");
             CountedVotes ++;
@@ -6434,7 +6446,7 @@ if (CommandName == "daily")  {
     await bls.getUpvotes().then(AllVotes => {
       
         var Now = new Date();
-        AllVotes = AllVotes.filter(i => i.user.id == message.author.id && Now - new Date(i.timestamp) <= 86400000);
+        AllVotes = AllVotes.filter(i => i.user.id == key && Now - new Date(i.timestamp) <= 86400000);
 
         if  (AllVotes.length > 0 == true)  {
           
