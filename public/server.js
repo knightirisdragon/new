@@ -1887,8 +1887,6 @@ peeky.on('message', async (message) => {
 
     GainCooldown.add(message.author.id);
     setTimeout(() => {GainCooldown.delete(message.author.id)}, 10000);
-      
-    peeky.serverData.set(keySF, message.guild.id, 'GuildID');
 
     var BadgeExpAmount    = 0;
     var BadgeGreditAmount = 0;
@@ -6730,7 +6728,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
 
     peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
         Current ++;
-        FixedBackgrounds.push(function_GetBackgroundInfo(i, ["name"]) + " `" + banner + "`");
+        FixedBackgrounds.push(function_GetBackgroundInfo(banner, ["name"]) + " `" + banner + "`");
     });
       
     if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > BackgroundInvLimit)  {  EndString = " and some more.."  };
@@ -6774,7 +6772,7 @@ if (!ProfileCooldown.has(message.author.id))  {
 
     //Vars
     const ProfileName        = SomeoneTagged.displayName;
-    const key2               = SomeoneTagged.user.id;
+    const key2               = SomeoneTagged.id;
     var   Failed             = false;
       
     if  (peeky.userData.has(key2))  {
