@@ -1,5 +1,6 @@
 //API Tokens
 const DiscordToken = process.env.BOT_TOKEN;
+const DBLToken = process.env.DBL_TOKEN;
 const DDBLToken = process.env.DDBL_TOKEN;
 const BLSToken = process.env.BLS_TOKEN;
 const BFDToken = process.env.BFD_TOKEN;
@@ -9,6 +10,10 @@ const YoutubeToken = process.env.YT_TOKEN;
 //Discord
 const Discord = require('discord.js');
 const peeky   = new Discord.Client({  disabledEvents: ["TYPING_START"], disableEveryone: true  });
+
+//DBL
+const DBL = require("dblapi.js");
+const dbl = new DBL(DBLToken, peeky);
 
 //DDBL
 const { ddblAPI } = require('ddblapi.js');
@@ -1745,6 +1750,9 @@ peeky.on('ready', () => {
         peeky.user.setAvatar(RandomAvatars[Math.floor(Math.random()*RandomAvatars.length)]).catch(error => ErrorBag.add(error));
         peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
         console.log("Updated PEEKY's avatar.");
+      
+        //Post Server Counts - DBL
+        dbl.postStats(peeky.guilds.size, peeky.shards.Id, peeky.shards.total).catch(err => {console.log("Failed to post the server count to DBL."); ErrorBag.add(err)});
 
         //Post Server Counts - DDBL
         ddbl.postStats(GuildSize).catch(err => {console.log("Failed to post the server count to DDBL."); ErrorBag.add(err)});
