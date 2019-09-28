@@ -4505,7 +4505,7 @@ if (CommandName == "eventrewards")  {
   
     if  (EventStatus == true)  {
       
-        if  (peeky.userData.get(key, "CelebratorBadge") == false)  {
+        if  (!peeky.userData.get(key, "Inventory").includes(412))  {
       
             peeky.userData.get(key, "Inventory").push(412);
 
