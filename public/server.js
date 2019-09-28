@@ -4507,12 +4507,11 @@ if (CommandName == "eventrewards")  {
       
         if  (peeky.userData.get(key, "CelebratorBadge") == false)  {
       
-            peeky.userData.set(key, true, "CelebratorBadge");
-            peeky.userData.get(key, "Inventory").push(333);
+            peeky.userData.get(key, "Inventory").push(412);
 
             const embed = {"description": SuccessIcon + " You have received the rewards for the **" + EventName + "** event!"
-                                          + "\n\n" + InfoIcon + " The **" + function_GetBackgroundInfo(333, ["name", "id"]) + "** background."
-                                          + "\n\n" + InfoIcon + " The **Celebrator** badge.",  "color": EmbedColor}; 
+                                          + "\n\n" + InfoIcon + " The **" + function_GetBackgroundInfo(412, ["name", "id"]) + "** background."
+                                         ,  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));          
           
         };
