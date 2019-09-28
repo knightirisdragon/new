@@ -6511,9 +6511,9 @@ if  (!ProfileCooldown.has(message.author.id))  {
 
     var DonatedUser = message.mentions.members.first();
     
-    if  (DonatedUser && DonatedUser.id !== message.author.id && !DonatedUser.bot)  {
+    if  (DonatedUser && DonatedUser.user.id !== message.author.id && !DonatedUser.bot)  {
 
-        const key2 = `${DonatedUser.id}`;
+        const key2 = `${DonatedUser.user.id}`;
         
     if  (peeky.userData.has(key2))  {
 
@@ -6672,10 +6672,10 @@ if  (!ProfileCooldown.has(message.author.id)) {
     setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
 
     var SomeoneTagged = null;
-    var MentionedMember = message.mentions.users.first();
-    if  (MentionedMember !== undefined) SomeoneTagged = MentionedMember;
-    if  (MentionedMember == undefined) SomeoneTagged = message.member;
-    const key2 = `${SomeoneTagged.id}`;
+    var MentionedMember = message.mentions.members.first();
+    if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.member;  };
+
+    const key2 = `${SomeoneTagged.user.id}`;
     
     if  (peeky.userData.has(key2))  {
       
@@ -6767,12 +6767,12 @@ if (!ProfileCooldown.has(message.author.id))  {
     const StatsColor     = "lightgray"
     var   ProfileColor   = null;
     
-    var MentionedMember = message.mentions.users.first();
+    var MentionedMember = message.mentions.members.first();
     if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.member;  };
 
     //Vars
     const ProfileName        = SomeoneTagged.displayName;
-    const key2               = SomeoneTagged.id;
+    const key2               = SomeoneTagged.user.id;
     var   Failed             = false;
       
     if  (peeky.userData.has(key2))  {
