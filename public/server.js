@@ -1328,7 +1328,7 @@ function function_ServerData(key)  {
             Link: "None",
 
             welcome_messages_bonus: false,
-            welcome_messages_bonus_setting: "user_feed",
+            welcome_messages_bonus_setting: "welcome_messages",
             join_role_bonus: false,
             join_role_bonus_setting: "Member",
             streamer_role_bonus: false,
@@ -1337,7 +1337,7 @@ function function_ServerData(key)  {
             server_message_bonus: false,
             image_only_bonus_setting: 0,
             server_message_bonus_setting: "Welcome to the server!",
-            message_log_bonus_setting: "message_log",
+            message_log_bonus_setting: "logged_messages",
             member_counter_bonus: false,
             member_counter_bonus_setting: "Members",
             member_counter_bonus_id: null,
