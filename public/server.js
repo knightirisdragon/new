@@ -1779,15 +1779,15 @@ peeky.on('ready', () => {
             body: JSON.stringify({  server_count: GuildSize  })
         }).catch(err => {console.log("Failed to post the server count to CBL."); ErrorBag.add(err)});
 
-        //Post Server Counts - BD
-        node_fetch(`https://discord.boats/api/v2/bot/${peeky.user.id}`, {
+        //Post Server Counts - BD (NOT WORKING)
+        /*node_fetch(`https://discord.boats/api/v2/bot/${peeky.user.id}`, {
             method: 'POST',
             headers: {
                 'Authorization': DBToken,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({  server_count: GuildSize  })
-        }).catch(err => {console.log("Failed to post the server count to DB."); ErrorBag.add(err)});
+        }).catch(err => {console.log("Failed to post the server count to DB."); ErrorBag.add(err)});*/
       
         console.log("Stats posted to Bot Lists.");
 
