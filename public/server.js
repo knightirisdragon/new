@@ -3901,7 +3901,7 @@ if  (!LimitedRolesCooldown.has("cooldown"))  {
     await peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(SupporterRole)).forEach(m => {
       
         if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= MonthMs))  {
-            m.removeRole(ProfileBoosterRole).catch(error => ErrorBag.add(error));
+            m.removeRole(SupporterRole).catch(error => ErrorBag.add(error));
           
             const embed = {"description": InfoIcon + " Your **Supporter** status has just expired.",  "color": EmbedColor}; 
             m.send({ embed }).catch(error => ErrorBag.add(error));
