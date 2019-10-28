@@ -1222,83 +1222,6 @@ function UpdateLeaderboardTypes(type)  {
     
 };
 
-//Remove Formatting
-function function_RemoveFormatting(text, type, sliced)  {
-    
-    if  (type == "sm")  {
-
-        var FixedText = function_ProperSlice(text.replace(/[`]/g, '').replace(/\n/g, ' '), 100);
-
-        if  (FixedText !== "")  {
-            return FixedText;
-        } else {
-            return BadFormat;
-        };
-
-    } else
-  
-    if  (type == "channel")  {
-
-        var FixedText = text.toLowerCase().replace(/[~*|`]/g, '').replace(/[ ]/g, '_').replace(/\n/g, '');
-
-        if  (sliced == true)  {
-            FixedText.slice(0, 100);
-        };
-
-        if  (FixedText !== "")  {
-            return FixedText;
-        } else {
-            return BadFormat;
-        };
-      
-    } else
-      
-    if  (type == "role")  {
-
-        var FixedText = text.replace(/[~*|`]/g, '').replace(/\n/g, '');
-
-        if  (sliced == true)  {
-            FixedText.slice(0, 32);
-        };
-
-        if  (FixedText !== "")  {
-            return FixedText;
-        } else {
-            return BadFormat;
-        };
-      
-    } else
-      
-    if  (type == "other")  {
-
-        var FixedText = text.replace(/[~*|`_]/g, '').replace(/\n/g, '');
-
-        if  (sliced == true)  {
-            FixedText = function_ProperSlice(FixedText, 100);
-        };
-
-        if  (FixedText !== "")  {
-            return FixedText;
-        } else {
-            return BadFormat;
-        };
-      
-    } else
-      
-    if  (type == "strict")  {
-
-        var FixedText = text.replace(/[ ~*|`_]/g, '').replace(/\n/g, '');
-
-        if  (FixedText !== "")  {
-            return FixedText;
-        } else {
-            return BadFormat;
-        };
-      
-    };
-
-};
-
 //Create Server Data
 function function_ServerData(key)  {
   
@@ -1402,9 +1325,86 @@ function function_ChannelData(key)  {
   
 };
 
+//Remove Formatting
+function function_RemoveFormatting(text, type, sliced)  {
+    
+    if  (type == "sm")  {
+
+        var FixedText = function_ProperSlice(text.replace(/[`]/g, '').replace(/\n/g, ' '), 100);
+
+        if  (FixedText !== "")  {
+            return FixedText;
+        } else {
+            return BadFormat;
+        };
+
+    } else
+  
+    if  (type == "channel")  {
+
+        var FixedText = text.toLowerCase().replace(/[~*|`]/g, '').replace(/[ ]/g, '_').replace(/\n/g, '');
+
+        if  (sliced == true)  {
+            FixedText.slice(0, 100);
+        };
+
+        if  (FixedText !== "")  {
+            return FixedText;
+        } else {
+            return BadFormat;
+        };
+      
+    } else
+      
+    if  (type == "role")  {
+
+        var FixedText = text.replace(/[~*|`]/g, '').replace(/\n/g, '');
+
+        if  (sliced == true)  {
+            FixedText.slice(0, 32);
+        };
+
+        if  (FixedText !== "")  {
+            return FixedText;
+        } else {
+            return BadFormat;
+        };
+      
+    } else
+      
+    if  (type == "other")  {
+
+        var FixedText = text.replace(/[~*|`_]/g, '').replace(/\n/g, '');
+
+        if  (sliced == true)  {
+            FixedText = function_ProperSlice(FixedText, 100);
+        };
+
+        if  (FixedText !== "")  {
+            return FixedText;
+        } else {
+            return BadFormat;
+        };
+      
+    } else
+      
+    if  (type == "strict")  {
+
+        var FixedText = text.replace(/[ ~*|`_]/g, '').replace(/\n/g, '');
+
+        if  (FixedText !== "")  {
+            return FixedText;
+        } else {
+            return BadFormat;
+        };
+      
+    };
+
+};
+
 //Remove HTML Tags
 function function_RemoveTags(text)  {
-      return text.replace(/(<([^>]+)>)/ig, "");
+      return text.replace(/(<([^>]+)>)/ig, "").replace(/[<>]/g, "");
 };
 
 //Fix Capitalization
