@@ -2535,7 +2535,7 @@ peeky.on("guildCreate", async (guild) =>  {
 
 const keySF = `${guild.id}`;
   
-const embed = {"description": SuccessIcon + " I have joined **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
+const embed = {"description": SuccessIcon + " I have joined **" + function_RemoveFormatting(guild.name, "other", true) + "** with " + guild.members.filter(m => m.user.bot).size + " bots.",  "color": EmbedColor}; 
 peeky.channels.get(ServerLogChannel).send({ embed });
   
 if  (peeky.guilds.size > MaxServers || BannedUsers.includes(guild.owner.user.id))  {
