@@ -2322,20 +2322,20 @@ if  (!WebsiteCooldowns.has("supporters"))  {
     setTimeout(() => {WebsiteCooldowns.delete("supporters")}, 600000);
 
     var SupporterList = [];
-    peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(SupporterRole)).forEach(function(guildMember, guildMemberId) {
-    if  (peeky.userData.has(guildMemberId))  {
+    peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(SupporterRole)).forEach(m => {
+    if  (peeky.userData.has(m.user.id))  {
 
         /*
         var TheBannerShown = DefaultBackground;
-        TheBannerShown = function_GetBackground(guildMemberId);
+        TheBannerShown = function_GetBackground(m.user.id);
         */
       
         var SupporterDate = new Date();
-        if  (peeky.userData.has(guildMemberId, "SupporterSince"))  {
-            var SupporterDate = peeky.userData.get(guildMemberId, "SupporterSince");
+        if  (peeky.userData.has(m.user.id, "SupporterSince"))  {
+            var SupporterDate = peeky.userData.get(m.user.id, "SupporterSince");
         };
 
-        SupporterList.push("<div class='displayitem' style='background-image: url(" + guildMember.user.displayAvatarURL + ")'>  <b class='displayname' value='" + guildMember.user.id + "'>" + function_RemoveTags(guildMember.user.username) + "  <br>  <font size='1' color='grey'>  Supporter for " + function_TimeLeft(peeky.userData.get(guildMember.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
+        SupporterList.push("<div class='displayitem' style='background-image: url(" + m.user.displayAvatarURL + ")'>  <b class='displayname' value='" + m.user.id + "'>" + function_RemoveTags(m.user.username) + "  <br>  <font size='1' color='grey'>  Supporter for " + function_TimeLeft(peeky.userData.get(m.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
       
     };
     });
@@ -2428,8 +2428,8 @@ if  (!WebsiteCooldowns.has("staff"))  {
     var DevList    = [];
     var ModList    = [];
 
-    peeky.guilds.get(SupportServer).members.forEach(function(guildMember, guildMemberId) {
-    if  (guildMember.roles.has(StaffRole))  {
+    peeky.guilds.get(SupportServer).members.forEach(m => {
+    if  (m.roles.has(StaffRole))  {
       
         var StaffTag = [];
         var StaffButton = [];
@@ -2439,40 +2439,34 @@ if  (!WebsiteCooldowns.has("staff"))  {
         var InstagramBody = '<img src=' + InstagramIcon + ' class="staffbutton"> <b class="contacttext">Instagram</b>';
 
         //Vojtěch
-        if  (guildMemberId == OwnerId)  {
+        if  (m.user.id == OwnerId)  {
             StaffButton.push('<a href="https://twitter.com/vojtech_jilovec" target="_blank">  ' + TwitterBody + '  </a>');
             StaffButton.push('<a href="https://www.reddit.com/user/vojtasonic" target="_blank">  ' + RedditBody + '  </a>');
         } else
 
         //Nick
-        if  (guildMemberId == "298551254978789378")  {
+        if  (m.user.id == "298551254978789378")  {
             StaffButton.push('<a href="https://twitter.com/MRArmy4" target="_blank">  ' + TwitterBody + '  </a>');
             StaffButton.push('<a href="https://www.reddit.com/user/MrArmy_" target="_blank">  ' + RedditBody + '  </a>');
         } else
 
         //Ber
-        if  (guildMemberId == "266579411162103808")  {
+        if  (m.user.id == "266579411162103808")  {
             StaffButton.push('<a href="https://twitter.com/Bersekr21" target="_blank">  ' + TwitterBody + '  </a>');
         } else
       
         //Sabi
-        if  (guildMemberId == "180090347421040640")  {
+        if  (m.user.id == "180090347421040640")  {
             StaffButton.push('<a href="https://www.reddit.com/user/Sabinyan" target="_blank">  ' + RedditBody + '  </a>');
         } else
       
-        //Annika
-        if  (guildMemberId == "351314991028371457")  {
-            StaffButton.push('<a href="https://twitter.com/vraagtekenss" target="_blank">  ' + TwitterBody + '  </a>');
-            StaffButton.push('<a href="https://www.instagram.com/vraagtekenss/" target="_blank">  ' + InstagramBody + '  </a>');
-        };
+        var CurrentContact = '<div class="staffwindow" id="' + m.user.id + '_window" style="background-image: url(' + function_GetBackground(m.user.id) + '); background-size: cover;  background-repeat: no-repeat;">  <a class="close" onclick="MoreInfo(`none`)">Close</a>  <img class="stafficon_w" src="' + m.user.avatarURL +'">  <b class="staffname_w">' + function_RemoveTags(m.user.username) + '<font color="#7289DA">#' + m.user.discriminator + '</font> </b>  <b class="staffdesc_w">' + function_RemoveTags(peeky.userData.get(m.user.id).Description) + '</b>  <div class="staffcontacts">' + StaffButton.join("<br>") + '</div>  </div>' + '<div class="container">  <img src=' + '"' + m.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  <br>  <a style="font-size: 10px;" id="' + m.user.id + '" onclick="MoreInfo(this.id)">Staff Profile</a>  </b>  </div>';  
       
-        var CurrentContact = '<div class="staffwindow" id="' + guildMemberId + '_window" style="background-image: url(' + function_GetBackground(guildMemberId) + '); background-size: cover;  background-repeat: no-repeat;">  <a class="close" onclick="MoreInfo(`none`)">Close</a>  <img class="stafficon_w" src="' + guildMember.user.avatarURL +'">  <b class="staffname_w">' + function_RemoveTags(guildMember.user.username) + '<font color="#7289DA">#' + guildMember.user.discriminator + '</font> </b>  <b class="staffdesc_w">' + function_RemoveTags(peeky.userData.get(guildMemberId).Description) + '</b>  <div class="staffcontacts">' + StaffButton.join("<br>") + '</div>  </div>' + '<div class="container">  <img src=' + '"' + guildMember.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="3"> ' + function_RemoveTags(guildMember.displayName) + '  </font>  <br>  <a style="font-size: 10px;" id="' + guildMemberId + '" onclick="MoreInfo(this.id)">Staff Profile</a>  </b>  </div>';  
-      
-        if  (guildMember.roles.has("574255080069398543"))  {
+        if  (m.roles.has("574255080069398543"))  {
             DevList.push(CurrentContact);
         };
     
-        if  (guildMember.roles.has("574255771840282625"))  {
+        if  (m.roles.has("574255771840282625"))  {
             ModList.push(CurrentContact);
         };
 
@@ -4335,12 +4329,14 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 
             DonorWallCooldown.add(message.guild.id);
             setTimeout(() => {DonorWallCooldown.delete(message.guild.id)}, 300000);
+          
+            await message.guild.fetchMembers();
 
-            peeky.guilds.get(message.guild.id).members.forEach(function(guildMember, guildMemberId) {
-            if  (guildMember.roles.has(Role.id))  {
-            if  (guildMember.user.bot)                                {  Tag = BotTag;  };
-            if  (guildMember.user.id == message.guild.owner.user.id)  {  Tag = OwnerTag;  };
-                WallList.push(function_RemoveFormatting(guildMember.displayName, "other", true) +  "#" + guildMember.user.discriminator + " " + Tag);
+            message.guild.members.forEach(m => {
+            if  (m.roles.has(Role.id))  {
+            if  (m.user.bot)                                {  Tag = BotTag;  };
+            if  (m.user.id == message.guild.owner.user.id)  {  Tag = OwnerTag;  };
+                WallList.push(function_RemoveFormatting(m.displayName, "other", true) +  "#" + m.user.discriminator + " " + Tag);
                 Tag = "";
             };
             });
