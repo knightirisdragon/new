@@ -1744,6 +1744,7 @@ peeky.on('ready', () => {
     //Update Banned Users
     setTimeout(() => {
         function_UpdateBans();
+        peeky.guilds.get(SupportServer).fetchMembers();
     }, 10000);
 
     setInterval(() => {
