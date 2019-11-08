@@ -41,7 +41,7 @@ img  {border-radius: 10px; cursor: pointer;}
     border-left: #7289DA 2px solid;
     border-radius: 0px;
     padding: 10px;
-  
+    position: relative;
     display: inline-block;
     text-decoration: none;
     transition: transform .25s ease;
