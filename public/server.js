@@ -2915,7 +2915,7 @@ if  (keySF == SupportServer)  {
   
     if  (new Date() - new Date(member.joinedAt) > 10000)  {
 
-        //Nitro Boost
+        //Server Boost
         if  (peeky.userData.has(key))  {
 
             var HadRole = oldMember.roles.find(r => r.id == BoosterRole);
@@ -2925,7 +2925,7 @@ if  (keySF == SupportServer)  {
 
                 PurchaseComplete = true;
 
-                var PurchaseHeader = "**You have Nitro Boosted the [Support Server](https://peeky.glitch.me/server.html)!**";
+                var PurchaseHeader = "**You have Server Boosted the [Support Server](https://peeky.glitch.me/server.html)!**";
 
             };
 
