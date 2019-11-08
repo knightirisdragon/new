@@ -2459,7 +2459,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
           //Sabi
           if  (m.user.id == "180090347421040640")  {
               StaffButton.push('<a href="https://www.reddit.com/user/Sabinyan" target="_blank">  ' + RedditBody + '  </a>');
-          } else
+          };
 
           var CurrentContact = '<div class="staffwindow" id="' + m.user.id + '_window" style="background-image: url(' + function_GetBackground(m.user.id) + '); background-size: cover;  background-repeat: no-repeat;">  <a class="close" onclick="MoreInfo(`none`)">Close</a>  <img class="stafficon_w" src="' + m.user.displayAvatarURL +'">  <b class="staffname_w">' + function_RemoveTags(m.user.username) + '<font color="#7289DA">#' + m.user.discriminator + '</font> </b>  <b class="staffdesc_w">' + function_RemoveTags(peeky.userData.get(m.user.id).Description) + '</b>  <div class="staffcontacts">' + StaffButton.join("<br>") + '</div>  </div>' + '<div class="container">  <img src=' + '"' + m.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  <br>  <a style="font-size: 10px;" id="' + m.user.id + '" onclick="MoreInfo(this.id)">Staff Profile</a>  </b>  </div>';  
 
@@ -2474,8 +2474,6 @@ if  (!WebsiteCooldowns.has("staff"))  {
       };
       
     });
-  
-    console.log(DevList)
 
     await fs.writeFile('public/staff.txt', '<font size="5" class="item_header">Developers of PEEKY</font>  <br>  <div class="inlinediv">  ' + DevList.join(" ") + '  </div>  <font size="5" class="item_header">Moderators of the Support Server</font>  <br>  <div class="inlinediv">  ' + ModList.join(" ") + '  </div>', (err) => {
         if (err) console.log(err);
@@ -3940,8 +3938,9 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
 
                 var Amount = 100 + (10 * Math.floor((Math.random() * 90)));
 
+                console.log(guild.name)
 
-              var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
+                var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
                 channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
 
                     m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 60000, errors: ['time'] })
