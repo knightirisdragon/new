@@ -2334,7 +2334,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
             var SupporterDate = peeky.userData.get(guildMemberId, "SupporterSince");
         };
 
-        SupporterList.push("<div class='displayitem' style='background-image: url(" + guildMember.user.displayAvatarURL + ")'>  <b class='displayname' value='" + guildMember.user.id + "'>" + function_RemoveTags(guildMember.user.username) + "  <br>  <font size='1' color='grey'>  Supporter since " + function_DateFormat(SupporterDate) + ".  </font>  </b>  </div>");
+        SupporterList.push("<div class='displayitem' style='background-image: url(" + guildMember.user.displayAvatarURL + ")'>  <b class='displayname' value='" + guildMember.user.id + "'>" + function_RemoveTags(guildMember.user.username) + "  <br>  <font size='1' color='grey'>  Supporter for " + function_TimeLeft(peeky.userData.get(guildMember.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
       
     };
     });
