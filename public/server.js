@@ -6292,7 +6292,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
               TotalAmount += PeekyCoinsSupporter;
           };
 
-          //Nitro Booster
+          //Server Booster
           if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
               TotalAmount += PeekyCoinsSupporter;
           };
@@ -6341,7 +6341,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
                   BackgroundNumber = BackgroundNumber - 1;
               };
             
-              //Nitro Booster
+              //Server Booster
               if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
                   BackgroundNumber = BackgroundNumber - 1;
               };
@@ -6460,10 +6460,10 @@ if (CommandName == "daily")  {
         InfoMessages.push(InfoIcon + " Added a bonus reward for being a Supporter.");   
     };
 
-    //Nitro Booster Reward
+    //Server Booster Reward
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
         peeky.userData.math(key, "+", 1, "Chests");
-        InfoMessages.push(InfoIcon + " Added a bonus reward for being a Nitro Booster.");   
+        InfoMessages.push(InfoIcon + " Added a bonus reward for being a Server Booster.");   
     };
 
     if  (CountedVotes == 0)  {
