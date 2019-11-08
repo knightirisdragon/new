@@ -69,7 +69,7 @@ const LessDark              = "#3f3f3f";
 const Light                 = "#424549";
 const Blurple               = "#7289DA";
 var   EmbedColor            = 3093047  //3553599;
-const MinReviewLength       = 200;
+const MinReviewLength       = 100;
 const BackgroundInvLimit    = 25;
 const RedditLimit           = 25;
 const BannedWordsLimit      = 10;
@@ -2504,7 +2504,7 @@ if  (!WebsiteCooldowns.has("randomreview"))  {
     var ReviewDate     = new Date(FilteredReviews[RandomReview].date);
     var ReviewFullDate = function_DateFormat(ReviewDate);
       
-    await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + " Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast " + MinReviewLength + " characters long to show up.</font></center>", (err) => {
+    await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + "/5 Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast " + MinReviewLength + " characters long to show up.</font></center>", (err) => {
         if (err) console.log(err); 
     });
       
@@ -3938,30 +3938,32 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
 
                 var Amount = 100 + (10 * Math.floor((Math.random() * 90)));
 
-                console.log(guild.name)
-
                 var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
                 channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
+                  
+                    if  (m !== undefined)  {
 
-                    m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 60000, errors: ['time'] })
-                    .then(collected => {
+                        m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 60000, errors: ['time'] })
+                        .then(collected => {
 
-                          var user = collected.first().author;
+                              var user = collected.first().author;
 
-                          if  (peeky.userData.has(user.id))  {
+                              if  (peeky.userData.has(user.id))  {
 
-                              var embed = {"description": SuccessIcon + " **" + user.username + "** has claimed the treasure!", "color": EmbedColor}; 
+                                  var embed = {"description": SuccessIcon + " **" + user.username + "** has claimed the treasure!", "color": EmbedColor}; 
+                                  m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+
+                                  peeky.userData.math(user.id, "+", Amount, "Gredit");
+
+                              };
+
+                        })
+                        .catch(collected => {
+                              var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
                               m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
-
-                              peeky.userData.math(user.id, "+", Amount, "Gredit");
-
-                          };
-
-                    })
-                    .catch(collected => {
-                          var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
-                          m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
-                    });
+                        });                      
+                      
+                    };
 
                 });
 
