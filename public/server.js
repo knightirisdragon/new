@@ -1841,6 +1841,7 @@ peeky.on('message', async (message) => {
         Chests: 0,
         Badges: 0,
         UpgradedServers: 0,
+        SupporterTrial: false,
         SupporterSince: 0,
         SupporterLastPurchase: 0,
         BoosterStart: 0,
@@ -6400,6 +6401,20 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
     {
       const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+  
+};
+  
+//SeeBackground
+if (CommandName.startsWith("supportertrial"))  {
+
+    if  (peeky.userData.get(key).Level >= 5)  {
+      
+        if  (peeky.userData.get(key).SupporterTrial == false)  {
+          
+          
+        };
+      
     };
   
 };
