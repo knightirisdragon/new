@@ -71,6 +71,7 @@ const Blurple               = "#7289DA";
 var   EmbedColor            = 3093047  //3553599;
 const MinReviewLength       = 100;
 const BackgroundInvLimit    = 25;
+const DonorWallLimit        = 25;
 const RedditLimit           = 25;
 const BannedWordsLimit      = 10;
 const PlaylistLimit         = 10;
@@ -3942,7 +3943,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
                 var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
                 channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
                   
-                    if  (m !== undefined)  {
+                    if  (m.channel !== undefined)  {
 
                         m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 60000, errors: ['time'] })
                         .then(collected => {
@@ -4349,7 +4350,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
                   if  (m.roles.find(r => r.name == "Booster"))  {  Tags.push(BoostTag);  };
                   if  (m.user.bot)  {  Tags.push(BotTag);  };
                 
-                  WallList.push(function_RemoveFormatting(m.displayName, "other", true) +  " `­` " + Tags.join(" "));
+                  WallList.push("> " + function_RemoveFormatting(m.displayName, "other", true) +  " " + Tags.join(" "));
                 
               };
               
@@ -4357,7 +4358,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 
             const WallAmount = WallList.length;
 
-            if  (WallAmount >= 50)  {  EndString = " and some more..."  };
+            if  (WallAmount >= DonorWallLimit)  {  EndString = "\n and some more..."  };
             if  (WallAmount == 0)  {  WallList = ["No one."]  };
 
             Channel.fetchMessages({ limit: 1 }).then(messages => {
@@ -4366,7 +4367,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 
                 if  (Message.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
 
-                    var FinalText = "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.slice(0, 50).join("\n") + "" + EndString;
+                    var FinalText = "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n" + WallList.slice(0, DonorWallLimit).join("\n") + "" + EndString;
 
                     if  (Message.content !== FinalText)  {
                         Message.edit(FinalText).catch(error => ErrorBag.add(error));
