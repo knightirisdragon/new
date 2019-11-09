@@ -63,6 +63,7 @@ const MaxServers            = 1000;
 const CustomBackgroundPrice = 1000;
 const SellMultiplier        = 2.5;
 const ExpNeeded             = 125;
+const TrialLevel            = 5;
 const DefaultFont           = "Verdana";
 const Dark                  = "#36393E";
 const LessDark              = "#3f3f3f";
@@ -279,6 +280,7 @@ const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your play
 const ErrorMessage16 = [ErrorIcon + " That background doesn't exist."]
 const ErrorMessage17 = [ErrorIcon + " You need to specify the function."];
 const ErrorMessage18 = [ErrorIcon + " Please provide arguments for the command."];
+const ErrorMessage19 = [ErrorIcon + " You need to join the Support Server."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -2005,7 +2007,17 @@ peeky.on('message', async (message) => {
         peeky.userData.math(key, "+", 1, "Chests");
     
     if  (peeky.serverData.get(keySF, "level_notifications") == true)  {
-        
+      
+        //Supporter Trial
+        if  (peeky.userData.get(key, "Level") == TrialLevel)  {
+          
+            const embed = {"description": InfoIcon + " You can now ",  "color": EmbedColor};
+          
+            function_DirectMessage(key, {  embed  });
+          
+        };
+      
+        //Level Up Message
         const canvas = Canvas.createCanvas(500, 95);
         const ctx = canvas.getContext('2d');
         var   Failed = false;
@@ -2026,44 +2038,44 @@ peeky.on('message', async (message) => {
 
         if  (Failed == false)  {
 
-        ctx.drawImage(background, 0, 0, canvas.width, 300);  
+            ctx.drawImage(background, 0, 0, canvas.width, 300);  
 
-        const layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Flevel_up_layout_2.png?v=1561018982613");
-        ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
+            const layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Flevel_up_layout_2.png?v=1561018982613");
+            ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
-        //Setting
-        ctx.shadowColor = "black";
-        ctx.shadowOffsetX = 1; 
-        ctx.shadowOffsetY = 1;
-        ctx.globalAlpha = 1;
-        ctx.textAlign = "left";
+            //Setting
+            ctx.shadowColor = "black";
+            ctx.shadowOffsetX = 1; 
+            ctx.shadowOffsetY = 1;
+            ctx.globalAlpha = 1;
+            ctx.textAlign = "left";
 
-        //Draw Events
+            //Draw Events
 
-        //Name String
-        ctx.font = "25px " + DefaultFont;
-        ctx.fillStyle = "white";
-        ctx.fillText(ProfileName, 125, 40, canvas.width - 125);
+            //Name String
+            ctx.font = "25px " + DefaultFont;
+            ctx.fillStyle = "white";
+            ctx.fillText(ProfileName, 125, 40, canvas.width - 125);
 
-        //Level Up String
-        ctx.font = "18px " + DefaultFont;
-        ctx.fillStyle = "lightgreen";
-        ctx.fillText("Has reached Level " + peeky.userData.get(key, "Level") + "!", 125, 75);
+            //Level Up String
+            ctx.font = "18px " + DefaultFont;
+            ctx.fillStyle = "lightgreen";
+            ctx.fillText("Has reached Level " + peeky.userData.get(key, "Level") + "!", 125, 75);
 
-        //Avatar
-        ctx.shadowOffsetX = 0; 
-        ctx.shadowOffsetY = 0;
-        const avatar = await Canvas.loadImage(message.author.displayAvatarURL.replace("https", "http"));
-        ctx.drawImage(avatar, 7, 7, 82, 82);
+            //Avatar
+            ctx.shadowOffsetX = 0; 
+            ctx.shadowOffsetY = 0;
+            const avatar = await Canvas.loadImage(message.author.displayAvatarURL.replace("https", "http"));
+            ctx.drawImage(avatar, 7, 7, 82, 82);
 
-        const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+            const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
-        message.channel.send("", attachment).catch(error => ErrorBag.add(error));
+            message.channel.send("", attachment).catch(error => ErrorBag.add(error));
 
-        message.channel.stopTyping();
+            message.channel.stopTyping();
 
-        console.log("The Notifications function has been triggered in " + message.guild.name + ".");
-        function_UpdateAutowipe(keySF, "server");
+            console.log("The Notifications function has been triggered in " + message.guild.name + ".");
+            function_UpdateAutowipe(keySF, "server");
 
         };
 
@@ -6405,16 +6417,40 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
   
 };
   
-//SeeBackground
+//SupporterTrial
 if (CommandName.startsWith("supportertrial"))  {
 
-    if  (peeky.userData.get(key).Level >= 5)  {
+    if  (peeky.userData.get(key).Level >= TrialLevel)  {
       
         if  (peeky.userData.get(key).SupporterTrial == false)  {
           
+            if  (peeky.guilds.get(SupportServer).members.has(key))  {
+              
+                peeky.userData.get(key).SupporterTrial = true;
+                peeky.guilds.get(SupportServer).members.get(key).addRole(SupporterRole).catch(error => ErrorBag.add(error));   
+              
+                const embed = {"description": SuccessIcon + " You have activated the **Supporter Trial** for **30 days**.",  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));             
+              
+            }
+             else
+            {
+              const embed = {"description": ErrorMessage19[0],  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
           
+        }
+         else
+        {
+          const embed = {"description": ErrorIcon + " You have already activated your trial in the past.",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
+    }
+     else
+    {
+      const embed = {"description": ErrorIcon + " You need to reach **Level " + TrialLevel + "** to activate your trial.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
 };
