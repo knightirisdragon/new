@@ -4325,9 +4325,9 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 
     const Role    = peeky.guilds.get(message.guild.id).roles.find(r => r.name == peeky.serverData.get(keySF, "donor_wall_bonus_setting"));
     const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
-    var WallList = [];
+    var WallList  = [];
+    var Tags      = null];
     var EndString = "";
-    var Tag       = "";
 
     if  (Role && Channel)  {
 
@@ -4339,12 +4339,15 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
             await message.guild.fetchMembers();
 
             message.guild.members.forEach(m => {
-            if  (m.roles.has(Role.id))  {
-            if  (m.user.bot)                                {  Tag = BotTag;  };
-            if  (m.user.id == message.guild.owner.user.id)  {  Tag = OwnerTag;  };
-                WallList.push(function_RemoveFormatting(m.displayName, "other", true) +  "#" + m.user.discriminator + " " + Tag);
-                Tag = "";
-            };
+              
+              Tags = [];
+              
+              if  (m.roles.has(Role.id))  {
+              if  (m.user.bot)  {  Tag = BotTag;  };
+              if  (m.user.id == message.guild.owner.user.id)  {  Tag = OwnerTag;  };
+                  WallList.push(function_RemoveFormatting(m.displayName, "other", true) +  "#" + m.user.discriminator + " " + Tag);
+              };
+              
             });
 
             const SupportersAmount = WallList.length;
