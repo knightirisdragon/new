@@ -7787,12 +7787,12 @@ if (CommandName == "drawandguess")  {
                       
                     };
 
-                    const embed = {"description": InfoIcon + " Here's a hint: " + Hint,  "color": EmbedColor}; 
+                    const embed = {"description": InfoIcon + " Time's running low, so here's a hint: " + Hint,  "color": EmbedColor}; 
                     message.channel.send({ embed });
                   
                 };
             
-            }, 25000);
+            }, 20000);
           
             message.channel.awaitMessages(response => response.author.id !== message.author.id && response.content.toLowerCase() == DrawAndGuess[ChosenQuestion].toLowerCase(), { maxMatches: 1, time: 30000, errors: ['time'] })
             .then(collected => {
