@@ -2116,12 +2116,13 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
     const rightNow = Date.now();
   
     //Guilds
-    var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen && p.server_Upgraded !== true && !ImmuneServers.includes(p.GuildID) );
+    var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen && p.server_Upgraded !== true && !ImmuneServers.includes(p.GuildID));
     var toRemoveGuilds = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
 
     toRemoveGuilds.forEach(async data => {
       
         peeky.serverData.delete(data.GuildID);
+      
       
         var Guild = peeky.guilds.get(data.GuildID);
         if  (Guild !== undefined)  {
