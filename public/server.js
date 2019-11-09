@@ -2100,12 +2100,16 @@ if  (!WebsiteCooldowns.has("api"))  {
       "botName": peeky.user.username,
       "botDesc": "Hello, my name is PEEKY and I am here to make your Discord servers absolutely perfect!",
       "botAvatar": peeky.user.avatarURL,
+      "botId": peeky.user.id,
+      "ownerId": OwnerId,
+      "ageCount": function_TimeLeft(peeky.user.createdAt, "days", null),
+      
       "defaultPrefix": Prefix,
-
       "serverLimit": MaxServers,
       "serverCount": peeky.guilds.size,
+      "upgradedServers": peeky.serverData.filter(i => i.server_upgraded == true).size,
       "profileCount": peeky.userData.count,
-      "ageCount": function_TimeLeft(peeky.user.createdAt, "days", null),
+      "supporterCount": peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(SupporterRole)).size,
       "backgroundsCount": Banners.length,
 
       "eventName": EventName,
