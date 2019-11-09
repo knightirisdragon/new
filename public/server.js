@@ -2102,9 +2102,9 @@ if  (!WebsiteCooldowns.has("api"))  {
       "botAvatar": peeky.user.avatarURL,
       "botId": peeky.user.id,
       "ownerId": OwnerId,
-      "ageCount": function_TimeLeft(peeky.user.createdAt, "days", null),
       
       "defaultPrefix": Prefix,
+      "ageCount": function_TimeLeft(peeky.user.createdAt, "days", null),
       "serverLimit": MaxServers,
       "serverCount": peeky.guilds.size,
       "upgradedServers": peeky.serverData.filter(i => i.server_upgraded == true).size,

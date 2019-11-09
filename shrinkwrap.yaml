@@ -6,7 +6,7 @@ dependencies:
   ddblapi.js: 1.0.0
   discord.js: 11.5.1
   dominant-color: 0.0.1
-  enmap: 5.2.1
+  enmap: 5.2.2
   express: 4.17.1
   https: 1.0.0
   node-fetch: 2.6.0
@@ -377,14 +377,14 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-rT/0yG7C0CkyL1oCw6mmBslbP1k=
-  /enmap/5.2.1:
+  /enmap/5.2.2:
     dependencies:
       lodash: 4.17.15
     dev: false
     peerDependencies:
       better-sqlite3: ^5.4.1
     resolution:
-      integrity: sha512-xLPp1+iomDeZHVaGExNAQGllOzN2q822OEa1/uqMSlKtTEacyqTW0aCbkbqweVKTC4Fm+6E745KqJcTP9OnVpg==
+      integrity: sha512-rmoHdRakhF5pYtygd2lfoeugdtQLU5TCiPyUSUFRbRXzz6MULMYWUzqyARRNsirdwagHSj/QS3p91DfSWXlL/g==
   /escape-html/1.0.3:
     dev: false
     resolution:
@@ -1492,7 +1492,7 @@ specifiers:
   ddblapi.js: ^1.0.0
   discord.js: ^11.5.1
   dominant-color: ^0.0.1
-  enmap: ^5.2.0
+  enmap: ^5.2.1
   express: ^4.16.4
   https: ^1.0.0
   node-fetch: ^2.6.0
