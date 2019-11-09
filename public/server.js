@@ -63,7 +63,7 @@ const MaxServers            = 1000;
 const CustomBackgroundPrice = 1000;
 const SellMultiplier        = 2.5;
 const ExpNeeded             = 125;
-const TrialLevel            = 5;
+const TrialLevel            = 10;
 const DefaultFont           = "Verdana";
 const Dark                  = "#36393E";
 const LessDark              = "#3f3f3f";
@@ -2011,8 +2011,7 @@ peeky.on('message', async (message) => {
         //Supporter Trial
         if  (peeky.userData.get(key, "Level") == TrialLevel)  {
           
-            const embed = {"description": InfoIcon + " You can now ",  "color": EmbedColor};
-          
+            const embed = {"description": InfoIcon + " You can now activate your **30 day** long **Supporter Trial**.",  "color": EmbedColor};
             function_DirectMessage(key, {  embed  });
           
         };
@@ -6422,11 +6421,11 @@ if (CommandName.startsWith("supportertrial"))  {
 
     if  (peeky.userData.get(key).Level >= TrialLevel)  {
       
-        if  (peeky.userData.get(key).SupporterTrial == false)  {
+        if  (peeky.userData.get(key, "SupporterTrial") == false)  {
           
             if  (peeky.guilds.get(SupportServer).members.has(key))  {
               
-                peeky.userData.get(key).SupporterTrial = true;
+                peeky.userData.set(key, true, "SupporterTrial");
                 peeky.guilds.get(SupportServer).members.get(key).addRole(SupporterRole).catch(error => ErrorBag.add(error));   
               
                 const embed = {"description": SuccessIcon + " You have activated the **Supporter Trial** for **30 days**.",  "color": EmbedColor}; 
