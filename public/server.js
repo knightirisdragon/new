@@ -4326,7 +4326,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
     const Role    = peeky.guilds.get(message.guild.id).roles.find(r => r.name == peeky.serverData.get(keySF, "donor_wall_bonus_setting"));
     const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
     var WallList  = [];
-    var Tags      = null];
+    var Tags      = [];
     var EndString = "";
 
     if  (Role && Channel)  {
@@ -4343,34 +4343,37 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
               Tags = [];
               
               if  (m.roles.has(Role.id))  {
-              if  (m.user.bot)  {  Tag = BotTag;  };
-              if  (m.user.id == message.guild.owner.user.id)  {  Tag = OwnerTag;  };
-                  WallList.push(function_RemoveFormatting(m.displayName, "other", true) +  "#" + m.user.discriminator + " " + Tag);
+                
+                  if  (m.user.id == message.guild.owner.user.id)  {  Tags.push(OwnerTag);  };
+                  if  (m.user.bot)  {  Tags.push(BotTag);  };
+                
+                  WallList.push(function_RemoveFormatting(m.user.username, "other", true) +  "#" + m.user.discriminator + " " + Tags.join(" "));
+                
               };
               
-            });
+          });
 
-            const SupportersAmount = WallList.length;
+            const WallAmount = WallList.length;
 
-            if  (SupportersAmount >= 50)  {  EndString = " and " + (SupportersAmount - 50) + " more..."  };
-            if  (SupportersAmount == 0)  {  WallList = ["No one."]  };
+            if  (WallAmount >= 50)  {  EndString = " and some more..."  };
+            if  (WallAmount == 0)  {  WallList = ["No one."]  };
 
             Channel.fetchMessages({ limit: 1 }).then(messages => {
 
             var Message = messages.array()[0];
 
-            if  (Message.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
-              
-                var FinalText = "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString;
+                if  (Message.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
 
-                if  (Message.content !== FinalText)  {
-                    Message.edit(FinalText).catch(error => ErrorBag.add(error));
+                    var FinalText = "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString;
 
-                    console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
-                    function_UpdateAutowipe(keySF, "server");
+                    if  (Message.content !== FinalText)  {
+                        Message.edit(FinalText).catch(error => ErrorBag.add(error));
+
+                        console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
+                        function_UpdateAutowipe(keySF, "server");
+                    };
+
                 };
-
-            };
 
             }).catch(error => ErrorBag.add(error));
 
