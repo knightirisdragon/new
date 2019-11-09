@@ -574,7 +574,7 @@ th, td {
 }
 
 .topnav {
-    background-color: rgba(44, 47, 51, 0.75);
+    background-color: rgba(44, 47, 51, 1);
     border-top: rgba(35, 39, 42, 0.95) 2px solid;
     padding: 10px;
     position: fixed;
