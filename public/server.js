@@ -71,7 +71,7 @@ const Blurple               = "#7289DA";
 var   EmbedColor            = 3093047  //3553599;
 const MinReviewLength       = 100;
 const BackgroundInvLimit    = 25;
-const DonorWallLimit        = 25;
+const DonorWallLimit        = 50;
 const RedditLimit           = 25;
 const BannedWordsLimit      = 10;
 const PlaylistLimit         = 10;
@@ -4358,7 +4358,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 
             const WallAmount = WallList.length;
 
-            if  (WallAmount >= DonorWallLimit)  {  EndString = "\n and some more..."  };
+            if  (WallAmount > DonorWallLimit)  {  EndString = "\n and " + (WallAmount - DonorWallLimit) + " more..."  };
             if  (WallAmount == 0)  {  WallList = ["No one."]  };
 
             Channel.fetchMessages({ limit: 1 }).then(messages => {
