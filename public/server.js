@@ -200,21 +200,22 @@ const GoodEmote         = "<:good:605138883138551838>";
 const GopbotEmote       = "<:gopbot:624643543037771841>";
 
 //Other Emotes
-const ErrorIcon    = "<:peeky_error:529412267343872031>";
-const SuccessIcon  = "<:peeky_success:529415084804669487>";
-const InfoIcon     = "<:peeky_info:529412267746394133>";
-const Hollow       = "<:peeky_hollow:506921440067452928>";
-const WhiteSquare  = "<:peeky_white:529305474604990464>";
-const BotTag       = "<:bot:541014775468130336>";
-const OwnerTag     = "<:owner:543001955921035274>";
-const TreasureIcon = "<:treasure:623186257404755969>";
-const GreditIcon   = "<:gredit:558673809343774720>";
-const ChestIcon    = "<:chest:561511603305185280>";
-const EnabledIcon  = "<:enabled:538295053940948993>";
-const DisabledIcon = "<:disabled:538295054431813662>";
-const SettingsIcon = "<:settings:586612320839532573>";
+const ErrorIcon       = "<:peeky_error:529412267343872031>";
+const SuccessIcon     = "<:peeky_success:529415084804669487>";
+const InfoIcon        = "<:peeky_info:529412267746394133>";
+const Hollow          = "<:peeky_hollow:506921440067452928>";
+const WhiteSquare     = "<:peeky_white:529305474604990464>";
+const TreasureIcon    = "<:treasure:623186257404755969>";
+const GreditIcon      = "<:gredit:558673809343774720>";
+const ChestIcon       = "<:chest:561511603305185280>";
+const EnabledIcon     = "<:enabled:538295053940948993>";
+const DisabledIcon    = "<:disabled:538295054431813662>";
+const SettingsIcon    = "<:settings:586612320839532573>";
 const RedditUpvote    = "<:RedditUpvote:620124949855600640>";
 const RedditDownvote  = "<:RedditDownvote:620122348745523200>";
+const OwnerTag        = "<:owner:543001955921035274>";
+const BoostTag        = "<:boost:642647004056518665>";
+const BotTag          = "<:bot:541014775468130336>";
 
 //Role IDs
 const StaffRole          = "494429609874685983";
@@ -4345,9 +4346,10 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
               if  (m.roles.has(Role.id))  {
                 
                   if  (m.user.id == message.guild.owner.user.id)  {  Tags.push(OwnerTag);  };
+                  if  (m.roles.find(r => r.name == "Booster"))  {  Tags.push(BoostTag);  };
                   if  (m.user.bot)  {  Tags.push(BotTag);  };
                 
-                  WallList.push(function_RemoveFormatting(m.user.username, "other", true) +  "#" + m.user.discriminator + " " + Tags.join(" "));
+                  WallList.push(function_RemoveFormatting(m.displayName, "other", true) +  " `­` " + Tags.join(" "));
                 
               };
               
@@ -4364,7 +4366,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 
                 if  (Message.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
 
-                    var FinalText = "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.join("\n") + "" + EndString;
+                    var FinalText = "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\n" + WallList.slice(0, 50).join("\n") + "" + EndString;
 
                     if  (Message.content !== FinalText)  {
                         Message.edit(FinalText).catch(error => ErrorBag.add(error));
