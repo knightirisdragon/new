@@ -2586,7 +2586,7 @@ if  (peeky.userData.has(key))  {
     if  (peeky.userData.has(key, "Bans"))  {
         peeky.userData.math(key, "+", 1, "Bans");
     }  else  {
-       peeky.userData.set(key, 0, "Bans");
+       peeky.userData.set(key, 1, "Bans");
     };
   
 };
@@ -2785,27 +2785,27 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
     
     if  (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES' && 'ATTACH_FILES'))  {
       
-    if  (BlacklistedWebsites.some(word => function_RemoveFormatting(member.user.username.toLowerCase(), "other", false).includes(word)))  {
-        Detected = true;
-    };
-
-    if  (Detected == true)  {
-      
-        await member.guild.ban(member.id, "Triggered by the Welcome Messages function.").catch(error => {
-              ErrorBag.add(error);
-              var Failed = true;
-        });
-
-        if  (Failed == true)  {
-            member.send("**You have been automatically banned for having a possible website advertisment in your username.**  \n  Contact the server owner " + member.guild.owner.user.tag + " to get your ban revoked.").catch(error => ErrorBag.add(error));
+        if  (BlacklistedWebsites.some(word => function_RemoveFormatting(member.user.username.toLowerCase(), "other", false).includes(word)))  {
+            Detected = true;
         };
 
-    };
+        if  (Detected == true)  {
 
-    await channel.send("", await function_WelcomeMessagesEmbed(member, "join", Detected)).catch(error => ErrorBag.add(error));
-    
-    console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
-    function_UpdateAutowipe(keySF, "server");
+            await member.guild.ban(member.id, "Triggered by the Welcome Messages function.").catch(error => {
+                  ErrorBag.add(error);
+                  var Failed = true;
+            });
+
+            if  (Failed == true)  {
+                member.send("**You have been automatically banned for having a possible website advertisment in your username.**  \n  Contact the server owner " + member.guild.owner.user.tag + " to get your ban revoked.").catch(error => ErrorBag.add(error));
+            };
+
+        };
+
+        await channel.send("", await function_WelcomeMessagesEmbed(member, "join", Detected)).catch(error => ErrorBag.add(error));
+
+        console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
+        function_UpdateAutowipe(keySF, "server");
       
     };
 
