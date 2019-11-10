@@ -1853,10 +1853,10 @@ peeky.on('message', async (message) => {
         SupporterLastPurchase: 0,
         BoosterStart: 0,
         DailyRewarded: 0,
-      
-        //Music
+
         Playlist: [],
         PlaylistName: "Favorite Songs",
+        PlaylistThumbnail: null,
       
         ContributorBadge: false,
         BugHunterBadge: false,
@@ -7550,6 +7550,8 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
         const embed = {"description": SuccessIcon + " Your playlist has renamed to **" + peeky.userData.get(key, "PlaylistName") + "**.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
+    } else
+    if  (CommandArgument.startsWith(" clear"))  {
     } else
     if  (CommandArgument.startsWith(" clear"))  {
 
