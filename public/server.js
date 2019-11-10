@@ -6054,7 +6054,7 @@ if (CommandName.startsWith("custombackground"))  {
         };
       
         peeky.userData.math(key, "-", CustomBackgroundPrice, "Gredit");
-        peeky.userData.set(key, message.attachments.array()[0].url.replace("https", "http"), "Background");
+        peeky.userData.set(key, message.attachments.array()[0].url, "Background");
 
         const embed = {"description": SuccessIcon + " You have bought a **Custom Background** for **" + CustomBackgroundPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7551,14 +7551,21 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     } else
-    if  (CommandArgument.startsWith(" clear"))  {
+    if  (CommandArgument.startsWith(" thumbnail"))  {
+
+        peeky.userData.set(key, message.attachments.array()[0].url, "PlaylistThumbnail");
+
+        const embed = {"description": SuccessIcon + " You have set the thumbnail for your playlist.",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      
     } else
     if  (CommandArgument.startsWith(" clear"))  {
 
-        const embed = {"description": SuccessIcon + " You have cleared **" + peeky.userData.get(key, "Playlist").length + " songs** from your playlist.",  "color": EmbedColor}; 
+        const embed = {"description": SuccessIcon + " You have cleared your playlist of **" + peeky.userData.get(key, "Playlist").length + " songs** and the **thumbnail**.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
         peeky.userData.set(key, [], "Playlist");
+        peeky.userData.set(key, null, "PlaylistThumbnail");
       
     } else  {
       
@@ -7574,10 +7581,12 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
           }  else  {
              var FinalizedPlaylist = "The playlist is empty.";
           };
+        
+          
 
           const embed = {
           "image": {
-            "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fplaylist_embed.png?v=1563967857471"
+            "url": 
           },
           "fields": [
           {
