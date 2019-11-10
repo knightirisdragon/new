@@ -7556,16 +7556,22 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
         if  (CommandArgument.startsWith(" thumbnail"))  {
           
             if  (message.attachments.size > 0)  {
-          
-                peeky.userData.set(key, message.attachments.array()[0].url, "PlaylistThumbnail")
-
-                const embed = {"description": SuccessIcon + " You have set the thumbnail for your playlist.",  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
               
-            } 
-            else {
-              const embed = {"description": ErrorIcon + " ",  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                
+                var background = await Canvas.loadImage(peeky.userData.get(key, "PlaylistThumbnail")).catch(error => {Failed = true; peeky.userData.set(key, null, "PlaylistThumbnail");});
+      
+                if  (Failed == false)  {
+          
+                    peeky.userData.set(key, message.attachments.array()[0].url, "PlaylistThumbnail")
+
+                    const embed = {"description": SuccessIcon + " You have set the thumbnail for your playlist.",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                  
+                } else {
+                    const embed = {"description": ErrorIcon + " The thumbnail format is invalid.",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
+              
             };
 
         } else
