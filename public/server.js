@@ -7456,154 +7456,169 @@ if (CommandName == "current")  {
 //Playlist
 if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
   
-    var CommandArgument = CommandName.split("playlist")[1];
+    if  (message.channel.permissionsFor(peeky.user).has('ATTACH_FILES'))  {
   
-    if  (CommandArgument.startsWith(" add "))  {
-      
-    if  (!MusicCmdCooldown.has(message.author.id))  {
-      
-        var PlaylistRequest = CommandArgument.replace(" add ", "");
-      
-        MusicCmdCooldown.add(message.author.id);
-        setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 30000);
-      
-    if  (PlaylistRequest == "current")  {
+        var CommandArgument = CommandName.split("playlist")[1];
 
-        if  (CurrentlyPlaying.has(message.guild.id) && peeky.serverData.get(keySF, "Link") !== "None")  {
-          
-            if  (peeky.userData.get(key, "Playlist").length < PlaylistLimit)  {
-          
-                peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
+        if  (CommandArgument.startsWith(" add "))  {
 
-                const embed = {"description": SuccessIcon + " Added the current song to your **" + peeky.userData.get(key, "PlaylistName") + "** playlist.",  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));    
-                
+        if  (!MusicCmdCooldown.has(message.author.id))  {
+
+            var PlaylistRequest = CommandArgument.replace(" add ", "");
+
+            MusicCmdCooldown.add(message.author.id);
+            setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 30000);
+
+        if  (PlaylistRequest == "current")  {
+
+            if  (CurrentlyPlaying.has(message.guild.id) && peeky.serverData.get(keySF, "Link") !== "None")  {
+
+                if  (peeky.userData.get(key, "Playlist").length < PlaylistLimit)  {
+
+                    peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
+
+                    const embed = {"description": SuccessIcon + " Added the current song to your **" + peeky.userData.get(key, "PlaylistName") + "** playlist.",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));    
+
+                } else {
+                  const embed = {"description": ErrorMessage15[0],  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };           
+
             } else {
-              const embed = {"description": ErrorMessage15[0],  "color": EmbedColor}; 
+              const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };           
-              
-        } else {
-          const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
-            
-    } else
-      
-    if  (!PlaylistRequest.includes("?list="))  {
-      
-        if  (ytdl.validateURL(PlaylistRequest) == true)  {
-          
-            if  (peeky.userData.get(key, "Playlist").length < PlaylistLimit)  {
-          
-                peeky.userData.get(key, "Playlist").push(PlaylistRequest);
+            };
 
-                const embed = {"description": SuccessIcon + " Added the song to your **" + peeky.userData.get(key, "PlaylistName") + "** playlist.",  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                
+        } else
+
+        if  (!PlaylistRequest.includes("?list="))  {
+
+            if  (ytdl.validateURL(PlaylistRequest) == true)  {
+
+                if  (peeky.userData.get(key, "Playlist").length < PlaylistLimit)  {
+
+                    peeky.userData.get(key, "Playlist").push(PlaylistRequest);
+
+                    const embed = {"description": SuccessIcon + " Added the song to your **" + peeky.userData.get(key, "PlaylistName") + "** playlist.",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                } else {
+                  const embed = {"description": ErrorMessage15[0],  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                }; 
+
             } else {
-              const embed = {"description": ErrorMessage15[0],  "color": EmbedColor}; 
+              const embed = {"description": ErrorMessage4[0],  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            }; 
-          
+            };
+
         } else {
-          const embed = {"description": ErrorMessage4[0],  "color": EmbedColor}; 
+          const embed = {"description": ErrorIcon + " You cannot add playlists to your playlist.",  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
-    
-    } else {
-      const embed = {"description": ErrorIcon + " You cannot add playlists to your playlist.",  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
 
-    } else {
-      const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-
-    } else 
-    if  (CommandArgument.startsWith(" remove "))  {
-      
-        var PlaylistRequest = CommandArgument.replace(" remove ", "");
-
-        if  (peeky.userData.get(key, "Playlist").includes(PlaylistRequest))  {
-
-        var BackgroundIndex = peeky.userData.get(key, "Playlist").indexOf(PlaylistRequest);
-
-        peeky.userData.get(key, "Playlist").splice(BackgroundIndex, 1);  //Remove the background
-
-        const embed = {"description": SuccessIcon + " The song has been removed from your **" + peeky.userData.get(key, "PlaylistName") + "** playlist.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-          
         } else {
-          const embed = {"description": ErrorIcon + " That song is not in your playlist.",  "color": EmbedColor}; 
+          const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
-    
-    } else  
-    if  (CommandArgument.startsWith(" rename "))  {
-      
-        var PlaylistRequest = function_RemoveFormatting(CommandArgument.replace(" rename ", ""), "other", true);
 
-        peeky.userData.set(key, PlaylistRequest, "PlaylistName")
+        } else 
+        if  (CommandArgument.startsWith(" remove "))  {
 
-        const embed = {"description": SuccessIcon + " Your playlist has renamed to **" + peeky.userData.get(key, "PlaylistName") + "**.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      
-    } else
-    if  (CommandArgument.startsWith(" thumbnail"))  {
+            var PlaylistRequest = CommandArgument.replace(" remove ", "");
 
-        peeky.userData.set(key, message.attachments.array()[0].url, "PlaylistThumbnail");
+            if  (peeky.userData.get(key, "Playlist").includes(PlaylistRequest))  {
 
-        const embed = {"description": SuccessIcon + " You have set the thumbnail for your playlist.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      
-    } else
-    if  (CommandArgument.startsWith(" clear"))  {
+            var BackgroundIndex = peeky.userData.get(key, "Playlist").indexOf(PlaylistRequest);
 
-        const embed = {"description": SuccessIcon + " You have cleared your playlist of **" + peeky.userData.get(key, "Playlist").length + " songs** and the **thumbnail**.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      
-        peeky.userData.set(key, [], "Playlist");
-        peeky.userData.set(key, null, "PlaylistThumbnail");
-      
-    } else  {
-      
-      var MentionedMember = message.mentions.members.first();
-      var SomeoneTagged = message.member;
-      
-      if  (peeky.userData.has(SomeoneTagged.user.id))  {
+            peeky.userData.get(key, "Playlist").splice(BackgroundIndex, 1);  //Remove the background
 
-          const Playlist = peeky.userData.get(SomeoneTagged.user.id, "Playlist");
+            const embed = {"description": SuccessIcon + " The song has been removed from your **" + peeky.userData.get(key, "PlaylistName") + "** playlist.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-          if  (Playlist.length > 0)  {
-              var FinalizedPlaylist = function_NumarizeArray(Playlist, ["<", ">"])
-          }  else  {
-             var FinalizedPlaylist = "The playlist is empty.";
+            } else {
+              const embed = {"description": ErrorIcon + " That song is not in your playlist.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
+        } else  
+        if  (CommandArgument.startsWith(" rename "))  {
+
+            var PlaylistRequest = function_RemoveFormatting(CommandArgument.replace(" rename ", ""), "other", true);
+
+            peeky.userData.set(key, PlaylistRequest, "PlaylistName")
+
+            const embed = {"description": SuccessIcon + " Your playlist has renamed to **" + peeky.userData.get(key, "PlaylistName") + "**.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+        } else
+        if  (CommandArgument.startsWith(" thumbnail"))  {
+
+            peeky.userData.set(key, message.attachments.array()[0].url, "PlaylistThumbnail");
+
+            const embed = {"description": SuccessIcon + " You have set the thumbnail for your playlist.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+        } else
+        if  (CommandArgument.startsWith(" clear"))  {
+
+            const embed = {"description": SuccessIcon + " You have cleared your playlist of **" + peeky.userData.get(key, "Playlist").length + " songs** and the **thumbnail**.",  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+            peeky.userData.set(key, [], "Playlist");
+            peeky.userData.set(key, null, "PlaylistThumbnail");
+
+        } else  {
+
+          var MentionedMember = message.mentions.members.first();
+          var SomeoneTagged = message.member;
+
+          if  (peeky.userData.has(SomeoneTagged.user.id))  {
+
+              const Playlist = peeky.userData.get(SomeoneTagged.user.id, "Playlist");
+
+              if  (Playlist.length > 0)  {
+                  var FinalizedPlaylist = function_NumarizeArray(Playlist, ["<", ">"])
+              }  else  {
+                 var FinalizedPlaylist = "The playlist is empty.";
+              };
+
+              var Thumbnail = "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fplaylist_embed.png?v=1563967857471";
+              if  (peeky.userData.get(key, "PlaylistThumbnail") !== null)  {
+                  const canvas         = Canvas.createCanvas(600, 150);
+                  const ctx            = canvas.getContext('2d');
+                  var Failed           = false;
+
+                  var background = await Canvas.loadImage(peeky.userData.get(key, "PlaylistThumbnail")).catch(error => {Failed = true;  peeky.userData.set(key, null, "PlaylistThumbnail")});
+                  if  (Failed == false)  {
+                      ctx.drawImage(background, 0, 0, canvas.width, canvas.height);                        
+                      Thumbnail = new Discord.Attachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
+                  };
+              };
+
+              const embed = {
+              "image": {
+                "url": Thumbnail
+              },
+              "fields": [
+              {
+                "name": peeky.userData.get(SomeoneTagged.user.id, "PlaylistName"),
+                "value": function_RemoveFormatting(SomeoneTagged.displayName, "other", true)
+              },
+              {
+                "name": "­\nSongs",
+                "value": FinalizedPlaylist + "\n­"
+              }],  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+          } else {
+            const embed = {"description": ErrorMessage7[0],  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           };
-        
-          
 
-          const embed = {
-          "image": {
-            "url": 
-          },
-          "fields": [
-          {
-            "name": peeky.userData.get(SomeoneTagged.user.id, "PlaylistName"),
-            "value": function_RemoveFormatting(SomeoneTagged.displayName, "other", true)
-          },
-          {
-            "name": "­\nSongs",
-            "value": FinalizedPlaylist + "\n­"
-          }],  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-          
-      } else {
-        const embed = {"description": ErrorMessage7[0],  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      };
-      
+        };
+
     };
 
 };
