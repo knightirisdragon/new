@@ -25,10 +25,6 @@ const search       = require('youtube-search');
 const ytdl         = require('ytdl-core');
 const opus         = require('node-opus');
 
-//Steam
-const SteamAPI = require('steamapi');
-const steam = new SteamAPI(SteamToken);
-
 //Canvas
 const Canvas         = require('canvas');
 const request        = require('request');
