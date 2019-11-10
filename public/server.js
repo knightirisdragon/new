@@ -3954,8 +3954,6 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
         var guild = peeky.guilds.get(server.GuildID);
         var channel = guild.channels.find(c => c.name == name);
       
-        console.log(guild.name)
-      
         if  (channel)  {
 
             if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
@@ -7166,7 +7164,7 @@ if (!ProfileCooldown.has(message.author.id))  {
             if (err) console.log(err); 
         });
       
-        const embed = {"description": InfoIcon + " This profile is now featured!",  "color": EmbedColor}; 
+        const embed = {"description": InfoIcon + " This profile is now **featured** on the website.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
         console.log("The featured profile has been updated.");
