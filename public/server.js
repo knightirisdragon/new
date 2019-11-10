@@ -3953,21 +3953,23 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
         var guild = peeky.guilds.get(server.GuildID);
         var channel = guild.channels.find(c => c.name == name);
       
+        console.log(guild.name)
+      
         if  (channel)  {
       
-            var InactiveChannel = false;
+            /*var InactiveChannel = false;
             if  (channel.lastMessage !== null && channel.lastMessage.author.id == PeekyId)  {
                 InactiveChannel = true;
-            };
+            };*/
 
-            if  (channel.permissionsFor(peeky.user).has('ADD_REACTIONS' && 'SEND_MESSAGES') && InactiveChannel == false)  {
+            if  (channel.permissionsFor(peeky.user).has('ADD_REACTIONS' && 'SEND_MESSAGES') /*&& InactiveChannel == false*/)  {
 
                 var Amount = 100 + (10 * Math.floor((Math.random() * 90)));
 
                 var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
                 channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
                   
-                    if  (m.channel !== undefined)  {
+                    if  (true == true)  {
 
                         m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 60000, errors: ['time'] })
                         .then(collected => {
