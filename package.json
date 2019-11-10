@@ -10,6 +10,7 @@
     "ytdl-core": "^1.0.0",
     "ytdl-core-discord": "^1.0.3",
     "youtube-search": "^1.1.4",
+    "steamapi": "^2.0.7",
     "canvas": "^2.6.1",
     "canvas-node": "^0.3.20",
     "dominant-color": "^0.0.1",
