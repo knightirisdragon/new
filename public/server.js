@@ -6043,40 +6043,43 @@ if (CommandName.startsWith("custombackground"))  {
   
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {
   
-    if  (peeky.userData.get(key, "Gredit") > CustomBackgroundPrice)  {
-    
-    if  (message.attachments.size > 0)  {
-  
-        if  (peeky.userData.get(key, "PainterBadge") == false)  {
+        if  (peeky.userData.get(key, "Gredit") > CustomBackgroundPrice)  {
 
-            InfoMessages.push(InfoMessage1[0]);
-            peeky.userData.set(key, true, "PainterBadge");
+            if  (message.attachments.size > 0)  {
+              
+                var Thumbnail = message.attachments.array()[0].url;
 
+                if  (function_DetectLink(Thumbnail) == true)  {
+
+                    if  (peeky.userData.get(key, "PainterBadge") == false)  {
+
+                        InfoMessages.push(InfoMessage1[0]);
+                        peeky.userData.set(key, true, "PainterBadge");
+
+                    };
+
+                    peeky.userData.math(key, "-", CustomBackgroundPrice, "Gredit");
+                    peeky.userData.set(key, Thumbnail, "Background");
+
+                    const embed = {"description": SuccessIcon + " You have bought a **Custom Background** for **" + CustomBackgroundPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                } else {
+                  const embed = {"description": ErrorIcon + " Failed to set your custom background.",  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
+
+            } else {
+              const embed = {"description": ErrorMessage20[0],  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
+        } else {
+          const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
-        peeky.userData.math(key, "-", CustomBackgroundPrice, "Gredit");
-        peeky.userData.set(key, message.attachments.array()[0].url, "Background");
-
-        const embed = {"description": SuccessIcon + " You have bought a **Custom Background** for **" + CustomBackgroundPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      
-    }
-     else
-    {
-      const embed = {"description": ErrorMessage20[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-  
-    }
-     else
-    {
-      const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-  
-    }
-     else
-    {
+    } else {
       const embed = {"description": ErrorMessage11[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
@@ -7568,7 +7571,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   
                 } else {
-                  const embed = {"description": ErrorIcon + " That ",  "color": EmbedColor}; 
+                  const embed = {"description": ErrorIcon + " Failed to set your playlist thumbnail.",  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
                   
