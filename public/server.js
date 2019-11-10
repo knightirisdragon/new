@@ -981,7 +981,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
         TheBannerShown = function_GetBackground(key);
     };
 
-    const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(member.id, DefaultBackground, "Background");});
+    const background = await Canvas.loadImage(TheBannerShown)//.catch(error => {Failed = true;  peeky.userData.set(member.id, DefaultBackground, "Background");});
       
     if  (Failed == false)  {
 
@@ -2039,7 +2039,7 @@ peeky.on('message', async (message) => {
             TheBannerShown = function_GetBackground(key);
         };
 
-        const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(message.author.id, DefaultBackground, "Background");});
+        const background = await Canvas.loadImage(TheBannerShown)//.catch(error => {Failed = true;  peeky.userData.set(message.author.id, DefaultBackground, "Background");});
 
         if  (Failed == false)  {
 
@@ -6842,7 +6842,7 @@ if (!ProfileCooldown.has(message.author.id))  {
 
     var TheBannerShown = function_GetBackground(key2);
 
-    var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  message.channel.stopTyping();  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
+    var background = await Canvas.loadImage(TheBannerShown)//.catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  message.channel.stopTyping();  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
       
     if  (Failed == false)  {
       
