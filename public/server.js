@@ -281,6 +281,7 @@ const ErrorMessage16 = [ErrorIcon + " That background doesn't exist."]
 const ErrorMessage17 = [ErrorIcon + " You need to specify the function."];
 const ErrorMessage18 = [ErrorIcon + " Please provide arguments for the command."];
 const ErrorMessage19 = [ErrorIcon + " You need to join the Support Server."];
+const ErrorMessage20 = [ErrorIcon + " You need to upload a file."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
 const InfoMessage2 = [InfoIcon + " You have set the default background."];
@@ -3668,7 +3669,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 //Message Log
 if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
 
-    if  (!user.bot && reaction.emoji.name == "📌" && reaction.count == 1)  {
+    if  (!user.bot && reaction.message.author.id !== PeekyId && reaction.emoji.name == "📌" && reaction.count == 1)  {
       
     if  (!LoggedMessages.has(reaction.message.id))  {
       
@@ -6062,7 +6063,7 @@ if (CommandName.startsWith("custombackground"))  {
     }
      else
     {
-      const embed = {"description": ErrorIcon + " You need to upload a file.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage20[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
@@ -7556,22 +7557,24 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
         if  (CommandArgument.startsWith(" thumbnail"))  {
           
             if  (message.attachments.size > 0)  {
-              
-                
-                var background = await Canvas.loadImage(peeky.userData.get(key, "PlaylistThumbnail")).catch(error => {Failed = true; peeky.userData.set(key, null, "PlaylistThumbnail");});
-      
-                if  (Failed == false)  {
           
-                    peeky.userData.set(key, message.attachments.array()[0].url, "PlaylistThumbnail")
+                var Thumbnail = message.attachments.array()[0].url;
+              
+                if  (function_DetectLink(Thumbnail) == true)  {
+                  
+                    peeky.userData.set(key, Thumbnail, "PlaylistThumbnail");
 
                     const embed = {"description": SuccessIcon + " You have set the thumbnail for your playlist.",  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   
                 } else {
-                    const embed = {"description": ErrorIcon + " The thumbnail format is invalid.",  "color": EmbedColor}; 
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                  const embed = {"description": ErrorIcon + " That ",  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
-              
+                  
+            } else {
+              const embed = {"description": ErrorMessage20[0],  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
         } else
