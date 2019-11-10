@@ -7588,12 +7588,12 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
               if  (peeky.userData.get(key, "PlaylistThumbnail") !== null)  {
                   const canvas         = Canvas.createCanvas(600, 150);
                   const ctx            = canvas.getContext('2d');
-                  var Failed           = false;
+                  var   Failed         = false;
 
                   var background = await Canvas.loadImage(peeky.userData.get(key, "PlaylistThumbnail")).catch(error => {Failed = true;  peeky.userData.set(key, null, "PlaylistThumbnail")});
                   if  (Failed == false)  {
-                      ctx.drawImage(background, 0, 0, canvas.width, canvas.height);                        
-                      Thumbnail = new Discord.Attachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
+                      await ctx.drawImage(background, 0, 0, canvas.width, canvas.height);                        
+                      Thumbnail = new Discord.Attachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 }).url;
                   };
               };
 
