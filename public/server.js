@@ -7554,11 +7554,19 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
         } else
         if  (CommandArgument.startsWith(" thumbnail"))  {
+          
+            if  (message.attachments.size > 0)  {
+          
+                peeky.userData.set(key, message.attachments.array()[0].url, "PlaylistThumbnail")
 
-            peeky.userData.set(key, message.attachments.array()[0].url, "PlaylistThumbnail");
-
-            const embed = {"description": SuccessIcon + " You have set the thumbnail for your playlist.",  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                const embed = {"description": SuccessIcon + " You have set the thumbnail for your playlist.",  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              
+            } 
+            else {
+              const embed = {"description": ErrorIcon + " ",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
 
         } else
         if  (CommandArgument.startsWith(" clear"))  {
@@ -7586,15 +7594,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
               var Thumbnail = "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fplaylist_embed.png?v=1563967857471";
               if  (peeky.userData.get(key, "PlaylistThumbnail") !== null)  {
-                  const canvas         = Canvas.createCanvas(600, 150);
-                  const ctx            = canvas.getContext('2d');
-                  var   Failed         = false;
-
-                  var background = await Canvas.loadImage(peeky.userData.get(key, "PlaylistThumbnail")).catch(error => {Failed = true;  peeky.userData.set(key, null, "PlaylistThumbnail")});
-                  if  (Failed == false)  {
-                      await ctx.drawImage(background, 0, 0, canvas.width, canvas.height);                        
-                      Thumbnail = new Discord.Attachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 }).url;
-                  };
+                  Thumbnail = peeky.userData.get(key, "PlaylistThumbnail");
               };
 
               const embed = {
