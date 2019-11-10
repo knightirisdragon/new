@@ -64,7 +64,7 @@ const MaxServers            = 1000;
 const CustomBackgroundPrice = 1000;
 const SellMultiplier        = 2.5;
 const ExpNeeded             = 125;
-const TrialLevel            = 50;
+const TrialLevel            = 100;
 const DefaultFont           = "Verdana";
 const Dark                  = "#36393E";
 const LessDark              = "#3f3f3f";
@@ -2966,6 +2966,7 @@ if  (keySF == SupportServer)  {
 
                 var PurchaseHeader = "**You have purchased Supporter from the [store](https://peeky.glitch.me/store.html)!**";
 
+                peeky.userData.set(key, true, "SupporterTrial");
                 peeky.userData.set(key, new Date(), "SupporterLastPurchase");
                 Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs)) + "**.");
 
@@ -6424,38 +6425,41 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
 };
   
 //SupporterTrial
-if (CommandName.startsWith("supportertrial"))  {
-
-    if  (peeky.userData.get(key).Level >= TrialLevel)  {
+if  (CommandName.startsWith("supportertrial"))  {
       
-        if  (peeky.userData.get(key, "SupporterTrial") == false)  {
-          
-            if  (peeky.guilds.get(SupportServer).members.has(key))  {
-              
-                peeky.userData.set(key, true, "SupporterTrial");
-                peeky.guilds.get(SupportServer).members.get(key).addRole(SupporterRole).catch(error => ErrorBag.add(error));   
-              
-                const embed = {"description": SuccessIcon + " You have activated the **Supporter Trial** for **30 days**.",  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));             
-              
-            }
-             else
-            {
-              const embed = {"description": ErrorMessage19[0],  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    if  (peeky.userData.get(key, "SupporterTrial") == false)  {
+      
+        if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
+
+            if  (peeky.userData.get(key).Level >= TrialLevel)  {
+
+                if  (peeky.guilds.get(SupportServer).members.has(key))  {
+
+                    peeky.userData.set(key, true, "SupporterTrial");
+                    peeky.guilds.get(SupportServer).members.get(key).addRole(SupporterRole).catch(error => ErrorBag.add(error));   
+
+                    const embed = {"description": SuccessIcon + " You have activated the **Supporter Trial** for **30 days**.",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));             
+
+                }
+                 else
+                {
+                  const embed = {"description": ErrorMessage19[0],  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
+      
+            } else {
+             const embed = {"description": ErrorIcon + " You need to reach **Level " + TrialLevel + "** to activate your trial.",  "color": EmbedColor}; 
+             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
-          
-        }
-         else
-        {
-          const embed = {"description": ErrorIcon + " You have already activated your trial in the past.",  "color": EmbedColor}; 
+
+        } else {
+          const embed = {"description": ErrorIcon + " You can only activate your trial in upgraded servers.",  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
-      
-    }
-     else
-    {
-      const embed = {"description": ErrorIcon + " You need to reach **Level " + TrialLevel + "** to activate your trial.",  "color": EmbedColor}; 
+          
+    } else {
+      const embed = {"description": ErrorIcon + " You have already activated your trial in the past.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
