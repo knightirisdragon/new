@@ -64,7 +64,7 @@ const MaxServers            = 1000;
 const CustomBackgroundPrice = 1000;
 const SellMultiplier        = 2.5;
 const ExpNeeded             = 125;
-const TrialLevel            = 10;
+const TrialLevel            = 50;
 const DefaultFont           = "Verdana";
 const Dark                  = "#36393E";
 const LessDark              = "#3f3f3f";
@@ -139,7 +139,7 @@ const CoinImage         = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d16687
 const ExpImage          = "httpss://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fexp.png?v=1564224431507";
 const LevelImage        = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_level.png?1541260281702";
 const ChestImage        = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051";
-const TreasureImage     = "httpss://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ftreasures.png?v=1568646809345";
+const TreasureImage     = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ftreasures.png?v=1568646809345";
 const BadgesImage       = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbadges.png?v=1564245176155";
 const KarmaImage        = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fkarma.png?v=1564244903816";
 const XPImage           = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2FScreenshot_141.png?1543781509470";
@@ -3956,42 +3956,33 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
         console.log(guild.name)
       
         if  (channel)  {
-      
-            /*var InactiveChannel = false;
-            if  (channel.lastMessage !== null && channel.lastMessage.author.id == PeekyId)  {
-                InactiveChannel = true;
-            };*/
 
-            if  (channel.permissionsFor(peeky.user).has('ADD_REACTIONS' && 'SEND_MESSAGES') /*&& InactiveChannel == false*/)  {
+            if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
 
                 var Amount = 100 + (10 * Math.floor((Math.random() * 90)));
 
                 var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
                 channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
-                  
-                    if  (true == true)  {
 
-                        m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 60000, errors: ['time'] })
-                        .then(collected => {
+                    m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 60000, errors: ['time'] })
+                    .then(collected => {
 
-                              var user = collected.first().author;
+                        var user = collected.first().author;
 
-                              if  (peeky.userData.has(user.id))  {
+                        if  (peeky.userData.has(user.id))  {
 
-                                  var embed = {"description": SuccessIcon + " **" + user.username + "** has claimed the treasure!", "color": EmbedColor}; 
-                                  m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+                            var embed = {"description": SuccessIcon + " **" + user.username + "** has claimed the treasure!", "color": EmbedColor}; 
+                            m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
-                                  peeky.userData.math(user.id, "+", Amount, "Gredit");
+                            peeky.userData.math(user.id, "+", Amount, "Gredit");
 
-                              };
+                        };
 
-                        })
-                        .catch(collected => {
-                              var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
-                              m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
-                        });                      
-                      
-                    };
+                    })
+                    .catch(collected => {
+                        var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
+                        m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
+                    });
 
                 });
 
