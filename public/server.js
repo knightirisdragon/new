@@ -4,7 +4,6 @@ const DDBLToken = process.env.DDBL_TOKEN;
 const BLSToken = process.env.BLS_TOKEN;
 const BFDToken = process.env.BFD_TOKEN;
 const DBToken = process.env.DB_TOKEN;
-const DLToken = process.env.DL_TOKEN;
 const YoutubeToken = process.env.YT_TOKEN;
 const SteamToken = process.env.STEAM_TOKEN;
 
@@ -1779,17 +1778,6 @@ peeky.on('ready', () => {
             method: 'POST',
             headers: {
                 'Authorization': BFDToken,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({  server_count: GuildSize  })
-        }).catch(err => {console.log("Failed to post the server count to CBL."); ErrorBag.add(err)});
-
-        //Post Server Counts - DL
-        node_fetch(`https://api.discordlabs.org/v1/bot/${peeky.user.id}`, {
-            method: 'POST',
-            headers: {
-                'token': DLToken,
-                'server_count': GuildSize,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({  server_count: GuildSize  })
