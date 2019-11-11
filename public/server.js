@@ -8156,7 +8156,7 @@ if  (CommandName.startsWith("kick"))  {
 
             if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("KICK_MEMBERS"))  {
 
-                await message.guild.kick(MentionedMember.user.id, "Kicked by " + message.author.tag + ".").catch(error => { 
+                await MentionedMember.kick("Kicked by " + message.author.tag + ".").catch(error => { 
                       const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                       ErrorBag.add(error); Failed = true;
