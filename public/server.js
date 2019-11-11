@@ -6436,7 +6436,11 @@ if  (CommandName.startsWith("supportertrial"))  {
                     peeky.guilds.get(SupportServer).members.get(key).addRole(SupporterRole).catch(error => ErrorBag.add(error));   
 
                     const embed = {"description": SuccessIcon + " You have activated the **Supporter Trial** for **30 days**.",  "color": EmbedColor}; 
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));             
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));       
+                  
+                    setTimeout(() => {
+                        peeky.userData.set(key, false, "ContributorBadge");
+                    }, 5000);
 
                 }
                  else
