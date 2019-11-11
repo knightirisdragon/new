@@ -12,7 +12,6 @@
     "youtube-search": "^1.1.4",
     "canvas": "^2.6.1",
     "canvas-node": "^0.3.20",
-    "dominant-color": "^0.0.1",
     "enmap": "^5.2.1",
     "better-sqlite-pool": "^0.2.2",
     "sqlite3": "^4.1.0",

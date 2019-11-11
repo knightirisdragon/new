@@ -28,7 +28,6 @@ const opus         = require('node-opus');
 //Canvas
 const Canvas         = require('canvas');
 const request        = require('request');
-const dominant_color = require('dominant-color');
 
 //Enmap
 const Enmap = require("enmap");
@@ -707,7 +706,7 @@ const Banners = [
     ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground404.png?v=1566128626627", 350, "Torture dance", "u/Arbitrarium_", undefined],
     ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground405.png?v=1567050251316", 500, "Left hanging", "Dead by Daylight", undefined],
     ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground406.png?v=1567528259333", 400, "Battle zone", "Vojtěch Jílovec", `108899856889737216`],
-    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground407.png?v=1567938140089", 425, "Death #162009", "Vojtěch Jílovec", `108899856889737216`f],
+    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground407.png?v=1567938140089", 425, "Death #162009", "Vojtěch Jílovec", `108899856889737216`],
     ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground408.png?v=1567938199867", 500, "Ice breaker", "u/neytirixx", undefined],
     ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground409.png?v=1568824760554", 425, "Copper sööp", "Unknown", undefined],
     ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground410.png?v=1568913126645", 450, "Link's awakening", "The Legend of Zelda Link's Awakening", undefined],
@@ -6154,28 +6153,24 @@ if (CommandName.startsWith("seebackground"))  {
             if  (function_GetBackgroundInfo(i, ["price"]) !== Exclusive)  {
                 Price = function_GetBackgroundInfo(i, ["price"]);
             };
-
-            var NewEmbedColor = 0;
-            await dominant_color(Banners[i - 1][Banner.Source], {format: 'hex'}, function(err, color)  {
-
-                  NewEmbedColor = parseInt(color.replace("#", ""), 16);
           
-                  const embed = {"description": 
-                                 "**" + function_GetBackgroundInfo(i, ["name"]) + "**"
-                                 + "\n" 
-                                 + "" + function_GetBackgroundInfo(i, ["credit"])
-                                 + "\n\n"
-                                 + "**Information**"
-                                 + "\n"
-                                 + "Price: " + Price
-                                 + "\n­",
-                                "image": {
-                                  "url": function_GetBackgroundInfo(i, ["source"])
-                                },
-                                "color": NewEmbedColor}; 
-                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-            });
+            const embed = {
+                "description": 
+                "**" + function_GetBackgroundInfo(i, ["name"]) + "**"
+                + "\n" 
+                + "" + function_GetBackgroundInfo(i, ["credit"])
+                + "\n\n"
+                + "**Information**"
+                + "\n"
+                + "Price: " + Price
+                + "\n­",
+                "image": {
+                    "url": function_GetBackgroundInfo(i, ["source"])
+                },
+                "color": EmbedColor
+            }; 
+                  
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           
             break;
 
@@ -6829,7 +6824,7 @@ if (!ProfileCooldown.has(message.author.id))  {
     const ctx            = canvas.getContext('2d');
     var   SomeoneTagged  = null;
     const StatsColor     = "lightgray"
-    var   ProfileColor   = null;
+    var   ProfileColor   = LessDark;
     
     var MentionedMember = message.mentions.members.first();
     if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.member;  };
@@ -6850,16 +6845,6 @@ if (!ProfileCooldown.has(message.author.id))  {
     message.channel.startTyping();
 
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-    await dominant_color(TheBannerShown, {format: 'hex'}, function(err, color)  {
-              
-          ProfileColor = color;
-
-          if  (color == "000000")  {
-              ProfileColor = LessDark.replace("#", "");            
-          };
-
-    });
       
     var layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout_2.5.png");
     ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
