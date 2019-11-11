@@ -2935,7 +2935,7 @@ if  (keySF == SupportServer)  {
     var Rewards = [];
     var Notes = [];
   
-    if  (new Date() - new Date(member.joinedAt) > 10000)  {
+    if  (new Date() - new Date(member.joinedAt) > 10000 && (member.lastMessage == undefined || member.lastMessage !== undefined && member.lastMessage.content !== peeky.serverData.get(keySF, "prefix") + "supportertrial"))  {
 
         //Server Boost
         if  (peeky.userData.has(key))  {
@@ -6437,10 +6437,6 @@ if  (CommandName.startsWith("supportertrial"))  {
 
                     const embed = {"description": SuccessIcon + " You have activated the **Supporter Trial** for **30 days**.",  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));       
-                  
-                    setTimeout(() => {
-                        peeky.userData.set(key, false, "ContributorBadge");
-                    }, 5000);
 
                 }
                  else
