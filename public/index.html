@@ -20,11 +20,7 @@
     <link rel="stylesheet" href="/style.css">
     <script src="/server.js" defer></script>
     
-    <style>
-      
-    #morebotstats  {
-      display: none;
-    }      
+    <style>  
       
     .newsitem  {
       background-color: rgba(35, 39, 42, 0.5);
@@ -261,23 +257,6 @@
         };
 
     };
-      
-    function MoreBotStats() {
-      
-        var Element = document.getElementById("morebotstats");
-        var Button = document.getElementById("botstatsbutton");
-      
-        if  (Element)  {
-            if  (Element.style.display == "block")  {
-                Element.style.display = "none";
-                Button.innerHTML = "More Stats";
-            } else {
-              Element.style.display = "block";
-              Button.innerHTML = "Less Stats";
-            };
-        };
-      
-    };
     
     </script>
 
@@ -291,8 +270,7 @@
 <div class="botdiv">
 
 <a href="https://peeky.glitch.me/"><img src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855" width="100%" class="peeky_icon"></a>
-  
-<font size="1"><a id="botstatsbutton" onclick="MoreBotStats();">More Stats</a></font>
+
 <div id="ServerCount"></div>
 
 </div>

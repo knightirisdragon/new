@@ -2551,7 +2551,7 @@ if  (!WebsiteCooldowns.has("stats"))  {
     WebsiteCooldowns.add("stats");
     setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
 
-    await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + MaxServers + "</font> Servers</a>  <div class=></div>  <div id='morebotstats'>  <a class='botstats'><font color='#7289DA'>" + peeky.serverData.filter(i => i.server_upgraded == true).size + "</font> Upgraded Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(SupporterRole)).size + "</font> Supporters</a>  <br>  <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days Old</a>  </div>", (err) => {
+    await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + MaxServers + "</font> Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days Old</a>", (err) => {
         if (err) console.log(err); 
     });
       
