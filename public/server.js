@@ -6813,7 +6813,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
 //Profile
 if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
   
-if (!ProfileCooldown.has(message.author.id))  {
+if  (!ProfileCooldown.has(message.author.id))  {
       
     ProfileCooldown.add(message.author.id);
     setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
@@ -6824,7 +6824,7 @@ if (!ProfileCooldown.has(message.author.id))  {
     const ctx            = canvas.getContext('2d');
     var   SomeoneTagged  = null;
     const StatsColor     = "lightgray"
-    var   ProfileColor   = LessDark;
+    var   ProfileColor   = LessDark.replace("#", "");
     
     var MentionedMember = message.mentions.members.first();
     if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.member;  };
@@ -7171,22 +7171,20 @@ if (!ProfileCooldown.has(message.author.id))  {
       
     };
 
-    }
-    else {
-           const embed = {"description": ErrorMessage7[0],  "color": EmbedColor}; 
-           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-         };
+    } else {
+      const embed = {"description": ErrorMessage7[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
       
     } else {
       const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
-    }
-    else {
-          const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-         };
+    } else {
+      const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 };
 
 //Play 
