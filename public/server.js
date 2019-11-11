@@ -64,7 +64,7 @@ const MaxServers            = 1000;
 const CustomBackgroundPrice = 1000;
 const SellMultiplier        = 2.5;
 const ExpNeeded             = 125;
-const TrialLevel            = 100;
+const TrialLevel            = 50;
 const DefaultFont           = "Verdana";
 const Dark                  = "#36393E";
 const LessDark              = "#3f3f3f";
@@ -2499,6 +2499,10 @@ if  (!WebsiteCooldowns.has("staff"))  {
       };
       
     });
+  
+    if  (ModList.length == 0)  {
+        ModList = ["There are currently no Moderators in the Support Server."];
+    };
 
     await fs.writeFile('public/staff.txt', '<font size="5" class="item_header">Developers of PEEKY</font>  <br>  <div class="inlinediv">  ' + DevList.join(" ") + '  </div>  <font size="5" class="item_header">Moderators of the Support Server</font>  <br>  <div class="inlinediv">  ' + ModList.join(" ") + '  </div>', (err) => {
         if (err) console.log(err);
@@ -2547,7 +2551,7 @@ if  (!WebsiteCooldowns.has("stats"))  {
     WebsiteCooldowns.add("stats");
     setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
 
-    await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + MaxServers + "</font> Servers</a> <br> <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a> <br> <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days Old</a>", (err) => {
+    await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + MaxServers + "</font> Servers</a> <br>  <div class='botstatsmore'> <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a> <br> <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days Old</a>  </div>", (err) => {
         if (err) console.log(err); 
     });
       
@@ -2948,6 +2952,8 @@ if  (keySF == SupportServer)  {
                 PurchaseComplete = true;
 
                 var PurchaseHeader = "**You have Server Boosted the [Support Server](https://peeky.glitch.me/server.html)!**";
+              
+                Notes.push("Your reward expires once you stop boosting.");
 
             };
 
