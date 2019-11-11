@@ -8101,7 +8101,7 @@ if  (CommandName.startsWith("idban"))  {
 };
   
 //Ban
-if (CommandName.startsWith("ban"))  {
+if  (CommandName.startsWith("ban"))  {
 
     if  (message.member.permissions.has("BAN_MEMBERS"))  {
 
@@ -8126,6 +8126,51 @@ if (CommandName.startsWith("ban"))  {
              else
             {
               const embed = {"description": ErrorIcon + " You cannot ban that user.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
+        }
+         else
+        {
+         const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+    }
+     else
+    {
+     const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+  
+//Kick
+if  (CommandName.startsWith("kick"))  {
+
+    if  (message.member.permissions.has("KICK_MEMBERS"))  {
+
+        if  (message.guild.me.hasPermission("KICK_MEMBERS"))  {
+
+            var MentionedMember = message.mentions.members.first();
+
+            if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("KICK_MEMBERS"))  {
+
+                await message.guild.kick(MentionedMember.user.id, "Kicked by " + message.author.tag + ".").catch(error => { 
+                      const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                      ErrorBag.add(error); Failed = true;
+                });
+
+                if  (Failed == false)  {
+                    const embed = {"description": SuccessIcon + " I have kicked **" + function_RemoveFormatting(MentionedMember.displayName, "other", true) + "** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
+
+            }
+             else
+            {
+              const embed = {"description": ErrorIcon + " You cannot kick that user.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
