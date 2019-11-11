@@ -3690,7 +3690,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
         var   name                  = peeky.serverData.get(keySF, "message_log_bonus_setting");
         var   Channel               = reaction.message.guild.channels.find(channel => channel.name == name);
         const OriginalMessage       = reaction.message;
-        const OriginalMessageEdited = OriginalMessage.content.replace(/<@?#?&?!?[0-9]{17,20}>/g, OriginalMessage.);
+        const OriginalMessageEdited = OriginalMessage.content.replace(/<@?#?&?!?[0-9]{17,20}>/g, "");
         var   image                 = "none";   
       
     if  (Channel && reaction.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))  {
