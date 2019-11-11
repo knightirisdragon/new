@@ -2146,7 +2146,6 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
       
         peeky.serverData.delete(data.GuildID);
       
-      
         var Guild = peeky.guilds.get(data.GuildID);
         if  (Guild !== undefined)  {
             if  (Guild.owner)  {
