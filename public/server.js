@@ -3967,7 +3967,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
                 var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
                 channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
 
-                    m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 60000, errors: ['time'] })
+                    m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 3600000, errors: ['time'] })
                     .then(collected => {
 
                         var user = collected.first().author;
