@@ -3970,14 +3970,14 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
                     m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 3600000, errors: ['time'] })
                     .then(collected => {
 
-                        var user = collected.first().author;
+                        var member = collected.first().member;
 
-                        if  (peeky.userData.has(user.id))  {
+                        if  (peeky.userData.has(member.user.id))  {
 
-                            var embed = {"description": SuccessIcon + " **" + user.username + "** has claimed the treasure!", "color": EmbedColor}; 
+                            var embed = {"description": SuccessIcon + " **" + member.displayName + "** has claimed the treasure!", "color": EmbedColor}; 
                             m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
-                            peeky.userData.math(user.id, "+", Amount, "Gredit");
+                            peeky.userData.math(member.user.id, "+", Amount, "Gredit");
 
                         };
 
