@@ -1117,27 +1117,37 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
 };
 
 //FUNCTION: Stream Announcements
-function function_StreamAnnouncements(type, member)  {
+function function_StreamAnnouncements(member)  {
                   
     CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
     setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
+  
+    var type = undefined;
+  
+    if  (member.presence.game.url.startsWith("https://youtube.com"))  {
+      
+        type = "youtube";
+        
+    } else if (member.presence.game.url.startsWith("https://www.twitch.tv"))  {
+      
+      type = "twitch";
+      
+    };
 
     if  (type == "twitch")  {
 
         var GameName   = function_RemoveFormatting(member.presence.game.name, "other", false);
         var GameLink   = member.presence.game.url;
         var GameColor  = 6570404;
-        var GameBanner = TwitchBanner
         var GameHost   = "Twitch";
 
     } else
 
-    if  (type == "discord")  {
+    if  (type == "youtube")  {
 
         var GameName   = function_RemoveFormatting(member.presence.game.details, "other", false);
         var GameLink   = member.presence.game.url;
         var GameColor  = 13632027;
-        var GameBanner = TwitchBanner
         var GameHost   = "YouTube";
 
     } else
@@ -1147,12 +1157,11 @@ function function_StreamAnnouncements(type, member)  {
         var GameName   = function_RemoveFormatting(member.presence.game.name, "other", false);
         var GameLink   = "https://discordapp.com/channels/" + member.guild.id +  "/" + member.voiceChannel.id;
         var GameColor  = 7506394;
-        var GameBanner = DiscordBanner;
         var GameHost   = "Discord";
 
     };
 
-    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "image": {  "url": GameBanner  },  "author": {  "name": function_RemoveFormatting(member.displayName, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
+    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "author": {  "name": function_RemoveFormatting(member.displayName, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
 
 };
   
@@ -3197,7 +3206,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
             var   HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
             var   GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
 
-            if  (member.presence.game !== null && member.presence.game.streaming == true)  {
+            if  (member.presence.game && member.presence.game.type == 1)  {
 
             if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
               
@@ -3247,30 +3256,8 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                     CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
                     setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
 
-                    const embed = function_StreamAnnouncements("twitch", member);
-                    Channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
-
-                    setTimeout(() => {
-                      
-                        if  (m)  {
-                          
-                            var RandomNumber = Math.floor((Math.random() * 10000) + 1);
-                          
-                            m.edit("", new Discord.RichEmbed({
-                                title: embed.title,
-                                description: embed.description,
-                                color:  embed.color,
-                                "image":  {
-                                    "url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_" + SavedMember.presence.game.url.replace("https://www.twitch.tv/", "") + ".png?r=" + RandomNumber
-                                },
-                                "author":  embed.author
-                            }));
-                          
-                        };
-                          
-                        }, 60000);
-                      
-                    });
+                    const embed = function_StreamAnnouncements(member);
+                    Channel.send({ embed }).catch(error => ErrorBag.add(error));
                   
                     console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
                     function_UpdateAutowipe(keySF, "server");
