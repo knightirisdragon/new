@@ -297,7 +297,6 @@ var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  Reve
 var StreamOptions   = {  volume: 0.25  };
 var SearchOptions   = {  maxResults: 1,  key: YoutubeToken  };
 
-//Large Arrays
 const Banners = [
 
     [DefaultBackground, 0, "Default", "Steam", undefined], //Default
@@ -3324,7 +3323,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 
         if  (Role)  {
           
-        if  (member.presence.game !== null && member.presence.game.name.toLowerCase() == GameName)  {
+        if  (member.presence.game !== null && member.presence.game.type == 0 && member.presence.game.name.toLowerCase() == GameName)  {
 
             if  (!HasRole && !RoleCooldown.has(member.user.id + member.guild.id))  {
                 member.addRole(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
