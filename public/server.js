@@ -1121,9 +1121,6 @@ function function_StreamAnnouncements(type, member)  {
                   
     CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
     setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
-    
-    const TwitchBanner = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fsa_twitch.png?v=1566236062639";
-    const DiscordBanner = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fsa_discord.png?v=1566236061585";
 
     if  (type == "twitch")  {
 
@@ -1132,6 +1129,16 @@ function function_StreamAnnouncements(type, member)  {
         var GameColor  = 6570404;
         var GameBanner = TwitchBanner
         var GameHost   = "Twitch";
+
+    } else
+
+    if  (type == "discord")  {
+
+        var GameName   = function_RemoveFormatting(member.presence.game.details, "other", false);
+        var GameLink   = member.presence.game.url;
+        var GameColor  = 13632027;
+        var GameBanner = TwitchBanner
+        var GameHost   = "YouTube";
 
     } else
 
