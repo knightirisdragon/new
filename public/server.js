@@ -1134,16 +1134,16 @@ function function_StreamAnnouncements(member)  {
       
     };
 
-    if  (type == "twitch")  {
+    if  (member.presence.game.name == "Twitch")  {
 
-        var GameName   = function_RemoveFormatting(member.presence.game.name, "other", false);
+        var GameName   = function_RemoveFormatting(member.presence.game.details, "other", false);
         var GameLink   = member.presence.game.url;
         var GameColor  = 6570404;
         var GameHost   = "Twitch";
 
     } else
 
-    if  (type == "youtube")  {
+    if  (member.presence.game.name == "YouTube")  {
 
         var GameName   = function_RemoveFormatting(member.presence.game.details, "other", false);
         var GameLink   = member.presence.game.url;
@@ -3243,9 +3243,9 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
         if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
       
-            if  (member.presence.game !== null && member.presence.game.streaming == true)  {
+            if  (member.presence.game !== null && member.presence.game.type == 1)  {
 
-                if  (oldMember.presence.game !== null && oldMember.presence.game.streaming == true)  {
+                if  (oldMember.presence.game !== null && oldMember.presence.game.type == 1)  {
                     var AlreadyStreaming = true;
                 };
 
