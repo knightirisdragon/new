@@ -6268,10 +6268,10 @@ if  (i !== AllString)  {
       peeky.userData.set(key, SavedBackgrounds, "Inventory");
       peeky.userData.math(key, "+", FullPrice, "Gredit");
 
-      if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
+      /*if  (isNaN(peeky.userData.get(key, "Background")) == false)  {
           peeky.userData.set(key, 1, "Background");
           InfoMessages.push(InfoMessage2[0]);
-      };
+      };*/
 
       const embed = {"description": SuccessIcon + " You have sold all your backgrounds for **" + FullPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
