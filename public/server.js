@@ -63,7 +63,6 @@ const MaxServers            = 1000;
 const CustomBackgroundPrice = 1000;
 const SellMultiplier        = 2.5;
 const ExpNeeded             = 125;
-const TrialLevel            = 50;
 const DefaultFont           = "Verdana";
 const Dark                  = "#36393E";
 const LessDark              = "#3f3f3f";
@@ -100,7 +99,6 @@ const MusicCmdCooldown        = new Set();
 const PeekyCmdCooldown        = new Set();
 const ChannelCooldown         = new Set();  const ChannelCooldownMS   = 10000;
 const RoleCooldown            = new Set();  const RoleCooldownMS      = 10000;
-const ServerTrialCooldown     = new Set();
 const EventCountdownCooldown  = new Set();
 const MemberCounterCooldown   = new Set();
 const GameLogsCooldown        = new Set();
@@ -1865,7 +1863,6 @@ peeky.on('message', async (message) => {
         Chests: 0,
         Badges: 0,
         UpgradedServers: 0,
-        SupporterTrial: false,
         SupporterSince: 0,
         SupporterLastPurchase: 0,
         BoosterStart: 0,
@@ -2029,14 +2026,6 @@ peeky.on('message', async (message) => {
         peeky.userData.math(key, "+", 1, "Chests");
     
     if  (peeky.serverData.get(keySF, "level_notifications") == true)  {
-      
-        //Supporter Trial
-        if  (peeky.userData.get(key, "Level") == TrialLevel)  {
-          
-            const embed = {"description": InfoIcon + " You can now activate your **30 day** long **Supporter Trial**.",  "color": EmbedColor};
-            function_DirectMessage(key, {  embed  });
-          
-        };
       
         //Level Up Message
         const canvas = Canvas.createCanvas(500, 95);
@@ -2954,7 +2943,7 @@ if  (keySF == SupportServer)  {
     var Rewards = [];
     var Notes = [];
   
-    if  (new Date() - new Date(member.joinedAt) > 10000 && (member.lastMessage == undefined || member.lastMessage !== undefined))  {
+    if  (new Date() - new Date(member.joinedAt) > 10000)  {
 
         //Server Boost
         if  (peeky.userData.has(key))  {
@@ -2986,7 +2975,6 @@ if  (keySF == SupportServer)  {
 
                 var PurchaseHeader = "**You have purchased Supporter from the [store](https://peeky.glitch.me/store.html)!**";
 
-                peeky.userData.set(key, true, "SupporterTrial");
                 peeky.userData.set(key, new Date(), "SupporterLastPurchase");
                 Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs)) + "**.");
 
@@ -6405,47 +6393,6 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
      else
     {
       const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-  
-};
-  
-//SupporterTrial
-if  (CommandName.startsWith("supportertrial"))  {
-      
-    if  (peeky.userData.get(key, "SupporterTrial") == false)  {
-      
-        if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
-
-            if  (peeky.userData.get(key).Level >= TrialLevel)  {
-
-                if  (peeky.guilds.get(SupportServer).members.has(key))  {
-
-                    peeky.userData.set(key, true, "SupporterTrial");
-                    peeky.guilds.get(SupportServer).members.get(key).addRole(SupporterRole).catch(error => ErrorBag.add(error));   
-
-                    const embed = {"description": SuccessIcon + " You have activated the **Supporter Trial** for **30 days**.",  "color": EmbedColor}; 
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));       
-
-                }
-                 else
-                {
-                  const embed = {"description": ErrorMessage19[0],  "color": EmbedColor}; 
-                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                };
-      
-            } else {
-             const embed = {"description": ErrorIcon + " You need to reach **Level " + TrialLevel + "** to activate your trial.",  "color": EmbedColor}; 
-             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };
-
-        } else {
-          const embed = {"description": ErrorIcon + " You can only activate your trial in upgraded servers.",  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
-          
-    } else {
-      const embed = {"description": ErrorIcon + " You have already activated your trial in the past.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
