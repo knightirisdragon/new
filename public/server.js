@@ -2954,7 +2954,7 @@ if  (keySF == SupportServer)  {
     var Rewards = [];
     var Notes = [];
   
-    if  (new Date() - new Date(member.joinedAt) > 10000 && (member.lastMessage == undefined || member.lastMessage !== undefined && member.lastMessage.content !== peeky.serverData.get(keySF, "prefix") + "supportertrial"))  {
+    if  (new Date() - new Date(member.joinedAt) > 10000 && (member.lastMessage == undefined || member.lastMessage !== undefined))  {
 
         //Server Boost
         if  (peeky.userData.has(key))  {
