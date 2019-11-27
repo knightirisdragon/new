@@ -6368,7 +6368,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
                   if  (Background !== 0 && Banners[Background][Banner.Price] !== Exclusive)  {
 
                       peeky.userData.get(key, "Inventory").push(Background + 1);
-                      InfoMessages.push(InfoIcon + " You have found the **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
+                      InfoMessages.push(InfoIcon + " You have found the **" + function_GetBackgroundInfo(Background - 1, ["name", "id"]) + "** background.");
 
                   };
 
