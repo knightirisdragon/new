@@ -1221,7 +1221,7 @@ function UpdateLeaderboardTypes(type)  {
             var TheBannerShown = DefaultBackground;
             TheBannerShown = function_GetBackground(data.UserID);
 
-            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname'>  <img src='" + CurrentUser.displayAvatarURL + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + "</b>  </div>";
+            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname' id='" + CurrentUser.id + "'>  <img src='" + CurrentUser.displayAvatarURL + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + "</b>  </div>";
             if  (currentplace == 1 || currentplace == 2 || currentplace == 3)  {
                 LeaderboardTop.push(SavedProfile);
             } else  {
