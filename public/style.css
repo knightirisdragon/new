@@ -3,6 +3,10 @@ body {
   margin: 2em;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .imagebackground  {
   background-color: #2c2f33;
   background-image: url("https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894");
