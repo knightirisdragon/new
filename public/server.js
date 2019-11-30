@@ -118,6 +118,7 @@ const ClearedNames            = new Set();
 const FailedVoteChecks        = new Set();
 const FailedDMs               = new Set();
 const LoggedMessages          = new Set();
+const AutoWipedServers        = new Set();
 
 //Image Assets
 const TwitterIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ftwitter.png?1555574745120";
@@ -2159,7 +2160,9 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
             if  (Guild.owner)  {
                 await function_DirectMessage(Guild.owner.user.id, "I'm leaving your server called **" + Guild.name + "** because of inactivity.");
             };
-            Guild.leave();
+            AutoWipedServers.push(data.GuildID);
+            await Guild.leave();
+            AutoWipedServers.delete(data.GuildID);
         };
       
         console.log("I have removed an inactive server.");    
@@ -2334,7 +2337,7 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
                 var ServerInfo = "<font size='2' color='pink'>No Invite</font>";    
             };
 
-            ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'><div class='displayitem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b></div></a>");
+            ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'>  <div class='displayitem' id='" + data.GuildID + "' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='displayname'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b>  </div>  </a>");
       
         };
           
@@ -2368,7 +2371,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
             var SupporterDate = peeky.userData.get(m.user.id, "SupporterSince");
         };
 
-        SupporterList.push("<div class='displayitem' style='background-image: url(" + m.user.displayAvatarURL + ")'>  <b class='displayname' value='" + m.user.id + "'>" + function_RemoveTags(m.user.username) + "  <br>  <font size='1' color='grey'>  Supporter for " + function_TimeLeft(peeky.userData.get(m.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
+        SupporterList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL + ")'>  <b class='displayname'>" + function_RemoveTags(m.user.username) + "  <br>  <font size='1' color='grey'>  Supporter for " + function_TimeLeft(peeky.userData.get(m.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
       
     };
     });
@@ -2593,9 +2596,14 @@ if  (peeky.guilds.size > MaxServers || BannedUsers.includes(guild.owner.user.id)
 peeky.on("guildDelete", async (guild) =>  {
   
 const keySF = `${guild.id}`;
-  
-const embed = {"description": ErrorIcon + " I have been removed from a server called **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
-peeky.channels.get(ServerLogChannel).send({ embed });
+
+if  (AutoWipedServers.includes(guild.id))  {
+    const embed = {"description": ErrorIcon + " I have been removed from a server called **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
+    peeky.channels.get(ServerLogChannel).send({ embed });
+} else {
+  const embed = {"description": ErrorIcon + " I have been autowiped from a server called **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
+  peeky.channels.get(ServerLogChannel).send({ embed });
+};
 
 });
 
