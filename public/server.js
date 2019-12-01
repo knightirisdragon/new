@@ -1354,6 +1354,52 @@ function function_ChannelData(key)  {
   
 };
 
+//Direct Message
+function  function_DirectMessage(id, message)  {
+  
+    if  (!FailedDMs.has(id))  {
+      
+        peeky.users.get(id).send(message).catch(err => {
+            ErrorBag.add(err); 
+
+            FailedDMs.add(id);
+            setTimeout(() => {FailedDMs.delete(id)}, 300000);          
+        });
+      
+    };
+  
+};
+
+//Update Bans
+function function_UpdateBans()  {
+  
+    BannedUsers.splice(0, BannedUsers.length);
+    peeky.guilds.get(SupportServer).fetchBans().then(banned => {
+        
+        banned.array().forEach(i => {
+            BannedUsers.push(i.id);
+        });
+
+    });
+      
+    console.log("The banned users have been updated.");
+  
+};
+
+function function_UpdateAutowipe(key, type)  {
+
+    if  (type == "server")  {
+        peeky.serverData.set(key, Date.now(), 'lastSeen');
+        console.log("updated autowipe for " + key + ".");
+    };
+
+    if  (type == "user")  {
+        peeky.userData.set(key, Date.now(), 'lastSeen');
+        console.log("updated autowipe for " + key + ".");
+    };
+  
+};
+
 //Remove Formatting
 function function_RemoveFormatting(text, type, sliced)  {
     
@@ -1431,6 +1477,21 @@ function function_RemoveFormatting(text, type, sliced)  {
 
 };
 
+//Detect Link
+function function_DetectLink(string)  {
+
+  if  (string.length > 0)  {
+    
+      if  (string.match(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g) !== null)  {
+          return true;
+      } else {
+          return false;
+      };
+    
+  };
+  
+};
+
 //Remove HTML Tags
 function function_RemoveTags(text)  {
       return text.replace(/(<([^>]+)>)/ig, "").replace(/[<>]/g, "");
@@ -1460,22 +1521,6 @@ function function_ProperSlice(text, amount)  {
 //Random Description
 function function_RandomDescription()  {
     return DefaultDescriptions[Math.floor(Math.random()*DefaultDescriptions.length)];
-};
-
-//Direct Message
-function  function_DirectMessage(id, message)  {
-  
-    if  (!FailedDMs.has(id))  {
-      
-        peeky.users.get(id).send(message).catch(err => {
-            ErrorBag.add(err); 
-
-            FailedDMs.add(id);
-            setTimeout(() => {FailedDMs.delete(id)}, 300000);          
-        });
-      
-    };
-  
 };
 
 //Get Background
@@ -1540,19 +1585,30 @@ function function_GetBackgroundInfo(ID, args)  {
   
 };
 
-//Detect Link
-function function_DetectLink(string)  {
+//Numarize Array
+function function_NumarizeArray(array, brackets)  {
 
-  if  (string.length > 0)  {
-    
-      if  (string.match(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g) !== null)  {
-          return true;
-      } else {
-          return false;
-      };
-    
-  };
-  
+    var Current = 0; var List = [];
+
+    array.forEach(i => {
+        Current ++;
+        List.push(Current + ". " + brackets[0] + i + brackets[1] + "\n");
+    });
+
+    return List.join("");
+
+};
+
+//Shuffle Array
+function function_ShuffleArray(array) {
+    var j, x, i;
+    for (i = array.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = array[i];
+        array[i] = array[j];
+        array[j] = x;
+    }
+    return array;
 };
 
 //Date Format
@@ -1614,61 +1670,6 @@ function function_TimeLeft(value, type, since)  {
       
     };
 
-};
-
-//Numarize Array
-function function_NumarizeArray(array, brackets)  {
-
-    var Current = 0; var List = [];
-
-    array.forEach(i => {
-        Current ++;
-        List.push(Current + ". " + brackets[0] + i + brackets[1] + "\n");
-    });
-
-    return List.join("");
-
-};
-
-//Shuffle Array
-function function_ShuffleArray(array) {
-    var j, x, i;
-    for (i = array.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = array[i];
-        array[i] = array[j];
-        array[j] = x;
-    }
-    return array;
-};
-
-function function_UpdateBans()  {
-  
-    BannedUsers.splice(0, BannedUsers.length);
-    peeky.guilds.get(SupportServer).fetchBans().then(banned => {
-        
-        banned.array().forEach(i => {
-            BannedUsers.push(i.id);
-        });
-
-    });
-      
-    console.log("The banned users have been updated.");
-  
-};
-
-function function_UpdateAutowipe(key, type)  {
-
-    if  (type == "server")  {
-        peeky.serverData.set(key, Date.now(), 'lastSeen');
-        console.log("updated autowipe for " + key + ".");
-    };
-
-    if  (type == "user")  {
-        peeky.userData.set(key, Date.now(), 'lastSeen');
-        console.log("updated autowipe for " + key + ".");
-    };
-  
 };
 
 function UpdateBackgrounds()  {
@@ -1733,35 +1734,35 @@ function UpdateServerLog()  {
 
 function UpdateHome(text)  {
   
-fetch('https://peeky.glitch.me/stats.txt')
-.then(response => response.text()).then((data) => {
-   document.getElementById("ServerCount").innerHTML = data
-});
-  
-fetch('https://peeky.glitch.me/randomreview.txt')
-.then(response => response.text()).then((data) => {
-   document.getElementById("Reviews").innerHTML = data
-});
-  
-fetch('https://peeky.glitch.me/news.txt')
-.then(response => response.text()).then((data) => {
-   document.getElementById("News").innerHTML = data;
-});
-  
-fetch('https://peeky.glitch.me/staff.txt')
-.then(response => response.text()).then((data) => {
-   document.getElementById("StaffList").innerHTML = data;
-});
+    fetch('https://peeky.glitch.me/stats.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("ServerCount").innerHTML = data
+    });
 
-fetch('https://peeky.glitch.me/featured_profile.txt')
-.then(response => response.text()).then((data) => {
-   document.getElementById("FeaturedProfile").innerHTML = data;
-});
+    fetch('https://peeky.glitch.me/randomreview.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("Reviews").innerHTML = data
+    });
 
-fetch('https://peeky.glitch.me/messageheader.txt')
-.then(response => response.text()).then((data) => {
-   document.getElementById("messageheader").innerHTML = data;
-});
+    fetch('https://peeky.glitch.me/news.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("News").innerHTML = data;
+    });
+
+    fetch('https://peeky.glitch.me/staff.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("StaffList").innerHTML = data;
+    });
+
+    fetch('https://peeky.glitch.me/featured_profile.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("FeaturedProfile").innerHTML = data;
+    });
+
+    fetch('https://peeky.glitch.me/messageheader.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("messageheader").innerHTML = data;
+    });
   
 };
 
@@ -1799,17 +1800,17 @@ peeky.on('ready', () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({  server_count: GuildSize  })
-        }).catch(err => {console.log("Failed to post the server count to CBL."); ErrorBag.add(err)});
+        }).catch(err => {console.log("Failed to post the server count to BFD."); ErrorBag.add(err)});
 
-        //Post Server Counts - BD (NOT WORKING)
-        /*node_fetch(`https://discord.boats/api/v2/bot/${peeky.user.id}`, {
+        //Post Server Counts - BD
+        node_fetch(`https://discord.boats/api/v2/bot/${peeky.user.id}`, {
             method: 'POST',
             headers: {
                 'Authorization': DBToken,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({  server_count: GuildSize  })
-        }).catch(err => {console.log("Failed to post the server count to DB."); ErrorBag.add(err)});*/
+        }).catch(err => {console.log("Failed to post the server count to DB."); ErrorBag.add(err)});
       
         console.log("Stats posted to Bot Lists.");
 

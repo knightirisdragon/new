@@ -1,9 +1,7 @@
 GUIDELINES
-Last updated: 12th of November, 2019
-
-Breaking any of these rules may get you banned from using PEEKY for an undefinite amount of time.
+Last updated: 1st of December, 2019
 
 YOU ARE NOT ALLOWED TO...
-• Abuse PEEKY with the intent of making it crash, slow down, and such.
+• Abuse PEEKY with the intent of making it crash, slow down, or other.
 • Add PEEKY to a Bot Hoarding or Spamming server.
 • Break certain rules of the Support Server. (Applies only when in the Support Server.)
