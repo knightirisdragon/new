@@ -4479,7 +4479,7 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
                      "**Website** [[Open]](https://peeky.glitch.me/)\nVisit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related." + 
                      "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\nSupport PEEKY by purchasing some neat items from the store!" +
                      "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\nJoin the Support Server for important announcements, assistance with the bot, giveaways and much more!" +
-                     "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\nYAdd PEEKY to your server and get all the features for free and fast!" +
+                     "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\nAdd PEEKY to your server and get all the features for free and fast!" +
                      "\n\n**Server Prefix: ** " + peeky.serverData.get(keySF, "prefix"),
                      "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
                      "color": 7506394 
