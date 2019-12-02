@@ -3679,20 +3679,23 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
       
         if  (!user.bot & reaction.message.id == peeky.serverData.get(keySF, "ticket_system_bonus_id"))  {
             
-            if  (reaction.message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
-              
-                const role = reaction.message.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
+            if  (reaction.message.guild.me.hasPermission("MANAGE_CHANNELS") && !TicketSystemCooldown.has(user.id))  {
             
                 TicketSystemCooldown.add(user.id);
                 setTimeout(() => {TicketSystemCooldown.delete(user.id)}, 300000);
               
-                const embed = {"description": " That message was already logged, **" + function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor}; 
+                const role = reaction.message.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
+                const TicketID = Math.random().toString(36).substr(2, 6);
+              
+                const embed = {"description": "**" + function_RemoveFormatting(user.username, "other", true) + "'s Ticket (" + TicketID + ")**." + "\n" + "Staff may close the ticket once the issue has been resolved.",  "color": EmbedColor}; 
 
-                reaction.message.guild.createChannel("Ticket_" + Math.random().toString(36).substr(2, 6), { type: 'text', reason: "Channel created by @" + user.tag + " through a function." }).then(async function (channel)  {
+                reaction.message.guild.createChannel("Ticket_" + TicketID, { type: 'text', reason: "Channel created by @" + user.tag + " through a function." }).then(async function (channel)  {
                       await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == '@everyone'), {  VIEW_CHANNEL: false  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == role.name), {  VIEW_CHANNEL: true  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == PeekyId), {  VIEW_CHANNEL: true  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == user.id), {  VIEW_CHANNEL: true  }).catch(error => ErrorBag.add(error));
+                  
+                      await channel.send({  embed  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
                 
               
