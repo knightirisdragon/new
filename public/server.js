@@ -3703,7 +3703,8 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                   
                       await channel.send({  embed  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
-                
+              
+                function_UpdateAutowipe(keySF, "server");
               
             };
           
@@ -3933,7 +3934,7 @@ if  (!message.author.bot && message.guild.owner !== undefined)  {
     };
   
 };
-    
+
 //Workshop Auto-Management
 if  (message.channel.id == WorkshopChannel)  {
   
