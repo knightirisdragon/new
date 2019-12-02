@@ -3678,6 +3678,8 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
     if  (reaction.emoji.name == "🎟️")  {
       
         if  (!user.bot & reaction.message.id == peeky.serverData.get(keySF, "ticket_system_bonus_id"))  {
+          
+            reaction.remove();
             
             if  (reaction.message.guild.me.hasPermission("MANAGE_CHANNELS") && !TicketSystemCooldown.has(user.id))  {
             
@@ -4946,7 +4948,7 @@ if  (FunctioName.startsWith("ticket system"))  {
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-          await channel.send("**Ticket System**" + "\n" + "React with 🎟️ to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_bonus_id");  }).catch(error => ErrorBag.add(error));
+          await channel.send("**Need help with something?**" + "\n" + "Click on the reaction below to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_bonus_id");  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Ticket System** function.");
