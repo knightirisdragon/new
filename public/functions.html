@@ -135,7 +135,7 @@ function CW_Popup() {
   
 function TS_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Ticket System</b>  <br>  <b class="functiondescription">Creates a channel that allows people to create a ticket.</b>  ' + Ignores + '  <b class="functioncommand"></b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle classification wall</b>  <br>  <b class="functioncommand">p!set classification wall [role name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Ticket System</b>  <br>  <b class="functiondescription">Creates a channel that allows people to create a ticket.  <br>  The setting determines what role manages tickets.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle ticket system</b>  <br>  <b class="functioncommand">p!set ticket system [role name]</b>' + Note;
 };
 
 function SA_Popup() {
@@ -349,6 +349,14 @@ function Close()  {
     <br> <font class="table_description">Utilities</font>
       
     <div class="inlinediv">
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="popup" onclick="TS_Popup()">  Ticket System  </div>
+        
+      </div>
+    </div>
     
     <div class="function_showcase">
       <div class="centered">
