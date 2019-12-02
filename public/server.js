@@ -1324,8 +1324,8 @@ function function_ServerData(key)  {
             role_sync_bonus: false,
             role_sync_bonus_setting: 0,
             ticket_system_bonus: false,
-            ticket_system_setting: "Staff",
-            ticket_system_id: null
+            ticket_system_bonus_setting: "Staff",
+            ticket_system_bonus_id: null
         });
       
         console.log("Created server data for " + key + ".");
@@ -3677,9 +3677,25 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
 
     if  (reaction.emoji.name == "🎟️")  {
       
-        if  (!MemberExists.user.bot & reaction.message.id == peeky.serverData.get(keySF, "ticket_system_id"))  {
+        if  (!MemberExists.user.bot & reaction.message.id == peeky.serverData.get(keySF, "ticket_system_bonus_id"))  {
+          
             
+            if  (reaction.message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
+              
+                const role = reaction.message.guild.roles.find.roles(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
             
+                TicketSystemCooldown.add(user.id);
+                setTimeout(() => {TicketSystemCooldown.delete(user.id)}, 300000);
+
+                reaction.message.guild.createChannel("Ticket_" + Math.random().toString(36).substr(2, 6), "text", { type: 'text', reason: "Channel created by @" + user.tag + " through a function." }).then(async function (channel)  {
+                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == '@everyone'), {  VIEw_MESSAGES: false  }).catch(error => ErrorBag.add(error));
+                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == role.name), {  VIEw_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+                      await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == PeekyId), {  VIEw_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+                      await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == user.id), {  VIEw_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+                }).catch(function(err) {  ErrorBag.add(err);  });
+                
+              
+            };
           
         };
 
@@ -4926,7 +4942,7 @@ if  (FunctioName.startsWith("ticket system"))  {
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-          await channel.send("**Ticket System**" + "\n" + "React with 🎟️ to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_id");  }).catch(error => ErrorBag.add(error));
+          await channel.send("**Ticket System**" + "\n" + "React with 🎟️ to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_bonus_id");  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Ticket System** function.");
@@ -5637,9 +5653,9 @@ else
 if  (FunctioName.startsWith("ticket system "))  {
 
     var RoleName = CommandName.split("ticket system ")[1];
-    peeky.serverData.set(keySF, function_RemoveFormatting(RoleName, "role"), "ticket_system_setting", true);
+    peeky.serverData.set(keySF, function_RemoveFormatting(RoleName, "role"), "ticket_system_bonus_setting", true);
 
-    const embed = {"description": SuccessIcon + " The **Ticket System** setting has been set to **@" + peeky.serverData.get(keySF, "ticket_system_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": SuccessIcon + " The **Ticket System** setting has been set to **@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
