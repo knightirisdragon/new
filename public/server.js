@@ -1321,6 +1321,9 @@ function function_ServerData(key)  {
             reddit_posts_bonus_last: [],
             role_sync_bonus: false,
             role_sync_bonus_setting: 0,
+            ticket_system_bonus: false,
+            ticket_system_setting: "Staff",
+            ticket_system_id: null
         });
       
         console.log("Created server data for " + key + ".");
@@ -4826,6 +4829,52 @@ else
 if  (FunctioName.startsWith("classification wall"))  {
     
     const channel = peeky.guilds.get(message.guild.id).channels.find(channel => channel.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
+    const name = peeky.serverData.get(keySF, "donor_wall_bonus_channel");
+
+    if(peeky.serverData.get(keySF, "donor_wall_bonus") == true) {  peeky.serverData.set(keySF, false, "donor_wall_bonus");  }
+    else peeky.serverData.set(keySF, true, "donor_wall_bonus");
+  
+    //Channel Creating    
+    if (!channel) {
+      
+    if  (!ChannelCooldown.has(message.guild.id)) {
+
+    if  (ManageChannels == true)  {
+
+    ChannelCooldown.add(message.guild.id);
+    setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
+      
+    await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+    .then(async function (channel)  {
+          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error))
+          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error))
+          await channel.send("**" + message.guild.name + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\nPreparing the Wall. Check back in under a few minutes!").catch(error => {ErrorBag.add(error);}).then(m => peeky.serverData.set(keySF, m.id, "donor_wall_bonus_id"));
+    }).catch(function(err) {  ErrorBag.add(err);  });
+      
+    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Classification Wall** function.");
+
+    };
+    }
+     else
+    {
+     const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+    };
+
+    if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Classification Wall** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+   
+//Toggle Ticket System
+if  (FunctioName.startsWith("classification wall"))  {
+    
+    const channel = peeky.guilds.get(message.guild.id).channels.find(channel => channel.name == peeky.serverData.get(keySF, "ticket_system_bonus_id"));
     const name = peeky.serverData.get(keySF, "donor_wall_bonus_channel");
 
     if(peeky.serverData.get(keySF, "donor_wall_bonus") == true) {  peeky.serverData.set(keySF, false, "donor_wall_bonus");  }
