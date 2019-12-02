@@ -3680,6 +3680,8 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
     if  (reaction.emoji.name == "🎟️")  {
       
         if  (!user.bot & reaction.message.id == peeky.serverData.get(keySF, "ticket_system_bonus_id"))  {
+          
+            reaction.message.clearReactions();
             
             if  (reaction.message.guild.me.hasPermission("MANAGE_CHANNELS") && !TicketSystemCooldown.has(user.id))  {
             
@@ -3689,7 +3691,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                 const role = reaction.message.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
                 const category = reaction.message.guild.channels.find(c => c.name == "Tickets" && c.type == "category");
                 const TicketID = Math.random().toString(36).substr(2, 6);
-                const embed = {"description": "**" + function_RemoveFormatting(user.username, "other", true) + "'s Ticket (" + TicketID + ")**." + "\n" + "Staff may close the ticket once the issue has been resolved.",  "color": EmbedColor}; 
+                const embed = {"description": "**" + function_RemoveFormatting(user.username, "other", true) + " has created a ticket**" + "\n" + "Staff may close the ticket once the issue has been resolved.",  "color": EmbedColor}; 
 
                 reaction.message.guild.createChannel("Ticket_" + TicketID, { type: 'text', reason: "Channel created by @" + user.tag + " through a function." }).then(async function (channel)  {
                       if  (category)  {
@@ -4952,8 +4954,8 @@ if  (FunctioName.startsWith("ticket system"))  {
       
     await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
-          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
-          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false  }).catch(error => ErrorBag.add(error));
+          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true, MANAGE_MESSAGES: true  }).catch(error => ErrorBag.add(error));
           await channel.send("**Need help with something?**" + "\n" + "Click on the reaction below to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_bonus_id");  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
       
