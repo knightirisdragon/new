@@ -3680,8 +3680,6 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
     if  (reaction.emoji.name == "🎟️")  {
       
         if  (!user.bot & reaction.message.id == peeky.serverData.get(keySF, "ticket_system_bonus_id"))  {
-          
-            reaction.remove();
             
             if  (reaction.message.guild.me.hasPermission("MANAGE_CHANNELS") && !TicketSystemCooldown.has(user.id))  {
             
