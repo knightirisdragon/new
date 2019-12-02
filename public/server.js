@@ -4936,6 +4936,7 @@ if  (FunctioName.startsWith("ticket system"))  {
     
     const name = "tickets";
     const channel = message.guild.channels.find(channel => channel.name == name);
+    const category = message.guild.channels.find(c => c.name == "Tickets" && c.type == "category");
 
     if(peeky.serverData.get(keySF, "ticket_system_bonus") == true) {  peeky.serverData.set(keySF, false, "ticket_system_bonus");  }
     else peeky.serverData.set(keySF, true, "ticket_system_bonus");
@@ -4958,6 +4959,10 @@ if  (FunctioName.startsWith("ticket system"))  {
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Ticket System** function.");
+      
+    if  (!category)  {
+        InfoMessages.push(InfoIcon + " Consider creating a category called **Tickets** to sort tickets.");
+    };
 
     };
     }
