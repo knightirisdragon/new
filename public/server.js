@@ -4828,7 +4828,7 @@ else
 //Toggle Classification Wall
 if  (FunctioName.startsWith("classification wall"))  {
     
-    const channel = peeky.guilds.get(message.guild.id).channels.find(channel => channel.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
+    const channel = message.guild.channels.find(channel => channel.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
     const name = peeky.serverData.get(keySF, "donor_wall_bonus_channel");
 
     if(peeky.serverData.get(keySF, "donor_wall_bonus") == true) {  peeky.serverData.set(keySF, false, "donor_wall_bonus");  }
@@ -4872,13 +4872,13 @@ if  (FunctioName.startsWith("classification wall"))  {
 else
    
 //Toggle Ticket System
-if  (FunctioName.startsWith("classification wall"))  {
+if  (FunctioName.startsWith("ticket system"))  {
     
-    const channel = peeky.guilds.get(message.guild.id).channels.find(channel => channel.name == peeky.serverData.get(keySF, "ticket_system_bonus_id"));
-    const name = peeky.serverData.get(keySF, "donor_wall_bonus_channel");
+    const name = "Tickets";
+    const channel = message.guild.channels.find(channel => channel.name == name);
 
-    if(peeky.serverData.get(keySF, "donor_wall_bonus") == true) {  peeky.serverData.set(keySF, false, "donor_wall_bonus");  }
-    else peeky.serverData.set(keySF, true, "donor_wall_bonus");
+    if(peeky.serverData.get(keySF, "ticket_system_bonus") == true) {  peeky.serverData.set(keySF, false, "ticket_system_bonus");  }
+    else peeky.serverData.set(keySF, true, "ticket_system_bonus");
   
     //Channel Creating    
     if (!channel) {
@@ -4892,12 +4892,12 @@ if  (FunctioName.startsWith("classification wall"))  {
       
     await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
-          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error))
-          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error))
-          await channel.send("**" + message.guild.name + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\nPreparing the Wall. Check back in under a few minutes!").catch(error => {ErrorBag.add(error);}).then(m => peeky.serverData.set(keySF, m.id, "donor_wall_bonus_id"));
+          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
+          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+          await channel.send("**Ticket System**" + "\n" + "React with 🎟️ to create a ticket.").catch(error => ErrorBag.add(error)).then(m => m.react("🎟️")).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
       
-    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Classification Wall** function.");
+    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Ticket System** function.");
 
     };
     }
@@ -4908,8 +4908,8 @@ if  (FunctioName.startsWith("classification wall"))  {
     };
     };
 
-    if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Classification Wall** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Ticket System** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5595,6 +5595,19 @@ if  (FunctioName.startsWith("classification wall "))  {
     peeky.serverData.set(keySF, function_RemoveFormatting(ChannelName, "channel") + "s", "donor_wall_bonus_channel", true);
 
     const embed = {"description": SuccessIcon + " The **Classification Wall** setting has been set to **#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "** and **@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "**.",  "color": EmbedColor}; 
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+      
+//Set Ticket System
+if  (FunctioName.startsWith("ticket system "))  {
+
+    var RoleName = CommandName.split("ticket system ")[1];
+    peeky.serverData.set(keySF, function_RemoveFormatting(RoleName, "role"), "ticket_system_setting", true);
+
+    const embed = {"description": SuccessIcon + " The **Ticket System** setting has been set to **@" + peeky.serverData.get(keySF, "ticket_system_setting") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
