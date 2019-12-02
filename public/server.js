@@ -104,6 +104,7 @@ const MemberCounterCooldown   = new Set();
 const GameLogsCooldown        = new Set();
 const MessageLogCooldown      = new Set();
 const DonorWallCooldown       = new Set();
+const TicketSystemCooldown    = new Set();
 const ServerAgeCooldown       = new Set();
 const RedditPostsCooldown     = new Set();
 const ResponseCooldowns       = new Set();  const ResponseCooldownMS = 5000;
@@ -117,8 +118,9 @@ const CurrentlyStreaming      = new Set();
 const ClearedNames            = new Set();
 const FailedVoteChecks        = new Set();
 const FailedDMs               = new Set();
-const LoggedMessages          = new Set();
 const AutoWipedServers        = new Set();
+const LoggedMessages          = new Set();
+const ActivatedTicketSystems  = new Set();
 
 //Image Assets
 const TwitterIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ftwitter.png?1555574745120";
@@ -3616,7 +3618,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
       
         var MemberExists = reaction.message.guild.members.find(m => m.id == reaction.message.author.id);
       
-        if  (MemberExists.user.id !== PeekyId)  {
+        if  (!MemberExists.user.bot)  {
       
         if  (MemberExists && !reaction.message.member.permissions.has("KICK_MEMBERS"))  {
           
@@ -3664,6 +3666,21 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
           reaction.message.clearReactions().catch(error => ErrorBag.add(error));
+        };
+
+    };
+
+};
+  
+//Ticket System
+if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
+
+    if  (reaction.emoji.name == "🎟️")  {
+      
+        if  (!MemberExists.user.bot & reaction.message.id == peeky.serverData.get(keySF, "ticket_system_id"))  {
+            
+            
+          
         };
 
     };
@@ -4403,6 +4420,21 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
       };
   
 };
+      
+//Ticket System
+if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true)  {
+
+    const Role    = peeky.guilds.get(message.guild.id).roles.find(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
+    const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == "Tickets");
+
+    if  (Role && Channel)  {
+      
+        ActivatedTicketSystems.add(message.guild.id);
+        Channel.fetchMessages({ limit: 1 });
+
+    };
+  
+};
 
 //Banned Words
 if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true)  {
@@ -4894,7 +4926,7 @@ if  (FunctioName.startsWith("ticket system"))  {
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-          await channel.send("**Ticket System**" + "\n" + "React with 🎟️ to create a ticket.").catch(error => ErrorBag.add(error)).then(m => m.react("🎟️")).catch(error => ErrorBag.add(error));
+          await channel.send("**Ticket System**" + "\n" + "React with 🎟️ to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_id");  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
       
     InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Ticket System** function.");
