@@ -3677,21 +3677,20 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
 
     if  (reaction.emoji.name == "🎟️")  {
       
-        if  (!MemberExists.user.bot & reaction.message.id == peeky.serverData.get(keySF, "ticket_system_bonus_id"))  {
-          
+        if  (!user.bot & reaction.message.id == peeky.serverData.get(keySF, "ticket_system_bonus_id"))  {
             
             if  (reaction.message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
               
-                const role = reaction.message.guild.roles.find.roles(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
+                const role = reaction.message.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
             
                 TicketSystemCooldown.add(user.id);
                 setTimeout(() => {TicketSystemCooldown.delete(user.id)}, 300000);
 
-                reaction.message.guild.createChannel("Ticket_" + Math.random().toString(36).substr(2, 6), "text", { type: 'text', reason: "Channel created by @" + user.tag + " through a function." }).then(async function (channel)  {
-                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == '@everyone'), {  VIEw_MESSAGES: false  }).catch(error => ErrorBag.add(error));
-                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == role.name), {  VIEw_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-                      await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == PeekyId), {  VIEw_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-                      await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == user.id), {  VIEw_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+                reaction.message.guild.createChannel("Ticket_" + Math.random().toString(36).substr(2, 6), { type: 'text', reason: "Channel created by @" + user.tag + " through a function." }).then(async function (channel)  {
+                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == '@everyone'), {  VIEW_CHANNEL: false  }).catch(error => ErrorBag.add(error));
+                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == role.name), {  VIEW_CHANNEL: true  }).catch(error => ErrorBag.add(error));
+                      await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == PeekyId), {  VIEW_CHANNEL: true  }).catch(error => ErrorBag.add(error));
+                      await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == user.id), {  VIEW_CHANNEL: true  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
                 
               
@@ -4441,7 +4440,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true)  {
 
     const Role    = peeky.guilds.get(message.guild.id).roles.find(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
-    const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == "Tickets");
+    const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == "tickets");
 
     if  (Role && Channel)  {
       
@@ -4922,7 +4921,7 @@ else
 //Toggle Ticket System
 if  (FunctioName.startsWith("ticket system"))  {
     
-    const name = "Tickets";
+    const name = "tickets";
     const channel = message.guild.channels.find(channel => channel.name == name);
 
     if(peeky.serverData.get(keySF, "ticket_system_bonus") == true) {  peeky.serverData.set(keySF, false, "ticket_system_bonus");  }
