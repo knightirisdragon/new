@@ -2222,9 +2222,9 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     WebsiteCooldowns.add("backgrounds");
     setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 600000);
 
-    const BackgroundList            = [];
-    var   Current                   = 0;            
-    var   Fillers                   = 0;
+    const BackgroundList = [];
+    var   Current        = 0;            
+    var   Fillers        = 0;
 
     Banners.forEach(background_info => {
 
