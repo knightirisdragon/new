@@ -2227,27 +2227,20 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
     Banners.forEach(background_info => {
 
           Current ++;
-
-          if  (background_info[4] !== undefined && peeky.userData.has(background_info[4]))  {
-              var RevenueString = "<br>  Revenue Enabled";              
-          } else {
-            var RevenueString = "";
-          };
       
-          var FixedPrice    = background_info[1];
           var CommandString = Prefix + 'seebackground ' + Current;
           var NewString     = "";
+          var RevenueString = "";
 
-          /*if  (FixedPrice !== Exclusive)  {
-              FixedPrice    = FixedPrice.toLocaleString('en') + " Gredit";
-              CommandString = Prefix + 'buybackground ' + Current + ' | ' + Prefix + 'setbackground ' + Current;
-          };*/
+          if  (background_info[4] !== undefined && peeky.userData.has(background_info[4]))  {
+              RevenueString = " <font color='lightgreen'>Revenue Enabled</font>";
+          };
 
           if  (Date.now() - background_info[5] < DayMs)  {
-              NewString = " <font color='lightgreen'>NEW</font>";
+              NewString = " <font color='lightgreen'>New</font>";
           };
       
-          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="' + Current + '">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + NewString + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + FixedPrice + ' ' + RevenueString + '  </font>  <br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
+          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="' + Current + '">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + background_info[2] + RevenueString + NewString + '  </font>  <br>  <font size="2" color="lightgray">' + background_info[3] + '</font>  <br><br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
     
           BackgroundList.push(BackgroundString);
     
@@ -6201,9 +6194,9 @@ if (CommandName.startsWith("seebackground"))  {
                 + "\n" 
                 + "" + function_GetBackgroundInfo(i, ["credit"])
                 + "\n\n"
-                + "**Information**"
+                + "**Price**"
                 + "\n"
-                + "Price: " + Price
+                + Price
                 + "\n\n"
                 + "**Commands**"
                 + "\n"
