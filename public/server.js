@@ -1557,8 +1557,8 @@ function function_GetBackgroundInfo(ID, args)  {
 
     for (var i = 0; i < Banners.length; i++)  {
 
-        if  (ID == i + 1)  {
-
+        if  (i == ID - 1)  {
+          
             var Background = [];
 
             if  (args.includes("name"))  {
@@ -1567,14 +1567,14 @@ function function_GetBackgroundInfo(ID, args)  {
 
             if  (args.includes("credit"))  {
                 Background.push(Banners[i][Banner.Credit]);
-            };
+                };
 
             if  (args.includes("id"))  {
                 Background.push("`" + ID + "`");
             };
 
             if  (args.includes("price"))  {
-                Background.push(Banners[i][Banner.Price].toLocaleString('en') + " " + GreditIcon);
+                Background.push(Banners[i][Banner.Price]);
             };
 
             if  (args.includes("source"))  {
@@ -1587,7 +1587,7 @@ function function_GetBackgroundInfo(ID, args)  {
 
             return Background.join(" ");
             break;
-
+          
         };
               
     };
@@ -6187,13 +6187,13 @@ if (CommandName.startsWith("seebackground"))  {
             var Price = Exclusive;
             const Commands = [];
           
-            if  (i[Banner.Price] !== Exclusive)  {
-                Price = function_GetBackgroundInfo(i, ["price"]);
-                Commands.push(Prefix + "buybackground" + i);
+            if  (function_GetBackgroundInfo(i, ["price"]) !== Exclusive)  {
+                Price = function_GetBackgroundInfo(i, ["price"]) + " " + GreditIcon;
+                Commands.push(Prefix + "buybackground " + i);
             };
           
-            Commands.push(Prefix + "setbackground" + i);
-            Commands.push(Prefix + "sellbackground" + i);
+            Commands.push(Prefix + "setbackground " + i);
+            Commands.push(Prefix + "sellbackground " + i);
           
             const embed = {
                 "description": 
@@ -6431,7 +6431,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
                   if  (Background !== 0 && Banners[Background][Banner.Price] !== Exclusive)  {
 
                       peeky.userData.get(key, "Inventory").push(Background + 1);
-                      InfoMessages.push(InfoIcon + " You have found the **" + function_GetBackgroundInfo(Background - 1, ["name", "id"]) + "** background.");
+                      InfoMessages.push(InfoIcon + " You have found the **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
 
                   };
 
