@@ -716,15 +716,17 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground414.png?v=1569780678572", 300, "Stříbro", "Vlaďka Lišková", `583902709745188875`, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground415.png?v=1569829711380", 400, "Flayed", "Stranger Things", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground416.png?v=1573313860160", 500, "Beyond hell", "Nioh", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground417.png?v=1573313897257", 500, "Sleeping river ", "GreedFall", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground417.png?v=1573313897257", 500, "Sleeping river", "GreedFall", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground418.png?v=1573313898157", 500, "Awakening", "Project Awakening Arise", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground419.png?v=1573313903056", 450, "Spider-man", "Sony Pictures", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground420.png?v=1573313975804", 400, "Sleeping streamer", "Alexandrev Perstev", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground421.png?v=1573891420218", 325, "Emoji saviour", "twlefth", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground422.png?v=1575141704791", 400, "Giorno's piano", "u/Rockman17", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground423.png?v=1575141706988", 420, "Norbinbad", "Lord of the Rings War in the North", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground424.png?v=1575141708491", 400, "Mouse's flower", "Unknown", undefined]
-  
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground423.png?v=1575141706988", 425, "Norbinbad", "Lord of the Rings War in the North", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground424.png?v=1575141708491", 400, "Mouse's flower", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground425.png?v=1575345556036", 400, "Chaotic home", "PewDiePie's Tuber Simulaor", undefined, 1575345511274],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground426.png?v=1575345938913", 500, "Deer hunt", "Red Dead Redemption 2", undefined, 1575345944280],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground427.png?v=1575345939547", 475, "International squad", "Call of Duty Modern Warfare", undefined, 1575345952003]  
 
 ];
 
@@ -2240,11 +2242,11 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
 
           if  (FixedPrice !== Exclusive)  {
               FixedPrice    = FixedPrice.toLocaleString('en') + " Gredit";
-              CommandString = Prefix + 'buybackground ' + Current;
+              CommandString = Prefix + 'buybackground ' + Current + ' | ' + Prefix + 'setbackground ' + Current;
           };
 
-          if  (FixedPrice !== Exclusive)  {
-              NewString = "<font color='lightgreen'>NEW</font>";
+          if  (Date.now() - background_info[5] < DayMs)  {
+              NewString = " <font color='lightgreen'>NEW</font>";
           };
       
           var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="' + Current + '">  <div class="background_centered">  <b class="background_text">  <font size="3"> ' + background_info[2] + NewString + '  </font>  <br>  <font size="2" color="lightgray">  ' + background_info[3] + '  </font>  <br><br>  <font size="2">  ' + FixedPrice + ' ' + RevenueString + '  </font>  <br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
@@ -3408,7 +3410,7 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
         const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted and will be added shortly!",  "color": EmbedColor}; 
         function_DirectMessage(reaction.message.author.id, { embed });
       
-        function_DirectMessage(OwnerId, '[NoBackground, ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ', ' +  + ']');
+        function_DirectMessage(OwnerId, '[NoBackground, ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ', ' + Date.now() + ']');
       
     };
   
