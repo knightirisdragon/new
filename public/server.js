@@ -2482,37 +2482,8 @@ if  (!WebsiteCooldowns.has("staff"))  {
     peeky.guilds.get(SupportServer).members.forEach(m => {
       
       if  (m.roles.has(StaffRole))  {
-      
-          var StaffTag = [];
-          var StaffButton = [];
 
-          var TwitterBody = '<img src=' + TwitterIcon + ' class="staffbutton"> <b class="contacttext">Twitter</b>';
-          var RedditBody = '<img src=' + RedditIcon + ' class="staffbutton"> <b class="contacttext">Reddit</b>';
-          var InstagramBody = '<img src=' + InstagramIcon + ' class="staffbutton"> <b class="contacttext">Instagram</b>';
-
-          //Vojtěch
-          if  (m.user.id == OwnerId)  {
-              StaffButton.push('<a href="https://twitter.com/vojtech_jilovec" target="_blank">  ' + TwitterBody + '  </a>');
-              StaffButton.push('<a href="https://www.reddit.com/user/vojtasonic" target="_blank">  ' + RedditBody + '  </a>');
-          } else
-
-          //Nick
-          if  (m.user.id == "298551254978789378")  {
-              StaffButton.push('<a href="https://twitter.com/MRArmy4" target="_blank">  ' + TwitterBody + '  </a>');
-              StaffButton.push('<a href="https://www.reddit.com/user/MrArmy_" target="_blank">  ' + RedditBody + '  </a>');
-          } else
-
-          //Bersekr
-          if  (m.user.id == "266579411162103808")  {
-              StaffButton.push('<a href="https://twitter.com/Bersekr21" target="_blank">  ' + TwitterBody + '  </a>');
-          } else
-
-          //Sabi
-          if  (m.user.id == "180090347421040640")  {
-              StaffButton.push('<a href="https://www.reddit.com/user/Sabinyan" target="_blank">  ' + RedditBody + '  </a>');
-          };
-
-          var CurrentContact = '<div class="staffwindow" id="' + m.user.id + '_window" style="background-image: url(' + function_GetBackground(m.user.id) + '); background-size: cover;  background-repeat: no-repeat;">  <a class="close" onclick="MoreInfo(`none`)">Close</a>  <img class="stafficon_w" src="' + m.user.displayAvatarURL +'">  <b class="staffname_w">' + function_RemoveTags(m.user.username) + '<font color="#7289DA">#' + m.user.discriminator + '</font> </b>  <b class="staffdesc_w">' + function_RemoveTags(peeky.userData.get(m.user.id).Description) + '</b>  <div class="staffcontacts">' + StaffButton.join("<br>") + '</div>  </div>' + '<div class="container">  <img src=' + '"' + m.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon"' + '>   <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  <br>  <a style="font-size: 10px;" id="' + m.user.id + '" onclick="MoreInfo(this.id)">Staff Profile</a>  </b>  </div>';  
+          var CurrentContact = '<div class="container">  <img src=' + '"' + m.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon">  <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  </b>  </div>';  
 
           if  (m.roles.has("574255080069398543"))  {
               DevList.push(CurrentContact);
