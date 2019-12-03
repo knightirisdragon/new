@@ -8377,7 +8377,7 @@ if  (CommandName.startsWith("muterole"))  {
                                   Failed = true;
                           };
                              
-                          if  (Failed == false && Amount <= 20)  {
+                          if  (Failed == false && Amount < 25)  {
                              
                               channel.overwritePermissions(MuteRole, {
                                   'SEND_MESSAGES': false,
