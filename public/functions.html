@@ -192,11 +192,6 @@ function GR_Popup() {
      document.getElementById('description').innerHTML = '<b class="functionname">Game Roles</b>  <br>  <b class="functiondescription">Gives a specific role to any server member that starts playing a specific game.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">10 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle game roles</b>  <br>  <b class="functioncommand">p!set game roles [game name]</b>' + Note;
 };
   
-function GA_Popup() {
-     document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Game Announcements</b>  <br>  <b class="functiondescription">Sends a message to a specific channel when someone starts playing a game.</b>  ' + Ignores + '  <b class="functioncommand">Bots and members that haven\'t sent a message in a long time.</b>  ' + Cooldown + '  <b class="functioncommand">10 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle game roles</b>  <br>  <b class="functioncommand">p!set game roles [game name]</b>' + Note;
-};
-  
 function RS_Popup() {
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="functionname">Role Saver</b>  <br>  <b class="functiondescription">If a user were to leave your server and join back, they would get their roles assigned back to them.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle role saver</b>' + Note;
@@ -394,14 +389,6 @@ function Close()  {
       <div class="centered">
         
     <div class="popup" onclick="CW_Popup()">  Classification Wall  </div>
-        
-      </div>
-    </div>
-    
-    <div class="function_showcase">
-      <div class="centered"> 
-        
-    <div class="popup" onclick="GA_Popup()">  Game Announcements  </div>
         
       </div>
     </div>

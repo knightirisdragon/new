@@ -1323,8 +1323,6 @@ function function_ServerData(key)  {
             reddit_posts_bonus: false,
             reddit_posts_bonus_setting: "discordapp",
             reddit_posts_bonus_last: [],
-            role_sync_bonus: false,
-            role_sync_bonus_setting: 0,
             ticket_system_bonus: false,
             ticket_system_bonus_setting: "Staff",
             ticket_system_bonus_id: null
@@ -2237,13 +2235,13 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
           };
       
           var FixedPrice    = background_info[1];
-          var CommandString = Prefix + 'setbackground ' + Current;
+          var CommandString = Prefix + 'seebackground ' + Current;
           var NewString     = "";
 
-          if  (FixedPrice !== Exclusive)  {
+          /*if  (FixedPrice !== Exclusive)  {
               FixedPrice    = FixedPrice.toLocaleString('en') + " Gredit";
               CommandString = Prefix + 'buybackground ' + Current + ' | ' + Prefix + 'setbackground ' + Current;
-          };
+          };*/
 
           if  (Date.now() - background_info[5] < DayMs)  {
               NewString = " <font color='lightgreen'>NEW</font>";
@@ -3289,43 +3287,6 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
       
 };
 
-//Game Announcements
-if  (peeky.serverData.get(keySF, "game_announcements_bonus") == true)  {
-  
-    if  (!member.user.bot && !GameLogsCooldown.has(member.user.id + member.guild.id))  {
-
-        var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "game_announcements_bonus_setting"));    
-
-        if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
-      
-            var NotDuplicate = true;
-            if  (oldMember.presence.game !== null && member.presence.game !== null)  {
-                if  (member.presence.game.name == oldMember.presence.game.name)  {
-                    NotDuplicate = false;
-                };
-            };
-          
-            if  (member.presence.game.type == 0 && member.presence.game !== null && member.presence.game.type == 0 && NotDuplicate == true)  {
-
-                GameLogsCooldown.add(member.user.id + member.guild.id);
-                setTimeout(() => {GameLogsCooldown.delete(member.user.id + member.guild.id)}, 180000);
-                  
-                var SavedMember = member;
-
-                const embed = {"description": "**" + function_RemoveFormatting(SavedMember.displayName, "other", true) + "** has started playing **" + function_RemoveFormatting(SavedMember.presence.game.name, "other", true) + "**",  "color": member.displayColor };
-                Channel.send({ embed }).catch(error => ErrorBag.add(error));
-                  
-                console.log("The Game Announcements function has been triggered in " + member.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
-
-            };
-
-        };
-  
-    };
-      
-};
-
 //Game Roles
 if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 
@@ -3538,7 +3499,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "streamer_role_bonus") == true)          { var SR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SR = DisabledIcon};
         if (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)           { var RP = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var RP = DisabledIcon};
         if (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)   { var SA2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA2 = DisabledIcon};
-        if (peeky.serverData.get(keySF, "game_announcements_bonus") == true)     { var GA = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var GA = DisabledIcon};
         if (peeky.serverData.get(keySF, "server_age_bonus") == true)             { var SA3 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA3 = DisabledIcon};
         if (peeky.channelData.get(keyCF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
         if (peeky.channelData.get(keyCF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
@@ -3591,7 +3551,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Dash Remover** " + DR + "\n" + "No setting" + "\n\n" +
                                 "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
-                                "**Game Announcements** " + GA + "\n" + "`#" + peeky.serverData.get(keySF, "game_announcements_bonus_setting") + "`" + "\n\n" +
                                 "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
                                 "**Streamer Role** " + SR + "\n" + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`",
                   color: EmbedColor,
@@ -4853,53 +4812,6 @@ if  (FunctioName.startsWith("welcome messages"))  {
   
 else
    
-//Toggle Game Announcements
-if  (FunctioName.startsWith("game announcements"))  {
-  
-    const guild = message.guild;
-    var name = peeky.serverData.get(keySF, "game_announcements_bonus_setting");
-    var channel = guild.channels.find(c=> c.name == name);
-        
-    if   (peeky.serverData.get(keySF, "game_announcements_bonus") == true) {peeky.serverData.set(keySF, false, "game_announcements_bonus")}
-    else peeky.serverData.set(keySF, true, "game_announcements_bonus");
-    
-    //Channel Creating
-    if (!channel) {
-    
-    if  (!ChannelCooldown.has(message.guild.id)) {
-      
-    if  (ManageChannels == true)  {
-
-    ChannelCooldown.add(message.guild.id);
-    setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
-      
-    await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
-    .then(async function (channel)  {
-          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
-          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-    }).catch(function(err) {  ErrorBag.add(err);  });
-      
-    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Game Announcements** function.");
-    
-    };
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
-     message.channel.send({ embed })
-     .catch(error => ErrorBag.add(error));
-    };
-    };
-      
-    if  (peeky.serverData.get(keySF, "game_announcements_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Game Announcements** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-    
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-}
-  
-else
-   
 //Toggle Classification Wall
 if  (FunctioName.startsWith("classification wall"))  {
     
@@ -5612,20 +5524,6 @@ if  (FunctioName.startsWith("welcome messages "))  {
 }
   
 else
-  
-//Set Game Announcements
-if  (FunctioName.startsWith("game announcements "))  {
-
-    var ChannelName = CommandName.split("game announcements ")[1];
-    var FixedChannelName = function_RemoveFormatting(ChannelName, "channel", true);
-    peeky.serverData.set(keySF, FixedChannelName, "game_announcements_bonus_setting");
-
-    const embed = {"description": SuccessIcon + " The **Game Announcements** setting has been set to **#" + peeky.serverData.get(keySF, "game_announcements_bonus_setting")+ "**.",  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-}
-  
-else
 
 //Set Join Role
 if  (FunctioName.startsWith("join role "))  {
@@ -6287,9 +6185,15 @@ if (CommandName.startsWith("seebackground"))  {
             Failed = false;
           
             var Price = Exclusive;
-            if  (function_GetBackgroundInfo(i, ["price"]) !== Exclusive)  {
+            const Commands = [];
+          
+            if  (i[Banner.Price] !== Exclusive)  {
                 Price = function_GetBackgroundInfo(i, ["price"]);
+                Commands.push(Prefix + "buybackground" + i);
             };
+          
+            Commands.push(Prefix + "setbackground" + i);
+            Commands.push(Prefix + "sellbackground" + i);
           
             const embed = {
                 "description": 
@@ -6300,6 +6204,10 @@ if (CommandName.startsWith("seebackground"))  {
                 + "**Information**"
                 + "\n"
                 + "Price: " + Price
+                + "\n\n"
+                + "**Commands**"
+                + "\n"
+                + Commands.join("\n")
                 + "\n­",
                 "image": {
                     "url": function_GetBackgroundInfo(i, ["source"])
