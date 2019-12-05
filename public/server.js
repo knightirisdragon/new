@@ -3455,6 +3455,9 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         var BWArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
         if  (BWArray.length < 1)  {  BWArray = "none";  }  else  {  BWArray = BWArray.join("` `");  };
 
+        var RRArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
+        if  (RRArray.length < 1)  {  BWArray = "none";  }  else  {  RRArray = RRArray.join("` `");  };
+
         var GRArray = peeky.serverData.get(keySF, "game_roles_bonus_setting");
         if  (GRArray.length < 1)  {  GRArray = "none";  }  else  {  GRArray = "@" + GRArray.join("` `@");  };
 
@@ -3482,7 +3485,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)   { var SA2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA2 = DisabledIcon};
         if (peeky.serverData.get(keySF, "server_age_bonus") == true)             { var SA3 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA3 = DisabledIcon};
         if (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)           { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
-        if (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)           { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
+        if (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)         { var RR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var RR = DisabledIcon};
         if (peeky.channelData.get(keyCF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
         if (peeky.channelData.get(keyCF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
         if (peeky.channelData.get(keyCF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
@@ -3520,38 +3523,38 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
-            reaction.message.edit("**Server Functions** `1/2`", newEmbed).catch(error => ErrorBag.add(error));
+            reaction.message.edit("**Server Functions** `1/3`", newEmbed).catch(error => ErrorBag.add(error));
 
         } else 
         if  (reaction.emoji.name == "3️⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  "**Welcome Messages** " + WM + "\n" + "`#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`" + "\n\n" +
-                                "**Member Counter** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`" + "\n\n" +
-                                "**Server Age** " + SA3 + "\n" + "No setting" + "\n\n" +
-                                "**Ticket System** " + ST + "\n" + "`@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "`" + "\n\n" +
-                                "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n\n" +
-                                "**Flood Protection** " + FP + "\n" + "No Setting." + "\n\n" +
-                                "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`" + "\n\n" +
-                                "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
-                                "**Role Saver** " + RS + "\n" + "No Setting." + "\n\n" +
-                                "**Nickname Saver** " + NS + "\n" + "No Setting.",
+                  description:  "**Event Countdown** " + EC + "\n" + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`" + "\n\n" +
+                                "**Reddit Posts** " + RP + "\n" + "`r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "`" + "\n\n" +
+                                "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
+                                "**Reaction Roles** " + RR + "\n" + "`" + RRArray + "`" + "\n\n" +
+                                "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(ServerMessage, "sm", true) + "`" + "\n\n" +
+                                "**Dash Remover** " + DR + "\n" + "No setting" + "\n\n" +
+                                "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
+                                "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
+                                "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
+                                "**Streamer Role** " + SR + "\n" + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
-            reaction.message.edit("**Server Functions** `1/2`", newEmbed).catch(error => ErrorBag.add(error));
+            reaction.message.edit("**Server Functions** `2/3`", newEmbed).catch(error => ErrorBag.add(error));
 
         } else 
-        if  (reaction.emoji.name == "4️⃣")  {
-
+        if  (reaction.emoji.name == "4️⃣")  {         
+          
             const newEmbed = new Discord.RichEmbed({
-                  description:  "**Reaction Roles** " + RR + "\n" + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`",
+                  description:  "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
 
-            reaction.message.edit("**Server Functions** `2/2`", newEmbed).catch(error => ErrorBag.add(error));
+            reaction.message.edit("**Server Functions** `3/3`", newEmbed).catch(error => ErrorBag.add(error));
 
         } else 
         if  (reaction.emoji.name == "5️⃣")  {
@@ -4515,7 +4518,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                 const Roles = function_NumarizeArray(Setting, ["", ""]);
               
-                var FinalText = "**Reaction Roles**" + "\n" + Roles + "\n\n" + "*Click on the reaction again to remove the role.*";
+                var FinalText = "**Reaction Roles**" + "\n" + Roles;
 
                 if  (Message.content !== FinalText)  {
                     await Message.edit(FinalText).catch(error => ErrorBag.add(error));
@@ -4771,14 +4774,15 @@ if (CommandName == "overview")  {
             OverviewCooldown.add(message.guild.id);
             setTimeout(() => {OverviewCooldown.delete(message.guild.id)}, 10000);
 
-            const embed = {"description": "**Overview Menu**" + "\n\n" + "1⃣ Server Settings" + "\n\n" + "2⃣ Server Functions `[1/2]`" + "\n\n" + "3⃣ Server Functions `[2/2]`" + "\n\n" + "4⃣ Channel Functions",  "color": EmbedColor}; 
+            const embed = {"description": "**Overview Menu**" + "\n\n" + "1️⃣ Server Settings" + "\n\n" + "2️⃣ Server Functions `[1/3]`" + "\n\n" + "3️⃣ Server Functions `[2/3]`" + "\n\n" + "4️⃣ Server Functions `[3/3]`" + "\n\n" + "5️⃣ Channel Functions",  "color": EmbedColor}; 
             await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                   peeky.userData.set(key, m.id, "OverviewID");
-                  await m.react("1⃣").catch(error => {ErrorBag.add(error)});
-                  await m.react("2⃣").catch(error => {ErrorBag.add(error)});
-                  await m.react("3⃣").catch(error => {ErrorBag.add(error)});
-                  await m.react("4⃣").catch(error => {ErrorBag.add(error)});
+                  await m.react("1️⃣").catch(error => {ErrorBag.add(error)});
+                  await m.react("2️⃣").catch(error => {ErrorBag.add(error)});
+                  await m.react("3️⃣").catch(error => {ErrorBag.add(error)});
+                  await m.react("4️⃣").catch(error => {ErrorBag.add(error)});
+                  await m.react("5️⃣").catch(error => {ErrorBag.add(error)});
 
             }).catch(error => {ErrorBag.add(error)});
           
