@@ -70,12 +70,13 @@ const Light                 = "#424549";
 const Blurple               = "#7289DA";
 var   EmbedColor            = 3093047  //3553599;
 const MinReviewLength       = 100;
-const BackgroundInvLimit    = 25;
 const DonorWallLimit        = 50;
-const RedditLimit           = 25;
 const BannedWordsLimit      = 10;
-const PlaylistLimit         = 10;
+const ReactionRolesLimit    = 5;
 const GameRolesLimit        = 10;
+const BackgroundInvLimit    = 25;
+const PlaylistLimit         = 10;
+const RedditLimit           = 25;
 const AutoDeleteTime        = 250;
 const DayMs                 = 86400000;
 const WeekMs                = 604800000;  //7 Days
@@ -1326,7 +1327,10 @@ function function_ServerData(key)  {
             reddit_posts_bonus_last: [],
             ticket_system_bonus: false,
             ticket_system_bonus_setting: "Staff",
-            ticket_system_bonus_id: null
+            ticket_system_bonus_id: null,
+            reaction_roles_bonus: false,
+            reaction_roles_bonus_setting: [],
+            ticket_system_bonus_id: null,
         });
       
         console.log("Created server data for " + key + ".");
@@ -4747,31 +4751,33 @@ if  (FunctioName.startsWith("welcome messages"))  {
     else peeky.serverData.set(keySF, true, "welcome_messages_bonus");
     
     //Channel Creating
-    if (!channel) {
+    if (!channel)  {
     
-    if  (!ChannelCooldown.has(message.guild.id)) {
-      
-    if  (ManageChannels == true)  {
+        if  (!ChannelCooldown.has(message.guild.id))  {
 
-    ChannelCooldown.add(message.guild.id);
-    setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
+            if  (ManageChannels == true)  {
+
+            ChannelCooldown.add(message.guild.id);
+            setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
+
+            await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+            .then(async function (channel)  {
+                  await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
+                  await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+            }).catch(function(err) {  ErrorBag.add(err);  });
+
+            InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Welcome Messages** function.");
+
+            };
+          
+        }
+         else
+        {
+         const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
+         message.channel.send({ embed })
+         .catch(error => ErrorBag.add(error));
+        };
       
-    await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
-    .then(async function (channel)  {
-          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
-          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-    }).catch(function(err) {  ErrorBag.add(err);  });
-      
-    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Welcome Messages** function.");
-    
-    };
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
-     message.channel.send({ embed })
-     .catch(error => ErrorBag.add(error));
-    };
     };
       
     if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
@@ -4793,31 +4799,33 @@ if  (FunctioName.startsWith("classification wall"))  {
     else peeky.serverData.set(keySF, true, "donor_wall_bonus");
   
     //Channel Creating    
-    if (!channel) {
+    if (!channel)  {
       
-    if  (!ChannelCooldown.has(message.guild.id)) {
+        if  (!ChannelCooldown.has(message.guild.id))  {
 
-    if  (ManageChannels == true)  {
+            if  (ManageChannels == true)  {
 
-    ChannelCooldown.add(message.guild.id);
-    setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
+            ChannelCooldown.add(message.guild.id);
+            setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
+
+            await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+            .then(async function (channel)  {
+                  await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false  }).catch(error => ErrorBag.add(error));
+                  await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true, MANAGE_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+                  await channel.send("**" + message.guild.name + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\nPreparing... Come back in under a few minutes!").catch(error => {ErrorBag.add(error);}).then(m => peeky.serverData.set(keySF, m.id, "donor_wall_bonus_id"));
+            }).catch(function(err) {  ErrorBag.add(err);  });
+
+            InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Classification Wall** function.");
+
+            };
+          
+        }
+         else
+        {
+         const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
       
-    await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
-    .then(async function (channel)  {
-          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error))
-          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error))
-          await channel.send("**" + message.guild.name + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\nPreparing the Wall. Check back in under a few minutes!").catch(error => {ErrorBag.add(error);}).then(m => peeky.serverData.set(keySF, m.id, "donor_wall_bonus_id"));
-    }).catch(function(err) {  ErrorBag.add(err);  });
-      
-    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Classification Wall** function.");
-
-    };
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
     };
 
     if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
@@ -4840,39 +4848,89 @@ if  (FunctioName.startsWith("ticket system"))  {
     else peeky.serverData.set(keySF, true, "ticket_system_bonus");
   
     //Channel Creating    
-    if (!channel) {
+    if (!channel)  {
       
-    if  (!ChannelCooldown.has(message.guild.id)) {
+        if  (!ChannelCooldown.has(message.guild.id))  {
 
-    if  (ManageChannels == true)  {
+            if  (ManageChannels == true)  {
 
-    ChannelCooldown.add(message.guild.id);
-    setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
-      
-    await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
-    .then(async function (channel)  {
-          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false  }).catch(error => ErrorBag.add(error));
-          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true, MANAGE_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-          await channel.send("**Need help with something?**" + "\n" + "Click on the reaction below to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_bonus_id");  }).catch(error => ErrorBag.add(error));
-    }).catch(function(err) {  ErrorBag.add(err);  });
-      
-    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Ticket System** function.");
-      
-    if  (!category)  {
-        InfoMessages.push(InfoIcon + " Consider creating a category called **Tickets** to sort tickets.");
-    };
+                ChannelCooldown.add(message.guild.id);
+                setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-    };
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
+                await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+                .then(async function (channel)  {
+                      await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false, ADD_REACTIONS: false  }).catch(error => ErrorBag.add(error));
+                      await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true, MANAGE_MESSAGES: true, ADD_REACTIONS: false  }).catch(error => ErrorBag.add(error));
+                      await channel.send("**Need help with something?**" + "\n" + "Click on the reaction below to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_bonus_id");  }).catch(error => ErrorBag.add(error));
+                }).catch(function(err) {  ErrorBag.add(err);  });
+
+                InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Ticket System** function.");
+
+                if  (!category)  {
+                    InfoMessages.push(InfoIcon + " Consider creating a category called **Tickets** to sort tickets.");
+                };
+
+            };
+
+        }
+         else
+        {
+         const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+      
     };
 
     if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
     const embed = {"description": SuccessIcon + " The **Ticket System** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+   
+//Toggle Reaction Roles
+if  (FunctioName.startsWith("reaction roles"))  {
+    
+    const name = "roles";
+    const channel = message.guild.channels.find(channel => channel.name == name);
+
+    if(peeky.serverData.get(keySF, "reaction_roles_bonus") == true) {  peeky.serverData.set(keySF, false, "reaction_roles_bonus");  }
+    else peeky.serverData.set(keySF, true, "reaction_roles_bonus");
+  
+    //Channel Creating    
+    if (!channel)  {
+      
+        if  (!ChannelCooldown.has(message.guild.id))  {
+
+            if  (ManageChannels == true)  {
+
+                ChannelCooldown.add(message.guild.id);
+                setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
+
+                await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+                .then(async function (channel)  {
+                      await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false, ADD_REACTIONS: false  }).catch(error => ErrorBag.add(error));
+                      await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true, MANAGE_MESSAGES: true, ADD_REACTIONS: true  }).catch(error => ErrorBag.add(error));
+                      await channel.send("**Role Menu**" + "\n" + "Preparing... Come back in under a few minutes!").catch(error => ErrorBag.add(error)).then(m => {  peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id");  }).catch(error => ErrorBag.add(error));
+                }).catch(function(err) {  ErrorBag.add(err);  });
+
+                InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Reaction Roles** function.");
+
+            };
+
+        }
+         else
+        {
+         const embed = {"description": CooldownMessage2[0],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+    };
+
+    if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    const embed = {"description": SuccessIcon + " The **Reaction Roles** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5780,6 +5838,30 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWo
   
 else
  
+//Set Reaction Roles
+if  (FunctioName.startsWith("reaction roles "))  {
+  
+if  (peeky.serverData.get(keySF, "reaction_roles_bonus_setting").length < ReactionRolesLimit)  {
+
+    var ReceivedArray = function_RemoveFormatting(CommandName.split("reaction roles ")[1].toLowerCase(), "other", true);
+    peeky.serverData.get(keySF, "reaction_roles_bonus_setting").push(ReceivedArray);
+
+    var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
+  
+    const embed = {"description": SuccessIcon + " The **Reaction Roles** setting has been set to **" + FixedArray.join("**, **") + EndString + "**.",  "color": EmbedColor}; 
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  
+}
+ else
+{
+ const embed = {"description": ErrorIcon + " The setting for the **Reaction Roles** function is full.",  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+  
+else
+ 
 //Set Game Roles
 if  (FunctioName.startsWith("game roles "))  {
   
@@ -5849,6 +5931,18 @@ if  (FunctioName.startsWith("banned words"))  {
      peeky.serverData.set(keySF, [], "banned_words_bonus_setting");
   
      const embed = {"description": SuccessIcon + " Cleared the setting for the **Banned Words** function.",  "color": EmbedColor};
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+
+else
+ 
+//Clear Reaction Roles
+if  (FunctioName.startsWith("reaction roles"))  {
+      
+     peeky.serverData.set(keySF, [], "reaction_roles_bonus_setting");
+  
+     const embed = {"description": SuccessIcon + " Cleared the setting for the **Reaction Roles** function.",  "color": EmbedColor};
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
