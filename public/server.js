@@ -1297,12 +1297,13 @@ function function_ServerData(key)  {
             suspicion_alert_bonus: false,
             suspicion_alert_bonus_setting: 10,
             flood_protection_bonus: false,
-            donor_wall_bonus_setting: "Moderator",
+            donor_wall_bonus_setting: "Booster",
             donor_wall_bonus: false,
             donor_wall_bonus_id: null,
-            donor_wall_bonus_channel: "moderators",
+            donor_wall_bonus_channel: "boosters",
             donor_wall_bonus_array: [],
             banned_words_bonus_setting: [],
+            spoiler_only_bonus: false,
             spoiler_lock_bonus_setting: 0,
             event_countdown_bonus: false,
             event_countdown_bonus_setting: 0,
@@ -1346,7 +1347,6 @@ function function_ChannelData(key)  {
             image_only_bonus: false,
             message_log_bonus: false,
             banned_words_bonus: false,
-            spoiler_only_bonus: false,
             flood_protection_bonus_lastdate: null,
             flood_protection_bonus_lastuser: null,
             flood_protection_bonus_lastmsg: null,
@@ -3471,10 +3471,10 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)           { var RP = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var RP = DisabledIcon};
         if (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)   { var SA2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA2 = DisabledIcon};
         if (peeky.serverData.get(keySF, "server_age_bonus") == true)             { var SA3 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA3 = DisabledIcon};
+        if (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)           { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
         if (peeky.channelData.get(keyCF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
         if (peeky.channelData.get(keyCF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
         if (peeky.channelData.get(keyCF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
-        if (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true)          { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
         if (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)             { var SC = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SC = DisabledIcon};
 
         if  (reaction.emoji.name == "1⃣")  {
@@ -3498,10 +3498,10 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                   description:  "**Welcome Messages** " + WM + "\n" + "`#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`" + "\n\n" +
                                 "**Member Counter** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`" + "\n\n" +
                                 "**Server Age** " + SA3 + "\n" + "No setting" + "\n\n" +
-                                "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
                                 "**Ticket System** " + ST + "\n" + "`@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "`" + "\n\n" +
                                 "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n\n" +
                                 "**Flood Protection** " + FP + "\n" + "No Setting." + "\n\n" +
+                                "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`" + "\n\n" +
                                 "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 "**Role Saver** " + RS + "\n" + "No Setting." + "\n\n" +
                                 "**Nickname Saver** " + NS + "\n" + "No Setting.",
@@ -3517,6 +3517,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Event Countdown** " + EC + "\n" + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`" + "\n\n" +
                                 "**Reddit Posts** " + RP + "\n" + "`r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "`" + "\n\n" +
+                                "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
                                 "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
                                 "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(ServerMessage, "sm", true) + "`" + "\n\n" +
                                 "**Dash Remover** " + DR + "\n" + "No setting" + "\n\n" +
@@ -3538,7 +3539,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Message Log** " + ML + "\n" + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`" + "\n\n" +
                                 "**Safe Chat** " + SC + "\n" + "No setting." + "\n\n" +
                                 "**Images Only** " + IO + "\n" + "No setting." + "\n\n" +
-                                "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`" + "\n\n" +
                                 "**Banned Words** " + BW + "\n" + "`" + BWArray + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
@@ -4329,6 +4329,42 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
     };
 
 };
+
+//Spoiler Lock
+if  (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)  {
+  
+    if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+
+        if  (!message.member.permissions.has("MANAGE_MESSAGES"))  {
+
+            if  ((message.attachments.size > 0 && !message.attachments.array()[0].filename.startsWith("SPOILER_")) || function_DetectLink(message.content) == true)  {
+
+                if  ((((new Date() - new Date(message.member.joinedAt)) / 60000) < peeky.serverData.get(keySF, "spoiler_lock_bonus_setting")) || peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") == 0)  {
+
+                     message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
+
+                     if   (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "SO"))  {
+
+                         ResponseCooldowns.add(message.guild.id + "SO");
+                         setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SO")}, ResponseCooldownMS);
+
+                         const embed = {"description": InfoIcon + " You have to mark your image as a spoiler, **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**.",  "color": EmbedColor}; 
+                         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+
+                     };
+
+                     console.log("The Spoiler Lock function has been triggered in " + message.guild.name + ".");
+                     function_UpdateAutowipe(keySF, "server");
+
+                };
+              
+            };
+          
+        };
+      
+    };
+  
+};
       
 //Classification Wall
 if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
@@ -4433,42 +4469,6 @@ if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true)  {
 
         };
 
-    };
-  
-};
-
-//Spoiler Lock
-if  (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true)  {
-  
-    if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
-
-        if  (!message.member.permissions.has("MANAGE_MESSAGES"))  {
-
-            if  ((message.attachments.size > 0 && !message.attachments.array()[0].filename.startsWith("SPOILER_")) || function_DetectLink(message.content) == true)  {
-
-                if  ((((new Date() - new Date(message.member.joinedAt)) / 60000) < peeky.serverData.get(keySF, "spoiler_lock_bonus_setting")) || peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") == 0)  {
-
-                     message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
-
-                     if   (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "SO"))  {
-
-                         ResponseCooldowns.add(message.guild.id + "SO");
-                         setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SO")}, ResponseCooldownMS);
-
-                         const embed = {"description": InfoIcon + " You have to mark your image as a spoiler, **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**.",  "color": EmbedColor}; 
-                         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
-
-                     };
-
-                     console.log("The Spoiler Lock function has been triggered in " + message.guild.name + ".");
-                     function_UpdateAutowipe(keySF, "server");
-
-                };
-              
-            };
-          
-        };
-      
     };
   
 };
@@ -5430,10 +5430,10 @@ else
 //Toggle Spoiler Lock
 if  (FunctioName.startsWith("spoiler lock"))  {
         
-    if   (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true) {peeky.channelData.set(keyCF, false, "spoiler_only_bonus")}
-    else peeky.channelData.set(keyCF, true, "spoiler_only_bonus");
+    if   (peeky.serverData.get(keySF, "spoiler_only_bonus") == true) {peeky.serverData.set(keySF, false, "spoiler_only_bonus")}
+    else peeky.serverData.set(keySF, true, "spoiler_only_bonus");
       
-    if  (peeky.channelData.get(keyCF, "spoiler_only_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
+    if  (peeky.serverData.get(keySF, "spoiler_only_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
     const embed = {"description": SuccessIcon + " The **Spoiler Lock** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
 
     message.channel.send({ embed })
