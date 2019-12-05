@@ -4437,7 +4437,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 //Reaction Roles
 if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
-    const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
+    const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == "roles");
 
     if  (Channel)  {
 
@@ -4456,12 +4456,11 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                 const Roles = function_NumarizeArray(Setting, ["", ""]);
               
-                var FinalText = "**Role Menu**" + EndString;
+                var FinalText = "**Role Menu**" + "\n" + Roles;
 
                 if  (Message.content !== FinalText)  {
-                    Message.edit(FinalText).catch(error => ErrorBag.add(error));
-                  
-                    await Message.ClearReactions();
+                    await Message.edit(FinalText).catch(error => ErrorBag.add(error));
+                    await Message.clearReactions().catch(error => ErrorBag.add(error));
 
                     if  (Setting.length > 0)  {
                         for (var i = 0; i < Setting.length; i++) {
@@ -4471,7 +4470,6 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                     console.log("The Reaction Roles function has been triggered in " + message.guild.name + ".");
                     function_UpdateAutowipe(keySF, "server");
-                    
                 };
 
             };
@@ -4862,7 +4860,7 @@ if  (FunctioName.startsWith("classification wall"))  {
             .then(async function (channel)  {
                   await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false  }).catch(error => ErrorBag.add(error));
                   await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true, MANAGE_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-                  await channel.send("**" + message.guild.name + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\nPreparing... Come back in under a few minutes!").catch(error => {ErrorBag.add(error);}).then(m => peeky.serverData.set(keySF, m.id, "donor_wall_bonus_id"));
+                  await channel.send("**" + message.guild.name + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\nPreparing... Come back in a few minutes!").catch(error => {ErrorBag.add(error);}).then(m => peeky.serverData.set(keySF, m.id, "donor_wall_bonus_id"));
             }).catch(function(err) {  ErrorBag.add(err);  });
 
             InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Classification Wall** function.");
@@ -4963,7 +4961,7 @@ if  (FunctioName.startsWith("reaction roles"))  {
                 .then(async function (channel)  {
                       await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false, ADD_REACTIONS: false  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true, MANAGE_MESSAGES: true, ADD_REACTIONS: true  }).catch(error => ErrorBag.add(error));
-                      await channel.send("**Role Menu**" + "\n" + "Preparing... Come back in under a few minutes!").catch(error => ErrorBag.add(error)).then(m => {  peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id");  }).catch(error => ErrorBag.add(error));
+                      await channel.send("**Role Menu**" + "\n" + "Preparing... Come back in a few minutes!").catch(error => ErrorBag.add(error)).then(m => {  peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id");  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
 
                 InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Reaction Roles** function.");
