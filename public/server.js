@@ -297,7 +297,7 @@ const ImmuneServers       = [  SupportServer, EmojiStorage1, `454933217666007052
 const EmojiNumbers        = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
 
 //Small Objects
-var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4, AddedDAte : 5  };
+var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4, AddedDate : 5  };
 var StreamOptions   = {  volume: 0.25  };
 var SearchOptions   = {  maxResults: 1,  key: YoutubeToken  };
 
@@ -1332,7 +1332,7 @@ function function_ServerData(key)  {
             ticket_system_bonus_id: null,
             reaction_roles_bonus: false,
             reaction_roles_bonus_setting: [],
-            ticket_system_bonus_id: null,
+            reaction_roles_bonus_id: null,
         });
       
         console.log("Created server data for " + key + ".");
@@ -2573,12 +2573,14 @@ peeky.on("guildCreate", async (guild) =>  {
 
 const keySF = `${guild.id}`;
   
-const embed = {"description": SuccessIcon + " I have been added to a server called **" + function_RemoveFormatting(guild.name, "other", true) + "** with **" + guild.members.filter(m => m.user.bot).size + " bots**.",  "color": EmbedColor}; 
+ //SuccessIcon + " I have been added to a server called **" + function_RemoveFormatting(guild.name, "other", true) + "** with **" +  + " bots**." 
+  
+const embed = {"title": "Server Added",  "description": "**Name:** " + function_RemoveFormatting(guild.name, "other", true) + "\n" + "**Owner:** " + guild.owner.user.id + "\n" + "**Bots:** " + guild.members.filter(m => m.user.bot).size,  "color": 8311585}; 
 peeky.channels.get(ServerLogChannel).send({ embed });
   
 if  (peeky.guilds.size > MaxServers || BannedUsers.includes(guild.owner.user.id))  {
   
-    await function_DirectMessage(guild.owner.user.id, "Something went wrong when joining your server, try again later.");
+    await function_DirectMessage(guild.owner.user.id, "Something went wrong while joining your server, try again later.");
     guild.leave();
 
 } else {
@@ -2593,13 +2595,8 @@ peeky.on("guildDelete", async (guild) =>  {
   
 const keySF = `${guild.id}`;
 
-if  (AutoWipedServers.includes(guild.id))  {
-    const embed = {"description": ErrorIcon + " I have been removed from a server called **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
-    peeky.channels.get(ServerLogChannel).send({ embed });
-} else {
-  const embed = {"description": ErrorIcon + " I have been autowiped from a server called **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "color": EmbedColor}; 
-  peeky.channels.get(ServerLogChannel).send({ embed });
-};
+const embed = {"title": "Server Removed",  "description": "**Name:** " + function_RemoveFormatting(guild.name, "other", true),  "color": 13632027}; 
+peeky.channels.get(ServerLogChannel).send({ embed });
 
 });
 
