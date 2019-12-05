@@ -4525,8 +4525,6 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
                         };
                     };
 
-                    console.log("The Reaction Roles function has been triggered in " + message.guild.name + ".");
-                    function_UpdateAutowipe(keySF, "server");
                 };
 
             };
