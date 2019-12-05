@@ -3330,7 +3330,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 };
 });
 
-//REACTION EVENTS
+//REACTION ADD EVENTS
 peeky.on('messageReactionAdd', async (reaction, user) => {
 
 const key = `${user.id}`;
@@ -3671,33 +3671,35 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
 };
   
 //Reaction Roles
-if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true) {
+if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
     if  (EmojiNumbers.includes(reaction.emoji.name))  {
       
         if  (!user.bot & reaction.message.id == peeky.serverData.get(keySF, "reaction_roles_bonus_id"))  {
           
-            if  (reaction.message.guild.me.hasPermission("MANAGE_ROLES"))  {
+            if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+                reaction.remove(user.id).catch(error => ErrorBag.add(error));
+            };
           
-                if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
-                    reaction.remove(user.id).catch(error => ErrorBag.add(error));
-                };
+            if  (reaction.message.guild.me.hasPermission("MANAGE_ROLES"))  {
 
                 if  (!ReactionRolesCooldown.has(user.id))  {
 
                     ReactionRolesCooldown.add(user.id);
                     setTimeout(() => {ReactionRolesCooldown.delete(user.id)}, 5000);
 
-                    const Index = EmojiNumbers.IndexOf(reaction.emoji.name);
-                    const role = reaction.message.guild.roles.find(r => r.name.toLowerCase() == EmojiNumbers[Index].toLowerCase());
-                  
-                    console.log(role.name);
-                    console.log(Index);
+                    const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
+                    const Index = EmojiNumbers.indexOf(reaction.emoji.name);
+                    const role = reaction.message.guild.roles.find(r => r.name.toLowerCase() == Setting[Index].toLowerCase());
 
                     if  (role)  {
 
                         const Member = reaction.message.guild.members.get(user.id);
-                        Member.addRole(role);
+                        if  (Member.roles.has(role.id))  {
+                            Member.addRole(role);
+                        } else {
+                          Member.removeRole(role);
+                        };
 
                     };
 
