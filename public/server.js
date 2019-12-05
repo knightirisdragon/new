@@ -105,6 +105,7 @@ const MemberCounterCooldown   = new Set();
 const GameLogsCooldown        = new Set();
 const MessageLogCooldown      = new Set();
 const DonorWallCooldown       = new Set();
+const ReactionRolesCooldown   = new Set();
 const TicketSystemCooldown    = new Set();
 const ServerAgeCooldown       = new Set();
 const RedditPostsCooldown     = new Set();
@@ -1603,10 +1604,14 @@ function function_NumarizeArray(array, brackets)  {
 
     var Current = 0; var List = [];
 
-    array.forEach(i => {
-        Current ++;
-        List.push(Current + ". " + brackets[0] + i + brackets[1] + "\n");
-    });
+    if  (array.length > 0)  {
+        array.forEach(i => {
+            Current ++;
+            List.push(Current + ". " + brackets[0] + i + brackets[1] + "\n");
+        });
+    } else {
+      return "None";
+    }
 
     return List.join("");
 
@@ -4387,33 +4392,28 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
             setTimeout(() => {DonorWallCooldown.delete(message.guild.id)}, 300000);
           
             await message.guild.fetchMembers();
-
             message.guild.members.forEach(m => {
               
               Tags = [];
               
               if  (m.roles.has(Role.id))  {
-                
                   if  (m.user.id == message.guild.owner.user.id)  {  Tags.push(OwnerTag);  };
                   if  (m.roles.find(r => r.name == "Booster"))  {  Tags.push(BoostTag);  };
                   if  (m.user.bot)  {  Tags.push(BotTag);  };
                 
                   WallList.push("> " + function_RemoveFormatting(m.displayName, "other", true) +  " " + Tags.join(" "));
-                
               };
-              
-          });
+            });
 
+            Channel.fetchMessages({ limit: 1 }).then(messages => {
+
+            const Message = messages.array()[0];
             const WallAmount = WallList.length;
 
             if  (WallAmount > DonorWallLimit)  {  EndString = "\n and " + (WallAmount - DonorWallLimit) + " more..."  };
             if  (WallAmount == 0)  {  WallList = ["No one."]  };
 
-            Channel.fetchMessages({ limit: 1 }).then(messages => {
-
-            var Message = messages.array()[0];
-
-                if  (Message.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
+                if  (Message && Message.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
 
                     var FinalText = "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n" + WallList.slice(0, DonorWallLimit).join("\n") + "" + EndString;
 
@@ -4431,6 +4431,56 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
           };
       
       };
+  
+};
+      
+//Reaction Roles
+if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
+
+    const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
+
+    if  (Channel)  {
+
+        if  (!ReactionRolesCooldown.has(message.guild.id))  {
+
+            ReactionRolesCooldown.add(message.guild.id);
+            setTimeout(() => {ReactionRolesCooldown.delete(message.guild.id)}, 300000);
+          
+            Channel.fetchMessages({ limit: 1 }).then(async messages => {
+
+            const Message = messages.array()[0];
+            const Numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
+            const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
+
+            if  (Message && Message.id == peeky.serverData.get(keySF, "reaction_roles_bonus_id"))  {
+
+                const Roles = function_NumarizeArray(Setting, ["", ""]);
+              
+                var FinalText = "**Role Menu**" + EndString;
+
+                if  (Message.content !== FinalText)  {
+                    Message.edit(FinalText).catch(error => ErrorBag.add(error));
+                  
+                    await Message.ClearReactions();
+
+                    if  (Setting.length > 0)  {
+                        for (var i = 0; i < Setting.length; i++) {
+                            await Message.react(Numbers[i]);
+                        };
+                    };
+
+                    console.log("The Reaction Roles function has been triggered in " + message.guild.name + ".");
+                    function_UpdateAutowipe(keySF, "server");
+                    
+                };
+
+            };
+
+            }).catch(error => ErrorBag.add(error));
+
+      };
+      
+  };
   
 };
       
