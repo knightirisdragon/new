@@ -3482,12 +3482,13 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)   { var SA2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA2 = DisabledIcon};
         if (peeky.serverData.get(keySF, "server_age_bonus") == true)             { var SA3 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA3 = DisabledIcon};
         if (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)           { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
+        if (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)           { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
         if (peeky.channelData.get(keyCF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
         if (peeky.channelData.get(keyCF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
         if (peeky.channelData.get(keyCF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
         if (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)             { var SC = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SC = DisabledIcon};
 
-        if  (reaction.emoji.name == "1⃣")  {
+        if  (reaction.emoji.name == "1️⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Prefix** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "prefix") + "`" + "\n\n" +
@@ -3502,7 +3503,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             reaction.message.edit("**Server Settings** `1/1`", newEmbed).catch(error => ErrorBag.add(error));
 
         } else 
-        if  (reaction.emoji.name == "2⃣")  {
+        if  (reaction.emoji.name == "2️⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Welcome Messages** " + WM + "\n" + "`#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`" + "\n\n" +
@@ -3522,19 +3523,30 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             reaction.message.edit("**Server Functions** `1/2`", newEmbed).catch(error => ErrorBag.add(error));
 
         } else 
-        if  (reaction.emoji.name == "3⃣")  {
+        if  (reaction.emoji.name == "3️⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  "**Event Countdown** " + EC + "\n" + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`" + "\n\n" +
-                                "**Reddit Posts** " + RP + "\n" + "`r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "`" + "\n\n" +
-                                "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
-                                "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
-                                "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(ServerMessage, "sm", true) + "`" + "\n\n" +
-                                "**Dash Remover** " + DR + "\n" + "No setting" + "\n\n" +
-                                "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
-                                "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
-                                "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
-                                "**Streamer Role** " + SR + "\n" + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`",
+                  description:  "**Welcome Messages** " + WM + "\n" + "`#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`" + "\n\n" +
+                                "**Member Counter** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`" + "\n\n" +
+                                "**Server Age** " + SA3 + "\n" + "No setting" + "\n\n" +
+                                "**Ticket System** " + ST + "\n" + "`@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "`" + "\n\n" +
+                                "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n\n" +
+                                "**Flood Protection** " + FP + "\n" + "No Setting." + "\n\n" +
+                                "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`" + "\n\n" +
+                                "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
+                                "**Role Saver** " + RS + "\n" + "No Setting." + "\n\n" +
+                                "**Nickname Saver** " + NS + "\n" + "No Setting.",
+                  color: EmbedColor,
+                  image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
+            });
+
+            reaction.message.edit("**Server Functions** `1/2`", newEmbed).catch(error => ErrorBag.add(error));
+
+        } else 
+        if  (reaction.emoji.name == "4️⃣")  {
+
+            const newEmbed = new Discord.RichEmbed({
+                  description:  "**Reaction Roles** " + RR + "\n" + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -3542,7 +3554,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             reaction.message.edit("**Server Functions** `2/2`", newEmbed).catch(error => ErrorBag.add(error));
 
         } else 
-        if  (reaction.emoji.name == "4⃣")  {
+        if  (reaction.emoji.name == "5️⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Automatic Reactions** " + AR + "\n" + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
@@ -3693,17 +3705,19 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
                     const role = reaction.message.guild.roles.find(r => r.name.toLowerCase() == Setting[Index].toLowerCase());
 
                     if  (role)  {
+                      
+                        console.log("testwww");
 
                         const Member = reaction.message.guild.members.get(user.id);
-                        if  (Member.roles.has(role.id))  {
-                            Member.addRole(role);
+                        if  (!Member.roles.has(role.id))  {
+                            Member.addRole(role.id).catch(error => ErrorBag.add(error));
                         } else {
-                          Member.removeRole(role);
+                          Member.removeRole(role.id).catch(error => ErrorBag.add(error));
                         };
 
-                    };
+                        function_UpdateAutowipe(keySF, "server");
 
-                    function_UpdateAutowipe(keySF, "server");
+                    };
 
                 };
               
@@ -4501,7 +4515,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                 const Roles = function_NumarizeArray(Setting, ["", ""]);
               
-                var FinalText = "**Role Menu**" + "\n" + Roles;
+                var FinalText = "**Reaction Roles**" + "\n" + Roles + "\n\n" + "*Click on the reaction again to remove the role.*";
 
                 if  (Message.content !== FinalText)  {
                     await Message.edit(FinalText).catch(error => ErrorBag.add(error));
@@ -5006,7 +5020,7 @@ if  (FunctioName.startsWith("reaction roles"))  {
                 .then(async function (channel)  {
                       await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false, ADD_REACTIONS: false  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true, MANAGE_MESSAGES: true, ADD_REACTIONS: true  }).catch(error => ErrorBag.add(error));
-                      await channel.send("**Role Menu**" + "\n" + "Preparing... Come back in a few minutes!").catch(error => ErrorBag.add(error)).then(m => {  peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id");  }).catch(error => ErrorBag.add(error));
+                      await channel.send("**Reaction Roles**" + "\n" + "Preparing... Come back in a few minutes!").catch(error => ErrorBag.add(error)).then(m => {  peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id");  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
 
                 InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Reaction Roles** function.");
