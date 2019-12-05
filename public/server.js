@@ -294,6 +294,7 @@ const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thur
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const VulgarPhrases       = [  "anal", "anus", "arse", "ass", "ballsack", "balls", "bastard", "bitch", "biatch", "bloody", "blowjob", "boner", "boob", "bugger", "bum", "butt", "buttplug", "clitoris", "cock", "coon", "crap", "cunt", "damn", "dick", "dildo", "dyke", "fag", "feck", "fellate", "fellatio", "felching", "fuck", "fudgepacker", "fudge", "packer", "flange", "Goddamn", "God", "damn", "hell", "homo", "jerk", "jizz", "knobend", "knob", "end", "labia", "lmao", "lmfao", "muff", "nigger", "nigga", "penis", "piss", "poop", "prick", "pube", "pussy", "queer", "scrotum", "sex", "shit", "sh1t", "slut", "smegma", "spunk", "tit", "tosser", "turd", "twat", "vagina", "wank", "whore", "wtf"  ];
 const ImmuneServers       = [  SupportServer, EmojiStorage1, `454933217666007052`, `264445053596991498`, `330777295952543744`, `387812458661937152`, `374071874222686211`, `439866052684283905`, `534551489595703306`, `608711879858192479`  ];
+const EmojiNumbers        = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
 
 //Small Objects
 var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4, AddedDAte : 5  };
@@ -3669,6 +3670,49 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
 
 };
   
+//Reaction Roles
+if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true) {
+
+    if  (EmojiNumbers.includes(reaction.emoji.name))  {
+      
+        if  (!user.bot & reaction.message.id == peeky.serverData.get(keySF, "reaction_roles_bonus_id"))  {
+          
+            if  (reaction.message.guild.me.hasPermission("MANAGE_ROLES"))  {
+          
+                if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+                    reaction.remove(user.id).catch(error => ErrorBag.add(error));
+                };
+
+                if  (!ReactionRolesCooldown.has(user.id))  {
+
+                    ReactionRolesCooldown.add(user.id);
+                    setTimeout(() => {ReactionRolesCooldown.delete(user.id)}, 5000);
+
+                    const Index = EmojiNumbers.IndexOf(reaction.emoji.name);
+                    const role = reaction.message.guild.roles.find(r => r.name.toLowerCase() == EmojiNumbers[Index].toLowerCase());
+                  
+                    console.log(role.name);
+                    console.log(Index);
+
+                    if  (role)  {
+
+                        const Member = reaction.message.guild.members.get(user.id);
+                        Member.addRole(role);
+
+                    };
+
+                    function_UpdateAutowipe(keySF, "server");
+
+                };
+              
+            };
+          
+        };
+
+    };
+
+};
+  
 //Message Log
 if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
 
@@ -3684,7 +3728,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
         setTimeout(() => {MessageLogCooldown.delete(user.id)}, 30000);
 
         var   name                  = peeky.serverData.get(keySF, "message_log_bonus_setting");
-        var   Channel               = reaction.message.guild.channels.find(channel => channel.name == name);
+        var   Channel               = reaction.message.guild.channels.find(c => c.name == name);
         const OriginalMessage       = reaction.message;
         const OriginalMessageEdited = OriginalMessage.content.replace(/<@?#?&?!?[0-9]{17,20}>/g, "­");
         var   image                 = "none";   
@@ -4449,7 +4493,6 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
             Channel.fetchMessages({ limit: 1 }).then(async messages => {
 
             const Message = messages.array()[0];
-            const Numbers = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
             const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
 
             if  (Message && Message.id == peeky.serverData.get(keySF, "reaction_roles_bonus_id"))  {
@@ -4464,7 +4507,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                     if  (Setting.length > 0)  {
                         for (var i = 0; i < Setting.length; i++) {
-                            await Message.react(Numbers[i]);
+                            await Message.react(EmojiNumbers[i]);
                         };
                     };
 
@@ -5891,7 +5934,7 @@ if  (FunctioName.startsWith("reaction roles "))  {
   
 if  (peeky.serverData.get(keySF, "reaction_roles_bonus_setting").length < ReactionRolesLimit)  {
 
-    var ReceivedArray = function_RemoveFormatting(CommandName.split("reaction roles ")[1].toLowerCase(), "other", true);
+    var ReceivedArray = function_RemoveFormatting(CommandName.split("reaction roles ")[1], "other", true);
     peeky.serverData.get(keySF, "reaction_roles_bonus_setting").push(ReceivedArray);
 
     var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
