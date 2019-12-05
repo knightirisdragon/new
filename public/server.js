@@ -3708,8 +3708,6 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
                     const role = reaction.message.guild.roles.find(r => r.name.toLowerCase() == Setting[Index].toLowerCase());
 
                     if  (role)  {
-                      
-                        console.log("testwww");
 
                         const Member = reaction.message.guild.members.get(user.id);
                         if  (!Member.roles.has(role.id))  {
