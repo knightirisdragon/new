@@ -26,20 +26,20 @@ const ytdl         = require('ytdl-core');
 const opus         = require('node-opus');
 
 //Canvas
-const Canvas         = require('canvas');
-const request        = require('request');
+const Canvas  = require('canvas');
+const request = require('request');
 
-//Enmap
+//Data
 const Enmap = require("enmap");
 peeky.userData = new Enmap({name: "userData"});
 peeky.serverData = new Enmap({name: "serverData"});
 peeky.channelData = new Enmap({name: "channelData"});
+const Setting = require('./setting.json');
 
 //Website
 const http    = require('http');
 const express = require('express');
 const app     = express();
-
 app.use(express.static('public'));
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
@@ -49,13 +49,13 @@ app.listen(process.env.PORT);
   setInterval(() => { http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 280000);
 
-//Miscellaneous
+//Miscellaneous Packages
 const fs         = require('fs');
 const ms         = require('parse-ms');
 const node_fetch = require('node-fetch');
 const https      = require('https');
 
-//Setting Variables
+//Variables
 const Prefix                = "p!";
 const EventName             = "None";
 const EventStatus           = false;
@@ -70,13 +70,6 @@ const Light                 = "#424549";
 const Blurple               = "#7289DA";
 var   EmbedColor            = 3093047  //3553599;
 const MinReviewLength       = 100;
-const DonorWallLimit        = 50;
-const BannedWordsLimit      = 10;
-const ReactionRolesLimit    = 5;
-const GameRolesLimit        = 10;
-const BackgroundInvLimit    = 25;
-const PlaylistLimit         = 10;
-const RedditLimit           = 25;
 const AutoDeleteTime        = 250;
 const DayMs                 = 86400000;
 const WeekMs                = 604800000;  //7 Days
@@ -4475,12 +4468,12 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
             const Message = messages.array()[0];
             const WallAmount = WallList.length;
 
-            if  (WallAmount > DonorWallLimit)  {  EndString = "\n and " + (WallAmount - DonorWallLimit) + " more..."  };
+            if  (WallAmount > Setting.ClassificationWallLimit)  {  EndString = "\n and " + (WallAmount - Setting.ClassificationWallLimit) + " more..."  };
             if  (WallAmount == 0)  {  WallList = ["No one."]  };
 
                 if  (Message && Message.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
 
-                    var FinalText = "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n" + WallList.slice(0, DonorWallLimit).join("\n") + "" + EndString;
+                    var FinalText = "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n" + WallList.slice(0, Setting.ClassificationWallLimit).join("\n") + "" + EndString;
 
                     if  (Message.content !== FinalText)  {
                         Message.edit(FinalText).catch(error => ErrorBag.add(error));

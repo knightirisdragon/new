@@ -1,0 +1,11 @@
+{
+  "ClassificationWallLimit": 50,
+  "BannedWordsLimit": 10,
+  "ReactionRolesLimit": 5,
+  "GameRolesLimit": 10,
+  "BackgroundInvLimit": 25,
+  "BackgroundInvLimit": 10,
+  "RedditLimit": 25,
+  "BackgroundInvLimit": 10,
+  "BackgroundInvLimit": 10
+}
