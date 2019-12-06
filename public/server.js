@@ -56,21 +56,10 @@ const node_fetch = require('node-fetch');
 const https      = require('https');
 
 //Variables
-const Prefix                = "p!";
 const EventName             = "None";
 const EventStatus           = false;
-const MaxServers            = 1000;
-const CustomBackgroundPrice = 1000;
-const SellMultiplier        = 2.5;
-const ExpNeeded             = 125;
-const DefaultFont           = "Verdana";
-const Dark                  = "#36393E";
-const LessDark              = "#3f3f3f";
-const Light                 = "#424549";
-const Blurple               = "#7289DA";
-var   EmbedColor            = 3093047  //3553599;
-const MinReviewLength       = 100;
 const AutoDeleteTime        = 250;
+var   EmbedColor            = 3093047  //3553599;
 const DayMs                 = 86400000;
 const WeekMs                = 604800000;  //7 Days
 const MonthMs               = 2592000000;  //30 Days
@@ -1001,7 +990,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     //Draw Events
       
     //Joined String
-    ctx.font = "20px " + DefaultFont;
+    ctx.font = "20px " + Setting.DefaultFont;
     ctx.textAlign = "right";
     ctx.fillStyle = "white";
 
@@ -1011,7 +1000,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     ctx.fillText("●", canvas.width - 5, 18);
       
     //Name String
-    ctx.font = "25px " + DefaultFont;
+    ctx.font = "25px " + Setting.DefaultFont;
     ctx.fillStyle = "white";
     ctx.textAlign = "left";
   
@@ -1033,16 +1022,16 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     ctx.fillStyle = "white";
       
     if (text.includes("\n")) {  y_position = 62.5;  };
-    ctx.font = "18px " + DefaultFont;
+    ctx.font = "18px " + Setting.DefaultFont;
     ctx.fillText(text, 125, y_position, canvas.width - 175);
     }
     else if (!member.user.bot) {
-    ctx.font = "18px " + DefaultFont;
+    ctx.font = "18px " + Setting.DefaultFont;
     ctx.fillStyle = "pink";
     ctx.fillText("No Profile" , 125, 75);
     }
     else {
-    ctx.font = "18px " + DefaultFont;
+    ctx.font = "18px " + Setting.DefaultFont;
     ctx.fillStyle = "lightblue";
     ctx.fillText("Bot" , 125, 75);
     };
@@ -1077,7 +1066,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
 
             ctx.stroke();*/
 
-            ctx.fillStyle = Dark;
+            ctx.fillStyle = Setting.Dark;
             ctx.globalAlpha = 1;
             ctx.fillRect(10, 10, canvas.width - 20, 270);
 
@@ -1097,11 +1086,11 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             ctx.globalAlpha = 1;
 
             //Header
-            ctx.font = "15px " + DefaultFont;
+            ctx.font = "15px " + Setting.DefaultFont;
             if  (Type == "Started")  {
                 ctx.fillText(peeky.users.get(User).username + " has requested " + Author + "'s song.", 15, 310);
             }  else if  (Type == "Playlist")  {
-                //ctx.font = "13px " + DefaultFont;
+                //ctx.font = "13px " + Setting.DefaultFont;
                 ctx.fillText(peeky.users.get(User).username + " has requested a random song from " + peeky.userData.get(User, "PlaylistName") + ".", 15, 310, canvas.width - 30);
             }  else if  (Type == "Random")  {
                 ctx.fillText(peeky.users.get(User).username + " has requested a random song.", 15, 310);
@@ -1112,7 +1101,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             };
 
             //Song Name
-            ctx.font = "20px " + DefaultFont;
+            ctx.font = "20px " + Setting.DefaultFont;
             ctx.fillText(Title, 15, 345, canvas.width - 30);
 
             return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
@@ -1261,7 +1250,7 @@ function function_ServerData(key)  {
             lastSeen: Date.now(),
             server_upgraded: false,
             server_invite: "no_invite",
-            prefix: Prefix,
+            prefix: Setting.DefaultPrefix,
             muted_role: "Muted",
             highlighted_channel: "general",
             function_notifications: false,
@@ -2082,12 +2071,12 @@ peeky.on('message', async (message) => {
             //Draw Events
 
             //Name String
-            ctx.font = "25px " + DefaultFont;
+            ctx.font = "25px " + Setting.DefaultFont;
             ctx.fillStyle = "white";
             ctx.fillText(ProfileName, 125, 40, canvas.width - 125);
 
             //Level Up String
-            ctx.font = "18px " + DefaultFont;
+            ctx.font = "18px " + Setting.DefaultFont;
             ctx.fillStyle = "lightgreen";
             ctx.fillText("Has reached Level " + peeky.userData.get(key, "Level") + "!", 125, 75);
 
@@ -2128,9 +2117,9 @@ if  (!WebsiteCooldowns.has("api"))  {
       "botId": peeky.user.id,
       "ownerId": OwnerId,
       
-      "defaultPrefix": Prefix,
+      "defaultPrefix": Setting.DefaultPrefix,
       "ageCount": function_TimeLeft(peeky.user.createdAt, "days", null),
-      "serverLimit": MaxServers,
+      "serverLimit": Setting.MaxServers,
       "serverCount": peeky.guilds.size,
       "upgradedServers": peeky.serverData.filter(i => i.server_upgraded == true).size,
       "profileCount": peeky.userData.count,
@@ -2140,7 +2129,7 @@ if  (!WebsiteCooldowns.has("api"))  {
       "eventName": EventName,
       "eventStatus": EventStatus,
 
-      "customBackground": CustomBackgroundPrice,
+      "customBackground": Setting.CustomBackgroundPrice,
       "sellMultiplier": SellMultiplier,
       "expMultiplier": ExpNeeded
     };
@@ -2523,7 +2512,7 @@ if  (!WebsiteCooldowns.has("randomreview"))  {
         method: 'GET'
     }).then(response => response.json()).then(async (data) => {
       
-    var FilteredReviews = data.data.reviews.filter(r => r.text.length >= MinReviewLength);
+    var FilteredReviews = data.data.reviews.filter(r => r.text.length >= Setting.MinReviewLength);
       
     var Length = FilteredReviews.length;
     var RandomReview = Math.round(Math.random() * Length);
@@ -2534,7 +2523,7 @@ if  (!WebsiteCooldowns.has("randomreview"))  {
     var ReviewDate     = new Date(FilteredReviews[RandomReview].date);
     var ReviewFullDate = function_DateFormat(ReviewDate);
       
-    await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + "/5 Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast " + MinReviewLength + " characters long to show up.</font></center>", (err) => {
+    await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + "/5 Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast " + Setting.MinReviewLength + " characters long to show up.</font></center>", (err) => {
         if (err) console.log(err); 
     });
       
@@ -2552,7 +2541,7 @@ if  (!WebsiteCooldowns.has("stats"))  {
     WebsiteCooldowns.add("stats");
     setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
 
-    await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + MaxServers + "</font> Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days Old</a>", (err) => {
+    await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + Setting.MaxServers + "</font> Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days Old</a>", (err) => {
         if (err) console.log(err); 
     });
       
@@ -2570,7 +2559,7 @@ const keySF = `${guild.id}`;
 const embed = {"description": SuccessIcon + " I have been added to a server called **" + function_RemoveFormatting(guild.name, "other", true) + "** with **" +  + " bots**." ,  "color": EmbedColor}; 
 peeky.channels.get(ServerLogChannel).send({ embed });
   
-if  (peeky.guilds.size > MaxServers || BannedUsers.includes(guild.owner.user.id))  {
+if  (peeky.guilds.size > Setting.MaxServers || BannedUsers.includes(guild.owner.user.id))  {
   
     await function_DirectMessage(guild.owner.user.id, "Something went wrong while joining your server, try again later.");
     guild.leave();
@@ -4165,7 +4154,7 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
               
                 const Channel = channel;
                       
-                node_fetch("https://api.reddit.com/r/" + name + "/top.json?sort=top&limit=" + RedditLimit).then(response => response.json()).then(response => {
+                node_fetch("https://api.reddit.com/r/" + name + "/top.json?sort=top&limit=" + Setting.RedditLimit).then(response => response.json()).then(response => {
                   
                     for (i = 0; i < response.data.children.length; i++)  {
                   
@@ -4173,7 +4162,7 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
 
                         if  (!peeky.serverData.get(keySF, "reddit_posts_bonus_last").includes(Post.url) && Post.pinned == false)  {
 
-                            if  (peeky.serverData.get(keySF, "reddit_posts_bonus_last").length > RedditLimit)  {
+                            if  (peeky.serverData.get(keySF, "reddit_posts_bonus_last").length > Setting.RedditLimit)  {
                                 peeky.serverData.set(keySF, [], "reddit_posts_bonus_last");
                             };
                           
@@ -5063,7 +5052,7 @@ if  (FunctioName.startsWith("join role"))  {
     
     message.guild.createRole({
     name: name,
-    color: Blurple
+    color: Setting.Blurple
     }).catch(error => ErrorBag.add(error));
       
     InfoMessages.push(InfoIcon + " Created a role called **" + name + "** for the **Join Role** function.");
@@ -5921,7 +5910,7 @@ else
 //Set Banned Words
 if  (FunctioName.startsWith("banned words "))  {
   
-if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < BannedWordsLimit)  {
+if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < Setting.BannedWordsLimit)  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("banned words ")[1].toLowerCase(), "other", true);
     peeky.serverData.get(keySF, "banned_words_bonus_setting").push(ReceivedArray);
@@ -5945,7 +5934,7 @@ else
 //Set Reaction Roles
 if  (FunctioName.startsWith("reaction roles "))  {
   
-if  (peeky.serverData.get(keySF, "reaction_roles_bonus_setting").length < ReactionRolesLimit)  {
+if  (peeky.serverData.get(keySF, "reaction_roles_bonus_setting").length < Setting.ReactionRolesLimit)  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("reaction roles ")[1], "other", true);
     peeky.serverData.get(keySF, "reaction_roles_bonus_setting").push(ReceivedArray);
@@ -5969,7 +5958,7 @@ else
 //Set Role Saver
 if  (FunctioName.startsWith("role saver "))  {
   
-if  (peeky.serverData.get(keySF, "role_saver_bonus_setting").length < ReactionRolesLimit)  {
+if  (peeky.serverData.get(keySF, "role_saver_bonus_setting").length < Setting.ReactionRolesLimit)  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("role saver ")[1], "other", true);
     peeky.serverData.get(keySF, "role_saver_bonus_setting").push(ReceivedArray);
@@ -5993,7 +5982,7 @@ else
 //Set Game Roles
 if  (FunctioName.startsWith("game roles "))  {
   
-if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < GameRolesLimit)  {
+if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < Setting.GameRolesLimit)  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("game roles ")[1], "other", true);
     peeky.serverData.get(keySF, "game_roles_bonus_setting").push(ReceivedArray);
@@ -6280,7 +6269,7 @@ if (CommandName.startsWith("custombackground"))  {
   
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {
   
-        if  (peeky.userData.get(key, "Gredit") > CustomBackgroundPrice)  {
+        if  (peeky.userData.get(key, "Gredit") > Setting.CustomBackgroundPrice)  {
 
             if  (message.attachments.size > 0)  {
               
@@ -6295,10 +6284,10 @@ if (CommandName.startsWith("custombackground"))  {
 
                     };
 
-                    peeky.userData.math(key, "-", CustomBackgroundPrice, "Gredit");
+                    peeky.userData.math(key, "-", Setting.CustomBackgroundPrice, "Gredit");
                     peeky.userData.set(key, Thumbnail, "Background");
 
-                    const embed = {"description": SuccessIcon + " You have bought a **Custom Background** for **" + CustomBackgroundPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                    const embed = {"description": SuccessIcon + " You have bought a **Custom Background** for **" + Setting.CustomBackgroundPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 } else {
@@ -6988,12 +6977,12 @@ if  (!ProfileCooldown.has(message.author.id)) {
         var CustomBackgroundAmount = 1;
     } else {  var CustomBackgroundAmount = 0;  };
 
-    peeky.userData.get(key2, "Inventory").slice(0, BackgroundInvLimit).forEach(banner => {
+    peeky.userData.get(key2, "Inventory").slice(0, Setting.BackgroundInvLimit).forEach(banner => {
         Current ++;
         FixedBackgrounds.push(function_GetBackgroundInfo(banner, ["name"]) + " `" + banner + "`");
     });
       
-    if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > BackgroundInvLimit)  {  EndString = " and some more.."  };
+    if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > Setting.BackgroundInvLimit)  {  EndString = " and some more.."  };
 
     const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**" + BadgesAmount + " Badges**\n" + Badges.join(', ') + ".",  "color": EmbedColor}; 
     message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
@@ -7028,7 +7017,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     const ctx            = canvas.getContext('2d');
     var   SomeoneTagged  = null;
     const StatsColor     = "lightgray"
-    var   ProfileColor   = LessDark.replace("#", "");
+    var   ProfileColor   = Setting.LessDark.replace("#", "");
     
     var MentionedMember = message.mentions.members.first();
     if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.member;  };
@@ -7065,28 +7054,28 @@ if  (!ProfileCooldown.has(message.author.id))  {
     ctx.globalAlpha = 1;
 
     //Name String
-    ctx.font = "19px " + DefaultFont;
+    ctx.font = "19px " + Setting.DefaultFont;
     ctx.fillText(ProfileName, 83, 25, canvas.width - 95);
       
     //Coins String
-    ctx.font = "15px " + DefaultFont;
+    ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Gredit").toLocaleString('en') + " Gredit", 45, 105, canvas.width / 2 - 50);
       
     //Chests String
-    ctx.font = "15px " + DefaultFont;
+    ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 45, 140, canvas.width / 2 - 50);
       
     //Karma String
-    ctx.font = "15px " + DefaultFont;
+    ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Karma") + " Karma", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
       
     //Badges String
-    ctx.font = "15px " + DefaultFont;
+    ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
 
     /*
     //Exp String
-    ctx.font = "15px " + DefaultFont;
+    ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Exp").toLocaleString('en') + " Exp", canvas.width / 2 + 45, 175, canvas.width / 2 - 50);
     */
 
@@ -7095,7 +7084,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         var CustomBackgroundAmount = 1;
     } else {  var CustomBackgroundAmount = 0;  };
       
-    ctx.font = "15px " + DefaultFont;
+    ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 45, 175, canvas.width / 2 - 50);
     
     //Description String
@@ -7330,7 +7319,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     ctx.drawImage(avatar, 6, 6, 64, 64);
 
     //Exp Text
-    ctx.font = "22px " + DefaultFont;
+    ctx.font = "22px " + Setting.DefaultFont;
     ctx.textAlign = "center";
     ctx.fillStyle = "white";
     ctx.shadowOffsetX = 1; 
@@ -7665,7 +7654,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             if  (CurrentlyPlaying.has(message.guild.id) && peeky.serverData.get(keySF, "Link") !== "None")  {
 
-                if  (peeky.userData.get(key, "Playlist").length < PlaylistLimit)  {
+                if  (peeky.userData.get(key, "Playlist").length < Setting.PlaylistLimit)  {
 
                     peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
 
@@ -7688,7 +7677,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             if  (ytdl.validateURL(PlaylistRequest) == true)  {
 
-                if  (peeky.userData.get(key, "Playlist").length < PlaylistLimit)  {
+                if  (peeky.userData.get(key, "Playlist").length < Setting.PlaylistLimit)  {
 
                     peeky.userData.get(key, "Playlist").push(PlaylistRequest);
 
