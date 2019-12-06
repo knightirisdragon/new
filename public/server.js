@@ -3433,7 +3433,11 @@ if  (peeky.userData.has(key) && peeky.channelData.has(keyCF) && peeky.serverData
 //MISCELLAENOUS
   
 //Overview Pages
-if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userData.get(key, "OverviewID"))  {
+if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userData.get(key, "OverviewID"))  {            
+  
+    if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+        reaction.remove(user.id).catch(error => ErrorBag.add(error));
+    };
   
     if  (!OverviewCooldown.has(user.id))  {
          
@@ -3448,13 +3452,13 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         var ServerMessage = peeky.serverData.get(keySF, "server_message_bonus_setting");
 
         var BWArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
-        if  (BWArray.length < 1)  {  BWArray = "none";  }  else  {  BWArray = BWArray.join("` `");  };
+        if  (BWArray.length < 1)  {  BWArray = "None";  }  else  {  BWArray = BWArray.join("` `");  };
 
         var RRArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
-        if  (RRArray.length < 1)  {  BWArray = "none";  }  else  {  RRArray = RRArray.join("` `");  };
+        if  (RRArray.length < 1)  {  BWArray = "None";  }  else  {  RRArray = RRArray.join("` `");  };
 
         var GRArray = peeky.serverData.get(keySF, "game_roles_bonus_setting");
-        if  (GRArray.length < 1)  {  GRArray = "none";  }  else  {  GRArray = "@" + GRArray.join("` `@");  };
+        if  (GRArray.length < 1)  {  GRArray = "None";  }  else  {  GRArray = "@" + GRArray.join("` `@");  };
 
         var GivenMinutes = peeky.serverData.get(keySF, "spoiler_lock_bonus_setting");
         if  (GivenMinutes == 0)  {GivenMinutes = "never"}  else  {GivenMinutes = GivenMinutes + " minutes"}
@@ -3508,7 +3512,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Member Counter** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`" + "\n\n" +
                                 "**Server Age** " + SA3 + "\n" + "No setting" + "\n\n" +
                                 "**Ticket System** " + ST + "\n" + "`@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "`" + "\n\n" +
-                                "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`." + "\n\n" +
+                                "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`" + "\n\n" +
                                 "**Flood Protection** " + FP + "\n" + "No Setting." + "\n\n" +
                                 "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`" + "\n\n" +
                                 "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
