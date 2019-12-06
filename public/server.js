@@ -3475,7 +3475,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (RSArray.length < 1)  {  RSArray = "None";  }  else  {  RSArray = "@" + RSArray.join("` `@");  };
 
         var GivenMinutes = peeky.serverData.get(keySF, "spoiler_lock_bonus_setting");
-        if  (GivenMinutes == 0)  {GivenMinutes = "never"}  else  {GivenMinutes = GivenMinutes + " minutes"};
+        if  (GivenMinutes == 0)  {GivenMinutes = "Never"}  else  {GivenMinutes = GivenMinutes + " minutes"};
 
         if  (reaction.emoji.name == "1️⃣")  {
 
