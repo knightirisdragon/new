@@ -3450,18 +3450,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         const Functions   = [];
 
         var ServerMessage = peeky.serverData.get(keySF, "server_message_bonus_setting");
-
-        var BWArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
-        if  (BWArray.length < 1)  {  BWArray = "None";  }  else  {  BWArray = BWArray.join("` `");  };
-
-        var RRArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
-        if  (RRArray.length < 1)  {  BWArray = "None";  }  else  {  RRArray = RRArray.join("` `");  };
-
-        var GRArray = peeky.serverData.get(keySF, "game_roles_bonus_setting");
-        if  (GRArray.length < 1)  {  GRArray = "None";  }  else  {  GRArray = "@" + GRArray.join("` `@");  };
-
-        var GivenMinutes = peeky.serverData.get(keySF, "spoiler_lock_bonus_setting");
-        if  (GivenMinutes == 0)  {GivenMinutes = "never"}  else  {GivenMinutes = GivenMinutes + " minutes"}
       
         if (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)   { var AR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var AR = DisabledIcon};
         if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)       { var WM = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var WM = DisabledIcon};
@@ -3490,6 +3478,21 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.channelData.get(keyCF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
         if (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)             { var SC = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SC = DisabledIcon};
 
+        var BWArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
+        if  (BWArray.length < 1)  {  BWArray = "None";  }  else  {  BWArray = BWArray.join("` `");  };
+
+        var RRArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
+        if  (RRArray.length < 1)  {  BWArray = "None";  }  else  {  RRArray = RRArray.join("` `");  };
+
+        var GRArray = peeky.serverData.get(keySF, "game_roles_bonus_setting");
+        if  (GRArray.length < 1)  {  GRArray = "None";  }  else  {  GRArray = "@" + GRArray.join("` `@");  };
+
+        var RSArray = peeky.serverData.get(keySF, "role_saver_bonus_setting");
+        if  (RSArray.length < 1)  {  RSArray = "None";  }  else  {  RSArray = "@" + GRArray.join("` `@");  };
+
+        var GivenMinutes = peeky.serverData.get(keySF, "spoiler_lock_bonus_setting");
+        if  (GivenMinutes == 0)  {GivenMinutes = "never"}  else  {GivenMinutes = GivenMinutes + " minutes"};
+
         if  (reaction.emoji.name == "1️⃣")  {
 
             const newEmbed = new Discord.RichEmbed({
@@ -3516,7 +3519,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Flood Protection** " + FP + "\n" + "No Setting." + "\n\n" +
                                 "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`" + "\n\n" +
                                 "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
-                                "**Role Saver** " + RS + "\n" + "No Setting." + "\n\n" +
+                                "**Role Saver** " + RS + "\n" + "`" + RSArray + "`" + "\n\n" +
                                 "**Nickname Saver** " + NS + "\n" + "No Setting.",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
