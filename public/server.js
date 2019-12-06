@@ -1316,7 +1316,8 @@ function function_ServerData(key)  {
             stream_announcements_bonus: false,
             stream_announcements_bonus_setting: "twitch",
             role_saver_bonus: false,
-            role_saver_array: [],
+            role_saver_bonus_setting: [],
+            role_saver_bonus_array: [],
             game_roles_bonus: false,
             game_roles_bonus_setting: [],
             nick_saver_bonus: false,
@@ -2703,9 +2704,9 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
   
   if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
     
-      if  (peeky.serverData.has(keySF, "role_saver_array"))  {
+      if  (peeky.serverData.has(keySF, "role_saver_bonus_array"))  {
       
-          var SavedRoles = peeky.serverData.get(keySF, "role_saver_array");
+          var SavedRoles = peeky.serverData.get(keySF, "role_saver_bonus_array");
         
           SavedRoles.forEach(current => {
             
@@ -2899,15 +2900,16 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
 
     if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
   
-        if  (peeky.serverData.has(keySF, "role_saver_array"))  {
+        if  (peeky.serverData.has(keySF, "role_saver_bonus_array"))  {
 
-            var SavedRoles  = peeky.serverData.get(keySF, "role_saver_array");
-            var MemberIndex = SavedRoles.findIndex(i => i[0] == member.user.id);
+            const SavedRoles  = peeky.serverData.get(keySF, "role_saver_bonus_array");
+            const Setting = peeky.serverData.get(keySF, "role_saver_bonus_setting");
+            const MemberIndex = SavedRoles.findIndex(i => i[0] == member.user.id);
 
             if  (MemberIndex >= 0)  {
-                SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name !== "@everyone").map(r => r.id);
+                SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name !== "@everyone" && !Setting.includes(r.name)).map(r => r.id);
             } else {
-              SavedRoles.push([member.user.id, member.roles.filter(r => r.name !== "@everyone").map(r => r.id)]);
+              SavedRoles.push([member.user.id, member.roles.filter(r => r.name !== "@everyone" && !Setting.includes(r.name)).map(r => r.id)]);
             };
 
         };
@@ -3488,7 +3490,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (GRArray.length < 1)  {  GRArray = "None";  }  else  {  GRArray = "@" + GRArray.join("` `@");  };
 
         var RSArray = peeky.serverData.get(keySF, "role_saver_bonus_setting");
-        if  (RSArray.length < 1)  {  RSArray = "None";  }  else  {  RSArray = "@" + GRArray.join("` `@");  };
+        if  (RSArray.length < 1)  {  RSArray = "None";  }  else  {  RSArray = "@" + RSArray.join("` `@");  };
 
         var GivenMinutes = peeky.serverData.get(keySF, "spoiler_lock_bonus_setting");
         if  (GivenMinutes == 0)  {GivenMinutes = "never"}  else  {GivenMinutes = GivenMinutes + " minutes"};
@@ -5971,6 +5973,30 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus_setting").length < Reacti
   
 else
  
+//Set Role Saver
+if  (FunctioName.startsWith("role saver "))  {
+  
+if  (peeky.serverData.get(keySF, "role_saver_bonus_setting").length < ReactionRolesLimit)  {
+
+    var ReceivedArray = function_RemoveFormatting(CommandName.split("role saver ")[1], "other", true);
+    peeky.serverData.get(keySF, "role_saver_bonus_setting").push(ReceivedArray);
+
+    var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "role_saver_bonus_setting");
+  
+    const embed = {"description": SuccessIcon + " The **Role Saver** setting has been set to **" + FixedArray.join("**, **") + EndString + "**.",  "color": EmbedColor}; 
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  
+}
+ else
+{
+ const embed = {"description": ErrorIcon + " The setting for the **Role Saver** function is full.",  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+  
+else
+ 
 //Set Game Roles
 if  (FunctioName.startsWith("game roles "))  {
   
@@ -6052,6 +6078,18 @@ if  (FunctioName.startsWith("reaction roles"))  {
      peeky.serverData.set(keySF, [], "reaction_roles_bonus_setting");
   
      const embed = {"description": SuccessIcon + " Cleared the setting for the **Reaction Roles** function.",  "color": EmbedColor};
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+
+else
+ 
+//Clear Role Saver
+if  (FunctioName.startsWith("role saver"))  {
+      
+     peeky.serverData.set(keySF, [], "role_saver_bonus_setting");
+  
+     const embed = {"description": SuccessIcon + " Cleared the setting for the **Role Saver** function.",  "color": EmbedColor};
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
