@@ -2027,7 +2027,7 @@ peeky.on('message', async (message) => {
     };
 
     //Level Up
-    if  (peeky.userData.get(key, "Exp") >= ExpNeeded * peeky.userData.get(key, "Level")) { 
+    if  (peeky.userData.get(key, "Exp") >= Setting.ExpNeeded * peeky.userData.get(key, "Level")) { 
         
         peeky.userData.set(key, 1, "Exp");
         peeky.userData.math(key, "+", 1, "Level");
@@ -2130,8 +2130,8 @@ if  (!WebsiteCooldowns.has("api"))  {
       "eventStatus": EventStatus,
 
       "customBackground": Setting.CustomBackgroundPrice,
-      "sellMultiplier": SellMultiplier,
-      "expMultiplier": ExpNeeded
+      "sellMultiplier": Setting.SellMultiplier,
+      "expMultiplier": Setting.ExpNeeded
     };
   
     await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
@@ -2221,7 +2221,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
 
           Current ++;
       
-          var CommandString = Prefix + 'seebackground ' + Current;
+          var CommandString = Setting.Prefix + 'seebackground ' + Current;
           var NewString     = "";
           var RevenueString = "";
           var Price         = "";
@@ -5958,7 +5958,7 @@ else
 //Set Role Saver
 if  (FunctioName.startsWith("role saver "))  {
   
-if  (peeky.serverData.get(keySF, "role_saver_bonus_setting").length < Setting.ReactionRolesLimit)  {
+if  (peeky.serverData.get(keySF, "role_saver_bonus_setting").length < Setting.RoleSaverLimit)  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("role saver ")[1], "other", true);
     peeky.serverData.get(keySF, "role_saver_bonus_setting").push(ReceivedArray);
@@ -6220,8 +6220,8 @@ if  (CommandName.startsWith("buybackground"))  {
 
                         var RevenueID = Banners[i - 1][Banner.RevenueID];
                         if  (RevenueID !== undefined && peeky.userData.has(RevenueID) && message.author.id !== RevenueID && peeky.users.has(RevenueID))  {
-                            peeky.userData.math(RevenueID, "-", (Banners[i - 1][Banner.Price] / SellMultiplier), "Gredit");
-                            InfoMessages.push(InfoIcon + " Your purchase has generated **" + (Banners[i - 1][Banner.Price] / SellMultiplier).toLocaleString('en') + " " + GreditIcon + "** of revenue for **" + function_RemoveFormatting(peeky.users.get(RevenueID).username, "other", true) + "**.");
+                            peeky.userData.math(RevenueID, "-", (Banners[i - 1][Banner.Price] / Setting.SellMultiplier), "Gredit");
+                            InfoMessages.push(InfoIcon + " Your purchase has generated **" + (Banners[i - 1][Banner.Price] / Setting.SellMultiplier).toLocaleString('en') + " " + GreditIcon + "** of revenue for **" + function_RemoveFormatting(peeky.users.get(RevenueID).username, "other", true) + "**.");
                         };
 
                         peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
@@ -6448,7 +6448,7 @@ if  (i !== AllString)  {
                     if  (FinalPrice == Exclusive)  {
                         FinalPrice = 0;
                     } else {
-                        FinalPrice = Math.round(FinalPrice / SellMultiplier);
+                        FinalPrice = Math.round(FinalPrice / Setting.SellMultiplier);
                     };
 
                     peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
@@ -6506,7 +6506,7 @@ if  (i !== AllString)  {
           if  (Banners[i - 1][Banner.Price] == Exclusive || SetBackground == i)  {
               SavedBackgrounds.push(i);
           } else {
-              FullPrice += Math.round(Banners[i - 1][Banner.Price] / SellMultiplier);   
+              FullPrice += Math.round(Banners[i - 1][Banner.Price] / Setting.SellMultiplier);   
           };     
       });
 
@@ -6969,7 +6969,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     var Current = 0;
       
     peeky.userData.get(key2, "Inventory").filter(i => Banners[i - 1][Banner.Price] !== Exclusive).forEach(banner => {
-        InventoryWorth += Banners[banner - 1][Banner.Price] / SellMultiplier;
+        InventoryWorth += Banners[banner - 1][Banner.Price] / Setting.SellMultiplier;
     });
       
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
@@ -7310,7 +7310,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     ctx.shadowOffsetY = 0;
 
     ctx.fillStyle = "#" + ProfileColor;
-    ctx.fillRect(63, 253, peeky.userData.get(key2, "Exp") / (ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 127), 26); //Body
+    ctx.fillRect(63, 253, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 127), 26); //Body
   
     //Avatar
     const avatar = await Canvas.loadImage(SomeoneTagged.user.displayAvatarURL.replace("https", "http"));

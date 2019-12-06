@@ -14,8 +14,9 @@
 
   "ClassificationWallLimit": 50,
   "BannedWordsLimit": 10,
-  "ReactionRolesLimit": 5,
   "GameRolesLimit": 10,
+  "RoleSaverLimit": 10,
+  "ReactionRolesLimit": 5,
   "BackgroundInvLimit": 10,
   "PlaylistLimit": 10,
   "RedditLimit": 25
