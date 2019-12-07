@@ -1282,6 +1282,7 @@ function function_ServerData(key)  {
             suspicion_alert_bonus: false,
             suspicion_alert_bonus_setting: 10,
             flood_protection_bonus: false,
+            flood_protection_bonus_setting: 2,
             donor_wall_bonus_setting: "Booster",
             donor_wall_bonus: false,
             donor_wall_bonus_id: null,
@@ -3466,7 +3467,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (BWArray.length < 1)  {  BWArray = "None";  }  else  {  BWArray = BWArray.join("` `");  };
 
         var RRArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
-        if  (RRArray.length < 1)  {  BWArray = "None";  }  else  {  RRArray = RRArray.join("` `");  };
+        if  (RRArray.length < 1)  {  RRArray = "None";  }  else  {  "@" + RRArray.join("` `@");  };
 
         var GRArray = peeky.serverData.get(keySF, "game_roles_bonus_setting");
         if  (GRArray.length < 1)  {  GRArray = "None";  }  else  {  GRArray = "@" + GRArray.join("` `@");  };
@@ -3500,7 +3501,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Server Age** " + SA3 + "\n" + "No setting" + "\n\n" +
                                 "**Ticket System** " + ST + "\n" + "`@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "`" + "\n\n" +
                                 "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`" + "\n\n" +
-                                "**Flood Protection** " + FP + "\n" + "No Setting." + "\n\n" +
+                                "**Flood Protection** " + FP + "\n" + "`" + peeky.serverData.get(keySF, "flood_protection_bonus_setting") + " strikes`" + "\n\n" +
                                 "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`" + "\n\n" +
                                 "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 "**Role Saver** " + RS + "\n" + "`" + RSArray + "`" + "\n\n" +
@@ -4332,7 +4333,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
             if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent))  {
 
-            if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length >= 2)  {
+            if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length >= peeky.serverData.get(keySF, "flood_protection_bonus_setting"))  {
 
             const name = peeky.serverData.get(keySF, "muted_role");
             const Role = message.guild.roles.find(role => role.name == name);
@@ -5877,6 +5878,29 @@ if  (FunctioName.startsWith("clear nicknames "))  {
 
     const embed = {"description": SuccessIcon + " The **Clear Nicknames** setting has been set to **" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+
+//Set Flood Protection
+if  (FunctioName.startsWith("flood protection "))  {
+
+    var NewSetting = CommandName.split("flood protection ")[1];
+  
+    if  (NewSetting > 0 && NewSetting <= 10)  {
+      
+        peeky.serverData.set(keySF, );
+
+        const embed = {"description": SuccessIcon + " The **Flood Protection** setting has been set to **" + peeky.serverData.get(keySF, "flood_protection_bonus_setting") + " strikes**.",  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      
+    }
+     else
+    {
+      const embed = {"description": ErrorIcon + " The provided amount must be between 1 and 10.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
 }
   
