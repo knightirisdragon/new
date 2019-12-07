@@ -58,8 +58,8 @@ const https      = require('https');
 //Variables
 const EventName             = "None";
 const EventStatus           = false;
-const AutoDeleteTime        = 250;
 var   EmbedColor            = 3093047  //3553599;
+const AutoDeleteTime        = 250;
 const DayMs                 = 86400000;
 const WeekMs                = 604800000;  //7 Days
 const MonthMs               = 2592000000;  //30 Days
@@ -3917,7 +3917,7 @@ if  (!CheckedDataCreations.has(message.channel.id))  {
 };
 
 //Badge Checkers
-if  (!message.author.bot && message.guild.owner !== undefined)  {
+if  (message.guild.owner !== undefined)  {
   
     if  (!BadgeCheckCooldown.has(message.guild.id + message.author.id))  {
 
@@ -3939,7 +3939,7 @@ if  (!message.author.bot && message.guild.owner !== undefined)  {
 };
 
 //Workshop Auto-Management
-if  (message.channel.id == WorkshopChannel)  {
+if  (message.channel.id == WorkshopChannel && !message.author.bot)  {
   
     if  (message.attachments.size == 1 && message.content.split('\n')[0].startsWith("Name: ") && message.content.split('\n')[1].startsWith("Credit: ") && message.content.split('\n')[2].startsWith("Price: ") && isNaN(message.content.split('\n')[2].replace("Price: ", "")) == false && message.content.toLowerCase().split('\n')[3] == undefined)  {
       
@@ -3954,6 +3954,21 @@ if  (message.channel.id == WorkshopChannel)  {
      message.delete().catch(error => ErrorBag.add(error));
     };
 
+};
+
+//News Ping
+if  (message.channel.id == AnnouncementsChannel && !message.author.bot)  {
+  
+    const role = message.guild.roles.find(r => r.id == "652170686441324583");
+    
+    await role.setMentionable(true);  
+    await message.channel.send("­" + role).then(m => {
+        setTimeout(() => {
+          
+        }, AutoDeleteTime);
+    })
+    await role.setMentionable(false);
+  
 };
     
 //Limited Roles Auto-Management
