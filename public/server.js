@@ -3656,7 +3656,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                       };
                   
                       await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == '@everyone'), {  VIEW_CHANNEL: false, MANAGE_MESSAGES: false  }).catch(error => ErrorBag.add(error));
-                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == role.name), {  VIEW_CHANNEL: true  }).catch(error => ErrorBag.add(error));
+                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == role.name), {  VIEW_CHANNEL: true, MANAGE_CHANNEL: true  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == PeekyId), {  VIEW_CHANNEL: true  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == user.id), {  VIEW_CHANNEL: true  }).catch(error => ErrorBag.add(error));
                   
