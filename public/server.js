@@ -4333,7 +4333,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
             if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent))  {
 
-            if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length >= peeky.serverData.get(keySF, "flood_protection_bonus_setting"))  {
+            if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length == peeky.serverData.get(keySF, "flood_protection_bonus_setting"))  {
 
             const name = peeky.serverData.get(keySF, "muted_role");
             const Role = message.guild.roles.find(role => role.name == name);
@@ -5746,7 +5746,7 @@ if  (FunctioName.startsWith("event countdown "))  {
     }
      else
     {
-     const embed = {"description": ErrorIcon + " The timestamp is invalid.",  "color": EmbedColor}; 
+     const embed = {"description": ErrorIcon + " The provided timestamp is invalid.",  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -5817,7 +5817,7 @@ if  (FunctioName.startsWith("vote kick "))  {
     }
      else
     {
-      const embed = {"description": ErrorIcon + " The provided amount must be greater than 1.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " The provided amount must be greater than **1**.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -5874,7 +5874,8 @@ else
 if  (FunctioName.startsWith("clear nicknames "))  {
 
     var NewSetting = CommandName.split("clear nicknames ")[1];
-    peeky.serverData.set(keySF, function_RemoveFormatting(NewSetting, "other"), "clear_nicknames_bonus_setting", true);
+    var FixedSetting = function_RemoveFormatting(NewSetting, "other", true);
+    peeky.serverData.set(keySF, FixedSetting, "clear_nicknames_bonus_setting");
 
     const embed = {"description": SuccessIcon + " The **Clear Nicknames** setting has been set to **" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "**.",  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5890,7 +5891,7 @@ if  (FunctioName.startsWith("flood protection "))  {
   
     if  (NewSetting > 0 && NewSetting <= 10)  {
       
-        peeky.serverData.set(keySF, );
+        peeky.serverData.set(keySF, Number(NewSetting), "flood_protection_bonus_setting");
 
         const embed = {"description": SuccessIcon + " The **Flood Protection** setting has been set to **" + peeky.serverData.get(keySF, "flood_protection_bonus_setting") + " strikes**.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5898,7 +5899,7 @@ if  (FunctioName.startsWith("flood protection "))  {
     }
      else
     {
-      const embed = {"description": ErrorIcon + " The provided amount must be between 1 and 10.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " The provided amount must be between **1** and **10**.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
