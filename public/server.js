@@ -2557,7 +2557,7 @@ peeky.on("guildCreate", async (guild) =>  {
 
 const keySF = `${guild.id}`;
   
-const embed = {"description": SuccessIcon + " I have been added to a server called **" + function_RemoveFormatting(guild.name, "other", true) + "** with **" + guild.members.filter(m => m.user.bot).size + " bots**." ,  "color": EmbedColor}; 
+const embed = {"description": SuccessIcon + " I have been added to a server called **" + function_RemoveFormatting(guild.name, "other", true) + "** with **" + guild.members.filter(m => m.user.bot).size + " bots**." ,  "footer": {  "text": "Owner:" + guild.owner.user.id  },  "color": EmbedColor}; 
 peeky.channels.get(ServerLogChannel).send({ embed });
   
 if  (peeky.guilds.size > Setting.MaxServers || BannedUsers.includes(guild.owner.user.id))  {
