@@ -711,7 +711,8 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground424.png?v=1575141708491", 400, "Mouse's flower", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground425.png?v=1575345556036", 400, "Chaotic home", "PewDiePie's Tuber Simulaor", undefined, 1575345511274],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground426.png?v=1575345938913", 500, "Deer hunt", "Red Dead Redemption 2", undefined, 1575345944280],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground427.png?v=1575345939547", 475, "International squad", "Call of Duty Modern Warfare", undefined, 1575345952003]  
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground427.png?v=1575345939547", 475, "International squad", "Call of Duty Modern Warfare", undefined, 1575345952003]  ,
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground428.png?v=1575716944152", 450, "The cyrodill fields", "Unknown", undefined, 1575716942140]
 
 ];
 
@@ -2222,7 +2223,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
 
           Current ++;
       
-          var CommandString = Setting.Prefix + 'seebackground ' + Current;
+          var CommandString = Setting.DefaultPrefix + 'seebackground ' + Current;
           var NewString     = "";
           var RevenueString = "";
           var Price         = "";
@@ -3917,7 +3918,7 @@ if  (!CheckedDataCreations.has(message.channel.id))  {
 };
 
 //Badge Checkers
-if  (message.guild.owner !== undefined)  {
+if  (message.guild.owner !== undefined && !message.author.bot)  {
   
     if  (!BadgeCheckCooldown.has(message.guild.id + message.author.id))  {
 
@@ -3964,7 +3965,7 @@ if  (message.channel.id == AnnouncementsChannel && !message.author.bot)  {
     await role.setMentionable(true);  
     await message.channel.send("­" + role).then(m => {
         setTimeout(() => {
-          
+          m.delete();
         }, AutoDeleteTime);
     })
     await role.setMentionable(false);
