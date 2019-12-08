@@ -712,8 +712,8 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground425.png?v=1575345556036", 450, "Chaotic home", "PewDiePie's Tuber Simulaor", undefined, 1575345511274],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground426.png?v=1575345938913", 500, "Deer hunt", "Red Dead Redemption 2", undefined, 1575345944280],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground427.png?v=1575345939547", 500, "International squad", "Call of Duty Modern Warfare", undefined, 1575345952003]  ,
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground428.png?v=1575716944152", 450, "The cyrodill fields", "Unknown", undefined, 1575716942140],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground429.png?v=1575795807391", 475, "Mount doom", "Unknown", undefined, 1575795807985]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground428.png?v=1575716944152", 450, "The Cyrodill fields", "Unknown", undefined, 1575716942140],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground429.png?v=1575795807391", 475, "Mount Doom", "Unknown", undefined, 1575795807985]
 
 ];
 
