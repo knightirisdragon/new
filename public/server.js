@@ -696,7 +696,7 @@ const Banners = [
     ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground409.png?v=1568824760554", 425, "Copper sööp", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground410.png?v=1568913126645", 450, "Link's awakening", "The Legend of Zelda Link's Awakening", undefined, 0],
     ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground411.png?v=1569261662317", 300, "Pudla", "Vlaďka Lišková", `583902709745188875`, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground412.png?v=1572542839518", 325, "Storming", "Battlefield 4", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground412.png?v=1572542839518", 450, "Storming", "Battlefield 4", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground413.png?v=1569744679704", 400, "Passione", "JoJo's Bizarre Adventures", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground414.png?v=1569780678572", 300, "Stříbro", "Vlaďka Lišková", `583902709745188875`, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground415.png?v=1569829711380", 400, "Flayed", "Stranger Things", undefined, 0],
@@ -705,14 +705,15 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground418.png?v=1573313898157", 500, "Awakening", "Project Awakening Arise", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground419.png?v=1573313903056", 450, "Spider-man", "Sony Pictures", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground420.png?v=1573313975804", 400, "Sleeping streamer", "Alexandrev Perstev", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground421.png?v=1573891420218", 325, "Emoji saviour", "twlefth", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground422.png?v=1575141704791", 400, "Giorno's piano", "u/Rockman17", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground421.png?v=1573891420218", 350, "Emoji saviour", "twlefth", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground422.png?v=1575141704791", 450, "Giorno's piano", "u/Rockman17", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground423.png?v=1575141706988", 425, "Norbinbad", "Lord of the Rings War in the North", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground424.png?v=1575141708491", 400, "Mouse's flower", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground425.png?v=1575345556036", 400, "Chaotic home", "PewDiePie's Tuber Simulaor", undefined, 1575345511274],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground424.png?v=1575141708491", 425, "Mouse's flower", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground425.png?v=1575345556036", 450, "Chaotic home", "PewDiePie's Tuber Simulaor", undefined, 1575345511274],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground426.png?v=1575345938913", 500, "Deer hunt", "Red Dead Redemption 2", undefined, 1575345944280],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground427.png?v=1575345939547", 475, "International squad", "Call of Duty Modern Warfare", undefined, 1575345952003]  ,
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground428.png?v=1575716944152", 450, "The cyrodill fields", "Unknown", undefined, 1575716942140]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground427.png?v=1575345939547", 500, "International squad", "Call of Duty Modern Warfare", undefined, 1575345952003]  ,
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground428.png?v=1575716944152", 450, "The cyrodill fields", "Unknown", undefined, 1575716942140],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground429.png?v=1575795807391", 475, "Mount doom", "Unknown", undefined, 1575795807985]
 
 ];
 
@@ -6268,7 +6269,7 @@ if  (CommandName.startsWith("buybackground"))  {
                         peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
                         peeky.userData.get(key, "Inventory").push(i);
 
-                        var embed = {"description": SuccessIcon + " You have bought the **" + function_GetBackgroundInfo(i, ["name"]) + "** background bought for **" + function_GetBackgroundInfo(i, ["price"]) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                        var embed = {"description": SuccessIcon + " You have bought the **" + function_GetBackgroundInfo(i, ["name"]) + "** background bought for **" + function_GetBackgroundInfo(i, ["price"]) + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                         break;
@@ -6483,7 +6484,7 @@ if  (i !== AllString)  {
                 if  (i !== 1)  {
 
                     var BackgroundIndex  = peeky.userData.get(key, "Inventory").indexOf(i);
-                    var FinalPrice       = Banners[i - 1][Banner.Price];
+                    var FinalPrice       = function_GetBackgroundInfo(i, ["price"]);
                     var i                = Number(i);
 
                     if  (FinalPrice == Exclusive)  {
