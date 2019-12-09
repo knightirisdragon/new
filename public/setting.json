@@ -1,7 +1,8 @@
 {
+  "Description": "Functions, Music, Economy, Moderation, Minigames and much more!",
+  
   "DefaultPrefix": "p!",
   "MaxServers": 1000,
-  "Description"
   
   "CustomBackgroundPrice": 1000,
   "SellMultiplier": 2.5,
