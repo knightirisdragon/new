@@ -2119,7 +2119,8 @@ if  (!WebsiteCooldowns.has("api"))  {
 
     const UpdatedApi = {
       "botName": peeky.user.username,
-      "botDesc": Setting.Description,
+      "botDescription": Setting.Description,
+      "botSummary": Setting.Summary,
       "botAvatar": peeky.user.avatarURL,
       "botId": peeky.user.id,
       "ownerId": OwnerId,
