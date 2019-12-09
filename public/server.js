@@ -2119,7 +2119,7 @@ if  (!WebsiteCooldowns.has("api"))  {
 
     const UpdatedApi = {
       "botName": peeky.user.username,
-      "botDesc": "Hello, my name is PEEKY and I am here to make your Discord servers absolutely perfect!",
+      "botDesc": Setting.Description,
       "botAvatar": peeky.user.avatarURL,
       "botId": peeky.user.id,
       "ownerId": OwnerId,
@@ -2483,7 +2483,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
       
       if  (m.roles.has(StaffRole))  {
 
-          var CurrentContact = '<div class="container">  <img src=' + '"' + m.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon">  <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  </b>  </div>';  
+          var CurrentContact = '<div class="container">  <img src=' + '"' + m.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon">  <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  <br>  <font size="1" color="lightgray"> ' + function_RemoveTags(m.user.username) + '  </font>  </b>  </div>';  
 
           if  (m.roles.has("574255080069398543"))  {
               DevList.push(CurrentContact);
@@ -3947,7 +3947,7 @@ if  (message.guild.owner !== undefined && !message.author.bot)  {
 //Workshop Auto-Management
 if  (message.channel.id == WorkshopChannel && !message.author.bot)  {
   
-    if  (message.attachments.size == 1 && message.content.split('\n')[0].startsWith("Name: ") && message.content.split('\n')[1].startsWith("Credit: ") && message.content.split('\n')[2].startsWith("Price: ") && isNaN(message.content.split('\n')[2].replace("Price: ", "")) == false && message.content.toLowerCase().split('\n')[3] == undefined)  {
+    if  (message.attachments.size == 1 && message.content.split('\n').length == 3 && message.content.split('\n')[0].startsWith("Name: ") && message.content.split('\n')[1].startsWith("Credit: ") && message.content.split('\n')[2].startsWith("Price: ") && isNaN(message.content.split('\n')[2].replace("Price: ", "")) == false)  {  // && message.content.toLowerCase().split('\n')[3] == undefined
       
         //Publisher Badge
         if  (peeky.userData.has(key) && peeky.userData.get(key, "PublisherBadge") == false)  {

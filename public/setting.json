@@ -1,6 +1,8 @@
 {
   "DefaultPrefix": "p!",
   "MaxServers": 1000,
+  "Description"
+  
   "CustomBackgroundPrice": 1000,
   "SellMultiplier": 2.5,
   "ExpNeeded": 125,  
