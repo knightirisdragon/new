@@ -2791,11 +2791,11 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
 
         if  (Username !== NewNickname)  {
 
-            var NotSaved = false;
+            var NotSaved = true;
             peeky.serverData.get(keySF, "nick_saver_array").forEach(current => {
               
-                if  (current[0] == member.user.id && current[1] == null)  {
-                    NotSaved = true;
+                if  (current[0] == member.user.id && current[1] !== null)  {
+                    NotSaved = false;
                 };
               
             }); 
@@ -2805,7 +2805,7 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
                 if  (NewNickname == null)  {
                     NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
                 } else {
-                      NewNickname = function_FixCapitalization(NewNickname);
+                  NewNickname = function_FixCapitalization(NewNickname);
                 };
 
                 member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
@@ -3988,7 +3988,7 @@ if  (message.channel.id == WorkshopChannel && !message.author.bot)  {
 };
 
 //News Ping
-if  (message.channel.id == AnnouncementsChannel && message.content == "PING")  {
+/*if  (message.channel.id == AnnouncementsChannel && message.content == "PING")  {
   
     const role = message.guild.roles.find(r => r.id == "652170686441324583");
     
@@ -4000,7 +4000,7 @@ if  (message.channel.id == AnnouncementsChannel && message.content == "PING")  {
     })
     await role.setMentionable(false);
   
-};
+};*/
     
 //Limited Roles Auto-Management
 if  (!LimitedRolesCooldown.has("cooldown"))  {
@@ -6358,7 +6358,7 @@ if (CommandName.startsWith("custombackground"))  {
                     peeky.userData.math(key, "-", Setting.CustomBackgroundPrice, "Gredit");
                     peeky.userData.set(key, Thumbnail, "Background");
 
-                    const embed = {"description": SuccessIcon + " You have bought a **Custom Background** for **" + Setting.CustomBackgroundPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                    const embed = {"description": SuccessIcon + " You have set a **Custom Background** for **" + Setting.CustomBackgroundPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 } else {
@@ -6406,7 +6406,7 @@ if (CommandName.startsWith("setbackground"))  {
                 };
 
                 if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
-                    InfoMessages.push(InfoIcon + " You have lost your custom background.");
+                    InfoMessages.push(InfoIcon + " You have lost your **Custom Background**.");
                 };
 
                 peeky.userData.set(key, i, "Background");
