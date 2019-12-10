@@ -1747,6 +1747,11 @@ function UpdateHome(text)  {
     .then(response => response.text()).then((data) => {
        document.getElementById("ServerCount").innerHTML = data
     });
+  
+    fetch('https://peeky.glitch.me/botdescription.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("botdescription").innerHTML = data
+    });
 
     fetch('https://peeky.glitch.me/randomreview.txt')
     .then(response => response.text()).then((data) => {
@@ -2120,6 +2125,7 @@ if  (!WebsiteCooldowns.has("api"))  {
     const UpdatedApi = {
       "botName": peeky.user.username,
       "botDescription": Setting.Description,
+      "botShortDescription": Setting.ShortDescription,
       "botSummary": Setting.Summary,
       "botAvatar": peeky.user.avatarURL,
       "botId": peeky.user.id,
@@ -2550,6 +2556,19 @@ if  (!WebsiteCooldowns.has("stats"))  {
     setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
 
     await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + Setting.MaxServers + "</font> Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days Old</a>", (err) => {
+        if (err) console.log(err); 
+    });
+      
+    console.log("The stats have been updated.");
+      
+};
+
+//Bot Description
+if  (!WebsiteCooldowns.has("botdescription"))  {
+      
+    WebsiteCooldowns.add("botdescription");
+
+    await fs.writeFile('public/botdescription.txt', Setting.Description, (err) => {
         if (err) console.log(err); 
     });
       
