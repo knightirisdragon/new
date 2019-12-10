@@ -717,7 +717,8 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground430.png?v=1575908013402", 450, "The nazgul", "Uknown", undefined, 1575908014014],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground431.png?v=1575908009200", 500, "Rivindell", "Unknown", undefined, 1575908017191],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground432.png?v=1575908019408", 450, "Fall of noldor", "Unknown", undefined, 1575908012308],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground433.png?v=1575908033170", 425, "Compound defense", "Wasteland 3", undefined, 1575908028110]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground433.png?v=1575908033170", 425, "Compound defense", "Wasteland 3", undefined, 1575908028110],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground434.png?v=1575981245557", 450, "Quindecim", "仙田", undefined, 1575981269516]
 
 ];
 
