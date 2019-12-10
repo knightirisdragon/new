@@ -2791,24 +2791,29 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
 
         if  (Username !== NewNickname)  {
 
+            var NotSaved = false;
             peeky.serverData.get(keySF, "nick_saver_array").forEach(current => {
               
                 if  (current[0] == member.user.id && current[1] == null)  {
-
-                    if  (NewNickname == null)  {
-                        NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
-                    } else {
-                      NewNickname = function_FixCapitalization(NewNickname);
-                    };
-
-                    member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
-
-                    console.log("The Clear Nicknames function has been triggered in " + member.guild.name + ".");
-                    function_UpdateAutowipe(keySF, "server");
-
+                    NotSaved = true;
                 };
               
             }); 
+          
+            if  (NotSaved == true)  {
+              
+                if  (NewNickname == null)  {
+                    NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
+                } else {
+                      NewNickname = function_FixCapitalization(NewNickname);
+                };
+
+                member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
+
+                console.log("The Clear Nicknames function has been triggered in " + member.guild.name + ".");
+                function_UpdateAutowipe(keySF, "server");
+              
+            };
 
         };
 
@@ -3983,7 +3988,7 @@ if  (message.channel.id == WorkshopChannel && !message.author.bot)  {
 };
 
 //News Ping
-if  (message.channel.id == AnnouncementsChannel && !message.author.bot)  {
+if  (message.channel.id == AnnouncementsChannel && message.content == "PING")  {
   
     const role = message.guild.roles.find(r => r.id == "652170686441324583");
     
