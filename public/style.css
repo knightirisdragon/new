@@ -9,7 +9,9 @@ html {
 
 .imagebackground  {
   background-color: #2c2f33;
-  background-image: url("https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern.png?1554544372894");
+  background-image: url("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576095415615");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 b,p,a   {color: white; text-decoration: none;}
@@ -49,9 +51,9 @@ img  {border-radius: 10px; cursor: pointer;}
 .popup,
 .serverinvite,
 .button {
-    background-color: rgba(35, 39, 42, 0.75);
+    background-color: rgba(35, 39, 42, 0.25);
     border-left: #7289DA 2px solid;
-    border-radius: 0px;
+    border-radius: 0px 10px 10px 0px;
     padding: 10px;
     position: relative;
     display: inline-block;
@@ -74,8 +76,8 @@ a.button:hover {
 }
 
 .inlinediv  {
-    background-color: rgba(35, 39, 42, 0.5);
-    padding: 15px;
+    background-color: rgba(35, 39, 42, 0);
+    padding: 0px;
 
     overflow: scroll;
     flex-direction: initial;
@@ -238,8 +240,7 @@ a.button:hover {
 .headertext,
 .headersub,
 .category_name  {
-    background-color: rgba(35, 39, 42, 0.75);
-    border-left: #7289DA 2px solid;
+    background-color: rgba(35, 39, 42, 0);
     text-align: left;
   
     padding: 10px;
@@ -258,7 +259,7 @@ a.button:hover {
 }
 
 .demo {
-    background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground1.png?v=1575192820685');
+    background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576095415615');
     background-size: 100%;
     background-color: rgba(35, 39, 42, 1);
     border: rgba(35, 39, 42, 1) 2px solid;
