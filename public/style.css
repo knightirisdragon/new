@@ -76,7 +76,7 @@ a.button:hover {
 
 .inlinediv  {
     background-color: rgba(35, 39, 42, 0);
-    padding: 5px;
+    padding: 10px;
 
     overflow: scroll;
     flex-direction: initial;
@@ -190,7 +190,7 @@ a.button:hover {
   
     font-size: 15px;
   
-    top: -135px;
+    top: -30px;
     left: 0px;
     position: absolute;
     display: inline-block;
@@ -231,7 +231,7 @@ a.button:hover {
   
     font-size: 10px;
   
-    top: -134px;
+    top: -28px;
     right: 0px;
     position: absolute;
     display: inline-block;
@@ -381,7 +381,7 @@ a.button:hover {
     padding: 10px;
     position: relative;
     display: inline-block;
-    background-color: rgba(35, 39, 42, 0.9);
+    background-color: rgba(35, 39, 42, 0.5);
     border-bottom: transparent;
 }
 
@@ -398,22 +398,11 @@ a.button:hover {
 table {
     width: 100%;
     background-color: rgba(35, 39, 42, 0.25);
-    text-shadow: 1px 1px black; color: white;
+    text-decoration: none;
 }
 
 table:hover {
     cursor: pointer;
-}
-
-th {
-    height: 50px;
-    text-align: left;
-}
-
-td {
-    background-color: rgba(35, 39, 42, 0.5);
-    height: 50px;
-    vertical-align: middle;
 }
 
 th, td {
