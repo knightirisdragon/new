@@ -34,7 +34,7 @@ img  {border-radius: 10px; cursor: pointer;}
 
 .fullsize  {
     background-color: rgba(44, 47, 51, 0.5);
-    border: rgba(35, 39, 42, 0.95) 2px solid;
+    border: #7289DA 2px solid;
     border-radius: 4px;
     padding: 15px;
     text-align: center;
@@ -240,7 +240,9 @@ a.button:hover {
 .headertext,
 .headersub,
 .category_name  {
-    background-color: rgba(35, 39, 42, 0);
+    background-color: rgba(35, 39, 42, 0.25);
+    border-left: #7289DA 2px solid;
+    border-radius: 0px 10px 10px 0px;
     text-align: left;
   
     padding: 10px;
@@ -260,7 +262,8 @@ a.button:hover {
 
 .demo {
     background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576095415615');
-    background-size: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
     background-color: rgba(35, 39, 42, 1);
     border: rgba(35, 39, 42, 1) 2px solid;
     text-shadow: 1px 1px black;
@@ -341,7 +344,7 @@ a.button:hover {
 .img_border {
 
     border-radius: 25px;
-    border-color: #2c2f33;
+    border-color: #7289DA;
     
 }
 
@@ -428,7 +431,7 @@ th, td {
     cursor: pointer;
     padding: 15px;
     background-color: #23272A;
-    border-color: #2C2F33;
+    border-color: #7289DA;
     border-radius: 10px;
 }
 
@@ -454,7 +457,7 @@ th, td {
 .cardImage {
     display: inline-block;
     border: 4px solid;
-    border-color: #23272a;
+    border-color: #7289DA;
     border-radius: 5%;  
 }
 
@@ -488,7 +491,7 @@ th, td {
   
     border: 4px solid;
     background-color: #23272A;
-    border-color: #2C2F33;
+    border-color: #7289DA;
     border-radius: 5%;  
   
 }
@@ -634,7 +637,7 @@ th, td {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #23272A;
+    background: #7289DA;
     border-radius: 5px;
     z-index: 11;
 }
