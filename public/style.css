@@ -118,9 +118,8 @@ a.button:hover {
 .displayitem  {
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-color: #2C2F33;
-    border: rgba(35, 39, 42, 1) 2px solid;
-    border-radius: 5px;
+    background-color: #7289DA;
+    border-radius: 10px;
     width: 225px;
     height: 225px;
     cursor: pointer;
@@ -136,9 +135,7 @@ a.button:hover {
   
 .displayname  {
     text-align: center;
-    background-color: rgba(35, 39, 42, 0.9);
-    border-bottom: rgba(35, 39, 42, 0.9) 2px solid;
-    border-top: rgba(35, 39, 42, 0.9) 2px solid;
+    background-color: rgba(35, 39, 42, 0.5);
     width: 100%;
     padding: 5px;
     position: absolute;
@@ -389,11 +386,6 @@ a.button:hover {
     cursor: pointer;
 }
 
-.tutorial_item  {
-    text-align: left;
-    padding: 10px;
-}
-
 .tutorial_item,
 table {
     width: 100%;
@@ -409,6 +401,26 @@ th, td {
     color: white;
     padding: 15px;
     text-align: left;
+}
+
+.itemdiv  {
+    background-color: rgba(35, 39, 42, 0.5);
+    border-left: #7289DA 2px solid;
+    border-radius: 0px 10px 10px 0px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+
+    text-align: left;
+    display: inline-block;
+    transition: transform .25s ease;
+}
+
+.itemdiv:hover  {
+    border-left: #8094dd 4px solid;
+  
+    cursor: pointer;
+    transform: scale(0.99);
 }
 
 .div_background {
