@@ -156,7 +156,7 @@ a.button:hover {
 .listitem  {
     background-color: #7289DA;
     background-position: center;
-    border: rgba(35, 39, 42, 1) 2px solid;
+    border-left: #7289DA 2px solid;
     border-radius: 0px;
     background-size: cover;
     width: 400px;
@@ -170,8 +170,7 @@ a.button:hover {
 }
   
 .textlistitem {
-    background-color: rgba(35, 39, 42, 0.85);
-    border-top: rgba(35, 39, 42, 0.69) 2px solid;
+    background-color: rgba(35, 39, 42, 0.75);
     border-radius: 0px;
     width: 100%;
     height: 40px;
@@ -182,16 +181,14 @@ a.button:hover {
 }
   
 .textlistitem .name { 
-    background-color: rgba(35, 39, 42, 0.85);
-    border-top: rgba(35, 39, 42, 0.69) 2px solid;
-    border-bottom: rgba(35, 39, 42, 0.69) 2px solid;
+    background-color: rgba(35, 39, 42, 0.75);
     padding: 5px;
     padding-left: 10px;
     width: 100%;
   
     font-size: 15px;
   
-    top: -40px;
+    top: -135px;
     left: 0px;
     position: absolute;
     display: inline-block;
@@ -232,7 +229,7 @@ a.button:hover {
   
     font-size: 10px;
   
-    top: -37px;
+    top: -134px;
     right: 0px;
     position: absolute;
     display: inline-block;
@@ -261,9 +258,10 @@ a.button:hover {
 }
 
 .demo {
-    background-image: url('https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern_assets.png?v=1554545063162');
+    background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground1.png?v=1575192820685');
+    background-size: 100%;
     background-color: rgba(35, 39, 42, 1);
-    border: rgba(35, 39, 42, 1) 4px solid;
+    border: rgba(35, 39, 42, 1) 2px solid;
     text-shadow: 1px 1px black;
     padding: 10px;
     width: 100%;
