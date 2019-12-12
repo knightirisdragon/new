@@ -70,6 +70,7 @@ const ProfileBoosterTime    = (DayMs  / ( 60 * 60 * 1000 ));
 //Sets and Arrays
 const ErrorBag                = new Set();
 const BannedUsers             = new Array();
+const FeaturedProfiles        = new Array();
 const WebsiteCooldowns        = new Set();
 const GainCooldown            = new Set();
 const LimitedRolesCooldown    = new Set();
@@ -7415,11 +7416,14 @@ if  (!ProfileCooldown.has(message.author.id))  {
     if  (!WebsiteCooldowns.has("featuredprofile") && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(SupporterRole))  {
       
         WebsiteCooldowns.add("featuredprofile");
+        setTimeout(() => {WebsiteCooldowns.delete("featuredprofile")}, 1800000);   
+      
+        FeaturedProfiles.push("<img src='" + m.attachments.array()[0].url + "' class='featuredprofile' id='" + FeaturedProfiles.length +"''>");
+        if  (FeaturedProfiles.length > 3)  {
+            FeaturedProfiles.pop();
+        };
 
-        var FeaturedDate = new Date();
-        var data = "<font size='4' class='headersub'>" + function_RemoveFormatting(SomeoneTagged.user.username, "other", true) + "'s profile got featured on " + function_DateFormat(FeaturedDate) + ".</font>  <br><br><br>  <img src='" + m.attachments.array()[0].url + "' class='featuredprofile'>";
-
-        fs.writeFile('public/featured_profile.txt', data, (err) => {
+        fs.writeFile('public/featured_profile.txt', FeaturedProfiles.join(" "), (err) => {
             if (err) console.log(err); 
         });
       
@@ -7427,10 +7431,6 @@ if  (!ProfileCooldown.has(message.author.id))  {
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
         console.log("The featured profile has been updated.");
-    
-        setTimeout(() => {
-            WebsiteCooldowns.delete("featuredprofile");
-        }, 1800000);   
           
         };
 
