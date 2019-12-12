@@ -5,7 +5,6 @@ const BLSToken = process.env.BLS_TOKEN;
 const BFDToken = process.env.BFD_TOKEN;
 const DBToken = process.env.DB_TOKEN;
 const YoutubeToken = process.env.YT_TOKEN;
-const SteamToken = process.env.STEAM_TOKEN;
 
 //Discord
 const Discord = require('discord.js');

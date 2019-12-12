@@ -1,18 +1,17 @@
 body {
-  background-color: #9CCDF6;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   margin: 2em;
 }
 
 html {
   scroll-behavior: smooth;
-}
 
-.imagebackground  {
-  background-image: url("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576177447491");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-color: #a2afd4;
+  /*background: url("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576177447491") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;*/
 }
 
 b,p,a   {color: white; text-decoration: none;}
