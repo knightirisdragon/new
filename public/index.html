@@ -111,21 +111,25 @@
       transform: scale(0.99);
     }
          
-    #featuredprofiles_1,   
+    #featuredprofiles_0,   
     #featuredprofiles_2  {
       position: absolute;  
     }
        
+    #featuredprofiles_0  {
+      left: 100px;
+      z-index: 10;
+    }
+       
     #featuredprofiles_1  {
-      left: 100px;
+      width: 450px;
+      z-index: 5;
     }
        
-    #featuredprofiles_0  {
-      left: 100px;
-    }
-       
-    #featuredprofiles_0  {
-      left: 100px;
+    #featuredprofiles_2  {
+      width: 425px;
+      right: 100px;
+      z-index: 0;
     }
 
     #InvBtn, 
@@ -418,7 +422,7 @@
   
 <br><br><br>
     
-<div id="FeaturedProfile" style="position: relative; height: 500;"></div>
+<div id="FeaturedProfile" style="position: relative; height: 500; vertical-align: center;"></div>
 
 <br><br>
 
