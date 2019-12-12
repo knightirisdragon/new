@@ -7447,7 +7447,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         WebsiteCooldowns.add("featuredprofile");
         setTimeout(() => {WebsiteCooldowns.delete("featuredprofile")}, 1800000);   
 
-        fs.writeFile('public/featured_profile.txt', "<center>  <img src='" + m.attachments.array()[0].url + "' class='featuredprofile'>  </center>", (err) => {
+        fs.writeFile('public/featured_profile.txt', "<center>  <a href='https://peeky.glitch.me/store.html'><img src='" + m.attachments.array()[0].url + "' class='featuredprofile'></a>  </center>", (err) => {
             if (err) console.log(err); 
         });
       

@@ -6,7 +6,7 @@ body {
 html {
   scroll-behavior: smooth;
 
-  background-color: #a2afd4;
+  background-color: #899fde;
   /*background: url("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576177447491") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -61,7 +61,7 @@ img  {border-radius: 10px; cursor: pointer;}
 }
 
 .fancybutton  {
-    background-color: rgba(114, 137, 218, 0.25);
+    background-color: rgba(44, 47, 51, 0.25);
     border-radius: 10px;
     width: 100px;
     padding: 10px;
