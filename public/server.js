@@ -676,49 +676,49 @@ const Banners = [
     ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground389.png?v=1565715183258", 475, "Steve hunt", "RobenSikk", undefined, 0],
     ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground390.png?v=1565715470915", 875, "Right ahead", "Call of Duty Modern Warfare", undefined, 0],
     ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground391.png?v=1565715547975", 350, "Samurai", "u/vrtman", undefined, 0],
-    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground392.png?v=1565715555358", 450, "Preloaded", "Borderlands 3", undefined, 0],
-    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground393.png?v=1565715558429", 500, "Seeking", "GreedFall", undefined, 0],
-    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground394.jpg?v=1565715561043", 300, "Elven kingdom", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground395.png?v=1565715568265", 475, "Three kingdoms", "Total War", undefined, 0],
-    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground396.png?v=1565844170105", 475, "Midnight", "u/SnookyZun", undefined, 0],
-    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground397.png?v=1565844176033", 475, "Turtle friend", "Jojo's Bizarre Adventures Golden Wind", undefined, 0],
-    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground398.jpg?v=1565844185444", 450, "Penguin trip", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground399.png?v=1565844196700", 425, "Quail", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground400.png?v=1565844199887", 450, "Tiger", "Jack Merlin", undefined, 0],
-    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground401.png?v=1565953633386", 500, "Monster of the east", "Fallout New Vegas", undefined, 0],
-    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground402.png?v=1566128627988", 450, "Los thanos", "Harry Osborn", undefined, 0],
-    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground403.png?v=1566128632167", 475, "To the rescue", "Ghost Recond Breakpoint", undefined, 0],
-    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground404.png?v=1566128626627", 350, "Torture dance", "u/Arbitrarium_", undefined, 0],
-    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground405.png?v=1567050251316", 500, "Left hanging", "Dead by Daylight", undefined, 0],
-    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground406.png?v=1567528259333", 400, "Battle zone", "Vojtěch Jílovec", `108899856889737216`, 0],
-    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground407.png?v=1567938140089", 425, "Death #162009", "Vojtěch Jílovec", `108899856889737216`, 0],
-    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground408.png?v=1567938199867", 500, "Ice breaker", "u/neytirixx", undefined, 0],
-    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground409.png?v=1568824760554", 425, "Copper sööp", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground392.png?v=1565715555358", 825, "Annoying villains", "Borderlands 3", undefined, 0],
+    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground393.png?v=1565715558429", 850, "Seeking", "GreedFall", undefined, 0],
+    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground394.jpg?v=1565715561043", 775, "Elven kingdom", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground395.png?v=1565715568265", 800, "Three kingdoms", "Total War", undefined, 0],
+    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground396.png?v=1565844170105", 875, "Midnight", "u/SnookyZun", undefined, 0],
+    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground397.png?v=1565844176033", 775, "Turtle friend", "Jojo's Bizarre Adventures Golden Wind", undefined, 0],
+    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground398.jpg?v=1565844185444", 825, "Penguin trip", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground399.png?v=1565844196700", 750, "Quail", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground400.png?v=1565844199887", 650, "Tiger", "Jack Merlin", undefined, 0],
+    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground401.png?v=1565953633386", 725, "Monster of the east", "Fallout New Vegas", undefined, 0],
+    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground402.png?v=1566128627988", 850, "Los thanos", "Harry Osborn", undefined, 0],
+    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground403.png?v=1566128632167", 775, "To the rescue", "Ghost Recond Breakpoint", undefined, 0],
+    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground404.png?v=1566128626627", 575, "Torture dance", "u/Arbitrarium_", undefined, 0],
+    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground405.png?v=1567050251316", 925, "Left hanging", "Dead by Daylight", undefined, 0],
+    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground406.png?v=1567528259333", 325, "Battle zone", "Vojtěch Jílovec", `108899856889737216`, 0],
+    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground407.png?v=1567938140089", 275, "Death #162009", "Vojtěch Jílovec", `108899856889737216`, 0],
+    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground408.png?v=1567938199867", 875, "Ice breaker", "u/neytirixx", undefined, 0],
+    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground409.png?v=1568824760554", 825, "Copper sööp", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground410.png?v=1568913126645", 450, "Link's awakening", "The Legend of Zelda Link's Awakening", undefined, 0],
-    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground411.png?v=1569261662317", 300, "Pudla", "Vlaďka Lišková", `583902709745188875`, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground412.png?v=1572542839518", 450, "Storming", "Battlefield 4", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground413.png?v=1569744679704", 400, "Passione", "JoJo's Bizarre Adventures", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground414.png?v=1569780678572", 300, "Stříbro", "Vlaďka Lišková", `583902709745188875`, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground415.png?v=1569829711380", 400, "Flayed", "Stranger Things", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground416.png?v=1573313860160", 500, "Beyond hell", "Nioh", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground417.png?v=1573313897257", 500, "Sleeping river", "GreedFall", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground418.png?v=1573313898157", 500, "Awakening", "Project Awakening Arise", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground419.png?v=1573313903056", 450, "Spider-man", "Sony Pictures", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground420.png?v=1573313975804", 400, "Sleeping streamer", "Alexandrev Perstev", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground421.png?v=1573891420218", 350, "Emoji saviour", "twlefth", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground422.png?v=1575141704791", 450, "Giorno's piano", "u/Rockman17", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground423.png?v=1575141706988", 425, "Norbinbad", "Lord of the Rings War in the North", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground424.png?v=1575141708491", 425, "Mouse's flower", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground425.png?v=1575345556036", 450, "Chaotic home", "PewDiePie's Tuber Simulaor", undefined, 1575345511274],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground426.png?v=1575345938913", 500, "Deer hunt", "Red Dead Redemption 2", undefined, 1575345944280],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground427.png?v=1575345939547", 500, "International squad", "Call of Duty Modern Warfare", undefined, 1575345952003]  ,
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground428.png?v=1575716944152", 450, "The Cyrodill fields", "Unknown", undefined, 1575716942140],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground429.png?v=1575795807391", 475, "Mount Doom", "Unknown", undefined, 1575795807985],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground430.png?v=1575908013402", 450, "The nazgul", "Uknown", undefined, 1575908014014],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground431.png?v=1575908009200", 500, "Rivindell", "Unknown", undefined, 1575908017191],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground432.png?v=1575908019408", 450, "Fall of noldor", "Unknown", undefined, 1575908012308],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground433.png?v=1575908033170", 425, "Compound defense", "Wasteland 3", undefined, 1575908028110],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground434.png?v=1575981245557", 450, "Quindecim", "仙田", undefined, 1575981269516],
+    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground411.png?v=1569261662317", 250, "Pudla", "Vlaďka Lišková", `583902709745188875`, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground412.png?v=1572542839518", 775, "Storming", "Battlefield 4", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground413.png?v=1569744679704", 625, "Passione", "JoJo's Bizarre Adventures", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground414.png?v=1569780678572", 250, "Stříbro", "Vlaďka Lišková", `583902709745188875`, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground415.png?v=1569829711380", 575, "Flayed", "Stranger Things", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground416.png?v=1573313860160", 825, "Beyond hell", "Nioh", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground417.png?v=1573313897257", 925, "Sleeping river", "GreedFall", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground418.png?v=1573313898157", 925, "Awakening", "Project Awakening Arise", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground419.png?v=1573313903056", 825, "Spider-man", "Sony Pictures", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground420.png?v=1573313975804", 625, "Sleeping streamer", "Alexandrev Perstev", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground421.png?v=1573891420218", 550, "Emoji saviour", "twlefth", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground422.png?v=1575141704791", 825, "Giorno's piano", "u/Rockman17", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground423.png?v=1575141706988", 875, "Norbinbad", "Lord of the Rings War in the North", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground424.png?v=1575141708491", 675, "Mouse's flower", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground425.png?v=1575345556036", 850, "Chaotic home", "PewDiePie's Tuber Simulaor", undefined, 1575345511274],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground426.png?v=1575345938913", 825, "Deer hunt", "Red Dead Redemption 2", undefined, 1575345944280],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground427.png?v=1575345939547", 875, "International squad", "Call of Duty Modern Warfare", undefined, 1575345952003]  ,
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground428.png?v=1575716944152", 750, "The Cyrodill fields", "Unknown", undefined, 1575716942140],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground429.png?v=1575795807391", 825, "Mount Doom", "Unknown", undefined, 1575795807985],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground430.png?v=1575908013402", 875, "The nazgul", "Uknown", undefined, 1575908014014],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground431.png?v=1575908009200", 725, "Rivindell", "Unknown", undefined, 1575908017191],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground432.png?v=1575908019408", 675, "Fall of noldor", "Unknown", undefined, 1575908012308],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground433.png?v=1575908033170", 575, "Compound defense", "Wasteland 3", undefined, 1575908028110],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground434.png?v=1575981245557", 750, "Quindecim", "仙田", undefined, 1575981269516],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground435.png?v=1576139263681", 950, "Jill", "Resident Evil 3 Remake", undefined, 1576139256904]
 
 ];
@@ -4056,7 +4056,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
             if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
 
                 var Index = Math.floor((Math.random() * 1));
-                var Rewards = [[GreditIcon, 999], [ChestIcon, 9]];
+                var Rewards = [[GreditIcon, 999, "Gredit"], [ChestIcon, 9, "Chests"]];
                 var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
 
                 var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + Rewards[Index][0],  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
@@ -4072,7 +4072,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
                             var embed = {"description": SuccessIcon + " **" + member.displayName + "** has claimed the treasure!", "color": EmbedColor}; 
                             m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
-                            peeky.userData.math(member.user.id, "+", Amount, "Chests");
+                            peeky.userData.math(member.user.id, "+", Amount, Rewards[Index][2]);
 
                         };
 
