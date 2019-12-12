@@ -615,7 +615,7 @@ const Banners = [
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground330.png?v=1560703323947", 775, "Nuke", "Counter Strike Global Offensive", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground331.png?v=1560768909337", 250, "Creeper Buddy", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground332.png?v=1560768910957", 775, "Flare Abyss", "The Division", undefined, 0],
-    ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground333.png?v=1560777175191", Exclusive, "First Year", "Vojtěch Jílovec", undefined, 0],
+    ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground333.png?v=1560777175191", Exclusive, "Happy year", "Vojtěch Jílovec", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground334.png?v=1560779898774", 725, "Hype beast", "Counter Strike Global Offensive ", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground335.png?v=1560779904859", 675, "Roblox gang", "ROBLOX", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground336.png?v=1560779909615", 525, "Sanctuary leader", "Joji", undefined, 0],
@@ -718,7 +718,8 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground433.png?v=1575908033170", 575, "Compound defense", "Wasteland 3", undefined, 1575908028110],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground434.png?v=1575981245557", 750, "Quindecim", "仙田", undefined, 1575981269516],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground435.png?v=1576139263681", 950, "Jill", "Resident Evil 3 Remake", undefined, 1576139256904],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground436.png?v=1576143916348", 925, "Agent's mood", "u/bobemil", undefined, 1576143910590]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground436.png?v=1576143916348", 925, "Agent's mood", "u/bobemil", undefined, 1576143910590],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground437.png?v=1576163566667", Exclusive, "Christmas mood", "Vojtěch Jílovec", undefined, 1576163667563]
 
 ];
 
@@ -4702,7 +4703,7 @@ if (CommandName == "eventrewards")  {
             peeky.userData.get(key, "ParticipatedEvents").push(Setting.EventName);
           
             //Setting
-            var Background = 0;
+            var Background = 437;
             var Chests     = 25;
             var Gredit     = 0;
           
@@ -4727,6 +4728,11 @@ if (CommandName == "eventrewards")  {
             };
           
             if  (Setting.EventName.includes("Movie Nighter"))  {
+                InfoMessages.push(InfoIcon + " The **Movie Nighter** badge.");
+                peeky.userData.set(key, true, "MovieNighterBadge");
+            };
+          
+            if  (!Setting.EventName.includes("Movie Nighter"))  {
                 InfoMessages.push(InfoIcon + " The **Movie Nighter** badge.");
                 peeky.userData.set(key, true, "MovieNighterBadge");
             };
