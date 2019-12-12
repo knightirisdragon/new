@@ -13,7 +13,7 @@ dependencies:
   parse-ms: 2.1.0
   request: 2.88.0
   require.js: 1.0.0
-  sqlite3: 4.1.0
+  sqlite3: 4.1.1
   youtube-search: 1.1.4
   ytdl-core: 1.0.3
   ytdl-core-discord: 1.0.3
@@ -1262,7 +1262,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-dyycG9fvwtSJqKPfMVOpXt+60qvMGe7vWLwOJDiSJaiAx+hs2EnFChG2bXCWn7ulz+zGzrHdN9/yeEb0YqEPww==
-  /sqlite3/4.1.0:
+  /sqlite3/4.1.1:
     dependencies:
       nan: 2.14.0
       node-pre-gyp: 0.11.0
@@ -1270,7 +1270,7 @@ packages:
     dev: false
     requiresBuild: true
     resolution:
-      integrity: sha512-RvqoKxq+8pDHsJo7aXxsFR18i+dU2Wp5o12qAJOV5LNcDt+fgJsc2QKKg3sIRfXrN9ZjzY1T7SNe/DFVqAXjaw==
+      integrity: sha512-CvT5XY+MWnn0HkbwVKJAyWEMfzpAPwnTiB3TobA5Mri44SrTovmmh499NPQP+gatkeOipqPlBLel7rn4E/PCQg==
   /sshpk/1.16.1:
     dependencies:
       asn1: 0.2.4
@@ -1520,7 +1520,7 @@ specifiers:
   parse-ms: ^2.0.0
   request: ^2.88.0
   require.js: ^1.0.0
-  sqlite3: ^4.1.0
+  sqlite3: ^4.1.1
   youtube-search: ^1.1.4
   ytdl-core: ^1.0.3
   ytdl-core-discord: ^1.0.3
