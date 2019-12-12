@@ -4056,8 +4056,8 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
             if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
 
                 var Index = Math.floor((Math.random() * 1));
-                var Rewards = [[GreditIcon, 1000], [ChestIcon, 10]];
-                var Amount = Math.floor((Math.random() * Rewards[Index][1]));
+                var Rewards = [[GreditIcon, 999], [ChestIcon, 9]];
+                var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
 
                 var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + Rewards[Index][0],  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
                 channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
