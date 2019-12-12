@@ -4707,6 +4707,16 @@ if (CommandName == "eventrewards")  {
             var Chests     = 25;
             var Gredit     = 0;
           
+            if  (Setting.EventName.includes("PEEKY's Birthday") || Setting.EventName.includes("Christmas"))  {
+                InfoMessages.push(InfoIcon + " The **Celebrator** badge.");
+                peeky.userData.set(key, true, "CelebratorBadge");
+            };
+          
+            if  (Setting.EventName.includes("Movie Nighter"))  {
+                InfoMessages.push(InfoIcon + " The **Movie Nighter** badge.");
+                peeky.userData.set(key, true, "MovieNighterBadge");
+            };
+          
             if  (Background > 0)  {
                 InfoMessages.push(InfoIcon + " The **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
                 peeky.userData.get(key, "Inventory").push(Background);
@@ -4721,23 +4731,8 @@ if (CommandName == "eventrewards")  {
                 InfoMessages.push(InfoIcon + " **" + Chests + "** Chests.");
                 peeky.userData.math(key, "+", Chests, "Chests");
             };
-          
-            if  (Setting.EventName.includes("PEEKY's Birthday"))  {
-                InfoMessages.push(InfoIcon + " The **Celebrator** badge.");
-                peeky.userData.set(key, true, "CelebratorBadge");
-            };
-          
-            if  (Setting.EventName.includes("Movie Nighter"))  {
-                InfoMessages.push(InfoIcon + " The **Movie Nighter** badge.");
-                peeky.userData.set(key, true, "MovieNighterBadge");
-            };
-          
-            if  (!Setting.EventName.includes("Movie Nighter"))  {
-                InfoMessages.push(InfoIcon + " The **Movie Nighter** badge.");
-                peeky.userData.set(key, true, "MovieNighterBadge");
-            };
 
-            const embed = {"description": SuccessIcon + " You have received the rewards from the **" + Setting.EventName + "** event!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            const embed = {"description": SuccessIcon + " You have received some cool rewards from the **" + Setting.EventName + "** event!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));          
           
         };
