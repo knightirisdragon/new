@@ -286,56 +286,56 @@ var SearchOptions   = {  maxResults: 1,  key: YoutubeToken  };
 const Banners = [
 
     [DefaultBackground, 0, "Default", "Vojtěch Jílovec", undefined, 0], //Default
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground2.jpg?1537950866619", 475, "Welcome to NYC", "The Division", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground3.jpg?1535302285990", 400, "Henry the knight", "Kingdom Come Deliverence", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground4.jpg?1535333614451", 425, "Fallout's garage", "Fallout 4", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground5.jpg?1537816491802", 375, "Encounter with Stalkers", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground6.jpg?1535285894346", 275, "The Whalers", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground7.jpg?1535290804866", 400, "Mysterious Man", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground8.jpg?1537816628115", 425, "Escape of noobs", "ROBLOX", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground9.jpg?1537888709532", 375, "The last crusade", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground10.jpg?1535334052918", 450, "The last of them", "The Last of Us", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground11.jpg?1535334267005", 400, "Birch Forest", "Minecraft", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground12.png?1537814782102", 475, "Epidemic", "Rainbow Six Sige", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground13.jpg?1537814934225", 500, "Hostage Situation", "Rainbow Six Sige", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground14.jpg?1537950866487", 350, "The province of Skyrim", "The Elder Scrolls 5 Skyrim", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground15.jpg?1535404090262", 450, "The silent assassin", "Dishonored", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground16.jpg?1535404088759", 425, "Out of this world", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground17.jpg?1537873790199", 400, "First bank robbery", "PAYDAY 2", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground18.jpg?1535481872824", 350, "The Saints", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground19.jpg?1535481874193", 350, "Secret burial", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground20.jpg?1535481872090", 400, "Kane and Lynch", "Kane and Lynch Dog Days", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground21.jpg?1535569846831", 350, "Helicopter escape", "SAS Zombie Assault 3", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground22.jpg?1535990062310", 300, "Tough welcome", "Killing Floor 1", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground23.jpg?1536565142261", 425, "Crashed helicopter", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground24.jpg?1536565143281", 400, "The horde", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground25.png?1536600827686", 425, "Abandoned city", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground26.jpg?1536603983804", 450, "The space", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground27.jpg?1536934121522", 400, "Lake of peace", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground28.jpg?1536934103891", 450, "King Slime", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground2.jpg?1537950866619", 750, "Welcome to NYC", "The Division", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground3.jpg?1535302285990", 725, "Henry the knight", "Kingdom Come Deliverence", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground4.jpg?1535333614451", 750, "Fallout's garage", "Fallout 4", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground5.jpg?1537816491802", 575, "Encounter with Stalkers", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground6.jpg?1535285894346", 450, "The Whalers", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground7.jpg?1535290804866", 650, "Mysterious Man", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground8.jpg?1537816628115", 675, "Escape of noobs", "ROBLOX", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground9.jpg?1537888709532", 550, "The last crusade", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground10.jpg?1535334052918", 750, "The last of them", "The Last of Us", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground11.jpg?1535334267005", 675, "Birch Forest", "Minecraft", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground12.png?1537814782102", 850, "Epidemic", "Rainbow Six Sige", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground13.jpg?1537814934225", 950, "Hostage Situation", "Rainbow Six Sige", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground14.jpg?1537950866487", 625, "The province of Skyrim", "The Elder Scrolls 5 Skyrim", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground15.jpg?1535404090262", 650, "The silent assassin", "Dishonored", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground16.jpg?1535404088759", 750, "Out of this world", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground17.jpg?1537873790199", 725, "First bank robbery", "PAYDAY 2", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground18.jpg?1535481872824", 775, "The Saints", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground19.jpg?1535481874193", 675, "Secret burial", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground20.jpg?1535481872090", 625, "Kane and Lynch", "Kane and Lynch Dog Days", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground21.jpg?1535569846831", 500, "Helicopter escape", "SAS Zombie Assault 3", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground22.jpg?1535990062310", 425, "Tough welcome", "Killing Floor 1", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground23.jpg?1536565142261", 675, "Crashed helicopter", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground24.jpg?1536565143281", 700, "The horde", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground25.png?1536600827686", 750, "Abandoned city", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground26.jpg?1536603983804", 875, "The space", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground27.jpg?1536934121522", 750, "Lake of peace", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground28.jpg?1536934103891", 725, "King Slime", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground29.png?1537047514422", 425, "Gladiator fights", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground30.jpg?1537814773898", 300, "Ambush", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground31.jpg?1537815016132", 400, "Red pattern", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground32.jpg?1537950866063", 450, "Close Cry", "Far Cry 4", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground33.jpg?1537950866386", 425, "Dark knight", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground34.jpg?1539510881741", 300, "Orc genocide", "The Elder Scrolls 5 Skyrim", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground35.jpg?1539518504422", 350, "Village raid", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground30.jpg?1537814773898", 400, "Ambush", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground31.jpg?1537815016132", 425, "Red pattern", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground32.jpg?1537950866063", 850, "Close Cry", "Far Cry 4", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground33.jpg?1537950866386", 750, "Dark knight", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground34.jpg?1539510881741", 350, "Orc genocide", "The Elder Scrolls 5 Skyrim", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground35.jpg?1539518504422", 250, "Village raid", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground36.jpg?1539518559631", 420, "M e m e ­ H o u s e", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground37.png?1539543378623", 350, "Supply royale", "Player Unknown's Battle Royale", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground38.png?1539546582730", 300, "Counter attack", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground39.jpg?1539623688927", 400, "Into the battle", "Guild Wars 2", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground40.jpg?1539879968743", 400, "Cool ferrets", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground41.png?1558777240101", 250, "You right now", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground42.jpg?1539871005083", 475, "Father and daughter", "Dishnored 2", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground43.jpg?1539885633665", 250, "Lighten up forest", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground44.jpg?1539885633627", 250, "Chill lake", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground45.jpg?1539885635308", 425, "Fire forest", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground46.jpg?1540021324998", 350, "Pepe's sky", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground47.jpg?1540027329670", 400, "Lost world", "Fornite", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground48.jpg?1540033276474", 200, "Dragon slayer", "The Elder Scrolls 5 Skyrim", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground49.jpg?1540033274127", 275, "Rush through a village", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground50.png?1540650384768", 250, "USSR", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground51.jpg?1540107026526", 350, "Lizard Wizard", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground37.png?1539543378623", 825, "Supply royale", "Player Unknown's Battle Royale", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground38.png?1539546582730", 275, "Counter attack", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground39.jpg?1539623688927", 775, "Into the battle", "Guild Wars 2", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground40.jpg?1539879968743", 425, "Cool ferrets", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground41.png?1558777240101", 375, "You right now", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground42.jpg?1539871005083", 850, "Father and daughter", "Dishnored 2", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground43.jpg?1539885633665", 350, "Lit up forest", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground44.jpg?1539885633627", 375, "Chill lake", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground45.jpg?1539885635308", 450, "Fire forest", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground46.jpg?1540021324998", 650, "Pepe's sky", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground47.jpg?1540027329670", 775, "Lost world", "Fornite", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground48.jpg?1540033276474", 325, "Dragon slayer", "The Elder Scrolls 5 Skyrim", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground49.jpg?1540033274127", 475, "Rush", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground50.png?1540650384768", 425, "USSR", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground51.jpg?1540107026526", 375, "Lizard Wizard", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground52.jpg?1540309332233", 250, "Left unturned", "Unturned", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground53.jpg?1540106992532", 400, "Home invasion", "Telltale's The Walking Dead", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground54.jpg?1540132038895", 425, "Dungeon explorers", "Unknown", undefined, 0],
@@ -4054,9 +4054,10 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
 
             if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
 
-                var Amount = 100 + (10 * Math.floor((Math.random() * 90)));
+                var Amount = 1;
+                //100 + (10 * Math.floor((Math.random() * 90)));
 
-                var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + GreditIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
+                var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + ChestIcon,  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
                 channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
 
                     m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 3600000, errors: ['time'] })
@@ -4069,7 +4070,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
                             var embed = {"description": SuccessIcon + " **" + member.displayName + "** has claimed the treasure!", "color": EmbedColor}; 
                             m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
-                            peeky.userData.math(member.user.id, "+", Amount, "Gredit");
+                            peeky.userData.math(member.user.id, "+", Amount, "Chests");
 
                         };
 

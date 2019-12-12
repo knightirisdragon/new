@@ -523,7 +523,6 @@ th, td {
 .HomeHyperlinks {
     text-decoration: underline;
     padding: 1px 1px;
-    text-shadow: 1px 1px black;
 }
 
 .container {
@@ -593,7 +592,6 @@ th, td {
 .sidenav {
     background-color: rgba(44, 47, 51, 0.75);
     overflow: scroll;
-    text-shadow: 1px 1px black;
     padding: 10px;
     position: fixed;
     left: 0%;
