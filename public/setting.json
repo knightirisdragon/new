@@ -6,8 +6,8 @@
   "DefaultPrefix": "p!",
   "MaxServers": 1000,
   
-  "Announcement": "",
-  "EventName": "",
+  "Announcement": "Prepare yourself for an upcoming Christmas event and win cool prizes!",
+  "EventName": "Christmas 2019",
   "EventStatus": false,
   
   "CustomBackgroundPrice": 1000,
