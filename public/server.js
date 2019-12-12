@@ -6791,7 +6791,7 @@ if (CommandName == "daily")  {
     }).catch(err => ErrorBag.add(err));
 
     //Event Reward
-    if  (EventStatus == true)  {
+    if  (Setting.EventStatus == true)  {
         peeky.userData.math(key, "+", 1, "Chests"); 
         InfoMessages.push(InfoIcon + " Added a bonus reward from the event.");   
     };
