@@ -2577,7 +2577,7 @@ if  (!WebsiteCooldowns.has("botdescription"))  {
         if (err) console.log(err); 
     });
       
-    console.log("The stats have been updated.");
+    console.log("The bot description has been updated.");
       
 };
 
@@ -3140,9 +3140,9 @@ if  (peeky.serverData.has(keySF))  {
 
     if  (channel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
 
-        if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
+        if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true && true == false)  {
 
-            var FinalName = channel.name.replace(/[-]/g, ' ');
+            var FinalName = channel.name.replace(/[-]/g, "\u2005");
 
             if  (channel.type == "text" && channel.name !== FinalName)  {
 
@@ -3176,9 +3176,9 @@ if  (peeky.serverData.has(keySF))  {
 
     if  (channel.guild.me.hasPermission('MANAGE_CHANNELS'))  {
 
-        if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
+        if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true && true == false)  {
 
-            var FinalName = channel.name.replace(/[-]/g, ' ');
+            var FinalName = channel.name.replace(/[-]/g, "\u2005");
 
             if  (channel.type == "text" && channel.name !== FinalName)  {
 
@@ -3557,7 +3557,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
                                 "**Reaction Roles** " + RR + "\n" + "`" + RRArray + "`" + "\n\n" +
                                 "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(ServerMessage, "sm", true) + "`" + "\n\n" +
-                                "**Dash Remover** " + DR + "\n" + "No setting" + "\n\n" +
+                                "**Dash Remover (Temporarily Disabled)** " + DR + "\n" + "No setting" + "\n\n" +
                                 "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
                                 "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
