@@ -1918,6 +1918,7 @@ peeky.on('message', async (message) => {
         BadgeGredit: 0,
         BadgeExp: 0,
       
+        ParticipatedEvents: [],
         Bans: 0
     });
 
@@ -2255,7 +2256,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
               NewString = " <font color='lightgreen'>New</font>";
           };
       
-          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="' + Current + '">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + background_info[2] + RevenueString + NewString + '  </font>  <br>  <font size="2" color="lightgray">' + background_info[3] + '</font>  <br><br>  <font size="2" color="lightgray">' + Price + '</font>  <br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
+          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="' + Current + '">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + background_info[2] + RevenueString + NewString + '  </font>  <br>  <font size="2" color="lightgray">' + background_info[3] + '</font>  <br><br>  <font size="2" color="lightgray">' + Price.toLocaleString('en') + '</font>  <br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
     
           BackgroundList.push(BackgroundString);
     
@@ -4696,12 +4697,12 @@ if (CommandName == "eventrewards")  {
   
     if  (Setting.EventStatus == true)  {
       
-        if  (!peeky.userData.get(key, "Inventory").includes(412))  {
+        if  (!peeky.userData.get(key, "ParticipatedEvents").includes(Setting.EventName))  {
       
-            peeky.userData.get(key, "Inventory").push(412);
+            peeky.userData.get(key, "ParticipatedEvents").push(Setting.EventName);
 
-            const embed = {"description": SuccessIcon + " You have received the rewards for the **" + Setting.EventName + "** event!"
-                                          + "\n\n" + InfoIcon + " The **" + function_GetBackgroundInfo(412, ["name", "id"]) + "** background."
+            const embed = {"description": SuccessIcon + " You have received the rewards from the **" + Setting.EventName + "** event!"
+                                          + "\n\n" + InfoIcon + " The **" + function_GetBackgroundInfo(0, ["name", "id"]) + "** background."
                                          ,  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));          
           
@@ -7418,7 +7419,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         WebsiteCooldowns.add("featuredprofile");
         setTimeout(() => {WebsiteCooldowns.delete("featuredprofile")}, 1800000);   
 
-        fs.writeFile('public/featured_profile.txt', "<img src='" + m.attachments.array()[0].url + "' class='featuredprofile'>", (err) => {
+        fs.writeFile('public/featured_profile.txt', "<center>  <img src='" + m.attachments.array()[0].url + "' class='featuredprofile'>  </center>", (err) => {
             if (err) console.log(err); 
         });
       
