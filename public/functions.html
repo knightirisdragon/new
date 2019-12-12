@@ -38,6 +38,7 @@
   
 .functionname  {  
     background-color: rgba(35, 39, 42, 0.5);
+    border-radius: 0px 10px 0px 0px;
     border-left: #7289DA 2px solid;
     width: 1000px;
     font-size: 27px;
@@ -67,6 +68,7 @@
   
 .functioncommand  {  
     background-color: rgba(35, 39, 42, 0.5);
+    border-radius: 0px 0px 10px 0px;
     border-left: #7289DA 2px solid;
     width: 1000px;
     padding: 10px;
@@ -110,47 +112,47 @@ var Cooldown = "<br><br>  <b class='functionname'>Function Cooldown:</b>  <br>";
 
 function AR_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Automatic Reactions</b>  <br>  <b class="functiondescription">Automatically adds default or custom reactions to sent images and image links.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle automatic reactions</b>  <br>  <b class="functioncommand">p!set automatic reactions [text]</b>' + Note;  
+     document.getElementById('description').innerHTML = '<b class="functionname">Automatic Reactions</b>  <br>  <b class="functiondescription">Automatically adds default or custom reactions to sent images and image links.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle automatic reactions  <br>  p!set automatic reactions [text]</b>' + Note;  
 };
   
 function WM_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Welcome Messages</b>  <br>  <b class="functiondescription">Documents who leaves and joins your server to a specific channel.  <br>  Also automatically censors and bans users that have advertisments in their names.  </b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle welcome messages</b>  <br>  <b class="functioncommand">p!set welcome messages [channel name]</b>' + Note;  
+     document.getElementById('description').innerHTML = '<b class="functionname">Welcome Messages</b>  <br>  <b class="functiondescription">Documents who leaves and joins your server to a specific channel.  <br>  Also automatically censors and bans users that have advertisments in their names.  </b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle welcome messages  <br>p!set welcome messages [channel name]</b>' + Note;  
 };
   
 function MC_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Member Counter</b>  <br>  <b class="functiondescription">Creates a customizable member counter inside the channel list.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle member counter</b>  <br>  <b class="functioncommand">p!set member counter [text]</b>' + Note;  
+     document.getElementById('description').innerHTML = '<b class="functionname">Member Counter</b>  <br>  <b class="functiondescription">Creates a customizable member counter inside the channel list.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle member counter  <br>  p!set member counter [text]</b>' + Note;  
 };
 
 function CN_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Clear Nicknames</b>  <br>  <b class="functiondescription">Gives a filtered nickname to any member who has those strange symbols in their username.  <br>  The setting determines what should be their new nickname if the previous one was just fancy letters.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle clear nicknames</b>  <br>  <b class="functioncommand">p!set clear nicknames [text]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Clear Nicknames</b>  <br>  <b class="functiondescription">Gives a filtered nickname to any member who has those strange symbols in their username.  <br>  The setting determines what should be their new nickname if the previous one was just fancy letters.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle clear nicknames  <br>  p!set clear nicknames [text]</b>' + Note;
 };
   
 function CW_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Classification Wall</b>  <br>  <b class="functiondescription">Creates a wall that displays all the members with a specific role.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle classification wall</b>  <br>  <b class="functioncommand">p!set classification wall [role name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Classification Wall</b>  <br>  <b class="functiondescription">Creates a wall that displays all the members with a specific role.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle classification wall  <br>  p!set classification wall [role name]</b>' + Note;
 };
   
 function RR_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Reaction Roles</b>  <br>  <b class="functiondescription">Creates a channel that allows people to assign certain roles to themselves.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">5 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle reaction roles</b>  <br>  <b class="functioncommand">p!set reaction roles [role name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Reaction Roles</b>  <br>  <b class="functiondescription">Creates a channel that allows people to assign certain roles to themselves.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">5 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle reaction roles  <br>  p!set reaction roles [role name]</b>' + Note;
 };
   
 function TS_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Ticket System</b>  <br>  <b class="functiondescription">Creates a channel that allows people to create a ticket.  <br>  The setting determines what role manages tickets.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle ticket system</b>  <br>  <b class="functioncommand">p!set ticket system [role name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Ticket System</b>  <br>  <b class="functiondescription">Creates a channel that allows people to create a ticket.  <br>  The setting determines what role manages tickets.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle ticket system  <br>  p!set ticket system [role name]</b>' + Note;
 };
 
 function SA_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Suspicion Alert</b>  <br>  <b class="functiondescription">Sends the server owner a warning about users that are suspicious joining the server.  <br>  The setting determines how many bans a user would need to be considered suspicous.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle suspicion alert</b>  <br>  <b class="functioncommand">p!set suspicion alert [amount]</b>' + Note; 
+     document.getElementById('description').innerHTML = '<b class="functionname">Suspicion Alert</b>  <br>  <b class="functiondescription">Sends the server owner a warning about users that are suspicious joining the server.  <br>  The setting determines how many bans a user would need to be considered suspicous.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle suspicion alert  <br>  p!set suspicion alert [amount]</b>' + Note; 
 };
 
 function SA2_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Stream Announcements</b>  <br>  <b class="functiondescription">Sends a message to a specific channel everytime that a server member starts live streaming.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle stream announcements</b>  <br>  <b class="functioncommand">p!set stream announcements [channel name]</b>' + Note; 
+     document.getElementById('description').innerHTML = '<b class="functionname">Stream Announcements</b>  <br>  <b class="functiondescription">Sends a message to a specific channel everytime that a server member starts live streaming.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle stream announcements  <br>  p!set stream announcements [channel name]</b>' + Note; 
 };
 
 function SA3_Popup() {
@@ -160,26 +162,26 @@ function SA3_Popup() {
 
 function FP_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Flood Protection</b>  <br>  <b class="functiondescription">Mutes potentional userbots, spammers and raiders to prevent the chat from being flooded.  <br>  The setting determines how many strikes are needed to mute someone.</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle flood protection</b>  <br>  <b class="functioncommand">p!set flood protection [number]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Flood Protection</b>  <br>  <b class="functiondescription">Mutes potentional userbots, spammers and raiders to prevent the chat from being flooded.  <br>  The setting determines how many strikes are needed to mute someone.</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle flood protection  <br>  p!set flood protection [number]</b>' + Note;
 };
 
 function EC_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Event Countdown</b>  <br>  <b class="functiondescription">Creates a countdown in the channel list that ticks down until a specific date.  <br>  The setting is a timestamp.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle event countdown</b>  <br>  <b class="functioncommand">p!set event countdown [timestamp]</b>' + Note; 
+     document.getElementById('description').innerHTML = '<b class="functionname">Event Countdown</b>  <br>  <b class="functiondescription">Creates a countdown in the channel list that ticks down until a specific date.  <br>  The setting is a timestamp.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle event countdown  <br>  p!set event countdown [timestamp]</b>' + Note; 
 };
 
 function SM_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Server Message</b>  <br>  <b class="functiondescription">Sends a custom welcoming and informative message to any user that joins your server.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle server message</b>  <br>  <b class="functioncommand">p!set server message [text]</b>' + Note; 
+     document.getElementById('description').innerHTML = '<b class="functionname">Server Message</b>  <br>  <b class="functiondescription">Sends a custom welcoming and informative message to any user that joins your server.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle server message  <br>  p!set server message [text]</b>' + Note; 
 };
 function RP_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Reddit Posts</b>  <br>  <b class="functiondescription">Shows the current top posts from your favorite subreddit.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">30 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle reddit posts</b>  <br>  <b class="functioncommand">p!set reddit posts [subreddit name]</b>' + Note; 
+     document.getElementById('description').innerHTML = '<b class="functionname">Reddit Posts</b>  <br>  <b class="functiondescription">Shows the current top posts from your favorite subreddit.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">30 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle reddit posts  <br>  p!set reddit posts [subreddit name]</b>' + Note; 
 };
 
 function VT_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Vote Kick</b>  <br>  <b class="functiondescription">If a message gets the 🚪 reaction enough times, the message author will get kicked from the server.</b>  ' + Ignores + '  <b class="functioncommand">Bots and members with the KICK_MEMBERS permission</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle vote kick</b>  <br>  <b class="functioncommand">p!set vote kick [amount]</b>' + Note; 
+     document.getElementById('description').innerHTML = '<b class="functionname">Vote Kick</b>  <br>  <b class="functiondescription">If a message gets the 🚪 reaction enough times, the message author will get kicked from the server.</b>  ' + Ignores + '  <b class="functioncommand">Bots and members with the KICK_MEMBERS permission</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle vote kick  <br>  p!set vote kick [amount]</b>' + Note; 
 };
 
 function DR_Popup() {
@@ -189,12 +191,12 @@ function DR_Popup() {
   
 function JR_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Join Role</b>  <br>  <b class="functiondescription">Gives a specific role to anyone who joins your server.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle join role</b>  <br>  <b class="functioncommand">p!set join role [role name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Join Role</b>  <br>  <b class="functiondescription">Gives a specific role to anyone who joins your server.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle join role  <br>  p!set join role [role name]</b>' + Note;
 };
   
 function GR_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Game Roles</b>  <br>  <b class="functiondescription">Gives a specific role to any server member that starts playing a specific game.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">10 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle game roles</b>  <br>  <b class="functioncommand">p!set game roles [game name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Game Roles</b>  <br>  <b class="functiondescription">Gives a specific role to any server member that starts playing a specific game.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">10 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle game roles  <br>  p!set game roles [game name]</b>' + Note;
 };
   
 function RS_Popup() {
@@ -209,12 +211,12 @@ function NS_Popup() {
 
 function SR_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Streamer Role</b>  <br>  <b class="functiondescription">Gives a role to anyone that starts live streaming.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle streamer role</b>  <br>  <b class="functioncommand">p!set streamer role [role name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Streamer Role</b>  <br>  <b class="functiondescription">Gives a role to anyone that starts live streaming.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle streamer role  <br>  p!set streamer role [role name]</b>' + Note;
 };
 
 function ML_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Message Log</b>  <br>  <b class="functiondescription">Logs any message that gets a 📌 reaction to a specific channel.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle message log</b>  <br>  <b class="functioncommand">p!set message log [channel name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Message Log</b>  <br>  <b class="functiondescription">Logs any message that gets a 📌 reaction to a specific channel.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle message log  <br>  p!set message log [channel name]</b>' + Note;
 };
   
 function IO_Popup() {
@@ -224,12 +226,12 @@ function IO_Popup() {
 
 function SL_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Spoiler Lock</b>  <br>  <b class="functiondescription">Deletes any non-spoiler images and image links that were sent by new or untrusted members.  <br> The setting determines how long can a member be considered new.</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle spoiler lock</b>  <br>  <b class="functioncommand">p!set spoiler lock [minutes]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Spoiler Lock</b>  <br>  <b class="functiondescription">Deletes any non-spoiler images and image links that were sent by new or untrusted members.  <br> The setting determines how long can a member be considered new.</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle spoiler lock  <br>  p!set spoiler lock [minutes]</b>' + Note;
 };
 
 function BW_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Banned Words</b>  <br>  <b class="functiondescription">Deletes any messages that includes a banned word.</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle banned words</b>  <br>  <b class="functioncommand">p!set banned words [text]</b>  <br>  <b class="functioncommand">p!clear banned words</b>' + Note; 
+     document.getElementById('description').innerHTML = '<b class="functionname">Banned Words</b>  <br>  <b class="functiondescription">Deletes any messages that includes a banned word.</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle banned words</b>  <br>  <b class="functioncommand">p!set banned words [text]  <br>  p!clear banned words</b>' + Note; 
 };
 
 function SC_Popup() {

@@ -7963,7 +7963,7 @@ if (CommandName == "guessthesong")  {
                       };
                       
                       if  (peeky.userData.has(key))  {
-                          peeky.userData.math(key, "+", 25, "Gredit");
+                          peeky.userData.math(key, "+", 100, "Gredit");
                       };
                       
                       voiceChannel.leave();
@@ -8021,7 +8021,7 @@ if (CommandName == "triviaquestions")  {
              };
 
              if  (peeky.userData.has(key))  {
-                 peeky.userData.math(key, "+", 25, "Gredit");
+                 peeky.userData.math(key, "+", 50, "Gredit");
              };
 
              const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
@@ -8103,7 +8103,7 @@ if (CommandName == "drawandguess")  {
                  };
 
                  if  (peeky.userData.has(key))  {
-                     peeky.userData.math(key, "+", 50, "Gredit");
+                     peeky.userData.math(key, "+", 250, "Gredit");
                  };
 
                  const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has guessed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 

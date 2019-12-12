@@ -76,6 +76,7 @@ a.button:hover {
 
 .inlinediv  {
     background-color: rgba(35, 39, 42, 0.25);
+    border-radius: 10px 10px 0px 0px;
     padding: 10px;
 
     overflow: scroll;
