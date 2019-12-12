@@ -104,12 +104,28 @@
     
     .featuredprofile  {
       border-radius: 2px;
-
       transition: transform .25s ease;
     }
   
     .featuredprofile:hover  {
       transform: scale(0.99);
+    }
+         
+    #featuredprofiles_1,   
+    #featuredprofiles_2  {
+      position: absolute;  
+    }
+       
+    #featuredprofiles_1  {
+      left: 100px;
+    }
+       
+    #featuredprofiles_0  {
+      left: 100px;
+    }
+       
+    #featuredprofiles_0  {
+      left: 100px;
     }
 
     #InvBtn, 
@@ -397,11 +413,12 @@
     
 <div class="fullsize">
   
-<font size="7" class="headertext">Featured Profile</font>
+<font size="7" class="headertext">Featured Profiles</font>
+<font size="4" class="headersub">You can get your profile featured by becoming a Supporter!</font>
+  
+<br><br><br>
     
-<div id="FeaturedProfile">
-<img src="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground1.png?1558721841453" class="featuredprofile" width="500" height="300">
-</div>
+<div id="FeaturedProfile" style="position: relative; height: 500;"></div>
 
 <br><br>
 

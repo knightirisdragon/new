@@ -7418,7 +7418,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         WebsiteCooldowns.add("featuredprofile");
         setTimeout(() => {WebsiteCooldowns.delete("featuredprofile")}, 1800000);   
       
-        FeaturedProfiles.push("<img src='" + m.attachments.array()[0].url + "' class='featuredprofile' id='" + FeaturedProfiles.length +"''>");
+        FeaturedProfiles.push("<img src='" + m.attachments.array()[0].url + "' class='featuredprofile' id='featuredprofiles_" + FeaturedProfiles.length +"''>");
         if  (FeaturedProfiles.length > 3)  {
             FeaturedProfiles.pop();
         };
