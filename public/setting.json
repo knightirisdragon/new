@@ -6,6 +6,10 @@
   "DefaultPrefix": "p!",
   "MaxServers": 1000,
   
+  "Announcement": "",
+  "EventName": "",
+  "EventStatus": false,
+  
   "CustomBackgroundPrice": 1000,
   "SellMultiplier": 2.5,
   "ExpNeeded": 125,  

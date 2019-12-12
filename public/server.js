@@ -56,8 +56,6 @@ const node_fetch = require('node-fetch');
 const https      = require('https');
 
 //Variables
-const EventName             = "None";
-const EventStatus           = false;
 var   EmbedColor            = 3093047  //3553599;
 const AutoDeleteTime        = 250;
 const DayMs                 = 86400000;
@@ -70,7 +68,6 @@ const ProfileBoosterTime    = (DayMs  / ( 60 * 60 * 1000 ));
 //Sets and Arrays
 const ErrorBag                = new Set();
 const BannedUsers             = new Array();
-const FeaturedProfiles        = new Array();
 const WebsiteCooldowns        = new Set();
 const GainCooldown            = new Set();
 const LimitedRolesCooldown    = new Set();
@@ -2024,7 +2021,7 @@ peeky.on('message', async (message) => {
     BadgeGreditAmount += peeky.userData.get(key, "UpgradedServers");
       
     //EVENT DOUBLE EXP
-    if  (EventStatus == true)  {
+    if  (Setting.EventStatus == true)  {
         BadgeExpAmount = BadgeExpAmount * 2;
     };
       
@@ -2144,8 +2141,8 @@ if  (!WebsiteCooldowns.has("api"))  {
       "supporterCount": peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(SupporterRole)).size,
       "backgroundsCount": Banners.length,
 
-      "eventName": EventName,
-      "eventStatus": EventStatus,
+      "eventName": Setting.EventName,
+      "eventStatus": Setting.EventStatus,
 
       "customBackground": Setting.CustomBackgroundPrice,
       "sellMultiplier": Setting.SellMultiplier,
@@ -2310,8 +2307,11 @@ if  (!WebsiteCooldowns.has("messageheader"))  {
     
     var Message = "";
   
-    if  (EventStatus == true)  {
-        Message = '<b class="messageheader">You can currently participate in the ' + EventName + ' event!</b>';  
+    if  (Setting.EventStatus == true)  {
+        Message = '<b class="messageheader">You can currently participate in the ' + Setting.EventName + ' event!</b>';  
+    }
+    else if  (Setting.Announcement !== "")  {
+        Message = '<b class="messageheader">' + Setting.Announcement + ' </b>';  
     };
 
     await fs.writeFile('public/messageheader.txt', Message, (err) => {
@@ -4694,13 +4694,13 @@ if  (CommandName.startsWith("eval "))  {
 //EventRewards
 if (CommandName == "eventrewards")  {
   
-    if  (EventStatus == true)  {
+    if  (Setting.EventStatus == true)  {
       
         if  (!peeky.userData.get(key, "Inventory").includes(412))  {
       
             peeky.userData.get(key, "Inventory").push(412);
 
-            const embed = {"description": SuccessIcon + " You have received the rewards for the **" + EventName + "** event!"
+            const embed = {"description": SuccessIcon + " You have received the rewards for the **" + Setting.EventName + "** event!"
                                           + "\n\n" + InfoIcon + " The **" + function_GetBackgroundInfo(412, ["name", "id"]) + "** background."
                                          ,  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));          
@@ -7417,13 +7417,8 @@ if  (!ProfileCooldown.has(message.author.id))  {
       
         WebsiteCooldowns.add("featuredprofile");
         setTimeout(() => {WebsiteCooldowns.delete("featuredprofile")}, 1800000);   
-      
-        FeaturedProfiles.push("<img src='" + m.attachments.array()[0].url + "' class='featuredprofile' id='featuredprofiles_" + FeaturedProfiles.length +"''>");
-        if  (FeaturedProfiles.length > 3)  {
-            FeaturedProfiles.pop();
-        };
 
-        fs.writeFile('public/featured_profile.txt', FeaturedProfiles.join(" "), (err) => {
+        fs.writeFile('public/featured_profile.txt', "<img src='" + m.attachments.array()[0].url + "' class='featuredprofile'>", (err) => {
             if (err) console.log(err); 
         });
       
