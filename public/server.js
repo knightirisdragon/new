@@ -727,7 +727,9 @@ const Banners = [
 
 const Quests = [
   
-    ["Guess the right word in the Guess "]
+    ["Guess the right word in the `Draw and Guess` minigame.", "Withdrawn", 1000, "Exp"],
+    ["Upload an arbitrary background to the `Workshop` found in the Support Server.", "Artist", 125, "Background"],
+    ["Guess the right song in the `Guess the Song` minigame.", "Disk Jockey", 750, "Gredit"],
   
 ];
 
@@ -4073,7 +4075,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
             if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
 
                 var Index = Math.floor((Math.random() * 2));
-                var Rewards = [[GreditIcon, 1000, "Gredit"], [ChestIcon, 10, "Chests"]];
+                var Rewards = [[GreditIcon, 500, "Gredit"], [ChestIcon, 5, "Chests"]];
                 var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
 
                 var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + Rewards[Index][0],  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
