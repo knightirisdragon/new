@@ -718,7 +718,9 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground434.png?v=1575981245557", 750, "Quindecim", "仙田", undefined, 1575981269516],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground435.png?v=1576139263681", 950, "Jill", "Resident Evil 3 Remake", undefined, 1576139256904],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground436.png?v=1576143916348", 925, "Agent's mood", "u/bobemil", undefined, 1576143910590],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground437.png?v=1576163566667", Exclusive, "Christmas mood", "Vojtěch Jílovec", undefined, 1576163667563]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground437.png?v=1576163566667", Exclusive, "Christmas mood", "Vojtěch Jílovec", undefined, 1576163667563],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground438.png?v=1576227042690", 825, "Spartans", "Halo Reach", undefined, 1576227058363],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground439.png?v=1576227115180", 775, "Flu survivors", "Left 4 Dead 2", undefined, 1576227050372]
 
 ];
 
