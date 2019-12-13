@@ -33,7 +33,6 @@ const Enmap = require("enmap");
 peeky.userData = new Enmap({name: "userData"});
 peeky.serverData = new Enmap({name: "serverData"});
 peeky.channelData = new Enmap({name: "channelData"});
-peeky.peekyData = new Enmap({name: "peekyData"});
 const Setting = require('./setting.json');
 
 //Website
@@ -723,14 +722,6 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground438.png?v=1576227042690", 825, "Spartans", "Halo Reach", undefined, 1576227058363],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground439.png?v=1576227115180", 775, "Flu survivors", "Left 4 Dead 2", undefined, 1576227050372]
 
-];
-
-const Quests = [
-  
-    ["Guess the right word in the `Draw and Guess` minigame.", "Withdrawn", 1000, "Exp"],
-    ["Upload an arbitrary background to the `Workshop` found in the Support Server.", "Artist", 125, "Background"],
-    ["Guess the right song in the `Guess the Song` minigame.", "Disk Jockey", 750, "Gredit"],
-  
 ];
 
 const DefaultDescriptions = [  
@@ -1851,11 +1842,6 @@ peeky.on('ready', () => {
         //Fix ChannelData
         peeky.channels.forEach(channel => {
             function_ChannelData(`${channel.id}`);
-        });
-      
-        //Data to save
-        peeky.peekyData.ensure("peeky" , {
-            lastDailyQuest: new Date(),
         });
       
     }, 7200000);
@@ -4075,7 +4061,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
             if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
 
                 var Index = Math.floor((Math.random() * 2));
-                var Rewards = [[GreditIcon, 500, "Gredit"], [ChestIcon, 5, "Chests"]];
+                var Rewards = [["Background", 500, "Gredit"], [ChestIcon, 5, "Chests"]];
                 var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
 
                 var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + Rewards[Index][0],  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
