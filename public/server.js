@@ -4060,8 +4060,8 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
 
             if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
 
-                var Index = Math.floor((Math.random() * 2));
-                var Rewards = [[GreditIcon, 250, "Gredit"], [ChestIcon, 5, "Chests"]];
+                var Rewards = [[GreditIcon, 250, "Gredit"], [ChestIcon, 1, "Chests"], [ChestIcon, 500, "Exp"]];
+                var Index = Math.floor((Math.random() * Rewards.length));
                 var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
 
                 var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + Rewards[Index][0],  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
@@ -6774,7 +6774,7 @@ if (CommandName == "daily")  {
       
     let timeObj = ms(cooldown - (Date.now() - lastDaily));
   
-    var embed = {"description": InfoIcon + " You can come back in" + ` **${timeObj.hours} hours** and **${timeObj.minutes} minutes** for your reward!`,  "color": EmbedColor}; 
+    var embed = {"description": InfoIcon + " Come back in " + `**${timeObj.hours} hours** and **${timeObj.minutes} minutes** for your reward!`,  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     } else {
@@ -6782,18 +6782,19 @@ if (CommandName == "daily")  {
     peeky.userData.set(key, Date.now(), "DailyRewarded");
     peeky.userData.set(key, 0, "VotesToday");
       
-    var Index = Math.floor((Math.random() * 2));
-    var Rewards = [[GreditIcon, 100, "Gredit"], [ChestIcon, 1, "Chests"]];
+    var Rewards = [[GreditIcon, 250, "Gredit"], [ChestIcon, 1, "Chests"], ["Exp", 1000, "Exp"]];
+    var Index = Math.floor((Math.random() * Rewards.length));
+    var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
       
     //Reward
-    InfoMessages.push(SuccessIcon + " Your reward for today is ** " + Rewards[Index][1] + " " + Rewards[Index][0] + "**.");
-    peeky.userData.math(key, "+", Rewards[Index][1], Rewards[Index][2]);
+    InfoMessages.push(SuccessIcon + " Your reward for today is ** " + Amount + " " + Rewards[Index][0] + "**.");
+    peeky.userData.math(key, "+", Amount, Rewards[Index][2]);
 
     //Vote DDBL
     await ddbl.getVotes().then(AllVotes => {
       
         var Now = new Date();
-        AllVotes = AllVotes.filter(i => i.id == key && Now - new Date(i.timestamp) <= 86400000);
+        AllVotes = AllVotes.filter(i => i.id == key && Now - new Date(i.timestamp) <= DayMs);
 
         if  (AllVotes.length > 0 == true)  {
           
@@ -6809,7 +6810,7 @@ if (CommandName == "daily")  {
     await bls.getUpvotes().then(AllVotes => {
       
         var Now = new Date();
-        AllVotes = AllVotes.filter(i => i.user.id == key && Now - new Date(i.timestamp) <= 86400000);
+        AllVotes = AllVotes.filter(i => i.user.id == key && Now - new Date(i.timestamp) <= DayMs);
 
         if  (AllVotes.length > 0 == true)  {
           
@@ -6840,7 +6841,7 @@ if (CommandName == "daily")  {
     };
 
     if  (CountedVotes == 0)  {
-        InfoMessages.push(InfoIcon + " Vote for me using the **" + Prefix + "help** command to get more rewards!");
+        InfoMessages.push(InfoIcon + " You can vote for me by typing **" + Prefix + "help** and get more rewards!");
     } else {
       if  (peeky.userData.get(key, "VoterBadge") == false)  {
           peeky.userData.set(key, true, "VoterBadge");       
