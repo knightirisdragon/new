@@ -6780,14 +6780,13 @@ if (CommandName == "daily")  {
     } else {
       
     peeky.userData.set(key, Date.now(), "DailyRewarded");
-    peeky.userData.set(key, 0, "VotesToday");
       
     var Rewards = [[GreditIcon, 250, "Gredit"], [ChestIcon, 1, "Chests"], ["Exp", 1000, "Exp"]];
     var Index = Math.floor((Math.random() * Rewards.length));
     var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
       
     //Reward
-    InfoMessages.push(SuccessIcon + " Your reward for today is ** " + Amount + " " + Rewards[Index][0] + "**.");
+    InfoMessages.push("•" + " You have received **" + Amount + " " + Rewards[Index][0] + "** from the **daily reward**.");
     peeky.userData.math(key, "+", Amount, Rewards[Index][2]);
 
     //Vote DDBL
@@ -6798,7 +6797,7 @@ if (CommandName == "daily")  {
 
         if  (AllVotes.length > 0 == true)  {
           
-            InfoMessages.push(SuccessIcon + " You have also received **1 " + ChestIcon + "** for voting on **DDBL** today.");
+            InfoMessages.push("• " + " You have received **1 " + ChestIcon + "** for voting on **DDBL** today.");
             peeky.userData.math(key, "+", 1, "Chests");
             CountedVotes ++;
 
@@ -6814,7 +6813,7 @@ if (CommandName == "daily")  {
 
         if  (AllVotes.length > 0 == true)  {
           
-            InfoMessages.push(SuccessIcon + " You have also received **1 " + ChestIcon + "** for voting on **BLS** today.");
+            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for voting on **BLS** today.");
             peeky.userData.math(key, "+", 1, "Chests");
             CountedVotes ++;
 
@@ -6825,23 +6824,24 @@ if (CommandName == "daily")  {
     //Event Reward
     if  (Setting.EventStatus == true)  {
         peeky.userData.math(key, "+", 1, "Chests"); 
-            InfoMessages.push(SuccessIcon + " You have also received **1 " + ChestIcon + "** from the **event**.");
+            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** from the **event**.");
     };
 
     //Supporter Reward
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {
         peeky.userData.math(key, "+", 1, "Chests");
-            InfoMessages.push(SuccessIcon + " You have also received **1 " + ChestIcon + "** for being a **Supporter**.");
+            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a **Supporter**.");
     };
 
     //Server Booster Reward
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
         peeky.userData.math(key, "+", 1, "Chests");
-            InfoMessages.push(SuccessIcon + " You have also received **1 " + ChestIcon + "** for being a **Server Booster**.");
+            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a **Server Booster**.");
     };
 
+    var Footer = "Thank you for using PEEKY!";
     if  (CountedVotes == 0)  {
-        InfoMessages.push(InfoIcon + " You can vote for me by typing **" + Prefix + "help** and get more rewards!");
+        Footer = "You can get more rewards by typing " + Prefix + "help voting for me!";
     } else {
       if  (peeky.userData.get(key, "VoterBadge") == false)  {
           peeky.userData.set(key, true, "VoterBadge");       
@@ -6849,7 +6849,7 @@ if (CommandName == "daily")  {
       };    
     };
       
-    const embed = {"description": InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    const embed = {"description": InfoMessages.join("\n"),  "footer":  {"text": Footer},  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     };
