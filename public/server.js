@@ -6782,9 +6782,12 @@ if (CommandName == "daily")  {
     peeky.userData.set(key, Date.now(), "DailyRewarded");
     peeky.userData.set(key, 0, "VotesToday");
       
+    var Index = Math.floor((Math.random() * 2));
+    var Rewards = [[GreditIcon, 100, "Gredit"], [ChestIcon, 1, "Chests"]];
+      
     //Reward
-    InfoMessages.push(SuccessIcon + " Here's your daily reward, a chest!");
-    peeky.userData.math(key, "+", 1, "Chests");
+    InfoMessages.push(SuccessIcon + " Your reward for today is ** " + Rewards[Index][1] + " " + Rewards[Index][0] + "**.");
+    peeky.userData.math(key, "+", Rewards[Index][1], Rewards[Index][2]);
 
     //Vote DDBL
     await ddbl.getVotes().then(AllVotes => {
@@ -6794,8 +6797,7 @@ if (CommandName == "daily")  {
 
         if  (AllVotes.length > 0 == true)  {
           
-            InfoMessages.push(InfoIcon + " Added a bonus reward for voting on DDBL today.");
-
+            InfoMessages.push(SuccessIcon + " You have also received **1 " + ChestIcon + "** for voting on **DDBL** today.");
             peeky.userData.math(key, "+", 1, "Chests");
             CountedVotes ++;
 
@@ -6811,8 +6813,7 @@ if (CommandName == "daily")  {
 
         if  (AllVotes.length > 0 == true)  {
           
-            InfoMessages.push(InfoIcon + " Added a bonus reward for voting on BLS today.");
-
+            InfoMessages.push(SuccessIcon + " You have also received **1 " + ChestIcon + "** for voting on **BLS** today.");
             peeky.userData.math(key, "+", 1, "Chests");
             CountedVotes ++;
 
@@ -6823,19 +6824,19 @@ if (CommandName == "daily")  {
     //Event Reward
     if  (Setting.EventStatus == true)  {
         peeky.userData.math(key, "+", 1, "Chests"); 
-        InfoMessages.push(InfoIcon + " Added a bonus reward from the event.");   
+            InfoMessages.push(SuccessIcon + " You have also received **1 " + ChestIcon + "** from the **event**.");
     };
 
     //Supporter Reward
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {
         peeky.userData.math(key, "+", 1, "Chests");
-        InfoMessages.push(InfoIcon + " Added a bonus reward for being a Supporter.");   
+            InfoMessages.push(SuccessIcon + " You have also received **1 " + ChestIcon + "** for being a **Supporter**.");
     };
 
     //Server Booster Reward
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
         peeky.userData.math(key, "+", 1, "Chests");
-        InfoMessages.push(InfoIcon + " Added a bonus reward for being a Server Booster.");   
+            InfoMessages.push(SuccessIcon + " You have also received **1 " + ChestIcon + "** for being a **Server Booster**.");
     };
 
     if  (CountedVotes == 0)  {
