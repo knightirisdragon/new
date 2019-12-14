@@ -2465,7 +2465,7 @@ if  (!WebsiteCooldowns.has("news"))  {
         var Body   = m.content.split("\n").join(" ").replace(Header, "");
         var Image  = [];
         var PrefixImage = "";
-        var ImageLink   = null;
+        var ImageLink   = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576095415615";
       
         if  (m.attachments.size > 0)  {
             ImageLink = m.attachments.array()[0].url;
@@ -2704,7 +2704,7 @@ if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
         var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
         var Role = member.guild.roles.find(role => role.name == name);
 
-        if  (Role && !member.user.bot) {
+        if  (Role) {
             member.addRole(Role.id, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
           
             console.log("The Join Role function has been triggered in " + member.guild.name + ".");
@@ -2718,7 +2718,7 @@ if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
 //Role Saver
 if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
   
-  if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
+  if  (!member.user.bot && member.guild.me.hasPermission("MANAGE_ROLES"))  {
     
       if  (peeky.serverData.has(keySF, "role_saver_bonus_array"))  {
       
@@ -2919,7 +2919,7 @@ if (member.user.id !== PeekyId && peeky.serverData.has(keySF))  {
 //Role Saver System
 if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
 
-    if  (member.guild.me.hasPermission("MANAGE_ROLES"))  {
+    if  (!member.user.bot && member.guild.me.hasPermission("MANAGE_ROLES"))  {
   
         if  (peeky.serverData.has(keySF, "role_saver_bonus_array"))  {
 
@@ -2969,7 +2969,7 @@ if  (keySF == SupportServer)  {
     var Rewards = [];
     var Notes = [];
   
-    if  (new Date() - new Date(member.joinedAt) > 10000)  {
+    if  (new Date() - new Date(member.joinedAt) > 5000)  {
 
         //Server Boost
         if  (peeky.userData.has(key))  {
