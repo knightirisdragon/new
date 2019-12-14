@@ -6786,7 +6786,7 @@ if (CommandName == "daily")  {
     var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
       
     //Reward
-    InfoMessages.push("•" + " You have received **" + Amount + " " + Rewards[Index][0] + "** from the **daily reward**.");
+    InfoMessages.push("•" + " You have received **" + Amount + " " + Rewards[Index][0] + "** from the **Daily reward**.");
     peeky.userData.math(key, "+", Amount, Rewards[Index][2]);
 
     //Vote DDBL
@@ -6841,7 +6841,7 @@ if (CommandName == "daily")  {
 
     var Footer = "Thank you for using PEEKY!";
     if  (CountedVotes == 0)  {
-        Footer = "You can get more rewards by typing " + Prefix + "help voting for me!";
+        Footer = "You can get more rewards by typing " + Prefix + "help and voting for me!";
     } else {
       if  (peeky.userData.get(key, "VoterBadge") == false)  {
           peeky.userData.set(key, true, "VoterBadge");       
