@@ -17,6 +17,7 @@
 <style>
 
 .function_showcase {
+    background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576095415615');
     background-color: rgba(35, 39, 42, 0.25);
     border-radius: 10px;
     color: white;
@@ -52,6 +53,7 @@
   
 .functiondescription  {  
     background-color: rgba(35, 39, 42, 0.5);
+    border-radius: 0px 0px 10px 0px;
     border-left: #7289DA 2px solid;
     width: 1000px;
     font-size: 14px;
@@ -100,15 +102,19 @@
     left: 15%;
 }
   
+.fancybutton  {
+    width: 200px;
+}
+  
 </style>
 
 
 <script>
   
 var Note = "";  //"<br>  <b class='functionnote'>  <font size='3'>  Use the Overview command to show:  </font>  <br><br>  - The function's current state  <br>  - The function's function type  <br>  - The function's setting value and setting description  </b>";
-var Ignores = "<br>  <b class='functionname'>Function Ignores:</b>  <br>";
-var Commands = "<br><br>  <b class='functionname'>Function Commands:</b>  <br>";
-var Cooldown = "<br><br>  <b class='functionname'>Function Cooldown:</b>  <br>";
+var Ignores = "<br>  <b class='functionname'>Function Ignores</b>  <br>";
+var Commands = "<br><br>  <b class='functionname'>Function Commands</b>  <br>";
+var Cooldown = "<br><br>  <b class='functionname'>Function Cooldown</b>  <br>";
 
 function AR_Popup() {
      document.getElementById('fulldesc').style.display = "block";
@@ -279,7 +285,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="RP_Popup()">  Reddit Posts  </div>
+    <div class="fancybutton" onclick="RP_Popup()">  Reddit Posts  </div>
         
       </div>
     </div>
@@ -287,7 +293,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="RR_Popup()">  Reaction Roles  </div>
+    <div class="fancybutton" onclick="RR_Popup()">  Reaction Roles  </div>
         
       </div>
     </div>
@@ -295,7 +301,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="CW_Popup()">  Classification Wall  </div>
+    <div class="fancybutton" onclick="CW_Popup()">  Classification Wall  </div>
         
       </div>
     </div>
@@ -303,7 +309,7 @@ function Close()  {
     <div class="function_showcase">
     <div class="centered"> 
         
-    <div class="popup" onclick="AR_Popup()">  Automatic Reactions  </div>
+    <div class="fancybutton" onclick="AR_Popup()">  Automatic Reactions  </div>
         
     </div>
     </div>
@@ -311,7 +317,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="ML_Popup()">  Message Log  </div>
+    <div class="fancybutton" onclick="ML_Popup()">  Message Log  </div>
         
       </div>
     </div>
@@ -319,7 +325,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered"> 
 
-    <div class="popup" onclick="WM_Popup()">  Welcome Messages  </div>
+    <div class="fancybutton" onclick="WM_Popup()">  Welcome Messages  </div>
 
       </div>
     </div>
@@ -327,7 +333,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered"> 
         
-    <div class="popup" onclick="JR_Popup()">  Join Role  </div>
+    <div class="fancybutton" onclick="JR_Popup()">  Join Role  </div>
         
       </div>
     </div>
@@ -335,7 +341,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="DR_Popup()">  Dash Remover  </div>
+    <div class="fancybutton" onclick="DR_Popup()">  Dash Remover  </div>
         
       </div>
     </div>
@@ -343,7 +349,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="MC_Popup()">  Member Counter  </div>
+    <div class="fancybutton" onclick="MC_Popup()">  Member Counter  </div>
         
       </div>
     </div>
@@ -351,7 +357,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="SA3_Popup()">  Server Age  </div>
+    <div class="fancybutton" onclick="SA3_Popup()">  Server Age  </div>
         
       </div>
     </div>
@@ -359,7 +365,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="EC_Popup()">  Event Countdown  </div>
+    <div class="fancybutton" onclick="EC_Popup()">  Event Countdown  </div>
         
       </div>
     </div>
@@ -367,7 +373,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="SM_Popup()">  Server Message  </div>
+    <div class="fancybutton" onclick="SM_Popup()">  Server Message  </div>
         
       </div>
     </div>
@@ -375,7 +381,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered"> 
         
-    <div class="popup" onclick="NS_Popup()">  Nickname Saver  </div>
+    <div class="fancybutton" onclick="NS_Popup()">  Nickname Saver  </div>
         
       </div>
     </div>
@@ -383,7 +389,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered"> 
         
-    <div class="popup" onclick="RS_Popup()">  Role Saver  </div>
+    <div class="fancybutton" onclick="RS_Popup()">  Role Saver  </div>
         
       </div>
     </div>
@@ -391,7 +397,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered"> 
         
-    <div class="popup" onclick="GR_Popup()">  Game Roles  </div>
+    <div class="fancybutton" onclick="GR_Popup()">  Game Roles  </div>
         
       </div>
     </div>
@@ -405,7 +411,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="TS_Popup()">  Ticket System  </div>
+    <div class="fancybutton" onclick="TS_Popup()">  Ticket System  </div>
         
       </div>
     </div>
@@ -413,7 +419,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="VT_Popup()">  Vote Kick  </div>
+    <div class="fancybutton" onclick="VT_Popup()">  Vote Kick  </div>
         
       </div>
     </div>
@@ -421,7 +427,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="SA_Popup()">  Suspicion Alert  </div>
+    <div class="fancybutton" onclick="SA_Popup()">  Suspicion Alert  </div>
         
       </div>
     </div>
@@ -429,7 +435,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="SL_Popup()">  Spoiler Lock  </div>
+    <div class="fancybutton" onclick="SL_Popup()">  Spoiler Lock  </div>
         
       </div>
     </div>
@@ -437,7 +443,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="FP_Popup()">  Flood Protection  </div>
+    <div class="fancybutton" onclick="FP_Popup()">  Flood Protection  </div>
         
       </div>
     </div>
@@ -445,7 +451,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="CN_Popup()">  Clear Nicknames  </div>
+    <div class="fancybutton" onclick="CN_Popup()">  Clear Nicknames  </div>
         
       </div>
     </div>
@@ -453,7 +459,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="IO_Popup()">  Images Only  </div>
+    <div class="fancybutton" onclick="IO_Popup()">  Images Only  </div>
         
       </div>
     </div>
@@ -461,7 +467,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="BW_Popup()">  Banned Words  </div>
+    <div class="fancybutton" onclick="BW_Popup()">  Banned Words  </div>
         
       </div>
     </div>
@@ -469,7 +475,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="popup" onclick="SC_Popup()">  Safe Chat  </div>
+    <div class="fancybutton" onclick="SC_Popup()">  Safe Chat  </div>
         
       </div>
     </div>
@@ -483,7 +489,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered"> 
         
-    <div class="popup" onclick="SA2_Popup()">  Stream Announcements  </div>
+    <div class="fancybutton" onclick="SA2_Popup()">  Stream Announcements  </div>
         
       </div>
     </div>
@@ -491,7 +497,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered"> 
         
-    <div class="popup" onclick="SR_Popup()">  Streamer Role  </div>
+    <div class="fancybutton" onclick="SR_Popup()">  Streamer Role  </div>
         
       </div>
     </div>
