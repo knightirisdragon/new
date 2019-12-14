@@ -6786,7 +6786,7 @@ if (CommandName == "daily")  {
     var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
       
     //Reward
-    InfoMessages.push("•" + " You have received **" + Amount + " " + Rewards[Index][0] + "** from the **Daily reward**.");
+    InfoMessages.push("•" + " You have received **" + Amount + " " + Rewards[Index][0] + "** as the **Daily reward**.");
     peeky.userData.math(key, "+", Amount, Rewards[Index][2]);
 
     //Vote DDBL
