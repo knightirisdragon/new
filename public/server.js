@@ -7113,7 +7113,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
 
 };
 
-//Profile
+//Profile  
 if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
   
 if  (!ProfileCooldown.has(message.author.id))  {
