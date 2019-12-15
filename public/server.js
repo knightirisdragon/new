@@ -4060,7 +4060,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
 
             if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
 
-                var Rewards = [[GreditIcon, 250, "Gredit"], [ChestIcon, 1, "Chests"], [ChestIcon, 500, "Exp"]];
+                var Rewards = [[GreditIcon, 250, "Gredit"], [ChestIcon, 1, "Chests"], ["Exp", 500, "Exp"]];
                 var Index = Math.floor((Math.random() * Rewards.length));
                 var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
 
