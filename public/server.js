@@ -244,29 +244,29 @@ const PermissionsMessageError1 = [ErrorIcon + " You are lacking the required per
 const PermissionsMessageError2 = [ErrorIcon + " You need to be the owner of this server to do that."];
 const PermissionsMessageError3 = [ErrorIcon + " I am missing required permissions to do that."];
 
-const ErrorMessage1  = [ErrorIcon + " You need more Gredit to do that."]
+const ErrorMessage1  = [ErrorIcon + " You need more **Gredit** to do that."]
 const ErrorMessage2  = [ErrorIcon + " The new description is too large."];
 const ErrorMessage3  = [ErrorIcon + " The provided mention is invalid."];
 const ErrorMessage4  = [ErrorIcon + " You need to enter a valid YouTube URL."];
 const ErrorMessage5  = [ErrorIcon + " You do not have that background in your inventory."];
-const ErrorMessage6  = [ErrorIcon + " You do not have enough chests."];
+const ErrorMessage6  = [ErrorIcon + " You do not have enough **Chests**."];
 const ErrorMessage7  = [ErrorIcon + " The mentioned user has no profile."];
 const ErrorMessage8  = [ErrorIcon + " Mentions are not allowed for this command."];
 const ErrorMessage9  = [ErrorIcon + " You must enter a valid amount."];
-const ErrorMessage10 = [ErrorIcon + " Make sure the function's name is all in lowercase."];
-const ErrorMessage11 = [ErrorIcon + " You need to be a Supporter to do that."];
-const ErrorMessage12 = [ErrorIcon + " There are no songs currently playing."];
+const ErrorMessage10 = [ErrorIcon + " Make sure the **Function's name** is all in lowercase."];
+const ErrorMessage11 = [ErrorIcon + " You need to become a **Supporter** to do that."];
+const ErrorMessage12 = [ErrorIcon + " There are no songs playing right now."];
 const ErrorMessage13 = [ErrorIcon + " Something has gone unexpectedly wrong."];
-const ErrorMessage14 = [ErrorIcon + " You already own that background."];
-const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist."];
+const ErrorMessage14 = [ErrorIcon + " You already own that ackground."];
+const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your **Playlist**."];
 const ErrorMessage16 = [ErrorIcon + " That background doesn't exist."]
 const ErrorMessage17 = [ErrorIcon + " You need to specify the function."];
-const ErrorMessage18 = [ErrorIcon + " Please provide arguments for the command."];
-const ErrorMessage19 = [ErrorIcon + " You need to join the Support Server."];
+const ErrorMessage18 = [ErrorIcon + " You need to provide valid arguments for the command."];
+const ErrorMessage19 = [ErrorIcon + " You need to join the **Support Server**."];
 const ErrorMessage20 = [ErrorIcon + " You need to upload a file."];
 
-const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
-const InfoMessage2 = [InfoIcon + " You have set the default background."];
+const InfoMessage1 = [InfoIcon + " You have earned a new **Badge**."];
+const InfoMessage2 = [InfoIcon + " You have set the **Default background**."];
 
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
@@ -6845,8 +6845,8 @@ if (CommandName == "daily")  {
         Footer = "You can get more rewards by typing " + Prefix + "help and voting for me!";
     } else {
       if  (peeky.userData.get(key, "VoterBadge") == false)  {
-          peeky.userData.set(key, true, "VoterBadge");       
-          InfoMessages.push(InfoMessage1[0]);
+          peeky.userData.set(key, true, "VoterBadge");  
+            InfoMessages.push("•" + " You have received a **Badge**.");
       };    
     };
       
