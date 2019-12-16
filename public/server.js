@@ -244,29 +244,29 @@ const PermissionsMessageError1 = [ErrorIcon + " You are lacking the required per
 const PermissionsMessageError2 = [ErrorIcon + " You need to be the owner of this server to do that."];
 const PermissionsMessageError3 = [ErrorIcon + " I am missing required permissions to do that."];
 
-const ErrorMessage1  = [ErrorIcon + " You need more **Gredit** to do that."]
+const ErrorMessage1  = [ErrorIcon + " You need more Gredit to do that."]
 const ErrorMessage2  = [ErrorIcon + " The new description is too large."];
 const ErrorMessage3  = [ErrorIcon + " The provided mention is invalid."];
 const ErrorMessage4  = [ErrorIcon + " You need to enter a valid YouTube URL."];
 const ErrorMessage5  = [ErrorIcon + " You do not have that background in your inventory."];
-const ErrorMessage6  = [ErrorIcon + " You do not have enough **Chests**."];
+const ErrorMessage6  = [ErrorIcon + " You do not have enough chests."];
 const ErrorMessage7  = [ErrorIcon + " The mentioned user has no profile."];
 const ErrorMessage8  = [ErrorIcon + " Mentions are not allowed for this command."];
 const ErrorMessage9  = [ErrorIcon + " You must enter a valid amount."];
-const ErrorMessage10 = [ErrorIcon + " Make sure the **Function's name** is all in lowercase."];
-const ErrorMessage11 = [ErrorIcon + " You need to become a **Supporter** to do that."];
+const ErrorMessage10 = [ErrorIcon + " Make sure the function's name is all in lowercase."];
+const ErrorMessage11 = [ErrorIcon + " You need to become a Supporter to do that."];
 const ErrorMessage12 = [ErrorIcon + " There are no songs playing right now."];
 const ErrorMessage13 = [ErrorIcon + " Something has gone unexpectedly wrong."];
 const ErrorMessage14 = [ErrorIcon + " You already own that ackground."];
-const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your **Playlist**."];
+const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist."];
 const ErrorMessage16 = [ErrorIcon + " That background doesn't exist."]
 const ErrorMessage17 = [ErrorIcon + " You need to specify the function."];
 const ErrorMessage18 = [ErrorIcon + " You need to provide valid arguments for the command."];
-const ErrorMessage19 = [ErrorIcon + " You need to join the **Support Server**."];
+const ErrorMessage19 = [ErrorIcon + " You need to join the Support Server."];
 const ErrorMessage20 = [ErrorIcon + " You need to upload a file."];
 
-const InfoMessage1 = [InfoIcon + " You have earned a new **Badge**."];
-const InfoMessage2 = [InfoIcon + " You have set the **Default background**."];
+const InfoMessage1 = [InfoIcon + " You have earned a new badge."];
+const InfoMessage2 = [InfoIcon + " You have set the default background."];
 
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
@@ -6787,7 +6787,7 @@ if (CommandName == "daily")  {
     var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
       
     //Reward
-    InfoMessages.push("•" + " You have received **" + Amount + " " + Rewards[Index][0] + "** as the **Daily reward**.");
+    InfoMessages.push("•" + " You have received **" + Amount + " " + Rewards[Index][0] + "** as the Daily reward.");
     peeky.userData.math(key, "+", Amount, Rewards[Index][2]);
 
     //Vote DDBL
@@ -6798,7 +6798,7 @@ if (CommandName == "daily")  {
 
         if  (AllVotes.length > 0 == true)  {
           
-            InfoMessages.push("• " + " You have received **1 " + ChestIcon + "** for voting on **DDBL** today.");
+            InfoMessages.push("• " + " You have received **1 " + ChestIcon + "** for voting on DDBL today.");
             peeky.userData.math(key, "+", 1, "Chests");
             CountedVotes ++;
 
@@ -6814,7 +6814,7 @@ if (CommandName == "daily")  {
 
         if  (AllVotes.length > 0 == true)  {
           
-            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for voting on **BLS** today.");
+            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for voting on BLS today.");
             peeky.userData.math(key, "+", 1, "Chests");
             CountedVotes ++;
 
@@ -6825,19 +6825,19 @@ if (CommandName == "daily")  {
     //Event Reward
     if  (Setting.EventStatus == true)  {
         peeky.userData.math(key, "+", 1, "Chests"); 
-            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** from the **event**.");
+            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** from the event.");
     };
 
     //Supporter Reward
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {
         peeky.userData.math(key, "+", 1, "Chests");
-            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a **Supporter**.");
+            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a Supporter.");
     };
 
     //Server Booster Reward
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
         peeky.userData.math(key, "+", 1, "Chests");
-            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a **Server Booster**.");
+            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a Server Booster.");
     };
 
     var Footer = "Thank you for using PEEKY!";
@@ -6846,7 +6846,7 @@ if (CommandName == "daily")  {
     } else {
       if  (peeky.userData.get(key, "VoterBadge") == false)  {
           peeky.userData.set(key, true, "VoterBadge");  
-            InfoMessages.push("•" + " You have received a **Badge**.");
+            InfoMessages.push("•" + " You have received a new badge.");
       };    
     };
       
@@ -7456,7 +7456,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
             if (err) console.log(err); 
         });
       
-        const embed = {"description": InfoIcon + " This profile is now **featured** on the website.",  "color": EmbedColor}; 
+        const embed = {"description": InfoIcon + " This profile is now featured on the website.",  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
         console.log("The featured profile has been updated.");
@@ -7546,7 +7546,7 @@ if (CommandName.startsWith("play"))  {
 
             } else {
 
-              const embed = {"description": InfoIcon + " Your playlist is empty - playing a random song.",  "color": EmbedColor}; 
+              const embed = {"description": InfoIcon + " Your playlist is empty - Playing a random song.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
               CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
@@ -8547,7 +8547,7 @@ if  (CommandName.startsWith("prefix"))  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-            const InfoMessages = [InfoIcon + " If the server prefix is broken, join the Support Server."];
+            const InfoMessages = [InfoIcon + " If the prefix is broken, join the Support Server."];
 
             peeky.serverData.set(keySF, CommandArgument, "prefix");
 
