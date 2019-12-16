@@ -2307,6 +2307,7 @@ if  (!WebsiteCooldowns.has("workshop"))  {
 if  (!WebsiteCooldowns.has("messageheader"))  {
   
     WebsiteCooldowns.add("messageheader");
+    setTimeout(() => {WebsiteCooldowns.delete("messageheader")}, 300000);
     
     var Message = "";
   
