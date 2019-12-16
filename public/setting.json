@@ -6,7 +6,7 @@
   "DefaultPrefix": "p!",
   "MaxServers": 1000,
   
-  "Announcement": "Prepare yourself for an upcoming Christmas event and win cool prizes!",
+  "Announcement": "",
   "EventName": "Christmas 2019",
   "EventStatus": false,
   
