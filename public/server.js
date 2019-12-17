@@ -276,7 +276,8 @@ const ImmuneServers       = [  SupportServer, EmojiStorage1, `454933217666007052
 const EmojiNumbers        = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
 
 //Small Objects
-var Banner          = {  Source : 0,  Price : 1 ,  Name : 2 ,  Credit : 3,  RevenueID : 4, AddedDate : 5  };
+var Banner          = {  Source: 0,  Price: 1 ,  Name: 2 ,  Credit: 3,  RevenueID: 4, AddedDate: 5  };
+var Languages       = {  "English": 0, "Czech": 1  };
 var StreamOptions   = {  volume: 0.25  };
 var SearchOptions   = {  maxResults: 1,  key: YoutubeToken  };
 
@@ -1260,6 +1261,7 @@ function function_ServerData(key)  {
             server_upgraded: false,
             server_invite: "no_invite",
             prefix: Setting.DefaultPrefix,
+            language: 0,
             muted_role: "Muted",
             highlighted_channel: "general",
             function_notifications: false,
@@ -5678,14 +5680,14 @@ if  (FunctioName.startsWith("spoiler lock"))  {
 }
  else
 {
- const embed = {"description": ErrorMessage10[0],  "color": EmbedColor}; 
+ const embed = {"description": ErrorMessage10[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 }
  else
 {
- const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+ const embed = {"description": ErrorMessage8[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
@@ -5699,7 +5701,7 @@ if  (FunctioName.startsWith("spoiler lock"))  {
 }
  else if (FunctioName == "")
 {
- const embed = {"description": ErrorMessage17[0],  "color": EmbedColor}; 
+ const embed = {"description": ErrorMessage17[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
@@ -5855,7 +5857,7 @@ if  (FunctioName.startsWith("spoiler lock "))  {
     }
      else
     {
-      const embed = {"description": ErrorMessage9[0],  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage9[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -5878,7 +5880,7 @@ if  (FunctioName.startsWith("suspicion alert "))  {
     }
      else
     {
-      const embed = {"description": ErrorMessage9[0],  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage9[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -6111,28 +6113,28 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < Setting.Ga
 }
  else
 {
- const embed = {"description": ErrorMessage10[0],  "color": EmbedColor}; 
+ const embed = {"description": ErrorMessage10[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 }
  else
 {
- const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+ const embed = {"description": ErrorMessage8[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 }
  else
 {
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+ const embed = {"description": PermissionsMessageError1[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
 }
  else if (FunctioName == "")
 {
- const embed = {"description": ErrorMessage17[0],  "color": EmbedColor}; 
+ const embed = {"description": ErrorMessage17[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
@@ -6198,28 +6200,28 @@ if  (FunctioName.startsWith("game roles"))  {
 }
  else
 {
- const embed = {"description": ErrorMessage10[0],  "color": EmbedColor}; 
+ const embed = {"description": ErrorMessage10[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 }
  else
 {
- const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+ const embed = {"description": ErrorMessage8[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
 }
  else
 {
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+ const embed = {"description": PermissionsMessageError1[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 }
  else if (FunctioName == "")
 {
- const embed = {"description": ErrorMessage17[0],  "color": EmbedColor}; 
+ const embed = {"description": ErrorMessage17[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
@@ -6258,7 +6260,7 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
                 }
                  else 
                 {
-                  const embed = {"description": ErrorMessage2[0],  "color": EmbedColor}; 
+                  const embed = {"description": ErrorMessage2[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
@@ -6277,14 +6279,14 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
     }
      else
     {
-     const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage1[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };  
   
 }
  else if (CommandArgument == "")
 {
- const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+ const embed = {"description": ErrorMessage18[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
@@ -6342,14 +6344,14 @@ if  (CommandName.startsWith("buybackground"))  {
                         break;
 
                     } else {
-                      const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
+                      const embed = {"description": ErrorMessage1[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                       break;
                     };
 
                 } else { 
-                  const embed = {"description": ErrorMessage14[0], "color": EmbedColor}; 
+                  const embed = {"description": ErrorMessage14[peeky.serverData.get(keySF, "language")], "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                   break;
@@ -6367,7 +6369,7 @@ if  (CommandName.startsWith("buybackground"))  {
     };
   
     if  (Failed == true)  {
-        const embed = {"description": ErrorMessage16[0], "color": EmbedColor}; 
+        const embed = {"description": ErrorMessage16[peeky.serverData.get(keySF, "language")], "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -6405,17 +6407,17 @@ if (CommandName.startsWith("custombackground"))  {
                 };
 
             } else {
-              const embed = {"description": ErrorMessage20[0],  "color": EmbedColor}; 
+              const embed = {"description": ErrorMessage20[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
         } else {
-          const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
+          const embed = {"description": ErrorMessage1[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
     } else {
-      const embed = {"description": ErrorMessage11[0],  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage11[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
@@ -6458,7 +6460,7 @@ if (CommandName.startsWith("setbackground"))  {
              else
             { 
 
-              const embed = {"description": ErrorMessage5[0],  "color": EmbedColor}; 
+              const embed = {"description": ErrorMessage5[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
               break;
@@ -6470,7 +6472,7 @@ if (CommandName.startsWith("setbackground"))  {
     };
   
     if  (Failed == true)  {
-        const embed = {"description": ErrorMessage16[0], "color": EmbedColor}; 
+        const embed = {"description": ErrorMessage16[peeky.serverData.get(keySF, "language")], "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
@@ -6527,7 +6529,7 @@ if (CommandName.startsWith("seebackground"))  {
     };
   
     if  (Failed == true)  {
-        const embed = {"description": ErrorMessage16[0], "color": EmbedColor}; 
+        const embed = {"description": ErrorMessage16[peeky.serverData.get(keySF, "language")], "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
@@ -6583,7 +6585,7 @@ if  (i !== AllString)  {
             }
              else
             {
-              const embed = {"description": ErrorMessage5[0],  "color": EmbedColor}; 
+              const embed = {"description": ErrorMessage5[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   
               break;
@@ -6594,7 +6596,7 @@ if  (i !== AllString)  {
     };
   
     if  (Failed == true)  {
-        const embed = {"description": ErrorMessage16[0], "color": EmbedColor}; 
+        const embed = {"description": ErrorMessage16[peeky.serverData.get(keySF, "language")], "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -6751,7 +6753,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
       }
        else
       {
-        const embed = {"description": ErrorMessage6[0],  "color": EmbedColor}; 
+        const embed = {"description": ErrorMessage6[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       };
 
@@ -6908,7 +6910,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         }
          else
         {
-         const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
+         const embed = {"description": ErrorMessage1[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
         
@@ -6927,7 +6929,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         }
          else
         {
-         const embed = {"description": ErrorMessage6[0],  "color": EmbedColor}; 
+         const embed = {"description": ErrorMessage6[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
         
@@ -6958,7 +6960,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         }
          else
         {
-         const embed = {"description": ErrorMessage14[0],  "color": EmbedColor}; 
+         const embed = {"description": ErrorMessage14[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
@@ -6972,7 +6974,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         }
          else
         {
-         const embed = {"description": ErrorMessage1[0],  "color": EmbedColor}; 
+         const embed = {"description": ErrorMessage1[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
@@ -6984,42 +6986,42 @@ if  (!ProfileCooldown.has(message.author.id))  {
     }
      else
     {
-     const embed = {"description": ErrorMessage9[0],  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage9[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
     }
      else
     {
-     const embed = {"description": ErrorMessage9[0],  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage9[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
     }
      else
     {
-      const embed = {"description": ErrorMessage7[0],  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage7[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
     }
      else
     {
-     const embed = {"description": ErrorMessage3[0],  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage3[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 }
  else
 {
-  const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
+  const embed = {"description": CooldownMessage1[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
 }
  else if (CommandArgument == "")
 {
-  const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+  const embed = {"description": ErrorMessage18[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
   
@@ -7101,7 +7103,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     }
      else 
     {
-      const embed = {"description": ErrorMessage7[0],  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage7[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -7470,12 +7472,12 @@ if  (!ProfileCooldown.has(message.author.id))  {
     };
 
     } else {
-      const embed = {"description": ErrorMessage7[0],  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage7[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
       
     } else {
-      const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage12[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
@@ -7647,7 +7649,7 @@ if (CommandName.startsWith("play"))  {
                       });
 
                       }).catch(error => { 
-                          const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                          const embed = {"description": ErrorMessage13[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
                           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                           ErrorBag.add(error);
                       });
@@ -7670,7 +7672,7 @@ if (CommandName.startsWith("play"))  {
             });
 
         } else {
-          const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+          const embed = {"description": PermissionsMessageError3[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
@@ -7680,7 +7682,7 @@ if (CommandName.startsWith("play"))  {
         };
 
         } else {
-          const embed = {"description": ErrorMessage4[0],  "color": EmbedColor}; 
+          const embed = {"description": ErrorMessage4[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
@@ -7701,7 +7703,7 @@ if (CommandName.startsWith("play"))  {
     }
      else if (CommandArgument == "")
     {
-     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage18[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -7728,12 +7730,12 @@ if (CommandName == "current")  {
         message.channel.stopTyping();
         
     } else {
-      const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage12[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };  
 
     } else {
-      const embed = {"description": CooldownMessage1[0],  "color": EmbedColor}; 
+      const embed = {"description": CooldownMessage1[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -7767,12 +7769,12 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));    
 
                 } else {
-                  const embed = {"description": ErrorMessage15[0],  "color": EmbedColor}; 
+                  const embed = {"description": ErrorMessage15[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };           
 
             } else {
-              const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
+              const embed = {"description": ErrorMessage12[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
@@ -7790,12 +7792,12 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 } else {
-                  const embed = {"description": ErrorMessage15[0],  "color": EmbedColor}; 
+                  const embed = {"description": ErrorMessage15[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 }; 
 
             } else {
-              const embed = {"description": ErrorMessage4[0],  "color": EmbedColor}; 
+              const embed = {"description": ErrorMessage4[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
@@ -7858,7 +7860,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                 };
                   
             } else {
-              const embed = {"description": ErrorMessage20[0],  "color": EmbedColor}; 
+              const embed = {"description": ErrorMessage20[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
@@ -7907,7 +7909,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
           } else {
-            const embed = {"description": ErrorMessage7[0],  "color": EmbedColor}; 
+            const embed = {"description": ErrorMessage7[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           };
 
@@ -7942,7 +7944,7 @@ if (CommandName == "skip")  {
         };
       
     } else {
-      const embed = {"description": ErrorMessage12[0],  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage12[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -8185,7 +8187,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
             if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && !MentionedMember.roles.has(Role.id))  {
 
                 await MentionedMember.addRole(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => {
-                    const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                    const embed = {"description": ErrorMessage13[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     ErrorBag.add(error); Failed = true;
                 });
@@ -8212,28 +8214,28 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
                 }
                  else
                 {
-                  const embed = {"description": ErrorMessage3[0],  "color": EmbedColor};  
+                  const embed = {"description": ErrorMessage3[peeky.serverData.get(keySF, "language")],  "color": EmbedColor};  
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
 }
  else
 {
- const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+ const embed = {"description": PermissionsMessageError3[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 }
  else
 {
- const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+ const embed = {"description": PermissionsMessageError1[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 }
  else if (CommandArgument == "")
 {
- const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+ const embed = {"description": ErrorMessage18[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
@@ -8263,7 +8265,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
     if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && MentionedMember.roles.has(Role.id))  {
 
         await MentionedMember.removeRole(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => { 
-            const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+            const embed = {"description": ErrorMessage13[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             ErrorBag.add(error); Failed = true;
         });
@@ -8290,28 +8292,28 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
         }
          else
         {
-          const embed = {"description": ErrorMessage3[0],  "color": EmbedColor}; 
+          const embed = {"description": ErrorMessage3[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
   
 }
  else
 {
- const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+ const embed = {"description": PermissionsMessageError3[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 }
  else
 {      
-  const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+  const embed = {"description": PermissionsMessageError1[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
 }
  else if (CommandArgument == "")
 {
- const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+ const embed = {"description": ErrorMessage18[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 };
 
@@ -8339,7 +8341,7 @@ if  (CommandName.startsWith("idban"))  {
         if  (!message.guild.members.find(m => m.id == CommandArgument))  {
 
             await message.guild.ban(CommandArgument, "ID banned by " + message.author.tag + ".").catch(error => { 
-                  const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                  const embed = {"description": ErrorMessage13[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   ErrorBag.add(error); Failed = true;
             });
@@ -8366,21 +8368,21 @@ if  (CommandName.startsWith("idban"))  {
     }
      else
     {
-     const embed = {"description": PermissionsMessageError3[0],  "color": EmbedColor}; 
+     const embed = {"description": PermissionsMessageError3[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
    
     }
      else
     {
-     const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+     const embed = {"description": PermissionsMessageError1[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
       
     }
      else if (CommandArgument == "")
     {
-     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage18[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -8398,7 +8400,7 @@ if  (CommandName.startsWith("ban"))  {
             if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS"))  {
 
                 await message.guild.ban(MentionedMember.user.id, "Banned by " + message.author.tag + ".").catch(error => { 
-                      const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                      const embed = {"description": ErrorMessage13[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                       ErrorBag.add(error); Failed = true;
                 });
@@ -8443,7 +8445,7 @@ if  (CommandName.startsWith("kick"))  {
             if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("KICK_MEMBERS"))  {
 
                 await MentionedMember.kick("Kicked by " + message.author.tag + ".").catch(error => { 
-                      const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                      const embed = {"description": ErrorMessage13[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                       ErrorBag.add(error); Failed = true;
                 });
@@ -8494,7 +8496,7 @@ if  (CommandName.startsWith("purge"))  {
                     await message.delete().catch(error => ErrorBag.add(error));
 
                     message.channel.bulkDelete(CommandArgument).catch(error => {
-                        const embed = {"description": ErrorMessage13[0],  "color": EmbedColor}; 
+                        const embed = {"description": ErrorMessage13[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                         ErrorBag.add(error); Failed = true;
                     });
@@ -8528,7 +8530,7 @@ if  (CommandName.startsWith("purge"))  {
     }
      else if (CommandArgument == "")
     {
-     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage18[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -8557,7 +8559,7 @@ if  (CommandName.startsWith("prefix"))  {
         }
          else
         {
-         const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+         const embed = {"description": ErrorMessage8[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
@@ -8571,7 +8573,7 @@ if  (CommandName.startsWith("prefix"))  {
     }
      else if (CommandArgument == "")
     {      
-     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage18[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };  
 
@@ -8598,21 +8600,21 @@ if  (CommandName.startsWith("highlightedchannel"))  {
         }
          else
         {
-         const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+         const embed = {"description": ErrorMessage8[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
     }
      else
     {
-      const embed = {"description": PermissionsMessageError2[0],  "color": EmbedColor}; 
+      const embed = {"description": PermissionsMessageError2[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
     }
      else if (CommandArgument == "")
     {      
-     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage18[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };  
 
@@ -8742,21 +8744,21 @@ if  (CommandName.startsWith("muterole"))  {
         }
          else
         {
-         const embed = {"description": ErrorMessage8[0],  "color": EmbedColor}; 
+         const embed = {"description": ErrorMessage8[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
     }
      else
     {      
-      const embed = {"description": PermissionsMessageError1[0],  "color": EmbedColor}; 
+      const embed = {"description": PermissionsMessageError1[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
     }
      else if (CommandArgument == "")
     {      
-     const embed = {"description": ErrorMessage18[0],  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage18[peeky.serverData.get(keySF, "language")],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };  
 
