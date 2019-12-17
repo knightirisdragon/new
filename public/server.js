@@ -3602,10 +3602,10 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             reaction.message.edit("**Channel Functions** `1/1`", newEmbed).catch(error => ErrorBag.add(error));
 
         } else 
-        if  (reaction.emoji.name == "🇺🇸")  {
+        if  (reaction.emoji.name == "🇺🇸" && !reaction.message.member.permissions.has("MANAGE_SERVER"))  {
             peeky.serverData.set(keySF, 0, "language");
         } else 
-        if  (reaction.emoji.name == "🇨🇿")  {
+        if  (reaction.emoji.name == "🇨🇿" && !reaction.message.member.permissions.has("MANAGE_SERVER"))  {
             peeky.serverData.set(keySF, 1, "language");
         };
       
@@ -4004,21 +4004,6 @@ if  (message.channel.id == WorkshopChannel && !message.author.bot)  {
     };
 
 };
-
-//News Ping
-/*if  (message.channel.id == AnnouncementsChannel && message.content == "PING")  {
-  
-    const role = message.guild.roles.find(r => r.id == "652170686441324583");
-    
-    await role.setMentionable(true);  
-    await message.channel.send("­" + role).then(m => {
-        setTimeout(() => {
-          m.delete();
-        }, AutoDeleteTime);
-    })
-    await role.setMentionable(false);
-  
-};*/
     
 //Limited Roles Auto-Management
 if  (!LimitedRolesCooldown.has("cooldown"))  {
