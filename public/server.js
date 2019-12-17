@@ -3574,7 +3574,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             reaction.message.edit("**Server Functions** `2/3`", newEmbed).catch(error => ErrorBag.add(error));
 
         } else 
-        if  (reaction.emoji.name == "4️⃣")  {         
+        if  (reaction.emoji.name == "4️⃣")  {        
           
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`",
@@ -3598,6 +3598,17 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             });
 
             reaction.message.edit("**Channel Functions** `1/1`", newEmbed).catch(error => ErrorBag.add(error));
+
+        } else 
+        if  (reaction.emoji.name == "🇺🇸")  {
+
+            const newEmbed = new Discord.RichEmbed({
+                  description:  "Changed the language to English.",
+                  color: EmbedColor,
+                  image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
+            });
+
+            reaction.message.edit("**Server Language**", newEmbed).catch(error => ErrorBag.add(error));
 
         };
       
