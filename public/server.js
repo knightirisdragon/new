@@ -4399,10 +4399,11 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
                     ResponseCooldowns.add(message.guild.id + "FP");
                     setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "FP")}, ResponseCooldownMS);
 
-                    const embed = {"description": InfoIcon + " I have muted **" + message.member.displayName + "** because of the **Flood Protection** function.",  "color": EmbedColor};
+                    const Messages = [InfoIcon + " I have muted **X001** because of the **Flood Protection** function.", InfoIcon + " Ztlumil jsem **X001** kvůli **Flood Protection** funkci."];
+                    const embed = {"description": Messages[Language].replace("X001", message.member.displayName),  "color": EmbedColor};
                     await message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))}); 
 
-                };
+                };y
 
                 console.log("The Flood Protection function has been triggered in " + message.guild.name + ".");
                 function_UpdateAutowipe(keySF, "server");
@@ -4452,11 +4453,12 @@ if  (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)  {
 
                      if   (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "SO"))  {
 
-                         ResponseCooldowns.add(message.guild.id + "SO");
-                         setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SO")}, ResponseCooldownMS);
+                          ResponseCooldowns.add(message.guild.id + "SO");
+                          setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SO")}, ResponseCooldownMS);
 
-                         const embed = {"description": InfoIcon + " You have to mark your image as a spoiler, **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**.",  "color": EmbedColor}; 
-                         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+                          const Messages = [InfoIcon + " You have to mark your image as a spoiler, **X001**", InfoIcon + " Musíte označit váš obrázek jako spoiler, **X001**."];
+                          const embed = {"description": Messages[Language].replace("X001", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor}
+                          message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
                      };
 
@@ -4599,20 +4601,22 @@ if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true)  {
 
         if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(keySF, "banned_words_bonus_setting").some(word => function_RemoveFormatting(message.content.toLowerCase(), "strict", false).includes(word)))  {
 
-             message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
+            message.delete(AutoDeleteTime).catch(error => ErrorBag.add(error));
 
-             if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "BW"))  {
+            if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "BW"))  {
 
-                 ResponseCooldowns.add(message.guild.id + "BW");
-                 setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "BW")}, ResponseCooldownMS);
+                ResponseCooldowns.add(message.guild.id + "BW");
+                setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "BW")}, ResponseCooldownMS);
 
-                 const embed = {"description": InfoIcon + " You cannot say that in here, **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**.",  "color": EmbedColor}; 
-                 message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+                const Messages = [InfoIcon + " .", InfoIcon + " ."];
+                const embed = {"description": Messages[Language].replace("X001", "").replace("X002", ""),  "color": EmbedColor};
+                const embed = {"description": InfoIcon + " " + function_RemoveFormatting(message.member.displayName, "other", true) + "**.",  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
-             };
+            };
 
-             console.log("The Banned Words function has been triggered in " + message.guild.name + ".");
-             function_UpdateAutowipe(keySF, "server");
+            console.log("The Banned Words function has been triggered in " + message.guild.name + ".");
+            function_UpdateAutowipe(keySF, "server");
 
         };
 
