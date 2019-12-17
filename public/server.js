@@ -6455,7 +6455,7 @@ if (CommandName.startsWith("setbackground"))  {
 
                 peeky.userData.set(key, i, "Background");
 
-                const Messages = [SuccessIcon + " You have set the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**."];
+                const Messages = [SuccessIcon + " You have set the **X001** background.", SuccessIcon + " Nastavil jste si pozadí **X001**."];
                 const embed = {"description": Messages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6575,7 +6575,8 @@ if  (i !== AllString)  {
                         InfoMessages.push(InfoMessage2[Language]);
                     };
 
-                    const embed = {"description": SuccessIcon + " You have sold the **" + function_GetBackgroundInfo(i, ["name"]) + "** background for **" + FinalPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                    const Messages = [SuccessIcon + " You have sold the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste pozadí **X001** za **X002" + " " + GreditIcon + "**."];
+                    const embed = {"description": Messages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", FinalPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 }
@@ -6629,7 +6630,8 @@ if  (i !== AllString)  {
       peeky.userData.set(key, SavedBackgrounds, "Inventory");
       peeky.userData.math(key, "+", FullPrice, "Gredit");
 
-      const embed = {"description": SuccessIcon + " You have sold all your backgrounds for **" + FullPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+      const Messages = [SuccessIcon + " You have sold all your backgrounds for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste všechna svá pozadí za **X001" + " " + GreditIcon + "**."];
+      const embed = {"description": Messages[Language].replace("X001", FullPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
   } else {
@@ -6747,7 +6749,8 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
           peeky.userData.math(key, "-", ChestAmount, "Chests");
           peeky.userData.math(key, "+", TotalLoot, "Gredit");
 
-          const embed = {"description": SuccessIcon + " You have opened **" + ChestAmount.toLocaleString('en') + " " + ChestIcon + "** for **" + TotalLoot.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+          const Messages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** pro **X002" + " " + GreditIcon +"**."];
+          const embed = {"description": Messages[Language].replace("X001", ChestAmount.toLocaleString('en')).replace("X002", TotalLoot.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
           await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
       }
