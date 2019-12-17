@@ -264,6 +264,7 @@ const ErrorMessage17 = [ErrorIcon + " You need to specify the function.", ErrorI
 const ErrorMessage18 = [ErrorIcon + " You need to provide valid arguments for the command.", ErrorIcon + " Musíte přidat spravný argumenty."];
 const ErrorMessage19 = [ErrorIcon + " You need to join the Support Server.", ErrorIcon + " Musíte se připojit na můj server."];
 const ErrorMessage20 = [ErrorIcon + " You need to upload a file.", ErrorIcon + " Musíte nahrát soubor."];
+const ErrorMessage21 = [ErrorIcon + " You can only do that in upgraded servers.", ErrorIcon + " Tohle funguje jenom ve vylepšených serverech."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge.", ErrorIcon + " Dostal jste nový odznak."];
 const InfoMessage2 = [InfoIcon + " You have set the default background.", ErrorIcon + " Nastavil jste si základní pozadí."];
@@ -4608,9 +4609,8 @@ if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true)  {
                 ResponseCooldowns.add(message.guild.id + "BW");
                 setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "BW")}, ResponseCooldownMS);
 
-                const Messages = [InfoIcon + " .", InfoIcon + " ."];
-                const embed = {"description": Messages[Language].replace("X001", "").replace("X002", ""),  "color": EmbedColor};
-                const embed = {"description": InfoIcon + " " + function_RemoveFormatting(message.member.displayName, "other", true) + "**.",  "color": EmbedColor}; 
+                const Messages = [InfoIcon + " That phrase is blocked by the **Banned Words** function, **X001**.", InfoIcon + " Tato fráze je pomocí funkce **Banned Words** zablokována, **X001**."];
+                const embed = {"description": Messages[Language].replace("X001", essage.member.displayName),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
             };
@@ -4746,7 +4746,6 @@ if (CommandName.startsWith("upgrade"))  {
 
     const PeekySupportServer = peeky.guilds.get(SupportServer);
     const TheUserWithRole    = PeekySupportServer.members.get(message.author.id);
-    var   Failed             = false;
 
     if  (PeekySupportServer.members.get(message.author.id))  {
 
@@ -4767,14 +4766,15 @@ if (CommandName.startsWith("upgrade"))  {
     }
      else 
     {
-      const embed = {"description": ErrorIcon + " You cannot upgrade this server.",  "color": EmbedColor}; 
+      const Messages = [ErrorIcon + " You cannot upgrade this server.", ErrorIcon + " Tento server vylepšit nemůžete."];
+      const embed = {"description": Messages[Language],  "color": EmbedColor};
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
     }
      else 
     {
-      const embed = {"description": ErrorIcon + " You have to join PEEKY's support server for that command to work.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage19[Language],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
@@ -4797,10 +4797,12 @@ if (CommandName == "setinvite")  {
 
                 if  (Invites.length > 0) {
                     peeky.serverData.set(keySF, Invites[0].code, "server_invite");
-                    const embed = {"description": SuccessIcon + " The server's invite code has been set to **" + Invites[0].code + "**.",  "color": EmbedColor}; 
+                    const Messages = [InfoIcon + " The server's invite code has been set to **X001**.", InfoIcon + " Pozvánka tohoto server byla nastavea na **X001**."];
+                    const embed = {"description": Messages[Language].replace("X001", Invites[0].code),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 } else {
-                    const embed = {"description": ErrorIcon + " I could not find any server invites in this channel.",  "color": EmbedColor}; 
+                    const Messages = [ErrorIcon + " I could not find any server invites in this channel.", ErrorIcon + " V tomto kanále jsem nenašel žádné pozvánky."];
+                    const embed = {"description": Messages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
@@ -4809,7 +4811,7 @@ if (CommandName == "setinvite")  {
             }
              else
             {
-             const embed = {"description": ErrorIcon + " This command is only allowed on upgraded servers.",  "color": EmbedColor}; 
+             const embed = {"description": ErrorMessage21[Language],  "color": EmbedColor}; 
              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
