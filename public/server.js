@@ -3943,7 +3943,7 @@ const key      = `${message.author.id}`;
 const keyCF    = `${message.channel.id}`;
 const keySF    = `${message.guild.id}`;
 const Language = peeky.serverData.get(keySF, "language");
-const Failed   = false;
+var   Failed   = false;
 
 if  (!message.webhookID)  {
   
@@ -6250,8 +6250,9 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
         if  (CommandArgument !== RandomString)  {
 
             if  (NewLinesCount < 2)  {
-
-                const embed = {"description": SuccessIcon + " You have bought a new description for **" + UpdatedAmount.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
+              
+                const Messages = [SuccessIcon + " You have bought a new description for **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001**" + " " + GreditIcon + "**."];
+                const embed = {"description": Messages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 peeky.userData.set(key, CommandArgument, "Description");
@@ -6268,7 +6269,8 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
              else
             {
 
-              const embed = {"description": SuccessIcon + " You have bought a random description for **" + UpdatedAmount.toLocaleString('en') + " " + GreditIcon + "**.",  "color": EmbedColor}; 
+              const Messages = [SuccessIcon + " You have bought a random description for **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**."];
+              const embed = {"description": Messages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
               peeky.userData.set(key, function_RandomDescription(), "Description");
@@ -6295,7 +6297,7 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
 //BuyBackground  
 if  (CommandName.startsWith("buybackground"))  {
 
-    var Failed = true;
+    var Failed = true; 
   
     for(var i = 1; i <= Banners.length; i++)  {
 
@@ -6338,7 +6340,8 @@ if  (CommandName.startsWith("buybackground"))  {
                         peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
                         peeky.userData.get(key, "Inventory").push(i);
 
-                        var embed = {"description": SuccessIcon + " You have bought the **" + function_GetBackgroundInfo(i, ["name"]) + "** background bought for **" + function_GetBackgroundInfo(i, ["price"]) + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                        const Messages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**."];
+                        var embed = {"description": Messages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", function_GetBackgroundInfo(i, ["price"])) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                         break;
@@ -6358,7 +6361,8 @@ if  (CommandName.startsWith("buybackground"))  {
             };
 
             } else {
-              const embed = {"description": ErrorIcon + " You cannot buy the default and exclusive backgrounds.", "color": EmbedColor}; 
+              const Messages = [ErrorIcon + " You cannot buy the default and exclusive backgrounds.", ErrorIcon + " Nemůžete si koupit základní a exlusivní pozadí."];
+              const embed = {"description": Messages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
               break;
@@ -6451,7 +6455,8 @@ if (CommandName.startsWith("setbackground"))  {
 
                 peeky.userData.set(key, i, "Background");
 
-                const embed = {"description": SuccessIcon + " You have set the **" + function_GetBackgroundInfo(i, ["name"]) + "** background." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                const Messages = [SuccessIcon + " You have set the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**."];
+                const embed = {"description": Messages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 break;
@@ -6576,8 +6581,8 @@ if  (i !== AllString)  {
                 }
                  else
                 {
-                  const embed = {"description": ErrorIcon + " You cannot sell the default background.",  "color": EmbedColor}; 
-                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                  const Messages = [ErrorIcon + " You cannot sell the default backgrounds.", ErrorIcon + " Nemůžete prodat základní pozadí."];
+                  const embed = {"description": Messages[Language],  "color": EmbedColor};
                   
                   break;
                 };
