@@ -3602,10 +3602,10 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             reaction.message.edit("**Channel Functions** `1/1`", newEmbed).catch(error => ErrorBag.add(error));
 
         } else 
-        if  (reaction.emoji.name == "🇺🇸" && !reaction.message.member.permissions.has("MANAGE_SERVER"))  {
+        if  (reaction.emoji.name == "🇺🇸" && reaction.message.member.permissions.has("MANAGE_GUILD"))  {
             peeky.serverData.set(keySF, 0, "language");
         } else 
-        if  (reaction.emoji.name == "🇨🇿" && !reaction.message.member.permissions.has("MANAGE_SERVER"))  {
+        if  (reaction.emoji.name == "🇨🇿" && reaction.message.member.permissions.has("MANAGE_GUILD"))  {
             peeky.serverData.set(keySF, 1, "language");
         };
       
@@ -3636,7 +3636,9 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
               
                 if  (peeky.serverData.get(keySF, "function_notifications") == true)  {
 
-                    const embed = {"description": InfoIcon + " **" + function_RemoveFormatting(reaction.message.member.displayName, "other", true) + "** has been vote kicked with **" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes**.",  "color": EmbedColor};
+                  
+                    const Messages = [InfoIcon + " **X** has been vote kicked with **Y votes**.", InfoIcon + " **X** byl vyhlasován ze serveru se **Y hlasy**."];
+                    const embed = {"description": Messages[Language].replace("X", function_RemoveFormatting(reaction.message.member.displayName, "other", true)).replace("Y", peeky.serverData.get(keySF, "vote_kick_bonus_setting")),  "color": EmbedColor};
                     reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
                 };
@@ -3650,8 +3652,9 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
          
                   ResponseCooldowns.add(reaction.message.guild.id + "VK");
                   setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id + "VK")}, ResponseCooldownMS);
-              
-                  const embed = {"description": InfoIcon + " **" + function_RemoveFormatting(user.username, "other", true) + "** has started a vote kick against **" + function_RemoveFormatting(reaction.message.member.displayName, "other", true) + "**.",  "color": EmbedColor};
+
+                  const Messages = [InfoIcon + " **X** has started a vote kick against **Y**.", InfoIcon + " **X** začal hlasovat o vyhození **Y**."];
+                  const embed = {"description": Messages[Language].replace("X", function_RemoveFormatting(user.username, "other", true)).replace("Y", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};
                   reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                 
               };
