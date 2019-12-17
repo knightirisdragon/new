@@ -3622,9 +3622,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
       
         var MemberExists = reaction.message.guild.members.find(m => m.id == reaction.message.author.id);
       
-        if  (!MemberExists.user.bot)  {
-      
-        if  (MemberExists && !reaction.message.member.permissions.has("KICK_MEMBERS"))  {
+        if  (MemberExists && !MemberExists.user.bot && !reaction.message.member.permissions.has("KICK_MEMBERS"))  {
           
             if  (reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting") && MemberExists.user.id !== PeekyId && reaction.message.guild.me.hasPermission("KICK_MEMBERS") && reaction.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
@@ -3662,14 +3660,8 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
             };
  
         } else {
-          const embed = {"description": ErrorIcon + " You cannot start a vote kick against that user, **" + function_RemoveFormatting(user.username, "other", true) + "**.",  "color": EmbedColor};
-          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
-          
-          reaction.message.clearReactions().catch(error => ErrorBag.add(error));
-        };
- 
-        } else {
-          const embed = {"description": ErrorIcon + " Why do you hate me so much, **" + function_RemoveFormatting(user.username, "other", true) + "**?",  "color": EmbedColor};
+          const Messages = [ErrorIcon + " You cannot start a vote kick against that user, **X001**", ErrorIcon + " Tohoto uživatele nelze vyhlasovat ze serveru, **X001**."];
+          const embed = {"description": Messages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", ""),  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
           reaction.message.clearReactions().catch(error => ErrorBag.add(error));
@@ -3946,10 +3938,11 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
 {
 
 //SOME VARIABLES
-const key    = `${message.author.id}`;
-const keyCF  = `${message.channel.id}`;
-const keySF  = `${message.guild.id}`;
-var   Failed = false;
+const key      = `${message.author.id}`;
+const keyCF    = `${message.channel.id}`;
+const keySF    = `${message.guild.id}`;
+const Language = peeky.serverData.get(keySF, "language");
+const Failed   = false;
 
 if  (!message.webhookID)  {
   
@@ -4154,7 +4147,8 @@ if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)  {
                     ResponseCooldowns.add(message.guild.id + "SC");
                     setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SC")}, ResponseCooldownMS);
 
-                    const embed = {"description": InfoIcon + " Please restrain yourself from using profanity, **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**.",  "color": EmbedColor}; 
+                    const Messages = [InfoIcon + " Please restrain yourself from using profanity, **X001**", InfoIcon + " Přestaňte prosím mluvit sprostě, **X001**."];
+                    const embed = {"description": Messages[Language].replace("X001", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
                 };
@@ -4184,7 +4178,8 @@ if  (peeky.channelData.get(keyCF, "image_only_bonus") == true)  {
                 ResponseCooldowns.add(message.guild.id + "IO");
                 setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "IO")}, ResponseCooldownMS);
 
-                const embed = {"description": InfoIcon + " You can only send images in this channel, **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**.",  "color": EmbedColor}; 
+                const Messages = [InfoIcon + " You can only send images in this channel, **X001**.", InfoIcon + " V tomto kanále lze posílat pouze obrázky, **X001**."];
+                const embed = {"description": Messages[Language].replace("X001", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
             };
@@ -4396,8 +4391,6 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
             const Role = message.guild.roles.find(role => role.name == name);
 
             if  (Role && !message.member.roles.has(Role.id))  {
-
-                //function_DirectMessage(message.member.user.id, "You have been muted in **" + function_RemoveFormatting(message.guild.name, "other", true) + "** by the **Flood Protection** function.");
 
                 message.member.addRole(Role.id, "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
 
@@ -4655,7 +4648,6 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
 const Prefix       = peeky.serverData.get(keySF, "prefix");
-const Language     = peeky.serverData.get(keySF, "language");
 const CommandName  = message.content.replace(Prefix, "");
 const InfoMessages = [];
 
