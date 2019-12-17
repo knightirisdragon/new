@@ -6749,7 +6749,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
           peeky.userData.math(key, "-", ChestAmount, "Chests");
           peeky.userData.math(key, "+", TotalLoot, "Gredit");
 
-          const Messages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** pro **X002" + " " + GreditIcon +"**."];
+          const Messages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** a získal **X002" + " " + GreditIcon +"**."];
           const embed = {"description": Messages[Language].replace("X001", ChestAmount.toLocaleString('en')).replace("X002", TotalLoot.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
           await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
