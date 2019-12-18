@@ -8286,25 +8286,26 @@ if  (CommandArgument.startsWith(" "))  {
                             const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                             ErrorBag.add(error); Failed = true;
-                    });
+                        });
 
-                        if  (Failed == false)  {
-                            const embed = {"description": SuccessIcon + " I have muted **" + function_RemoveFormatting(MentionedMember.displayName, "other", true) + "** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
-                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
-                        };
+                    if  (Failed == false)  {
+                        const embed = {"description": SuccessIcon + " I have muted **" + function_RemoveFormatting(MentionedMember.displayName, "other", true) + "** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
+                    };
 
-                        }
-                         else
-                        {
-                          const TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete."];
-                          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                        };
+                    }
+                     else
+                    {
+                     const TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete."];
+                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    };
 
                 }
                  else
                 {
-                  const embed = {"description": ErrorIcon + " I cannot find a role called **" + name + "**.",  "color": EmbedColor}; 
+                  const TranslatedMessages = [ErrorIcon + " I cannot find a role called **X001**.", ErrorIcon + " Nemohu najít roli s jménem **X001**."];
+                  const embed = {"description": TranslatedMessages[Language].replace("X001", name),  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
                 };
 
@@ -8375,14 +8376,16 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
         }
          else
         {
-          const TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete."];
+          const TranslatedMessages = [ErrorIcon + " You cannot unmute that user.", ErrorIcon + " Tohoto uživatele odztlumit nemůžete."];
+          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
         }
          else
         {
-          const embed = {"description": ErrorIcon + " I cannot find a role called **" + name + "**.",  "color": EmbedColor}; 
+          const TranslatedMessages = [ErrorIcon + " I cannot find a role called **X001**.", ErrorIcon + " Nemohu najít roli s jménem **X001**."];
+          const embed = {"description": TranslatedMessages[Language].replace("X001", name),  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
         };
             
@@ -8451,14 +8454,16 @@ if  (CommandName.startsWith("idban"))  {
         }
          else
         {
-         const embed = {"description": ErrorIcon + " You cannot ID ban someone inside the server.",  "color": EmbedColor}; 
+         const TranslatedMessages = [ErrorIcon + " You cannot ID ban someone inside the server.", ErrorIcon + " Nemůžete ID Zabanovat někoho na serveru."];
+         const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
         }
          else
         {
-         const embed = {"description": ErrorIcon + " You must enter a valid user ID.",  "color": EmbedColor}; 
+         const TranslatedMessages = [ErrorIcon + " You must enter a valid ID.", ErrorIcon + " Musíte zadat validní ID."];
+         const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
@@ -8510,7 +8515,8 @@ if  (CommandName.startsWith("ban"))  {
             }
              else
             {
-              const embed = {"description": ErrorIcon + " You cannot ban that user.",  "color": EmbedColor}; 
+              const TranslatedMessages = [ErrorIcon + " You cannot ban that user.", ErrorIcon + " Tohoto uživatele zabanovat nemůžete."];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
@@ -8555,8 +8561,8 @@ if  (CommandName.startsWith("kick"))  {
             }
              else
             {
-              const embed = {"description": ErrorIcon + " You cannot kick that user.",  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              const TranslatedMessages = [ErrorIcon + " You cannot kick that user.", ErrorIcon + " Tohoto uživatele vykopnout nemůžete."];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
             };
 
         }
@@ -8606,7 +8612,8 @@ if  (CommandName.startsWith("purge"))  {
             }
              else
             {
-              const embed = {"description": ErrorIcon + " You can only purge 1 to 100 messages.",  "color": EmbedColor}; 
+              const TranslatedMessages = [ErrorIcon + " You can only purge 1 to 100 messages.", ErrorIcon + " Můžete vyčistit jenom 1 až 100 zpráv."];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
@@ -8649,8 +8656,9 @@ if  (CommandName.startsWith("prefix"))  {
             const InfoMessages = [InfoIcon + " If the prefix is broken, join the Support Server."];
 
             peeky.serverData.set(keySF, CommandArgument, "prefix");
-
-            const embed = {"description": SuccessIcon + " The **Prefix** is now **" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+          
+            const TranslatedMessages = [SuccessIcon + " The prefix is now **X001**.", SuccessIcon + " Prefix je teď **X001**."];
+            const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
@@ -8690,8 +8698,9 @@ if  (CommandName.startsWith("highlightedchannel"))  {
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
             peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
-
-            const embed = {"description": SuccessIcon + " The **Highlighted Channel** is now called **#" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+          
+            const TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **X001**."];
+            const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
@@ -8725,7 +8734,8 @@ if  (CommandName.startsWith("functionnotifications"))  {
         if(peeky.serverData.get(keySF, "function_notifications") == true) {peeky.serverData.set(keySF, false, "function_notifications");}
         else peeky.serverData.set(keySF, true, "function_notifications");
 
-        const embed = {"description": SuccessIcon + " The **Function Notifications** are now set to **" + peeky.serverData.get(keySF, "function_notifications") + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+        const TranslatedMessages = [SuccessIcon + " The function notifications are now set to **X001**.", SuccessIcon + " Upozornění na funkce jsou teď nastaveny na **X001**."];
+        const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "function_notifications")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
@@ -8745,7 +8755,8 @@ if  (CommandName.startsWith("levelnotifications"))  {
         if(peeky.serverData.get(keySF, "level_notifications") == true) {peeky.serverData.set(keySF, false, "level_notifications");}
         else peeky.serverData.set(keySF, true, "level_notifications");
 
-        const embed = {"description": SuccessIcon + " The **Level Notifications** are now set to **" + peeky.serverData.get(keySF, "level_notifications") + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+        const TranslatedMessages = [SuccessIcon + " The function notifications are now set to **X001**.", SuccessIcon + " Upozornění na levely jsou teď nastaveny na **X001**."];
+        const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "function_notifications")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
