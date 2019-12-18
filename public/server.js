@@ -3685,8 +3685,8 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                 if  (peeky.serverData.get(keySF, "function_notifications") == true)  {
 
                   
-                    const Messages = [InfoIcon + " **X001** has been vote kicked with **Y votes**.", InfoIcon + " **X** byl vyhlasován ze serveru se **X002 hlasy**."];
-                    const embed = {"description": Messages[Language].replace("X001", function_RemoveFormatting(reaction.message.member.displayName, "other", true)).replace("X002", peeky.serverData.get(keySF, "vote_kick_bonus_setting")),  "color": EmbedColor};
+                    const TranslatedMessages = [InfoIcon + " **X001** has been vote kicked with **Y votes**.", InfoIcon + " **X** byl vyhlasován ze serveru se **X002 hlasy**."];
+                    const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(reaction.message.member.displayName, "other", true)).replace("X002", peeky.serverData.get(keySF, "vote_kick_bonus_setting")),  "color": EmbedColor};
                     reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
                 };
@@ -3701,8 +3701,8 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                   ResponseCooldowns.add(reaction.message.guild.id + "VK");
                   setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id + "VK")}, ResponseCooldownMS);
 
-                  const Messages = [InfoIcon + " **X001** has started a vote kick against **Y**.", InfoIcon + " **X** začal hlasovat o vyhození **X002**."];
-                  const embed = {"description": Messages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};
+                  const TranslatedMessages = [InfoIcon + " **X001** has started a vote kick against **Y**.", InfoIcon + " **X** začal hlasovat o vyhození **X002**."];
+                  const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};
                   reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                 
               };
@@ -3710,8 +3710,8 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
             };
  
         } else {
-          const Messages = [ErrorIcon + " You cannot start a vote kick against that user, **X001**", ErrorIcon + " Tohoto uživatele nelze vyhlasovat ze serveru, **X001**."];
-          const embed = {"description": Messages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", ""),  "color": EmbedColor};
+          const TranslatedMessages = [ErrorIcon + " You cannot start a vote kick against that user, **X001**", ErrorIcon + " Tohoto uživatele nelze vyhlasovat ze serveru, **X001**."];
+          const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", ""),  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
           reaction.message.clearReactions().catch(error => ErrorBag.add(error));
@@ -3741,8 +3741,9 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                 const category = reaction.message.guild.channels.find(c => c.name == "Tickets" && c.type == "category");
                 const owner = reaction.message.guild.owner.user;
                 const TicketID = Math.random().toString(36).substr(2, 6);
-                const Messages = ["**X001 has created a ticket**" + "\n" + "Staff may close the ticket once the issue has been resolved.", "**X001 vytvořil lístek**" + "\n" + "Jakmile se tento problém vyřeší, personál může tento lístek uzavřít."];
-                const embed = {"description": Messages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)),  "color": EmbedColor};
+              
+                const TranslatedMessages = ["**X001 has created a ticket**" + "\n" + "Staff may close the ticket once the issue has been resolved.", "**X001 vytvořil lístek**" + "\n" + "Jakmile se tento problém vyřeší, personál může tento lístek uzavřít."];
+                const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)),  "color": EmbedColor};
 
                 reaction.message.guild.createChannel("Ticket_" + TicketID, { type: 'text', reason: "Channel created by @" + user.tag + " through a function." }).then(async function (channel)  {
                       if  (category && category.permissionsFor(peeky.user).has('VIEW_CHANNEL'))  {
@@ -3885,8 +3886,8 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
   
         if  (peeky.serverData.get(keySF, "function_notifications") == true)  {
                   
-            const Messages = [InfoIcon + " **X001** has logged **X002**'s message.", InfoIcon + " **X001** připnul zprávu od **X002**."];
-            const embed = {"description": Messages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};  
+            const TranslatedMessages = [InfoIcon + " **X001** has logged **X002**'s message.", InfoIcon + " **X001** připnul zprávu od **X002**."];
+            const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};  
             reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
         };
@@ -3913,8 +3914,8 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
         {
           reaction.remove(user).catch(error => ErrorBag.add(error));
           
-          const Messages = [ErrorIcon + " That message was already logged, **X001**.", ErrorIcon + " Tato zpráva je již připnutá, **X001**."];
-          const embed = {"description": Messages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)),  "color": EmbedColor};
+          const TranslatedMessages = [ErrorIcon + " That message was already logged, **X001**.", ErrorIcon + " Tato zpráva je již připnutá, **X001**."];
+          const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)),  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
         };
