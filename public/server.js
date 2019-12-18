@@ -7910,12 +7910,13 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             peeky.userData.get(key, "Playlist").splice(BackgroundIndex, 1);  //Remove the background
 
-            const TranslatedMessages = [ErrorIcon + " The song has been removed from your playlist.", ErrorIcon + " Písnička byla odebrána z vašeho playlistu."];
+            const TranslatedMessages = [SuccessIcon + " The song has been removed from your playlist.", SuccessIcon + " Písnička byla odebrána z vašeho playlistu."];
             const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             } else {
-              const embed = {"description": ErrorIcon + " That song is not in your playlist.",  "color": EmbedColor}; 
+              const TranslatedMessages = [ErrorIcon + " That song is not in your playlist.", ErrorIcon + " Tato písnička ve vašem playlistu není."];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
@@ -7926,7 +7927,8 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             peeky.userData.set(key, PlaylistRequest, "PlaylistName")
 
-            const embed = {"description": SuccessIcon + " Your playlist has been renamed to **" + peeky.userData.get(key, "PlaylistName") + "**.",  "color": EmbedColor}; 
+            const TranslatedMessages = [SuccessIcon + " Your playlist has been renamed to **X001**.", SuccessIcon + " Váš playlist byl přejmenován na **X001**."];
+            const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.userData.get(key, "PlaylistName")),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         } else
@@ -7940,11 +7942,13 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                   
                     peeky.userData.set(key, Thumbnail, "PlaylistThumbnail");
 
-                    const embed = {"description": SuccessIcon + " You have set the thumbnail for your playlist.",  "color": EmbedColor}; 
+                    const TranslatedMessages = [SuccessIcon + " You have set the thumbnail for your playlist.", SuccessIcon + " Nastavil jste miniaturu pro váš playlist"];
+                    const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   
                 } else {
-                  const embed = {"description": ErrorIcon + " Failed to set your playlist thumbnail.",  "color": EmbedColor}; 
+                  const TranslatedMessages = [ErrorIcon + " Failed to set your playlist thumbnail.", ErrorIcon + " Nepodařilo se nastavit miniaturu pro váš playlist."];
+                  const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
                   
@@ -7956,7 +7960,8 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
         } else
         if  (CommandArgument.startsWith(" clear"))  {
 
-            const embed = {"description": SuccessIcon + " You have cleared your playlist of **" + peeky.userData.get(key, "Playlist").length + " songs** and the **thumbnail**.",  "color": EmbedColor}; 
+            const TranslatedMessages = [SuccessIcon + " You have cleared your playlist of **X001 songs** and the thumbnail.", SuccessIcon + " Vyčistili jste svůj playlist od **X001 písniček** a miniatury."];
+            const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.userData.get(key, "Playlist").length),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             peeky.userData.set(key, [], "Playlist");
@@ -8028,7 +8033,8 @@ if (CommandName == "skip")  {
             };
           
         } else {
-          const embed = {"description": ErrorIcon + " Only the server owner can skip the song.",  "color": EmbedColor}; 
+          const TranslatedMessages = [ErrorIcon + "Only the server owner can skip this song right now.", ErrorIcon + " Písničku může momentálně přeskočit pouze vlastník serveru."];
+          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
@@ -8073,7 +8079,8 @@ if (CommandName == "guessthesong")  {
                     peeky.serverData.set(keySF, new Date(), "Started");
                     peeky.serverData.set(keySF, "", "Link");
 
-                    const embed = {"description": "**Try to guess the name of this song!**" + "\n" + GuessTheSong[ChosenSong][2],  "color": EmbedColor}; 
+                    const TranslatedMessages = ["**Try to guess the name of this song!**", "**Zkuste uhádnout jméno této písničky!**"];
+                    const embed = {"description": TranslatedMessages[Language] + "\n" + GuessTheSong[ChosenSong][2],  "color": EmbedColor};
                     message.channel.send({ embed });
 
                     message.channel.awaitMessages(response => response.content.toLowerCase() == GuessTheSong[ChosenSong][1].toLowerCase(), { maxMatches: 1, time: 30000, errors: ['time'] })
@@ -8261,9 +8268,9 @@ if  (CommandArgument.startsWith(" "))  {
       
     CommandArgument = CommandArgument.replace(" ", "");
 
-if  (message.member.permissions.has("MUTE_MEMBERS"))  {
+    if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 
-if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
+        if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 
             var MentionedMember = message.mentions.members.first();
             var name = peeky.serverData.get(keySF, "muted_role");
@@ -8271,27 +8278,28 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
 
             if  (MentionedMember)  {
 
-            if  (Role)  {
+                if  (Role)  {
 
-            if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && !MentionedMember.roles.has(Role.id))  {
+                    if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && !MentionedMember.roles.has(Role.id))  {
 
-                await MentionedMember.addRole(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => {
-                    const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                    ErrorBag.add(error); Failed = true;
-                });
+                        await MentionedMember.addRole(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => {
+                            const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
+                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                            ErrorBag.add(error); Failed = true;
+                    });
 
-                if  (Failed == false)  {
-                    const embed = {"description": SuccessIcon + " I have muted **" + function_RemoveFormatting(MentionedMember.displayName, "other", true) + "** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
-                };
+                        if  (Failed == false)  {
+                            const embed = {"description": SuccessIcon + " I have muted **" + function_RemoveFormatting(MentionedMember.displayName, "other", true) + "** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
+                        };
 
-                }
-                 else
-                {
-                  const embed = {"description": ErrorIcon + " You cannot mute that user.",  "color": EmbedColor}; 
-                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                };
+                        }
+                         else
+                        {
+                          const TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete."];
+                          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        };
 
                 }
                  else
@@ -8307,19 +8315,19 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
-}
- else
-{
- const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
+        }
+         else
+        {
+         const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
 
-}
- else
-{
- const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
+    }
+     else
+    {
+     const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 
 }
  else if (CommandArgument == "")
@@ -8367,7 +8375,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
         }
          else
         {
-          const embed = {"description": ErrorIcon + " You cannot unmute that user.",  "color": EmbedColor}; 
+          const TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete."];
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
