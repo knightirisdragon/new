@@ -4,6 +4,7 @@ const DDBLToken = process.env.DDBL_TOKEN;
 const BLSToken = process.env.BLS_TOKEN;
 const BFDToken = process.env.BFD_TOKEN;
 const DBToken = process.env.DB_TOKEN;
+const CLToken = process.env.CL_TOKEN;
 const YoutubeToken = process.env.YT_TOKEN;
 
 //Discord
@@ -72,7 +73,7 @@ const GainCooldown            = new Set();
 const LimitedRolesCooldown    = new Set();
 const RandomTreasuresCooldown = new Set();
 const BadgeCheckCooldown      = new Set();
-const OverviewCooldown        = new Set();
+const CommandCooldown         = new Set();
 const SetInviteCooldown       = new Set();
 const ProfileCooldown         = new Set();  const ProfileCooldownMS = 5000;
 const MusicCmdCooldown        = new Set();
@@ -278,7 +279,7 @@ const EmojiNumbers        = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️�
 
 //Small Objects
 var Banner          = {  Source: 0,  Price: 1 ,  Name: 2 ,  Credit: 3,  RevenueID: 4, AddedDate: 5  };
-var Languages       = [  "English",  "Czech"  ]
+var Languages       = [  "English",  "Čeština"  ]
 var StreamOptions   = {  volume: 0.25  };
 var SearchOptions   = {  maxResults: 1,  key: YoutubeToken  };
 
@@ -1831,6 +1832,16 @@ peeky.on('ready', () => {
             },
             body: JSON.stringify({  server_count: GuildSize  })
         }).catch(err => {console.log("Failed to post the server count to DB."); ErrorBag.add(err)});
+
+        //Post Server Counts - CL
+        node_fetch(`https://www.cloudlist.xyz/api/stats/${peeky.user.id}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': CLToken,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({  server_count: GuildSize  })
+        }).catch(err => {console.log("Failed to post the server count to CL."); ErrorBag.add(err)});
       
         console.log("Stats posted to Bot Lists.");
 
@@ -1877,6 +1888,7 @@ peeky.on('message', async (message) => {
     peeky.userData.ensure(key , {
         UserID: message.author.id,
         OverviewID: null,
+        LanguageID: null,
         lastSeen: new Date(),
 
         Background: 1,
@@ -3467,10 +3479,10 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         reaction.remove(user.id).catch(error => ErrorBag.add(error));
     };
   
-    if  (!OverviewCooldown.has(user.id))  {
+    if  (!CommandCooldown.has("overview" + user.id))  {
          
-        OverviewCooldown.add(user.id);
-        setTimeout(() => {OverviewCooldown.delete(user.id)}, 2500);
+        CommandCooldown.add("overview" + user.id);
+        setTimeout(() => {CommandCooldown.delete("overview" + user.id)}, 2500);
 
         var EnabledAmount = 0;
         var ServerAmount  = 0;
@@ -3605,6 +3617,39 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         } else 
         if  (reaction.emoji.name == "🇺🇸" && reaction.message.member.permissions.has("MANAGE_GUILD"))  {
             peeky.serverData.set(keySF, 0, "language");
+        } else 
+        if  (reaction.emoji.name == "🇨🇿" && reaction.message.member.permissions.has("MANAGE_GUILD"))  {
+            peeky.serverData.set(keySF, 1, "language");
+        };
+      
+  };
+  
+};
+  
+//Language Pages
+if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userData.get(key, "LanguageID"))  {            
+  
+    if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+        reaction.remove(user.id).catch(error => ErrorBag.add(error));
+    };
+  
+    if  (!CommandCooldown.has("languages" + user.id))  {
+         
+        CommandCooldown.add("languages" + user.id);
+        setTimeout(() => {CommandCooldown.delete("languages" + user.id)}, 2500);
+
+        if  (reaction.emoji.name == "🇺🇸" && reaction.message.member.permissions.has("MANAGE_GUILD"))  {
+            peeky.serverData.set(keySF, 0, "language");
+
+            const newEmbed = new Discord.RichEmbed({
+                  description:  "**Automatic Reactions** " + AR + "\n" + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
+                                "**Message Log** " + ML + "\n" + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`" + "\n\n" +
+                                "**Safe Chat** " + SC + "\n" + "No setting." + "\n\n" +
+                                "**Images Only** " + IO + "\n" + "No setting." + "\n\n" +
+                                "**Banned Words** " + BW + "\n" + "`" + BWArray + "`",
+                  color: EmbedColor,
+                  image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
+            });
         } else 
         if  (reaction.emoji.name == "🇨🇿" && reaction.message.member.permissions.has("MANAGE_GUILD"))  {
             peeky.serverData.set(keySF, 1, "language");
@@ -4834,12 +4879,12 @@ if (CommandName == "setinvite")  {
 //Overview
 if (CommandName == "overview")  {
   
-    if  (!OverviewCooldown.has(message.guild.id))  {
+    if  (!CommandCooldown.has("overview" + message.guild.id))  {
       
         if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
 
-            OverviewCooldown.add(message.guild.id);
-            setTimeout(() => {OverviewCooldown.delete(message.guild.id)}, 10000);
+            CommandCooldown.add("overview" + message.guild.id);
+            setTimeout(() => {CommandCooldown.delete("overview" + message.guild.id)}, 10000);
 
             const embed = {"description": "**Overview Menu**" + "\n\n" + "1️⃣ Server Settings" + "\n\n" + "2️⃣ Server Functions `[1/3]`" + "\n\n" + "3️⃣ Server Functions `[2/3]`" + "\n\n" + "4️⃣ Server Functions `[3/3]`" + "\n\n" + "5️⃣ Channel Functions",  "color": EmbedColor}; 
             await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
@@ -4850,6 +4895,34 @@ if (CommandName == "overview")  {
                   await m.react("3️⃣").catch(error => {ErrorBag.add(error)});
                   await m.react("4️⃣").catch(error => {ErrorBag.add(error)});
                   await m.react("5️⃣").catch(error => {ErrorBag.add(error)});
+
+            }).catch(error => {ErrorBag.add(error)});
+          
+        };
+
+    }
+     else 
+    {
+      const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+      
+//Languages
+if (CommandName == "languages")  {
+  
+    if  (!CommandCooldown.has("languages" + message.guild.id))  {
+      
+        if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
+
+            CommandCooldown.add("languages" + message.guild.id);
+            setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
+
+            const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `100%`" + "\n\n" + "🇨🇿 Čeština `65%`",  "color": EmbedColor}; 
+            await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
+
+                  peeky.userData.set(key, m.id, "LanguageID");
                   await m.react("🇺🇸").catch(error => {ErrorBag.add(error)});
                   await m.react("🇨🇿").catch(error => {ErrorBag.add(error)});
 
