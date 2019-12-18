@@ -4325,7 +4325,8 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
 
             var id        = peeky.serverData.get(keySF, "server_age_bonus_id");
             var channel   = message.guild.channels.find(g => g.id == id);
-            var FinalName = "Server Age: " + function_TimeLeft(message.guild.createdAt, "days", null).toLocaleString('en') + " days";
+            var TranslatedStrings = [["Server Age", "days"], ["Věk Serveru", "dní"]];
+            var FinalName = TranslatedStrings[Language][0] + ": " + function_TimeLeft(message.guild.createdAt, "days", null).toLocaleString('en') + " " + TranslatedStrings[Language][1];
 
             if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
                 channel.setName(FinalName, "Triggered by the Server Age function.").catch(error => ErrorBag.add(error));
@@ -4924,7 +4925,7 @@ if (CommandName == "languages")  {
                 CommandCooldown.add("languages" + message.guild.id);
                 setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
 
-                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `100%`" + "\n\n" + "🇨🇿 Čeština `65%`",  "color": EmbedColor}; 
+                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `100%`" + "\n\n" + "🇨🇿 Čeština `70%`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       peeky.userData.set(key, m.id, "LanguageID");
@@ -8699,7 +8700,7 @@ if  (CommandName.startsWith("highlightedchannel"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
           
-            const TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **X001**."];
+            const TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **#X001**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8846,7 +8847,8 @@ if  (CommandName.startsWith("muterole"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "muted_role");
           
-            const embed = {"description": SuccessIcon + " The **Mute Role** for this server is now **@" + CommandArgument + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+            const TranslatedMessages = [SuccessIcon + " The mute role is now set to **@X001**.", SuccessIcon + " Role na ztlumení je teď nastavena na **@X001**."];
+            const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
