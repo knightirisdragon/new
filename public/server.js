@@ -3633,26 +3633,30 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
         reaction.remove(user.id).catch(error => ErrorBag.add(error));
     };
   
-    if  (!CommandCooldown.has("languages" + user.id))  {
+    if  (!CommandCooldown.has("languages" + user.id) && reaction.message.member.permissions.has("MANAGE_GUILD"))  {
          
         CommandCooldown.add("languages" + user.id);
         setTimeout(() => {CommandCooldown.delete("languages" + user.id)}, 2500);
 
-        if  (reaction.emoji.name == "🇺🇸" && reaction.message.member.permissions.has("MANAGE_GUILD"))  {
+        if  (reaction.emoji.name == "🇺🇸")  {
             peeky.serverData.set(keySF, 0, "language");
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  "**Automatic Reactions** " + AR + "\n" + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
-                                "**Message Log** " + ML + "\n" + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`" + "\n\n" +
-                                "**Safe Chat** " + SC + "\n" + "No setting." + "\n\n" +
-                                "**Images Only** " + IO + "\n" + "No setting." + "\n\n" +
-                                "**Banned Words** " + BW + "\n" + "`" + BWArray + "`",
-                  color: EmbedColor,
-                  image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
+                  description:  "**Languages**" + "\n\n" + "The server language has been set to English.",
+                  color: EmbedColor
             });
+
+            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
         } else 
-        if  (reaction.emoji.name == "🇨🇿" && reaction.message.member.permissions.has("MANAGE_GUILD"))  {
+        if  (reaction.emoji.name == "🇨🇿")  {
             peeky.serverData.set(keySF, 1, "language");
+
+            const newEmbed = new Discord.RichEmbed({
+                  description:  "**Languages**" + "\n\n" + "Jazyk serveru byl nastaven na Češtinu.",
+                  color: EmbedColor
+            });
+
+            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
         };
       
   };
@@ -4900,9 +4904,7 @@ if (CommandName == "overview")  {
           
         };
 
-    }
-     else 
-    {
+    } else {
       const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
@@ -4915,24 +4917,29 @@ if (CommandName == "languages")  {
     if  (!CommandCooldown.has("languages" + message.guild.id))  {
       
         if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
+          
+            if  (message.member.permissions.has("MANAGE_GUILD"))  {
 
-            CommandCooldown.add("languages" + message.guild.id);
-            setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
+                CommandCooldown.add("languages" + message.guild.id);
+                setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
 
-            const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `100%`" + "\n\n" + "🇨🇿 Čeština `65%`",  "color": EmbedColor}; 
-            await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
+                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `100%`" + "\n\n" + "🇨🇿 Čeština `65%`",  "color": EmbedColor}; 
+                await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
-                  peeky.userData.set(key, m.id, "LanguageID");
-                  await m.react("🇺🇸").catch(error => {ErrorBag.add(error)});
-                  await m.react("🇨🇿").catch(error => {ErrorBag.add(error)});
+                      peeky.userData.set(key, m.id, "LanguageID");
+                      await m.react("🇺🇸").catch(error => {ErrorBag.add(error)});
+                      await m.react("🇨🇿").catch(error => {ErrorBag.add(error)});
 
-            }).catch(error => {ErrorBag.add(error)});
+                }).catch(error => {ErrorBag.add(error)});
+              
+            } else {
+             const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
           
         };
 
-    }
-     else 
-    {
+    } else {
       const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
