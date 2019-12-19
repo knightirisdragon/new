@@ -22,15 +22,23 @@
 <div class="topnav" id="topnavmenu">
       <b>
       <a class="button" href="https://peeky.glitch.me" rel="noopener noreferrer"> <img class="pageicon" src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fhome.png?v=1573247289278">  <font size="4">Home</font></a>
+      <a class="button" onclick="UpdateDashboard()"> <font size="4">Submit</font></a>
       </b>
 </div>
     
 <div class="fullsize">
   
 <font size="7" class="headertext">Dashboard</font>
-<font size="4" class="headersub">Here you can change your server's settings, not functions.</font>
-  
+<font size="4" class="headersub">Here you can change your server's settings.</font>
 
+<br><br>
+
+<div width="50%" style="text-align: left; display: inline-block">
+<b>Server ID:</b> <input type="text" id="GuildID" value="enter">  <br>
+<b>Prefix:</b> <input type="text" id="prefix" value="p!">  <br>
+<b>Function Notifications:</b> <input type="checkbox" id="function_notifications">  <br>
+<b>Level Notifications:</b> <input type="checkbox" id="level_notifications">
+</div>
 
 </div>
     
