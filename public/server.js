@@ -515,7 +515,7 @@ const Banners = [
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground228.png?1555231021661", 525, "Welcome to Vietnam", "Rising Storm 2 Vietnam", undefined, 0],
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground229.png?1555231025303", 800, "Devil trigger", "Devil May Cry 5", undefined, 0],
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground230.png?1555231029488", 350, "Villager camp", "Plobster", `268826232806703106`, 0],
-    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground231.png?1555690400218", 225, "King sheep", "Vojtěch Jílovec", `108899856889737216`, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground231.png?v=1576750038989", 425, "Arctic wolf", "Bersekr21", `266579411162103808`, 1576750024044],
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground232.png?1555690405127", 575, "Contagion", "Contagion", undefined, 0],
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground233.png?1555690407657", 825, "Notre Dame", "Assassins Creed Unity", undefined, 0],
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground234.png?1555758393410", 350, "Phantoms", "Phantom Forces", undefined, 0],
