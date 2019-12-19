@@ -4685,11 +4685,16 @@ if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.
 //Help
 if  ((message.mentions.members.first() && message.mentions.members.first().id == PeekyId) || (message.content == peeky.serverData.get(keySF, "prefix") + "help"))  {
     
+    const WebsiteInfo = ["Visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related.", "Navštivte moji stránku aby jste mohli hlasovat, číst návody, koukat na pozadí, otevřit žebříček a vlastně všechno co se týče PEEKYho."];
+    const StoreInfo = ["Support PEEKY by purchasing some neat items from the store!", "Podpořte PEEKYho tím, že si koupíte nějaké supr věcičky z obchodu!"];
+    const SupportServerInfo = ["Join the Support Server for important announcements, assistance with the bot, giveaways and much more!", "Připojte se na můj Discord server pro důležitá upozornění, podporu s botem, soutěže a mnoho dalšího!"];
+    const BotInvite = ["Add PEEKY to your server and get all the features for free and quick!", "Přidejte si PEEKYho na váš server a dostanete všechny funkce zdarma a rychle."];
+  
     const embed = {  "description": 
-                     "**Website** [[Open]](https://peeky.glitch.me/)\nVisit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related." + 
-                     "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\nSupport PEEKY by purchasing some neat items from the store!" +
-                     "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\nJoin the Support Server for important announcements, assistance with the bot, giveaways and much more!" +
-                     "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\nAdd PEEKY to your server and get all the features for free and fast!" +
+                     "**Website** [[Open]](https://peeky.glitch.me/)\n" + WebsiteInfo[Language] +
+                     "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\n" + StoreInfo[Language] +
+                     "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\n" + SupportServerInfo[Language] +
+                     "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\n" + BotInvite[Language] +
                      "\n\n**Server Prefix: ** " + peeky.serverData.get(keySF, "prefix"),
                      "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
                      "color": 7506394 
