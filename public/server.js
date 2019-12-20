@@ -3742,7 +3742,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                 const owner = reaction.message.guild.owner.user;
                 const TicketID = Math.random().toString(36).substr(2, 6);
               
-                const TranslatedMessages = ["**X001 has created a ticket**" + "\n" + "Staff may close the ticket once the issue has been resolved.", "**X001 vytvořil lístek**" + "\n" + "Jakmile se tento problém vyřeší, personál může tento lístek uzavřít."];
+                const TranslatedMessages = ["**X001 has created a ticket**" + "\n" + "Staff may close the ticket once the issue has been resolved.", "**X001 potřebuje pomoct**" + "\n" + "Jakmile se tento problém vyřeší, personál může tento lístek uzavřít."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)),  "color": EmbedColor};
 
                 reaction.message.guild.createChannel("Ticket_" + TicketID, { type: 'text', reason: "Channel created by @" + user.tag + " through a function." }).then(async function (channel)  {
@@ -3750,10 +3750,10 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                           channel.setParent(category.id).catch(error => ErrorBag.add(error));
                       };
                   
-                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == '@everyone'), {  VIEW_CHANNEL: false, SEND_MESSAGES: true, MANAGE_MESSAGES: false  }).catch(error => ErrorBag.add(error));
-                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == role.name), {  VIEW_CHANNEL: true, MANAGE_CHANNEL: true  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == PeekyId), {  VIEW_CHANNEL: true, MANAGE_CHANNEL: true  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == user.id), {  VIEW_CHANNEL: true  }).catch(error => ErrorBag.add(error));
+                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == role.name), {  VIEW_CHANNEL: true, MANAGE_CHANNEL: true  }).catch(error => ErrorBag.add(error));
+                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == '@everyone'), {  VIEW_CHANNEL: false, SEND_MESSAGES: true, MANAGE_MESSAGES: false  }).catch(error => ErrorBag.add(error));
                   
                       await channel.send({  embed  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
@@ -5148,8 +5148,8 @@ if  (FunctioName.startsWith("ticket system"))  {
 
                 await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
                 .then(async function (channel)  {
+                      await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true, MANAGE_MESSAGES: true, ADD_REACTIONS: true  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false, ADD_REACTIONS: false  }).catch(error => ErrorBag.add(error));
-                      await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true, MANAGE_MESSAGES: true, ADD_REACTIONS: false  }).catch(error => ErrorBag.add(error));
                       await channel.send("**Need help with something?**" + "\n" + "Click on the reaction below to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_bonus_id");  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
 
@@ -5202,8 +5202,8 @@ if  (FunctioName.startsWith("reaction roles"))  {
 
                 await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
                 .then(async function (channel)  {
+                      await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false, ADD_REACTIONS: false  }).catch(error => ErrorBag.add(error));
-                      await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true, MANAGE_MESSAGES: true, ADD_REACTIONS: true  }).catch(error => ErrorBag.add(error));
                       await channel.send("**Reaction Roles**" + "\n" + "Preparing... Come back in a few minutes!").catch(error => ErrorBag.add(error)).then(m => {  peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id");  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
 
@@ -5379,8 +5379,8 @@ if  (FunctioName.startsWith("message log"))  {
       
     await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
-          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
 
     InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Message Log"));
@@ -5427,8 +5427,8 @@ if  (FunctioName.startsWith("stream announcements"))  {
       
     await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
-          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
 
     InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Stream Announcements"));
@@ -5478,8 +5478,8 @@ if  (FunctioName.startsWith("member counter"))  {
     await message.guild.createChannel(name, { type: 'voice', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
          peeky.serverData.set(keySF, channel.id, "member_counter_bonus_id");
-         await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  CONNECT: false  }).catch(error => ErrorBag.add(error));
          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  CONNECT: true  }).catch(error => ErrorBag.add(error));
+         await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  CONNECT: false  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });     
 
     InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Member Counter"));
@@ -5527,8 +5527,8 @@ if  (FunctioName.startsWith("reddit posts"))  {
       
     await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
-          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
+          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
 
     InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Reddit Posts"));
@@ -5578,8 +5578,8 @@ if  (FunctioName.startsWith("server age"))  {
     await message.guild.createChannel(name, { type: 'voice', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
          peeky.serverData.set(keySF, channel.id, "server_age_bonus_id");
-         await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  CONNECT: false  }).catch(error => ErrorBag.add(error));
          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  CONNECT: true  }).catch(error => ErrorBag.add(error));
+         await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  CONNECT: false  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });     
 
     InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Server Age"));
@@ -5629,8 +5629,8 @@ if  (FunctioName.startsWith("event countdown"))  {
     await message.guild.createChannel(name, { type: 'voice', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
          peeky.serverData.set(keySF, channel.id, "event_countdown_bonus_id");
-         await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  CONNECT: false  }).catch(error => ErrorBag.add(error));
          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  CONNECT: true  }).catch(error => ErrorBag.add(error));
+         await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  CONNECT: false  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
 
     InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Event Countdown"));
@@ -8926,7 +8926,7 @@ if  (CommandName.startsWith("muterole"))  {
                           if  (Failed == false && Amount < 25)  {
                              
                               channel.overwritePermissions(MuteRole, {
-                                  'SEND_MESSAGES': false,
+                                  'SEND_MESSAGES': false
                               }).catch(error => ErrorBag.add(error));
                             
                               Amount ++;
