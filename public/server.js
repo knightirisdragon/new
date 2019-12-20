@@ -4972,7 +4972,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
     if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
         ManageChannels = true;  
       
-        const TranslatedMessages = [InfoIcon + " Created a channel called **#X001** for the **X002** function.", InfoIcon + " ."];
+        const TranslatedMessages = [InfoIcon + " Created a channel called **#X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál **#X001** pro funkci **X002**."];
         var ChannelCreation = TranslatedMessages[Language]
     };
   
@@ -5036,16 +5036,12 @@ if  (FunctioName.startsWith("welcome messages"))  {
                   await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
             }).catch(function(err) {  ErrorBag.add(err);  });
 
-            InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
+            InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Welcome Messages"));
 
             };
           
-        }
-         else
-        {
-         const embed = {"description": CooldownMessage2[Language],  "color": EmbedColor}; 
-         message.channel.send({ embed })
-         .catch(error => ErrorBag.add(error));
+        } else {
+          InfoMessages.push(CooldownMessage2[Language]);
         };
       
     };
@@ -5085,15 +5081,12 @@ if  (FunctioName.startsWith("classification wall"))  {
                   await channel.send("**" + message.guild.name + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\nPreparing... Come back in a few minutes!").catch(error => {ErrorBag.add(error);}).then(m => peeky.serverData.set(keySF, m.id, "donor_wall_bonus_id"));
             }).catch(function(err) {  ErrorBag.add(err);  });
 
-            InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
+            InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Classification Wall"));
 
             };
           
-        }
-         else
-        {
-         const embed = {"description": CooldownMessage2[Language],  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        } else {
+          InfoMessages.push(CooldownMessage2[Language]);
         };
       
     };
@@ -5134,7 +5127,7 @@ if  (FunctioName.startsWith("ticket system"))  {
                       await channel.send("**Need help with something?**" + "\n" + "Click on the reaction below to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_bonus_id");  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
 
-                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
+                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Ticket System"));
 
                 if  (!category)  {
                     InfoMessages.push(InfoIcon + " Consider creating a category called **Tickets** to sort tickets.");
@@ -5142,11 +5135,8 @@ if  (FunctioName.startsWith("ticket system"))  {
 
             };
 
-        }
-         else
-        {
-         const embed = {"description": CooldownMessage2[Language],  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        } else {
+          InfoMessages.push(CooldownMessage2[Language]);
         };
       
     };
@@ -5186,15 +5176,12 @@ if  (FunctioName.startsWith("reaction roles"))  {
                       await channel.send("**Reaction Roles**" + "\n" + "Preparing... Come back in a few minutes!").catch(error => ErrorBag.add(error)).then(m => {  peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id");  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
 
-                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
+                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Reaction Roles"));
 
             };
 
-        }
-         else
-        {
-         const embed = {"description": CooldownMessage2[Language],  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        } else {
+          InfoMessages.push(CooldownMessage2[Language]);
         };
 
     };
@@ -5235,12 +5222,8 @@ if  (FunctioName.startsWith("join role"))  {
     InfoMessages.push(InfoIcon + " Created a role called **" + name + "** for the **Join Role** function.");
 
     };
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage3[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed })
-     .catch(error => ErrorBag.add(error));
+    } else {
+      InfoMessages.push(CooldownMessage3[Language]);
     };
     };
       
@@ -5339,15 +5322,11 @@ if  (FunctioName.startsWith("message log"))  {
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
 
-    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Message Log"));
     
     };
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage2[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed })
-     .catch(error => ErrorBag.add(error));
+    } else {
+      InfoMessages.push(CooldownMessage2[Language]);
     };
     };
       
@@ -5386,16 +5365,12 @@ if  (FunctioName.startsWith("stream announcements"))  {
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
 
-    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Stream Announcements"));
     
     };
 
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage2[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed })
-     .catch(error => ErrorBag.add(error));
+    } else {
+      InfoMessages.push(CooldownMessage2[Language]);
     };
     };
       
@@ -5436,16 +5411,12 @@ if  (FunctioName.startsWith("member counter"))  {
          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  CONNECT: true  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });     
 
-    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Member Counter"));
     
     };
     
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage2[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed })
-     .catch(error => ErrorBag.add(error));
+    } else {
+      InfoMessages.push(CooldownMessage2[Language]);
     };
     };
       
@@ -5483,17 +5454,13 @@ if  (FunctioName.startsWith("reddit posts"))  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
-      
-    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Reddit Posts** function.")
+
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Reddit Posts"));
     
     };
     
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage2[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed })
-     .catch(error => ErrorBag.add(error));
+    } else {
+      InfoMessages.push(CooldownMessage2[Language]);
     };
     };
       
@@ -5533,16 +5500,13 @@ if  (FunctioName.startsWith("server age"))  {
          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  CONNECT: false  }).catch(error => ErrorBag.add(error));
          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  CONNECT: true  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });     
-      
-    InfoMessages.push(InfoIcon + " Created a channel called **" + name + "** for the **Server Age** function.");
+
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Server Age"));
     
     };
     
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage2[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    } else {
+      InfoMessages.push(CooldownMessage2[Language]);
     };
     };
       
@@ -5582,16 +5546,13 @@ if  (FunctioName.startsWith("event countdown"))  {
          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  CONNECT: false  }).catch(error => ErrorBag.add(error));
          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  CONNECT: true  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
-      
-    InfoMessages.push(InfoIcon + " Created a channel called **" + name + "** for the **Event Countdown** function.");
+
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Event Countdown"));
     
     };
     
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage2[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    } else {
+      InfoMessages.push(CooldownMessage2[Language]);
     };
     };
       
@@ -5723,11 +5684,8 @@ if  (FunctioName.startsWith("streamer role"))  {
     InfoMessages.push(InfoIcon + " Created a role called **" + name + "** for the **Streamer Role** function.");
 
     };
-    }
-     else
-    {
-     const embed = {"description": CooldownMessage3[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    } else {
+      InfoMessages.push(CooldownMessage3[Language]);
     };
     };
       
