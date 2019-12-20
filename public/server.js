@@ -4968,6 +4968,8 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 
     var ManageChannels = false;
     var ManageRoles = false;
+    var EnableStrings = ["enabled", "zapnutá"];
+    var DisableStrings = ["disable", "vypnutá"];
   
     if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
         ManageChannels = true;  
@@ -4990,13 +4992,13 @@ if  (FunctioName == "automatic reactions")  {
     else peeky.channelData.set(keyCF, true, "automatic_reactions_bonus");
       
     if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
-        var StatusString = TranslatedStrings[Language];
+        var StatusString = EnableStrings[Language];
     } else {
-      var StatusString = TranslatedStrings[Language];
+      var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", InfoIcon + " Funkce **X001** je teď **X002**."];
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString),  "color": EmbedColor};
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5011,13 +5013,13 @@ if  (FunctioName == "safe chat")  {
     else peeky.channelData.set(keyCF, true, "safe_chat_bonus");
       
     if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)  {
-        var StatusString = TranslatedStrings[Language];
+        var StatusString = EnableStrings[Language];
     } else {
-      var StatusString = TranslatedStrings[Language];
+      var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", InfoIcon + " Funkce **X001** je teď **X002**."];
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString),  "color": EmbedColor};
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5062,13 +5064,13 @@ if  (FunctioName.startsWith("welcome messages"))  {
     };
       
     if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
-        var StatusString = TranslatedStrings[Language];
+        var StatusString = EnableStrings[Language];
     } else {
-      var StatusString = TranslatedStrings[Language];
+      var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", InfoIcon + " Funkce **X001** je teď **X002**."];
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString),  "color": EmbedColor};
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5112,8 +5114,14 @@ if  (FunctioName.startsWith("classification wall"))  {
       
     };
 
-    if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Classification Wall** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5162,8 +5170,14 @@ if  (FunctioName.startsWith("ticket system"))  {
       
     };
 
-    if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Ticket System** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5207,8 +5221,14 @@ if  (FunctioName.startsWith("reaction roles"))  {
 
     };
 
-    if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Reaction Roles** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5248,8 +5268,14 @@ if  (FunctioName.startsWith("join role"))  {
     };
     };
       
-    if  (peeky.serverData.get(keySF, "join_role_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Join role** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5263,8 +5289,14 @@ if  (FunctioName.startsWith("role saver"))  {
     if(peeky.serverData.get(keySF, "role_saver_bonus") == true) {peeky.serverData.set(keySF, false, "role_saver_bonus");}
     else peeky.serverData.set(keySF, true, "role_saver_bonus");
       
-    if  (peeky.serverData.get(keySF, "role_saver_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Role Saver** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5278,8 +5310,14 @@ if  (FunctioName.startsWith("images only"))  {
     if(peeky.channelData.get(keyCF, "image_only_bonus") == true) {peeky.channelData.set(keyCF, false, "image_only_bonus");}
     else peeky.channelData.set(keyCF, true, "image_only_bonus");
       
-    if  (peeky.channelData.get(keyCF, "image_only_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Images Only** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    if  (peeky.channelData.get(keyCF, "image_only_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5293,8 +5331,14 @@ if  (FunctioName.startsWith("dash remover"))  {
     if(peeky.serverData.get(keySF, "dash_remover_bonus") == true) {peeky.serverData.set(keySF, false, "dash_remover_bonus");}
     else peeky.serverData.set(keySF, true, "dash_remover_bonus");
       
-    if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Dash Remover** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5308,8 +5352,14 @@ if  (FunctioName.startsWith("server message"))  {
     if(peeky.serverData.get(keySF, "server_message_bonus") == true) {peeky.serverData.set(keySF, false, "server_message_bonus");}
     else peeky.serverData.set(keySF, true, "server_message_bonus");
       
-    if  (peeky.serverData.get(keySF, "server_message_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Server Message** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "server_message_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5351,8 +5401,14 @@ if  (FunctioName.startsWith("message log"))  {
     };
     };
       
-    if  (peeky.channelData.get(keyCF, "message_log_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Message Log** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5395,8 +5451,14 @@ if  (FunctioName.startsWith("stream announcements"))  {
     };
     };
       
-    if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Stream Announcements** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5441,8 +5503,14 @@ if  (FunctioName.startsWith("member counter"))  {
     };
     };
       
-    if  (peeky.serverData.get(keySF, "member_counter_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Member Counter** function has been **"  + StatusString + "**."+ "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5485,8 +5553,14 @@ if  (FunctioName.startsWith("reddit posts"))  {
     };
     };
       
-    if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Reddit Posts** function has been **"  + StatusString + "**."+ "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5531,8 +5605,14 @@ if  (FunctioName.startsWith("server age"))  {
     };
     };
       
-    if  (peeky.serverData.get(keySF, "server_age_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Server Age** function has been **"  + StatusString + "**."+ "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5577,8 +5657,14 @@ if  (FunctioName.startsWith("event countdown"))  {
     };
     };
       
-    if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Event Countdown** function has been **"  + StatusString + "**."+ "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5592,8 +5678,14 @@ if  (FunctioName.startsWith("game roles"))  {
     if(peeky.serverData.get(keySF, "game_roles_bonus") == true) {peeky.serverData.set(keySF, false, "game_roles_bonus")}
     else peeky.serverData.set(keySF, true, "game_roles_bonus");
 
-    if  (peeky.serverData.get(keySF, "game_roles_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Game Roles** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Game Roles").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5607,8 +5699,14 @@ if  (FunctioName.startsWith("clear nicknames"))  {
     if(peeky.serverData.get(keySF, "clear_nicknames_bonus") == true) {peeky.serverData.set(keySF, false, "clear_nicknames_bonus");}
     else peeky.serverData.set(keySF, true, "clear_nicknames_bonus");
       
-    if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Clear Nicknames** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Clear Nicknames").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed })
     .catch(error => ErrorBag.add(error));
@@ -5623,8 +5721,14 @@ if  (FunctioName.startsWith("suspicion alert"))  {
     if(peeky.serverData.get(keySF, "suspicion_alert_bonus") == true) {peeky.serverData.set(keySF, false, "suspicion_alert_bonus");}
     else peeky.serverData.set(keySF, true, "suspicion_alert_bonus");
       
-    if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Suspicion Alert** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Suspicion Alert").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed })
     .catch(error => ErrorBag.add(error));
@@ -5639,8 +5743,14 @@ if  (FunctioName.startsWith("vote kick")) {
     if(peeky.serverData.get(keySF, "vote_kick_bonus") == true) {peeky.serverData.set(keySF, false, "vote_kick_bonus");}
     else peeky.serverData.set(keySF, true, "vote_kick_bonus");
       
-    if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Vote Kick** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Vote Kick").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5654,8 +5764,14 @@ if  (FunctioName.startsWith("flood protection")) {
     if(peeky.serverData.get(keySF, "flood_protection_bonus") == true) {peeky.serverData.set(keySF, false, "flood_protection_bonus");}
     else peeky.serverData.set(keySF, true, "flood_protection_bonus");
       
-    if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Flood Protection** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Flood Protection").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5669,8 +5785,14 @@ if  (FunctioName.startsWith("nickname saver")) {
     if(peeky.serverData.get(keySF, "nick_saver_bonus") == true) {peeky.serverData.set(keySF, false, "nick_saver_bonus");}
     else peeky.serverData.set(keySF, true, "nick_saver_bonus");
       
-    if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Nickname Saver** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Nickname Saver").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5710,8 +5832,14 @@ if  (FunctioName.startsWith("streamer role"))  {
     };
     };
       
-    if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Streamer Role** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Streamer Role").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5725,8 +5853,14 @@ if  (FunctioName.startsWith("banned words"))  {
     if   (peeky.channelData.get(keyCF, "banned_words_bonus") == true) {peeky.channelData.set(keyCF, false, "banned_words_bonus")}
     else peeky.channelData.set(keyCF, true, "banned_words_bonus");
       
-    if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Banned Words** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Banned Words").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5740,8 +5874,14 @@ if  (FunctioName.startsWith("spoiler lock"))  {
     if   (peeky.serverData.get(keySF, "spoiler_only_bonus") == true) {peeky.serverData.set(keySF, false, "spoiler_only_bonus")}
     else peeky.serverData.set(keySF, true, "spoiler_only_bonus");
       
-    if  (peeky.serverData.get(keySF, "spoiler_only_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Spoiler Lock** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Spoiler Lock").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed })
     .catch(error => ErrorBag.add(error));
