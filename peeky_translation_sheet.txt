@@ -1,0 +1,156 @@
+Thank you for taking part in translating PEEKY into more languages!
+Answer the questions below and then follow the steps, thank you for your time.
+
+QUESTIONS:
+1. What language are you translating to?
+Answer: 
+
+2. How fluent are you with specified language?
+Answer: 
+
+3. What's your Discord username or ID?
+Answer: 
+
+SUBMIT TRANSLATION:
+After translating all the phrases below, send me the translation file on Discord by following the steps below.
+
+1. Join the Support Server. (peeky.glitch.me/server.html)
+2. Create a ticket by going to the #tickets channel.
+3. Upload the file with an optional note.
+4. We will contact you with further (if any) questions.
+
+TRANSLATE:
+Do not replace/remove any symbols such as X001, X002 and so on...
+
+The server language has been set to **LANGUAGE_NAME**. | 
+
+**X001** has been vote kicked with **Y votes**. | 
+**X001** has started a vote kick against **Y**. | 
+You cannot start a vote kick against that user, **X001**. | 
+
+**X001 has created a ticket** | 
+Staff may close the ticket once the issue has been resolved. | 
+
+**X001** has logged **X002**'s message. | 
+That message was already logged, **X001**. | 
+
+Please restrain yourself from using profanity, **X001**. | 
+
+You can only send images in this channel, **X001**. | 
+
+Server Age: X001 days | 
+
+I have muted **X001** because of the **Flood Protection** function. | 
+
+You have to mark your image as a spoiler, **X001** | 
+
+That phrase is blocked by the **Banned Words** function, **X001**. | 
+
+Visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related. | 
+Support PEEKY by purchasing some neat items from the store! | 
+Join the Support Server for important announcements, assistance with the bot, giveaways and much more! | 
+Add PEEKY to your server and get all the features for free and quick! | 
+
+You cannot upgrade this server. | 
+
+The server's invite code has been set to **X001**. | 
+I could not find any server invites in this channel. | 
+
+The **X001** function has been **X002**. | 
+Created a channel called **#X001** for the **X002** function. | 
+Created a role called **X001** for the **@X002** function. | 
+
+The setting for the **X001** function is now **X002**. | 
+The setting for the **X001** function is full. | 
+
+Cleared the setting for the **X001** function. | 
+
+You have bought a new description for **X001** | 
+You have bought a random description for **X001**. | 
+
+You have bought the **X001** background for **X002**. | 
+You cannot buy the default and exclusive backgrounds. | 
+
+You have set a **Custom Background** for **X001**. | 
+Failed to set your custom background. | 
+
+You have set the **X001** background. | 
+
+You have sold the **X001** background for **X002**. | 
+You cannot sell the default backgrounds. | 
+You have sold all your backgrounds for **X001**. | 
+
+You have opened **X001** for **X002**. | 
+
+Come back in **X001** and **X002** for your reward. | 
+
+Added the current song to your playlist. | 
+Added the song to your playlist. | 
+You cannot add playlists to your playlist. | 
+The song has been removed from your playlist. | 
+That song is not in your playlist. | 
+Your playlist has been renamed to **X001**. | 
+You have set the thumbnail for your playlist. | 
+Failed to set your playlist thumbnail. | 
+You have cleared your playlist of **X001 songs** and the thumbnail. | 
+
+Only the server owner can skip this song right now. | 
+
+**Try to guess the name of this song!** | 
+
+You cannot mute that user. | 
+You cannot unmute that user. | 
+I cannot find a role called **X001**. | 
+
+You cannot ID ban someone inside the server. | 
+You must enter a valid ID. | 
+
+You cannot ban that user. | 
+
+You cannot kick that user. | 
+
+You can only purge 1 to 100 messages. | 
+
+The prefix is now **X001**. | 
+
+The highlighted channel is now **#X001**. | 
+
+The function notifications are now set to **X001**. | 
+
+The level notifications are now set to **X001**. | 
+
+The mute role is now set to **@X001**. | 
+
+You are currently on a cooldown for that command. | 
+Automated channel creation is currently on a cooldown. | 
+Automated role creation is currently on a cooldown. | 
+You are currently on a cooldown for that function. | 
+
+You are lacking the required permissions do that. | 
+You need to be the owner of this server to do that. | 
+I am missing required permissions to do that. | 
+
+You need more Gredit to do that. | 
+The new description is too large. | 
+The provided mention is invalid." | 
+You need to enter a valid YouTube link. | 
+You do not have that background in your inventory. | 
+You do not have enough chests. | 
+The mentioned user has no profile. | 
+Mentions are not allowed for this command. | 
+You must enter a valid amount. | 
+Make sure the function's name is all in lowercase. | 
+You need to become a Supporter to do that. | 
+There are no songs playing right now. | 
+Something has gone unexpectedly wrong. | 
+You already own that ackground. | 
+You cannot add any more songs to your playlist. | 
+That background doesn't exist. | 
+You need to specify the function. | 
+You need to provide valid arguments for the command. | 
+You need to join the Support Server. | 
+You need to upload a file. | 
+You can only do that in upgraded servers. | 
+
+You have earned a new badge. | 
+You have set the default background. | 
