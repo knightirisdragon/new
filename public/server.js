@@ -4971,6 +4971,9 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
   
     if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
         ManageChannels = true;  
+      
+        const TranslatedMessages = [InfoIcon + " Created a channel called **#X001** for the **X002** function.", InfoIcon + " ."];
+        var ChannelCreation = TranslatedMessages[Language]
     };
   
     if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
@@ -5033,7 +5036,7 @@ if  (FunctioName.startsWith("welcome messages"))  {
                   await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
             }).catch(function(err) {  ErrorBag.add(err);  });
 
-            InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Welcome Messages** function.");
+            InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
 
             };
           
@@ -5082,7 +5085,7 @@ if  (FunctioName.startsWith("classification wall"))  {
                   await channel.send("**" + message.guild.name + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\nPreparing... Come back in a few minutes!").catch(error => {ErrorBag.add(error);}).then(m => peeky.serverData.set(keySF, m.id, "donor_wall_bonus_id"));
             }).catch(function(err) {  ErrorBag.add(err);  });
 
-            InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Classification Wall** function.");
+            InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
 
             };
           
@@ -5131,7 +5134,7 @@ if  (FunctioName.startsWith("ticket system"))  {
                       await channel.send("**Need help with something?**" + "\n" + "Click on the reaction below to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_bonus_id");  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
 
-                InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Ticket System** function.");
+                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
 
                 if  (!category)  {
                     InfoMessages.push(InfoIcon + " Consider creating a category called **Tickets** to sort tickets.");
@@ -5183,7 +5186,7 @@ if  (FunctioName.startsWith("reaction roles"))  {
                       await channel.send("**Reaction Roles**" + "\n" + "Preparing... Come back in a few minutes!").catch(error => ErrorBag.add(error)).then(m => {  peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id");  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
 
-                InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Reaction Roles** function.");
+                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
 
             };
 
@@ -5335,8 +5338,8 @@ if  (FunctioName.startsWith("message log"))  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
-      
-    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Message Log** function.")
+
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
     
     };
     }
@@ -5382,8 +5385,8 @@ if  (FunctioName.startsWith("stream announcements"))  {
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });
-      
-    InfoMessages.push(InfoIcon + " Created a channel called **#" + name + "** for the **Stream Announcements** function.")
+
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
     
     };
 
@@ -5432,8 +5435,8 @@ if  (FunctioName.startsWith("member counter"))  {
          await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  CONNECT: false  }).catch(error => ErrorBag.add(error));
          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  CONNECT: true  }).catch(error => ErrorBag.add(error));
     }).catch(function(err) {  ErrorBag.add(err);  });     
-      
-    InfoMessages.push(InfoIcon + " Created a channel called **" + name + "** for the **Member Counter** function.");
+
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "FunctionName"));
     
     };
     
