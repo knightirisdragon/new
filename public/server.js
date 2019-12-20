@@ -5904,8 +5904,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
-    var TranslatedMessages = [SuccessIcon + " The **X001** function's setting has been set to **X002**.", SuccessIcon + " Nastavení funkce **X001** je nyní **X002**."];
-    var TranslatedFullSetting = [ErrorIcon + " The setting for the **X001** function is full.", ErrorIcon + " Nastavení pro funkci **X001** je plné."];
+    var TranslatedMessages = [SuccessIcon + " The setting for the **X001** function is now **X002**.", SuccessIcon + " Nastavení pro funkci **X001** je nyní **X002**."];
+    var TranslatedFullSetting = [ErrorIcon + " The setting for the **X001** function is full.", ErrorIcon + " Nastavení pro funcki **X001** je plné."];
       
 //Set Welcome Messages
 if  (FunctioName.startsWith("welcome messages "))  {
@@ -6339,13 +6339,15 @@ if  (FunctioName.startsWith(" "))  {
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+
+    var TranslatedMessages = [SuccessIcon + " Cleared the setting for the **X001** function.", SuccessIcon + " Nastavení pro funkci **X001** bylo vyčištěno."];
  
 //Clear Banned Words
 if  (FunctioName.startsWith("banned words"))  {
       
      peeky.serverData.set(keySF, [], "banned_words_bonus_setting");
   
-     const embed = {"description": SuccessIcon + " Cleared the setting for the **Banned Words** function.",  "color": EmbedColor};
+     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -6357,7 +6359,7 @@ if  (FunctioName.startsWith("reaction roles"))  {
       
      peeky.serverData.set(keySF, [], "reaction_roles_bonus_setting");
   
-     const embed = {"description": SuccessIcon + " Cleared the setting for the **Reaction Roles** function.",  "color": EmbedColor};
+     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -6369,7 +6371,7 @@ if  (FunctioName.startsWith("role saver"))  {
       
      peeky.serverData.set(keySF, [], "role_saver_bonus_setting");
   
-     const embed = {"description": SuccessIcon + " Cleared the setting for the **Role Saver** function.",  "color": EmbedColor};
+     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -6381,7 +6383,7 @@ if  (FunctioName.startsWith("game roles"))  {
       
      peeky.serverData.set(keySF, [], "game_roles_bonus_setting");
   
-     const embed = {"description": SuccessIcon + " Cleared the setting for the **Game Roles** function.",  "color": EmbedColor};
+     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
