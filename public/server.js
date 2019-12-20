@@ -3642,7 +3642,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             peeky.serverData.set(keySF, 0, "language");
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  "**Languages**" + "\n\n" + "The server language has been set to English.",
+                  description:  "**Languages**" + "\n\n" + "The server language has been set to **English**.",
                   color: EmbedColor
             });
 
@@ -3652,7 +3652,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             peeky.serverData.set(keySF, 1, "language");
 
             const newEmbed = new Discord.RichEmbed({
-                  description:  "**Languages**" + "\n\n" + "Jazyk serveru byl nastaven na Češtinu.",
+                  description:  "**Languages**" + "\n\n" + "Jazyk serveru byl nastaven na **Češtinu**.",
                   color: EmbedColor
             });
 
