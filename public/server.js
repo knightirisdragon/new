@@ -2188,7 +2188,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
 
     toRemoveGuilds.forEach(async data => {
       
-        if  (data.server_Upgraded !== true && !ImmuneServers.includes(data.GuildID))  {
+        if  (data.server_Upgraded == false && !ImmuneServers.includes(data.GuildID))  {
       
             peeky.serverData.delete(data.GuildID);
 
@@ -4812,10 +4812,11 @@ if (CommandName.startsWith("upgrade"))  {
 
         if  (Failed == false)  {
             
-            peeky.serverData.set(keySF, true, "server_upgraded")
+            peeky.serverData.set(keySF, true, "server_upgraded");
             peeky.userData.math(key, "+", 1, "UpgradedServers");
           
-            const embed = {"description": SuccessIcon + " This server is now upgraded!",  "color": EmbedColor}; 
+            const TranslatedMessages = [SuccessIcon + " This server is now upgraded!", SuccessIcon + " Tento server je nyní vylepšen!"];
+            const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             peeky.channels.get("319891596772638744").send("**" + function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
