@@ -100,7 +100,6 @@ const CurrentlyStreaming      = new Set();
 const ClearedNames            = new Set();
 const FailedVoteChecks        = new Set();
 const FailedDMs               = new Set();
-const AutoWipedServers        = new Set();
 const LoggedMessages          = new Set();
 const ActivatedTicketSystems  = new Set();
 
@@ -274,7 +273,7 @@ const InfoMessage2 = [InfoIcon + " You have set the default background.", ErrorI
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const VulgarPhrases       = [  "anal", "anus", "arse", "ass", "ballsack", "balls", "bastard", "bitch", "biatch", "bloody", "blowjob", "boner", "boob", "bugger", "bum", "butt", "buttplug", "clitoris", "cock", "coon", "crap", "cunt", "damn", "dick", "dildo", "dyke", "fag", "feck", "fellate", "fellatio", "felching", "fuck", "fudgepacker", "fudge", "packer", "flange", "Goddamn", "God", "damn", "hell", "homo", "jerk", "jizz", "knobend", "knob", "end", "labia", "lmao", "lmfao", "muff", "nigger", "nigga", "penis", "piss", "poop", "prick", "pube", "pussy", "queer", "scrotum", "sex", "shit", "sh1t", "slut", "smegma", "spunk", "tit", "tosser", "turd", "twat", "vagina", "wank", "whore", "wtf"  ];
-const ImmuneServers       = [  SupportServer, EmojiStorage1, `454933217666007052`, `264445053596991498`, `330777295952543744`, `387812458661937152`, `374071874222686211`, `439866052684283905`, `534551489595703306`, `608711879858192479`, `603194252872122389`  ];
+const ImmuneServers       = [  SupportServer, `454933217666007052`, `264445053596991498`, `330777295952543744`, `387812458661937152`, `374071874222686211`, `439866052684283905`, `534551489595703306`, `608711879858192479`, `603194252872122389`  ];
 const EmojiNumbers        = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
 
 //Small Objects
@@ -2184,24 +2183,26 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
     const rightNow = Date.now();
   
     //Guilds
-    var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen && p.server_Upgraded !== true && !ImmuneServers.includes(p.GuildID));
+    var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen);
     var toRemoveGuilds = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
 
     toRemoveGuilds.forEach(async data => {
       
-        peeky.serverData.delete(data.GuildID);
+        if  (data.server_Upgraded !== true && !ImmuneServers.includes(data.GuildID))  {
       
-        var Guild = peeky.guilds.get(data.GuildID);
-        if  (Guild !== undefined)  {
-            if  (Guild.owner)  {
-                await function_DirectMessage(Guild.owner.user.id, "I'm leaving your server called **" + Guild.name + "** because of inactivity.");
+            peeky.serverData.delete(data.GuildID);
+
+            var Guild = peeky.guilds.get(data.GuildID);
+            if  (Guild !== undefined)  {
+                if  (Guild.owner)  {
+                    await function_DirectMessage(Guild.owner.user.id, "I'm leaving your server called **" + Guild.name + "** because of inactivity.");
+                };
+                await Guild.leave();
             };
-            AutoWipedServers.push(data.GuildID);
-            await Guild.leave();
-            AutoWipedServers.delete(data.GuildID);
+
+            console.log("I have removed an inactive server.");    
+          
         };
-      
-        console.log("I have removed an inactive server.");    
 
     });
       
@@ -3992,7 +3993,7 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
 const key      = `${message.author.id}`;
 const keyCF    = `${message.channel.id}`;
 const keySF    = `${message.guild.id}`;
-const Language = peeky.serverData.get(keySF, "language");
+const Language = peeky.serverData.get(keySF, "language");     
 var   Failed   = false;
 
 if  (!message.webhookID)  {
