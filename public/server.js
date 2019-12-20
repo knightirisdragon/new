@@ -3633,7 +3633,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
         reaction.remove(user.id).catch(error => ErrorBag.add(error));
     };
   
-    if  (!CommandCooldown.has("languages" + user.id) && reaction.message.member.permissions.has("MANAGE_GUILD"))  {
+    if  (!CommandCooldown.has("languages" + user.id))  {
          
         CommandCooldown.add("languages" + user.id);
         setTimeout(() => {CommandCooldown.delete("languages" + user.id)}, 2500);
@@ -4925,7 +4925,7 @@ if (CommandName == "languages")  {
       
         if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
           
-            if  (message.member.permissions.has("MANAGE_GUILD"))  {
+            if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
                 CommandCooldown.add("languages" + message.guild.id);
                 setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
