@@ -3710,7 +3710,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
             };
  
         } else {
-          const TranslatedMessages = [ErrorIcon + " You cannot start a vote kick against that user, **X001**", ErrorIcon + " Tohoto uživatele nelze vyhlasovat ze serveru, **X001**."];
+          const TranslatedMessages = [ErrorIcon + " You cannot start a vote kick against that user, **X001**.", ErrorIcon + " Tohoto uživatele nelze vyhlasovat ze serveru, **X001**."];
           const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", ""),  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
@@ -4198,7 +4198,7 @@ if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)  {
                     ResponseCooldowns.add(message.guild.id + "SC");
                     setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SC")}, ResponseCooldownMS);
 
-                    const TranslatedMessages = [InfoIcon + " Please restrain yourself from using profanity, **X001**", InfoIcon + " Přestaňte prosím mluvit sprostě, **X001**."];
+                    const TranslatedMessages = [InfoIcon + " Please restrain yourself from using profanity, **X001**.", InfoIcon + " Přestaňte prosím mluvit sprostě, **X001**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
@@ -4508,7 +4508,7 @@ if  (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)  {
                           ResponseCooldowns.add(message.guild.id + "SO");
                           setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SO")}, ResponseCooldownMS);
 
-                          const TranslatedMessages = [InfoIcon + " You have to mark your image as a spoiler, **X001**", InfoIcon + " Musíte označit váš obrázek jako spoiler, **X001**."];
+                          const TranslatedMessages = [InfoIcon + " You have to mark your image as a spoiler, **X001**.", InfoIcon + " Musíte označit váš obrázek jako spoiler, **X001**."];
                           const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor}
                           message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
@@ -6440,7 +6440,7 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
 
             if  (NewLinesCount < 2)  {
               
-                const TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001**" + " " + GreditIcon + "**."];
+                const TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001**." + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001**" + " " + GreditIcon + "**."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6458,7 +6458,7 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
              else
             {
 
-              const TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**."];
+              const TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001**." + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**."];
               const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
