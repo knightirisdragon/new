@@ -4982,7 +4982,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
     if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
         ManageRoles = true;
       
-        var TranslatedBonuses = [InfoIcon + " Created a role called **X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **X001** pro funkci **X002**."];
+        var TranslatedBonuses = [InfoIcon + " Created a role called **X001** for the **@X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **@X001** pro funkci **X002**."];
         var RoleCreation = TranslatedBonuses[Language];
     };
       
@@ -5903,6 +5903,8 @@ if  (FunctioName.startsWith(" "))  {
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+  
+    var TranslatedMessages = [SuccessIcon + " The **X001** function's setting has been set to **X002**.", SuccessIcon + " Nastavení funkce **X001** je nyní **X002**."];
       
 //Set Welcome Messages
 if  (FunctioName.startsWith("welcome messages "))  {
@@ -5910,8 +5912,8 @@ if  (FunctioName.startsWith("welcome messages "))  {
     var ChannelName = CommandName.split("welcome messages ")[1];
     var FixedChannelName = function_RemoveFormatting(ChannelName, "channel", true);
     peeky.serverData.set(keySF, FixedChannelName, "welcome_messages_bonus_setting");
-
-    const embed = {"description": SuccessIcon + " The **Welcome Messages** setting has been set to **#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting")+ "**.",  "color": EmbedColor}; 
+  
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
@@ -5923,8 +5925,8 @@ if  (FunctioName.startsWith("join role "))  {
     
     var RoleName = CommandName.split("join role ")[1];
     peeky.serverData.set(keySF, function_RemoveFormatting(RoleName, "role"), "join_role_bonus_setting", true);
-
-    const embed = {"description": SuccessIcon + " The **Join Role** setting has been set to **@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "**.",  "color": EmbedColor}; 
+  
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "@" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -5937,7 +5939,7 @@ if  (FunctioName.startsWith("streamer role "))  {
     var RoleName = CommandName.split("streamer role ")[1];
     peeky.serverData.set(keySF, function_RemoveFormatting(RoleName, "role"), "streamer_role_bonus_setting", true);
 
-    const embed = {"description": SuccessIcon + " The **Streamer Role** setting has been set to **@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -5951,7 +5953,7 @@ if  (FunctioName.startsWith("automatic reactions "))  {
     var FixedReactionName = function_RemoveFormatting(ReactionName, "other", true);
     peeky.serverData.set(keySF, FixedReactionName, "automatic_reactions_bonus_setting");
     
-    const embed = {"description": SuccessIcon + " The **Automatic Reactions** setting has been set to **:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:** and **:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:**.",  "color": EmbedColor}; 
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "**:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:** and **:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:**"),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -5965,7 +5967,7 @@ if  (FunctioName.startsWith("classification wall "))  {
     peeky.serverData.set(keySF, function_RemoveFormatting(ChannelName, "role"), "donor_wall_bonus_setting", true);
     peeky.serverData.set(keySF, function_RemoveFormatting(ChannelName, "channel") + "s", "donor_wall_bonus_channel", true);
 
-    const embed = {"description": SuccessIcon + " The **Classification Wall** setting has been set to **#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "** and **@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "**#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "** and **@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "**"),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -5978,7 +5980,7 @@ if  (FunctioName.startsWith("ticket system "))  {
     var RoleName = CommandName.split("ticket system ")[1];
     peeky.serverData.set(keySF, function_RemoveFormatting(RoleName, "role"), "ticket_system_bonus_setting", true);
 
-    const embed = {"description": SuccessIcon + " The **Ticket System** setting has been set to **@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -5992,7 +5994,7 @@ if  (FunctioName.startsWith("member counter "))  {
       
     peeky.serverData.set(keySF, function_RemoveFormatting(CounterName, "other"), "member_counter_bonus_setting", true);
 
-    const embed = {"description": SuccessIcon + " The **Member Counter** setting has been set to **" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -6010,7 +6012,7 @@ if  (FunctioName.startsWith("event countdown "))  {
 
     peeky.serverData.set(keySF, GivenDate.getTime(), "event_countdown_bonus_setting");
 
-    const embed = {"description": SuccessIcon + " The **Event Countdown** setting has been set to **" + Timestamp + "**.",  "color": EmbedColor}; 
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
@@ -6035,7 +6037,7 @@ if  (FunctioName.startsWith("spoiler lock "))  {
 
         if  (GivenMinutes == 0)  {GivenMinutes = "never"}  else  {GivenMinutes = GivenMinutes + " minutes"}
 
-        const embed = {"description": SuccessIcon + " The **Spoiler Lock** setting has been set to **" + GivenMinutes + "**.",  "color": EmbedColor}; 
+        const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
@@ -6058,7 +6060,7 @@ if  (FunctioName.startsWith("suspicion alert "))  {
 
         peeky.serverData.set(keySF, Number(BanAmount), "suspicion_alert_bonus_setting");
 
-        const embed = {"description": SuccessIcon + " The **Suspicion Alert** setting has been set to **" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans**.",  "color": EmbedColor};  
+        const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     }
@@ -6081,7 +6083,7 @@ if  (FunctioName.startsWith("vote kick "))  {
 
         peeky.serverData.set(keySF, Number(VoteAmount), "vote_kick_bonus_setting");
 
-        const embed = {"description": SuccessIcon + " The **Vote Kick** setting has been set to **" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes**.",  "color": EmbedColor};  
+        const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
@@ -6103,7 +6105,7 @@ if  (FunctioName.startsWith("message log "))  {
 
     peeky.serverData.set(keySF, FixedChannelName, "message_log_bonus_setting");
 
-    const embed = {"description": SuccessIcon + " The **Message Log** setting has been set to **#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -6118,7 +6120,7 @@ if  (FunctioName.startsWith("stream announcements "))  {
 
     peeky.serverData.set(keySF, FixedChannelName, "stream_announcements_bonus_setting");
 
-    const embed = {"description": SuccessIcon + " The **Stream Announcements** setting has been set to **#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -6133,7 +6135,7 @@ if  (FunctioName.startsWith("reddit posts "))  {
 
     peeky.serverData.set(keySF, FixedChannelName, "reddit_posts_bonus_setting");
 
-    const embed = {"description": SuccessIcon + " The **Reddit Posts** setting has been set to **r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -6147,7 +6149,7 @@ if  (FunctioName.startsWith("clear nicknames "))  {
     var FixedSetting = function_RemoveFormatting(NewSetting, "other", true);
     peeky.serverData.set(keySF, FixedSetting, "clear_nicknames_bonus_setting");
 
-    const embed = {"description": SuccessIcon + " The **Clear Nicknames** setting has been set to **" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "**.",  "color": EmbedColor}; 
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -6163,7 +6165,7 @@ if  (FunctioName.startsWith("flood protection "))  {
       
         peeky.serverData.set(keySF, Number(NewSetting), "flood_protection_bonus_setting");
 
-        const embed = {"description": SuccessIcon + " The **Flood Protection** setting has been set to **" + peeky.serverData.get(keySF, "flood_protection_bonus_setting") + " strikes**.",  "color": EmbedColor}; 
+        const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     }
@@ -6195,7 +6197,7 @@ if  (FunctioName.startsWith("server message "))  {
     if  (ServerMessageContent.includes(GuildVerificationTag)) {  TagString += "\n\n" + InfoIcon + " The **" + GuildVerificationTag + "** tag was detected."  };
     if  (ServerMessageContent.includes(GuildAcronymTag)) {  TagString += "\n\n" + InfoIcon + " The **" + GuildAcronymTag + "** tag was detected."  };
 
-        const embed = {"description": SuccessIcon + " The **Server Message** setting has been set to **" + ServerMessagePreview + FixedMsgEnd + "**." + TagString,  "color": EmbedColor}; 
+        const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "**" + ServerMessagePreview + FixedMsgEnd + "**." + TagString),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -6213,6 +6215,7 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < Setting.
     var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
   
     const embed = {"description": SuccessIcon + " The **Banned Words** setting has been set to **" + FixedArray.join("**, **") + EndString + "**.",  "color": EmbedColor}; 
+        const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", "" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
