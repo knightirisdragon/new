@@ -3269,9 +3269,12 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
   
     if  (!member.user.bot && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SA2"))  {
 
+        CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
+        setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 300000);
+
         var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));    
 
-        if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+        if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES') && member.permissions.has("GO_LIVE"))  {
       
             if  (member.presence.game !== null && member.presence.game.type == 1)  {
 
@@ -3282,9 +3285,6 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                 if  (AlreadyStreaming !== true)  {
                   
                     var SavedMember = member;
-
-                    CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
-                    setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
 
                     const embed = function_StreamAnnouncements(member);
                     Channel.send({ embed }).catch(error => ErrorBag.add(error));
