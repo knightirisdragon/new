@@ -4930,7 +4930,7 @@ if (CommandName == "languages")  {
                 CommandCooldown.add("languages" + message.guild.id);
                 setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
 
-                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `100%`" + "\n\n" + "🇨🇿 Čeština `70%`",  "color": EmbedColor}; 
+                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `100%`" + "\n\n" + "🇨🇿 Čeština `85%`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       peeky.userData.set(key, m.id, "LanguageID");
@@ -4972,12 +4972,15 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
     if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
         ManageChannels = true;  
       
-        const TranslatedMessages = [InfoIcon + " Created a channel called **#X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál **#X001** pro funkci **X002**."];
+        var TranslatedMessages = [InfoIcon + " Created a channel called **#X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál s názvem **#X001** pro funkci **X002**."];
         var ChannelCreation = TranslatedMessages[Language]
     };
   
     if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
         ManageRoles = true;
+      
+        var TranslatedMessages = [InfoIcon + " Created a role called **X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **X001** pro funkci **X002**."];
+        var RoleCreation = TranslatedMessages[Language];
     };
       
 //Toggle Automatic Reactions
@@ -4986,8 +4989,14 @@ if  (FunctioName == "automatic reactions")  {
     if   (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true) {peeky.channelData.set(keyCF, false, "automatic_reactions_bonus")}
     else peeky.channelData.set(keyCF, true, "automatic_reactions_bonus");
       
-    if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Automatic Reactions** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
+        var StatusString = TranslatedStrings[Language];
+    } else {
+      var StatusString = TranslatedStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", InfoIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5001,8 +5010,14 @@ if  (FunctioName == "safe chat")  {
     if   (peeky.channelData.get(keyCF, "safe_chat_bonus") == true) {peeky.channelData.set(keyCF, false, "safe_chat_bonus")}
     else peeky.channelData.set(keyCF, true, "safe_chat_bonus");
       
-    if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Safe Chat** function has been **"  + StatusString + "**.",  "color": EmbedColor}; 
+    if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)  {
+        var StatusString = TranslatedStrings[Language];
+    } else {
+      var StatusString = TranslatedStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", InfoIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5046,8 +5061,14 @@ if  (FunctioName.startsWith("welcome messages"))  {
       
     };
       
-    if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {var StatusString = "enabled"} else {var StatusString = "disabled"};
-    const embed = {"description": SuccessIcon + " The **Welcome Messages** function has been **"  + StatusString + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+    if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
+        var StatusString = TranslatedStrings[Language];
+    } else {
+      var StatusString = TranslatedStrings[Language];
+    };
+  
+    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", InfoIcon + " Funkce **X001** je teď **X002**."];
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "NAME").replace("X002", StatusString),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5219,7 +5240,7 @@ if  (FunctioName.startsWith("join role"))  {
     color: Setting.Blurple
     }).catch(error => ErrorBag.add(error));
       
-    InfoMessages.push(InfoIcon + " Created a role called **" + name + "** for the **Join Role** function.");
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Join Role"));
 
     };
     } else {
@@ -5681,7 +5702,7 @@ if  (FunctioName.startsWith("streamer role"))  {
     color: "#6441A4"
     }).catch(error => ErrorBag.add(error));
       
-    InfoMessages.push(InfoIcon + " Created a role called **" + name + "** for the **Streamer Role** function.");
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Streamer Role"));
 
     };
     } else {
