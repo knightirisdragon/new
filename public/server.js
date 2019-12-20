@@ -4970,19 +4970,20 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
     var ManageRoles = false;
     var EnableStrings = ["enabled", "zapnutá"];
     var DisableStrings = ["disabled", "vypnutá"];
+    var TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je nyní **X002**."];
   
     if  (message.guild.me.hasPermission("MANAGE_CHANNELS"))  {
         ManageChannels = true;  
       
-        var TranslatedMessages = [InfoIcon + " Created a channel called **#X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál s názvem **#X001** pro funkci **X002**."];
-        var ChannelCreation = TranslatedMessages[Language]
+        var TranslatedBonuses = [InfoIcon + " Created a channel called **#X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál s názvem **#X001** pro funkci **X002**."];
+        var ChannelCreation = TranslatedBonuses[Language]
     };
   
     if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
         ManageRoles = true;
       
-        var TranslatedMessages = [InfoIcon + " Created a role called **X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **X001** pro funkci **X002**."];
-        var RoleCreation = TranslatedMessages[Language];
+        var TranslatedBonuses = [InfoIcon + " Created a role called **X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **X001** pro funkci **X002**."];
+        var RoleCreation = TranslatedBonuses[Language];
     };
       
 //Toggle Automatic Reactions
@@ -4996,8 +4997,7 @@ if  (FunctioName == "automatic reactions")  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Automatic Reactions").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5017,8 +5017,7 @@ if  (FunctioName == "safe chat")  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Safe Chat").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5068,8 +5067,7 @@ if  (FunctioName.startsWith("welcome messages"))  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Welcome Messages").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5119,8 +5117,7 @@ if  (FunctioName.startsWith("classification wall"))  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Classification Wall").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5175,8 +5172,7 @@ if  (FunctioName.startsWith("ticket system"))  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Ticket System").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5226,8 +5222,7 @@ if  (FunctioName.startsWith("reaction roles"))  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Reaction Roles").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5273,8 +5268,7 @@ if  (FunctioName.startsWith("join role"))  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Join role").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5295,7 +5289,6 @@ if  (FunctioName.startsWith("role saver"))  {
       var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Role Saver").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5315,8 +5308,7 @@ if  (FunctioName.startsWith("images only"))  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5337,7 +5329,6 @@ if  (FunctioName.startsWith("dash remover"))  {
       var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Dash Remover").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5358,7 +5349,6 @@ if  (FunctioName.startsWith("server message"))  {
       var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Message").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5406,8 +5396,7 @@ if  (FunctioName.startsWith("message log"))  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Message Log").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5456,8 +5445,7 @@ if  (FunctioName.startsWith("stream announcements"))  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Stream Announcements").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5508,8 +5496,7 @@ if  (FunctioName.startsWith("member counter"))  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Member Counter").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5558,8 +5545,7 @@ if  (FunctioName.startsWith("reddit posts"))  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Reddit Posts").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5610,8 +5596,7 @@ if  (FunctioName.startsWith("server age"))  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Age").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5662,8 +5647,7 @@ if  (FunctioName.startsWith("event countdown"))  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5683,8 +5667,7 @@ if  (FunctioName.startsWith("game roles"))  {
     } else {
       var StatusString = DisableStrings[Language];
     };
-  
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
+
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Game Roles").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5705,7 +5688,6 @@ if  (FunctioName.startsWith("clear nicknames"))  {
       var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Clear Nicknames").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed })
@@ -5727,7 +5709,6 @@ if  (FunctioName.startsWith("suspicion alert"))  {
       var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Suspicion Alert").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed })
@@ -5749,7 +5730,6 @@ if  (FunctioName.startsWith("vote kick")) {
       var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Vote Kick").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5770,7 +5750,6 @@ if  (FunctioName.startsWith("flood protection")) {
       var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Flood Protection").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5791,7 +5770,6 @@ if  (FunctioName.startsWith("nickname saver")) {
       var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Nickname Saver").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5838,7 +5816,6 @@ if  (FunctioName.startsWith("streamer role"))  {
       var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Streamer Role").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5859,7 +5836,6 @@ if  (FunctioName.startsWith("banned words"))  {
       var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Banned Words").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5880,7 +5856,6 @@ if  (FunctioName.startsWith("spoiler lock"))  {
       var StatusString = DisableStrings[Language];
     };
   
-    const TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je teď **X002**."];
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Spoiler Lock").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
     message.channel.send({ embed })
