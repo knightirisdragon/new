@@ -3750,9 +3750,9 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                           channel.setParent(category.id).catch(error => ErrorBag.add(error));
                       };
                   
-                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == '@everyone'), {  VIEW_CHANNEL: false, MANAGE_MESSAGES: false  }).catch(error => ErrorBag.add(error));
+                      await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == '@everyone'), {  VIEW_CHANNEL: false, SEND_MESSAGES: true, MANAGE_MESSAGES: false  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == role.name), {  VIEW_CHANNEL: true, MANAGE_CHANNEL: true  }).catch(error => ErrorBag.add(error));
-                      await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == PeekyId), {  VIEW_CHANNEL: true  }).catch(error => ErrorBag.add(error));
+                      await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == PeekyId), {  VIEW_CHANNEL: true, MANAGE_CHANNEL: true  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == user.id), {  VIEW_CHANNEL: true  }).catch(error => ErrorBag.add(error));
                   
                       await channel.send({  embed  }).catch(error => ErrorBag.add(error));
@@ -4930,7 +4930,7 @@ if (CommandName == "languages")  {
                 CommandCooldown.add("languages" + message.guild.id);
                 setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
 
-                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `100%`" + "\n\n" + "🇨🇿 Čeština `85%`",  "color": EmbedColor}; 
+                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `100%`" + "\n\n" + "🇨🇿 Čeština `95%`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       peeky.userData.set(key, m.id, "LanguageID");
@@ -6347,7 +6347,7 @@ if  (FunctioName.startsWith("banned words"))  {
       
      peeky.serverData.set(keySF, [], "banned_words_bonus_setting");
   
-     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+     const embed = {"description": TranslatedMessages[Language].replace("X001", "Banned Words"),  "color": EmbedColor};
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -6358,8 +6358,8 @@ else
 if  (FunctioName.startsWith("reaction roles"))  {
       
      peeky.serverData.set(keySF, [], "reaction_roles_bonus_setting");
-  
-     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+
+     const embed = {"description": TranslatedMessages[Language].replace("X001", "Reaction Roles"),  "color": EmbedColor};
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -6371,7 +6371,7 @@ if  (FunctioName.startsWith("role saver"))  {
       
      peeky.serverData.set(keySF, [], "role_saver_bonus_setting");
   
-     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+     const embed = {"description": TranslatedMessages[Language].replace("X001", "Role Saver"),  "color": EmbedColor};
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
@@ -6383,7 +6383,7 @@ if  (FunctioName.startsWith("game roles"))  {
       
      peeky.serverData.set(keySF, [], "game_roles_bonus_setting");
   
-     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+     const embed = {"description": TranslatedMessages[Language].replace("X001", "Game Roles"),  "color": EmbedColor};
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
