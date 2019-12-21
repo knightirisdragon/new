@@ -3692,7 +3692,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                 if  (peeky.serverData.get(keySF, "function_notifications") == true)  {
 
                   
-                    const TranslatedMessages = [InfoIcon + " **X001** has been vote kicked with **Y votes**.", InfoIcon + " **X** byl vyhlasován ze serveru se **X002 hlasy**."];
+                    var TranslatedMessages = [InfoIcon + " **X001** has been vote kicked with **Y votes**.", InfoIcon + " **X** byl vyhlasován ze serveru se **X002 hlasy**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(reaction.message.member.displayName, "other", true)).replace("X002", peeky.serverData.get(keySF, "vote_kick_bonus_setting")),  "color": EmbedColor};
                     reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
@@ -3708,7 +3708,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                   ResponseCooldowns.add(reaction.message.guild.id + "VK");
                   setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id + "VK")}, ResponseCooldownMS);
 
-                  const TranslatedMessages = [InfoIcon + " **X001** has started a vote kick against **Y**.", InfoIcon + " **X** začal hlasovat o vyhození **X002**."];
+                  var TranslatedMessages = [InfoIcon + " **X001** has started a vote kick against **Y**.", InfoIcon + " **X** začal hlasovat o vyhození **X002**."];
                   const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};
                   reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                 
@@ -3717,7 +3717,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
             };
  
         } else {
-          const TranslatedMessages = [ErrorIcon + " You cannot start a vote kick against that user, **X001**.", ErrorIcon + " Tohoto uživatele nelze vyhlasovat ze serveru, **X001**."];
+          var TranslatedMessages = [ErrorIcon + " You cannot start a vote kick against that user, **X001**.", ErrorIcon + " Tohoto uživatele nelze vyhlasovat ze serveru, **X001**."];
           const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", ""),  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
@@ -3749,7 +3749,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                 const owner = reaction.message.guild.owner.user;
                 const TicketID = Math.random().toString(36).substr(2, 6);
               
-                const TranslatedMessages = ["**X001 has created a ticket**" + "\n" + "Staff may close the ticket once the issue has been resolved.", "**X001 potřebuje pomoct**" + "\n" + "Jakmile se tento problém vyřeší, personál může tento lístek uzavřít."];
+                var TranslatedMessages = ["**X001 has created a ticket**" + "\n" + "Staff may close the ticket once the issue has been resolved.", "**X001 potřebuje pomoct**" + "\n" + "Jakmile se tento problém vyřeší, personál může tento lístek uzavřít."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)),  "color": EmbedColor};
 
                 reaction.message.guild.createChannel("Ticket_" + TicketID, { type: 'text', reason: "Channel created by @" + user.tag + " through a function." }).then(async function (channel)  {
@@ -3893,7 +3893,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
   
         if  (peeky.serverData.get(keySF, "function_notifications") == true)  {
                   
-            const TranslatedMessages = [InfoIcon + " **X001** has logged **X002**'s message.", InfoIcon + " **X001** připnul zprávu od **X002**."];
+            var TranslatedMessages = [InfoIcon + " **X001** has logged **X002**'s message.", InfoIcon + " **X001** připnul zprávu od **X002**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};  
             reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
@@ -3921,7 +3921,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
         {
           reaction.remove(user).catch(error => ErrorBag.add(error));
           
-          const TranslatedMessages = [ErrorIcon + " That message was already logged, **X001**.", ErrorIcon + " Tato zpráva je již připnutá, **X001**."];
+          var TranslatedMessages = [ErrorIcon + " That message was already logged, **X001**.", ErrorIcon + " Tato zpráva je již připnutá, **X001**."];
           const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)),  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
@@ -4205,7 +4205,7 @@ if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)  {
                     ResponseCooldowns.add(message.guild.id + "SC");
                     setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SC")}, ResponseCooldownMS);
 
-                    const TranslatedMessages = [InfoIcon + " Please restrain yourself from using profanity, **X001**.", InfoIcon + " Přestaňte prosím mluvit sprostě, **X001**."];
+                    var TranslatedMessages = [InfoIcon + " Please restrain yourself from using profanity, **X001**.", InfoIcon + " Přestaňte prosím mluvit sprostě, **X001**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
@@ -4236,7 +4236,7 @@ if  (peeky.channelData.get(keyCF, "image_only_bonus") == true)  {
                 ResponseCooldowns.add(message.guild.id + "IO");
                 setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "IO")}, ResponseCooldownMS);
 
-                const TranslatedMessages = [InfoIcon + " You can only send images in this channel, **X001**.", InfoIcon + " V tomto kanále lze posílat pouze obrázky, **X001**."];
+                var TranslatedMessages = [InfoIcon + " You can only send images in this channel, **X001**.", InfoIcon + " V tomto kanále lze posílat pouze obrázky, **X001**."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
@@ -4458,7 +4458,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
                     ResponseCooldowns.add(message.guild.id + "FP");
                     setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "FP")}, ResponseCooldownMS);
 
-                    const TranslatedMessages = [InfoIcon + " I have muted **X001** because of the **Flood Protection** function.", InfoIcon + " Ztlumil jsem **X001** kvůli **Flood Protection** funkci."];
+                    var TranslatedMessages = [InfoIcon + " I have muted **X001** because of the **Flood Protection** function.", InfoIcon + " Ztlumil jsem **X001** kvůli **Flood Protection** funkci."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", message.member.displayName),  "color": EmbedColor};
                     await message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))}); 
 
@@ -4515,7 +4515,7 @@ if  (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)  {
                           ResponseCooldowns.add(message.guild.id + "SO");
                           setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SO")}, ResponseCooldownMS);
 
-                          const TranslatedMessages = [InfoIcon + " You have to mark your image as a spoiler, **X001**.", InfoIcon + " Musíte označit váš obrázek jako spoiler, **X001**."];
+                          var TranslatedMessages = [InfoIcon + " You have to mark your image as a spoiler, **X001**.", InfoIcon + " Musíte označit váš obrázek jako spoiler, **X001**."];
                           const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor}
                           message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
@@ -4667,7 +4667,7 @@ if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true)  {
                 ResponseCooldowns.add(message.guild.id + "BW");
                 setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "BW")}, ResponseCooldownMS);
 
-                const TranslatedMessages = [InfoIcon + " That phrase is blocked by the **Banned Words** function, **X001**.", InfoIcon + " Tato fráze je pomocí funkce **Banned Words** zablokována, **X001**."];
+                var TranslatedMessages = [InfoIcon + " That phrase is blocked by the **Banned Words** function, **X001**.", InfoIcon + " Tato fráze je pomocí funkce **Banned Words** zablokována, **X001**."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", message.member.displayName),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
 
@@ -4821,7 +4821,7 @@ if (CommandName.startsWith("upgrade"))  {
             peeky.serverData.set(keySF, true, "server_upgraded");
             peeky.userData.math(key, "+", 1, "UpgradedServers");
           
-            const TranslatedMessages = [SuccessIcon + " This server is now upgraded!", SuccessIcon + " Tento server je nyní vylepšen!"];
+            var TranslatedMessages = [SuccessIcon + " This server is now upgraded!", SuccessIcon + " Tento server je nyní vylepšen!"];
             const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -4830,7 +4830,7 @@ if (CommandName.startsWith("upgrade"))  {
     }
      else 
     {
-      const TranslatedMessages = [ErrorIcon + " You cannot upgrade this server.", ErrorIcon + " Tento server vylepšit nemůžete."];
+      var TranslatedMessages = [ErrorIcon + " You cannot upgrade this server.", ErrorIcon + " Tento server vylepšit nemůžete."];
       const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
@@ -4861,11 +4861,11 @@ if (CommandName == "setinvite")  {
 
                 if  (Invites.length > 0) {
                     peeky.serverData.set(keySF, Invites[0].code, "server_invite");
-                    const TranslatedMessages = [InfoIcon + " The server's invite code has been set to **X001**.", InfoIcon + " Pozvánka tohoto server byla nastavea na **X001**."];
+                    var TranslatedMessages = [InfoIcon + " The server's invite code has been set to **X001**.", InfoIcon + " Pozvánka tohoto server byla nastavea na **X001**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", Invites[0].code),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 } else {
-                    const TranslatedMessages = [ErrorIcon + " I could not find any server invites in this channel.", ErrorIcon + " V tomto kanále jsem nenašel žádné pozvánky."];
+                    var TranslatedMessages = [ErrorIcon + " I could not find any server invites in this channel.", ErrorIcon + " V tomto kanále jsem nenašel žádné pozvánky."];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -6448,7 +6448,7 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
 
             if  (NewLinesCount < 2)  {
               
-                const TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001**." + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001**" + " " + GreditIcon + "**."];
+                var TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001**." + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001**" + " " + GreditIcon + "**."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6466,7 +6466,7 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
              else
             {
 
-              const TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001**." + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**."];
+              var TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001**." + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**."];
               const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6537,7 +6537,7 @@ if  (CommandName.startsWith("buybackground"))  {
                         peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
                         peeky.userData.get(key, "Inventory").push(i);
 
-                        const TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**."];
+                        var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**."];
                         var embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", function_GetBackgroundInfo(i, ["price"])) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6558,7 +6558,7 @@ if  (CommandName.startsWith("buybackground"))  {
             };
 
             } else {
-              const TranslatedMessages = [ErrorIcon + " You cannot buy the default and exclusive backgrounds.", ErrorIcon + " Nemůžete si koupit základní a exlusivní pozadí."];
+              var TranslatedMessages = [ErrorIcon + " You cannot buy the default and exclusive backgrounds.", ErrorIcon + " Nemůžete si koupit základní a exlusivní pozadí."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6652,7 +6652,7 @@ if (CommandName.startsWith("setbackground"))  {
 
                 peeky.userData.set(key, i, "Background");
 
-                const TranslatedMessages = [SuccessIcon + " You have set the **X001** background.", SuccessIcon + " Nastavil jste si pozadí **X001**."];
+                var TranslatedMessages = [SuccessIcon + " You have set the **X001** background.", SuccessIcon + " Nastavil jste si pozadí **X001**."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6772,14 +6772,14 @@ if  (i !== AllString)  {
                         InfoMessages.push(InfoMessage2[Language]);
                     };
 
-                    const TranslatedMessages = [SuccessIcon + " You have sold the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste pozadí **X001** za **X002" + " " + GreditIcon + "**."];
+                    var TranslatedMessages = [SuccessIcon + " You have sold the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste pozadí **X001** za **X002" + " " + GreditIcon + "**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", FinalPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 }
                  else
                 {
-                  const TranslatedMessages = [ErrorIcon + " You cannot sell the default backgrounds.", ErrorIcon + " Nemůžete prodat základní pozadí."];
+                  var TranslatedMessages = [ErrorIcon + " You cannot sell the default backgrounds.", ErrorIcon + " Nemůžete prodat základní pozadí."];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   
                   break;
@@ -6827,7 +6827,7 @@ if  (i !== AllString)  {
       peeky.userData.set(key, SavedBackgrounds, "Inventory");
       peeky.userData.math(key, "+", FullPrice, "Gredit");
 
-      const TranslatedMessages = [SuccessIcon + " You have sold all your backgrounds for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste všechna svá pozadí za **X001" + " " + GreditIcon + "**."];
+      var TranslatedMessages = [SuccessIcon + " You have sold all your backgrounds for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste všechna svá pozadí za **X001" + " " + GreditIcon + "**."];
       const embed = {"description": TranslatedMessages[Language].replace("X001", FullPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6946,7 +6946,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
           peeky.userData.math(key, "-", ChestAmount, "Chests");
           peeky.userData.math(key, "+", TotalLoot, "Gredit");
 
-          const TranslatedMessages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** a získal **X002" + " " + GreditIcon +"**."];
+          var TranslatedMessages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** a získal **X002" + " " + GreditIcon +"**."];
           const embed = {"description": TranslatedMessages[Language].replace("X001", ChestAmount.toLocaleString('en')).replace("X002", TotalLoot.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
           await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6977,7 +6977,7 @@ if (CommandName == "daily")  {
       
     let timeObj = ms(cooldown - (Date.now() - lastDaily));
   
-    const TranslatedMessages = [InfoIcon + " Come back in **X001** and **X002** for your reward.", InfoIcon + " Vraťte se za **X001** a **X002** pro vaši odměnu."];
+    var TranslatedMessages = [InfoIcon + " Come back in **X001** and **X002** for your reward.", InfoIcon + " Vraťte se za **X001** a **X002** pro vaši odměnu."];
     var embed = {"description": TranslatedMessages[Language].replace("X001", timeObj.hours + "h").replace("X002", timeObj.minutes + "m"),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
@@ -7779,9 +7779,7 @@ if (CommandName.startsWith("play"))  {
 
             };
 
-        if  (!CommandArgument.includes("?list="))  {
-
-        if  ((CommandArgument) && (ytdl.validateURL(CommandArgument) == true))  {
+        if  ((CommandArgument) && !CommandArgument.includes("?list=") && (ytdl.validateURL(CommandArgument) == true))  {
 
         if  (message.member.voiceChannel)  {
 
@@ -7886,17 +7884,13 @@ if (CommandName.startsWith("play"))  {
         };
 
         } else {
-          const embed = {"description": ErrorIcon + " You need to join a voice channel.",  "color": EmbedColor}; 
+          var TranslatedMessages = [SuccessIcon + " You need to join a voice channel.", SuccessIcon + " Musíte se připojt se do hlasového kanálu."];
+          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
         } else {
           const embed = {"description": ErrorMessage4[Language],  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
-
-        } else {
-          const embed = {"description": ErrorIcon + " You cannot play a YouTube playlist.",  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
@@ -7974,7 +7968,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
                     peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
 
-                    const TranslatedMessages = [SuccessIcon + " Added the current song to your playlist.", SuccessIcon + " Současná písnička byla přidána do vašeho playlistu."];
+                    var TranslatedMessages = [SuccessIcon + " Added the current song to your playlist.", SuccessIcon + " Současná písnička byla přidána do vašeho playlistu."];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));    
 
@@ -7998,7 +7992,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
                     peeky.userData.get(key, "Playlist").push(PlaylistRequest);
 
-                    const TranslatedMessages = [SuccessIcon + " Added the song to your playlist.", SuccessIcon + " Písnička byla přidána do vašeho playlistu."];
+                    var TranslatedMessages = [SuccessIcon + " Added the song to your playlist.", SuccessIcon + " Písnička byla přidána do vašeho playlistu."];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8013,7 +8007,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
             };
 
         } else {
-          const TranslatedMessages = [ErrorIcon + " You cannot add playlists to your playlist.", ErrorIcon + " Do svého playlistu nemůžete přidat playlisty."];
+          var TranslatedMessages = [ErrorIcon + " You cannot add playlists to your playlist.", ErrorIcon + " Do svého playlistu nemůžete přidat playlisty."];
           const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
@@ -8034,12 +8028,12 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             peeky.userData.get(key, "Playlist").splice(BackgroundIndex, 1);  //Remove the background
 
-            const TranslatedMessages = [SuccessIcon + " The song has been removed from your playlist.", SuccessIcon + " Písnička byla odebrána z vašeho playlistu."];
+            var TranslatedMessages = [SuccessIcon + " The song has been removed from your playlist.", SuccessIcon + " Písnička byla odebrána z vašeho playlistu."];
             const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             } else {
-              const TranslatedMessages = [ErrorIcon + " That song is not in your playlist.", ErrorIcon + " Tato písnička ve vašem playlistu není."];
+              var TranslatedMessages = [ErrorIcon + " That song is not in your playlist.", ErrorIcon + " Tato písnička ve vašem playlistu není."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8051,7 +8045,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             peeky.userData.set(key, PlaylistRequest, "PlaylistName")
 
-            const TranslatedMessages = [SuccessIcon + " Your playlist has been renamed to **X001**.", SuccessIcon + " Váš playlist byl přejmenován na **X001**."];
+            var TranslatedMessages = [SuccessIcon + " Your playlist has been renamed to **X001**.", SuccessIcon + " Váš playlist byl přejmenován na **X001**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.userData.get(key, "PlaylistName")),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8066,12 +8060,12 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                   
                     peeky.userData.set(key, Thumbnail, "PlaylistThumbnail");
 
-                    const TranslatedMessages = [SuccessIcon + " You have set the thumbnail for your playlist.", SuccessIcon + " Nastavil jste miniaturu pro váš playlist"];
+                    var TranslatedMessages = [SuccessIcon + " You have set the thumbnail for your playlist.", SuccessIcon + " Nastavil jste miniaturu pro váš playlist"];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   
                 } else {
-                  const TranslatedMessages = [ErrorIcon + " Failed to set your playlist thumbnail.", ErrorIcon + " Nepodařilo se nastavit miniaturu pro váš playlist."];
+                  var TranslatedMessages = [ErrorIcon + " Failed to set your playlist thumbnail.", ErrorIcon + " Nepodařilo se nastavit miniaturu pro váš playlist."];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -8084,7 +8078,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
         } else
         if  (CommandArgument.startsWith(" clear"))  {
 
-            const TranslatedMessages = [SuccessIcon + " You have cleared your playlist of **X001 songs** and the thumbnail.", SuccessIcon + " Vyčistili jste svůj playlist od **X001 písniček** a miniatury."];
+            var TranslatedMessages = [SuccessIcon + " You have cleared your playlist of **X001 songs** and the thumbnail.", SuccessIcon + " Vyčistili jste svůj playlist od **X001 písniček** a miniatury."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.userData.get(key, "Playlist").length),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8157,7 +8151,7 @@ if (CommandName == "skip")  {
             };
           
         } else {
-          const TranslatedMessages = [ErrorIcon + "Only the server owner can skip this song right now.", ErrorIcon + " Písničku může momentálně přeskočit pouze vlastník serveru."];
+          var TranslatedMessages = [ErrorIcon + "Only the server owner can skip this song right now.", ErrorIcon + " Písničku může momentálně přeskočit pouze vlastník serveru."];
           const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
@@ -8203,7 +8197,7 @@ if (CommandName == "guessthesong")  {
                     peeky.serverData.set(keySF, new Date(), "Started");
                     peeky.serverData.set(keySF, "", "Link");
 
-                    const TranslatedMessages = ["**Try to guess the name of this song!**", "**Zkuste uhádnout jméno této písničky!**"];
+                    var TranslatedMessages = ["**Try to guess the name of this song!**", "**Zkuste uhádnout jméno této písničky!**"];
                     const embed = {"description": TranslatedMessages[Language] + "\n" + GuessTheSong[ChosenSong][2],  "color": EmbedColor};
                     message.channel.send({ embed });
 
@@ -8420,7 +8414,7 @@ if  (CommandArgument.startsWith(" "))  {
                     }
                      else
                     {
-                     const TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete."];
+                     var TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete."];
                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
@@ -8428,7 +8422,7 @@ if  (CommandArgument.startsWith(" "))  {
                 }
                  else
                 {
-                  const TranslatedMessages = [ErrorIcon + " I cannot find a role called **X001**.", ErrorIcon + " Nemohu najít roli s jménem **X001**."];
+                  var TranslatedMessages = [ErrorIcon + " I cannot find a role called **X001**.", ErrorIcon + " Nemohu najít roli s jménem **X001**."];
                   const embed = {"description": TranslatedMessages[Language].replace("X001", name),  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
                 };
@@ -8500,7 +8494,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
         }
          else
         {
-          const TranslatedMessages = [ErrorIcon + " You cannot unmute that user.", ErrorIcon + " Tohoto uživatele odztlumit nemůžete."];
+          var TranslatedMessages = [ErrorIcon + " You cannot unmute that user.", ErrorIcon + " Tohoto uživatele odztlumit nemůžete."];
           const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
@@ -8508,7 +8502,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
         }
          else
         {
-          const TranslatedMessages = [ErrorIcon + " I cannot find a role called **X001**.", ErrorIcon + " Nemohu najít roli s jménem **X001**."];
+          var TranslatedMessages = [ErrorIcon + " I cannot find a role called **X001**.", ErrorIcon + " Nemohu najít roli s jménem **X001**."];
           const embed = {"description": TranslatedMessages[Language].replace("X001", name),  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
         };
@@ -8578,7 +8572,7 @@ if  (CommandName.startsWith("idban"))  {
         }
          else
         {
-         const TranslatedMessages = [ErrorIcon + " You cannot ID ban someone inside the server.", ErrorIcon + " Nemůžete ID Zabanovat někoho na serveru."];
+         var TranslatedMessages = [ErrorIcon + " You cannot ID ban someone inside the server.", ErrorIcon + " Nemůžete ID Zabanovat někoho na serveru."];
          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
@@ -8586,7 +8580,7 @@ if  (CommandName.startsWith("idban"))  {
         }
          else
         {
-         const TranslatedMessages = [ErrorIcon + " You must enter a valid ID.", ErrorIcon + " Musíte zadat validní ID."];
+         var TranslatedMessages = [ErrorIcon + " You must enter a valid ID.", ErrorIcon + " Musíte zadat validní ID."];
          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
@@ -8639,7 +8633,7 @@ if  (CommandName.startsWith("ban"))  {
             }
              else
             {
-              const TranslatedMessages = [ErrorIcon + " You cannot ban that user.", ErrorIcon + " Tohoto uživatele zabanovat nemůžete."];
+              var TranslatedMessages = [ErrorIcon + " You cannot ban that user.", ErrorIcon + " Tohoto uživatele zabanovat nemůžete."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8685,7 +8679,7 @@ if  (CommandName.startsWith("kick"))  {
             }
              else
             {
-              const TranslatedMessages = [ErrorIcon + " You cannot kick that user.", ErrorIcon + " Tohoto uživatele vykopnout nemůžete."];
+              var TranslatedMessages = [ErrorIcon + " You cannot kick that user.", ErrorIcon + " Tohoto uživatele vykopnout nemůžete."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
             };
 
@@ -8736,7 +8730,7 @@ if  (CommandName.startsWith("purge"))  {
             }
              else
             {
-              const TranslatedMessages = [ErrorIcon + " You can only purge 1 to 100 messages.", ErrorIcon + " Můžete vyčistit jenom 1 až 100 zpráv."];
+              var TranslatedMessages = [ErrorIcon + " You can only purge 1 to 100 messages.", ErrorIcon + " Můžete vyčistit jenom 1 až 100 zpráv."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8781,7 +8775,7 @@ if  (CommandName.startsWith("prefix"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "prefix");
           
-            const TranslatedMessages = [SuccessIcon + " The prefix is now **X001**.", SuccessIcon + " Prefix je teď **X001**."];
+            var TranslatedMessages = [SuccessIcon + " The prefix is now **X001**.", SuccessIcon + " Prefix je teď **X001**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8823,7 +8817,7 @@ if  (CommandName.startsWith("highlightedchannel"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
           
-            const TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **#X001**."];
+            var TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **#X001**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8858,7 +8852,7 @@ if  (CommandName.startsWith("functionnotifications"))  {
         if(peeky.serverData.get(keySF, "function_notifications") == true) {peeky.serverData.set(keySF, false, "function_notifications");}
         else peeky.serverData.set(keySF, true, "function_notifications");
 
-        const TranslatedMessages = [SuccessIcon + " The function notifications are now set to **X001**.", SuccessIcon + " Upozornění na funkce jsou teď nastaveny na **X001**."];
+        var TranslatedMessages = [SuccessIcon + " The function notifications are now set to **X001**.", SuccessIcon + " Upozornění na funkce jsou teď nastaveny na **X001**."];
         const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "function_notifications")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8879,7 +8873,7 @@ if  (CommandName.startsWith("levelnotifications"))  {
         if(peeky.serverData.get(keySF, "level_notifications") == true) {peeky.serverData.set(keySF, false, "level_notifications");}
         else peeky.serverData.set(keySF, true, "level_notifications");
 
-        const TranslatedMessages = [SuccessIcon + " The level notifications are now set to **X001**.", SuccessIcon + " Upozornění na levely jsou teď nastaveny na **X001**."];
+        var TranslatedMessages = [SuccessIcon + " The level notifications are now set to **X001**.", SuccessIcon + " Upozornění na levely jsou teď nastaveny na **X001**."];
         const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "function_notifications")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8970,7 +8964,7 @@ if  (CommandName.startsWith("muterole"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "muted_role");
           
-            const TranslatedMessages = [SuccessIcon + " The mute role is now set to **@X001**.", SuccessIcon + " Role na ztlumení je teď nastavena na **@X001**."];
+            var TranslatedMessages = [SuccessIcon + " The mute role is now set to **@X001**.", SuccessIcon + " Role na ztlumení je teď nastavena na **@X001**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
