@@ -2194,7 +2194,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
 
     toRemoveGuilds.forEach(async data => {
       
-        if  (data.server_upgraded == false && !ImmuneServers.includes(data.GuildID))  {
+        if  (data.server_upgraded !== true && !ImmuneServers.includes(data.GuildID))  {
       
             peeky.serverData.delete(data.GuildID);
 
@@ -3545,11 +3545,11 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Prefix** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "prefix") + "`" + "\n\n" +
                                 "**Language** " + SettingsIcon + "\n" + "`" + Languages[Language] + "`" + "\n\n" +
-                                "**Server Upgraded** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "muted_role") + "`" + "\n\n" +
                                 "**Mute Role** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "muted_role") + "`" + "\n\n" +
                                 "**Highlighted Channel** " + SettingsIcon + "\n" + "`#" + peeky.serverData.get(keySF, "highlighted_channel") + "`" + "\n\n" +
-                                "**Function Notifications** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "function_notifications") + "`" + "\n\n" +
-                                "**Level Notifications** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "level_notifications") + "`",
+                                "**Function Notifications** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "function_notifications").toString().replace("true", "Enabled").replace("false", "Disabled") + "`" + "\n\n" +
+                                "**Level Notifications** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "level_notifications").toString().replace("true", "Enabled").replace("false", "Disabled") + "`" + "\n\n" +
+                                "**Server State** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "server_upgraded").toString().replace("true", "Upgraded").replace("false", "Not Upgraded") + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
