@@ -2194,7 +2194,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
 
     toRemoveGuilds.forEach(async data => {
       
-        if  (data.server_Upgraded == false && !ImmuneServers.includes(data.GuildID))  {
+        if  (data.server_upgraded == false && !ImmuneServers.includes(data.GuildID))  {
       
             peeky.serverData.delete(data.GuildID);
 
@@ -3545,6 +3545,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.RichEmbed({
                   description:  "**Prefix** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "prefix") + "`" + "\n\n" +
                                 "**Language** " + SettingsIcon + "\n" + "`" + Languages[Language] + "`" + "\n\n" +
+                                "**Server Upgraded** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "muted_role") + "`" + "\n\n" +
                                 "**Mute Role** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "muted_role") + "`" + "\n\n" +
                                 "**Highlighted Channel** " + SettingsIcon + "\n" + "`#" + peeky.serverData.get(keySF, "highlighted_channel") + "`" + "\n\n" +
                                 "**Function Notifications** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "function_notifications") + "`" + "\n\n" +
