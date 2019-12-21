@@ -822,7 +822,10 @@ const RandomSongs = [
     "https://www.youtube.com/watch?v=PoVgCOCt4KA",
     "https://www.youtube.com/watch?v=Sk-U8ruIQyA",
     "https://www.youtube.com/watch?v=y8a65a-B5Zw",
-    "https://www.youtube.com/watch?v=eFVj0Z6ahcI"
+    "https://www.youtube.com/watch?v=eFVj0Z6ahcI",
+    "https://www.youtube.com/watch?v=GO5utuvcZps",
+    "https://www.youtube.com/watch?v=JRfuAukYTKg",
+    "https://www.youtube.com/watch?v=16y1AkoZkmQ"
   
 ];
 
