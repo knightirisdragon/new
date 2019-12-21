@@ -122,6 +122,16 @@ The level notifications are now set to **X001**. |
 
 The mute role is now set to **@X001**. | 
 
+This profile is now featured on the website. | 
+
+The song has now finished with **X001** listeners. | 
+Previous song not found - playing a random song. | 
+Your playlist is empty - Playing a random song. | 
+The song has now finished with **X001** listeners. | 
+You cannot play livestreams or songs longer than 30 minutes. | 
+Failed to get the YouTube video. | 
+You need to join a voice channel. | 
+
 You are currently on a cooldown for that command. | 
 Automated channel creation is currently on a cooldown. | 
 Automated role creation is currently on a cooldown. | 

@@ -7667,7 +7667,8 @@ if  (!ProfileCooldown.has(message.author.id))  {
             if (err) console.log(err); 
         });
       
-        const embed = {"description": InfoIcon + " This profile is now featured on the website.",  "color": EmbedColor}; 
+        var TranslatedMessages = [InfoIcon + " This profile is now featured on the website.", InfoIcon + " Tento profil je nyní vystaven na strance."];
+        const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
         console.log("The featured profile has been updated.");
@@ -7737,7 +7738,9 @@ if (CommandName.startsWith("play"))  {
                 Type = "Previous";
 
             } else {
-              const embed = {"description": InfoIcon + " Previous song not found - playing a random song.",  "color": EmbedColor}; 
+
+              var TranslatedMessages = [InfoIcon + " Previous song not found - playing a random song.", InfoIcon + " Minulá písnička nenalezena - Hraju náhodnou písničku."];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
               CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
@@ -7757,7 +7760,8 @@ if (CommandName.startsWith("play"))  {
 
             } else {
 
-              const embed = {"description": InfoIcon + " Your playlist is empty - Playing a random song.",  "color": EmbedColor}; 
+              var TranslatedMessages = [InfoIcon + " Your playlist is empty - Playing a random song.", InfoIcon + " Váš playlist je prázdný - Hraju náhodnou písničku."];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
               CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
@@ -7799,8 +7803,6 @@ if (CommandName.startsWith("play"))  {
 
                 if  (Length <= 1800 && Length > 0)  {
 
-                  if  (!Title.toLowerCase().includes("earrape" || "ear rape"))  {
-
                       await voiceChannel.join().then(async connection => {
 
                       CurrentlyPlaying.add(message.guild.id);
@@ -7838,7 +7840,8 @@ if (CommandName.startsWith("play"))  {
 
                       const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
 
-                      const embed = {"description": InfoIcon + " The song has now finished with **" + Listeners.length + " listeners**.",  "color": EmbedColor}; 
+                      var TranslatedMessages = [InfoIcon + " The song has now finished with **X001** listeners.", InfoIcon + " Písnička skončila s **X001** diváky."];
+                      const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                       if  (Listeners.length >= 5)  {
@@ -7861,20 +7864,17 @@ if (CommandName.startsWith("play"))  {
                           ErrorBag.add(error);
                       });
 
-                  } else {
-                    const embed = {"description": ErrorIcon + " You cannot play loud or annoying songs.",  "color": EmbedColor}; 
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                  };
-
                 } else {
-                  const embed = {"description": ErrorIcon + " You cannot play livestreams or songs longer than 30 minutes.",  "color": EmbedColor}; 
+                  var TranslatedMessages = [ErrorIcon + " You cannot play livestreams or songs longer than 30 minutes.", ErrorIcon + " Nelze hrát živé vysílání a písničky delší jak 30 minuty."];
+                  const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
             }).catch(async (error) => {
                 ErrorBag.add(error);
 
-                const embed = {"description": ErrorIcon + " Failed to get the YouTube video.",  "color": EmbedColor}; 
+                var TranslatedMessages = [ErrorIcon + " Failed to get the YouTube video.", ErrorIcon + " Nepodařilo se získat YouTube video."];
+                const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             });
 
@@ -7884,7 +7884,7 @@ if (CommandName.startsWith("play"))  {
         };
 
         } else {
-          var TranslatedMessages = [SuccessIcon + " You need to join a voice channel.", SuccessIcon + " Musíte se připojt se do hlasového kanálu."];
+          var TranslatedMessages = [ErrorIcon + " You need to join a voice channel.", ErrorIcon + " Musíte se připojt se do hlasového kanálu."];
           const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
