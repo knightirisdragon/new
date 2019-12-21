@@ -151,6 +151,7 @@ const GamerImage        = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43d
 const EvilImage         = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fevil.png?v=1564270118631";
 const GoodImage         = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581";
 const GopbotImage       = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgopbot.png?v=1568997070177";
+const TranslatorImage   = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ftranslator.png?v=1576920631134";
 
 //Vote Emotes
 const DefaultUpvote   = "529413730874949632";
@@ -182,6 +183,7 @@ const GamerEmote        = "<:gamer:624330470288654337>";
 const EvilEmote         = "<:evil:604817305247023117>";
 const GoodEmote         = "<:good:605138883138551838>";
 const GopbotEmote       = "<:gopbot:624643543037771841>";
+const TranslatorEmote   = "<:translator:657876886260809728>";
 
 //Other Emotes
 const ErrorIcon       = "<:peeky_error:529412267343872031>";
@@ -1930,6 +1932,7 @@ peeky.on('message', async (message) => {
         EvilBadge: false,
         GoodBadge: false,
         GopbotBadge: false,
+        TranslatorBadge: false,
       
         BadgeGredit: 0,
         BadgeExp: 0,
@@ -1964,6 +1967,9 @@ peeky.on('message', async (message) => {
 
         //Staff
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
+      
+        //Translator
+    if  (peeky.userData.get(key, "TranslatorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
 
         //Veteran
     if  (peeky.userData.get(key, "VeteranBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
@@ -7246,6 +7252,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     var BadgesAmount         = null;
 
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(StaffRole))       {  Badges.push(ModeratorEmote + " Staff")  };
+    if  (peeky.userData.get(key2, "TranslatorBadge") == true)                                            {  Badges.push(TranslatorEmote + " Translator")  };
     if  (peeky.userData.get(key2, "VeteranBadge") == true)                                               {  Badges.push(VeteranEmote + " Veteran")  };
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(SupporterRole))   {  Badges.push(SupporterEmote + " Supporter")  };
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(BoosterRole))     {  Badges.push(BoosterEmote + " Booster")  };
@@ -7445,11 +7452,18 @@ if  (!ProfileCooldown.has(message.author.id))  {
     const MaxBadges    = 15;
     const BadgeSize    = 25;
 
-    //PEEKY Staff Icon
+    //Staff Icon
     if  (BadgeAmount < MaxBadges)  {
     const moderator_icon = await Canvas.loadImage(ModeratorImage);
     if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(StaffRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
     ctx.drawImage(moderator_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+      
+    //Translator Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const gopbot_icon = await Canvas.loadImage(TranslatorImage);
+    if  (peeky.userData.get(key2, "TranslatorBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(gopbot_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
     };
 
     //Veteran Icon
