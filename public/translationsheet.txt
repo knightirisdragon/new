@@ -102,6 +102,8 @@ Only the server owner can skip this song right now. |
 You cannot mute that user. | 
 You cannot unmute that user. | 
 I cannot find a role called **X001**. | 
+Edited **X001** channels for the **@X002** role. | 
+Couldn't edit channels for the **@X001** role. | 
 
 You cannot ID ban someone inside the server. | 
 You must enter a valid ID. | 

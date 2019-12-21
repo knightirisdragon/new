@@ -61,7 +61,7 @@ const AutoDeleteTime        = 250;
 const DayMs                 = 86400000;
 const WeekMs                = 604800000;  //7 Days
 const MonthMs               = 2592000000;  //30 Days
-const InactiveWipe          = 1728000000;  //20 Days
+const InactiveWipe          = MonthMs;
 const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 const ProfileBoosterTime    = (DayMs  / ( 60 * 60 * 1000 ));
 
@@ -275,8 +275,8 @@ const InfoMessage2 = [InfoIcon + " You have set the default background.", ErrorI
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const VulgarPhrases       = [  "anal", "anus", "arse", "ass", "ballsack", "balls", "bastard", "bitch", "biatch", "bloody", "blowjob", "boner", "boob", "bugger", "bum", "butt", "buttplug", "clitoris", "cock", "coon", "crap", "cunt", "damn", "dick", "dildo", "dyke", "fag", "feck", "fellate", "fellatio", "felching", "fuck", "fudgepacker", "fudge", "packer", "flange", "Goddamn", "God", "damn", "hell", "homo", "jerk", "jizz", "knobend", "knob", "end", "labia", "lmao", "lmfao", "muff", "nigger", "nigga", "penis", "piss", "poop", "prick", "pube", "pussy", "queer", "scrotum", "sex", "shit", "sh1t", "slut", "smegma", "spunk", "tit", "tosser", "turd", "twat", "vagina", "wank", "whore", "wtf"  ];
-const ImmuneServers       = [  SupportServer, `454933217666007052`, `264445053596991498`, `330777295952543744`, `387812458661937152`, `374071874222686211`, `439866052684283905`, `534551489595703306`, `608711879858192479`, `603194252872122389`  ];
-const EmojiNumbers        = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"];
+const ImmuneServers       = [  SupportServer, EmojiStorage1, `454933217666007052`, `264445053596991498`, `330777295952543744`, `387812458661937152`, `374071874222686211`, `439866052684283905`, `534551489595703306`, `608711879858192479`, `603194252872122389`  ];
+const EmojiNumbers        = [  "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"  ];
 
 //Small Objects
 var Banner          = {  Source: 0,  Price: 1 ,  Name: 2 ,  Credit: 3,  RevenueID: 4, AddedDate: 5  };
@@ -8946,12 +8946,14 @@ if  (CommandName.startsWith("muterole"))  {
 
                        });
 
-                       InfoMessages.push(InfoIcon + " Edited **" + Amount + "/" + FilteredChannels.length + " channels** for the **" + CommandArgument + "** role.");     
+                       var TranslatedMessages = [InfoIcon + " Edited **X001** channels for the **@X002** role.", InfoIcon + " Upravil jsem **X001** kanálu pro roli **X002**."];
+                       InfoMessages.push(TranslatedMessages[Language].replace("X001", Amount + "/" + FilteredChannels.length).replace("X002", CommandArgument));     
 
                   }
                    else
                   {
-                   InfoMessages.push(ErrorIcon + " Couldn't edit channels for the **" + CommandArgument + "** role.");  
+                   var TranslatedMessages = [ErrorIcon + " Couldn't edit channels for the **@X001** role.", ErrorIcon + " Nemohl jsem upravit kanály pro roli **X001**."];
+                   InfoMessages.push(TranslatedMessages[Language].replace("X001", CommandArgument));   
                   };
 
                }
