@@ -1269,7 +1269,7 @@ function function_ServerData(key)  {
             prefix: Setting.DefaultPrefix,
             language: 0,
             muted_role: "Muted",
-            highlighted_channel: "general",
+            highlighted_channel: "treasures",
             function_notifications: false,
             level_notifications: false,
 
