@@ -8,7 +8,7 @@
   
   "Announcement": "",
   "EventName": "Christmas 2019",
-  "EventStatus": false,
+  "EventStatus": true,
   
   "CustomBackgroundPrice": 1000,
   "SellMultiplier": 2.5,
