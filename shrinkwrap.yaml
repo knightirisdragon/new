@@ -1,6 +1,6 @@
 dependencies:
   better-sqlite-pool: 0.2.2
-  botlist.space: 3.2.1
+  botlist.space: 3.3.1
   canvas: 2.6.1
   canvas-node: 0.3.23
   ddblapi.js: 1.0.0
@@ -15,7 +15,7 @@ dependencies:
   require.js: 1.0.0
   sqlite3: 4.1.1
   youtube-search: 1.1.4
-  ytdl-core: 1.0.3
+  ytdl-core: 1.0.5
   ytdl-core-discord: 1.0.3
 packages:
   /abbrev/1.1.1:
@@ -157,13 +157,13 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-dhEPs72UPbDnAQJ9ZKMNTP6ptJaionhP5cBb541nXPlW60Jepo9RV/a4fX4XWW9CuFNK22krhrj1+rgzifNCsw==
-  /botlist.space/3.2.1:
+  /botlist.space/3.3.1:
     dependencies:
       snekfetch: 4.0.4
       ws: 6.2.1
     dev: false
     resolution:
-      integrity: sha512-Osh8Onw4CFHYIciFO4txEnLBRg9RLi5nV37ggYMie//WOlA1GsUK3uLfXG8d/gwzx+UFRoeRt+lxbNlG/kpIAA==
+      integrity: sha512-uT0k36q8DYVDIBPsAx8aLb4MxhlRmtuCDRCQChve76bVQF3k4nfZRjnqMX8/Duo1zMOEOP9hUW9VTDNhvxoHNQ==
   /brace-expansion/1.1.11:
     dependencies:
       balanced-match: 1.0.0
@@ -729,7 +729,7 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-WsuM2bd5pPN80xvfrB+1DZqr4M7+kJl8byi6+ZCy6cmVjEiHhmr/desN53Ngsa6Hs13kYumeVgT4wL0oIJ+v6g==
-  /m3u8stream/0.6.3:
+  /m3u8stream/0.6.4:
     dependencies:
       miniget: 1.6.1
       sax: 1.2.4
@@ -737,7 +737,7 @@ packages:
     engines:
       node: '>=6'
     resolution:
-      integrity: sha512-HNUco8ef9kOvMRH7tYxJqbk9IuRA+AuZG8a/dQwqI+jfuEs1/DUaPbfTIlUDB4JmTZNkTOZHvZI5TvnQGR8nKA==
+      integrity: sha512-9WLF1VAtbVij03HWJKbVZ8L0orsoZiP53UljR5EwaDrozQFMsTGRDPe3PbzWV73He8a+j5H/hWZNoI2VkUSsiw==
   /media-typer/0.3.0:
     dev: false
     engines:
@@ -1491,23 +1491,23 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-rQTxqxF09tKGgWxVtvFfi6ga1KWcHNbUGz09yTklirhqQlsIYvaDFCEhJ0K/RlzMH12FquAAMzh+Qi35fkwbFQ==
-  /ytdl-core/1.0.3:
+  /ytdl-core/1.0.5:
     dependencies:
       html-entities: 1.2.1
-      m3u8stream: 0.6.3
+      m3u8stream: 0.6.4
       miniget: 1.6.1
       sax: 1.2.4
     dev: false
     engines:
       node: '>=6'
     resolution:
-      integrity: sha512-sBOVokjrAigKTEn248MJ+JpS5ifay/vBzYGMDeZhG61xmgthev6yHXBgEgm+M8ySDQXXVjOTmUtY3GHbX988KA==
+      integrity: sha512-IAmBgsGz61RKsIHKls3qDNHOXPUGAEjMI7EXOYECtdkSRTsgPEbJ1MwSLk+3L5SAExcHrHKoql4uXFu3Bhw3gg==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   better-sqlite-pool: ^0.2.2
-  botlist.space: ^3.1.6
+  botlist.space: ^3.3.1
   canvas: ^2.6.1
   canvas-node: ^0.3.20
   ddblapi.js: ^1.0.0
@@ -1522,5 +1522,5 @@ specifiers:
   require.js: ^1.0.0
   sqlite3: ^4.1.1
   youtube-search: ^1.1.4
-  ytdl-core: ^1.0.3
+  ytdl-core: ^1.0.4
   ytdl-core-discord: ^1.0.3
