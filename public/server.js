@@ -1,23 +1,14 @@
-//API Tokens
-const DiscordToken = process.env.BOT_TOKEN;
-const DDBLToken = process.env.DDBL_TOKEN;
-const BLSToken = process.env.BLS_TOKEN;
-const BFDToken = process.env.BFD_TOKEN;
-const DBToken = process.env.DB_TOKEN;
-const CLToken = process.env.CL_TOKEN;
-const YoutubeToken = process.env.YT_TOKEN;
-
 //Discord
 const Discord = require('discord.js');
 const peeky   = new Discord.Client({  disabledEvents: ["TYPING_START"], disableEveryone: true  });
 
 //DDBL
 const { ddblAPI } = require('ddblapi.js');
-const ddbl = new ddblAPI("482945063282802698", DDBLToken);
+const ddbl = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
 
 //BLS
 const BotList = require('botlist.space');
-//const bls     = new BotList({  id: "482945063282802698", botToken: BLSToken  });
+//const bls = new BotList({  id: "482945063282802698", botToken: process.env.BLS_TOKEN  });
 
 //Music
 const ytdl_discord = require('ytdl-core-discord');
@@ -282,7 +273,7 @@ const EmojiNumbers        = [  "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️
 var Banner          = {  Source: 0,  Price: 1 ,  Name: 2 ,  Credit: 3,  RevenueID: 4, AddedDate: 5  };
 var Languages       = [  "English",  "Čeština"  ]
 var StreamOptions   = {  volume: 0.25  };
-var SearchOptions   = {  maxResults: 1,  key: YoutubeToken  };
+var SearchOptions   = {  maxResults: 1,  key: process.env.YT_TOKEN  };
 
 const Banners = [
 
@@ -1821,7 +1812,7 @@ peeky.on('ready', () => {
         node_fetch(`https://botsfordiscord.com/api/bot/${peeky.user.id}`, {
             method: 'POST',
             headers: {
-                'Authorization': BFDToken,
+                'Authorization': process.env.BFD_TOKEN,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({  server_count: GuildSize  })
@@ -1831,7 +1822,7 @@ peeky.on('ready', () => {
         node_fetch(`https://discord.boats/api/v2/bot/${peeky.user.id}`, {
             method: 'POST',
             headers: {
-                'Authorization': DBToken,
+                'Authorization': process.env.BD_TOKEN,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({  server_count: GuildSize  })
@@ -1841,7 +1832,7 @@ peeky.on('ready', () => {
         node_fetch(`https://www.cloudlist.xyz/api/stats/${peeky.user.id}`, {
             method: 'POST',
             headers: {
-                'Authorization': CLToken,
+                'Authorization': process.env.CL_TOKEN,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({  server_count: GuildSize  })
@@ -3696,7 +3687,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                 if  (peeky.serverData.get(keySF, "function_notifications") == true)  {
 
                   
-                    var TranslatedMessages = [InfoIcon + " **X001** has been vote kicked with **Y votes**.", InfoIcon + " **X** byl vyhlasován ze serveru se **X002 hlasy**."];
+                    var TranslatedMessages = [InfoIcon + " **X001** has been vote kicked with **X002 votes**.", InfoIcon + " **X** byl vyhlasován ze serveru se **X002 hlasy**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(reaction.message.member.displayName, "other", true)).replace("X002", peeky.serverData.get(keySF, "vote_kick_bonus_setting")),  "color": EmbedColor};
                     reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                   
@@ -3712,7 +3703,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                   ResponseCooldowns.add(reaction.message.guild.id + "VK");
                   setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id + "VK")}, ResponseCooldownMS);
 
-                  var TranslatedMessages = [InfoIcon + " **X001** has started a vote kick against **Y**.", InfoIcon + " **X** začal hlasovat o vyhození **X002**."];
+                  var TranslatedMessages = [InfoIcon + " **X001** has started a vote kick against **X002**.", InfoIcon + " **X001** začal hlasovat o vyhození **X002**."];
                   const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};
                   reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
                 
@@ -9005,4 +8996,4 @@ if  (CommandName.startsWith("muterole"))  {
 };
 });
   
-peeky.login(DiscordToken).catch(console.error);
+peeky.login(process.env.BOT_TOKEN).catch(console.error);
