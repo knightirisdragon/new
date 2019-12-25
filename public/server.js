@@ -17,7 +17,7 @@ const ddbl = new ddblAPI("482945063282802698", DDBLToken);
 
 //BLS
 const BotList = require('botlist.space');
-const bls     = new BotList({  id: "482945063282802698", botToken: BLSToken  });
+//const bls     = new BotList({  id: "482945063282802698", botToken: BLSToken  });
 
 //Music
 const ytdl_discord = require('ytdl-core-discord');
