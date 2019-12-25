@@ -1806,7 +1806,7 @@ peeky.on('ready', () => {
         ddbl.postStats(GuildSize).catch(err => {console.log("Failed to post the server count to DDBL."); ErrorBag.add(err)});
       
         //Post Server Counts - BLS
-        bls.postServerCount(GuildSize).catch(err => {console.log("Failed to post the server count to BLS."); ErrorBag.add(err)});
+        //bls.postServerCount(GuildSize).catch(err => {console.log("Failed to post the server count to BLS."); ErrorBag.add(err)});
 
         //Post Server Counts - BFD
         node_fetch(`https://botsfordiscord.com/api/bot/${peeky.user.id}`, {
@@ -7005,7 +7005,7 @@ if (CommandName == "daily")  {
     }).catch(err => ErrorBag.add(err));
 
     //Vote BLS
-    await bls.getUpvotes().then(AllVotes => {
+    /*await bls.getUpvotes().then(AllVotes => {
       
         var Now = new Date();
         AllVotes = AllVotes.filter(i => i.user.id == key && Now - new Date(i.timestamp) <= DayMs);
@@ -7018,7 +7018,7 @@ if (CommandName == "daily")  {
 
         };
 
-    }).catch(err => ErrorBag.add(err));
+    }).catch(err => ErrorBag.add(err));*/
 
     //Event Reward
     if  (Setting.EventStatus == true)  {
