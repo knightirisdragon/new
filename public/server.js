@@ -6443,7 +6443,7 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
 
             if  (NewLinesCount < 2)  {
               
-                var TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001**." + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001**" + " " + GreditIcon + "**."];
+                var TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001" + " " + GreditIcon + "**."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6461,7 +6461,7 @@ if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.gui
              else
             {
 
-              var TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001**." + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**."];
+              var TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**."];
               const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
