@@ -341,7 +341,7 @@ const Banners = [
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground61.jpg?1540143872268", 875, "World full of fantasy", "Darksiders 3", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground62.png?1540150284329", 925, "Cyberpunk", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground63.jpg?1540151664457", 650, "Survival of the fittest", "Unknown", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground64.jpg?1540152341562", 825, "THe Ranger", "Fallout New Vegas", undefined, 0],
+    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground64.jpg?1540152341562", 825, "The Ranger", "Fallout New Vegas", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground65.jpg?1540153114935", 800, "Dungeon keep", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground66.jpg?1540238680343", 875, "Clear view", "Dying Light", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground67.jpg?1540238738204", 725, "Silent thief", "Thief", undefined, 0],
@@ -4121,8 +4121,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
                 var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + Rewards[Index][0],  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
                 channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
 
-                    m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 3600000, errors: ['time'] })
-                    .then(collected => {
+                    m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { maxMatches: 1, time: 3600000, errors: ['time'] }).then(collected => {
 
                         var member = collected.first().member;
 
@@ -4135,8 +4134,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
 
                         };
 
-                    })
-                    .catch(collected => {
+                    }).catch(collected => {
                         var embed = {"description": ErrorIcon + " The treasure has expired.", "color": EmbedColor}; 
                         m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
                     });
@@ -6647,9 +6645,9 @@ if (CommandName.startsWith("setbackground"))  {
 
                 };
 
-                if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
+                /*if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
                     InfoMessages.push(InfoIcon + " You have lost your **Custom Background**.");
-                };
+                };*/
 
                 peeky.userData.set(key, i, "Background");
 
@@ -7044,9 +7042,9 @@ if (CommandName == "daily")  {
             InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a Server Booster.");
     };
 
-    var Footer = "Thank you for using PEEKY!";
+    var Footer = "Thank you for voting on PEEKY!";
     if  (CountedVotes == 0)  {
-        Footer = "You can get more rewards by typing " + Prefix + "help and voting for me!";
+        Footer = "You can get more rewards by typing \"" + Prefix + "help\" and voting for me!";
     } else {
       if  (peeky.userData.get(key, "VoterBadge") == false)  {
           peeky.userData.set(key, true, "VoterBadge");  
