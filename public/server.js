@@ -268,6 +268,7 @@ const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch
 const VulgarPhrases       = [  "anal", "anus", "arse", "ass", "ballsack", "balls", "bastard", "bitch", "biatch", "bloody", "blowjob", "boner", "boob", "bugger", "bum", "butt", "buttplug", "clitoris", "cock", "coon", "crap", "cunt", "damn", "dick", "dildo", "dyke", "fag", "feck", "fellate", "fellatio", "felching", "fuck", "fudgepacker", "fudge", "packer", "flange", "Goddamn", "God", "damn", "hell", "homo", "jerk", "jizz", "knobend", "knob", "end", "labia", "lmao", "lmfao", "muff", "nigger", "nigga", "penis", "piss", "poop", "prick", "pube", "pussy", "queer", "scrotum", "sex", "shit", "sh1t", "slut", "smegma", "spunk", "tit", "tosser", "turd", "twat", "vagina", "wank", "whore", "wtf"  ];
 const ImmuneServers       = [  SupportServer, EmojiStorage1, `454933217666007052`, `264445053596991498`, `330777295952543744`, `387812458661937152`, `374071874222686211`, `439866052684283905`, `534551489595703306`, `608711879858192479`, `603194252872122389`  ];
 const EmojiNumbers        = [  "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"  ];
+const TextChannels        = [  "text", "news"  ];
 
 //Small Objects
 var Banner          = {  Source: 0,  Price: 1 ,  Name: 2 ,  Credit: 3,  RevenueID: 4, AddedDate: 5  };
@@ -3992,7 +3993,7 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
     };
 
 }
- else if (message.channel.type == "text")
+ else if (["text", "news"].includes(message.channel.type))
 {
 
 //SOME VARIABLES
@@ -8901,7 +8902,7 @@ if  (CommandName.startsWith("muterole"))  {
 
             var FixedMutedRole = function_RemoveFormatting(CommandArgument, "role", true);
             var RoleExist = message.guild.roles.find(role => role.name == CommandArgument);
-            var FilteredChannels = message.guild.channels.array().filter(channel => channel.type == "text" || channel.type == "voice");
+            var FilteredChannels = message.guild.channels.array().filter(channel => !TextChannels.includes(channel.type));
 
             if  (!RoleExist && message.guild.me.hasPermission("MANAGE_ROLES"))  {
 
