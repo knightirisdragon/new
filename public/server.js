@@ -3169,7 +3169,7 @@ if  (peeky.serverData.has(keySF))  {
 
             var FinalName = channel.name.replace(/[-]/g, "\u2005");
 
-            if  (channel.type == "text" && channel.name !== FinalName)  {
+            if  (TextChannels.includes(channel.type) && channel.name !== FinalName)  {
 
                 await channel.setName(FinalName, "Triggered by the Dash Remover function.").catch(error => ErrorBag.add(error));
                 console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
@@ -3205,7 +3205,7 @@ if  (peeky.serverData.has(keySF))  {
 
             var FinalName = channel.name.replace(/[-]/g, "\u2005");
 
-            if  (channel.type == "text" && channel.name !== FinalName)  {
+            if  (TextChannels.includes(channel.type) && channel.name !== FinalName)  {
 
                 await channel.setName(FinalName, "Triggered by the Dash Remover function.").catch(error => ErrorBag.add(error));
                 console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
@@ -3993,7 +3993,7 @@ if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !messag
     };
 
 }
- else if (["text", "news"].includes(message.channel.type))
+ else if (TextChannels.includes(message.channel.type))
 {
 
 //SOME VARIABLES
@@ -8968,7 +8968,7 @@ if  (CommandName.startsWith("muterole"))  {
             peeky.serverData.set(keySF, CommandArgument, "muted_role");
           
             var TranslatedMessages = [SuccessIcon + " The mute role is now set to **@X001**.", SuccessIcon + " Role na ztlumení je teď nastavena na **@X001**."];
-            const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
+            const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
