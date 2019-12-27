@@ -715,7 +715,12 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground436.png?v=1576143916348", 925, "Agent's mood", "u/bobemil", undefined, 1576143910590],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground437.png?v=1576163566667", Exclusive, "Christmas mood", "Vojtěch Jílovec", undefined, 1576163667563],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground438.png?v=1576227042690", 825, "Spartans", "Halo Reach", undefined, 1576227058363],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground439.png?v=1576227115180", 775, "Flu survivors", "Left 4 Dead 2", undefined, 1576227050372]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground439.png?v=1576227115180", 775, "Flu survivors", "Left 4 Dead 2", undefined, 1576227050372],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground440.png?v=1577453807639", 875, "Iceborn", "Monster Hunter World", undefined, 1577453675228],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground441.png?v=1577453753300", 950, "Plantera", "Bohrokki", undefined, 1577453676896],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground442.png?v=1577453764354", 925, "Destroyer", "Bohrokki", undefined, 1577453678226],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground443.png?v=1577453903759", 850, "Ride 'round", "Final Fantasy XV", undefined, 1577453680481],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground444.png?v=1577453768498", 675, "Park", "Unknown", undefined, 1577453682331]
 
 ];
 
