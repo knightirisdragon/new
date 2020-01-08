@@ -3952,43 +3952,43 @@ peeky.on('message', async (message) => {
   
 if  (message.channel.type == "dm")  {
 
-if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !message.webhookID && message.content.toLowerCase() !== "accept")  {
-  
-    if  (!BannedUsers.includes(message.author.id))  {
-          
-        QueuedSOSMessages.add(message.author.id);
+    if  (!QueuedSOSMessages.has(message.author.id) && !message.author.bot && !message.webhookID && message.content.toLowerCase() !== "accept")  {
 
-        const embed = {"description": InfoIcon + " Do you want to send your message to PEEKY's owner?\n" + Hollow + " Type **Accept** in under 30 seconds if you do.",  "color": EmbedColor}; 
-        function_DirectMessage(message.author.id, { embed });
+        if  (!BannedUsers.includes(message.author.id))  {
 
-        message.channel.awaitMessages(response => response.content.toLowerCase() == "accept", {
-          max: 1,
-          time: 30000,
-          errors: ['time'],
-        }).then((collected) => {
+            QueuedSOSMessages.add(message.author.id);
 
-            QueuedSOSMessages.delete(message.author.id);
-
-            if  (message.attachments.size > 0) {
-                const image = message.attachments.array()[0].url;
-                function_DirectMessage(OwnerId, "**" + function_RemoveFormatting(message.author.tag, "other", true) + ":** " + message.content, {  files: [image]});
-            }
-             else
-            {
-                function_DirectMessage(OwnerId, "**" + function_RemoveFormatting(message.author.tag, "other", true) + ":** " + message.content);
-            };
-
-            const embed = {"description": SuccessIcon + " Your message has been successfuly sent to my owner!",  "color": EmbedColor}; 
+            const embed = {"description": InfoIcon + " Do you want to send your message to PEEKY's owner?\n" + Hollow + " Type **Accept** in under 30 seconds if you do.",  "color": EmbedColor}; 
             function_DirectMessage(message.author.id, { embed });
-          
-        }).catch(() => {
-           QueuedSOSMessages.delete(message.author.id);
 
-           const embed = {"description": ErrorIcon + " Your message was not sent because the time limit has ran out.",  "color": EmbedColor}; 
-           function_DirectMessage(message.author.id, { embed });
-        });
-      
-    };
+            message.channel.awaitMessages(response => response.content.toLowerCase() == "accept", {
+              max: 1,
+              time: 30000,
+              errors: ['time'],
+            }).then((collected) => {
+
+                QueuedSOSMessages.delete(message.author.id);
+
+                if  (message.attachments.size > 0) {
+                    const image = message.attachments.array()[0].url;
+                    function_DirectMessage(OwnerId, "**" + function_RemoveFormatting(message.author.tag, "other", true) + ":** " + message.content, {  files: [image]});
+                }
+                 else
+                {
+                    function_DirectMessage(OwnerId, "**" + function_RemoveFormatting(message.author.tag, "other", true) + ":** " + message.content);
+                };
+
+                const embed = {"description": SuccessIcon + " Your message has been successfuly sent to my owner!",  "color": EmbedColor}; 
+                function_DirectMessage(message.author.id, { embed });
+
+            }).catch(() => {
+               QueuedSOSMessages.delete(message.author.id);
+
+               const embed = {"description": ErrorIcon + " Your message was not sent because the time limit has ran out.",  "color": EmbedColor}; 
+               function_DirectMessage(message.author.id, { embed });
+            });
+
+        };
 
     };
 
