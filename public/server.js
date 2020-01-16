@@ -273,7 +273,7 @@ const TextChannels        = [  "text", "news"  ];
 //Small Objects
 var Banner          = {  Source: 0,  Price: 1 ,  Name: 2 ,  Credit: 3,  RevenueID: 4, AddedDate: 5  };
 var Languages       = [  "English",  "Čeština"  ]
-var StreamOptions   = {  volume: 0.25  };
+var StreamOptions   = {  volume: 1  };
 var SearchOptions   = {  maxResults: 1,  key: process.env.YT_TOKEN  };
 
 const Banners = [
