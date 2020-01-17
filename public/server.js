@@ -1127,8 +1127,6 @@ function function_StreamAnnouncements(member)  {
     CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
     setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
   
-    console.log("Yes! I am")
-  
     var type = undefined;
   
     if  (member.selfStream == true)  {
@@ -1159,10 +1157,14 @@ function function_StreamAnnouncements(member)  {
 
     if  (type == "discord")  {
 
-        var GameName   = function_RemoveFormatting(member.presence.game.name, "other", false);
+        var GameName   = "Unknown";
         var GameLink   = "https://discordapp.com/channels/" + member.guild.id +  "/" + member.voiceChannel.id;
         var GameColor  = 7506394;
         var GameHost   = "Discord";
+      
+        if  (member.presence.game)  {
+            GameName = function_RemoveFormatting(member.presence.game.name, "other", false);
+        };
 
     };
 
@@ -3285,11 +3287,11 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                 CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 300000);
 
-                /*if  (oldMember.presence.game && oldMember.presence.game.type == 1 || oldMember.voiceChannel !== null && oldMember.selfStream == true)  {  //
+                if  (oldMember.presence.game && oldMember.presence.game.type == 1)  {  // || oldMember.voiceChannel !== null && oldMember.selfStream == true
                     var AlreadyStreaming = true;
-                };*/
+                };
 
-                //if  (AlreadyStreaming !== true)  {
+                if  (AlreadyStreaming !== true)  {
                   
                     var SavedMember = member;
 
@@ -3299,7 +3301,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                     console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
                     function_UpdateAutowipe(keySF, "server");
 
-                //};
+                };
 
             };
   
