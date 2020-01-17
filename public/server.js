@@ -3274,33 +3274,19 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
 //Stream Announcements
 if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
   
-        console.log("awas")
-  
     if  (!member.user.bot && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SA2"))  {
 
-        var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));    
-      
-        console.log("works")
+        var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
 
         if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
       
-        console.log(member.presence.game == true)
-      
-        console.log(member.voiceChannel == true)
-      
-        console.log(member.selfStream == true)
-      
-            if  (member.presence.game && (member.presence.game.type == 1 || member.voiceChannel && member.selfStream))  {
-      
-        console.log("works")
+            if  (member.presence.game && member.presence.game.type == 1)  {
 
                 CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 300000);
 
-                if  (oldMember.presence.game !== null && (oldMember.presence.game.type == 1) || (oldMember.voiceChannel !== null && oldMember.selfStream == true))  {
+                if  (oldMember.presence.game !== null && oldMember.presence.game.type == 1)  {
                     var AlreadyStreaming = true;
-      
-        console.log("works")
                 };
 
                 if  (AlreadyStreaming !== true)  {
@@ -3378,6 +3364,98 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
       
     };
       
+    };
+      
+};
+  
+};
+});
+
+//PRESENCE UPDATE EVENTS
+peeky.on("GuildMemberUpdate", async (oldMember, newMember) => {
+  
+const key   = `${newMember.user.id}`;
+const keySF = `${newMember.guild.id}`;
+  
+//FUNCTIONS
+if  (peeky.serverData.has(keySF))  {
+
+const member = newMember;
+
+//Streamer Role
+if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
+
+    if  (member.guild.me.hasPermission('MANAGE_ROLES'))  {
+  
+        if  (!member.user.bot)  {
+
+            var   HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
+            var   GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
+
+            if  (member.presence.game && member.presence.game.type == 1)  {
+
+            if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
+              
+                 member.addRole(GuildRole.id).catch(error => ErrorBag.add(error));
+
+                 CurrentlyStreaming.add(member.user.id + member.guild.id + "SR");
+                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 1800000);
+
+                 console.log("The Streamer Role function has been triggered in " + member.guild.name + ".");
+                 function_UpdateAutowipe(keySF, "server");
+              
+            };
+
+            }  else  { 
+
+               if  (HasRole)  {
+                   member.removeRole(GuildRole.id).catch(error => ErrorBag.add(error));
+               };
+
+            };
+
+        };
+
+    };
+      
+};
+
+//Stream Announcements
+if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
+  
+    if  (!member.user.bot && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SA2"))  {
+      
+        console.log("ydfs")
+
+        var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
+
+        if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+      
+            if  (member.presence.game && member.voiceChannel && member.selfStream)  {
+
+                CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
+                setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 300000);
+
+                if  (oldMember.presence.game !== null && oldMember.voiceChannel && oldMember.selfStream)  {
+                    var AlreadyStreaming = true;
+                };
+
+                if  (AlreadyStreaming !== true)  {
+                  
+                    var SavedMember = member;
+
+                    const embed = function_StreamAnnouncements(member);
+                    Channel.send({ embed }).catch(error => ErrorBag.add(error));
+                  
+                    console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
+                    function_UpdateAutowipe(keySF, "server");
+
+                };
+
+            };
+  
+        };
+  
     };
       
 };
