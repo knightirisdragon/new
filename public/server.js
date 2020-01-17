@@ -1131,12 +1131,12 @@ function function_StreamAnnouncements(member)  {
   
     var type = undefined;
   
-    if  (member.presence.game.url.startsWith("https://youtube.com"))  {
-        type = "youtube";
+    if  (member.selfStream == true)  {
+        type = "discord";
     } else if (member.presence.game.url.startsWith("https://www.twitch.tv"))  {
       type = "twitch";
-    } else if (member.selfStream == true)  {
-      type = "discord";
+    } else if  (member.presence.game.url.startsWith("https://youtube.com"))  {
+        type = "youtube";
     };
 
     if  (type == "twitch")  {
@@ -3279,23 +3279,17 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
         var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
 
         if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
-          
-            console.log(member.user.tag);
-            console.log(member.voiceChannel !== null);          
-            console.log(member.selfStream == true);
       
-            if  (member.voiceChannel !== null && member.selfStream == true)  {  //member.presence.game && member.presence.game.type == 1 || 
+            if  (member.presence.game && member.presence.game.type == 1 || member.voiceChannel !== null && member.selfStream == true)  {
 
                 CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 300000);
 
-                if  (oldMember.voiceChannel !== null && oldMember.selfStream == true)  {  //oldMember.presence.game && oldMember.presence.game.type == 1 || 
+                /*if  (oldMember.presence.game && oldMember.presence.game.type == 1 || oldMember.voiceChannel !== null && oldMember.selfStream == true)  {  //
                     var AlreadyStreaming = true;
-                };
-              
-                console.log(AlreadyStreaming)
+                };*/
 
-                if  (AlreadyStreaming !== true)  {
+                //if  (AlreadyStreaming !== true)  {
                   
                     var SavedMember = member;
 
@@ -3305,7 +3299,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                     console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
                     function_UpdateAutowipe(keySF, "server");
 
-                };
+                //};
 
             };
   
