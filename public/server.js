@@ -3280,6 +3280,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
         if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
           
+            console.log(member.user.tag);
             console.log(member.voiceChannel !== null);          
             console.log(member.selfStream == true);
       
@@ -3288,9 +3289,11 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                 CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 300000);
 
-                if  (oldMember.presence.game && oldMember.presence.game.type == 1 || oldMember.voiceChannel && oldMember.selfStream)  {
+                if  (oldMember.voiceChannel !== null && oldMember.selfStream == true)  {  //oldMember.presence.game && oldMember.presence.game.type == 1 || 
                     var AlreadyStreaming = true;
                 };
+              
+                console.log(AlreadyStreaming)
 
                 if  (AlreadyStreaming !== true)  {
                   
