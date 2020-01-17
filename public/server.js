@@ -1127,6 +1127,8 @@ function function_StreamAnnouncements(member)  {
     CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
     setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
   
+    console.log("Yes! I am")
+  
     var type = undefined;
   
     if  (member.presence.game.url.startsWith("https://youtube.com"))  {
@@ -3281,9 +3283,9 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
         if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
       
-            if  ((member.presence.game !== null && member.presence.game.type == 1) || (member.voiceChannel !== null && member.selfStream == true))  {
+            if  (member.presence.game !== null && (member.presence.game.type == 1) || (member.voiceChannel !== null && member.selfStream == true))  {
 
-                if  ((oldMember.presence.game !== null && oldMember.presence.game.type == 1) && (oldMember.voiceChannel !== null && oldMember.selfStream == true))  {
+                if  (oldMember.presence.game !== null && (oldMember.presence.game.type == 1) || (oldMember.voiceChannel !== null && oldMember.selfStream == true))  {
                     var AlreadyStreaming = true;
                 };
 
