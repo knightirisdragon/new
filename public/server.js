@@ -3276,14 +3276,16 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
   
     if  (!member.user.bot && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SA2"))  {
 
-        CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
-        setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 300000);
-
         var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));    
 
         if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
       
-            if  (member.presence.game !== null && (member.presence.game.type == 1) || (member.voiceChannel !== null && member.selfStream == true))  {
+            if  (member.presence.game !== null && ((member.presence.game.type == 1) || (member.voiceChannel && member.selfStream)))  {
+
+                CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
+                setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 300000);
+              
+                console.log("yes?");
 
                 if  (oldMember.presence.game !== null && (oldMember.presence.game.type == 1) || (oldMember.voiceChannel !== null && oldMember.selfStream == true))  {
                     var AlreadyStreaming = true;
