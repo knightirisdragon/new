@@ -1064,55 +1064,55 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
 //CANVAS: Music embed
 async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)  {
   
-            var attachment = null;
-  
-            var Now = new Date();
-  
-            const canvas = Canvas.createCanvas(500, 370);
-            const ctx = canvas.getContext('2d');
+    var attachment = null;
 
-            const background = await Canvas.loadImage(MainBackground);
-            ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    var Now = new Date();
 
-           /* ctx.fillStyle = Setting.Dark;
-            ctx.globalAlpha = 1;
-            ctx.fillRect(10, 10, canvas.width - 20, 270);
+    const canvas = Canvas.createCanvas(500, 370);
+    const ctx = canvas.getContext('2d');
 
-            ctx.stroke();*/
+    const background = await Canvas.loadImage(MainBackground);
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-            ctx.globalAlpha = 1;
-            const thumbnail = await Canvas.loadImage(Thumbnail);
-            ctx.drawImage(thumbnail, 15, 15, canvas.width - 30, 260);
+   /* ctx.fillStyle = Setting.Dark;
+    ctx.globalAlpha = 1;
+    ctx.fillRect(10, 10, canvas.width - 20, 270);
 
-            //String Setting
-            ctx.fillStyle = "black";
-            ctx.textAlign = "left";
-            ctx.fillStyle = "white";
-            ctx.shadowColor = "black";
-            ctx.shadowOffsetX = 1; 
-            ctx.shadowOffsetY = 1;
-            ctx.globalAlpha = 1;
+    ctx.stroke();*/
 
-            //Header
-            ctx.font = "15px " + Setting.DefaultFont;
-            if  (Type == "Started")  {
-                ctx.fillText(peeky.users.get(User).username + " has requested " + Author + "'s song.", 15, 310);
-            }  else if  (Type == "Playlist")  {
-                //ctx.font = "13px " + Setting.DefaultFont;
-                ctx.fillText(peeky.users.get(User).username + " has requested a random song from " + peeky.userData.get(User, "PlaylistName") + ".", 15, 310, canvas.width - 30);
-            }  else if  (Type == "Random")  {
-                ctx.fillText(peeky.users.get(User).username + " has requested a random song.", 15, 310);
-            }  else if  (Type == "Previous")  {
-                ctx.fillText(peeky.users.get(User).username + " has requested the previous song.", 15, 310);
-            }  else if  (Type == "Current")  {
-                ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes", null) + " minutes left.", 15, 310);
-            };
+    ctx.globalAlpha = 1;
+    const thumbnail = await Canvas.loadImage(Thumbnail);
+    ctx.drawImage(thumbnail, 15, 15, canvas.width - 30, 260);
 
-            //Song Name
-            ctx.font = "20px " + Setting.DefaultFont;
-            ctx.fillText(Title, 15, 345, canvas.width - 30);
+    //String Setting
+    ctx.fillStyle = "black";
+    ctx.textAlign = "left";
+    ctx.fillStyle = "white";
+    ctx.shadowColor = "black";
+    ctx.shadowOffsetX = 1; 
+    ctx.shadowOffsetY = 1;
+    ctx.globalAlpha = 1;
 
-            return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+    //Header
+    ctx.font = "15px " + Setting.DefaultFont;
+    if  (Type == "Started")  {
+        ctx.fillText(peeky.users.get(User).username + " has requested " + Author + "'s song.", 15, 310);
+    }  else if  (Type == "Playlist")  {
+        //ctx.font = "13px " + Setting.DefaultFont;
+        ctx.fillText(peeky.users.get(User).username + " has requested a random song from " + peeky.userData.get(User, "PlaylistName") + ".", 15, 310, canvas.width - 30);
+    }  else if  (Type == "Random")  {
+        ctx.fillText(peeky.users.get(User).username + " has requested a random song.", 15, 310);
+    }  else if  (Type == "Previous")  {
+        ctx.fillText(peeky.users.get(User).username + " has requested the previous song.", 15, 310);
+    }  else if  (Type == "Current")  {
+        ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes", null) + " minutes left.", 15, 310);
+    };
+
+    //Song Name
+    ctx.font = "20px " + Setting.DefaultFont;
+    ctx.fillText(Title, 15, 345, canvas.width - 30);
+
+    return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
 };
 
@@ -1267,6 +1267,7 @@ function function_ServerData(key)  {
             function_notifications: false,
             level_notifications: false,
 
+            Queue: [],
             Title: "None",
             Thumbnail: DefaultBackground,
             Author: "No one",
