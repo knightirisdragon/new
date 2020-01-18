@@ -7726,66 +7726,72 @@ if (CommandName.startsWith("play"))  {
 
                 if  (Length <= 1800 && Length > 0)  { //1800
 
-                      await voiceChannel.join().then(async connection => {
+                    await voiceChannel.join().then(async connection => {
 
-                      CurrentlyPlaying.add(message.guild.id);
+                        CurrentlyPlaying.add(message.guild.id);
 
-                      peeky.serverData.set(keySF, Title, "Title");
-                      peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
-                      peeky.serverData.set(keySF, Author, "Author");
-                      peeky.serverData.set(keySF, LengthDate, "Length");
-                      peeky.serverData.set(keySF, Started, "Started");
-                      peeky.serverData.set(keySF, CommandArgument, "Link");
+                        peeky.serverData.set(keySF, Title, "Title");
+                        peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
+                        peeky.serverData.set(keySF, Author, "Author");
+                        peeky.serverData.set(keySF, LengthDate, "Length");
+                        peeky.serverData.set(keySF, Started, "Started");
+                        peeky.serverData.set(keySF, CommandArgument, "Link");
 
-                      if  (DeleteMessage == true)  {
-                          message.delete().catch(error => ErrorBag.add(error));
-                      };            
+                        if  (DeleteMessage == true)  {
+                            message.delete().catch(error => ErrorBag.add(error));
+                        };            
 
-                      message.channel.startTyping();
-                      await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
-                      message.channel.stopTyping();
+                        message.channel.startTyping();
+                        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
+                        message.channel.stopTyping();
 
-                      if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
-                          message.guild.me.setNickname("🎵 " + " PEEKY " + "🎵");
-                      };
+                        if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
+                            message.guild.me.setNickname("🎵 " + " PEEKY " + "🎵");
+                        };
 
-                      const stream = ytdl(CommandArgument);
-                      const dispatcher = await connection.playStream(stream, StreamOptions);
+                        const stream = ytdl(CommandArgument);
+                        const dispatcher = await connection.playStream(stream, StreamOptions);
 
-                      dispatcher.on('end', async reason => {
+                        dispatcher.on('end', async reason => {
+                          
+                        if  (peeky.serverData.get(keySF, "Queue").length == 0)  {
+                          
+                        } else {
+                          
+                        };
 
-                      CurrentlyPlaying.delete(message.guild.id);
-                      voiceChannel.leave();
+                        CurrentlyPlaying.delete(message.guild.id);
+                        voiceChannel.leave();
 
-                      if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 "))))  {
-                          message.guild.me.setNickname(null);
-                      };
+                        if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 "))))  {
+                            message.guild.me.setNickname(null);
+                        };
 
-                      const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
+                        const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
 
-                      var TranslatedMessages = [InfoIcon + " The song has now finished with **X001** listeners.", InfoIcon + " Písnička skončila s **X001** diváky."];
-                      const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
-                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        var TranslatedMessages = [InfoIcon + " The song has now finished with **X001** listeners.", InfoIcon + " Písnička skončila s **X001** diváky."];
+                        const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-                      if  (Listeners.length >= 5)  {
+                        if  (Listeners.length >= 5)  {
 
-                          Listeners.forEach(id => {
+                            Listeners.forEach(id => {
 
-                              if  (peeky.userData.has(id) && peeky.userData.get(id, "PartyBadge") == false)  {
-                                  peeky.userData.set(id, true, "PartyBadge");
-                              };
+                                if  (peeky.userData.has(id) && peeky.userData.get(id, "PartyBadge") == false)  {
+                                    peeky.userData.set(id, true, "PartyBadge");
+                                };
 
-                          });
+                            });
 
-                      };
+                        };
 
-                      });
+                        });
 
-                      }).catch(error => { 
-                          const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
-                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                          ErrorBag.add(error);
-                      });
+                    }).catch(error => { 
+                        const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        ErrorBag.add(error);
+                    });
 
                 } else {
                   var TranslatedMessages = [ErrorIcon + " You cannot play livestreams or songs longer than 30 minutes.", ErrorIcon + " Nelze hrát živé vysílání a písničky delší jak 30 minuty."];
@@ -7878,8 +7884,9 @@ if (CommandName.startsWith("play"))  {
             const voiceChannel  = message.member.voiceChannel;
 
         if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
-          
-            PlayMusic(voiceChannel, )
+
+            PlayMusic(voiceChannel, CommandArgument);
+            peeky.serverData.get(keySF, "Queue").push(CommandArgument);
 
         } else {
           const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
