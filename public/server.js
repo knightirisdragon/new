@@ -1100,6 +1100,8 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
     }  else if  (Type == "Playlist")  {
         //ctx.font = "13px " + Setting.DefaultFont;
         ctx.fillText(peeky.users.get(User).username + " has requested " + peeky.userData.get(User, "Playlist").length + " songs from " + peeky.userData.get(User, "PlaylistName") + ".", 15, 310, canvas.width - 30);
+    }  else if  (Type == "Queue")  {
+        ctx.fillText("Playing the next song from " + peeky.users.get(User).username + "'s playlist'.", 15, 310);
     }  else if  (Type == "Random")  {
         ctx.fillText(peeky.users.get(User).username + " has requested a random song.", 15, 310);
     }  else if  (Type == "Previous")  {
@@ -7771,7 +7773,7 @@ if (CommandName.startsWith("play"))  {
 
                                     const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
 
-                                    var TranslatedMessages = [InfoIcon + " The music now finished with **X001** listeners.", InfoIcon + " Písničky skončili s **X001** diváky."];
+                                    var TranslatedMessages = [InfoIcon + " The music has now finished with **X001** listeners.", InfoIcon + " Hudba právě skončila s **X001** posluchateli."];
                                     const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
                                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7789,6 +7791,7 @@ if (CommandName.startsWith("play"))  {
 
                                 } else {
 
+                                  Type = "Queue"
                                   PlayMusic(voiceChannel);
 
                                 };
@@ -7894,12 +7897,14 @@ if (CommandName.startsWith("play"))  {
             if  (ChoosingMode == true)  {
 
                 if  (results.length > 0)  {      
-                    CommandArgument = results[0].link;
+                    peeky.serverData.get(keySF, "Queue").push(results[0].link);
                 };
 
             };
+      
+        var Queue = peeky.serverData.get(keySF, "Queue");
 
-        if  ((peeky.serverData.get(keySF, "Queue").length > 0) && !peeky.serverData.get(keySF, "Queue")[0].includes("?list=") && (ytdl.validateURL(peeky.serverData.get(keySF, "Queue")[0]) == true))  {
+        if  ((Queue.length > 0) && !Queue[0].includes("?list=") && (ytdl.validateURL(Queue[0]) == true))  {
 
         if  (message.member.voiceChannel)  {
 
