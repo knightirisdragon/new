@@ -4558,7 +4558,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
               
               if  (m.roles.has(Role.id))  {
                   if  (m.user.id == message.guild.owner.user.id)  {  Tags.push(OwnerTag);  };
-                  if  (m.roles.find(r => r.name == "Booster"))  {  Tags.push(BoostTag);  };
+                  if  (m.premiumSince !== null)  {  Tags.push(BoostTag);  };
                   if  (m.user.bot)  {  Tags.push(BotTag);  };
                 
                   WallList.push("> " + function_RemoveFormatting(m.displayName, "other", true) +  " " + Tags.join(" "));
