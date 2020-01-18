@@ -7711,82 +7711,8 @@ if (CommandName.startsWith("play"))  {
         
         MusicCmdCooldown.add(message.guild.id);
         setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
-
-        if  (CommandArgument.includes("youtube.com") || CommandArgument.includes("youtu.be"))  {
-            DeleteMessage = true;
-        };
-
-        if  (CommandArgument == RandomString && ChoosingMode == true)  {
-
-            ChoosingMode = false;
-          
-            CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
-            Type = "Random";
-
-        };
-
-        if  (CommandArgument == "previous" && ChoosingMode == true)  {
-
-            ChoosingMode = false;
-
-            if  (peeky.serverData.has(keySF, "Link") && peeky.serverData.get(keySF, "Link") !== "None")  {  
-
-                CommandArgument = peeky.serverData.get(keySF, "Link");
-                Type = "Previous";
-
-            } else {
-
-              var TranslatedMessages = [InfoIcon + " Previous song not found - playing a random song.", InfoIcon + " Minulá písnička nenalezena - Hraju náhodnou písničku."];
-              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-              CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
-              Type = "Random";
-            };
-
-        };
-
-        if  (CommandArgument == "playlist" && ChoosingMode == true)  {
-
-            ChoosingMode = false;
-
-            if  (peeky.userData.get(key, "Playlist").length > 0)  {
-
-                CommandArgument = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
-                Type = "Playlist";
-
-            } else {
-
-              var TranslatedMessages = [InfoIcon + " Your playlist is empty - Playing a random song.", InfoIcon + " Váš playlist je prázdný - Hraju náhodnou písničku."];
-              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-              CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
-              Type = "Random";
-
-            };
-
-        };
-
-        search(CommandArgument, SearchOptions, async function(error, results)  {
-
-            if  (error) return ErrorBag.add(error);
-
-            if  (ChoosingMode == true)  {
-
-                if  (results.length > 0)  {      
-                    CommandArgument = results[0].link;
-                };
-
-            };
-
-        if  ((CommandArgument) && !CommandArgument.includes("?list=") && (ytdl.validateURL(CommandArgument) == true))  {
-
-        if  (message.member.voiceChannel)  {
-
-            const voiceChannel  = message.member.voiceChannel;
-
-        if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
+      
+        async function PlayMusic(voiceChannel, music)  {
 
                 await ytdl.getBasicInfo(CommandArgument).then(async (info) => {
                 info = info.player_response.videoDetails;
@@ -7874,6 +7800,86 @@ if (CommandName.startsWith("play"))  {
                 const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             });
+          
+        };
+
+        if  (CommandArgument.includes("youtube.com") || CommandArgument.includes("youtu.be"))  {
+            DeleteMessage = true;
+        };
+
+        if  (CommandArgument == RandomString && ChoosingMode == true)  {
+
+            ChoosingMode = false;
+          
+            CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+            Type = "Random";
+
+        };
+
+        if  (CommandArgument == "previous" && ChoosingMode == true)  {
+
+            ChoosingMode = false;
+
+            if  (peeky.serverData.has(keySF, "Link") && peeky.serverData.get(keySF, "Link") !== "None")  {  
+
+                CommandArgument = peeky.serverData.get(keySF, "Link");
+                Type = "Previous";
+
+            } else {
+
+              var TranslatedMessages = [InfoIcon + " Previous song not found - playing a random song.", InfoIcon + " Minulá písnička nenalezena - Hraju náhodnou písničku."];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+              CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+              Type = "Random";
+            };
+
+        };
+
+        if  (CommandArgument == "playlist" && ChoosingMode == true)  {
+
+            ChoosingMode = false;
+
+            if  (peeky.userData.get(key, "Playlist").length > 0)  {
+
+                CommandArgument = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
+                Type = "Playlist";
+
+            } else {
+
+              var TranslatedMessages = [InfoIcon + " Your playlist is empty - Playing a random song.", InfoIcon + " Váš playlist je prázdný - Hraju náhodnou písničku."];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+              CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+              Type = "Random";
+
+            };
+
+        };
+
+        search(CommandArgument, SearchOptions, async function(error, results)  {
+
+            if  (error) return ErrorBag.add(error);
+
+            if  (ChoosingMode == true)  {
+
+                if  (results.length > 0)  {      
+                    CommandArgument = results[0].link;
+                };
+
+            };
+
+        if  ((CommandArgument) && !CommandArgument.includes("?list=") && (ytdl.validateURL(CommandArgument) == true))  {
+
+        if  (message.member.voiceChannel)  {
+
+            const voiceChannel  = message.member.voiceChannel;
+
+        if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
+          
+            PlayMusic(voiceChannel, )
 
         } else {
           const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
