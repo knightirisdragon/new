@@ -3981,7 +3981,7 @@ if  (message.channel.type == "dm")  {
             }).catch(() => {
                QueuedSOSMessages.delete(message.author.id);
 
-               const embed = {"description": ErrorIcon + " Your message was not sent because the time limit has ran out.",  "color": EmbedColor}; 
+               const embed = {"description": ErrorIcon + " You did not respond in time.",  "color": EmbedColor}; 
                function_DirectMessage(message.author.id, { embed });
             });
 
