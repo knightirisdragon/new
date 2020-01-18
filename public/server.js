@@ -7712,7 +7712,7 @@ if (CommandName.startsWith("play"))  {
         MusicCmdCooldown.add(message.guild.id);
         setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
       
-        async function PlayMusic(voiceChannel, music)  {
+        async function PlayMusic(voiceChannel)  {
 
                 await ytdl.getBasicInfo(CommandArgument).then(async (info) => {
                 info = info.player_response.videoDetails;
@@ -7749,41 +7749,48 @@ if (CommandName.startsWith("play"))  {
                             message.guild.me.setNickname("🎵 " + " PEEKY " + "🎵");
                         };
 
-                        const stream = ytdl(CommandArgument);
+                        const stream = ytdl(peeky.serverData.get(keySF, "Queue")[0]);
                         const dispatcher = await connection.playStream(stream, StreamOptions);
 
                         dispatcher.on('end', async reason => {
                           
-                        if  (peeky.serverData.get(keySF, "Queue").length == 0)  {
-                          
-                        } else {
-                          
-                        };
+                            if  (message.guild.me.voiceChannel !== null)  {
 
-                        CurrentlyPlaying.delete(message.guild.id);
-                        voiceChannel.leave();
+                                if  (peeky.serverData.get(keySF, "Queue").length == 0)  {
 
-                        if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 "))))  {
-                            message.guild.me.setNickname(null);
-                        };
+                                    CurrentlyPlaying.delete(message.guild.id);
+                                    voiceChannel.leave();
 
-                        const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
+                                    if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 "))))  {
+                                        message.guild.me.setNickname(null);
+                                    };
 
-                        var TranslatedMessages = [InfoIcon + " The song has now finished with **X001** listeners.", InfoIcon + " Písnička skončila s **X001** diváky."];
-                        const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
-                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                    const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
 
-                        if  (Listeners.length >= 5)  {
+                                    var TranslatedMessages = [InfoIcon + " The song has now finished with **X001** listeners.", InfoIcon + " Písnička skončila s **X001** diváky."];
+                                    const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
+                                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-                            Listeners.forEach(id => {
+                                    if  (Listeners.length >= 5)  {
 
-                                if  (peeky.userData.has(id) && peeky.userData.get(id, "PartyBadge") == false)  {
-                                    peeky.userData.set(id, true, "PartyBadge");
+                                        Listeners.forEach(id => {
+
+                                            if  (peeky.userData.has(id) && peeky.userData.get(id, "PartyBadge") == false)  {
+                                                peeky.userData.set(id, true, "PartyBadge");
+                                            };
+
+                                        });
+
+                                    };
+
+                                } else {
+
+                                  peeky.serverData.get(keySF, "Queue").shift();
+                                  PlayMusic(voiceChannel);
+
                                 };
 
-                            });
-
-                        };
+                            };
 
                         });
 
@@ -7819,6 +7826,8 @@ if (CommandName.startsWith("play"))  {
           
             CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
             Type = "Random";
+              
+            peeky.serverData.get(keySF, "Queue").push(CommandArgument);
 
         };
 
@@ -7830,6 +7839,8 @@ if (CommandName.startsWith("play"))  {
 
                 CommandArgument = peeky.serverData.get(keySF, "Link");
                 Type = "Previous";
+              
+                peeky.serverData.get(keySF, "Queue").push(CommandArgument);
 
             } else {
 
@@ -7839,6 +7850,8 @@ if (CommandName.startsWith("play"))  {
 
               CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
               Type = "Random";
+              
+              peeky.serverData.get(keySF, "Queue").push(CommandArgument);
             };
 
         };
@@ -7849,7 +7862,11 @@ if (CommandName.startsWith("play"))  {
 
             if  (peeky.userData.get(key, "Playlist").length > 0)  {
 
-                CommandArgument = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
+                //CommandArgument = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
+              
+                peeky.userData.get(key, "Playlist").forEach(song => {
+                    peeky.serverData.get(keySF, "Queue").push(song);
+                });
                 Type = "Playlist";
 
             } else {
@@ -7860,6 +7877,8 @@ if (CommandName.startsWith("play"))  {
 
               CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
               Type = "Random";
+              
+              peeky.serverData.get(keySF, "Queue").push(CommandArgument);
 
             };
 
@@ -7885,8 +7904,7 @@ if (CommandName.startsWith("play"))  {
 
         if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
 
-            PlayMusic(voiceChannel, CommandArgument);
-            peeky.serverData.get(keySF, "Queue").push(CommandArgument);
+            PlayMusic(voiceChannel);
 
         } else {
           const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
@@ -8141,8 +8159,8 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
 };
 
-//Skip
-if (CommandName == "skip")  {
+//Stop
+if (CommandName == "stop")  {
       
     if  (CurrentlyPlaying.has(message.guild.id))  {
       
@@ -8161,7 +8179,7 @@ if (CommandName == "skip")  {
             };
           
         } else {
-          var TranslatedMessages = [ErrorIcon + "Only the server owner can skip this song right now.", ErrorIcon + " Písničku může momentálně přeskočit pouze vlastník serveru."];
+          var TranslatedMessages = [ErrorIcon + "Only the server owner can stop the music right now.", ErrorIcon + " Pisniččky může momentálně zastavit pouze vlastník serveru."];
           const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
