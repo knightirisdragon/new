@@ -1099,7 +1099,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
         ctx.fillText(peeky.users.get(User).username + " has requested " + Author + "'s song.", 15, 310);
     }  else if  (Type == "Playlist")  {
         //ctx.font = "13px " + Setting.DefaultFont;
-        ctx.fillText(peeky.users.get(User).username + " has requested a random song from " + peeky.userData.get(User, "PlaylistName") + ".", 15, 310, canvas.width - 30);
+        ctx.fillText(peeky.users.get(User).username + " has requested " + peeky.userData.get(User, "Playlist").length + " songs from " + peeky.userData.get(User, "PlaylistName") + ".", 15, 310, canvas.width - 30);
     }  else if  (Type == "Random")  {
         ctx.fillText(peeky.users.get(User).username + " has requested a random song.", 15, 310);
     }  else if  (Type == "Previous")  {
@@ -7726,7 +7726,7 @@ if (CommandName.startsWith("play"))  {
                 const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
                 const Started    = new Date();
 
-                if  (Length <= 1800 && Length > 0)  { //1800
+                if  (Length <= 1800 && Length > 60)  { //1800
 
                     await voiceChannel.join().then(async connection => {
 
@@ -7804,7 +7804,7 @@ if (CommandName.startsWith("play"))  {
                     });
 
                 } else {
-                  var TranslatedMessages = [ErrorIcon + " You cannot play livestreams or songs longer than 30 minutes.", ErrorIcon + " Nelze hrát živé vysílání a písničky delší jak 30 minuty."];
+                  var TranslatedMessages = [ErrorIcon + " You can only play songs between 1 to 30 minutes.", ErrorIcon + " Můžete pouze hrát písničky které trvají 1 až 30 minut."];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -7899,7 +7899,7 @@ if (CommandName.startsWith("play"))  {
 
             };
 
-        if  ((CommandArgument) && !CommandArgument.includes("?list=") && (ytdl.validateURL(CommandArgument) == true))  {
+        if  ((peeky.serverData.get(keySF, "Queue").length > 0) && !peeky.serverData.get(keySF, "Queue")[0].includes("?list=") && (ytdl.validateURL(peeky.serverData.get(keySF, "Queue")[0]) == true))  {
 
         if  (message.member.voiceChannel)  {
 
@@ -8162,8 +8162,8 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
 };
 
-//Skip
-if (CommandName == "skip")  {
+//Stop
+if (CommandName == "stop")  {
       
     if  (CurrentlyPlaying.has(message.guild.id))  {
       
@@ -8182,7 +8182,7 @@ if (CommandName == "skip")  {
             };
           
         } else {
-          var TranslatedMessages = [ErrorIcon + "Only the server owner can skip the song right now.", ErrorIcon + " Pisničku může momentálně zastavit pouze vlastník serveru."];
+          var TranslatedMessages = [ErrorIcon + "Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru."];
           const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
