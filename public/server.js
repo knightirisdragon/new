@@ -7712,9 +7712,11 @@ if (CommandName.startsWith("play"))  {
         MusicCmdCooldown.add(message.guild.id);
         setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
       
+        peeky.serverData.set(keySF, [], "Queue");
+      
         async function PlayMusic(voiceChannel)  {
 
-                await ytdl.getBasicInfo(CommandArgument).then(async (info) => {
+                await ytdl.getBasicInfo(peeky.serverData.get(keySF, "Queue")[0]).then(async (info) => {
                 info = info.player_response.videoDetails;
 
                 const Thumbnail  = info.thumbnail.thumbnails[info.thumbnail.thumbnails.length - 1].url;
@@ -7735,7 +7737,7 @@ if (CommandName.startsWith("play"))  {
                         peeky.serverData.set(keySF, Author, "Author");
                         peeky.serverData.set(keySF, LengthDate, "Length");
                         peeky.serverData.set(keySF, Started, "Started");
-                        peeky.serverData.set(keySF, CommandArgument, "Link");
+                        peeky.serverData.set(keySF, peeky.serverData.get(keySF, "Queue")[0], "Link");
 
                         if  (DeleteMessage == true)  {
                             message.delete().catch(error => ErrorBag.add(error));
@@ -7754,6 +7756,8 @@ if (CommandName.startsWith("play"))  {
 
                         dispatcher.on('end', async reason => {
                           
+                            peeky.serverData.get(keySF, "Queue").shift();
+                          
                             if  (message.guild.me.voiceChannel !== null)  {
 
                                 if  (peeky.serverData.get(keySF, "Queue").length == 0)  {
@@ -7767,7 +7771,7 @@ if (CommandName.startsWith("play"))  {
 
                                     const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
 
-                                    var TranslatedMessages = [InfoIcon + " The song has now finished with **X001** listeners.", InfoIcon + " Písnička skončila s **X001** diváky."];
+                                    var TranslatedMessages = [InfoIcon + " The music now finished with **X001** listeners.", InfoIcon + " Písničky skončili s **X001** diváky."];
                                     const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
                                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7785,7 +7789,6 @@ if (CommandName.startsWith("play"))  {
 
                                 } else {
 
-                                  peeky.serverData.get(keySF, "Queue").shift();
                                   PlayMusic(voiceChannel);
 
                                 };
@@ -7844,7 +7847,7 @@ if (CommandName.startsWith("play"))  {
 
             } else {
 
-              var TranslatedMessages = [InfoIcon + " Previous song not found - playing a random song.", InfoIcon + " Minulá písnička nenalezena - Hraju náhodnou písničku."];
+              var TranslatedMessages = [InfoIcon + " Previous song not found - playing a random song.", InfoIcon + " Minulá písnička nenalezena - Pehrávám náhodnou písničku."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7871,7 +7874,7 @@ if (CommandName.startsWith("play"))  {
 
             } else {
 
-              var TranslatedMessages = [InfoIcon + " Your playlist is empty - Playing a random song.", InfoIcon + " Váš playlist je prázdný - Hraju náhodnou písničku."];
+              var TranslatedMessages = [InfoIcon + " Your playlist is empty - Playing a random song.", InfoIcon + " Váš playlist je prázdný - Přehrávám náhodnou písničku."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8159,8 +8162,8 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
 };
 
-//Stop
-if (CommandName == "stop")  {
+//Skip
+if (CommandName == "skip")  {
       
     if  (CurrentlyPlaying.has(message.guild.id))  {
       
@@ -8179,7 +8182,7 @@ if (CommandName == "stop")  {
             };
           
         } else {
-          var TranslatedMessages = [ErrorIcon + "Only the server owner can stop the music right now.", ErrorIcon + " Pisniččky může momentálně zastavit pouze vlastník serveru."];
+          var TranslatedMessages = [ErrorIcon + "Only the server owner can skip the song right now.", ErrorIcon + " Pisničku může momentálně zastavit pouze vlastník serveru."];
           const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
