@@ -1101,7 +1101,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
         //ctx.font = "13px " + Setting.DefaultFont;
         ctx.fillText(peeky.users.get(User).username + " has requested " + peeky.userData.get(User, "Playlist").length + " songs from " + peeky.userData.get(User, "PlaylistName") + ".", 15, 310, canvas.width - 30);
     }  else if  (Type == "Queue")  {
-        ctx.fillText("Playing the next song from " + peeky.users.get(User).username + "'s playlist'.", 15, 310);
+        ctx.fillText("Playing the next song from " + peeky.users.get(User).username + "'s playlist.", 15, 310);
     }  else if  (Type == "Random")  {
         ctx.fillText(peeky.users.get(User).username + " has requested a random song.", 15, 310);
     }  else if  (Type == "Previous")  {
