@@ -602,11 +602,11 @@ const Banners = [
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground322.png?v=1560087608782", 800, "Extraction", "The Division", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground323.png?v=1560087610295", 525, "The rune", "Deltarune", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground324.png?v=1560087614558", 775, "Jungle crysis", "Crysis", undefined, 0],
-    ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground325.png?v=1560280962628", 125, "Skin from Fortnite", "Jameskii", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground325.png?v=1579388628919", 925, "Fresh air", "Red Dead Redemption 2", undefined, 1579388500412]
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground326.jpg?v=1560281017823", 100, "Grass", "WHASonYT", `339177677326123018`, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground327.png?v=1560283107053", 825 , "Camp liberation", "Kingdom Come Deliverance", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground328.png?v=1560283108264", 775, "Commander Lilith", "Borderlands 2", undefined, 0],
-    ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground329.png?v=1560716844287", 400 , "Pet fox", "Vojtěch Jílovec", `108899856889737216`, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground329.png?v=1579388649114", 750, "Iceland's waterfall", "Unknown", undefined, 1579388494694]
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground330.png?v=1560703323947", 775, "Nuke", "Counter Strike Global Offensive", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground331.png?v=1560768909337", 250, "Creeper Buddy", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground332.png?v=1560768910957", 775, "Flare Abyss", "The Division", undefined, 0],
@@ -721,7 +721,8 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground441.png?v=1577453753300", 950, "Plantera", "Bohrokki", undefined, 1577453676896],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground442.png?v=1577453764354", 925, "Destroyer", "Bohrokki", undefined, 1577453678226],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground443.png?v=1577453903759", 850, "Ride 'round", "Final Fantasy XV", undefined, 1577453680481],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground444.png?v=1577453768498", 675, "Park", "Unknown", undefined, 1577453682331]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground444.png?v=1577453768498", 675, "Park", "Unknown", undefined, 1577453682331],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground445.png?v=1579388666650", 950, "Radio demon", "Hazbin Hotel", undefined, 1579388485754]
 
 ];
 
