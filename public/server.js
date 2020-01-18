@@ -3136,12 +3136,14 @@ if  (keySF == SupportServer)  {
 peeky.on("voiceStateUpdate", async (oldMember, newMember) => {
   
   const member = newMember;
+  const keySF = `${member.guild.id}`;
     
   if  (oldMember.voiceChannel && !newMember.voiceChannel)  {
     
       var ChannelMap = oldMember.voiceChannel.members.map(member => member.id);
     
       if  (ChannelMap.length == 1 && ChannelMap.includes(PeekyId))  {
+          peeky.serverData.set(keySF, [], "Queue");
           oldMember.voiceChannel.leave();
       };    
   };
