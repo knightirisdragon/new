@@ -105,7 +105,7 @@ const LightField = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%
 
 const DefaultBackground = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground1.png?v=1575192820685";
 const NoBackground      = "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2FNA%20Background.png?v=1563929199191"
-const PrismPattern      = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpattern_assets.png?1554545063162";
+const MainBackground    = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576177447491";
 const CoinImage         = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542";
 const ExpImage          = "httpss://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fexp.png?v=1564224431507";
 const LevelImage        = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_level.png?1541260281702";
@@ -1071,19 +1071,14 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
             const canvas = Canvas.createCanvas(500, 370);
             const ctx = canvas.getContext('2d');
 
-            const background = await Canvas.loadImage(PrismPattern);
+            const background = await Canvas.loadImage(MainBackground);
             ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-            /*ctx.globalAlpha = 0.5;
-            ctx.fillRect(5, 5, canvas.width - 10, canvas.height - 10);
-
-            ctx.stroke();*/
-
-            ctx.fillStyle = Setting.Dark;
+           /* ctx.fillStyle = Setting.Dark;
             ctx.globalAlpha = 1;
             ctx.fillRect(10, 10, canvas.width - 20, 270);
 
-            ctx.stroke();
+            ctx.stroke();*/
 
             ctx.globalAlpha = 1;
             const thumbnail = await Canvas.loadImage(Thumbnail);
