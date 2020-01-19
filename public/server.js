@@ -7638,9 +7638,8 @@ if  (!ProfileCooldown.has(message.author.id))  {
     ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
     ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
       
-    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "image.png");
-
-    await message.channel.send("", {files: [attachment]}).catch(error => ErrorBag.add(error)).then(async function (m)  {    
+    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'image.png');
+    await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
 
     if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(ProfileBoosterRole))  {
         const embed = {"description": InfoIcon + " The **Profile Booster** for this profile will remain active for **" + function_TimeLeft(peeky.userData.get(key, "BoosterStart"),  "hours", ProfileBoosterTime) + " hours**.",  "color": EmbedColor}; 
