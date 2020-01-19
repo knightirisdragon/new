@@ -3221,15 +3221,15 @@ if  (peeky.serverData.has(keySF))  {
 });
 
 //PRESENCE UPDATE EVENTS
-peeky.on("presenceUpdate", async (oldMember, newMember) => {
+peeky.on("presenceUpdate", async (oldPresence, newPresence) => {
+
+const member = newPresence.member;
   
-const key   = `${newMember.user.id}`;
-const keySF = `${newMember.guild.id}`;
+const key   = `${member.user.id}`;
+const keySF = `${member.guild.id}`;
   
 //FUNCTIONS
 if  (peeky.serverData.has(keySF))  {
-
-const member = newMember;
 
 //Streamer Role
 if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
@@ -3237,8 +3237,6 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
     if  (member.guild.me.permissions.has('MANAGE_ROLES'))  {
   
         if  (!member.user.bot)  {
-          
-            console.log(member.roles);
 
             var GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
             var HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
@@ -3278,7 +3276,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
         var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
 
-        if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+        if  (Channel && Channel.me.has('SEND_MESSAGES'))  {
       
             if  (member.presence.activity && member.presence.activity.type == 1 || member.voiceChannel !== null && member.streaming == true)  {
 
