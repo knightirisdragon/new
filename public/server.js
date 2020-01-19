@@ -1053,7 +1053,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     //Avatar
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
-    const avatar = await Canvas.loadImage(member.user.displayAvatarURL().replace("https", "http"));
+    const avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: 'png' }).replace("https", "http"));
     ctx.drawImage(avatar, 7, 7, 82, 82);
 
     return attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
@@ -1073,12 +1073,6 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type,
 
     const background = await Canvas.loadImage(MainBackground);
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-   /* ctx.fillStyle = Setting.Dark;
-    ctx.globalAlpha = 1;
-    ctx.fillRect(10, 10, canvas.width - 20, 270);
-
-    ctx.stroke();*/
 
     ctx.globalAlpha = 1;
     const thumbnail = await Canvas.loadImage(Thumbnail);
@@ -2115,7 +2109,7 @@ peeky.on('message', async (message) => {
             //Avatar
             ctx.shadowOffsetX = 0; 
             ctx.shadowOffsetY = 0;
-            const avatar = await Canvas.loadImage(message.author.displayAvatarURL().replace("https", "http"));
+            const avatar = await Canvas.loadImage(message.author.displayAvatarURL({ format: 'png' }).replace("https", "http"));
             ctx.drawImage(avatar, 7, 7, 82, 82);
 
             const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
@@ -3129,18 +3123,20 @@ if  (keySF == SupportServer)  {
 });
 
 //VOICE STATE UPDATE EVENTS
-peeky.on("voiceStateUpdate", async (oldMember, newMember) => {
+peeky.on("voiceStateUpdate", async (oldState, newState) => {
   
-  const member = newMember;
+  const member = newState.member;
+  const oldMember = oldState.member;
+  
   const keySF = `${member.guild.id}`;
     
-  if  (oldMember.voiceChannel && !newMember.voiceChannel)  {
+  if  (oldMember.voice.channel && !member.voice.channel)  {
     
-      var ChannelMap = oldMember.voiceChannel.members.map(member => member.id);
+      var ChannelMap = oldMember.voice.channel.members.map(member => member.id);
     
       if  (ChannelMap.length == 1 && ChannelMap.includes(PeekyId))  {
           peeky.serverData.set(keySF, [], "Queue");
-          oldMember.voiceChannel.leave();
+          oldMember.voice.channel.leave();
       };    
   };
   
@@ -7624,7 +7620,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     ctx.fillRect(63, 253, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 127), 26); //Body
   
     //Avatar
-    const avatar = await Canvas.loadImage(SomeoneTagged.user.displayAvatarURL().replace("https", "http"));
+    const avatar = await Canvas.loadImage(SomeoneTagged.user.displayAvatarURL({ format: 'png' }).replace("https", "http"));
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
     ctx.drawImage(avatar, 6, 6, 64, 64);
@@ -7683,22 +7679,6 @@ if  (!ProfileCooldown.has(message.author.id))  {
       const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-};
-
-//Profile  
-if  (CommandName == "fuckingfuckletthisfuckingworkholyshit")  {
-      
-    const canvas         = Canvas.createCanvas(500, 300);
-    const ctx            = canvas.getContext('2d');
-  
-    //Avatar
-    const avatar = await Canvas.loadImage(message.author.displayAvatarURL({ format: 'png' }));
-    ctx.shadowOffsetX = 0; 
-    ctx.shadowOffsetY = 0;
-    ctx.drawImage(avatar, 6, 6, 64, 64);
-      
-    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'image.png');
-    await message.channel.send("", attachment).catch(error => ErrorBag.add(error))
 };
 
 //Play 
