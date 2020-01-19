@@ -1056,7 +1056,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     const avatar = await Canvas.loadImage(member.user.displayAvatarURL().replace("https", "http"));
     ctx.drawImage(avatar, 7, 7, 82, 82);
 
-    return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+    return attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
       
     };
 
@@ -1118,7 +1118,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type,
     ctx.font = "20px " + Setting.DefaultFont;
     ctx.fillText(Title, 15, 345, canvas.width - 30);
 
-    return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+    return attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
 };
 
@@ -2118,7 +2118,7 @@ peeky.on('message', async (message) => {
             const avatar = await Canvas.loadImage(message.author.displayAvatarURL().replace("https", "http"));
             ctx.drawImage(avatar, 7, 7, 82, 82);
 
-            const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+            const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
             message.channel.send("", attachment).catch(error => ErrorBag.add(error));
 
@@ -4147,7 +4147,7 @@ if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
   
     if  ((message.attachments.size > 0 || function_DetectLink(message.content) == true) && !message.author.bot)  {
 
-    if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS' && 'EXTERNAL_EMOJIS'))  {
+    if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS', 'EXTERNAL_EMOJIS'))  {
 
         var ReactionEmoji1 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
         var ReactionEmoji2 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
@@ -4493,7 +4493,7 @@ if  (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)  {
 
         if  (!message.member.permissions.has("MANAGE_MESSAGES"))  {
 
-            if  ((message.attachments.size > 0 && !message.attachments.array()[0].filename.startsWith("SPOILER_")) || function_DetectLink(message.content) == true)  {
+            if  ((message.attachments.size > 0 && !message.attachments.array()[0].name.startsWith("SPOILER_")) || function_DetectLink(message.content) == true)  {
 
                 if  ((((new Date() - new Date(message.member.joinedAt)) / 60000) < peeky.serverData.get(keySF, "spoiler_lock_bonus_setting")) || peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") == 0)  {
 
@@ -7638,7 +7638,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
     ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
       
-    const attachment = new Discord.Attachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
+    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
 
     await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
 
@@ -7898,7 +7898,7 @@ if (CommandName.startsWith("play"))  {
 
         if  (message.member.voice.channel)  {
 
-            const voiceChannel  = message.member.voiceChannel;
+            const voiceChannel  = message.member.voice.channel;
 
         if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
 
