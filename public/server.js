@@ -3237,6 +3237,8 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
     if  (member.guild.me.permissions.has('MANAGE_ROLES'))  {
   
         if  (!member.user.bot)  {
+          
+            console.log(member.roles);
 
             var GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
             var HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
