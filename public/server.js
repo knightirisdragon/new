@@ -1056,7 +1056,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     const avatar = await Canvas.loadImage(member.user.displayAvatarURL().replace("https", "http"));
     ctx.drawImage(avatar, 7, 7, 82, 82);
 
-    return attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky', { quality: 0.1 });
+    return attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
       
     };
 
@@ -1118,7 +1118,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type,
     ctx.font = "20px " + Setting.DefaultFont;
     ctx.fillText(Title, 15, 345, canvas.width - 30);
 
-    return attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky', { quality: 0.1 });
+    return attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
 };
 
@@ -2118,7 +2118,7 @@ peeky.on('message', async (message) => {
             const avatar = await Canvas.loadImage(message.author.displayAvatarURL().replace("https", "http"));
             ctx.drawImage(avatar, 7, 7, 82, 82);
 
-            const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky', { quality: 0.1 });
+            const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
             message.channel.send("", attachment).catch(error => ErrorBag.add(error));
 
@@ -7638,7 +7638,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
     ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
       
-    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "peeky", { quality: 0.1 });
+    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
 
     await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
 
