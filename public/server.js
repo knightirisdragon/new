@@ -1056,7 +1056,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     const avatar = await Canvas.loadImage(member.user.displayAvatarURL().replace("https", "http"));
     ctx.drawImage(avatar, 7, 7, 82, 82);
 
-    return attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+    return attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky', { quality: 0.1 });
       
     };
 
@@ -1118,7 +1118,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type,
     ctx.font = "20px " + Setting.DefaultFont;
     ctx.fillText(Title, 15, 345, canvas.width - 30);
 
-    return attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+    return attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky', { quality: 0.1 });
 
 };
 
@@ -2118,7 +2118,7 @@ peeky.on('message', async (message) => {
             const avatar = await Canvas.loadImage(message.author.displayAvatarURL().replace("https", "http"));
             ctx.drawImage(avatar, 7, 7, 82, 82);
 
-            const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
+            const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky', { quality: 0.1 });
 
             message.channel.send("", attachment).catch(error => ErrorBag.add(error));
 
@@ -3314,7 +3314,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 
         if  (Role)  {
           
-        if  (member.presence.activity !== null && member.presence.activity.type == 0 && member.presence.activity.name.toLowerCase() == GameName)  {
+        if  (member.presence.activity && member.presence.activity.type == 0 && member.presence.activity.name.toLowerCase() == GameName)  {
 
             if  (!HasRole && !RoleCooldown.has(member.user.id + member.guild.id))  {
                 member.roles.add(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
@@ -3532,7 +3532,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
 
         if  (reaction.emoji.name == "1️⃣")  {
 
-            const newEmbed = new Discord.RichEmbed({
+            const newEmbed = new Discord.MessageEmbed({
                   description:  "**Prefix** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "prefix") + "`" + "\n\n" +
                                 "**Language** " + SettingsIcon + "\n" + "`" + Languages[Language] + "`" + "\n\n" +
                                 "**Mute Role** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "muted_role") + "`" + "\n\n" +
@@ -3549,7 +3549,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         } else 
         if  (reaction.emoji.name == "2️⃣")  {
 
-            const newEmbed = new Discord.RichEmbed({
+            const newEmbed = new Discord.MessageEmbed({
                   description:  "**Welcome Messages** " + WM + "\n" + "`#" + peeky.serverData.get(keySF, "welcome_messages_bonus_setting") + "`" + "\n\n" +
                                 "**Member Counter** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`" + "\n\n" +
                                 "**Server Age** " + SA3 + "\n" + "No setting" + "\n\n" +
@@ -3569,7 +3569,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         } else 
         if  (reaction.emoji.name == "3️⃣")  {
 
-            const newEmbed = new Discord.RichEmbed({
+            const newEmbed = new Discord.MessageEmbed({
                   description:  "**Event Countdown** " + EC + "\n" + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`" + "\n\n" +
                                 "**Reddit Posts** " + RP + "\n" + "`r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "`" + "\n\n" +
                                 "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
@@ -3589,7 +3589,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         } else 
         if  (reaction.emoji.name == "4️⃣")  {        
           
-            const newEmbed = new Discord.RichEmbed({
+            const newEmbed = new Discord.MessageEmbed({
                   description:  "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
@@ -3600,7 +3600,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         } else 
         if  (reaction.emoji.name == "5️⃣")  {
 
-            const newEmbed = new Discord.RichEmbed({
+            const newEmbed = new Discord.MessageEmbed({
                   description:  "**Automatic Reactions** " + AR + "\n" + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
                                 "**Message Log** " + ML + "\n" + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`" + "\n\n" +
                                 "**Safe Chat** " + SC + "\n" + "No setting." + "\n\n" +
@@ -3639,7 +3639,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "🇺🇸")  {
             peeky.serverData.set(keySF, 0, "language");
 
-            const newEmbed = new Discord.RichEmbed({
+            const newEmbed = new Discord.MessageEmbed({
                   description:  "**Languages**" + "\n\n" + "The server language has been set to **English**.",
                   color: EmbedColor
             });
@@ -3649,7 +3649,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "🇨🇿")  {
             peeky.serverData.set(keySF, 1, "language");
 
-            const newEmbed = new Discord.RichEmbed({
+            const newEmbed = new Discord.MessageEmbed({
                   description:  "**Languages**" + "\n\n" + "Jazyk serveru byl nastaven na **Češtinu**.",
                   color: EmbedColor
             });
@@ -7638,7 +7638,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
     ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
       
-    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "peeky.png", { quality: 0.1 });
+    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "peeky", { quality: 0.1 });
 
     await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
 
