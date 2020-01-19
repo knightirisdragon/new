@@ -1063,7 +1063,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
 };
 
 //CANVAS: Music embed
-async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)  {
+async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type, Queue)  {
   
     var attachment = null;
 
@@ -1108,7 +1108,11 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type)
     }  else if  (Type == "Previous")  {
         ctx.fillText(peeky.users.get(User).username + " has requested the previous song.", 15, 310);
     }  else if  (Type == "Current")  {
-        ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes", null) + " minutes left.", 15, 310);
+        if  (Queue.length <= 1)  {
+            ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes", null) + " minutes left.", 15, 310);
+        } else {
+          ctx.fillText("Next song is starting in approximately " + function_TimeLeft(Length, "minutes", null) + " minutes.", 15, 310);
+        };
     };
 
     //Song Name
@@ -1132,7 +1136,7 @@ function function_StreamAnnouncements(member)  {
     } else if (member.presence.game.url.startsWith("https://www.twitch.tv"))  {
       type = "twitch";
     } else if  (member.presence.game.url.startsWith("https://youtube.com"))  {
-        type = "youtube";
+      type = "youtube";
     };
 
     if  (type == "twitch")  {
@@ -7966,9 +7970,10 @@ if (CommandName == "current")  {
         const Author    = peeky.serverData.get(keySF, "Author");
         const Length    = peeky.serverData.get(keySF, "Length");
         const Started   = peeky.serverData.get(keySF, "Started");
+        const Queue     = peeky.serverData.get(keySF, "Queue");
 
         message.channel.startTyping();
-        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "minutes left", "Current")).catch(error => ErrorBag.add(error));
+        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "minutes left", "Current", Queue)).catch(error => ErrorBag.add(error));
         message.channel.stopTyping();
         
     } else {
@@ -8117,12 +8122,11 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
         } else
         if  (CommandArgument.startsWith(" clear"))  {
 
-            var TranslatedMessages = [SuccessIcon + " You have cleared your playlist of **X001 songs** and the thumbnail.", SuccessIcon + " Vyčistili jste svůj playlist od **X001 písniček** a miniatury."];
+            var TranslatedMessages = [SuccessIcon + " You have cleared your playlist of **X001 songs**.", SuccessIcon + " Vyčistili jste svůj playlist od **X001 písniček**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.userData.get(key, "Playlist").length),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             peeky.userData.set(key, [], "Playlist");
-            peeky.userData.set(key, null, "PlaylistThumbnail");
 
         } else  {
 
