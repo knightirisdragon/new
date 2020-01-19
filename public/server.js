@@ -1153,7 +1153,7 @@ function function_StreamAnnouncements(member)  {
     if  (type == "discord")  {
 
         var GameName   = "Unknown";
-        var GameLink   = "[Voice Channel](https://discordapp.com/channels/" + member.guild.id +  "/" + member.voiceChannel.id + ")";
+        var GameLink   = "[Voice Channel](https://discordapp.com/channels/" + member.guild.id +  "/" + member.voice.channel.id + ")";
         var GameColor  = 7506394;
         var GameHost   = "Discord";
       
@@ -3237,7 +3237,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
             var GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
             var HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
 
-            if  (member.presence.activity && member.presence.activity.type == 1 || member.voiceChannel !== null && member.streaming == true)  {
+            if  (member.presence.activity && member.presence.activity.type == 1 || member.voice.channel !== null && member.streaming == true)  {
 
             if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
               
@@ -3274,7 +3274,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
         if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
       
-            if  (member.presence.activity && member.presence.activity.type == 1 || member.voiceChannel !== null && member.streaming == true)  {
+            if  (member.presence.activity && member.presence.activity.type == 1 || member.voice.channel && member.streaming == true)  {
 
                 CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 300000);
@@ -7743,16 +7743,19 @@ if (CommandName.startsWith("play"))  {
 
                         dispatcher.on('finish', async reason => {
                           
-                            peeky.serverData.get(keySF, "Queue").shift();
+                            if  (peeky.serverData.get(keySF, "Queue").length > 0)  {
+                                peeky.serverData.get(keySF, "Queue").shift();
+                            };
                           
-                            if  (message.guild.me.voiceChannel !== null)  {
+                            if  (message.guild.me.voice.channel)  {
 
                                 if  (peeky.serverData.get(keySF, "Queue").length == 0)  {
 
                                     CurrentlyPlaying.delete(message.guild.id);
                                     voiceChannel.leave();
+                                    dispatcher.destroy();
 
-                                    if  (message.guild.me.permissions.has("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 "))))  {
+                                    if  (message.guild.me.permissions.has("CHANGE_NICKNAME") && ((message.guild.me.nickname && message.guild.me.nickname.startsWith("🎵 "))))  {
                                         message.guild.me.setNickname(null);
                                     };
 
@@ -7938,7 +7941,7 @@ if (CommandName == "current")  {
       
     if  (!MusicCmdCooldown.has(message.author.id))  {
 
-    if  (CurrentlyPlaying.has(message.guild.id) && message.guild.me.voiceChannel)  {
+    if  (CurrentlyPlaying.has(message.guild.id) && message.guild.me.voice.channel)  {
       
         MusicCmdCooldown.add(message.author.id);
         setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 5000);
@@ -8159,7 +8162,7 @@ if (CommandName == "stop")  {
       
         var OwnerActive = false;
       
-        if  (message.guild.me.voiceChannel && message.guild.me.voiceChannel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+        if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
             OwnerActive = true;
         };
       
@@ -8167,8 +8170,9 @@ if (CommandName == "stop")  {
           
             CurrentlyPlaying.delete(message.guild.id);
 
-            if  (message.guild.me.voiceChannel)  {
-                message.guild.me.voiceChannel.leave();
+            if  (message.guild.me.voice.channel)  {
+                peeky.serverData.set(keySF, [], "Queue");
+                message.guild.me.voice.channel.leave();
             };
           
         } else {
@@ -8189,9 +8193,9 @@ if (CommandName == "guessthesong")  {
 
     if  (!CurrentlyPlaying.has(message.guild.id) && !ActiveMinigames.has(message.guild.id))  {
 
-        if  (message.member.voiceChannel)  {
+        if  (message.member.voice.channel)  {
           
-            const voiceChannel  = message.member.voiceChannel;
+            const voiceChannel  = message.member.voice.channel;
             var ChosenSong = Math.floor((Math.random() * GuessTheSong.length));
           
             InfoMessages.push(InfoIcon + " Full Song: <" + GuessTheSong[ChosenSong][0] + ">");

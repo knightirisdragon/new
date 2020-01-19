@@ -93,9 +93,9 @@ That song is not in your playlist. |
 Your playlist has been renamed to **X001**. | 
 You have set the thumbnail for your playlist. | 
 Failed to set your playlist thumbnail. | 
-You have cleared your playlist of **X001 songs** and the thumbnail. | 
+You have cleared your playlist of **X001 songs**. | 
 
-Only the server owner can skip this song right now. | 
+Only the server owner can stop this music right now. | 
 
 **Try to guess the name of this song!** | 
 
@@ -126,11 +126,10 @@ The mute role is now set to **@X001**. |
 
 This profile is now featured on the website. | 
 
-The song has now finished with **X001** listeners. | 
 Previous song not found - playing a random song. | 
 Your playlist is empty - Playing a random song. | 
-The song has now finished with **X001** listeners. | 
-You cannot play livestreams or songs longer than 30 minutes. | 
+The music has now finished with **X001** listeners. | 
+You can only play songs between 1 to 30 minutes. | 
 Failed to get the YouTube video. | 
 You need to join a voice channel. | 
 
