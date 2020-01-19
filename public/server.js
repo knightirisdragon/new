@@ -7685,6 +7685,22 @@ if  (!ProfileCooldown.has(message.author.id))  {
     };
 };
 
+//Profile  
+if  (CommandName == "fuckingfuckletthisfuckingworkholyshit")  {
+      
+    const canvas         = Canvas.createCanvas(500, 300);
+    const ctx            = canvas.getContext('2d');
+  
+    //Avatar
+    const avatar = await Canvas.loadImage(message.author.displayAvatarURL({ format: 'png' }));
+    ctx.shadowOffsetX = 0; 
+    ctx.shadowOffsetY = 0;
+    ctx.drawImage(avatar, 6, 6, 64, 64);
+      
+    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'image.png');
+    await message.channel.send("", attachment).catch(error => ErrorBag.add(error))
+};
+
 //Play 
 if (CommandName.startsWith("play"))  {
   
