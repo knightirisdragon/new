@@ -1108,9 +1108,9 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type,
         ctx.fillText(peeky.users.get(User).username + " has requested the previous song.", 15, 310);
     }  else if  (Type == "Current")  {
         if  (Queue.length <= 1)  {
-            ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes", null) + " minutes left.", 15, 310);
+            ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes", null) + " minute(s) left.", 15, 310);
         } else {
-          ctx.fillText("Next song is starting in approximately " + function_TimeLeft(Length, "minutes", null) + " minutes.", 15, 310);
+          ctx.fillText("Next song is starting in approximately " + function_TimeLeft(Length, "minutes", null) + " minute(s).", 15, 310);
         };
     };
 
