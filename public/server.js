@@ -1064,9 +1064,8 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
 
 //CANVAS: Music embed
 async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type, Queue)  {
-  
-    var attachment = null;
 
+    var attachment = null;
     var Now = new Date();
 
     const canvas = Canvas.createCanvas(500, 370);
@@ -7753,7 +7752,7 @@ if (CommandName.startsWith("play"))  {
                         };            
 
                         message.channel.startTyping();
-                        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type)).catch(error => ErrorBag.add(error));
+                        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type, peeky.serverData.get(keySF, "Queue"))).catch(error => ErrorBag.add(error));
                         message.channel.stopTyping();
 
                         if  (message.guild.me.hasPermission("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
@@ -7877,7 +7876,7 @@ if (CommandName.startsWith("play"))  {
 
                 //CommandArgument = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
               
-                peeky.userData.get(key, "Playlist").forEach(song => {
+                function_ShuffleArray(peeky.userData.get(key, "Playlist")).forEach(song => {
                     peeky.serverData.get(keySF, "Queue").push(song);
                 });
                 Type = "Playlist";
@@ -7973,7 +7972,7 @@ if (CommandName == "current")  {
         const Queue     = peeky.serverData.get(keySF, "Queue");
 
         message.channel.startTyping();
-        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "minutes left", "Current", Queue)).catch(error => ErrorBag.add(error));
+        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "minutes left", "Current", peeky.serverData.get(keySF, "Queue"))).catch(error => ErrorBag.add(error));
         message.channel.stopTyping();
         
     } else {
