@@ -3,11 +3,11 @@
     "start": "node public/server.js"
   },
   "dependencies": {
-    "discord.js": "discordjs/discord.js#11.5-dev",
+    "discord.js": "discordjs/discord.js#master",
     "ddblapi.js": "^1.0.0",
     "botlist.space": "^3.3.1",
     "node-opus": "^0.3.2",
-    "ytdl-core": "^1.0.6",
+    "ytdl-core": "^1.0.7",
     "ytdl-core-discord": "^1.0.3",
     "youtube-search": "^1.1.4",
     "canvas": "^2.6.1",
