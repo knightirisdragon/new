@@ -7911,7 +7911,7 @@ if (CommandName.startsWith("play"))  {
       
         var Queue = peeky.serverData.get(keySF, "Queue");
 
-        if  ((Queue.length > 0) && !Queue[0].includes("?list=") && (ytdl.validateURL(Queue[0]) == true))  {
+        if  ((Queue.length > 0) && (Queue[0].includes("youtube.com") || Queue[0].includes("youtu.be")) && !Queue[0].includes("?list=") && (ytdl.validateURL(Queue[0]) == true))  {
 
         if  (message.member.voiceChannel)  {
 
@@ -8030,7 +8030,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
         if  (!PlaylistRequest.includes("?list="))  {
 
-            if  (ytdl.validateURL(PlaylistRequest) == true)  {
+            if  ((PlaylistRequest.includes("youtube.com") || PlaylistRequest.includes("youtu.be")) && ytdl.validateURL(PlaylistRequest) == true)  {
 
                 if  (peeky.userData.get(key, "Playlist").length < Setting.PlaylistLimit)  {
 
