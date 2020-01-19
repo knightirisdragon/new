@@ -3276,7 +3276,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
         var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
 
-          if  (Channel && Channel.me.has('SEND_MESSAGES'))  {
+        if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
       
             if  (member.presence.activity && member.presence.activity.type == 1 || member.voiceChannel !== null && member.streaming == true)  {
 
