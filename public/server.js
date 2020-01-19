@@ -1053,7 +1053,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     //Avatar
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
-    const avatar = await Canvas.loadImage(member.user.displayAvatarURL.replace("https", "http"));
+    const avatar = await Canvas.loadImage(member.user.displayAvatarURL().replace("https", "http"));
     ctx.drawImage(avatar, 7, 7, 82, 82);
 
     return attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
@@ -1169,7 +1169,7 @@ function function_StreamAnnouncements(member)  {
 
     };
 
-    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "author": {  "name": function_RemoveFormatting(member.displayName, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL  }  };
+    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "author": {  "name": function_RemoveFormatting(member.displayName, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL()  }  };
 
 };
   
@@ -1227,7 +1227,7 @@ function UpdateLeaderboardTypes(type)  {
             var TheBannerShown = DefaultBackground;
             TheBannerShown = function_GetBackground(data.UserID);
 
-            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname' id='" + CurrentUser.id + "'>  <img src='" + CurrentUser.displayAvatarURL + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + "</b>  </div>";
+            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname' id='" + CurrentUser.id + "'>  <img src='" + CurrentUser.displayAvatarURL() + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + "</b>  </div>";
             if  (currentplace == 1 || currentplace == 2 || currentplace == 3)  {
                 LeaderboardTop.push(SavedProfile);
             } else  {
@@ -1800,7 +1800,7 @@ peeky.on('ready', () => {
     //Update Banned Users
     setTimeout(() => {
         function_UpdateBans();
-        peeky.guilds.get(SupportServer).fetchMembers();
+        peeky.guilds.get(SupportServer).members.fetch();
     }, 10000);
 
     setInterval(() => {
@@ -1865,14 +1865,6 @@ peeky.on('ready', () => {
       
     }, 7200000);
   
-});
-
-peeky.on('reconnecting', () => {
-	  console.log("PEEKY is now reconnecting.");
-});
-
-peeky.on('disconnect', () => {
-	  console.log("PEEKY is now disconnected.");
 });
 
 //Fixes
@@ -2123,7 +2115,7 @@ peeky.on('message', async (message) => {
             //Avatar
             ctx.shadowOffsetX = 0; 
             ctx.shadowOffsetY = 0;
-            const avatar = await Canvas.loadImage(message.author.displayAvatarURL.replace("https", "http"));
+            const avatar = await Canvas.loadImage(message.author.displayAvatarURL().replace("https", "http"));
             ctx.drawImage(avatar, 7, 7, 82, 82);
 
             const attachment = new Discord.Attachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
@@ -2155,7 +2147,7 @@ if  (!WebsiteCooldowns.has("api"))  {
       "botDescription": Setting.Description,
       "botShortDescription": Setting.ShortDescription,
       "botSummary": Setting.Summary,
-      "botAvatar": peeky.user.avatarURL,
+      "botAvatar": peeky.user.avatarURL(),
       "botId": peeky.user.id,
       "ownerId": OwnerId,
       
@@ -2306,7 +2298,7 @@ if  (!WebsiteCooldowns.has("workshop"))  {
 
     var WorkshopList = [];
 
-    peeky.channels.get(WorkshopChannel).fetchMessages({ limit: 50 }).then(async (messages) => {
+    peeky.channels.get(WorkshopChannel).messages.fetch({ limit: 50 }).then(async (messages) => {
       
     messages.forEach(m => {
           
@@ -2393,7 +2385,7 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
                 var ServerInfo = "<font size='2' color='pink'>No Invite</font>";    
             };
 
-            ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'>  <div class='displayitem' id='" + data.GuildID + "' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='displayname'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b>  </div>  </a>");
+            ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'>  <div class='displayitem' id='" + data.GuildID + "' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL() + ")'>  <b class='displayname'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b>  </div>  </a>");
       
         };
           
@@ -2427,7 +2419,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
             var SupporterDate = peeky.userData.get(m.user.id, "SupporterSince");
         };
 
-        SupporterList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL + ")'>  <b class='displayname'>" + function_RemoveTags(m.user.username) + "  <br>  <font size='1' color='lightgray'>  Supporter for " + function_TimeLeft(peeky.userData.get(m.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
+        SupporterList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL() + ")'>  <b class='displayname'>" + function_RemoveTags(m.user.username) + "  <br>  <font size='1' color='lightgray'>  Supporter for " + function_TimeLeft(peeky.userData.get(m.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
       
     };
     });
@@ -2463,7 +2455,7 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
               var ImmuneString = "Not Immune";
             };
 
-            ServerLogList.push("<div class='displayitem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + "  <br>  " + peeky.guilds.get(data.GuildID).members.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "   </b></div>");
+            ServerLogList.push("<div class='displayitem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL() + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + "  <br>  " + peeky.guilds.get(data.GuildID).members.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "   </b></div>");
           
         };
       
@@ -2485,7 +2477,7 @@ if  (!WebsiteCooldowns.has("news"))  {
 
     var NewsList = [];
 
-    peeky.channels.get(AnnouncementsChannel).fetchMessages({ limit: 10 }).then(async (messages) => {
+    peeky.channels.get(AnnouncementsChannel).messages.fetch({ limit: 10 }).then(async (messages) => {
           
     await messages.forEach(m => {
         var Header = m.content.split("\n")[0];
@@ -2524,7 +2516,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
       
       if  (m.roles.has(StaffRole))  {
 
-          var CurrentContact = '<div class="container">  <img src=' + '"' + m.user.displayAvatarURL + '" width="200px" height="200px" class="stafficon">  <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  <br>  <font size="1" color="lightgray"> ' + function_RemoveTags(m.user.tag) + '  </font>  </b>  </div>';  
+          var CurrentContact = '<div class="container">  <img src=' + '"' + m.user.displayAvatarURL() + '" width="200px" height="200px" class="stafficon">  <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  <br>  <font size="1" color="lightgray"> ' + function_RemoveTags(m.user.tag) + '  </font>  </b>  </div>';  
 
           if  (m.roles.has("574255080069398543"))  {
               DevList.push(CurrentContact);
@@ -2732,7 +2724,7 @@ if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
         var Role = member.guild.roles.find(role => role.name == name);
 
         if  (Role) {
-            member.addRole(Role.id, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
+            member.roles.add(Role.id, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
           
             console.log("The Join Role function has been triggered in " + member.guild.name + ".");
             function_UpdateAutowipe(keySF, "server");
@@ -2767,7 +2759,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
 
                   if  (ValidRoles.length > 0)  {
                 
-                      member.setRoles(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
+                      member.roles.set(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
 
                       console.log("The Role Saver function has been triggered in " + member.guild.name + ".");
                       function_UpdateAutowipe(keySF, "server");
@@ -2873,7 +2865,7 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
 
         if  (Detected == true)  {
 
-            await member.guild.ban(member.id, "Triggered by the Welcome Messages function.").catch(error => {
+            await member.guild.members.ban(member.id, "Triggered by the Welcome Messages function.").catch(error => {
                   ErrorBag.add(error);
                   var Failed = true;
             });
@@ -3078,7 +3070,7 @@ if  (keySF == SupportServer)  {
         //Chests
         if  (newMember.roles.has(RedeemRoleChests))  {
 
-            newMember.removeRole(RedeemRoleChests).catch(error => {ErrorBag.add(error); Failed = true});
+            newMember.roles.remove(RedeemRoleChests).catch(error => {ErrorBag.add(error); Failed = true});
 
             if  (Failed !== true)  {
 
@@ -3253,7 +3245,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
 
             if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
               
-                 member.addRole(GuildRole.id).catch(error => ErrorBag.add(error));
+                 member.roles.add(GuildRole.id).catch(error => ErrorBag.add(error));
 
                  CurrentlyStreaming.add(member.user.id + member.guild.id + "SR");
                  setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 1800000);
@@ -3266,7 +3258,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
             }  else  { 
 
                if  (HasRole)  {
-                   member.removeRole(GuildRole.id).catch(error => ErrorBag.add(error));
+                   member.roles.remove(GuildRole.id).catch(error => ErrorBag.add(error));
                };
 
             };
@@ -3333,7 +3325,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
         if  (member.presence.game !== null && member.presence.game.type == 0 && member.presence.game.name.toLowerCase() == GameName)  {
 
             if  (!HasRole && !RoleCooldown.has(member.user.id + member.guild.id))  {
-                member.addRole(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
+                member.roles.add(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
               
                 console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
                 function_UpdateAutowipe(keySF, "server");
@@ -3345,7 +3337,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
         } else { 
 
           if  (HasRole)  {
-                member.removeRole(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
+                member.roles.remove(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
           };
 
         };
@@ -3808,9 +3800,9 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                         const Member = reaction.message.guild.members.get(user.id);
                         if  (!Member.roles.has(role.id))  {
-                            Member.addRole(role.id).catch(error => ErrorBag.add(error));
+                            Member.roles.add(role.id).catch(error => ErrorBag.add(error));
                         } else {
-                          Member.removeRole(role.id).catch(error => ErrorBag.add(error));
+                          Member.roles.remove(role.id).catch(error => ErrorBag.add(error));
                         };
 
                         function_UpdateAutowipe(keySF, "server");
@@ -3857,13 +3849,13 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
 
               if  (!FoundHook)  {
 
-                  Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL).catch(error => ErrorBag.add(error))
+                  Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL()).catch(error => ErrorBag.add(error))
                   .then(Webhook => {
 
                   Webhook.send(OriginalMessageEdited + "\n­", {
 
                   "username": OriginalMessage.author.tag,
-                  "avatarURL": OriginalMessage.author.displayAvatarURL,
+                  "avatarURL": OriginalMessage.author.displayAvatarURL(),
                   "files": [image],
 
                   "embeds":  [{
@@ -3884,7 +3876,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
                  Webhook.send(OriginalMessageEdited + "\n­", {
 
                  "username": OriginalMessage.author.tag,
-                 "avatarURL": OriginalMessage.author.displayAvatarURL,
+                 "avatarURL": OriginalMessage.author.displayAvatarURL(),
                  "files": [image],
 
                  "embeds":  [{
@@ -4079,7 +4071,7 @@ if  (!LimitedRolesCooldown.has("cooldown"))  {
     await peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(SupporterRole)).forEach(m => {
       
         if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= MonthMs))  {
-            m.removeRole(SupporterRole).catch(error => ErrorBag.add(error));
+            m.roles.remove(SupporterRole).catch(error => ErrorBag.add(error));
           
             const embed = {"description": InfoIcon + " Your **Supporter** status has just expired.",  "color": EmbedColor}; 
             m.send({ embed }).catch(error => ErrorBag.add(error));
@@ -4091,7 +4083,7 @@ if  (!LimitedRolesCooldown.has("cooldown"))  {
     await peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(ProfileBoosterRole)).forEach(m => {
       
         if  (peeky.userData.has(m.user.id, "BoosterStart") && (new Date() - new Date(peeky.userData.get(m.user.id, "BoosterStart")) >= DayMs))  {
-            m.removeRole(ProfileBoosterRole).catch(error => ErrorBag.add(error));
+            m.roles.remove(ProfileBoosterRole).catch(error => ErrorBag.add(error));
           
             const embed = {"description": InfoIcon + " Your **Profile Booster** has just expired.",  "color": EmbedColor}; 
             m.send({ embed }).catch(error => ErrorBag.add(error));
@@ -4456,7 +4448,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
             if  (Role && !message.member.roles.has(Role.id))  {
 
-                message.member.addRole(Role.id, "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
+                message.member.roles.add(Role.id, "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
 
                 if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "FP"))  {
 
@@ -4555,7 +4547,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
             DonorWallCooldown.add(message.guild.id);
             setTimeout(() => {DonorWallCooldown.delete(message.guild.id)}, 300000);
           
-            await message.guild.fetchMembers();
+            await message.guild.members.fetch();
             message.guild.members.forEach(m => {
               
               Tags = [];
@@ -4569,7 +4561,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
               };
             });
 
-            Channel.fetchMessages({ limit: 1 }).then(messages => {
+            Channel.messages.fetch({ limit: 1 }).then(messages => {
 
             const Message = messages.array()[0];
             const WallAmount = WallList.length;
@@ -4610,7 +4602,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
             ReactionRolesCooldown.add(message.guild.id);
             setTimeout(() => {ReactionRolesCooldown.delete(message.guild.id)}, 300000);
           
-            Channel.fetchMessages({ limit: 1 }).then(async messages => {
+            Channel.messages.fetch({ limit: 1 }).then(async messages => {
 
             const Message = messages.array()[0];
             const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
@@ -4652,7 +4644,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true)  {
     if  (Role && Channel)  {
       
         ActivatedTicketSystems.add(message.guild.id);
-        Channel.fetchMessages({ limit: 1 });
+        Channel.messages.fetch({ limit: 1 });
 
     };
   
@@ -4819,7 +4811,7 @@ if (CommandName.startsWith("upgrade"))  {
 
     //Server Upgrade
     if  (TheUserWithRole.roles.has(ServerUpgradeRole) && peeky.serverData.get(keySF, "server_upgraded") == false)  {
-        TheUserWithRole.removeRole(ServerUpgradeRole).catch(error => {ErrorBag.add(error); Failed = true});
+        TheUserWithRole.roles.remove(ServerUpgradeRole).catch(error => {ErrorBag.add(error); Failed = true});
 
         if  (Failed == false)  {
             
@@ -7640,7 +7632,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     ctx.fillRect(63, 253, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 127), 26); //Body
   
     //Avatar
-    const avatar = await Canvas.loadImage(SomeoneTagged.user.displayAvatarURL.replace("https", "http"));
+    const avatar = await Canvas.loadImage(SomeoneTagged.user.displayAvatarURL().replace("https", "http"));
     ctx.shadowOffsetX = 0; 
     ctx.shadowOffsetY = 0;
     ctx.drawImage(avatar, 6, 6, 64, 64);
@@ -7760,9 +7752,9 @@ if (CommandName.startsWith("play"))  {
                         };
 
                         const stream = ytdl(peeky.serverData.get(keySF, "Queue")[0]);
-                        const dispatcher = await connection.playStream(stream, StreamOptions);
+                        const dispatcher = await connection.play(stream, StreamOptions);
 
-                        dispatcher.on('end', async reason => {
+                        dispatcher.on('finish', async reason => {
                           
                             peeky.serverData.get(keySF, "Queue").shift();
                           
@@ -8227,10 +8219,8 @@ if (CommandName == "guessthesong")  {
                 await voiceChannel.join().then(async connection => {
 
                     const stream = ytdl(GuessTheSong[ChosenSong][0]);
-                    const dispatcher = await connection.playStream(stream, StreamOptions);
+                    const dispatcher = await connection.play(stream, StreamOptions);
                     const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (30 / 60));
-                  
-                    //dispatcher.on('end', async reason => {});
           
                     peeky.serverData.set(keySF, "Guess the Song", "Title");
                     peeky.serverData.set(keySF, DefaultBackground, "Thumbnail");
@@ -8442,7 +8432,7 @@ if  (CommandArgument.startsWith(" "))  {
 
                     if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && !MentionedMember.roles.has(Role.id))  {
 
-                        await MentionedMember.addRole(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => {
+                        await MentionedMember.roles.add(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => {
                             const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                             ErrorBag.add(error); Failed = true;
@@ -8522,7 +8512,7 @@ if  (message.guild.me.hasPermission("MANAGE_ROLES"))  {
       
     if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && MentionedMember.roles.has(Role.id))  {
 
-        await MentionedMember.removeRole(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => { 
+        await MentionedMember.roles.remove(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => { 
             const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             ErrorBag.add(error); Failed = true;
@@ -8594,13 +8584,13 @@ if  (CommandName.startsWith("idban"))  {
 
         var ValidID = 0;
 
-        await peeky.fetchUser(CommandArgument, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
+        await peeky.users.fetch(CommandArgument, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
       
         if  (ValidID == 0) {
 
         if  (!message.guild.members.find(m => m.id == CommandArgument))  {
 
-            await message.guild.ban(CommandArgument, "ID banned by " + message.author.tag + ".").catch(error => { 
+            await message.guild.members.ban(CommandArgument, "ID banned by " + message.author.tag + ".").catch(error => { 
                   const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   ErrorBag.add(error); Failed = true;
@@ -8661,7 +8651,7 @@ if  (CommandName.startsWith("ban"))  {
 
             if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS"))  {
 
-                await message.guild.ban(MentionedMember.user.id, "Banned by " + message.author.tag + ".").catch(error => { 
+                await message.guild.members.ban(MentionedMember.user.id, "Banned by " + message.author.tag + ".").catch(error => { 
                       const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                       ErrorBag.add(error); Failed = true;
