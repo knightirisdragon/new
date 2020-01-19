@@ -1132,16 +1132,16 @@ function function_StreamAnnouncements(member)  {
   
     if  (member.selfStream == true)  {
         type = "discord";
-    } else if (member.presence.game.url.startsWith("https://www.twitch.tv"))  {
+    } else if (member.presence.activity.url.startsWith("https://www.twitch.tv"))  {
       type = "twitch";
-    } else if  (member.presence.game.url.startsWith("https://youtube.com"))  {
+    } else if  (member.presence.activity.url.startsWith("https://youtube.com"))  {
       type = "youtube";
     };
 
     if  (type == "twitch")  {
 
-        var GameName   = function_RemoveFormatting(member.presence.game.details, "other", false);
-        var GameLink   = member.presence.game.url;
+        var GameName   = function_RemoveFormatting(member.presence.activity.details, "other", false);
+        var GameLink   = member.presence.activity.url;
         var GameColor  = 6570404;
         var GameHost   = "Twitch";
 
@@ -1149,8 +1149,8 @@ function function_StreamAnnouncements(member)  {
 
     if  (type == "youtube")  {
 
-        var GameName   = function_RemoveFormatting(member.presence.game.details, "other", false);
-        var GameLink   = member.presence.game.url;
+        var GameName   = function_RemoveFormatting(member.presence.activity.details, "other", false);
+        var GameLink   = member.presence.activity.url;
         var GameColor  = 13632027;
         var GameHost   = "YouTube";
 
@@ -1163,8 +1163,8 @@ function function_StreamAnnouncements(member)  {
         var GameColor  = 7506394;
         var GameHost   = "Discord";
       
-        if  (member.presence.game)  {
-            GameName = function_RemoveFormatting(member.presence.game.name, "other", false);
+        if  (member.presence.activity)  {
+            GameName = function_RemoveFormatting(member.presence.activity.name, "other", false);
         };
 
     };
@@ -3131,6 +3131,8 @@ if  (keySF == SupportServer)  {
 //VOICE STATE UPDATE EVENTS
 peeky.on("voiceStateUpdate", async (oldMember, newMember) => {
   
+  console.log(newMember)
+  
   const member = newMember;
   const keySF = `${member.guild.id}`;
     
@@ -3241,7 +3243,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
             var GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
             var HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
 
-            if  (member.presence.game && member.presence.game.type == 1 || member.voiceChannel !== null && member.selfStream == true)  {
+            if  (member.presence.activity && member.presence.activity.type == 1 || member.voiceChannel !== null && member.selfStream == true)  {
 
             if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
               
@@ -3278,16 +3280,10 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
 
         if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
       
-            if  (member.presence.game && member.presence.game.type == 1 || member.voiceChannel !== null && member.selfStream == true)  {
+            if  (member.presence.activity && member.presence.activity.type == 1 || member.voiceChannel !== null && member.selfStream == true)  {
 
                 CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 300000);
-
-                /*if  (oldMember.presence.game && oldMember.presence.game.type == 1 || oldMember.voiceChannel !== null && oldMember.selfStream == true)  {  //
-                    var AlreadyStreaming = true;
-                };*/
-
-                //if  (AlreadyStreaming !== true)  {
                   
                     var SavedMember = member;
 
@@ -3296,8 +3292,6 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                   
                     console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
                     function_UpdateAutowipe(keySF, "server");
-
-                //};
 
             };
   
@@ -3322,7 +3316,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 
         if  (Role)  {
           
-        if  (member.presence.game !== null && member.presence.game.type == 0 && member.presence.game.name.toLowerCase() == GameName)  {
+        if  (member.presence.activity !== null && member.presence.activity.type == 0 && member.presence.activity.name.toLowerCase() == GameName)  {
 
             if  (!HasRole && !RoleCooldown.has(member.user.id + member.guild.id))  {
                 member.roles.add(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
@@ -3346,7 +3340,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
           
           if  (!RoleCooldown.has(member.guild.id))  {
 
-              member.guild.createRole({
+              member.guild.roles.create({
               name: GameName
               }, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
 
@@ -3686,7 +3680,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
                 reaction.message.guild.members.get(reaction.message.member.user.id).kick("Triggered by the Vote Kick function.").catch(error => ErrorBag.add(error));   
 
-                reaction.message.clearReactions().catch(error => ErrorBag.add(error));
+                reaction.message.reactions.removeAll().catch(error => ErrorBag.add(error));
               
                 if  (peeky.serverData.get(keySF, "function_notifications") == true)  {
 
@@ -3720,7 +3714,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
           const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", ""),  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
           
-          reaction.message.clearReactions().catch(error => ErrorBag.add(error));
+          reaction.message.reactions.removeAll().catch(error => ErrorBag.add(error));
         };
 
     };
@@ -3894,7 +3888,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
                   
             var TranslatedMessages = [InfoIcon + " **X001** has logged **X002**'s message.", InfoIcon + " **X001** připnul zprávu od **X002**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};  
-            reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+            reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
                   
         };
 
@@ -3911,7 +3905,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
           reaction.remove(user).catch(error => ErrorBag.add(error));
             
           const embed = {"description": CooldownMessage4[Language],  "color": EmbedColor}; 
-          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
           
         };
             
@@ -3922,7 +3916,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
           
           var TranslatedMessages = [ErrorIcon + " That message was already logged, **X001**.", ErrorIcon + " Tato zpráva je již připnutá, **X001**."];
           const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)),  "color": EmbedColor};
-          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete(10000).catch(error => ErrorBag.add(error))});
+          reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
           
         };
 
@@ -4615,7 +4609,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                 if  (Message.content !== FinalText)  {
                     await Message.edit(FinalText).catch(error => ErrorBag.add(error));
-                    await Message.clearReactions().catch(error => ErrorBag.add(error));
+                    await Message.reactions.removeAll().catch(error => ErrorBag.add(error));
 
                     if  (Setting.length > 0)  {
                         for (var i = 0; i < Setting.length; i++) {
@@ -5255,7 +5249,7 @@ if  (FunctioName.startsWith("join role"))  {
     RoleCooldown.add(message.guild.id);
     setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
     
-    message.guild.createRole({
+    message.guild.roles.create({
     name: name,
     color: Setting.Blurple
     }).catch(error => ErrorBag.add(error));
@@ -5802,7 +5796,7 @@ if  (FunctioName.startsWith("streamer role"))  {
     RoleCooldown.add(message.guild.id);
     setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
       
-    message.guild.createRole({
+    message.guild.roles.create({
     name: name,
     color: "#6441A4"
     }).catch(error => ErrorBag.add(error));
@@ -7904,7 +7898,7 @@ if (CommandName.startsWith("play"))  {
 
         if  ((Queue.length > 0) && (Queue[0].includes("youtube.com") || Queue[0].includes("youtu.be")) && !Queue[0].includes("?list=") && (ytdl.validateURL(Queue[0]) == true))  {
 
-        if  (message.member.voiceChannel)  {
+        if  (message.member.voice.channel)  {
 
             const voiceChannel  = message.member.voiceChannel;
 
@@ -8942,7 +8936,7 @@ if  (CommandName.startsWith("muterole"))  {
                     RoleCooldown.add(message.guild.id);
                     setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
 
-                   await message.guild.createRole({
+                   await message.guild.roles.create({
                         name: CommandArgument,
                         color: "#943148"
                    }).catch(error => ErrorBag.add(error));
