@@ -7747,13 +7747,12 @@ if (CommandName.startsWith("play"))  {
                                 peeky.serverData.get(keySF, "Queue").shift();
                             };
                           
-                            if  (message.guild.me.voice.channel)  {
+                            //if  (message.guild.me.voice.channel)  {
 
                                 if  (peeky.serverData.get(keySF, "Queue").length == 0)  {
 
                                     CurrentlyPlaying.delete(message.guild.id);
                                     voiceChannel.leave();
-                                    dispatcher.destroy();
 
                                     if  (message.guild.me.permissions.has("CHANGE_NICKNAME") && ((message.guild.me.nickname && message.guild.me.nickname.startsWith("🎵 "))))  {
                                         message.guild.me.setNickname(null);
@@ -7784,7 +7783,7 @@ if (CommandName.startsWith("play"))  {
 
                                 };
 
-                            };
+                            //};
 
                         });
 
