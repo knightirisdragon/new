@@ -7740,6 +7740,8 @@ if (CommandName.startsWith("play"))  {
 
                         const stream = ytdl(peeky.serverData.get(keySF, "Queue")[0]);
                         const dispatcher = await connection.play(stream, StreamOptions);
+                      
+                        console.log(peeky.voiceConnections);
 
                         dispatcher.on('finish', async reason => {
                           
