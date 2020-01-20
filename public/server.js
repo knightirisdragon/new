@@ -8172,12 +8172,53 @@ if (CommandName == "stop")  {
             CurrentlyPlaying.delete(message.guild.id);
 
             if  (message.guild.me.voice.channel)  {
-                peeky.serverData.set(keySF, [], "Queue");
-                message.guild.me.voice.channel.leave();
+                
+                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                if  (connection)  {
+                    peeky.serverData.set(keySF, [], "Queue");
+                    connection.dispatcher.end();
+                    message.guild.me.voice.channel.leave();
+                };
+
             };
           
         } else {
           var TranslatedMessages = [ErrorIcon + "Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru."];
+          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+      
+    } else {
+      const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+
+//Skip
+if (CommandName == "skip")  {
+      
+    if  (CurrentlyPlaying.has(message.guild.id))  {
+      
+        var OwnerActive = false;
+      
+        if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+            OwnerActive = true;
+        };
+      
+        if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
+          
+            CurrentlyPlaying.delete(message.guild.id);
+
+            if  (message.guild.me.voice.channel)  {
+                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                if  (connection)  {
+                    connection.dispatcher.end();
+                };
+            };
+          
+        } else {
+          var TranslatedMessages = [ErrorIcon + "Only the server owner can skip the song right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru."];
           const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
