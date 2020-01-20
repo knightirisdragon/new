@@ -3129,13 +3129,15 @@ peeky.on("voiceStateUpdate", async (oldState, newState) => {
   const oldMember = oldState.member;
   
   const keySF = `${member.guild.id}`;
-    
+  
   if  (oldMember.voice.channel && !member.voice.channel)  {
     
-      var ChannelMap = oldMember.voice.channel.members.map(member => member.id);
+      //const ChannelMap = oldMember.voice.channel.members.map(member => member.id);
+      const connection = peeky.voice.connections.find(c => c.channel.id == oldMember.voice.channel.id);
     
-      if  (ChannelMap.length == 1 && ChannelMap.includes(PeekyId))  {
+      if  (connection)  {  //ChannelMap.length == 1 && ChannelMap.includes(PeekyId) && 
           peeky.serverData.set(keySF, [], "Queue");
+          connection.dispatcher.end();
           oldMember.voice.channel.leave();
       };    
   };
@@ -8170,16 +8172,12 @@ if (CommandName == "stop")  {
         if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
           
             CurrentlyPlaying.delete(message.guild.id);
-
-            if  (message.guild.me.voice.channel)  {
                 
-                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-                if  (connection)  {
-                    peeky.serverData.set(keySF, [], "Queue");
-                    connection.dispatcher.end();
-                    message.guild.me.voice.channel.leave();
-                };
-
+            const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+            if  (connection)  {
+                peeky.serverData.set(keySF, [], "Queue");
+                connection.dispatcher.end();
+                message.guild.me.voice.channel.leave();
             };
           
         } else {
@@ -8209,16 +8207,16 @@ if (CommandName == "skip")  {
         if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
           
             CurrentlyPlaying.delete(message.guild.id);
-
-            if  (message.guild.me.voice.channel)  {
-                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-                if  (connection)  {
-                    connection.dispatcher.end();
-                };
+                
+            const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+            if  (connection)  {
+                peeky.serverData.set(keySF, [], "Queue");
+                connection.dispatcher.end();
+                message.guild.me.voice.channel.leave();
             };
           
         } else {
-          var TranslatedMessages = [ErrorIcon + "Only the server owner can skip the song right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru."];
+          var TranslatedMessages = [ErrorIcon + "Only the server owner can skip the song right now.", ErrorIcon + " Písniku může momentálně přeskočit pouze vlastník serveru."];
           const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
