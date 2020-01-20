@@ -7742,6 +7742,8 @@ if (CommandName.startsWith("play"))  {
                         const dispatcher = await connection.play(stream, StreamOptions);
 
                         dispatcher.on('finish', async reason => {
+
+                        console.log("yes");
                           
                             if  (peeky.serverData.get(keySF, "Queue").length > 0)  {
                                 peeky.serverData.get(keySF, "Queue").shift();
