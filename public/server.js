@@ -7741,7 +7741,7 @@ if (CommandName.startsWith("play"))  {
                         const stream = ytdl(peeky.serverData.get(keySF, "Queue")[0]);
                         const dispatcher = await connection.play(stream, StreamOptions);
 
-                        dispatcher.on('destroyed', async reason => {
+                        dispatcher.on('finish', async reason => {
                           
                             if  (peeky.serverData.get(keySF, "Queue").length > 0)  {
                                 peeky.serverData.get(keySF, "Queue").shift();
