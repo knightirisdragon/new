@@ -7720,20 +7720,15 @@ if (CommandName.startsWith("play"))  {
 
                         const stream = ytdl(peeky.serverData.get(keySF, "Queue")[0]);
                         const dispatcher = await connection.play(stream, StreamOptions);
-                      
-                        console.log(peeky.voiceConnections);
 
                         dispatcher.on('finish', async reason => {
                           
-                            if  (peeky.serverData.get(keySF, "Queue").length > 0)  {
-                                peeky.serverData.get(keySF, "Queue").shift();
-                            };
-                          
                             //if  (message.guild.me.voice.channel)  {
 
-                                if  (peeky.serverData.get(keySF, "Queue").length == 0)  {
+                                if  (peeky.serverData.get(keySF, "Queue").length == 0 || message.guild.me.voice.channel.members.filter(m => !m.user.bot).map(m => m.id).length < 1)  {
 
                                     CurrentlyPlaying.delete(message.guild.id);
+                                    dispatcher.end();
                                     voiceChannel.leave();
 
                                     if  (message.guild.me.permissions.has("CHANGE_NICKNAME") && ((message.guild.me.nickname && message.guild.me.nickname.startsWith("🎵 "))))  {
@@ -7760,7 +7755,8 @@ if (CommandName.startsWith("play"))  {
 
                                 } else {
 
-                                  Type = "Queue"
+                                  Type = "Queue";
+                                  peeky.serverData.get(keySF, "Queue").shift();
                                   PlayMusic(voiceChannel);
 
                                 };
