@@ -3128,6 +3128,8 @@ peeky.on("voiceStateUpdate", async (oldState, newState) => {
   const member = newState.member;
   const oldMember = oldState.member;
   
+  console.log(newState);
+  
   const keySF = `${member.guild.id}`;
   
   if  (oldMember.voice.channel && !member.voice.channel)  {
