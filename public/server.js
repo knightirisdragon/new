@@ -602,11 +602,11 @@ const Banners = [
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground322.png?v=1560087608782", 800, "Extraction", "The Division", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground323.png?v=1560087610295", 525, "The rune", "Deltarune", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground324.png?v=1560087614558", 775, "Jungle crysis", "Crysis", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground325.png?v=1579388628919", 925, "Fresh air", "Red Dead Redemption 2", undefined, 1579388500412]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground325.png?v=1579388628919", 925, "Fresh air", "Red Dead Redemption 2", undefined, 1579388500412],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground326.jpg?v=1560281017823", 100, "Grass", "WHASonYT", `339177677326123018`, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground327.png?v=1560283107053", 825 , "Camp liberation", "Kingdom Come Deliverance", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground328.png?v=1560283108264", 775, "Commander Lilith", "Borderlands 2", undefined, 0],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground329.png?v=1579388649114", 750, "Iceland's waterfall", "Unknown", undefined, 1579388494694]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground329.png?v=1579388649114", 750, "Iceland's waterfall", "Unknown", undefined, 1579388494694],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground330.png?v=1560703323947", 775, "Nuke", "Counter Strike Global Offensive", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground331.png?v=1560768909337", 250, "Creeper Buddy", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground332.png?v=1560768910957", 775, "Flare Abyss", "The Division", undefined, 0],
@@ -704,7 +704,7 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground424.png?v=1575141708491", 675, "Mouse's flower", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground425.png?v=1575345556036", 825, "Chaotic home", "PewDiePie's Tuber Simulaor", undefined, 1575345511274],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground426.png?v=1575345938913", 850, "Deer hunt", "Red Dead Redemption 2", undefined, 1575345944280],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground427.png?v=1575345939547", 950, "International squad", "Call of Duty Modern Warfare", undefined, 1575345952003]  ,
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground427.png?v=1575345939547", 950, "International squad", "Call of Duty Modern Warfare", undefined, 1575345952003],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground428.png?v=1575716944152", 750, "The Cyrodill fields", "Unknown", undefined, 1575716942140],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground429.png?v=1575795807391", 825, "Mount Doom", "Unknown", undefined, 1575795807985],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground430.png?v=1575908013402", 875, "The nazgul", "Uknown", undefined, 1575908014014],
@@ -6507,7 +6507,7 @@ if  (CommandName.startsWith("buybackground"))  {
                         peeky.userData.get(key, "Inventory").push(i);
 
                         var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**."];
-                        var embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", function_GetBackgroundInfo(i, ["price"])) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+                        var embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", function_GetBackgroundInfo(i, ["price"]).toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                         break;
