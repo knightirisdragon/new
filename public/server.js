@@ -2730,19 +2730,23 @@ if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
 //Verification System
 if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
   
-    if  (member.guild.me.permissions.has("MANAGE_ROLES") && member.guild.me.permissions.has("KICK_MEMBERS"))  {
+    if  (!member.user.bot && member.guild.me.permissions.has("MANAGE_ROLES") && member.guild.me.permissions.has("KICK_MEMBERS"))  {
 
         var Role = member.guild.roles.find(role => role.name == peeky.serverData.get(keySF, "verification_system_bonus_setting"));
         var Recaptcha = Math.random().toString(36).substr(2,10);
 
         if  (Role)  {
           
-            const canvas = Canvas.createCanvas(250, 100);
+            const canvas = Canvas.createCanvas(225, 100);
             const ctx = canvas.getContext('2d');
 
             const background = await Canvas.loadImage(MainBackground);
             ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
+            ctx.fillStyle = "white";
+            ctx.shadowColor = "black";
+            ctx.shadowOffsetX = 1; 
+            ctx.shadowOffsetY = 1;
             ctx.textAlign = "center";
             ctx.font = "20px " + Setting.DefaultFont;
             ctx.fillText(Recaptcha, 125, 50, canvas.width - 30);
@@ -2755,11 +2759,14 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
           
             member.user.createDM().then(channel =>  {
               
+                QueuedSOSMessages.add(member.user.id);
+              
                 channel.awaitMessages(response => response.content == Recaptcha, {
                     max: 1,
                     time: 60000,
                     errors: ['time'],
                 }).then(async (collected) => {
+                    QueuedSOSMessages.delete(member.user.id);
 
                     const embed = {"description": SuccessIcon + " You have unlocked the full access to the server.",  "color": EmbedColor}; 
                     await function_DirectMessage(member.user.id, { embed });
@@ -2767,6 +2774,8 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
                     member.roles.add(Role.id, "Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
 
                 }).catch(async () => {
+                    QueuedSOSMessages.delete(member.user.id);
+                  
                     if  (!member.roles.has(Role.id))  {
                         const embed = {"description": ErrorIcon + " Rejoin the server to restart the verfication process.",  "color": EmbedColor}; 
                         await function_DirectMessage(member.user.id, { embed });
@@ -5021,7 +5030,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
     if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
         ManageRoles = true;
       
-        var TranslatedBonuses = [InfoIcon + " Created a role called **X001** for the **@X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **@X001** pro funkci **X002**."];
+        var TranslatedBonuses = [InfoIcon + " Created a role called **@X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **@X001** pro funkci **X002**."];
         var RoleCreation = TranslatedBonuses[Language];
     };
       
@@ -5288,9 +5297,11 @@ if  (FunctioName.startsWith("join role"))  {
 
                 RoleCooldown.add(message.guild.id);
                 setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
-                    message.guild.roles.create({
-                    name: name,
-                    color: Setting.Blurple
+                message.guild.roles.create({
+                   data: {
+                     name: name,
+                     color: Setting.Blurple
+                   }
                 }).catch(error => ErrorBag.add(error));
 
                 InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Join Role"));
@@ -5321,7 +5332,7 @@ else
 if  (FunctioName.startsWith("verification system"))  {
     
     const guild = message.guild;
-    var name = peeky.serverData.get(keySF, "verification_system_bonus");
+    var name = peeky.serverData.get(keySF, "verification_system_bonus_setting");
     var role = guild.roles.find(c=> c.name == name);
     
     if(peeky.serverData.get(keySF, "verification_system_bonus") == true) {peeky.serverData.set(keySF, false, "verification_system_bonus");}
@@ -5336,11 +5347,13 @@ if  (FunctioName.startsWith("verification system"))  {
                 RoleCooldown.add(message.guild.id);
                 setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
                     message.guild.roles.create({
-                    name: name,
-                    color: Setting.Blurple
+                    data: {
+                      name: name,
+                      color: Setting.Blurple
+                    },
                 }).catch(error => ErrorBag.add(error));
 
-                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Join Role"));
+                InfoMessages.push(RoleCreation.replace("X001", name).replace("X002", "Verification System"));
 
             };
           
@@ -5356,7 +5369,7 @@ if  (FunctioName.startsWith("verification system"))  {
       var StatusString = DisableStrings[Language];
     };
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Join role").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Verification System").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5885,8 +5898,10 @@ if  (FunctioName.startsWith("streamer role"))  {
     setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
       
     message.guild.roles.create({
-    name: name,
-    color: "#6441A4"
+        data: {
+          name: name,
+          color: Setting.Blurple
+        },
     }).catch(error => ErrorBag.add(error));
       
     InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Streamer Role"));
@@ -9069,8 +9084,10 @@ if  (CommandName.startsWith("muterole"))  {
                     setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
 
                    await message.guild.roles.create({
-                        name: CommandArgument,
-                        color: "#943148"
+                       data: {
+                         name: name,
+                         color: Setting.Blurple
+                       }
                    }).catch(error => ErrorBag.add(error));
 
                    InfoMessages.push(InfoIcon + " Created a role called **" + CommandArgument + "**.");
