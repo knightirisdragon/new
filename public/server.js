@@ -4485,7 +4485,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
             const LastMsgDate    = peeky.channelData.get(keyCF, "flood_protection_bonus_lastdate");
             const ThisMsgDate    = Date.now();
 
-            if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent))  {
+            if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent) || (message.content.toUpperCase() == message.content))  {
 
             if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length == peeky.serverData.get(keySF, "flood_protection_bonus_setting"))  {
 
