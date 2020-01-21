@@ -3534,6 +3534,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)        { var CN = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var CN = DisabledIcon};
         if (peeky.serverData.get(keySF, "donor_wall_bonus") == true)             { var CW = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var CW = DisabledIcon};
         if (peeky.serverData.get(keySF, "ticket_system_bonus") == true)          { var ST = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var ST = DisabledIcon};
+        if (peeky.serverData.get(keySF, "verification_system_bonus") == true)    { var VS = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var VS = DisabledIcon};
         if (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true)        { var SA = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA = DisabledIcon};
         if (peeky.serverData.get(keySF, "flood_protection_bonus") == true)       { var FP = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var FP = DisabledIcon};
         if (peeky.serverData.get(keySF, "event_countdown_bonus") == true)        { var EC = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var EC = DisabledIcon};
@@ -3598,7 +3599,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Flood Protection** " + FP + "\n" + "`" + peeky.serverData.get(keySF, "flood_protection_bonus_setting") + " strikes`" + "\n\n" +
                                 "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`" + "\n\n" +
                                 "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
-                                "**Role Saver** " + RS + "\n" + "`" + RSArray + "`" + "\n\n" +
+                                "**Verification System** " + VS + "\n" + "`" + peeky.serverData.get(keySF, "verification_system_bonus_setting") + "`" + "\n\n" +
                                 "**Nickname Saver** " + NS + "\n" + "No Setting.",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
@@ -3615,7 +3616,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
                                 "**Reaction Roles** " + RR + "\n" + "`" + RRArray + "`" + "\n\n" +
                                 "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(ServerMessage, "sm", true) + "`" + "\n\n" +
-                                "**Dash Remover (Temporarily Disabled)** " + DR + "\n" + "No setting" + "\n\n" +
+                                "**Role Saver** " + RS + "\n" + "`" + RSArray + "`" + "\n\n" +
                                 "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
                                 "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
@@ -3630,7 +3631,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "4️⃣")  {        
           
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`",
+                  description:  "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
+                                "**Dash Remover (Temporarily Disabled)** " + DR + "\n" + "No setting",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -5280,27 +5282,75 @@ if  (FunctioName.startsWith("join role"))  {
       
     if (!role) {
 
-    if  (!RoleCooldown.has(message.guild.id)) {
-      
-    if  (ManageRoles == true)  {
+        if  (!RoleCooldown.has(message.guild.id)) {
 
-    RoleCooldown.add(message.guild.id);
-    setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
-    
-    message.guild.roles.create({
-    name: name,
-    color: Setting.Blurple
-    }).catch(error => ErrorBag.add(error));
-      
-    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Join Role"));
+            if  (ManageRoles == true)  {
 
-    };
-    } else {
-      InfoMessages.push(CooldownMessage3[Language]);
-    };
+                RoleCooldown.add(message.guild.id);
+                setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
+                    message.guild.roles.create({
+                    name: name,
+                    color: Setting.Blurple
+                }).catch(error => ErrorBag.add(error));
+
+                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Join Role"));
+
+            };
+
+        } else {
+          InfoMessages.push(CooldownMessage3[Language]);
+        };
+      
     };
       
     if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Join role").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+   
+//Toggle Verification System
+if  (FunctioName.startsWith("verification system"))  {
+    
+    const guild = message.guild;
+    var name = peeky.serverData.get(keySF, "verification_system_bonus");
+    var role = guild.roles.find(c=> c.name == name);
+    
+    if(peeky.serverData.get(keySF, "verification_system_bonus") == true) {peeky.serverData.set(keySF, false, "verification_system_bonus");}
+    else peeky.serverData.set(keySF, true, "verification_system_bonus");
+      
+    if (!role) {
+
+        if  (!RoleCooldown.has(message.guild.id))  {
+
+            if  (ManageRoles == true)  {
+
+                RoleCooldown.add(message.guild.id);
+                setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
+                    message.guild.roles.create({
+                    name: name,
+                    color: Setting.Blurple
+                }).catch(error => ErrorBag.add(error));
+
+                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Join Role"));
+
+            };
+          
+        } else {
+          InfoMessages.push(CooldownMessage3[Language]);
+        };
+      
+    };
+      
+    if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
         var StatusString = EnableStrings[Language];
     } else {
       var StatusString = DisableStrings[Language];
@@ -5964,7 +6014,20 @@ if  (FunctioName.startsWith("join role "))  {
     var RoleName = CommandName.split("join role ")[1];
     peeky.serverData.set(keySF, function_RemoveFormatting(RoleName, "role"), "join_role_bonus_setting", true);
   
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Join Role").replace("X002", "@" + peeky.serverData.get(keySF, "SETTING")),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Join Role").replace("X002", "@" + peeky.serverData.get(keySF, "join_role_bonus_setting")),  "color": EmbedColor};
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+
+//Set Verification System
+if  (FunctioName.startsWith("verification system "))  {
+    
+    var RoleName = CommandName.split("verification system ")[1];
+    peeky.serverData.set(keySF, function_RemoveFormatting(RoleName, "role"), "verification_system_bonus_setting", true);
+  
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Verification System").replace("X002", "@" + peeky.serverData.get(keySF, "verification_system_bonus_setting")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }

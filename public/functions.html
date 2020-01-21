@@ -170,6 +170,11 @@ function SA3_Popup() {
 
 function FP_Popup() {
      document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<b class="functionname">Verification System</b>  <br>  <b class="functiondescription">Gives joining users</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle flood protection  <br>  p!set flood protection [number]</b>' + Note;
+};
+
+function FP_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="functionname">Flood Protection</b>  <br>  <b class="functiondescription">Mutes potentional userbots, spammers and raiders to prevent the chat from being flooded.  <br>  The setting determines how many strikes are needed to mute someone.</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle flood protection  <br>  p!set flood protection [number]</b>' + Note;
 };
 
