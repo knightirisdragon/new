@@ -7869,45 +7869,42 @@ if (CommandName.startsWith("play"))  {
                         const dispatcher = await connection.play(stream, StreamOptions);
 
                         dispatcher.on('finish', async reason => {
-                          
-                            //if  (message.guild.me.voice.channel)  {
+                                  
+                            peeky.serverData.get(keySF, "Queue").shift();
 
-                                if  (peeky.serverData.get(keySF, "Queue").length < 1 || message.guild.me.voice.channel.members.filter(m => !m.user.bot).map(m => m.id).length < 1)  {
+                            if  (peeky.serverData.get(keySF, "Queue").length == 0 || message.guild.me.voice.channel.members.filter(m => !m.user.bot).map(m => m.id).length < 1)  {  //
 
-                                    CurrentlyPlaying.delete(message.guild.id);
-                                    voiceChannel.leave();
+                                CurrentlyPlaying.delete(message.guild.id);
+                                voiceChannel.leave();
 
-                                    if  (message.guild.me.permissions.has("CHANGE_NICKNAME") && ((message.guild.me.nickname && message.guild.me.nickname.startsWith("🎵 "))))  {
-                                        message.guild.me.setNickname(null);
-                                    };
+                                if  (message.guild.me.permissions.has("CHANGE_NICKNAME") && ((message.guild.me.nickname && message.guild.me.nickname.startsWith("🎵 "))))  {
+                                    message.guild.me.setNickname(null);
+                                };
 
-                                    const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
+                                const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
 
-                                    var TranslatedMessages = [InfoIcon + " The music has now finished with **X001** listeners.", InfoIcon + " Hudba právě skončila s **X001** posluchateli."];
-                                    const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
-                                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                var TranslatedMessages = [InfoIcon + " The music has now finished with **X001** listeners.", InfoIcon + " Hudba právě skončila s **X001** posluchateli."];
+                                const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
+                                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-                                    if  (Listeners.length >= 5)  {
+                                if  (Listeners.length >= 5)  {
 
-                                        Listeners.forEach(id => {
+                                    Listeners.forEach(id => {
 
-                                            if  (peeky.userData.has(id) && peeky.userData.get(id, "PartyBadge") == false)  {
-                                                peeky.userData.set(id, true, "PartyBadge");
-                                            };
+                                        if  (peeky.userData.has(id) && peeky.userData.get(id, "PartyBadge") == false)  {
+                                            peeky.userData.set(id, true, "PartyBadge");
+                                        };
 
-                                        });
-
-                                    };
-
-                                } else {
-
-                                  Type = "Queue";
-                                  peeky.serverData.get(keySF, "Queue").shift();
-                                  PlayMusic(voiceChannel);
+                                    });
 
                                 };
 
-                            //};
+                            } else {
+
+                              Type = "Queue";
+                              PlayMusic(voiceChannel);
+
+                            };
 
                         });
 
