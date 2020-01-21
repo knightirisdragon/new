@@ -2192,7 +2192,8 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
             var Guild = peeky.guilds.get(data.GuildID);
             if  (Guild !== undefined)  {
                 if  (Guild.owner)  {
-                    await function_DirectMessage(Guild.owner.user.id, "I'm leaving your server called **" + Guild.name + "** because of inactivity.");
+                    const embed = {"description": "I'm leaving your server called **" + Guild.name + "** because of inactivity.",  "color": EmbedColor}; 
+                    await function_DirectMessage(Guild.owner.user.id, { embed });
                 };
                 await Guild.leave();
             };
@@ -2608,14 +2609,11 @@ const embed = {"description": " I have been added to a server called **" + funct
 peeky.channels.get(ServerLogChannel).send({ embed });
   
 if  (peeky.guilds.size > Setting.MaxServers || BannedUsers.includes(guild.owner.user.id))  {
-  
-    await function_DirectMessage(guild.owner.user.id, "Something went wrong while joining your server, try again later.");
+    const embed = {"description": "Something went wrong while joining your server, try again later.",  "color": EmbedColor}; 
+    await function_DirectMessage(guild.owner.user.id, { embed });
     guild.leave();
-
 } else {
-  
   function_ServerData(keySF);
-
 };
 
 });
@@ -2674,7 +2672,8 @@ const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
 //Server Message
 if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user.bot)  {
       
-    function_DirectMessage(member.user.id, peeky.serverData.get(keySF, "server_message_bonus_setting").replace(GuildNameTag, function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym));
+    const embed = {"description": peeky.serverData.get(keySF, "server_message_bonus_setting").replace(GuildNameTag, function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym),  "footer":  {"text": "This message's content was not created by PEEKY."},  "color": EmbedColor}; 
+    function_DirectMessage(member.user.id, { embed });
 
 };
 
@@ -2737,10 +2736,11 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
         var Recaptcha = Math.random().toString(36).substr(2,10);
 
         if  (Role && !member.roles.has(Role.id))  {
-      
-            function_DirectMessage(member.user.id, "**Verification System**\nYou have 60 seconds to type the code below and obtain full access to **" + function_RemoveFormatting(member.guild.name, "other", true) + "**.");
-
-            member.DMChannel.awaitMessages(response => response.content == Recaptcha, {
+            
+            const embed = {"description": "**Verification System**\nYou have 60 seconds to type the code below and obtain full access to the server.",  "color": EmbedColor}; 
+            function_DirectMessage(member.user.id, { embed });
+          
+            member.dmChannel.awaitMessages(response => response.content == Recaptcha, {
                 max: 1,
                 time: 60000,
                 errors: ['time'],
@@ -2906,7 +2906,8 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
             });
 
             if  (Failed == true)  {
-                function_DirectMessage("**You have been automatically banned for having a possible website advertisment in your username.**  \n  Contact the server owner " + member.guild.owner.user.tag + " to get your ban revoked.");
+                const embed = {"description": "**You have been automatically banned for having a possible website advertisment in your username.**  \n  Contact the server owner " + member.guild.owner.user.tag + " to get your ban revoked.",  "color": EmbedColor}; 
+                function_DirectMessage({ embed });
             };
 
         };
@@ -3403,7 +3404,6 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
 
         const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted and will be added shortly!",  "color": EmbedColor}; 
         function_DirectMessage(reaction.message.author.id, { embed });
-      
         function_DirectMessage(OwnerId, '[NoBackground, ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ', ' + Date.now() + ']');
       
     };
