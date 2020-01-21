@@ -3247,6 +3247,8 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
 
 //Stream Announcements
 if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
+
+    console.log("kinda works")
   
     if  (!member.user.bot && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SA2"))  {
 
@@ -7728,7 +7730,6 @@ if (CommandName.startsWith("play"))  {
                                 if  (peeky.serverData.get(keySF, "Queue").length == 0 || message.guild.me.voice.channel.members.filter(m => !m.user.bot).map(m => m.id).length < 1)  {
 
                                     CurrentlyPlaying.delete(message.guild.id);
-                                    dispatcher.end();
                                     voiceChannel.leave();
 
                                     if  (message.guild.me.permissions.has("CHANGE_NICKNAME") && ((message.guild.me.nickname && message.guild.me.nickname.startsWith("🎵 "))))  {
@@ -8184,7 +8185,6 @@ if (CommandName == "skip")  {
                 
             const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
             if  (connection)  {
-                peeky.serverData.set(keySF, [], "Queue");
                 connection.dispatcher.end();
                 message.guild.me.voice.channel.leave();
             };
