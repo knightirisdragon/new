@@ -2730,17 +2730,19 @@ if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
 //Verification System
 if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
   
-    if  (member.guild.me.permissions.has("MANAGE_ROLES") && member.guild.me.permissions.has("KICK_MEMBER"))  {
+    if  (member.guild.me.permissions.has("MANAGE_ROLES") && member.guild.me.permissions.has("KICK_MEMBERS"))  {
 
         var Role = member.guild.roles.find(role => role.name == peeky.serverData.get(keySF, "verification_system_bonus_setting"));
         var Recaptcha = Math.random().toString(36).substr(2,10);
 
         if  (Role && !member.roles.has(Role.id))  {
+          
+            console.log(Recaptcha);
             
-            const embed = {"description": "**Verification System**\nYou have 60 seconds to type the code below and obtain full access to the server.",  "color": EmbedColor}; 
+            const embed = {"description": "**Verification System**\nYou have 60 seconds to type the code below and obtain full access to the server.", "image": { "url": "https://cdn.discordapp.com/embed/avatars/0.png" }, "color": EmbedColor}; 
             function_DirectMessage(member.user.id, { embed });
           
-            member.dmChannel.awaitMessages(response => response.content == Recaptcha, {
+            member.user.createDM().then(c ).awaitMessages(response => response.content == Recaptcha, {
                 max: 1,
                 time: 60000,
                 errors: ['time'],
