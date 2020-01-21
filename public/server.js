@@ -7872,7 +7872,7 @@ if (CommandName.startsWith("play"))  {
                           
                             //if  (message.guild.me.voice.channel)  {
 
-                                if  (peeky.serverData.get(keySF, "Queue").length == 0 || message.guild.me.voice.channel.members.filter(m => !m.user.bot).map(m => m.id).length < 1)  {
+                                if  (peeky.serverData.get(keySF, "Queue").length < 1 || message.guild.me.voice.channel.members.filter(m => !m.user.bot).map(m => m.id).length < 1)  {
 
                                     CurrentlyPlaying.delete(message.guild.id);
                                     voiceChannel.leave();
