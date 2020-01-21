@@ -96,7 +96,8 @@ Failed to set your playlist thumbnail. |
 You have cleared your playlist of **X001 songs**. | 
 Only the server owner can stop this music right now. | 
 Only the server owner can skip this song right now. | 
-Only the server owner can (un)pause this song right now. | 
+Only the server owner can pause this song right now. | 
+Only the server owner can unpause this song right now. | 
 
 **Try to guess the name of this song!** | 
 
