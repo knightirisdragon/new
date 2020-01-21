@@ -2734,18 +2734,18 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
     if  (member.guild.me.permissions.has("MANAGE_ROLES") && member.guild.me.permissions.has("KICK_MEMBER"))  {
 
         var Role = member.guild.roles.find(role => role.name == peeky.serverData.get(keySF, "verification_system_bonus_setting"));
-        var Code = Math.random().toString(36).substr(2, 6);
+        var Recaptcha = Math.random().toString(36).substr(2,10)
       
-        function_DirectMessage(member, "**Verification System**\nYou have 60 seconds to type the code below.")
+        function_DirectMessage(member, "**Verification System**\nYou have 60 seconds to type the code below and obtain full access to **" + function_RemoveFormatting(member.guild.name, "other", true) + "**.");
 
-        member.channel.awaitMessages(response => response.content.toLowerCase() == "accept", {
+        member.awaitMessages(response => response.content == Recaptcha, {
             max: 1,
             time: 60000,
             errors: ['time'],
         }).then((collected) => {
             
-        }).catch(() => {
-            
+        }).catch(async () => {
+            await function_DirectMessage(member, "**Verification System**\nYou have 60 seconds to type the code below.");
         });
 
         if  (Role) {
