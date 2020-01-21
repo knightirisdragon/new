@@ -2737,7 +2737,7 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
 
         if  (Role)  {
           
-            const canvas = Canvas.createCanvas(225, 100);
+            const canvas = Canvas.createCanvas(250, 100);
             const ctx = canvas.getContext('2d');
 
             const background = await Canvas.loadImage(MainBackground);
@@ -2749,7 +2749,7 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
             ctx.shadowOffsetY = 1;
             ctx.textAlign = "center";
             ctx.font = "20px " + Setting.DefaultFont;
-            ctx.fillText(Recaptcha, 125, 50, canvas.width - 30);
+            ctx.fillText(Recaptcha, 125, 55, canvas.width - 30);
 
             const attachment = await new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
             
@@ -3389,7 +3389,10 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
           if  (!RoleCooldown.has(member.guild.id))  {
 
               member.guild.roles.create({
-              name: GameName
+                  data: {
+                    name: GameName,
+                    color: Setting.Blurple
+                  }
               }, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
 
               RoleCooldown.add(member.guild.id);
@@ -3794,7 +3797,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                 var TranslatedMessages = ["**X001 has created a ticket**" + "\n" + "Staff may close the ticket once the issue has been resolved.", "**X001 potřebuje pomoct**" + "\n" + "Jakmile se tento problém vyřeší, personál může tento lístek uzavřít."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)),  "color": EmbedColor};
 
-                reaction.message.guild.createChannel("Ticket_" + TicketID, { type: 'text', reason: "Channel created by @" + user.tag + " through a function." }).then(async function (channel)  {
+                reaction.message.guild.channels.create("Ticket_" + TicketID, { type: 'text', reason: "Channel created by @" + user.tag + " through a function." }).then(async function (channel)  {
                       if  (category && category.permissionsFor(peeky.user).has('VIEW_CHANNEL'))  {
                           channel.setParent(category.id).catch(error => ErrorBag.add(error));
                       };
@@ -5094,7 +5097,7 @@ if  (FunctioName.startsWith("welcome messages"))  {
             ChannelCooldown.add(message.guild.id);
             setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-            await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+            await message.guild.channels.create(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
             .then(async function (channel)  {
                   await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
                   await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
@@ -5143,7 +5146,7 @@ if  (FunctioName.startsWith("classification wall"))  {
             ChannelCooldown.add(message.guild.id);
             setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-            await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+            await message.guild.channels.create(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
             .then(async function (channel)  {
                   await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false  }).catch(error => ErrorBag.add(error));
                   await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true, MANAGE_MESSAGES: true  }).catch(error => ErrorBag.add(error));
@@ -5194,7 +5197,7 @@ if  (FunctioName.startsWith("ticket system"))  {
                 ChannelCooldown.add(message.guild.id);
                 setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-                await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+                await message.guild.channels.create(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
                 .then(async function (channel)  {
                       await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true, MANAGE_MESSAGES: true, ADD_REACTIONS: true  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false, ADD_REACTIONS: false  }).catch(error => ErrorBag.add(error));
@@ -5248,7 +5251,7 @@ if  (FunctioName.startsWith("reaction roles"))  {
                 ChannelCooldown.add(message.guild.id);
                 setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-                await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+                await message.guild.channels.create(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
                 .then(async function (channel)  {
                       await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
                       await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false, ADD_REACTIONS: false  }).catch(error => ErrorBag.add(error));
@@ -5298,10 +5301,10 @@ if  (FunctioName.startsWith("join role"))  {
                 RoleCooldown.add(message.guild.id);
                 setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
                 message.guild.roles.create({
-                   data: {
-                     name: name,
-                     color: Setting.Blurple
-                   }
+                    data: {
+                      name: name,
+                      color: Setting.Blurple
+                    }
                 }).catch(error => ErrorBag.add(error));
 
                 InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Join Role"));
@@ -5477,7 +5480,7 @@ if  (FunctioName.startsWith("message log"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
       
-    await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+    await message.guild.channels.create(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
@@ -5525,7 +5528,7 @@ if  (FunctioName.startsWith("stream announcements"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
       
-    await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+    await message.guild.channels.create(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
@@ -5575,7 +5578,7 @@ if  (FunctioName.startsWith("member counter"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-    await message.guild.createChannel(name, { type: 'voice', reason: "Channel created by @" + message.author.tag + " through a function." })
+    await message.guild.channels.create(name, { type: 'voice', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
          peeky.serverData.set(keySF, channel.id, "member_counter_bonus_id");
          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  CONNECT: true  }).catch(error => ErrorBag.add(error));
@@ -5625,7 +5628,7 @@ if  (FunctioName.startsWith("reddit posts"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
       
-    await message.guild.createChannel(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
+    await message.guild.channels.create(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
           await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
           await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false  }).catch(error => ErrorBag.add(error));
@@ -5675,7 +5678,7 @@ if  (FunctioName.startsWith("server age"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-    await message.guild.createChannel(name, { type: 'voice', reason: "Channel created by @" + message.author.tag + " through a function." })
+    await message.guild.channels.create(name, { type: 'voice', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
          peeky.serverData.set(keySF, channel.id, "server_age_bonus_id");
          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  CONNECT: true  }).catch(error => ErrorBag.add(error));
@@ -5726,7 +5729,7 @@ if  (FunctioName.startsWith("event countdown"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-    await message.guild.createChannel(name, { type: 'voice', reason: "Channel created by @" + message.author.tag + " through a function." })
+    await message.guild.channels.create(name, { type: 'voice', reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(async function (channel)  {
          peeky.serverData.set(keySF, channel.id, "event_countdown_bonus_id");
          await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  CONNECT: true  }).catch(error => ErrorBag.add(error));
@@ -5890,26 +5893,28 @@ if  (FunctioName.startsWith("streamer role"))  {
       
     if (!role) {
 
-    if  (!RoleCooldown.has(message.guild.id)) {
-      
-    if  (ManageRoles == true)  {
+        if  (!RoleCooldown.has(message.guild.id)) {
 
-    RoleCooldown.add(message.guild.id);
-    setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
-      
-    message.guild.roles.create({
-        data: {
-          name: name,
-          color: Setting.Blurple
-        },
-    }).catch(error => ErrorBag.add(error));
-      
-    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Streamer Role"));
+            if  (ManageRoles == true)  {
 
-    };
-    } else {
-      InfoMessages.push(CooldownMessage3[Language]);
-    };
+                RoleCooldown.add(message.guild.id);
+                setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
+
+                message.guild.roles.create({
+                data: {
+                  name: name,
+                  color: Setting.Blurple
+                }
+                }).catch(error => ErrorBag.add(error));
+
+                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Streamer Role"));
+
+            };
+
+        } else {
+          InfoMessages.push(CooldownMessage3[Language]);
+        };
+      
     };
       
     if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
@@ -9085,7 +9090,7 @@ if  (CommandName.startsWith("muterole"))  {
 
                    await message.guild.roles.create({
                        data: {
-                         name: name,
+                         name: CommandArgument,
                          color: Setting.Blurple
                        }
                    }).catch(error => ErrorBag.add(error));
