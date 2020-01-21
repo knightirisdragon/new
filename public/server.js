@@ -2742,13 +2742,16 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
 
             const background = await Canvas.loadImage(MainBackground);
             ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+            ctx.textAlign = "center";
             ctx.font = "20px " + Setting.DefaultFont;
-            ctx.fillText(Recaptcha, 15, 345, canvas.width - 30);
+            ctx.fillText(Recaptcha, 125, 50, canvas.width - 30);
 
             const attachment = await new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
             
-            const embed = {"description": "**Verification System**\nYou have 60 seconds to type the code below and obtain full access to the server.", "image": { "url": attachment }, "color": EmbedColor}; 
+            const embed = {"description": "**Verification System**\nYou have 60 seconds to type the code below and obtain full access to the server.", "color": EmbedColor}; 
             await function_DirectMessage(member.user.id, { embed });
+            await function_DirectMessage(member.user.id, attachment);
           
             member.user.createDM().then(channel =>  {
               
