@@ -2693,7 +2693,7 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
 
     //Account has alot of logged bans
     if  (peeky.userData.has(key) && peeky.userData.get(key, "Bans") >= BanLimit)  {
-        Reasons.push("Banned more than " + peeky.userData.get(key, "Bans") + " times in other servers.");
+        Reasons.push("Has " + peeky.userData.get(key, "Bans") + " recorded bans.");
     };
   
     //Account is banned from using PEEKY
@@ -2714,15 +2714,45 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
 if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
   
     if  (member.guild.me.permissions.has("MANAGE_ROLES"))  {
-      
-        var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
-        var Role = member.guild.roles.find(role => role.name == name);
+
+        var Role = member.guild.roles.find(role => role.name == peeky.serverData.get(keySF, "join_role_bonus_setting"));
 
         if  (Role) {
             member.roles.add(Role.id, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
           
             console.log("The Join Role function has been triggered in " + member.guild.name + ".");
             function_UpdateAutowipe(keySF, "server");
+        };
+
+    };
+
+};
+    
+//Verification System
+if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
+  
+    if  (member.guild.me.permissions.has("MANAGE_ROLES") && member.guild.me.permissions.has("KICK_MEMBER"))  {
+
+        var Role = member.guild.roles.find(role => role.name == peeky.serverData.get(keySF, "verification_system_bonus_setting"));
+        var Code = Math.random().toString(36).substr(2, 6);
+      
+        function_DirectMessage(member, "**Verification System**\nYou have 60 seconds to type the code below.")
+
+        member.channel.awaitMessages(response => response.content.toLowerCase() == "accept", {
+            max: 1,
+            time: 60000,
+            errors: ['time'],
+        }).then((collected) => {
+            
+        }).catch(() => {
+            
+        });
+
+        if  (Role) {
+        member.roles.add(Role.id, "Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
+
+        console.log("The Verification System function has been triggered in " + member.guild.name + ".");
+        function_UpdateAutowipe(keySF, "server");
         };
 
     };
