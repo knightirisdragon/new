@@ -1222,7 +1222,7 @@ function UpdateLeaderboardTypes(type)  {
             var TheBannerShown = DefaultBackground;
             TheBannerShown = function_GetBackground(data.UserID);
 
-            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname' id='" + CurrentUser.id + "'>  <img src='" + CurrentUser.displayAvatarURL({ format: 'gif' }) + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + "</b>  </div>";
+            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname' id='" + CurrentUser.id + "'>  <img src='" + CurrentUser.displayAvatarURL({ format: 'png' }) + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + "</b>  </div>";
             if  (currentplace == 1 || currentplace == 2 || currentplace == 3)  {
                 LeaderboardTop.push(SavedProfile);
             } else  {
@@ -2415,7 +2415,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
             var SupporterDate = peeky.userData.get(m.user.id, "SupporterSince");
         };
 
-        SupporterList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL({ format: 'gif' }) + ")'>  <b class='displayname'>" + function_RemoveTags(m.user.username) + "  <br>  <font size='1' color='lightgray'>  Supporter for " + function_TimeLeft(peeky.userData.get(m.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
+        SupporterList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(m.user.username) + "  <br>  <font size='1' color='lightgray'>  Supporter for " + function_TimeLeft(peeky.userData.get(m.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
       
     };
     });
