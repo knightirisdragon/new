@@ -2734,25 +2734,35 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
     if  (member.guild.me.permissions.has("MANAGE_ROLES") && member.guild.me.permissions.has("KICK_MEMBER"))  {
 
         var Role = member.guild.roles.find(role => role.name == peeky.serverData.get(keySF, "verification_system_bonus_setting"));
-        var Recaptcha = Math.random().toString(36).substr(2,10)
+        var Recaptcha = Math.random().toString(36).substr(2,10);
+
+        if  (Role && !member.roles.has(Role.id))  {
       
-        function_DirectMessage(member, "**Verification System**\nYou have 60 seconds to type the code below and obtain full access to **" + function_RemoveFormatting(member.guild.name, "other", true) + "**.");
+            function_DirectMessage(member.user.id, "**Verification System**\nYou have 60 seconds to type the code below and obtain full access to **" + function_RemoveFormatting(member.guild.name, "other", true) + "**.");
 
-        member.awaitMessages(response => response.content == Recaptcha, {
-            max: 1,
-            time: 60000,
-            errors: ['time'],
-        }).then((collected) => {
-            
-        }).catch(async () => {
-            await function_DirectMessage(member, "**Verification System**\nYou have 60 seconds to type the code below.");
-        });
+            member.DMChannel.awaitMessages(response => response.content == Recaptcha, {
+                max: 1,
+                time: 60000,
+                errors: ['time'],
+            }).then(async (collected) => {
+              
+                const embed = {"description": SuccessIcon + " You have unlocked the full access to the server.",  "color": EmbedColor}; 
+                await function_DirectMessage(member.user.id, { embed });
 
-        if  (Role) {
-        member.roles.add(Role.id, "Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
+                member.roles.add(Role.id, "Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
 
-        console.log("The Verification System function has been triggered in " + member.guild.name + ".");
-        function_UpdateAutowipe(keySF, "server");
+            }).catch(async () => {
+                if  (!member.roles.has(Role.id))  {
+                    const embed = {"description": ErrorIcon + " Rejoin the server to restart the verfication process.",  "color": EmbedColor}; 
+                    await function_DirectMessage(member.user.id, { embed });
+                  
+                    member.kick("Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
+                };
+            });
+      
+            console.log("The Verification System function has been triggered in " + member.guild.name + ".");
+            function_UpdateAutowipe(keySF, "server");
+          
         };
 
     };
@@ -2896,7 +2906,7 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
             });
 
             if  (Failed == true)  {
-                member.send("**You have been automatically banned for having a possible website advertisment in your username.**  \n  Contact the server owner " + member.guild.owner.user.tag + " to get your ban revoked.").catch(error => ErrorBag.add(error));
+                function_DirectMessage("**You have been automatically banned for having a possible website advertisment in your username.**  \n  Contact the server owner " + member.guild.owner.user.tag + " to get your ban revoked.");
             };
 
         };
