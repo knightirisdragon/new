@@ -2735,32 +2735,47 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
         var Role = member.guild.roles.find(role => role.name == peeky.serverData.get(keySF, "verification_system_bonus_setting"));
         var Recaptcha = Math.random().toString(36).substr(2,10);
 
-        if  (Role && !member.roles.has(Role.id))  {
+        if  (Role)  {
           
-            console.log(Recaptcha);
+            const canvas = Canvas.createCanvas(250, 100);
+            const ctx = canvas.getContext('2d');
+
+            const background = await Canvas.loadImage(MainBackground);
+            ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+            ctx.font = "20px " + Setting.DefaultFont;
+            ctx.fillText(Recaptcha, 15, 345, canvas.width - 30);
+
+            const attachment = await new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
             
-            const embed = {"description": "**Verification System**\nYou have 60 seconds to type the code below and obtain full access to the server.", "image": { "url": "https://cdn.discordapp.com/embed/avatars/0.png" }, "color": EmbedColor}; 
-            function_DirectMessage(member.user.id, { embed });
+            const embed = {"description": "**Verification System**\nYou have 60 seconds to type the code below and obtain full access to the server.", "image": { "url": attachment }, "color": EmbedColor}; 
+            await function_DirectMessage(member.user.id, { embed });
           
-            member.user.createDM().then(c ).awaitMessages(response => response.content == Recaptcha, {
-                max: 1,
-                time: 60000,
-                errors: ['time'],
-            }).then(async (collected) => {
+            member.user.createDM().then(channel =>  {
               
-                const embed = {"description": SuccessIcon + " You have unlocked the full access to the server.",  "color": EmbedColor}; 
-                await function_DirectMessage(member.user.id, { embed });
+                channel.awaitMessages(response => response.content == Recaptcha, {
+                    max: 1,
+                    time: 60000,
+                    errors: ['time'],
+                }).then(async (collected) => {
 
-                member.roles.add(Role.id, "Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
-
-            }).catch(async () => {
-                if  (!member.roles.has(Role.id))  {
-                    const embed = {"description": ErrorIcon + " Rejoin the server to restart the verfication process.",  "color": EmbedColor}; 
+                    const embed = {"description": SuccessIcon + " You have unlocked the full access to the server.",  "color": EmbedColor}; 
                     await function_DirectMessage(member.user.id, { embed });
-                  
-                    member.kick("Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
-                };
-            });
+
+                    member.roles.add(Role.id, "Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
+
+                }).catch(async () => {
+                    if  (!member.roles.has(Role.id))  {
+                        const embed = {"description": ErrorIcon + " Rejoin the server to restart the verfication process.",  "color": EmbedColor}; 
+                        await function_DirectMessage(member.user.id, { embed });
+
+                        member.kick("Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
+                    } else {
+                      const embed = {"description": InfoIcon + " Seems like you have already verified yourself in this server.",  "color": EmbedColor}; 
+                      await function_DirectMessage(member.user.id, { embed });
+                    };
+                });
+              
+            }).catch(error => ErrorBag.add(error));
       
             console.log("The Verification System function has been triggered in " + member.guild.name + ".");
             function_UpdateAutowipe(keySF, "server");
