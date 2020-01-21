@@ -1117,25 +1117,25 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type,
 };
 
 //FUNCTION: Stream Announcements
-function function_StreamAnnouncements(member)  {
+function function_StreamAnnouncements(member, activity)  {
                   
     CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
     setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
   
     var type = undefined;
   
-    if  (member.streaming == true)  {
+    if  (member.voice.streaming == true)  {
         type = "discord";
-    } else if (member.presence.activity.url.startsWith("https://www.twitch.tv"))  {
+    } else if (activity.url.startsWith("https://www.twitch.tv"))  {
       type = "twitch";
-    } else if  (member.presence.activity.url.startsWith("https://youtube.com"))  {
+    } else if  (activity.url.startsWith("https://youtube.com"))  {
       type = "youtube";
     };
 
     if  (type == "twitch")  {
 
-        var GameName   = function_RemoveFormatting(member.presence.activity.details, "other", false);
-        var GameLink   = member.presence.activity.url;
+        var GameName   = function_RemoveFormatting(activity.details, "other", false);
+        var GameLink   = activity.url;
         var GameColor  = 6570404;
         var GameHost   = "Twitch";
 
@@ -1143,8 +1143,8 @@ function function_StreamAnnouncements(member)  {
 
     if  (type == "youtube")  {
 
-        var GameName   = function_RemoveFormatting(member.presence.activity.details, "other", false);
-        var GameLink   = member.presence.activity.url;
+        var GameName   = function_RemoveFormatting(activity.details, "other", false);
+        var GameLink   = activity.url;
         var GameColor  = 13632027;
         var GameHost   = "YouTube";
 
@@ -1158,12 +1158,12 @@ function function_StreamAnnouncements(member)  {
         var GameHost   = "Discord";
       
         if  (member.presence.activity)  {
-            GameName = function_RemoveFormatting(member.presence.activity.name, "other", false);
+            GameName = function_RemoveFormatting(activity.name, "other", false);
         };
 
     };
 
-    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "author": {  "name": function_RemoveFormatting(member.displayName, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL()  }  };
+    return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "author": {  "name": function_RemoveFormatting(member.displayName, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL({ "format": "png" })  }  };
 
 };
   
@@ -3216,8 +3216,9 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
 
             var GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
             var HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
+            var Activity = member.presence.activities.find(a => a.type !== "CUSTOM_STATUS");
 
-            if  (member.presence.activity && member.presence.activity.type == 1 || member.voice.channel !== null && member.streaming == true)  {
+            if  (Activity && Activity.type == "STREAMING" || member.voice.channel && member.voice.streaming == true)  {
 
             if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
               
@@ -3247,23 +3248,23 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
 
 //Stream Announcements
 if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
-
-    console.log("kinda works")
   
     if  (!member.user.bot && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SA2"))  {
 
         var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
 
         if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
-      
-            if  (member.presence.activity && member.presence.activity.type == 1 || member.voice.channel && member.streaming == true)  {
+          
+            var Activity = member.presence.activities.find(a => a.type !== "CUSTOM_STATUS");
+
+            if  (Activity && Activity.type == "STREAMING" || member.voice.channel && member.voice.streaming == true)  {
 
                 CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 300000);
                   
                 var SavedMember = member;
 
-                const embed = function_StreamAnnouncements(member);
+                const embed = function_StreamAnnouncements(member, Activity);
                 Channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
