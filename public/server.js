@@ -1222,7 +1222,7 @@ function UpdateLeaderboardTypes(type)  {
             var TheBannerShown = DefaultBackground;
             TheBannerShown = function_GetBackground(data.UserID);
 
-            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname' id='" + CurrentUser.id + "'>  <img src='" + CurrentUser.displayAvatarURL() + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + "</b>  </div>";
+            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname' id='" + CurrentUser.id + "'>  <img src='" + CurrentUser.displayAvatarURL({ format: 'gif' }) + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + "</b>  </div>";
             if  (currentplace == 1 || currentplace == 2 || currentplace == 3)  {
                 LeaderboardTop.push(SavedProfile);
             } else  {
@@ -2142,7 +2142,7 @@ if  (!WebsiteCooldowns.has("api"))  {
       "botDescription": Setting.Description,
       "botShortDescription": Setting.ShortDescription,
       "botSummary": Setting.Summary,
-      "botAvatar": peeky.user.avatarURL(),
+      "botAvatar": peeky.user.avatarURL({ format: 'png' }),
       "botId": peeky.user.id,
       "ownerId": OwnerId,
       
@@ -2415,7 +2415,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
             var SupporterDate = peeky.userData.get(m.user.id, "SupporterSince");
         };
 
-        SupporterList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL() + ")'>  <b class='displayname'>" + function_RemoveTags(m.user.username) + "  <br>  <font size='1' color='lightgray'>  Supporter for " + function_TimeLeft(peeky.userData.get(m.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
+        SupporterList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL({ format: 'gif' }) + ")'>  <b class='displayname'>" + function_RemoveTags(m.user.username) + "  <br>  <font size='1' color='lightgray'>  Supporter for " + function_TimeLeft(peeky.userData.get(m.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
       
     };
     });
@@ -2512,7 +2512,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
       
       if  (m.roles.has(StaffRole))  {
 
-          var CurrentContact = '<div class="container">  <img src=' + '"' + m.user.displayAvatarURL() + '" width="200px" height="200px" class="stafficon">  <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  <br>  <font size="1" color="lightgray"> ' + function_RemoveTags(m.user.tag) + '  </font>  </b>  </div>';  
+          var CurrentContact = '<div class="container">  <img src=' + '"' + m.user.displayAvatarURL({ format: 'png' }) + '" width="200px" height="200px" class="stafficon">  <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  <br>  <font size="1" color="lightgray"> ' + function_RemoveTags(m.user.tag) + '  </font>  </b>  </div>';  
 
           if  (m.roles.has("574255080069398543"))  {
               DevList.push(CurrentContact);
@@ -3895,13 +3895,13 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
 
               if  (!FoundHook)  {
 
-                  Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL()).catch(error => ErrorBag.add(error))
+                  Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL({ format: 'png' })).catch(error => ErrorBag.add(error))
                   .then(Webhook => {
 
                   Webhook.send(OriginalMessageEdited + "\n­", {
 
                   "username": OriginalMessage.author.tag,
-                  "avatarURL": OriginalMessage.author.displayAvatarURL(),
+                  "avatarURL": OriginalMessage.author.displayAvatarURL({ format: 'png' }),
                   "files": [image],
 
                   "embeds":  [{
@@ -3922,7 +3922,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
                  Webhook.send(OriginalMessageEdited + "\n­", {
 
                  "username": OriginalMessage.author.tag,
-                 "avatarURL": OriginalMessage.author.displayAvatarURL(),
+                 "avatarURL": OriginalMessage.author.displayAvatarURL({ format: 'png' }),
                  "files": [image],
 
                  "embeds":  [{
@@ -4485,7 +4485,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
             const LastMsgDate    = peeky.channelData.get(keyCF, "flood_protection_bonus_lastdate");
             const ThisMsgDate    = Date.now();
 
-            if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent) || (message.content.toUpperCase() == message.content))  {
+            if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent) || (isNaN(message.content) && message.content.toUpperCase() == message.content))  {
 
             if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length == peeky.serverData.get(keySF, "flood_protection_bonus_setting"))  {
 
@@ -8294,7 +8294,6 @@ if (CommandName == "skip")  {
             const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
             if  (connection)  {
                 connection.dispatcher.end();
-                message.guild.me.voice.channel.leave();
             };
           
         } else {
