@@ -143,6 +143,7 @@ const EvilImage         = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa6
 const GoodImage         = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581";
 const GopbotImage       = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgopbot.png?v=1568997070177";
 const TranslatorImage   = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ftranslator.png?v=1576920631134";
+const UpgraderImage     = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fupgrader.png?v=1579693007838";
 
 //Vote Emotes
 const DefaultUpvote   = "529413730874949632";
@@ -175,6 +176,7 @@ const EvilEmote         = "<:evil:604817305247023117>";
 const GoodEmote         = "<:good:605138883138551838>";
 const GopbotEmote       = "<:gopbot:624643543037771841>";
 const TranslatorEmote   = "<:translator:657876886260809728>";
+const UpgraderEmote     = "<:upgrader:669505308938207233>";
 
 //Other Emotes
 const ErrorIcon       = "<:peeky_error:529412267343872031>";
@@ -1927,6 +1929,7 @@ peeky.on('message', async (message) => {
         GoodBadge: false,
         GopbotBadge: false,
         TranslatorBadge: false,
+        UpgraderBadge: false,
       
         BadgeGredit: 0,
         BadgeExp: 0,
@@ -1964,6 +1967,9 @@ peeky.on('message', async (message) => {
       
         //Translator
     if  (peeky.userData.get(key, "TranslatorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
+      
+        //Upgrader
+    if  (peeky.userData.get(key, "UpgraderBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
 
         //Veteran
     if  (peeky.userData.get(key, "VeteranBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
@@ -4867,8 +4873,12 @@ if (CommandName.startsWith("upgrade"))  {
             peeky.serverData.set(keySF, true, "server_upgraded");
             peeky.userData.math(key, "+", 1, "UpgradedServers");
           
+            
+            peeky.serverData.set(key, true, "UpgraderBadge");
+            InfoMessages.push(InfoMessage1[Language]);
+          
             var TranslatedMessages = [SuccessIcon + " This server is now upgraded!", SuccessIcon + " Tento server je nyní vylepšen!"];
-            const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+            const embed = {"description": TranslatedMessages[Language] + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             peeky.channels.get("319891596772638744").send("**" + function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
@@ -7369,6 +7379,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (peeky.userData.get(key2, "VeteranBadge") == true)                                               {  Badges.push(VeteranEmote + " Veteran")  };
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(SupporterRole))   {  Badges.push(SupporterEmote + " Supporter")  };
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(BoosterRole))     {  Badges.push(BoosterEmote + " Booster")  };
+    if  (peeky.userData.get(key2, "UpgraderBadge") == true)                                              {  Badges.push(UpgraderEmote + " Upgrader")  };
     if  (peeky.userData.get(key2, "BugHunterBadge") == true)                                             {  Badges.push(BugHunterEmote + " Bug Hunter")  };
     if  (peeky.userData.get(key2, "ContributorBadge") == true)                                           {  Badges.push(ContributorEmote + " Contributor")  };
     if  (peeky.userData.get(key2, "CelebratorBadge") == true)                                            {  Badges.push(CelebratorEmote + " Celebrator")  };
@@ -7598,6 +7609,13 @@ if  (!ProfileCooldown.has(message.author.id))  {
     const supporter_icon = await Canvas.loadImage(BoosterImage);
     if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(BoosterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
     ctx.drawImage(supporter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    };
+      
+    //Upgrader Icon
+    if  (BadgeAmount < MaxBadges)  {
+    const upgrader_icon = await Canvas.loadImage(UpgraderImage);
+    if  (peeky.userData.get(key2, "UpgraderBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
+    ctx.drawImage(upgrader_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
     };
 
     //Bug Hunter Icon
