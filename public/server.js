@@ -3808,28 +3808,18 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                     var TranslatedMessages = ["**X001 has created a ticket**" + "\n" + "Staff may close the ticket once the issue has been resolved.", "**X001 potřebuje pomoct**" + "\n" + "Jakmile se tento problém vyřeší, personál může tento lístek uzavřít."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)),  "color": EmbedColor};
 
-                    await reaction.message.guild.channels.create(name, { type: 'text', permissionOverwrites: [
-                        {id: PeekyId, allow: ['VIEW_CHANNEL', 'MANAGE_CHANNEL']},
+                    await reaction.message.guild.channels.create("Ticket_" + TicketID, { type: 'text', permissionOverwrites: [
+                        {id: PeekyId, allow: ['VIEW_CHANNEL']},
                         {id: user.id, allow: ['VIEW_CHANNEL']},
-                        {id: role.id, allow: ['VIEW_CHANNEL', 'MANAGE_CHANNEL']},
-                        {id: reaction.message.guild.id, deny: ['VIEW_CHANNEL', 'MANAGE_CHANNEL'], allow: ['SEND_MESSAGES']}
+                        {id: role.id, allow: ['VIEW_CHANNEL']},
+                        {id: reaction.message.guild.id, deny: ['VIEW_CHANNEL', 'MANAGE_MESSAGES'], allow: ['SEND_MESSAGES']}
                     ], reason: "Channel created by @" + reaction.message.author.tag + " through a function." })
                   
-                    .then(channel => {
+                    .then(async function (channel)  {
                         if  (category && category.permissionsFor(peeky.user).has('VIEW_CHANNEL'))  {
                             channel.setParent(category.id).catch(error => ErrorBag.add(error));
                         };
                     });
-
-                    reaction.message.guild.channels.create("Ticket_" + TicketID, { type: 'text', reason: "Channel created by @" + user.tag + " through a function." }).then(async function (channel)  {
-
-                          await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == PeekyId), {  VIEW_CHANNEL: true, MANAGE_CHANNEL: true  }).catch(error => ErrorBag.add(error));
-                          await channel.overwritePermissions(reaction.message.guild.members.find(r => r.id == user.id), {  VIEW_CHANNEL: true  }).catch(error => ErrorBag.add(error));
-                          await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == role.name), {  VIEW_CHANNEL: true, MANAGE_CHANNEL: true  }).catch(error => ErrorBag.add(error));
-                          await channel.overwritePermissions(reaction.message.guild.roles.find(r => r.name == '@everyone'), {  VIEW_CHANNEL: false, SEND_MESSAGES: true, MANAGE_MESSAGES: false  }).catch(error => ErrorBag.add(error));
-
-                          await channel.send({  embed  }).catch(error => ErrorBag.add(error));
-                    }).catch(function(err) {  ErrorBag.add(err);  });
 
                     function_UpdateAutowipe(keySF, "server");
                   
