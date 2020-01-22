@@ -8339,6 +8339,37 @@ if (CommandName == "stop")  {
 
 };
 
+//Loot
+if (CommandName == "loop")  {
+      
+    if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
+      
+        var OwnerActive = false;
+      
+        if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+            OwnerActive = true;
+        };
+      
+        if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
+                
+            const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+            if  (connection)  {
+                peeky.serverData.set(keySF, ,"server_upgraded")
+            };
+          
+        } else {
+          var TranslatedMessages = [ErrorIcon + "Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru."];
+          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+      
+    } else {
+      const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+
 //GuessTheSong  
 if (CommandName == "guessthesong")  {
 
