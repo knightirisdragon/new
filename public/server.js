@@ -8241,7 +8241,10 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                 };
                   
             } else {
-              const embed = {"description": ErrorMessage20[Language],  "color": EmbedColor}; 
+              peeky.userData.set(key, null, "PlaylistThumbnail");
+
+              var TranslatedMessages = [SuccessIcon + " You have set the default thumbnail for your playlist.", SuccessIcon + " Nastavil jste základní miniaturu pro váš playlist"];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 

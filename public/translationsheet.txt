@@ -92,6 +92,7 @@ The song has been removed from your playlist. |
 That song is not in your playlist. | 
 Your playlist has been renamed to **X001**. | 
 You have set the thumbnail for your playlist. | 
+You have set the default thumbnail for your playlist. | 
 Failed to set your playlist thumbnail. | 
 You have cleared your playlist of **X001 songs**. | 
 Only the server owner can stop this music right now. | 
