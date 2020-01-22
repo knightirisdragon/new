@@ -5263,11 +5263,12 @@ if  (FunctioName.startsWith("reaction roles"))  {
                 ChannelCooldown.add(message.guild.id);
                 setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-                await message.guild.channels.create(name, { type: 'text', reason: "Channel created by @" + message.author.tag + " through a function." })
-                .then(async function (channel)  {
-                      await channel.overwritePermissions(message.guild.members.find(r => r.id == PeekyId), {  SEND_MESSAGES: true  }).catch(error => ErrorBag.add(error));
-                      await channel.overwritePermissions(message.guild.roles.find(r => r.name == '@everyone'), {  SEND_MESSAGES: false, MANAGE_MESSAGES: false, ADD_REACTIONS: false  }).catch(error => ErrorBag.add(error));
-                      await channel.send("**Reaction Roles**" + "\n" + "Preparing... Come back in a few minutes!").catch(error => ErrorBag.add(error)).then(m => {  peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id");  }).catch(error => ErrorBag.add(error));
+                await message.guild.channels.create(name, { type: 'text', permissionOverwrites: [
+                    {id: PeekyId, allow: ['SEND_MESSAGES', 'MANAGE_MESSAGES', 'ADD_REACTIONS']},
+                    {id: message.guild.id, deny: ['SEND_MESSAGES', 'MANAGE_MESSAGES', 'ADD_REACTIONS']}
+                ],reason: "Channel created by @" + message.author.tag + " through a function." })
+                  .then(async function (channel)  {
+                    channel.send("**Reaction Roles**" + "\n" + "Preparing... Come back in a few minutes!").catch(error => ErrorBag.add(error)).then(m => {  peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id");  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
 
                 InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Reaction Roles"));
