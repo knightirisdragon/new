@@ -675,7 +675,7 @@ th, td {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: white;
+    background: rgb(44, 47, 51);;
     border-radius: 5px;
     z-index: 11;
 }
