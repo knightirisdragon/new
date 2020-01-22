@@ -222,10 +222,12 @@ const GuildVerificationTag = "[GuildLevel]";
 const GuildAcronymTag      = "[GuildAcronym]";
 
 //Strings
-const AllString     = "all";
-const RandomString  = "random";
-const BadFormat     = "invalid";
-const Exclusive     = "Exclusive";
+const AllString      = "all";
+const RandomString   = "random";
+const BadFormat      = "invalid";
+const Exclusive      = "Exclusive";
+const EnableStrings  = ["enabled", "zapnutá"];
+const DisableStrings = ["disabled", "vypnutá"];
 
 //Response Messages
 const CooldownMessage1 = [ErrorIcon + " You are currently on a cooldown for that command.", ErrorIcon + " Tento příkaz je pro vás momentálně zastaven."];
@@ -258,6 +260,7 @@ const ErrorMessage18 = [ErrorIcon + " You need to provide valid arguments for th
 const ErrorMessage19 = [ErrorIcon + " You need to join the Support Server.", ErrorIcon + " Musíte se připojit na můj server."];
 const ErrorMessage20 = [ErrorIcon + " You need to upload a file.", ErrorIcon + " Musíte nahrát soubor."];
 const ErrorMessage21 = [ErrorIcon + " You can only do that in upgraded servers.", ErrorIcon + " Tohle funguje jenom ve vylepšených serverech."];
+const ErrorMessage22 = [ErrorIcon + " You need to join a voice channel.", ErrorIcon + " Musíte se připojt se do hlasového kanálu."];
 
 const InfoMessage1 = [InfoIcon + " You have earned a new badge.", ErrorIcon + " Dostal jste nový odznak."];
 const InfoMessage2 = [InfoIcon + " You have set the default background.", ErrorIcon + " Nastavil jste si základní pozadí."];
@@ -5019,8 +5022,6 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 
     var ManageChannels = false;
     var ManageRoles = false;
-    var EnableStrings = ["enabled", "zapnutá"];
-    var DisableStrings = ["disabled", "vypnutá"];
     var TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je nyní **X002**."];
   
     if  (message.guild.me.permissions.has("MANAGE_CHANNELS"))  {
@@ -8028,8 +8029,7 @@ if (CommandName.startsWith("play"))  {
         };
 
         } else {
-          var TranslatedMessages = [ErrorIcon + " You need to join a voice channel.", ErrorIcon + " Musíte se připojt se do hlasového kanálu."];
-          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+          const embed = {"description": ErrorMessage22[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
@@ -8280,22 +8280,29 @@ if (CommandName == "skip")  {
       
     if  (CurrentlyPlaying.has(message.guild.id))  {
       
-        var OwnerActive = false;
+        if  (message.member.voice.channel)  {
       
-        if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
-            OwnerActive = true;
-        };
-      
-        if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
-                
-            const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-            if  (connection)  {
-                connection.dispatcher.end();
+            var OwnerActive = false;
+
+            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+                OwnerActive = true;
             };
-          
+
+            if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
+
+                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                if  (connection)  {
+                    connection.dispatcher.end();
+                };
+
+            } else {
+              var TranslatedMessages = [ErrorIcon + " Only the server owner can skip the song right now.", ErrorIcon + " Písniku může momentálně přeskočit pouze vlastník serveru."];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
         } else {
-          var TranslatedMessages = [ErrorIcon + "Only the server owner can skip the song right now.", ErrorIcon + " Písniku může momentálně přeskočit pouze vlastník serveru."];
-          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+          const embed = {"description": ErrorMessage22[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
@@ -8311,24 +8318,31 @@ if (CommandName == "stop")  {
       
     if  (CurrentlyPlaying.has(message.guild.id))  {
       
-        var OwnerActive = false;
+        if  (message.member.voice.channel)  {
       
-        if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
-            OwnerActive = true;
-        };
-      
-        if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
-                
-            const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-            if  (connection)  {
-                peeky.serverData.set(keySF, [], "Queue");
-                connection.dispatcher.end();
-                message.guild.me.voice.channel.leave();
+            var OwnerActive = false;
+
+            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+                OwnerActive = true;
             };
-          
+
+            if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
+
+                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                if  (connection)  {
+                    peeky.serverData.set(keySF, [], "Queue");
+                    connection.dispatcher.end();
+                    message.guild.me.voice.channel.leave();
+                };
+
+            } else {
+              var TranslatedMessages = [ErrorIcon + " Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru."];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
         } else {
-          var TranslatedMessages = [ErrorIcon + "Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru."];
-          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+          const embed = {"description": ErrorMessage22[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
@@ -8339,32 +8353,43 @@ if (CommandName == "stop")  {
 
 };
 
-//Loot
+//Loop
 if (CommandName == "loop")  {
       
     if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
       
-        var OwnerActive = false;
+        if  (message.member.voice.channel)  {
       
-        if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
-            OwnerActive = true;
-        };
-      
-        if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
-                
-            const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-            if  (connection)  {
-                peeky.serverData.set(keySF, ,"server_upgraded")
+            var OwnerActive = false;
+
+            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+                OwnerActive = true;
             };
-          
+
+            if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
+
+                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                if  (connection)  {
+                    peeky.serverData.set(keySF, peeky.serverData.get(keySF, "Looping"), "Looping");
+                  
+                    var TranslatedMessages = [ErrorIcon + " Music looping has been **X001**", ErrorIcon + " Smyčka u písniček byla **X001**."];
+                    const embed = {"description": TranslatedMessages[Language].replace(peeky.serverData.get(keySF, "Looping").toString(), ),  "color": EmbedColor};
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
+
+            } else {
+              var TranslatedMessages = [ErrorIcon + " Only the server owner can loop the music right now.", ErrorIcon + " Nastavit smyčku u písniček může pouze vlastník serveru."];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
         } else {
-          var TranslatedMessages = [ErrorIcon + "Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru."];
-          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+          const embed = {"description": ErrorMessage22[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
     } else {
-      const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
+      const embed = {"description": ErrorMessage21[Language],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
