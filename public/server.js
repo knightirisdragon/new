@@ -1978,7 +1978,7 @@ peeky.on('message', async (message) => {
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  };
 
         //Booster
-    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).premiumSince)  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  };
 
         //Bug Hunter
     if  (peeky.userData.get(key, "BugHunterBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
@@ -4609,7 +4609,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
               
               if  (m.roles.has(Role.id))  {
                   if  (m.user.id == message.guild.owner.user.id)  {  Tags.push(OwnerTag);  };
-                  if  (m.premiumSince !== null)  {  Tags.push(BoostTag);  };
+                  if  (m.premiumSince)  {  Tags.push(BoostTag);  };
                   if  (m.user.bot)  {  Tags.push(BotTag);  };
                 
                   WallList.push("> " + function_RemoveFormatting(m.displayName, "other", true) +  " " + Tags.join(" "));
