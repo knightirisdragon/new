@@ -3819,7 +3819,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                         if  (category && category.permissionsFor(peeky.user).has('VIEW_CHANNEL'))  {
                             channel.setParent(category.id).catch(error => ErrorBag.add(error));
                         };
-
+                      
                         await channel.send({  embed  }).catch(error => ErrorBag.add(error));
                     });
 
