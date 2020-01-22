@@ -8473,17 +8473,25 @@ if (CommandName == "guessthesong")  {
                           peeky.userData.math(key, "+", 100, "Gredit");
                       };
                       
-                      voiceChannel.leave();
-                      
                       const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has guessed the song's name!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                       message.channel.send({ embed });
+
+                      const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                      if  (connection)  {
+                          connection.dispatcher.end();
+                          message.guild.me.voice.channel.leave();
+                      };
                       
                     })
                     .catch(collected => {
                       const embed = {"description": ErrorIcon + " The song's name was **" + GuessTheSong[ChosenSong][1] + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                       message.channel.send({ embed });
-                      
-                      voiceChannel.leave();
+
+                      const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                      if  (connection)  {
+                          connection.dispatcher.end();
+                          message.guild.me.voice.channel.leave();
+                      };
                     });
 
                 });
