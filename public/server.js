@@ -2201,7 +2201,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
             var Guild = peeky.guilds.get(data.GuildID);
             if  (Guild !== undefined)  {
                 if  (Guild.owner)  {
-                    const embed = {"description": "I'm leaving your server called **" + Guild.name + "** because of inactivity.",  "color": EmbedColor}; 
+                    const embed = {"description": "I'm leaving your server called **" + Guild.name + "** because of inactivity.", "footer": { "text": "https://peeky.glitch.me/tutorials.html#autowipe" }, "color": EmbedColor}; 
                     await function_DirectMessage(Guild.owner.user.id, { embed });
                 };
                 await Guild.leave();
