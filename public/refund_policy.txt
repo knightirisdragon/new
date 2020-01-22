@@ -1,5 +1,5 @@
 REFUND POLICY
-Last updated: 2nd of December, 2019
+Last updated: 22nd of January, 2020
 
 Refunds should be accepted in most cases.
 
@@ -9,7 +9,7 @@ HOW TO ISSUE A REFUND
 
 REFUND CANNOT BE ACCEPTED IF
 • The item wasn't purchased on https://donatebot.io/checkout/319891596772638744.
-• It has been over 15 work days since the purchase.
+• It has been over 24 hours since the purchase.
 • You threaten someone over the refund.
 
 REASONS FOR A POTENTIONAL REFUND
