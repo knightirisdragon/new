@@ -7870,8 +7870,13 @@ if (CommandName.startsWith("play"))  {
                         const dispatcher = await connection.play(stream, StreamOptions);
 
                         dispatcher.on('finish', async reason => {
-                                  
-                            peeky.serverData.get(keySF, "Queue").shift();
+                            
+                            if  (peeky.serverData.get(keySF, "Looping") == false)  {
+                                peeky.serverData.get(keySF, "Queue").shift();
+                            } else {
+                                peeky.serverData.get(keySF, "Queue").push(peeky.serverData.get(keySF, "Queue")[0]);
+                                peeky.serverData.get(keySF, "Queue").shift();                     
+                            };
 
                             if  (peeky.serverData.get(keySF, "Queue").length == 0 || message.guild.me.voice.channel.members.filter(m => !m.user.bot).map(m => m.id).length < 1)  {  //
 
@@ -8368,14 +8373,17 @@ if (CommandName == "loop")  {
 
             if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
 
-                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-                if  (connection)  {
-                    peeky.serverData.set(keySF, peeky.serverData.get(keySF, "Looping"), "Looping");
-                  
-                    var TranslatedMessages = [ErrorIcon + " Music looping has been **X001**", ErrorIcon + " Smyčka u písniček byla **X001**."];
-                    const embed = {"description": TranslatedMessages[Language].replace(peeky.serverData.get(keySF, "Looping").toString(), ),  "color": EmbedColor};
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "Looping"), "Looping");
+
+                var TranslatedMessages = [SuccessIcon + " Music looping has been **X001**.", SuccessIcon + " Smyčka u písniček byla **X001**."];
+                if  (peeky.serverData.get(keySF, "Looping") == false)  {
+                    var CurrentString = DisableStrings;
+                } else {
+                  var CurrentString = EnableStrings;
                 };
+
+                const embed = {"description": TranslatedMessages[Language].replace("X001", CurrentString[Language]),  "color": EmbedColor};
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             } else {
               var TranslatedMessages = [ErrorIcon + " Only the server owner can loop the music right now.", ErrorIcon + " Nastavit smyčku u písniček může pouze vlastník serveru."];
