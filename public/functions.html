@@ -168,9 +168,9 @@ function SA3_Popup() {
      document.getElementById('description').innerHTML = '<b class="functionname">Server Age</b>  <br>  <b class="functiondescription">Creates a voice channel that will display the amount of days since the creation of the server.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">1 Hour</b>  ' + Commands + '  <b class="functioncommand">p!toggle server age</b>' + Note; 
 };
 
-function FP_Popup() {
+function VS_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Verification System</b>  <br>  <b class="functiondescription">Gives users joining your server a 60 second timeframe, in which they need to typeout a string of text in an attached image, or else they\ll get kicked and told to rejoin.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle verification system  <br>  p!set verification system [role name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Verification System</b>  <br>  <b class="functiondescription">Gives users joining your server a 60 second timeframe, in which they need to typeout a string of text in an attached image, or else they will get kicked and told to rejoin.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle verification system  <br>  p!set verification system [role name]</b>' + Note;
 };
 
 function FP_Popup() {
@@ -285,9 +285,39 @@ function Close()  {
   
 <br><br><br>
       
-    <br> <font class="item_header">Enhancements</font>
+    <br> <font class="item_header">Security</font>
       
     <div class="inlinediv">
+    
+    <div class="function_showcase">
+      <div class="centered"> 
+        
+    <div class="fancybutton" onclick="VS_Popup()">  Verification System  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="fancybutton" onclick="SL_Popup()">  Spoiler Lock  </div>
+        
+      </div>
+    </div>
+      
+    </div>
+      
+    <br> <font class="item_header">Utilities</font>
+      
+    <div class="inlinediv">
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="fancybutton" onclick="TS_Popup()">  Ticket System  </div>
+        
+      </div>
+    </div>
         
     <div class="function_showcase">
       <div class="centered">
@@ -300,7 +330,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="fancybutton" onclick="CW_Popup()">  Classification Wall  </div>
+    <div class="fancybutton" onclick="EC_Popup()">  Event Countdown  </div>
         
       </div>
     </div>
@@ -317,6 +347,20 @@ function Close()  {
       <div class="centered">
         
     <div class="fancybutton" onclick="ML_Popup()">  Message Log  </div>
+        
+      </div>
+    </div>
+      
+    </div>
+      
+    <br> <font class="item_header">Enhancements</font>
+      
+    <div class="inlinediv">
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="fancybutton" onclick="CW_Popup()">  Classification Wall  </div>
         
       </div>
     </div>
@@ -372,14 +416,6 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="fancybutton" onclick="EC_Popup()">  Event Countdown  </div>
-        
-      </div>
-    </div>
-    
-    <div class="function_showcase">
-      <div class="centered">
-        
     <div class="fancybutton" onclick="SM_Popup()">  Server Message  </div>
         
       </div>
@@ -418,7 +454,7 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="fancybutton" onclick="TS_Popup()">  Ticket System  </div>
+    <div class="fancybutton" onclick="FP_Popup()">  Flood Protection  </div>
         
       </div>
     </div>
@@ -434,30 +470,6 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="fancybutton" onclick="SA_Popup()">  Suspicion Alert  </div>
-        
-      </div>
-    </div>
-    
-    <div class="function_showcase">
-      <div class="centered">
-        
-    <div class="fancybutton" onclick="SL_Popup()">  Spoiler Lock  </div>
-        
-      </div>
-    </div>
-    
-    <div class="function_showcase">
-      <div class="centered">
-        
-    <div class="fancybutton" onclick="FP_Popup()">  Flood Protection  </div>
-        
-      </div>
-    </div>
-    
-    <div class="function_showcase">
-      <div class="centered">
-        
     <div class="fancybutton" onclick="CN_Popup()">  Clear Nicknames  </div>
         
       </div>
@@ -466,30 +478,14 @@ function Close()  {
     <div class="function_showcase">
       <div class="centered">
         
-    <div class="fancybutton" onclick="IO_Popup()">  Images Only  </div>
-        
-      </div>
-    </div>
-    
-    <div class="function_showcase">
-      <div class="centered">
-        
-    <div class="fancybutton" onclick="BW_Popup()">  Banned Words  </div>
-        
-      </div>
-    </div>
-    
-    <div class="function_showcase">
-      <div class="centered">
-        
-    <div class="fancybutton" onclick="SC_Popup()">  Safe Chat  </div>
+    <div class="fancybutton" onclick="SA_Popup()">  Suspicion Alert  </div>
         
       </div>
     </div>
       
     </div>
       
-    <br> <font class="item_header">Streaming Utilities</font>
+    <br> <font class="item_header">Streaming</font>
       
     <div class="inlinediv">
     
@@ -505,6 +501,28 @@ function Close()  {
       <div class="centered"> 
         
     <div class="fancybutton" onclick="SR_Popup()">  Streamer Role  </div>
+        
+      </div>
+    </div>
+      
+    </div>
+      
+    <br> <font class="item_header">Miscellaneous</font>
+      
+    <div class="inlinediv">
+    
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="fancybutton" onclick="IO_Popup()">  Images Only  </div>
+        
+      </div>
+    </div>
+        
+    <div class="function_showcase">
+      <div class="centered">
+        
+    <div class="fancybutton" onclick="SC_Popup()">  Safe Chat  </div>
         
       </div>
     </div>
