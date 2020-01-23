@@ -5044,7 +5044,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
     if  (message.guild.me.permissions.has("MANAGE_CHANNELS"))  {
         ManageChannels = true;  
       
-        var TranslatedBonuses = [InfoIcon + " Created a channel called **#X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál s názvem **#X001** pro funkci **X002**."];
+        var TranslatedBonuses = [InfoIcon + " Created a channel called **X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál s názvem **X001** pro funkci **X002**."];
         var ChannelCreation = TranslatedBonuses[Language]
     };
   
@@ -5172,7 +5172,7 @@ if  (FunctioName.startsWith("classification wall"))  {
                 await channel.send("**" + message.guild.name + "'s " + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "s:**\n\nPreparing... Come back in a few minutes!").catch(error => {ErrorBag.add(error);}).then(m => peeky.serverData.set(keySF, m.id, "donor_wall_bonus_id"));
             }).catch(function(err) {  ErrorBag.add(err);  });
 
-            InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Classification Wall"));
+            InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Classification Wall"));
 
             };
           
@@ -5225,7 +5225,7 @@ if  (FunctioName.startsWith("ticket system"))  {
                       await channel.send("**Need help with something?**" + "\n" + "Click on the reaction below to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_bonus_id");  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
 
-                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Ticket System"));
+                InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Ticket System"));
 
                 if  (!category)  {
                     InfoMessages.push(InfoIcon + " Consider creating a category called **Tickets** to sort tickets.");
@@ -5281,7 +5281,7 @@ if  (FunctioName.startsWith("reaction roles"))  {
                     channel.send("**Reaction Roles**" + "\n" + "Preparing... Come back in a few minutes!").catch(error => ErrorBag.add(error)).then(m => {  peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id");  }).catch(error => ErrorBag.add(error));
                 }).catch(function(err) {  ErrorBag.add(err);  });
 
-                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Reaction Roles"));
+                InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Reaction Roles"));
 
             };
 
@@ -5330,7 +5330,7 @@ if  (FunctioName.startsWith("join role"))  {
                     }
                 }).catch(error => ErrorBag.add(error));
 
-                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Join Role"));
+                InfoMessages.push(RoleCreation.replace("X001", name).replace("X002", "Join Role"));
 
             };
 
@@ -5508,7 +5508,7 @@ if  (FunctioName.startsWith("message log"))  {
         {id: message.guild.id, deny: ['SEND_MESSAGES']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
 
-    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Message Log"));
+    InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Message Log"));
     
     };
     } else {
@@ -5555,7 +5555,7 @@ if  (FunctioName.startsWith("stream announcements"))  {
         {id: message.guild.id, deny: ['SEND_MESSAGES']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
 
-    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Stream Announcements"));
+    InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Stream Announcements"));
     
     };
 
@@ -5604,7 +5604,11 @@ if  (FunctioName.startsWith("member counter"))  {
         {id: message.guild.id, deny: ['CONNECT']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
 
-    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Member Counter"));
+    .then(async function (channel)  {
+        peeky.serverData.set(keySF, channel.id, "member_counter_bonus_id");
+    }).catch(function(err) {  ErrorBag.add(err);  });
+
+    InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Member Counter"));
     
     };
     
@@ -5701,7 +5705,11 @@ if  (FunctioName.startsWith("server age"))  {
         {id: message.guild.id, deny: ['CONNECT']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
 
-    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Server Age"));
+    .then(async function (channel)  {
+        peeky.serverData.set(keySF, channel.id, "server_age_bonus_id");
+    }).catch(function(err) {  ErrorBag.add(err);  });
+
+    InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Server Age"));
     
     };
     
@@ -5749,6 +5757,10 @@ if  (FunctioName.startsWith("event countdown"))  {
         {id: PeekyId, allow: ['CONNECT']},
         {id: message.guild.id, deny: ['CONNECT']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
+
+    .then(async function (channel)  {
+        peeky.serverData.set(keySF, channel.id, "server_age_bonus_id");
+    }).catch(function(err) {  ErrorBag.add(err);  });
 
     InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Event Countdown"));
     
@@ -5921,7 +5933,7 @@ if  (FunctioName.startsWith("streamer role"))  {
                 }
                 }).catch(error => ErrorBag.add(error));
 
-                InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Streamer Role"));
+                InfoMessages.push(RoleCreation.replace("X001", name).replace("X002", "Streamer Role"));
 
             };
 
