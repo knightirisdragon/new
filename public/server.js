@@ -235,7 +235,7 @@ const DisableStrings = ["disabled", "vypnutá"];
 const CooldownMessage1 = [ErrorIcon + " You are currently on a cooldown for that command.", ErrorIcon + " Tento příkaz je pro vás momentálně zastaven."];
 const CooldownMessage2 = [ErrorIcon + " Automated channel creation is currently on a cooldown.", ErrorIcon + " Automatická tvorba kanálů je momentálně zastavena."];
 const CooldownMessage3 = [ErrorIcon + " Automated role creation is currently on a cooldown.", ErrorIcon + " Automatická tvorba rolí je momentálně zastavena."];
-const CooldownMessage4 = [ErrorIcon + " You are currently on a cooldown for that function.", ErrorIcon + " Tato funkce je momentálně zastavena."];
+const CooldownMessage4 = [ErrorIcon + " You are currently on a cooldown for that function.", ErrorIcon + " Tato funkce je pro vás momentálně zastavena."];
 
 const PermissionsMessageError1 = [ErrorIcon + " You are lacking the required permissions do that.", ErrorIcon + " Chybý vám požadovaná oprávnění."];
 const PermissionsMessageError2 = [ErrorIcon + " You need to be the owner of this server to do that.", ErrorIcon + " Musíte být vlastníkem serveru."];
@@ -264,7 +264,7 @@ const ErrorMessage20 = [ErrorIcon + " You need to upload a file.", ErrorIcon + "
 const ErrorMessage21 = [ErrorIcon + " You can only do that in [upgraded servers](https://peeky.glitch.me/store.html).", ErrorIcon + " Tohle funguje jenom ve [vylepšených serverech](https://peeky.glitch.me/store.html)."];
 const ErrorMessage22 = [ErrorIcon + " You need to join a voice channel.", ErrorIcon + " Musíte se připojt se do hlasového kanálu."];
 
-const InfoMessage1 = [InfoIcon + " You have earned a new badge.", ErrorIcon + " Dostal jste nový odznak."];
+const InfoMessage1 = [InfoIcon + " You have earned a new [badge](https://peeky.glitch.me/badges.html).", ErrorIcon + " Dostal jste nový [odznak](https://peeky.glitch.me/badges.html)."];
 const InfoMessage2 = [InfoIcon + " You have set the default background.", ErrorIcon + " Nastavil jste si základní pozadí."];
 
 //Small Arrays
@@ -7175,7 +7175,7 @@ if (CommandName == "daily")  {
     } else {
       if  (peeky.userData.get(key, "VoterBadge") == false)  {
           peeky.userData.set(key, true, "VoterBadge");  
-            InfoMessages.push("•" + " You have received a new badge.");
+            InfoMessages.push("•" + " You have received a new [badge](https://peeky.glitch.me/badges.html).");
       };    
     };
       
