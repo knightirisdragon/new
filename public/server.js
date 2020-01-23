@@ -3305,7 +3305,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
                  member.roles.add(GuildRole.id).catch(error => ErrorBag.add(error));
 
                  CurrentlyStreaming.add(member.user.id + member.guild.id + "SR");
-                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 1800000);
+                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 900000);
 
                  console.log("The Streamer Role function has been triggered in " + member.guild.name + ".");
                  function_UpdateAutowipe(keySF, "server");
