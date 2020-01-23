@@ -3340,7 +3340,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
             if  (Activity && Activity.type == "STREAMING" || member.voice.channel && member.voice.streaming == true)  {
 
                 CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
-                setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 300000);
+                setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 900000);
                   
                 var SavedMember = member;
 
