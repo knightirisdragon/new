@@ -5120,7 +5120,7 @@ if  (FunctioName.startsWith("welcome messages"))  {
                 {id: message.guild.id, deny: ['SEND_MESSAGES']}
             ], reason: "Channel created by @" + message.author.tag + " through a function." })
 
-            InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Welcome Messages"));
+            InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Welcome Messages"));
 
             };
           
@@ -5608,7 +5608,7 @@ if  (FunctioName.startsWith("member counter"))  {
         peeky.serverData.set(keySF, channel.id, "member_counter_bonus_id");
     }).catch(function(err) {  ErrorBag.add(err);  });
 
-    InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Member Counter"));
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Member Counter"));
     
     };
     
@@ -5656,7 +5656,7 @@ if  (FunctioName.startsWith("reddit posts"))  {
         {id: message.guild.id, deny: ['SEND_MESSAGES']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
 
-    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Reddit Posts"));
+    InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Reddit Posts"));
     
     };
     
@@ -5709,7 +5709,7 @@ if  (FunctioName.startsWith("server age"))  {
         peeky.serverData.set(keySF, channel.id, "server_age_bonus_id");
     }).catch(function(err) {  ErrorBag.add(err);  });
 
-    InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Server Age"));
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Server Age"));
     
     };
     
@@ -5759,7 +5759,7 @@ if  (FunctioName.startsWith("event countdown"))  {
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
 
     .then(async function (channel)  {
-        peeky.serverData.set(keySF, channel.id, "server_age_bonus_id");
+        peeky.serverData.set(keySF, channel.id, "event_countdown_bonus_id");
     }).catch(function(err) {  ErrorBag.add(err);  });
 
     InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Event Countdown"));
