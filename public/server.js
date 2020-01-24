@@ -1416,7 +1416,7 @@ function function_UpdateAutowipe(key, type)  {
 //Remove Formatting
 function function_RemoveFormatting(text, type, sliced)  {
     
-    if  (type == "sm")  {
+    /*if  (type == "sm")  {
 
         var FixedText = function_ProperSlice(text.replace(/[`]/g, '').replace(/\n/g, ' '), 100);
 
@@ -1426,7 +1426,7 @@ function function_RemoveFormatting(text, type, sliced)  {
             return BadFormat;
         };
 
-    } else
+    } else*/
   
     if  (type == "channel")  {
 
@@ -6335,16 +6335,16 @@ if  (FunctioName.startsWith("server message "))  {
 
     peeky.serverData.set(keySF, ServerMessageContent, "server_message_bonus_setting");
 
-        ServerMessagePreview = function_RemoveFormatting(ServerMessagePreview, "sm", true);
-
     if  (ServerMessageContent.includes(GuildNameTag)) {  FoundFunctionTags.push(InfoIcon + " The **" + GuildNameTag + "** tag was detected.")  };
     if  (ServerMessageContent.includes(GuildSizeTag)) {  FoundFunctionTags.push(InfoIcon + " The **" + GuildSizeTag + "** tag was detected.")  };
     if  (ServerMessageContent.includes(GuildOwnerTag)) {  FoundFunctionTags.push(InfoIcon + " The **" + GuildOwnerTag + "** tag was detected.")  };
     if  (ServerMessageContent.includes(GuildVerificationTag)) {  FoundFunctionTags.push(InfoIcon + " The **" + GuildVerificationTag + "** tag was detected.")  };
     if  (ServerMessageContent.includes(GuildAcronymTag)) {  FoundFunctionTags.push(InfoIcon + " The **" + GuildAcronymTag + "** tag was detected.")  };
 
-        const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Message").replace("X002", ServerMessagePreview + "\n\n" + FoundFunctionTags.join("\n\n")),  "color": EmbedColor};
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    ServerMessagePreview = function_RemoveFormatting(ServerMessagePreview, "other", true);
+
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Message").replace("X002",  ServerMessagePreview + "\n\n" + FoundFunctionTags.join("\n\n")),  "color": EmbedColor};
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
   
