@@ -6331,20 +6331,19 @@ if  (FunctioName.startsWith("server message "))  {
    
     var ServerMessageContent = CommandName.split("server message ")[1];
     var ServerMessagePreview = ServerMessageContent;
-    var FixedMsgEnd          = "";
-    var TagString            = "";
+    var FoundFunctionTags    = [];
 
     peeky.serverData.set(keySF, ServerMessageContent, "server_message_bonus_setting");
 
         ServerMessagePreview = function_RemoveFormatting(ServerMessagePreview, "sm", true);
 
-    if  (ServerMessageContent.includes(GuildNameTag)) {  TagString += "\n\n" + InfoIcon + " The **" + GuildNameTag + "** tag was detected."  };
-    if  (ServerMessageContent.includes(GuildSizeTag)) {  TagString += "\n\n" + InfoIcon + " The **" + GuildSizeTag + "** tag was detected."  };
-    if  (ServerMessageContent.includes(GuildOwnerTag)) {  TagString += "\n\n" + InfoIcon + " The **" + GuildOwnerTag + "** tag was detected."  };
-    if  (ServerMessageContent.includes(GuildVerificationTag)) {  TagString += "\n\n" + InfoIcon + " The **" + GuildVerificationTag + "** tag was detected."  };
-    if  (ServerMessageContent.includes(GuildAcronymTag)) {  TagString += "\n\n" + InfoIcon + " The **" + GuildAcronymTag + "** tag was detected."  };
+    if  (ServerMessageContent.includes(GuildNameTag)) {  FoundFunctionTags.push(InfoIcon + " The **" + GuildNameTag + "** tag was detected.")  };
+    if  (ServerMessageContent.includes(GuildSizeTag)) {  FoundFunctionTags.push(InfoIcon + " The **" + GuildSizeTag + "** tag was detected.")  };
+    if  (ServerMessageContent.includes(GuildOwnerTag)) {  FoundFunctionTags.push(InfoIcon + " The **" + GuildOwnerTag + "** tag was detected.")  };
+    if  (ServerMessageContent.includes(GuildVerificationTag)) {  FoundFunctionTags.push(InfoIcon + " The **" + GuildVerificationTag + "** tag was detected.")  };
+    if  (ServerMessageContent.includes(GuildAcronymTag)) {  FoundFunctionTags.push(InfoIcon + " The **" + GuildAcronymTag + "** tag was detected.")  };
 
-        const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Message").replace("X002", ServerMessagePreview + FixedMsgEnd) + TagString,  "color": EmbedColor};
+        const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Message").replace("X002", ServerMessagePreview + "\n\n" + FoundFunctionTags.join("\n\n")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
