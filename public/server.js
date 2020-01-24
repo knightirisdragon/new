@@ -3546,8 +3546,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         var ServerAmount  = 0;
         var ChannelAmount = 0;
         const Functions   = [];
-
-        var ServerMessage = peeky.serverData.get(keySF, "server_message_bonus_setting");
       
         if (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)   { var AR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var AR = DisabledIcon};
         if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)       { var WM = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var WM = DisabledIcon};
@@ -3636,7 +3634,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Reddit Posts** " + RP + "\n" + "`r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "`" + "\n\n" +
                                 "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
                                 "**Reaction Roles** " + RR + "\n" + "`" + RRArray + "`" + "\n\n" +
-                                "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(ServerMessage, "sm", true) + "`" + "\n\n" +
+                                "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(peeky.serverData.get(keySF, "server_message_bonus_setting"), "other", true) + "`" + "\n\n" +
                                 "**Role Saver** " + RS + "\n" + "`" + RSArray + "`" + "\n\n" +
                                 "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
@@ -6343,7 +6341,7 @@ if  (FunctioName.startsWith("server message "))  {
 
     ServerMessagePreview = function_RemoveFormatting(ServerMessagePreview, "other", true);
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Message").replace("X002",  ServerMessagePreview + "\n\n" + FoundFunctionTags.join("\n\n")),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Message").replace("X002",  ServerMessagePreview) + "\n\n" + FoundFunctionTags.join("\n\n"),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
