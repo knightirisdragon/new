@@ -1868,6 +1868,7 @@ peeky.on('message', async (message) => {
     var BadgeExpAmount    = 0;
     var BadgeGreditAmount = 0;
     var BadgesAmount      = 0;
+    var CollectedBadges   = [];
 
     //Default gain
     BadgeGreditAmount += 5;
@@ -1883,79 +1884,79 @@ peeky.on('message', async (message) => {
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
       
         //Translator
-    if  (peeky.userData.get(key, "TranslatorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "TranslatorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
       
         //Upgrader
-    if  (peeky.userData.get(key, "UpgraderBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "UpgraderBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
 
         //Veteran
-    if  (peeky.userData.get(key, "VeteranBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "VeteranBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
 
         //Supporter
-    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;   CollectedBadges.push("TranslatorBadge"); };
 
         //Booster
-    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).premiumSince)  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).premiumSince)  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
 
         //Bug Hunter
-    if  (peeky.userData.get(key, "BugHunterBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "BugHunterBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
 
         //Contributor
-    if  (peeky.userData.get(key, "ContributorBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "ContributorBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
 
         //Celebrator
-    if  (peeky.userData.get(key, "CelebratorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "CelebratorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
 
         //Movie Nighter
-    if  (peeky.userData.get(key, "MovieNighterBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "MovieNighterBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
       
         //Medallist
-    if  (peeky.userData.get(key, "MedallistBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "MedallistBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
       
         //Evil
-    if  (peeky.userData.get(key, "EvilBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "EvilBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
       
         //Good
-    if  (peeky.userData.get(key, "GoodBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "GoodBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
       
         //Party
-    if  (peeky.userData.get(key, "PartyBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "PartyBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
       
         //Poller
-    if  (peeky.userData.get(key, "PollerBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "PollerBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
       
         //Voter
-    if  (peeky.userData.get(key, "VoterBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "VoterBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
       
         //Publisher
-    if  (peeky.userData.get(key, "PublisherBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "PublisherBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push("PublisherBadge");  };
       
         //Ownership
-    if  (peeky.userData.get(key, "OwnershipBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "OwnershipBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push("OwnershipBadge");  };
       
         //Gopbot
-    if  (peeky.userData.get(key, "GopbotBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "GopbotBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push("GopbotBadge");  };
       
         //Miner
-    if  (peeky.userData.get(key, "MinerBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "MinerBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push("MinerBadge");  };
       
         //Gamer
-    if  (peeky.userData.get(key, "GamerBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "GamerBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push("GamerBadge");  };
       
         //Horder
-    if  (peeky.userData.get(key, "HorderBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "HorderBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push("HorderBadge");  };
       
         //Gambler
-    if  (peeky.userData.get(key, "GamblerBadge") >= 10)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "GamblerBadge") >= 10)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push("GamblerBadge");  };
       
         //Charity
-    if  (peeky.userData.get(key, "CharityBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "CharityBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push("CharityBadge");  };
 
         //Painter
-    if  (peeky.userData.get(key, "PainterBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "PainterBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push("PainterBadge");  };
 
         //Fashion
-    if  (peeky.userData.get(key, "FashionBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  };
+    if  (peeky.userData.get(key, "FashionBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push("FashionBadge");  };
       
     BadgeExpAmount    += peeky.userData.get(key, "UpgradedServers");
     BadgeGreditAmount += peeky.userData.get(key, "UpgradedServers");
@@ -1975,7 +1976,7 @@ peeky.on('message', async (message) => {
       
     peeky.userData.set(key, BadgeGreditAmount, "BadgeGredit");
     peeky.userData.set(key, BadgeExpAmount, "BadgeExp");
-    peeky.userData.set(key, BadgesAmount, "Badges");
+    peeky.userData.set(key, CollectedBadges, "Badges");
 
     };
 
@@ -7531,7 +7532,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     //Badges String
     ctx.textAlign = "left";
     ctx.font = "15px " + Setting.DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
+    ctx.fillText("" + peeky.userData.get(key2, "Badges").length.toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
 
     //Backpack String
     ctx.textAlign = "left";
@@ -7795,7 +7796,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
 
     //Exp String
     ctx.font = "15px " + Setting.DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Exp").toLocaleString('en') + " Exp", canvas.width / 2, 271, canvas.width / 2 - 50);
+    ctx.fillText("" + ((peeky.userData.get(key2, "Exp") * Setting.ExpNeeded) + peeky.userData.get(key2, "Exp")).toLocaleString('en') + " Exp", canvas.width / 2, 271, canvas.width / 2 - 50);
       
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'image.png');
     await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
