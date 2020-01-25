@@ -57,43 +57,43 @@ const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 const ProfileBoosterTime    = (DayMs  / ( 60 * 60 * 1000 ));
 
 //Sets and Arrays
-const ErrorBag                = new Set();
-const BannedUsers             = new Array();
-const LeaderboardPositions    = new Array();
-const WebsiteCooldowns        = new Set();
-const GainCooldown            = new Set();
-const LimitedRolesCooldown    = new Set();
-const RandomTreasuresCooldown = new Set();
-const BadgeCheckCooldown      = new Set();
-const CommandCooldown         = new Set();
-const SetInviteCooldown       = new Set();
-const ProfileCooldown         = new Set();  const ProfileCooldownMS = 5000;
-const MusicCmdCooldown        = new Set();
-const PeekyCmdCooldown        = new Set();
-const ChannelCooldown         = new Set();  const ChannelCooldownMS   = 10000;
-const RoleCooldown            = new Set();  const RoleCooldownMS      = 10000;
-const EventCountdownCooldown  = new Set();
-const MemberCounterCooldown   = new Set();
-const GameLogsCooldown        = new Set();
-const MessageLogCooldown      = new Set();
-const DonorWallCooldown       = new Set();
-const ReactionRolesCooldown   = new Set();
-const TicketSystemCooldown    = new Set();
-const ServerAgeCooldown       = new Set();
-const RedditPostsCooldown     = new Set();
-const ResponseCooldowns       = new Set();  const ResponseCooldownMS = 5000;
-const FloodProtectionStrikes  = new Array();
-const KarmaImages             = new Array();
-const CheckedDataCreations    = new Set();
-const QueuedSOSMessages       = new Set();
-const ActiveMinigames         = new Set();
-const CurrentlyPlaying        = new Set();
-const CurrentlyStreaming      = new Set();
-const ClearedNames            = new Set();
-const FailedVoteChecks        = new Set();
-const FailedDMs               = new Set();
-const LoggedMessages          = new Set();
-const ActivatedTicketSystems  = new Set();
+var ErrorBag                = new Set();
+var BannedUsers             = new Array();
+var LeaderboardPositions    = new Array();
+var WebsiteCooldowns        = new Set();
+var GainCooldown            = new Set();
+var LimitedRolesCooldown    = new Set();
+var RandomTreasuresCooldown = new Set();
+var BadgeCheckCooldown      = new Set();
+var CommandCooldown         = new Set();
+var SetInviteCooldown       = new Set();
+var ProfileCooldown         = new Set();  const ProfileCooldownMS = 5000;
+var MusicCmdCooldown        = new Set();
+var PeekyCmdCooldown        = new Set();
+var ChannelCooldown         = new Set();  const ChannelCooldownMS   = 10000;
+var RoleCooldown            = new Set();  const RoleCooldownMS      = 10000;
+var EventCountdownCooldown  = new Set();
+var MemberCounterCooldown   = new Set();
+var GameLogsCooldown        = new Set();
+var MessageLogCooldown      = new Set();
+var DonorWallCooldown       = new Set();
+var ReactionRolesCooldown   = new Set();
+var TicketSystemCooldown    = new Set();
+var ServerAgeCooldown       = new Set();
+var RedditPostsCooldown     = new Set();
+var ResponseCooldowns       = new Set();  const ResponseCooldownMS = 5000;
+var FloodProtectionStrikes  = new Array();
+var KarmaImages             = new Array();
+var CheckedDataCreations    = new Set();
+var QueuedSOSMessages       = new Set();
+var ActiveMinigames         = new Set();
+var CurrentlyPlaying        = new Set();
+var CurrentlyStreaming      = new Set();
+var ClearedNames            = new Set();
+var FailedVoteChecks        = new Set();
+var FailedDMs               = new Set();
+var LoggedMessages          = new Set();
+var ActivatedTicketSystems  = new Set();
 
 //Image Assets
 const TwitterIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ftwitter.png?1555574745120";
@@ -2153,6 +2153,93 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     peeky.userData.filter( p => p.MedallistBadge == true ).array().forEach(data => {
         peeky.userData.set(`${data.UserID}`, false, "MedallistBadge");
     });
+
+    function UpdateLeaderboardTypes(type)  {
+
+        if  (type == "Gredit")  {
+            var filtered = peeky.userData.filter( p => p.Gredit && p.FashionBadge == true ).array();
+            var sorted   = filtered.sort((a, b) => b.Gredit - a.Gredit);
+        };
+
+        if  (type == "Karma")  {
+            var filtered = peeky.userData.filter( p => p.Karma && p.FashionBadge == true ).array();
+            var sorted   = filtered.sort((a, b) => b.Karma - a.Karma);
+        };
+
+        if  (type == "Levels")  {
+            var filtered  = peeky.userData.filter( p => p.Level && p.FashionBadge == true ).array();
+            var sorted    = filtered.sort((a, b) => b.Level - a.Level);
+        };
+
+        const top            = sorted.splice(0, 100);
+        var currentplace     = 0;
+        var CurrentID        = 0;
+        var GotBadge         = true;
+        const Leaderboard    = [];
+        const LeaderboardTop = [];
+
+        LeaderboardPositions = [];
+      
+        for (var data of top)  {
+
+            currentplace ++;
+            
+            LeaderboardPositions.push(data.UserID);
+
+        if  (currentplace == 1)  {CurrentID = "first"} else if  (currentplace == 2)  {CurrentID = "second"}  else if  (currentplace == 3){CurrentID = "third"}  else  {CurrentID = "other"};
+        if  (currentplace > 3)  {GotBadge = false};
+
+        if  (peeky.users.has(data.UserID))  {
+
+            var CurrentUser = peeky.users.get(data.UserID);
+
+            if  (type == "Gredit")  {
+                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Gredit').toLocaleString('en') + " Gredit";
+            };
+
+            if  (type == "Karma")  {
+                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Karma').toLocaleString('en') + " Karma";
+            };
+
+            if  (type == "Levels")  {
+                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Level').toLocaleString('en') + " Levels";
+            };
+
+            if  (GotBadge == true)  {
+                peeky.userData.set(`${data.UserID}`, true, "MedallistBadge");
+            };
+
+            var TheBannerShown = DefaultBackground;
+            TheBannerShown = function_GetBackground(data.UserID);
+
+            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname' id='" + CurrentUser.id + "'>  <img src='" + CurrentUser.displayAvatarURL({ format: 'png' }) + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + "</b>  </div>";
+            if  (currentplace == 1 || currentplace == 2 || currentplace == 3)  {
+                LeaderboardTop.push(SavedProfile);
+            } else  {
+                Leaderboard.push(SavedProfile);
+            };
+
+        }
+         else
+        {
+         Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "'  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNAVAILABLE PROFILE  <br>  <font size='2'>  If this profiles stays unavailable for " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days", InactiveTime) + " more days, it will get deleted.  </font></b>  </div>");
+        };
+
+        };
+
+        if  (type == "Gredit")  {
+            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
+        };
+
+        if  (type == "Karma")  {
+            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
+        };
+
+        if  (type == "Levels")  {
+            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
+        };
+
+    };
   
     var LeaderboardGredit = await UpdateLeaderboardTypes("Gredit");
     //var LeaderboardKarma  = await UpdateLeaderboardTypes("Karma");
