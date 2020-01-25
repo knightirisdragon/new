@@ -108,14 +108,14 @@ const DefaultBackground = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadf
 const NoBackground      = "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2FNA%20Background.png?v=1563929199191"
 const MainBackground    = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576177447491";
 const CoinImage         = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542";
-const ExpImage          = "httpss://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fexp.png?v=1564224431507";
 const LevelImage        = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_level.png?1541260281702";
 const ChestImage        = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051";
 const TreasureImage     = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ftreasures.png?v=1568646809345";
 const BadgesImage       = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbadges.png?v=1564245176155";
 const KarmaImage        = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fkarma.png?v=1564244903816";
-const XPImage           = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2FScreenshot_141.png?1543781509470";
+const ProgressImage     = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2FScreenshot_141.png?1543781509470";
 const BackpackImage     = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_backpack.png?1546614356449";
+const LeaderboardImage  = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fleaderboardrank.png?v=1579943651742";
 const HollowImage       = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2FHollowImage.png";
 
 const SupporterImage    = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fsupporter.png?1548194367244";
@@ -7530,19 +7530,21 @@ if  (!ProfileCooldown.has(message.author.id))  {
     ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
 
+    //Backpack String
+    if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {  var CustomBackgroundAmount = 1;  } else {  var CustomBackgroundAmount = 0;  };      
+    ctx.font = "15px " + Setting.DefaultFont;
+    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 45, 175, canvas.width / 2 - 50);
+
+    //Leaderboard Position String
+    if  (LeaderboardPositions.includes(message.author.id))  {  var Position = (LeaderboardPositions.indexOf(message.author.id) + 1) + ".";  } else {  var Position = "No";  };
+    ctx.font = "15px " + Setting.DefaultFont;
+    ctx.fillText("" + Position + " Leaderboard Position", canvas.width / 2 + 45, 175, canvas.width / 2 - 50);
+
     /*
     //Exp String
     ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Exp").toLocaleString('en') + " Exp", canvas.width / 2 + 45, 175, canvas.width / 2 - 50);
     */
-
-    //Backpack String
-    if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
-        var CustomBackgroundAmount = 1;
-    } else {  var CustomBackgroundAmount = 0;  };
-      
-    ctx.font = "15px " + Setting.DefaultFont;
-    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 45, 175, canvas.width / 2 - 50);
     
     //Description String
     var text = peeky.userData.get(key2, "Description");
@@ -7576,15 +7578,13 @@ if  (!ProfileCooldown.has(message.author.id))  {
     const badges_icon = await Canvas.loadImage(BadgesImage);
     ctx.drawImage(badges_icon, canvas.width / 2 + 10, 120, 27, 27);
 
-    /*
-    //Exp Icon
-    const exp_icon = await Canvas.loadImage(ExpImage);
-    ctx.drawImage(exp_icon, canvas.width / 2 + 10, 155, 27, 27);
-    */
+    //Badges Icon
+    const leaderboard_icon = await Canvas.loadImage(LeaderboardImage);
+    ctx.drawImage(leaderboard_icon, canvas.width / 2 + 10, 155, 27, 27);
 
-    //Progress Bar
-    const progress_bar = await Canvas.loadImage(XPImage);
-    const progress_bar_background = await Canvas.loadImage(LightField);
+    /*//Progress Bar
+    const progress_bar = await Canvas.loadImage(ProgressImage);
+    const progress_bar_background = await Canvas.loadImage(LightField);*/
       
     //Badges
     var   BadgeYpos    = 201.5;
