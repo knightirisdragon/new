@@ -113,7 +113,6 @@ const ChestImage        = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d16687
 const TreasureImage     = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ftreasures.png?v=1568646809345";
 const BadgesImage       = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbadges.png?v=1564245176155";
 const KarmaImage        = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fkarma.png?v=1564244903816";
-const ProgressImage     = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2FScreenshot_141.png?1543781509470";
 const BackpackImage     = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_backpack.png?1546614356449";
 const LeaderboardImage  = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fleaderboardrank.png?v=1579943651742";
 const HollowImage       = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2FHollowImage.png";
@@ -7503,7 +7502,6 @@ if  (!ProfileCooldown.has(message.author.id))  {
       
     //String Setting
     ctx.fillStyle = StatsColor;
-    ctx.textAlign = "left";
     ctx.fillStyle = "white";
     ctx.shadowColor = "black";
     ctx.shadowOffsetX = 1; 
@@ -7511,40 +7509,41 @@ if  (!ProfileCooldown.has(message.author.id))  {
     ctx.globalAlpha = 1;
 
     //Name String
+    ctx.textAlign = "left";
     ctx.font = "19px " + Setting.DefaultFont;
     ctx.fillText(ProfileName, 83, 25, canvas.width - 95);
       
     //Coins String
+    ctx.textAlign = "left";
     ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Gredit").toLocaleString('en') + " Gredit", 45, 105, canvas.width / 2 - 50);
       
     //Chests String
+    ctx.textAlign = "left";
     ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 45, 140, canvas.width / 2 - 50);
       
     //Karma String
+    ctx.textAlign = "left";
     ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Karma") + " Karma", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
       
     //Badges String
+    ctx.textAlign = "left";
     ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + peeky.userData.get(key2, "Badges").toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
 
     //Backpack String
+    ctx.textAlign = "left";
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {  var CustomBackgroundAmount = 1;  } else {  var CustomBackgroundAmount = 0;  };      
     ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 45, 175, canvas.width / 2 - 50);
 
     //Leaderboard Position String
-    if  (LeaderboardPositions.includes(message.author.id))  {  var Position = (LeaderboardPositions.indexOf(message.author.id) + 1) + ".";  } else {  var Position = "No";  };
+    ctx.textAlign = "left";
+    if  (LeaderboardPositions.includes(SomeoneTagged.user.id))  {  var Position = (LeaderboardPositions.indexOf(SomeoneTagged.user.id) + 1) + ".";  } else {  var Position = "No";  };
     ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + Position + " Leaderboard Position", canvas.width / 2 + 45, 175, canvas.width / 2 - 50);
-
-    /*
-    //Exp String
-    ctx.font = "15px " + Setting.DefaultFont;
-    ctx.fillText("" + peeky.userData.get(key2, "Exp").toLocaleString('en') + " Exp", canvas.width / 2 + 45, 175, canvas.width / 2 - 50);
-    */
     
     //Description String
     var text = peeky.userData.get(key2, "Description");
@@ -7581,10 +7580,6 @@ if  (!ProfileCooldown.has(message.author.id))  {
     //Badges Icon
     const leaderboard_icon = await Canvas.loadImage(LeaderboardImage);
     ctx.drawImage(leaderboard_icon, canvas.width / 2 + 10, 155, 27, 27);
-
-    /*//Progress Bar
-    const progress_bar = await Canvas.loadImage(ProgressImage);
-    const progress_bar_background = await Canvas.loadImage(LightField);*/
       
     //Badges
     var   BadgeYpos    = 201.5;
@@ -7797,6 +7792,10 @@ if  (!ProfileCooldown.has(message.author.id))  {
     ctx.shadowOffsetY = 1;
     ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
     ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
+
+    //Exp String
+    ctx.font = "15px " + Setting.DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Exp").toLocaleString('en') + " Exp", canvas.width / 2, 271, canvas.width / 2 - 50);
       
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'image.png');
     await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
