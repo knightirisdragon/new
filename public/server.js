@@ -7796,7 +7796,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
 
     //Exp String
     ctx.font = "15px " + Setting.DefaultFont;
-    ctx.fillText("" + ((peeky.userData.get(key2, "Exp") * Setting.ExpNeeded) + peeky.userData.get(key2, "Exp")).toLocaleString('en') + " Exp", canvas.width / 2, 271, canvas.width / 2 - 50);
+    ctx.fillText("" + ((peeky.userData.get(key2, "Level") * Setting.ExpNeeded) + peeky.userData.get(key2, "Exp")).toLocaleString('en') + " Exp", canvas.width / 2, 271, canvas.width / 2 - 50);
       
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'image.png');
     await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
