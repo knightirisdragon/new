@@ -59,6 +59,7 @@ const ProfileBoosterTime    = (DayMs  / ( 60 * 60 * 1000 ));
 //Sets and Arrays
 const ErrorBag                = new Set();
 const BannedUsers             = new Array();
+const LeaderboardPositions    = new Array();
 const WebsiteCooldowns        = new Set();
 const GainCooldown            = new Set();
 const LimitedRolesCooldown    = new Set();
@@ -1172,89 +1173,6 @@ function function_StreamAnnouncements(member, activity)  {
     return {  "description": "­ \n **Name:** " + GameName + " \n **Link:** " + GameLink + " \n\n ­",  "color": GameColor,  "author": {  "name": function_RemoveFormatting(member.displayName, "other", true) + " has started live streaming on " + GameHost + "!",  "icon_url": member.user.displayAvatarURL({ "format": "png" })  }  };
 
 };
-  
-function UpdateLeaderboardTypes(type)  {
-      
-        if  (type == "Gredit")  {
-            var filtered = peeky.userData.filter( p => p.Gredit && p.FashionBadge == true ).array();
-            var sorted   = filtered.sort((a, b) => b.Gredit - a.Gredit);
-        };
-      
-        if  (type == "Karma")  {
-            var filtered = peeky.userData.filter( p => p.Karma && p.FashionBadge == true ).array();
-            var sorted   = filtered.sort((a, b) => b.Karma - a.Karma);
-        };
-      
-        if  (type == "Levels")  {
-            var filtered  = peeky.userData.filter( p => p.Level && p.FashionBadge == true ).array();
-            var sorted    = filtered.sort((a, b) => b.Level - a.Level);
-        };
-      
-        const top            = sorted.splice(0, 50);
-        var currentplace     = 0;
-        var CurrentID        = 0;
-        var GotBadge         = true;
-        const Leaderboard    = [];
-        const LeaderboardTop = [];
-
-        for (var data of top)  {
-
-            currentplace ++;
-
-        if  (currentplace == 1)  {CurrentID = "first"} else if  (currentplace == 2)  {CurrentID = "second"}  else if  (currentplace == 3){CurrentID = "third"}  else  {CurrentID = "other"};
-        if  (currentplace > 3)  {GotBadge = false};
-
-        if  (peeky.users.has(data.UserID))  {
-
-            var CurrentUser = peeky.users.get(data.UserID);
-      
-            if  (type == "Gredit")  {
-                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Gredit').toLocaleString('en') + " Gredit";
-            };
-
-            if  (type == "Karma")  {
-                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Karma').toLocaleString('en') + " Karma";
-            };
-
-            if  (type == "Levels")  {
-                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Level').toLocaleString('en') + " Levels";
-            };
-
-            if  (GotBadge == true)  {
-                peeky.userData.set(`${data.UserID}`, true, "MedallistBadge");
-            };
-
-            var TheBannerShown = DefaultBackground;
-            TheBannerShown = function_GetBackground(data.UserID);
-
-            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname' id='" + CurrentUser.id + "'>  <img src='" + CurrentUser.displayAvatarURL({ format: 'png' }) + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + "</b>  </div>";
-            if  (currentplace == 1 || currentplace == 2 || currentplace == 3)  {
-                LeaderboardTop.push(SavedProfile);
-            } else  {
-                Leaderboard.push(SavedProfile);
-            };
-
-        }
-         else
-        {
-         Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "'  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNAVAILABLE PROFILE  <br>  <font size='2'>  If this profiles stays unavailable for " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days", InactiveTime) + " more days, it will get deleted.  </font></b>  </div>");
-        };
-
-        };
-      
-        if  (type == "Gredit")  {
-            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
-        };
-      
-        if  (type == "Karma")  {
-            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
-        };
-      
-        if  (type == "Levels")  {
-            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
-        };
-    
-};
 
 //Create Server Data
 function function_ServerData(key)  {
@@ -2237,10 +2155,11 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
     });
   
     var LeaderboardGredit = await UpdateLeaderboardTypes("Gredit");
-    var LeaderboardKarma  = await UpdateLeaderboardTypes("Karma");
-    var LeaderboardLevel  = await UpdateLeaderboardTypes("Levels");
+    //var LeaderboardKarma  = await UpdateLeaderboardTypes("Karma");
+    //var LeaderboardLevel  = await UpdateLeaderboardTypes("Levels");
 
-    await fs.writeFile('public/leaderboard.txt', "<div id='gredit'>" +  LeaderboardGredit + "</div>  <div id='karma'>" +  LeaderboardKarma + "</div>  <div id='levels'>" +  LeaderboardLevel + "</div>", (err) => {
+    //<div id='karma'>" +  LeaderboardKarma + "</div>  <div id='levels'>" +  LeaderboardLevel + "</div>
+    await fs.writeFile('public/leaderboard.txt', "<div id='gredit'>" +  LeaderboardGredit + "</div>", (err) => {
         if (err) console.log(err);
     });
 
