@@ -728,7 +728,10 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground443.png?v=1577453903759", 850, "Ride 'round", "Final Fantasy XV", undefined, 1577453680481],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground444.png?v=1577453768498", 675, "Park", "Unknown", undefined, 1577453682331],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground445.png?v=1579388666650", 950, "Radio demon", "Hazbin Hotel", undefined, 1579388485754],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground446.png?v=1579585356877", 1000, "Deep within", "The Last of Us 2", undefined, 1579585332845]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground446.png?v=1579585356877", 1000, "Deep within", "The Last of Us 2", undefined, 1579585332845],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground447.png?v=1580050827937", 925, "Ela", "Rainbow Six Siege", undefined, 1580050779446],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground448.png?v=1580050899305", 925, "Geralt the witcher", "The Witcher movie", undefined, 1580050873747],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground449.png?v=1580050958140", 975, "Little mouse", "u/xanaxandcheese", undefined, 1580050927737]
 
 ];
 
@@ -3436,7 +3439,7 @@ const key = `${user.id}`;
 const keyCF = `${reaction.message.channel.id}`;
 const keySF = `${reaction.message.guild.id}`;
 const Language = peeky.serverData.get(keySF, "language");
-const member = reaction.guild.members.get(user.id);
+const member = reaction.message.guild.members.find(m => m.user.id);
 
 //Poller Badge
 if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reaction.message.content.toLowerCase().includes("**voting time**"))  {
