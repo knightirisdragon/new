@@ -1245,7 +1245,6 @@ function function_ServerData(key)  {
             nick_saver_array: [],
             server_age_bonus: false,
             server_age_bonus_id: null,
-            dash_remover_bonus: false,
             reddit_posts_bonus: false,
             reddit_posts_bonus_setting: "discordapp",
             reddit_posts_bonus_last: [],
@@ -3172,74 +3171,24 @@ peeky.on("channelCreate", async (channel) => {
 
 if  (channel.guild)  {
   
-const keySF = `${channel.guild.id}`;
-const keyCF = `${channel.id}`;
+    const keySF = `${channel.guild.id}`;
+    const keyCF = `${channel.id}`;
 
-function_ChannelData(keyCF, channel.id);
-
-//FUNCTIONS
-
-//Dash Remover
-if  (peeky.serverData.has(keySF))  {
-
-    if  (channel.guild.me.permissions.has('MANAGE_CHANNELS'))  {
-
-        if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true && true == false)  {
-
-            var FinalName = channel.name.replace(/[-]/g, "\u2005");
-
-            if  (TextChannels.includes(channel.type) && channel.name !== FinalName)  {
-
-                await channel.setName(FinalName, "Triggered by the Dash Remover function.").catch(error => ErrorBag.add(error));
-                console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
-        
-                function_UpdateAutowipe(keySF, "server");
-
-            };
-
-        };
-
-    };
-
-};
+    function_ChannelData(keyCF, channel.id);
   
 };
 
 });
 
 //CHANNEL UPDATE EVENTS
-peeky.on("channelUpdate", async (oldChannel, newChannel) => {
+/*peeky.on("channelUpdate", async (oldChannel, newChannel) => {
   
 const keySF   = `${newChannel.guild.id}`;
 const channel = newChannel;
 
 //FUNCTIONS
 
-//Dash Remover
-if  (peeky.serverData.has(keySF))  {
-
-    if  (channel.guild.me.permissions.has('MANAGE_CHANNELS'))  {
-
-        if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true && true == false)  {
-
-            var FinalName = channel.name.replace(/[-]/g, "\u2005");
-
-            if  (TextChannels.includes(channel.type) && channel.name !== FinalName)  {
-
-                await channel.setName(FinalName, "Triggered by the Dash Remover function.").catch(error => ErrorBag.add(error));
-                console.log("The Dash Remover function has been triggered in " + channel.guild.name + ".");
-        
-                function_UpdateAutowipe(keySF, "server");
-
-            };
-
-        };
-
-    };
-
-};
-
-});
+});*/
 
 //PRESENCE UPDATE EVENTS
 peeky.on("presenceUpdate", async (oldPresence, newPresence) => {
@@ -3568,7 +3517,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "flood_protection_bonus") == true)       { var FP = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var FP = DisabledIcon};
         if (peeky.serverData.get(keySF, "event_countdown_bonus") == true)        { var EC = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var EC = DisabledIcon};
         if (peeky.serverData.get(keySF, "server_message_bonus") == true)         { var SM = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SM = DisabledIcon};
-        if (peeky.serverData.get(keySF, "dash_remover_bonus") == true)           { var DR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var DR = DisabledIcon};
         if (peeky.serverData.get(keySF, "vote_kick_bonus") == true)              { var VT = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var VT = DisabledIcon};
         if (peeky.serverData.get(keySF, "join_role_bonus") == true)              { var JR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var JR = DisabledIcon};
         if (peeky.serverData.get(keySF, "game_roles_bonus") == true)             { var GR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var GR = DisabledIcon};
@@ -3660,8 +3608,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "4️⃣")  {        
           
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
-                                "**Dash Remover (Temporarily Disabled)** " + DR + "\n" + "No setting",
+                  description:  "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -5443,26 +5390,6 @@ if  (FunctioName.startsWith("images only"))  {
     };
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
-    
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-}
-  
-else
-
-//Toggle Dash Remover
-if  (FunctioName.startsWith("dash remover"))  {
-
-    if(peeky.serverData.get(keySF, "dash_remover_bonus") == true) {peeky.serverData.set(keySF, false, "dash_remover_bonus");}
-    else peeky.serverData.set(keySF, true, "dash_remover_bonus");
-      
-    if  (peeky.serverData.get(keySF, "dash_remover_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
-  
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Dash Remover").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
