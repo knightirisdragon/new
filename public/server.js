@@ -490,7 +490,7 @@ const Banners = [
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground205.png?1552138972456", 225, "PEEKY's old pals", "Vojtěch Jílovec", `108899856889737216`, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground206.png?1552138978087", 175, "XXL Plushies", "Vojtěch Jílovec", `108899856889737216`, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground207.png?1552151256169", 925, "Jackpot!", "Devil May Cry 5", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground208.png?1552233925577", 100, "Pixelvince", "Pixelvince", `354617102394720266`, 0],
+    [NoBackground, 725, "Raided", "u/Willer_Z", undefined, 1580070968206],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground209.png?1552752810447", 275, "FeelsGoodMom", "Vojtěch Jílovec", `108899856889737216`, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground210.png?1552809489475", 675, "Airsoft", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground211.png?1552809489603", 575, "Orange pattern", "Unknown", undefined, 0],
@@ -731,7 +731,8 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground446.png?v=1579585356877", 1000, "Deep within", "The Last of Us 2", undefined, 1579585332845],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground447.png?v=1580050827937", 925, "Ela", "Rainbow Six Siege", undefined, 1580050779446],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground448.png?v=1580050899305", 925, "Geralt the witcher", "The Witcher movie", undefined, 1580050873747],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground449.png?v=1580050958140", 975, "Little mouse", "u/xanaxandcheese", undefined, 1580050927737]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground449.png?v=1580050958140", 975, "Little mouse", "u/xanaxandcheese", undefined, 1580050927737],
+    [NoBackground, 900, "Landscapes", "Unknown", undefined, 1580070929915]
 
 ];
 
