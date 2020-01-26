@@ -7749,7 +7749,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         });
 
         var TranslatedMessages = [InfoIcon + " This profile is now featured on the website.", InfoIcon + " Tento profil je nyní vystaven na strance."];
-        InfoMessages.push(InfoIcon + TranslatedMessages[Language]);
+        InfoMessages.push(TranslatedMessages[Language]);
       
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
