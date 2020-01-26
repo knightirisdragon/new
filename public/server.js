@@ -4566,7 +4566,7 @@ if  (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)  {
 
         if  (!message.member.permissions.has("MANAGE_MESSAGES"))  {
 
-            if  ((message.attachments.size > 0 && name.startsWith("SPOILER_")) || function_DetectLink(message.content) == true)  {
+            if  ((message.attachments.size > 0 && message.attachments.array()[0].name.startsWith("SPOILER_")) || function_DetectLink(message.content) == true)  {
 
                 if  ((((new Date() - new Date(message.member.joinedAt)) / 60000) < peeky.serverData.get(keySF, "spoiler_lock_bonus_setting")) || peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") == 0)  {
 
@@ -7817,9 +7817,10 @@ if  (!ProfileCooldown.has(message.author.id))  {
         fs.writeFile('public/featured_profile.txt', "<center>  <a href='https://peeky.glitch.me/store.html'><img src='" + m.attachments.array()[0].url + "' class='featuredprofile'></a>  </center>", (err) => {
             if (err) console.log(err); 
         });
-      
+
         var TranslatedMessages = [InfoIcon + " This profile is now featured on the website.", InfoIcon + " Tento profil je nyní vystaven na strance."];
-        const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+        InfoMessages.push(InfoIcon + TranslatedMessages[Language]);
+      
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
         console.log("The featured profile has been updated.");
