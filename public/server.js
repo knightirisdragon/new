@@ -10,7 +10,7 @@ const ddbl = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
 const BotList = require('botlist.space');
 const bls = new BotList.Client({  id: "482945063282802698", botToken: process.env.BLS_TOKEN  });
 
-//Music
+//Music4
 const ytdl_discord = require('ytdl-core-discord');
 const search       = require('youtube-search');
 const ytdl         = require('ytdl-core');
@@ -4565,6 +4565,15 @@ if  (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)  {
     if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
         if  (!message.member.permissions.has("MANAGE_MESSAGES"))  {
+          
+            var AllSpoiler = true;
+            if  (message.attachments.size > 0)  {
+                message.attachments.array().forEach(attachment => {
+                    if  (!attachment.name.startsWith("SPOILER_"))  {
+                        AllSpoiler = false;
+                    };
+                });
+            };
 
             if  ((message.attachments.size > 0 && !message.attachments.array()[0].name.startsWith("SPOILER_")) || function_DetectLink(message.content) == true)  {
 
