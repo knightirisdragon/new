@@ -1069,7 +1069,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
 };
 
 //CANVAS: Music embed
-async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type, Queue)  {
+async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type, Queue, Member)  {
 
     var attachment = null;
     var Now = new Date();
@@ -1096,16 +1096,16 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type,
     //Header
     ctx.font = "15px " + Setting.DefaultFont;
     if  (Type == "Started")  {
-        ctx.fillText(peeky.users.get(User).username + " has requested " + Author + "'s song.", 15, 310);
+        ctx.fillText(Member.displayName + " has requested " + Author + "'s song.", 15, 310);
     }  else if  (Type == "Playlist")  {
         //ctx.font = "13px " + Setting.DefaultFont;
-        ctx.fillText(peeky.users.get(User).username + " has requested " + peeky.userData.get(User, "Playlist").length + " songs from " + peeky.userData.get(User, "PlaylistName") + ".", 15, 310, canvas.width - 30);
+        ctx.fillText(Member.displayName + " has requested " + peeky.userData.get(User, "Playlist").length + " songs from " + peeky.userData.get(User, "PlaylistName") + ".", 15, 310, canvas.width - 30);
     }  else if  (Type == "Queue")  {
-        ctx.fillText("Playing the next song from " + peeky.users.get(User).username + "'s playlist.", 15, 310);
+        ctx.fillText("Playing the next song from " + Member.displayName + "'s playlist.", 15, 310);
     }  else if  (Type == "Random")  {
-        ctx.fillText(peeky.users.get(User).username + " has requested a random song.", 15, 310);
+        ctx.fillText(Member.displayName + " has requested a random song.", 15, 310);
     }  else if  (Type == "Previous")  {
-        ctx.fillText(peeky.users.get(User).username + " has requested the previous song.", 15, 310);
+        ctx.fillText(Member.displayName + " has requested the previous song.", 15, 310);
     }  else if  (Type == "Current")  {
         if  (Queue.length <= 1)  {
             ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes", null) + " minute(s) left.", 15, 310);
@@ -2430,7 +2430,7 @@ if  (!WebsiteCooldowns.has("supporters"))  {
             var SupporterDate = peeky.userData.get(m.user.id, "SupporterSince");
         };
 
-        SupporterList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(m.user.username) + "  <br>  <font size='1' color='lightgray'>  Supporter for " + function_TimeLeft(peeky.userData.get(m.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
+        SupporterList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(m.displayName) + "  <br>  <font size='1' color='lightgray'>  Supporter for " + function_TimeLeft(peeky.userData.get(m.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
       
     };
     });
@@ -3436,6 +3436,7 @@ const key = `${user.id}`;
 const keyCF = `${reaction.message.channel.id}`;
 const keySF = `${reaction.message.guild.id}`;
 const Language = peeky.serverData.get(keySF, "language");
+const member = reaction.guild.members.get(user.id);
 
 //Poller Badge
 if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reaction.message.content.toLowerCase().includes("**voting time**"))  {
@@ -3749,7 +3750,6 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
               
                 if  (peeky.serverData.get(keySF, "function_notifications") == true)  {
 
-                  
                     var TranslatedMessages = [InfoIcon + " **X001** has been vote kicked with **X002 votes**.", InfoIcon + " **X** byl vyhlasován ze serveru se **X002 hlasy**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(reaction.message.member.displayName, "other", true)).replace("X002", peeky.serverData.get(keySF, "vote_kick_bonus_setting")),  "color": EmbedColor};
                     reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
@@ -3767,7 +3767,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                   setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id + "VK")}, ResponseCooldownMS);
 
                   var TranslatedMessages = [InfoIcon + " **X001** has started a vote kick against **X002**.", InfoIcon + " **X001** začal hlasovat o vyhození **X002**."];
-                  const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};
+                  const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(reaction, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};
                   reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
                 
               };
@@ -3776,7 +3776,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
  
         } else {
           var TranslatedMessages = [ErrorIcon + " You cannot start a vote kick against that user, **X001**.", ErrorIcon + " Tohoto uživatele nelze vyhlasovat ze serveru, **X001**."];
-          const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", ""),  "color": EmbedColor};
+          const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)).replace("X002", ""),  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
           
           reaction.message.reactions.removeAll().catch(error => ErrorBag.add(error));
@@ -3810,7 +3810,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                 if  (role)  {
               
                     var TranslatedMessages = ["**X001 has created a ticket**" + "\n" + "Staff may close the ticket once the issue has been resolved.", "**X001 potřebuje pomoct**" + "\n" + "Jakmile se tento problém vyřeší, personál může tento lístek uzavřít."];
-                    const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)),  "color": EmbedColor};
+                    const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)),  "color": EmbedColor};
 
                     await reaction.message.guild.channels.create("Ticket_" + TicketID, { type: 'text', permissionOverwrites: [
                         {id: PeekyId, allow: ['VIEW_CHANNEL']},
@@ -3919,7 +3919,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
 
                   Webhook.send(OriginalMessageEdited + "\n­", {
 
-                  "username": OriginalMessage.author.tag,
+                  "username": OriginalMessage.member.displayName,
                   "avatarURL": OriginalMessage.author.displayAvatarURL({ format: 'png' }),
                   "files": [image],
 
@@ -3940,7 +3940,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
 
                  Webhook.send(OriginalMessageEdited + "\n­", {
 
-                 "username": OriginalMessage.author.tag,
+                 "username": OriginalMessage.member.displayName,
                  "avatarURL": OriginalMessage.author.displayAvatarURL({ format: 'png' }),
                  "files": [image],
 
@@ -3958,7 +3958,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
         if  (peeky.serverData.get(keySF, "function_notifications") == true)  {
                   
             var TranslatedMessages = [InfoIcon + " **X001** has logged **X002**'s message.", InfoIcon + " **X001** připnul zprávu od **X002**."];
-            const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};  
+            const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};  
             reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
                   
         };
@@ -3986,7 +3986,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
           reaction.users.remove(user).catch(error => ErrorBag.add(error));
           
           var TranslatedMessages = [ErrorIcon + " That message was already logged, **X001**.", ErrorIcon + " Tato zpráva je již připnutá, **X001**."];
-          const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(user.username, "other", true)),  "color": EmbedColor};
+          const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)),  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
           
         };
@@ -7904,7 +7904,7 @@ if (CommandName.startsWith("play"))  {
                         };            
 
                         message.channel.startTyping();
-                        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type, peeky.serverData.get(keySF, "Queue"))).catch(error => ErrorBag.add(error));
+                        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type, peeky.serverData.get(keySF, "Queue"), message.member)).catch(error => ErrorBag.add(error));
                         message.channel.stopTyping();
 
                         if  (message.guild.me.permissions.has("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
@@ -8125,7 +8125,7 @@ if (CommandName == "current")  {
         const Queue     = peeky.serverData.get(keySF, "Queue");
 
         message.channel.startTyping();
-        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "minutes left", "Current", peeky.serverData.get(keySF, "Queue"))).catch(error => ErrorBag.add(error));
+        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "minutes left", "Current", peeky.serverData.get(keySF, "Queue"), message.member)).catch(error => ErrorBag.add(error));
         message.channel.stopTyping();
         
     } else {
