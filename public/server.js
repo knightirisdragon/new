@@ -7801,9 +7801,12 @@ if  (!ProfileCooldown.has(message.author.id))  {
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'image.png');
     await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
 
+    if  (peeky.userData.get(key2, "FashionBadge") == false)  {
+        InfoMessages.push(InfoIcon + " Visit  the [Tutorials page](https://peeky.glitch.me/tutorials.html#backgrounds) for help with buying a background.");
+    };    
+
     if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(ProfileBoosterRole))  {
-        const embed = {"description": InfoIcon + " The **Profile Booster** for this profile will remain active for **" + function_TimeLeft(peeky.userData.get(key, "BoosterStart"),  "hours", ProfileBoosterTime) + " hours**.",  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        InfoMessages.push(InfoIcon + " The **Profile Booster** for this profile will remain active for **" + function_TimeLeft(peeky.userData.get(key, "BoosterStart"),  "hours", ProfileBoosterTime) + " hours**.");
     };
 
     if  (!WebsiteCooldowns.has("featuredprofile") && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(SupporterRole))  {
@@ -7821,7 +7824,12 @@ if  (!ProfileCooldown.has(message.author.id))  {
       
         console.log("The featured profile has been updated.");
           
-        };
+      };
+      
+      if  (InfoMessages.length > 0)  {
+          const embed = {"description": InfoMessages.join("\n\n"),  "color": EmbedColor};
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      };
 
     }).catch(function(err) {  ErrorBag.add(err);  });
 
