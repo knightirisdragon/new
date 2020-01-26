@@ -383,7 +383,7 @@ const Banners = [
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground98.jpeg?1540751959042", 825, "Cake liar", "Portal", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground99.jpg?1540906544488", 875, "Fallout together", "Fallout 76", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground100.jpg?1540906676579", 875, "Rigged game", "Fallout New Vegas", undefined, 0],  
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground_101.jpg?1540909984834", 675, "Cursed brothers", "Fear 3", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground101.jpg?v=1580060590244", 675, "Cursed brothers", "Fear 3", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground102.png?1540910240235", 750, "Dangerous follower", "Outlast 2", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground103.png?1540910702105", 675, "Three cowboys", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground104.jpg?1540921032023", 700, "Cursed forest", "Unknown", undefined, 0],
