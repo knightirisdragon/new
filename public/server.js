@@ -3439,7 +3439,7 @@ const key = `${user.id}`;
 const keyCF = `${reaction.message.channel.id}`;
 const keySF = `${reaction.message.guild.id}`;
 const Language = peeky.serverData.get(keySF, "language");
-const member = reaction.message.guild.members.find(m => m.user.id);
+const member = reaction.message.guild.members.find(m => m.user.id == user.id);
 
 //Poller Badge
 if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reaction.message.content.toLowerCase().includes("**voting time**"))  {
