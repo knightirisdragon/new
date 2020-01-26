@@ -3739,7 +3739,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
       
         if  (MemberExists && !MemberExists.user.bot && !reaction.message.member.permissions.has("KICK_MEMBERS"))  {
           
-            if  (reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting") && MemberExists.user.id !== PeekyId && reaction.message.guild.me.permissions.has("KICK_MEMBERS") && reaction.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+            if  (reaction.count >= peeky.serverData.get(keySF, "vote_kick_bonus_setting") && MemberExists.user.id !== PeekyId && reaction.message.guild.me.permissions.has("KICK_MEMBERS") && reaction.message.channel.permissionsFor(reaction.message.guild.me).has('MANAGE_MESSAGES'))  {
 
                 await reaction.message.member.send("You have been vote kicked from **" + function_RemoveFormatting(reaction.message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
@@ -4565,17 +4565,8 @@ if  (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)  {
     if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
         if  (!message.member.permissions.has("MANAGE_MESSAGES"))  {
-          
-            var AllSpoiler = true;
-            if  (message.attachments.size > 0)  {
-                message.attachments.array().forEach(attachment => {
-                    if  (!attachment.name.startsWith("SPOILER_"))  {
-                        AllSpoiler = false;
-                    };
-                });
-            };
 
-            if  ((message.attachments.size > 0 && !message.attachments.array()[0].name.startsWith("SPOILER_")) || function_DetectLink(message.content) == true)  {
+            if  ((message.attachments.size > 0 && name.startsWith("SPOILER_")) || function_DetectLink(message.content) == true)  {
 
                 if  ((((new Date() - new Date(message.member.joinedAt)) / 60000) < peeky.serverData.get(keySF, "spoiler_lock_bonus_setting")) || peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") == 0)  {
 
