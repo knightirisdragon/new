@@ -61,7 +61,7 @@ img  {border-radius: 10px; cursor: pointer;}
 }
 
 .fancybutton  {
-    background-color: rgba(44, 47, 51, 0.25);
+    background-color: rgba(44, 47, 51, 0.5);
     border-radius: 10px;
     width: 100px;
     padding: 10px;

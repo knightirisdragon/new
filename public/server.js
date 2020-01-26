@@ -3770,7 +3770,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                   setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id + "VK")}, ResponseCooldownMS);
 
                   var TranslatedMessages = [InfoIcon + " **X001** has started a vote kick against **X002**.", InfoIcon + " **X001** začal hlasovat o vyhození **X002**."];
-                  const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(reaction, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};
+                  const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};
                   reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
                 
               };
