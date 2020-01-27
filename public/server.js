@@ -2720,7 +2720,8 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
     };
 
     if  (Reasons.length > 0)  {
-        function_DirectMessage(owner, "**Someone suspicious has joined " + function_RemoveFormatting(member.guild.name, "other", true) + "!**\nBe wary about this user but don't punish them just because you've got this message!\n\n**Suspect:** " + function_RemoveFormatting(member.user.tag, "other", true) + " (<@" + member.user.id + ">)\n**Reasons:** " + Reasons.join(" / ") + "\n­"); 
+        const embed = {"description": "**Someone suspicious has joined " + function_RemoveFormatting(member.guild.name, "other", true) + "!**\nBe wary about this user but don't punish them just yet!\n\n**Suspect:** " + function_RemoveFormatting(member.user.tag, "other", true) + " (<@" + member.user.id + ">)\n**Reasons:** " + Reasons.join(" / "), "color": EmbedColor}; 
+        function_DirectMessage(owner, { embed }); 
         
         console.log("The Suspicion Alert function has been triggered in " + member.guild.name + ".");
         function_UpdateAutowipe(keySF, "server");
