@@ -1819,45 +1819,17 @@ peeky.on('message', async (message) => {
         BadgeExpAmount += 2;
     };
 
-const SupporterImage    = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fsupporter.png?1548194367244";
-const PeekyStaffImage   = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fpeekystaff.png?1548824803415";
-const ModeratorImage    = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmoderator.png?1548824732338";
-const VeteranImage      = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fveteran.png?1548951084956";
-const BugCHunterImage   = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbugcatcher.png?1548261764050";
-const ContributorImage  = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fcontributor.png?1548786864495";
-const VoterImage        = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fvoter.png?1551541314431";
-const GamblerImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgambler.png?v=1568922623251";
-const CharityImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcharity.png?v=1568922627904";
-const FashionImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ffashion.png?v=1568922621601";
-const OwnershipImage    = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fownership.png?v=1568922631330";
-const MedallistImage    = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fmedallist.png?v=1568900374609";
-const MovieNighterImage = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmovienighter.png?1553099659112";
-const CelebratorImage   = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcelebrator.png?v=1568900372214";
-const PollerImage       = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpoller.png?1556170526097";
-const PublisherImage    = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpublisher.png?1555782065115";
-const PartyImage        = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fparty.png?1558040749323";
-const HorderImage       = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fhorder.png?v=1568922626526";
-const PainterImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fpainter.png?v=1568922632764";
-const MinerImage        = "";
-const BoosterImage      = "";
-const GamerImage        = "";
-const EvilImage         = "";
-const GoodImage         = "";
-const GopbotImage       = "";
-const TranslatorImage   = "";
-const UpgraderImage     = "";
-
         //Staff
-    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:moderator:540036307213221901> Staff", ""]);  };
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:moderator:540036307213221901> Staff", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmoderator.png?1548824732338"]);  };
       
         //Translator
     if  (peeky.userData.get(key, "TranslatorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:translator:657876886260809728> Translator", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ftranslator.png?v=1576920631134"]);  };
 
         //Veteran
-    if  (peeky.userData.get(key, "VeteranBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:veteran:540565010972147724> Veteran", ""]);  };
+    if  (peeky.userData.get(key, "VeteranBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:veteran:540565010972147724> Veteran", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fveteran.png?1548951084956"]);  };
 
         //Supporter
-    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:supporter:539895190190686238> Supporter", ""]);  };
+    if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(SupporterRole))  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:supporter:539895190190686238> Supporter", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fsupporter.png?1548194367244"]);  };
 
         //Booster
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).premiumSince)  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:booster:622431477384085514> Booster", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbooster.png?v=1568469682712"]);  };
@@ -1866,19 +1838,19 @@ const UpgraderImage     = "";
     if  (peeky.userData.get(key, "UpgraderBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:upgrader:669505308938207233> Upgrader", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fupgrader.png?v=1579693007838"]);  };
 
         //Contributor
-    if  (peeky.userData.get(key, "ContributorBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:contributor:539895189334917130> Contributor", ""]);  };
+    if  (peeky.userData.get(key, "ContributorBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:contributor:539895189334917130> Contributor", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fcontributor.png?1548786864495"]);  };
 
         //Bug Hunter
-    if  (peeky.userData.get(key, "BugHunterBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:bugcatcher:539895189737832448> Bug Hunter", ""]);  };
+    if  (peeky.userData.get(key, "BugHunterBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:bugcatcher:539895189737832448> Bug Hunter", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbugcatcher.png?1548261764050"]);  };
 
         //Celebrator
-    if  (peeky.userData.get(key, "CelebratorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:celebrator:624237582355529729> Celebrator", ""]);  };
+    if  (peeky.userData.get(key, "CelebratorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:celebrator:624237582355529729> Celebrator", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcelebrator.png?v=1568900372214"]);  };
 
         //Movie Nighter
-    if  (peeky.userData.get(key, "MovieNighterBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:movienighter:557968105494675456> Movie Nighter", ""]);  };
+    if  (peeky.userData.get(key, "MovieNighterBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:movienighter:557968105494675456> Movie Nighter", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmovienighter.png?1553099659112"]);  };
       
         //Medallist
-    if  (peeky.userData.get(key, "MedallistBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:medallist:624237944890458123> Medallist", ""]);  };
+    if  (peeky.userData.get(key, "MedallistBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:medallist:624237944890458123> Medallist", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fmedallist.png?v=1568900374609"]);  };
       
         //Evil
     if  (peeky.userData.get(key, "EvilBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:evil:604817305247023117> Evil", "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fevil.png?v=1564270118631"]);  };
@@ -1887,19 +1859,19 @@ const UpgraderImage     = "";
     if  (peeky.userData.get(key, "GoodBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:good:605138883138551838> Good", "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581"]);  };
       
         //Party
-    if  (peeky.userData.get(key, "PartyBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:party:578689336116248618> Party", ""]);  };
+    if  (peeky.userData.get(key, "PartyBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:party:578689336116248618> Party", "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fparty.png?1558040749323"]);  };
       
         //Poller
-    if  (peeky.userData.get(key, "PollerBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:poller:570845554758778880> Poller", ""]);  };
+    if  (peeky.userData.get(key, "PollerBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:poller:570845554758778880> Poller", "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpoller.png?1556170526097"]);  };
       
         //Voter
-    if  (peeky.userData.get(key, "VoterBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:voter:551429736463859762> Voter", ""]);  };
+    if  (peeky.userData.get(key, "VoterBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:voter:551429736463859762> Voter", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fvoter.png?1551541314431"]);  };
       
         //Publisher
-    if  (peeky.userData.get(key, "PublisherBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:publisher:569215883109466143> Publisher", ""]);  };
+    if  (peeky.userData.get(key, "PublisherBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:publisher:569215883109466143> Publisher", "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpublisher.png?1555782065115"]);  };
       
         //Ownership
-    if  (peeky.userData.get(key, "OwnershipBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:ownership:624330470796296202> Ownership", ""]);  };
+    if  (peeky.userData.get(key, "OwnershipBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:ownership:624330470796296202> Ownership", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fownership.png?v=1568922631330"]);  };
       
         //Gopbot
     if  (peeky.userData.get(key, "GopbotBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gopbot:624643543037771841> GOPBOT", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgopbot.png?v=1568997070177"]);  };
@@ -1911,19 +1883,19 @@ const UpgraderImage     = "";
     if  (peeky.userData.get(key, "GamerBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gamer:624330470288654337> Gamer", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgamer.png?v=1568922624710"]);  };
       
         //Horder
-    if  (peeky.userData.get(key, "HorderBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:horder:624330470561153040> Horder", ""]);  };
+    if  (peeky.userData.get(key, "HorderBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:horder:624330470561153040> Horder", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fhorder.png?v=1568922626526"]);  };
       
         //Gambler
-    if  (peeky.userData.get(key, "GamblerBadge") >= 10)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gambler:624330470825525248> Gambler", ""]);  };
+    if  (peeky.userData.get(key, "GamblerBadge") >= 10)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gambler:624330470825525248> Gambler", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgambler.png?v=1568922623251"]);  };
       
         //Charity
-    if  (peeky.userData.get(key, "CharityBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:charity:624330470515277853> Charity", ""]);  };
+    if  (peeky.userData.get(key, "CharityBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:charity:624330470515277853> Charity", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcharity.png?v=1568922627904"]);  };
 
         //Painter
-    if  (peeky.userData.get(key, "PainterBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:painter:624330470284460033> Painter", ""]);  };
+    if  (peeky.userData.get(key, "PainterBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:painter:624330470284460033> Painter", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fpainter.png?v=1568922632764"]);  };
 
         //Fashion
-    if  (peeky.userData.get(key, "FashionBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:fashion:624330470255099924> Fashion", ""]);  };
+    if  (peeky.userData.get(key, "FashionBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:fashion:624330470255099924> Fashion", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ffashion.png?v=1568922621601"]);  };
       
     BadgeExpAmount    += peeky.userData.get(key, "UpgradedServers");
     BadgeGreditAmount += peeky.userData.get(key, "UpgradedServers");
@@ -7281,62 +7253,31 @@ if  (!ProfileCooldown.has(message.author.id)) {
     
     if  (peeky.userData.has(key2))  {
       
-    //Badges
-    const PeekySupportServer = peeky.guilds.get(SupportServer);
-    const TheUserWithRole    = peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id);
-    var EndString            = "";
-    var Badges               = [];
-
-    if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(StaffRole))       {  Badges.push(ModeratorEmote + " Staff")  };
-    if  (peeky.userData.get(key2, "TranslatorBadge") == true)                                            {  Badges.push(TranslatorEmote + " Translator")  };
-    if  (peeky.userData.get(key2, "VeteranBadge") == true)                                               {  Badges.push(VeteranEmote + " Veteran")  };
-    if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(SupporterRole))   {  Badges.push(SupporterEmote + " Supporter")  };
-    if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(BoosterRole))     {  Badges.push(BoosterEmote + " Booster")  };
-    if  (peeky.userData.get(key2, "UpgraderBadge") == true)                                              {  Badges.push(UpgraderEmote + " Upgrader")  };
-    if  (peeky.userData.get(key2, "BugHunterBadge") == true)                                             {  Badges.push(BugHunterEmote + " Bug Hunter")  };
-    if  (peeky.userData.get(key2, "ContributorBadge") == true)                                           {  Badges.push(ContributorEmote + " Contributor")  };
-    if  (peeky.userData.get(key2, "CelebratorBadge") == true)                                            {  Badges.push(CelebratorEmote + " Celebrator")  };
-    if  (peeky.userData.get(key2, "MovieNighterBadge") == true)                                          {  Badges.push(MovieNighterEmote + " Movie Nighter")  };
-    if  (peeky.userData.get(key2, "MedallistBadge") == true)                                             {  Badges.push(MedallistEmote + " Medallist")  };
-    if  (peeky.userData.get(key2, "PollerBadge") == true)                                                {  Badges.push(PollerEmote + " Poller")  };
-    if  (peeky.userData.get(key2, "VoterBadge") == true)                                                 {  Badges.push(VoterEmote + " Voter")  };
-    if  (peeky.userData.get(key2, "PublisherBadge") == true)                                             {  Badges.push(PublisherEmote + " Publisher")  };
-    if  (peeky.userData.get(key2, "PartyBadge") == true)                                                 {  Badges.push(PartyEmote + " Party")  };
-    if  (peeky.userData.get(key2, "EvilBadge") == true)                                                  {  Badges.push(EvilEmote + " Evil")  };
-    if  (peeky.userData.get(key2, "GoodBadge") == true)                                                  {  Badges.push(GoodEmote + " Good")  };
-    if  (peeky.userData.get(key2, "OwnershipBadge") == true)                                             {  Badges.push(OwnershipEmote + " Ownership")  };
-    if  (peeky.userData.get(key2, "GopbotBadge") == true)                                                {  Badges.push(GopbotEmote + " Gopbot")  };
-    if  (peeky.userData.get(key2, "MinerBadge") == true)                                                 {  Badges.push(MinerEmote + " Miner")  };
-    if  (peeky.userData.get(key2, "GamerBadge") == true)                                                 {  Badges.push(GamerEmote + " Gamer")  };
-    if  (peeky.userData.get(key2, "HorderBadge") == true)                                                {  Badges.push(HorderEmote + " Horder")  };
-    if  (peeky.userData.get(key2, "GamblerBadge") >= 10)                                                 {  Badges.push(GamblerEmote + " Gambler")  };
-    if  (peeky.userData.get(key2, "CharityBadge") == true)                                               {  Badges.push(CharityEmote + " Charity")  };
-    if  (peeky.userData.get(key2, "PainterBadge") == true)                                               {  Badges.push(PainterEmote + " Painter")  };
-    if  (peeky.userData.get(key2, "FashionBadge") == true)                                               {  Badges.push(FashionEmote + " Fashion")  };
-    if  (Badges.length == 0)  {Badges = ["None"]};
-      
     //Backgrounds
     var FixedBackgrounds = [];
     var InventoryWorth = 0;
     var Current = 0;
-      
     peeky.userData.get(key2, "Inventory").filter(i => Banners[i - 1][Banner.Price] !== Exclusive).forEach(banner => {
         InventoryWorth += Banners[banner - 1][Banner.Price] / Setting.SellMultiplier;
     });
-      
     if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {
         FixedBackgrounds.push("Custom `0`");
         var CustomBackgroundAmount = 1;
     } else {  var CustomBackgroundAmount = 0;  };
-
     peeky.userData.get(key2, "Inventory").slice(0, Setting.BackgroundInvLimit).forEach(banner => {
         Current ++;
         FixedBackgrounds.push(function_GetBackgroundInfo(banner, ["name"]) + " `" + banner + "`");
     });
       
+    //Badges
+    var AllBadges = [];
+    peeky.userData.get(key2, "Badges").forEach(badge => {
+        AllBadges.push(badge[0]);
+    });
+      
     if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > Setting.BackgroundInvLimit)  {  EndString = " and some more.."  };
 
-    const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**" + peeky.userData.get(key2, "Badges").length + " Badges**\n" + Badges.join(', ') + ".",  "color": EmbedColor}; 
+    const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**" + peeky.userData.get(key2, "Badges").length + " Badges**\n" + AllBadges.join(', ') + ".",  "color": EmbedColor}; 
     message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
     }
@@ -7451,8 +7392,6 @@ if  (!ProfileCooldown.has(message.author.id))  {
     if (text.includes("\n")) {  y_position = 45;  };
     ctx.fillText(peeky.userData.get(key2, "Description"), 83, y_position, canvas.width - 95);
       
-    //Draw Images
-      
     //Coin Icon
     const coin_icon = await Canvas.loadImage("https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542");
     ctx.drawImage(coin_icon, 10, 85, 27, 27);
@@ -7485,187 +7424,17 @@ if  (!ProfileCooldown.has(message.author.id))  {
     const MaxBadges    = 15;
     const BadgeSize    = 25;
 
-    //Staff Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const moderator_icon = await Canvas.loadImage(ModeratorImage);
-    if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(StaffRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(moderator_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-      
-    //Translator Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const gopbot_icon = await Canvas.loadImage(TranslatorImage);
-    if  (peeky.userData.get(key2, "TranslatorBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(gopbot_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
+    //Badges
+    var Current = 0;
+    peeky.userData.get(key2, "Badges").forEach(async badge => {
+        if  (Current < 10)  {
+            Current ++;
 
-    //Veteran Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const veteran_icon = await Canvas.loadImage(VeteranImage);
-    if  (peeky.userData.get(key2, "VeteranBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(veteran_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Supporter Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const supporter_icon = await Canvas.loadImage(SupporterImage);
-    if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(SupporterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(supporter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Booster Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const supporter_icon = await Canvas.loadImage(BoosterImage);
-    if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(BoosterRole))  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(supporter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-      
-    //Upgrader Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const upgrader_icon = await Canvas.loadImage(UpgraderImage);
-    if  (peeky.userData.get(key2, "UpgraderBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(upgrader_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Bug Hunter Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const bughunter_icon = await Canvas.loadImage(BugCHunterImage);
-    if  (peeky.userData.get(key2, "BugHunterBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(bughunter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Contributor Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const contributor_icon = await Canvas.loadImage(ContributorImage);
-    if  (peeky.userData.get(key2, "ContributorBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(contributor_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Celebrator Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const celebrator_icon = await Canvas.loadImage(CelebratorImage);
-    if  (peeky.userData.get(key2, "CelebratorBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(celebrator_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Movie Nighter Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const movienighter_icon = await Canvas.loadImage(MovieNighterImage);
-    if  (peeky.userData.get(key2, "MovieNighterBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(movienighter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Medallist Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const medalist_icon = await Canvas.loadImage(MedallistImage);
-    if  (peeky.userData.get(key2, "MedallistBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(medalist_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Evil  Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const evil_icon = await Canvas.loadImage(EvilImage);
-    if  (peeky.userData.get(key2, "EvilBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(evil_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Good Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const good_icon = await Canvas.loadImage(GoodImage);
-    if  (peeky.userData.get(key2, "GoodBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(good_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Party Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const publisher_icon = await Canvas.loadImage(PartyImage);
-    if  (peeky.userData.get(key2, "PartyBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(publisher_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Poller Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const poller_icon = await Canvas.loadImage(PollerImage);
-    if  (peeky.userData.get(key2, "PollerBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(poller_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Voter Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const voter_icon = await Canvas.loadImage(VoterImage);
-    if  (peeky.userData.get(key2, "VoterBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(voter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Publisher Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const publisher_icon = await Canvas.loadImage(PublisherImage);
-    if  (peeky.userData.get(key2, "PublisherBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(publisher_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-      
-    //Ownership Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const ownership_icon = await Canvas.loadImage(OwnershipImage);
-    if  (peeky.userData.get(key2, "OwnershipBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(ownership_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-      
-    //Gopbot Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const gopbot_icon = await Canvas.loadImage(GopbotImage);
-    if  (peeky.userData.get(key2, "GopbotBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(gopbot_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Horder Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const horder_icon = await Canvas.loadImage(HorderImage);
-    if  (peeky.userData.get(key2, "HorderBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(horder_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Miner Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const miner_icon = await Canvas.loadImage(MinerImage);
-    if  (peeky.userData.get(key2, "MinerBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(miner_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Gamer Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const gamer_icon = await Canvas.loadImage(GamerImage);
-    if  (peeky.userData.get(key2, "GamerBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(gamer_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Gambler Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const gambler_icon = await Canvas.loadImage(GamblerImage);
-    if  (peeky.userData.get(key2, "GamblerBadge") >= 10)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(gambler_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Charity Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const charity_icon = await Canvas.loadImage(CharityImage);
-    if  (peeky.userData.get(key2, "CharityBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(charity_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //PainterIcon
-    if  (BadgeAmount < MaxBadges)  {
-    const painter_icon = await Canvas.loadImage(PainterImage);
-    if  (peeky.userData.get(key2, "PainterBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(painter_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
-
-    //Fashion Icon
-    if  (BadgeAmount < MaxBadges)  {
-    const fashion_icon = await Canvas.loadImage(FashionImage);
-    if  (peeky.userData.get(key2, "FashionBadge") == true)  {  ctx.globalAlpha = 1; BadgeXpos += BadgeXposAmt; BadgeAmount ++;  }  else  {  ctx.globalAlpha = 0;  };
-    ctx.drawImage(fashion_icon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
-    };
+            var badgeicon = await Canvas.loadImage(badge[1]);
+            BadgeXpos += BadgeXposAmt; BadgeAmount ++;
+            await ctx.drawImage(badgeicon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+        };
+    });
 
     ctx.globalAlpha = 1;
     ctx.shadowOffsetX = 0; 
