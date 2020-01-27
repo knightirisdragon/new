@@ -3756,7 +3756,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                 setTimeout(() => {TicketSystemCooldown.delete(user.id)}, 300000);
               
                 const role = reaction.message.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
-                const category = reaction.message.guild.channels.find(c => c.name == "Tickets" && c.type == "category");
+                const category = reaction.message.guild.channels.find(c => c.name.includes("Tickets") && c.type == "category");
                 const owner = reaction.message.guild.owner.user;
                 const TicketID = Math.random().toString(36).substr(2, 6);
               
@@ -5158,7 +5158,7 @@ if  (FunctioName.startsWith("ticket system"))  {
     
     const name = "tickets";
     const channel = message.guild.channels.find(channel => channel.name == name);
-    const category = message.guild.channels.find(c => c.name == "Tickets" && c.type == "category");
+    const category = message.guild.channels.find(c => c.name.includes("Tickets") && c.type == "category");
 
     if(peeky.serverData.get(keySF, "ticket_system_bonus") == true) {  peeky.serverData.set(keySF, false, "ticket_system_bonus");  }
     else peeky.serverData.set(keySF, true, "ticket_system_bonus");
