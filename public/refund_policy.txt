@@ -1,22 +1,8 @@
 REFUND POLICY
-Last updated: 22nd of January, 2020
+Last updated: 27th of January, 2020
 
-Refunds should be accepted in most cases.
+We will only refund fraud purchases.
 
 HOW TO ISSUE A REFUND
 • In the Support Server, create a ticket saying that you want a refund.
 • We'll go on from there.
-
-REFUND CANNOT BE ACCEPTED IF
-• The item wasn't purchased on https://donatebot.io/checkout/319891596772638744.
-• It has been over 24 hours since the purchase.
-• You threaten someone over the refund.
-
-REASONS FOR A POTENTIONAL REFUND
-• Fraud or Unauthorized Payments, will most likely require a proof of some kind.
-• Not receiving the rewards after getting the confirmation message from PEEKY.
-• Accidental gifting, may not be accepted on repeated occasions.
- 
-IF YOUR REFUND GETS ACCEPTED
-• You will receive your money as soon as possible.
-• Your purchased item(s) and all the purchase bonuses will be removed from your or a gifted user's profile.
