@@ -1048,9 +1048,9 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type,
         ctx.fillText(Member.displayName + " has requested the previous song.", 15, 310);
     }  else if  (Type == "Current")  {
         if  (Queue.length <= 1)  {
-            ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes", null) + " minute(s) left.", 15, 310);
+            ctx.fillText("Currently playing with approximately " + function_TimeLeft(Length, "minutes", null) + " minutes left.", 15, 310);
         } else {
-          ctx.fillText("Next song is starting in approximately " + function_TimeLeft(Length, "minutes", null) + " minute(s).", 15, 310);
+          ctx.fillText("Next song is starting in approximately " + function_TimeLeft(Length, "minutes", null) + " minutes.", 15, 310);
         };
     };
 
@@ -8673,7 +8673,7 @@ if  (CommandName.startsWith("slowmode"))  {
 
                 message.channel.setRateLimitPerUser(CommandArgument, "Slowmode set by " + message.author.tag + ".").catch(error => ErrorBag.add(error));
 
-                const embed = {"description":  SuccessIcon + " I have set the slowmode to **" + CommandArgument + " second(s)** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                const embed = {"description":  SuccessIcon + " I have set the slowmode to **" + CommandArgument + " seconds** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             }
