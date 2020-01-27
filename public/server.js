@@ -7426,7 +7426,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
 
     //Badges
     var Current = 0;
-    peeky.userData.get(key2, "Badges").forEach(async badge => {
+    await peeky.userData.get(key2, "Badges").forEach(async badge => {
         if  (Current < MaxBadges)  {
             Current ++;
 
@@ -7445,8 +7445,6 @@ if  (!ProfileCooldown.has(message.author.id))  {
   
     //Avatar
     const avatar = await Canvas.loadImage(SomeoneTagged.user.displayAvatarURL({ format: 'png' }).replace("https", "http"));
-    ctx.shadowOffsetX = 0; 
-    ctx.shadowOffsetY = 0;
     ctx.drawImage(avatar, 6, 6, 64, 64);
 
     //Exp Text
@@ -7484,8 +7482,6 @@ if  (!ProfileCooldown.has(message.author.id))  {
 
         var TranslatedMessages = [InfoIcon + " This profile is now featured on the website.", InfoIcon + " Tento profil je nyní vystaven na strance."];
         InfoMessages.push(TranslatedMessages[Language]);
-      
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
         console.log("The featured profile has been updated.");
           
