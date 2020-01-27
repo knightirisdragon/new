@@ -7867,7 +7867,7 @@ if (CommandName.startsWith("play"))  {
 
                                 const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
 
-                                var TranslatedMessages = [InfoIcon + " The music has now finished with **X001** listeners.", InfoIcon + " Hudba právě skončila s **X001** posluchateli."];
+                                var TranslatedMessages = [InfoIcon + " The music has now finished with **X001 listeners**.", InfoIcon + " Hudba právě skončila s **X001 posluchateli**."];
                                 const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
                                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 

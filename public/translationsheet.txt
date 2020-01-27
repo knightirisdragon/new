@@ -130,7 +130,7 @@ This profile is now featured on the website. |
 
 Previous song not found - playing a random song. | 
 Your playlist is empty - Playing a random song. | 
-The music has now finished with **X001** listeners. | 
+The music has now finished with **X001 listeners** | 
 You can only play songs between 1 to 30 minutes. | 
 Failed to get the YouTube video. | 
 You need to join a voice channel. | 
