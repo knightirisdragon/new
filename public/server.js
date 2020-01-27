@@ -7427,7 +7427,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     //Badges
     var Current = 0;
     peeky.userData.get(key2, "Badges").forEach(async badge => {
-        if  (Current < 10)  {
+        if  (Current < MaxBadges)  {
             Current ++;
 
             var badgeicon = await Canvas.loadImage(badge[1]);
