@@ -3207,7 +3207,7 @@ if  (peeky.serverData.has(keySF))  {
 //Clear Nicknames
 if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
 
-    if  (member.guild.me.permissions.has("MANAGE_NICKNAMES") && !member.user.bot)  {
+    if  (member.guild.me.permissions.has("MANAGE_NICKNAMES") && !member.user.bot && !member.nickname)  {
 
         var Username = member.user.username.toLowerCase().toString();
         var NewNickname = Username.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789 ]/g); 
@@ -3218,7 +3218,7 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
 
         if  (Username !== NewNickname)  {
 
-            var NotSaved = true;
+            /*var NotSaved = true;
             peeky.serverData.get(keySF, "nick_saver_array").forEach(current => {
               
                 if  (current[0] == member.user.id && current[1] !== null)  {
@@ -3227,7 +3227,7 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
               
             }); 
           
-            if  (NotSaved == true)  {
+            if  (NotSaved == true)  {*/
               
                 if  (NewNickname == null)  {
                     NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
@@ -3240,7 +3240,7 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
                 console.log("The Clear Nicknames function has been triggered in " + member.guild.name + ".");
                 function_UpdateAutowipe(keySF, "server");
               
-            };
+            //};
 
         };
 
@@ -8939,11 +8939,11 @@ if  (CommandName.startsWith("slowmode"))  {
 
             CommandArgument = CommandArgument.replace(" ", "");
 
-            if  (isNaN(CommandArgument) == false)  {
+            if  (isNaN(CommandArgument) == false && CommandArgument <= 21600)  {
 
                 message.channel.setRateLimitPerUser(CommandArgument, "Slowmode set by " + message.author.tag + ".").catch(error => ErrorBag.add(error));
 
-                const embed = {"description":  SuccessIcon + " I have set the slowmode to **" + CommandArgument + " seconds** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                const embed = {"description":  SuccessIcon + " I have set the slowmode to **" + CommandArgument + " second(s)** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             }
