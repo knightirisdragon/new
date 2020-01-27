@@ -8926,6 +8926,56 @@ if  (CommandName.startsWith("kick"))  {
 
 };
 
+//Slowmode
+if  (CommandName.startsWith("slowmode"))  {
+  
+    var CommandArgument = CommandName.split("slowmode")[1];
+
+    if  (CommandArgument.startsWith(" "))  {
+
+    if  (message.member.permissions.has("MANAGE_CHANNELS"))  {
+    
+        if  (message.guild.me.permissions.has('MANAGE_CHANNELS'))  {
+
+            CommandArgument = CommandArgument.replace(" ", "");
+
+            if  (isNaN(CommandArgument) == false)  {
+
+                message.channel.setRateLimitPerUser(CommandArgument, "Slowmode set by " + message.author.tag + ".").catch(error => ErrorBag.add(error));
+
+                const embed = {"description":  SuccessIcon + " I have set the slowmode to **" + CommandArgument + " seconds** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+            }
+             else
+            {
+              const embed = {"description": ErrorMessage9[Language],  "color": EmbedColor};
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
+        }
+         else
+        {
+         const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+   
+        }
+         else
+        {
+         const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+    }
+     else if (CommandArgument == "")
+    {
+     const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+
 //Purge
 if  (CommandName.startsWith("purge"))  {
   
@@ -8943,7 +8993,7 @@ if  (CommandName.startsWith("purge"))  {
 
                     await message.delete().catch(error => ErrorBag.add(error));
 
-                    message.channel.bulkDelete(CommandArgument).catch(error => {
+                    message.channel.bulkDelete(CommandArgument, { reason: "Purged by " + message.author.tag + "." }).catch(error => {
                         const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                         ErrorBag.add(error); Failed = true;
