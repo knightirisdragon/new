@@ -1835,7 +1835,7 @@ peeky.on('message', async (message) => {
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).premiumSince)  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:booster:622431477384085514> Booster", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbooster.png?v=1568469682712"]);  };
       
         //Upgrader
-    if  (peeky.userData.get(key, "UpgraderBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:upgrader:669505308938207233> Upgrader", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fupgrader.png?v=1579693007838"]);  };
+    if  (peeky.userData.get(key, "UpgradedServers") > 0)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:upgrader:669505308938207233> Upgrader", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fupgrader.png?v=1579693007838"]);  };
 
         //Contributor
     if  (peeky.userData.get(key, "ContributorBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:contributor:539895189334917130> Contributor", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fcontributor.png?1548786864495"]);  };
@@ -1897,8 +1897,8 @@ peeky.on('message', async (message) => {
         //Fashion
     if  (peeky.userData.get(key, "FashionBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:fashion:624330470255099924> Fashion", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ffashion.png?v=1568922621601"]);  };
       
-    BadgeExpAmount    += peeky.userData.get(key, "UpgradedServers");
-    BadgeGreditAmount += peeky.userData.get(key, "UpgradedServers");
+    //BadgeExpAmount    += peeky.userData.get(key, "UpgradedServers");
+    //BadgeGreditAmount += peeky.userData.get(key, "UpgradedServers");
       
     //EVENT DOUBLE EXP
     if  (Setting.EventStatus == true)  {
@@ -2794,6 +2794,50 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
   };
 
 };
+  
+//Clear Nicknames
+if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
+
+    if  (member.guild.me.permissions.has("MANAGE_NICKNAMES") && !member.user.bot && !member.nickname)  {
+
+        var Username = member.user.username.toLowerCase().toString();
+        var NewNickname = Username.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789 ]/g); 
+
+        if  (NewNickname !== null)  {
+            NewNickname = NewNickname.join("");
+        };
+
+        if  (Username !== NewNickname)  {
+
+            var NotSaved = true;
+            peeky.serverData.get(keySF, "nick_saver_array").forEach(current => {
+              
+                if  (current[0] == member.user.id && current[1] !== null)  {
+                    NotSaved = false;
+                };
+              
+            }); 
+          
+            if  (NotSaved == true)  {
+              
+                if  (NewNickname == null)  {
+                    NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
+                } else {
+                  NewNickname = function_FixCapitalization(NewNickname);
+                };
+
+                member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
+
+                console.log("The Clear Nicknames function has been triggered in " + member.guild.name + ".");
+                function_UpdateAutowipe(keySF, "server");
+              
+            };
+
+        };
+
+    };
+
+};
     
 //Nickname Saver
 if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
@@ -3138,50 +3182,6 @@ const keySF = `${member.guild.id}`;
   
 //FUNCTIONS
 if  (peeky.serverData.has(keySF))  {
-  
-//Clear Nicknames
-if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
-
-    if  (member.guild.me.permissions.has("MANAGE_NICKNAMES") && !member.user.bot && !member.nickname)  {
-
-        var Username = member.user.username.toLowerCase().toString();
-        var NewNickname = Username.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789 ]/g); 
-
-        if  (NewNickname !== null)  {
-            NewNickname = NewNickname.join("");
-        };
-
-        if  (Username !== NewNickname)  {
-
-            /*var NotSaved = true;
-            peeky.serverData.get(keySF, "nick_saver_array").forEach(current => {
-              
-                if  (current[0] == member.user.id && current[1] !== null)  {
-                    NotSaved = false;
-                };
-              
-            }); 
-          
-            if  (NotSaved == true)  {*/
-              
-                if  (NewNickname == null)  {
-                    NewNickname = peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + " (" + Math.random().toString(36).substr(2, 6) + ")";
-                } else {
-                  NewNickname = function_FixCapitalization(NewNickname);
-                };
-
-                member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
-
-                console.log("The Clear Nicknames function has been triggered in " + member.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
-              
-            //};
-
-        };
-
-    };
-
-};
 
 //Streamer Role
 if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
