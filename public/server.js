@@ -107,14 +107,6 @@ const LightField = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%
 const DefaultBackground = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground1.png?v=1575192820685";
 const NoBackground      = "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2FNA%20Background.png?v=1563929199191"
 const MainBackground    = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576177447491";
-const CoinImage         = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542";
-const LevelImage        = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_level.png?1541260281702";
-const ChestImage        = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051";
-const TreasureImage     = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ftreasures.png?v=1568646809345";
-const BadgesImage       = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbadges.png?v=1564245176155";
-const KarmaImage        = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fkarma.png?v=1564244903816";
-const BackpackImage     = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_backpack.png?1546614356449";
-const LeaderboardImage  = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fleaderboardrank.png?v=1579943651742";
 const HollowImage       = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2FHollowImage.png";
 
 const SupporterImage    = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fsupporter.png?1548194367244";
@@ -4134,7 +4126,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
                 var Index = Math.floor((Math.random() * Rewards.length));
                 var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
 
-                var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + Rewards[Index][0],  "footer": {  "icon_url": TreasureImage, "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
+                var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + Rewards[Index][0],  "footer": {  "icon_url": "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ftreasures.png?v=1568646809345", "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
                 channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
 
                     m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { max: 1, time: 3600000, errors: ['time'] }).then(collected => {
@@ -7491,27 +7483,27 @@ if  (!ProfileCooldown.has(message.author.id))  {
     //Draw Images
       
     //Coin Icon
-    const coin_icon = await Canvas.loadImage(CoinImage);
+    const coin_icon = await Canvas.loadImage("https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542");
     ctx.drawImage(coin_icon, 10, 85, 27, 27);
       
     //Chest Icon
-    const chest_icon = await Canvas.loadImage(ChestImage);
+    const chest_icon = await Canvas.loadImage("https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051");
     ctx.drawImage(chest_icon, 10, 120, 27, 27);
 
     //Backpack Icon
-    const backpack_icon = await Canvas.loadImage(BackpackImage);
+    const backpack_icon = await Canvas.loadImage("https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_backpack.png?1546614356449");
     ctx.drawImage(backpack_icon, 10, 155, 27, 27);
 
     //Karma Icon
-    const karma_icon = await Canvas.loadImage(KarmaImage);
+    const karma_icon = await Canvas.loadImage("https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fkarma.png?v=1564244903816");
     ctx.drawImage(karma_icon, canvas.width / 2 + 10, 85, 27, 27);
 
     //Badges Icon
-    const badges_icon = await Canvas.loadImage(BadgesImage);
+    const badges_icon = await Canvas.loadImage("https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbadges.png?v=1564245176155");
     ctx.drawImage(badges_icon, canvas.width / 2 + 10, 120, 27, 27);
 
-    //Badges Icon
-    const leaderboard_icon = await Canvas.loadImage(LeaderboardImage);
+    //Leaderboard Icon
+    const leaderboard_icon = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fleaderboardrank.png?v=1579943651742");
     ctx.drawImage(leaderboard_icon, canvas.width / 2 + 10, 155, 27, 27);
       
     //Badges
