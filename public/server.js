@@ -7322,7 +7322,6 @@ if  (!ProfileCooldown.has(message.author.id)) {
     const TheUserWithRole    = peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id);
     var EndString            = "";
     var Badges               = [];
-    var BadgesAmount         = null;
 
     if  (PeekySupportServer.members.get(SomeoneTagged.id) && TheUserWithRole.roles.has(StaffRole))       {  Badges.push(ModeratorEmote + " Staff")  };
     if  (peeky.userData.get(key2, "TranslatorBadge") == true)                                            {  Badges.push(TranslatorEmote + " Translator")  };
@@ -7350,7 +7349,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  (peeky.userData.get(key2, "CharityBadge") == true)                                               {  Badges.push(CharityEmote + " Charity")  };
     if  (peeky.userData.get(key2, "PainterBadge") == true)                                               {  Badges.push(PainterEmote + " Painter")  };
     if  (peeky.userData.get(key2, "FashionBadge") == true)                                               {  Badges.push(FashionEmote + " Fashion")  };
-    if  (Badges.length == 0)  {Badges = ["None"]; BadgesAmount = 0;} else {BadgesAmount = peeky.userData.get(key2, "Badges".length)};
+    if  (Badges.length == 0)  {Badges = ["None"]};
       
     //Backgrounds
     var FixedBackgrounds = [];
@@ -7373,7 +7372,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
       
     if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > Setting.BackgroundInvLimit)  {  EndString = " and some more.."  };
 
-    const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**" + BadgesAmount + " Badges**\n" + Badges.join(', ') + ".",  "color": EmbedColor}; 
+    const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**" + peeky.userData.get(key2, "Badges").length + " Badges**\n" + Badges.join(', ') + ".",  "color": EmbedColor}; 
     message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
     }
