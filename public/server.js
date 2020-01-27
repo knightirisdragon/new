@@ -109,66 +109,9 @@ const NoBackground      = "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820
 const MainBackground    = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576177447491";
 const HollowImage       = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2FHollowImage.png";
 
-const SupporterImage    = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fsupporter.png?1548194367244";
-const PeekyStaffImage   = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fpeekystaff.png?1548824803415";
-const ModeratorImage    = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmoderator.png?1548824732338";
-const VeteranImage      = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fveteran.png?1548951084956";
-const BugCHunterImage   = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbugcatcher.png?1548261764050";
-const ContributorImage  = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fcontributor.png?1548786864495";
-const VoterImage        = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fvoter.png?1551541314431";
-const GamblerImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgambler.png?v=1568922623251";
-const CharityImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcharity.png?v=1568922627904";
-const FashionImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ffashion.png?v=1568922621601";
-const OwnershipImage    = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fownership.png?v=1568922631330";
-const MedallistImage    = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fmedallist.png?v=1568900374609";
-const MovieNighterImage = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmovienighter.png?1553099659112";
-const CelebratorImage   = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcelebrator.png?v=1568900372214";
-const PollerImage       = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpoller.png?1556170526097";
-const PublisherImage    = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpublisher.png?1555782065115";
-const PartyImage        = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fparty.png?1558040749323";
-const HorderImage       = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fhorder.png?v=1568922626526";
-const PainterImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fpainter.png?v=1568922632764";
-const MinerImage        = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fminer.png?v=1568922629305";
-const BoosterImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbooster.png?v=1568469682712";
-const GamerImage        = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgamer.png?v=1568922624710";
-const EvilImage         = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fevil.png?v=1564270118631";
-const GoodImage         = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581";
-const GopbotImage       = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgopbot.png?v=1568997070177";
-const TranslatorImage   = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ftranslator.png?v=1576920631134";
-const UpgraderImage     = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fupgrader.png?v=1579693007838";
-
 //Vote Emotes
 const DefaultUpvote   = "529413730874949632";
 const DefaultDownvote = "529413312862093322";
-
-//Badge Emotes
-const PeekyStaffEmote   = "<:peekystaff:540036337739366400>";
-const ContributorEmote  = "<:contributor:539895189334917130>";
-const SupporterEmote    = "<:supporter:539895190190686238>";
-const BugHunterEmote    = "<:bugcatcher:539895189737832448>";
-const ModeratorEmote    = "<:moderator:540036307213221901>";
-const VeteranEmote      = "<:veteran:540565010972147724>";
-const GamblerEmote      = "<:gambler:624330470825525248>";
-const CharityEmote      = "<:charity:624330470515277853>";
-const FashionEmote      = "<:fashion:624330470255099924>";
-const VoterEmote        = "<:voter:551429736463859762>";
-const OwnershipEmote    = "<:ownership:624330470796296202>";
-const MedallistEmote    = "<:medallist:624237944890458123>";
-const MovieNighterEmote = "<:movienighter:557968105494675456>";
-const CelebratorEmote   = "<:celebrator:624237582355529729>";
-const PollerEmote       = "<:poller:570845554758778880>";
-const PublisherEmote    = "<:publisher:569215883109466143>";
-const PartyEmote        = "<:party:578689336116248618>";
-const HorderEmote       = "<:horder:624330470561153040>";
-const PainterEmote      = "<:painter:624330470284460033>";
-const MinerEmote        = "<:miner:624330470460620831>";
-const BoosterEmote      = "<:booster:622431477384085514>";
-const GamerEmote        = "<:gamer:624330470288654337>";
-const EvilEmote         = "<:evil:604817305247023117>";
-const GoodEmote         = "<:good:605138883138551838>";
-const GopbotEmote       = "<:gopbot:624643543037771841>";
-const TranslatorEmote   = "<:translator:657876886260809728>";
-const UpgraderEmote     = "<:upgrader:669505308938207233>";
 
 //Other Emotes
 const ErrorIcon       = "<:peeky_error:529412267343872031>";
@@ -1876,11 +1819,68 @@ peeky.on('message', async (message) => {
         BadgeExpAmount += 2;
     };
 
+const SupporterImage    = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fsupporter.png?1548194367244";
+const PeekyStaffImage   = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fpeekystaff.png?1548824803415";
+const ModeratorImage    = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmoderator.png?1548824732338";
+const VeteranImage      = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fveteran.png?1548951084956";
+const BugCHunterImage   = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbugcatcher.png?1548261764050";
+const ContributorImage  = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fcontributor.png?1548786864495";
+const VoterImage        = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fvoter.png?1551541314431";
+const GamblerImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgambler.png?v=1568922623251";
+const CharityImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcharity.png?v=1568922627904";
+const FashionImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ffashion.png?v=1568922621601";
+const OwnershipImage    = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fownership.png?v=1568922631330";
+const MedallistImage    = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fmedallist.png?v=1568900374609";
+const MovieNighterImage = "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmovienighter.png?1553099659112";
+const CelebratorImage   = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcelebrator.png?v=1568900372214";
+const PollerImage       = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpoller.png?1556170526097";
+const PublisherImage    = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpublisher.png?1555782065115";
+const PartyImage        = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fparty.png?1558040749323";
+const HorderImage       = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fhorder.png?v=1568922626526";
+const PainterImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fpainter.png?v=1568922632764";
+const MinerImage        = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fminer.png?v=1568922629305";
+const BoosterImage      = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbooster.png?v=1568469682712";
+const GamerImage        = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgamer.png?v=1568922624710";
+const EvilImage         = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fevil.png?v=1564270118631";
+const GoodImage         = "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581";
+const GopbotImage       = "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgopbot.png?v=1568997070177";
+const TranslatorImage   = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ftranslator.png?v=1576920631134";
+const UpgraderImage     = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fupgrader.png?v=1579693007838";
+
+//Badge Emotes
+const PeekyStaffEmote   = "<:peekystaff:540036337739366400>";
+const ContributorEmote  = "<:contributor:539895189334917130>";
+const SupporterEmote    = "<:supporter:539895190190686238>";
+const BugHunterEmote    = "<:bugcatcher:539895189737832448>";
+const ModeratorEmote    = "<:moderator:540036307213221901>";
+const VeteranEmote      = "<:veteran:540565010972147724>";
+const GamblerEmote      = "<:gambler:624330470825525248>";
+const CharityEmote      = "<:charity:624330470515277853>";
+const FashionEmote      = "<:fashion:624330470255099924>";
+const VoterEmote        = "<:voter:551429736463859762>";
+const OwnershipEmote    = "<:ownership:624330470796296202>";
+const MedallistEmote    = "<:medallist:624237944890458123>";
+const MovieNighterEmote = "<:movienighter:557968105494675456>";
+const CelebratorEmote   = "<:celebrator:624237582355529729>";
+const PollerEmote       = "<:poller:570845554758778880>";
+const PublisherEmote    = "<:publisher:569215883109466143>";
+const PartyEmote        = "<:party:578689336116248618>";
+const HorderEmote       = "<:horder:624330470561153040>";
+const PainterEmote      = "<:painter:624330470284460033>";
+const MinerEmote        = "<:miner:624330470460620831>";
+const BoosterEmote      = "<:booster:622431477384085514>";
+const GamerEmote        = "<:gamer:624330470288654337>";
+const EvilEmote         = "<:evil:604817305247023117>";
+const GoodEmote         = "<:good:605138883138551838>";
+const GopbotEmote       = "<:gopbot:624643543037771841>";
+const TranslatorEmote   = "<:translator:657876886260809728>";
+const UpgraderEmote     = "<:upgrader:669505308938207233>";
+
         //Staff
     if  (peeky.guilds.get(SupportServer).members.get(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push("StaffBadge");  };
       
         //Translator
-    if  (peeky.userData.get(key, "TranslatorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push("TranslatorBadge");  };
+    if  (peeky.userData.get(key, "TranslatorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["TranslatorBadge", ""]);  };
       
         //Upgrader
     if  (peeky.userData.get(key, "UpgraderBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push("UpgraderBadge");  };
