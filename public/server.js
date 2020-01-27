@@ -7426,16 +7426,13 @@ if  (!ProfileCooldown.has(message.author.id))  {
     var   Positions = [];
 
     //Badges
-    var Current = 0;
-    await peeky.userData.get(key2, "Badges").forEach(async badge => {
-        if  (Current < MaxBadges)  {
-            Current ++;
-            Positions.push([BadgeXpos += BadgeXposAmt, BadgeAmount ++]);
-        };
-    });
-
-            var badgeicon = await Canvas.loadImage(badge[1]);
-            await ctx.drawImage(badgeicon, BadgeXpos, BadgeYpos, BadgeSize, BadgeSize);
+    for (var i = 0; i < MaxBadges; i++)  {
+        Positions.push([BadgeXpos += BadgeXposAmt]);
+    };
+    for (var i = 0; i < MaxBadges; i++)  {
+        var badgeicon = await Canvas.loadImage(peeky.userData.get(key2, "Badges")[i][1]);
+        await ctx.drawImage(badgeicon, Positions[i][0], BadgeYpos, BadgeSize, BadgeSize);
+    };
       
     ctx.globalAlpha = 1;
     ctx.shadowOffsetX = 0; 
