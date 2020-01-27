@@ -7427,11 +7427,15 @@ if  (!ProfileCooldown.has(message.author.id))  {
 
     //Badges
     for (var i = 0; i < MaxBadges; i++)  {
-        Positions.push([BadgeXpos += BadgeXposAmt]);
+        if  (peeky.userData.get(key2, "Badges")[i])  {
+            Positions.push([BadgeXpos += BadgeXposAmt]);
+        };
     };
     for (var i = 0; i < MaxBadges; i++)  {
-        var badgeicon = await Canvas.loadImage(peeky.userData.get(key2, "Badges")[i][1]);
-        await ctx.drawImage(badgeicon, Positions[i][0], BadgeYpos, BadgeSize, BadgeSize);
+        if  (peeky.userData.get(key2, "Badges")[i])  {
+            var badgeicon = await Canvas.loadImage(peeky.userData.get(key2, "Badges")[i][1]);
+            await ctx.drawImage(badgeicon, Positions[i][0], BadgeYpos, BadgeSize, BadgeSize);          
+        };
     };
       
     ctx.globalAlpha = 1;
