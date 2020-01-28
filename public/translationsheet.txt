@@ -107,6 +107,14 @@ I cannot find a role called **X001**. |
 Edited **X001** channels for the **@X002** role. | 
 Couldn't edit channels for the **@X001** role. | 
 
+I have set the slowmode to **X001 seconds** at **X002**'s request. | 
+I have set purged **X001 messages** at **X002**'s request. | 
+I have set kicked **X001** at **X002**'s request. | 
+I have set banned **X001** at **X002**'s request. |
+I have set ID banned **X001** at **X002**'s request. | 
+I have set muted **X001** at **X002**'s request. | 
+I have set unmuted **X001** at **X002**'s request. | 
+
 You cannot ID ban someone inside the server. | 
 You must enter a valid ID. | 
 

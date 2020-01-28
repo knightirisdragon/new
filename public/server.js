@@ -8352,8 +8352,9 @@ if  (CommandArgument.startsWith(" "))  {
                         });
 
                     if  (Failed == false)  {
-                        const embed = {"description": SuccessIcon + " I have muted **" + function_RemoveFormatting(MentionedMember.displayName, "other", true) + "** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
-                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
+                        var TranslatedMessages = [SuccessIcon + " I have set muted **X001** at **X002**'s request.", SuccessIcon + " Ztlumil jsem **X001 zpráv** na požádání od **X002**."];
+                        const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
 
                     }
@@ -8432,7 +8433,8 @@ if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
         });
 
         if  (Failed == false)  {
-            const embed = {"description": SuccessIcon + " I have unmuted **" + function_RemoveFormatting(MentionedMember.displayName, "other", true) + "** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
+            var TranslatedMessages = [SuccessIcon + " I have set unmuted **X001** at **X002**'s request.", SuccessIcon + " Odztlumil jsem **X001 zpráv** na požádání od **X002**."];
+            const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
@@ -8510,7 +8512,8 @@ if  (CommandName.startsWith("idban"))  {
             });
 
             if  (Failed == false)  {
-                const embed = {"description": SuccessIcon + " I have ID banned **" + function_RemoveFormatting(peeky.users.get(CommandArgument).username, "other", true) + "** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                var TranslatedMessages = [SuccessIcon + " I have set ID banned **X001** at **X002**'s request.", SuccessIcon + " ID Zabanoval jsem **X001 zpráv** na požádání od **X002**."];
+                const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
             
@@ -8571,7 +8574,8 @@ if  (CommandName.startsWith("ban"))  {
                 });
 
                 if  (Failed == false)  {
-                    const embed = {"description": SuccessIcon + " I have banned **" + function_RemoveFormatting(MentionedMember.displayName, "other", true) + "** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                    var TranslatedMessages = [SuccessIcon + " I have set banned **X001** at **X002**'s request.", SuccessIcon + " Zabanoval jsem **X001 zpráv** na požádání od **X002**."];
+                    const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
@@ -8617,7 +8621,8 @@ if  (CommandName.startsWith("kick"))  {
                 });
 
                 if  (Failed == false)  {
-                    const embed = {"description": SuccessIcon + " I have kicked **" + function_RemoveFormatting(MentionedMember.displayName, "other", true) + "** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                    var TranslatedMessages = [SuccessIcon + " I have set kicked **X001** at **X002**'s request.", SuccessIcon + " Vykopl jsem **X001 zpráv** na požádání od **X002**."];
+                    const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
@@ -8718,7 +8723,8 @@ if  (CommandName.startsWith("purge"))  {
                     });
 
                     if  (Failed == false)  {
-                        const embed = {"description":  SuccessIcon + " I have purged **" + CommandArgument + " messages** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                        var TranslatedMessages = [SuccessIcon + " I have set purged **X001 messages** at **X002**'s request.", SuccessIcon + " Smazal jsem **X001 zpráv** na požádání od **X002**."];
+                        const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
 
