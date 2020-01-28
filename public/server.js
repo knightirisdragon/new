@@ -7454,7 +7454,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
 
     if  (!peeky.userData.get(key2, "FashionBadge"))  {
-        InfoMessages.push(InfoIcon + " Visit  the [Tutorials page](https://peeky.glitch.me/tutorials.html#backgrounds) for help with buying a background.");
+        InfoMessages.push(InfoIcon + " Check out this [tutorial](https://peeky.glitch.me/tutorials.html#backgrounds) for help with buying a background.");
     };    
 
     if  (peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(ProfileBoosterRole))  {
