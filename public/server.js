@@ -10,7 +10,7 @@ const ddbl = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
 const BotList = require('botlist.space');
 const bls = new BotList.Client({  id: "482945063282802698", botToken: process.env.BLS_TOKEN  });
 
-//Music4
+//Music
 const ytdl_discord = require('ytdl-core-discord');
 const search       = require('youtube-search');
 const ytdl         = require('ytdl-core');
@@ -8505,7 +8505,7 @@ if  (CommandName.startsWith("idban"))  {
 
         if  (!message.guild.members.find(m => m.id == CommandArgument))  {
 
-            await message.guild.members.ban(CommandArgument, "ID banned by " + message.author.tag + ".").catch(error => { 
+            await message.guild.members.ban(CommandArgument, { reason: "ID banned by " + message.author.tag + "." }).catch(error => { 
                   const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   ErrorBag.add(error); Failed = true;
@@ -8513,7 +8513,7 @@ if  (CommandName.startsWith("idban"))  {
 
             if  (Failed == false)  {
                 var TranslatedMessages = [SuccessIcon + " I have set ID banned **X001** at **X002**'s request.", SuccessIcon + " ID Zabanoval jsem **X001 zpráv** na požádání od **X002**."];
-                const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
+                const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.users.get(CommandArgument).username).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
             
@@ -8567,7 +8567,7 @@ if  (CommandName.startsWith("ban"))  {
 
             if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS"))  {
 
-                await message.guild.members.ban(MentionedMember.user.id, "Banned by " + message.author.tag + ".").catch(error => { 
+                await message.guild.members.ban(MentionedMember.user.id, { reason: "Banned by " + message.author.tag + "." }).catch(error => { 
                       const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                       ErrorBag.add(error); Failed = true;
