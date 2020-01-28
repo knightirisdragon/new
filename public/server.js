@@ -2801,7 +2801,7 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
     if  (member.guild.me.permissions.has("MANAGE_NICKNAMES") && !member.user.bot && !member.nickname)  {
 
         var Username = member.user.username.toLowerCase().toString();
-        var NewNickname = Username.match(/[aábcčdďeéěfghiíjklmnňoópqrřsštuůúvwxyýzž0123465789 ]/g); 
+        var NewNickname = Username.match(/[aábcčçdďeéěfgğhiíİıjklmnňoóöpqrřsšştuůúüvwxyýzž0123465789_ ]/g); 
 
         if  (NewNickname !== null)  {
             NewNickname = NewNickname.join("");
