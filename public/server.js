@@ -1765,30 +1765,6 @@ peeky.on('message', async (message) => {
         PlaylistName: "Favorite Songs",
         PlaylistThumbnail: null,
       
-        ContributorBadge: false,
-        BugHunterBadge: false,
-        VeteranBadge: false,
-        GamblerBadge: 0,    
-        CharityBadge: false,    
-        FashionBadge: false,    
-        VoterBadge: false,
-        OwnershipBadge: false,  
-        MedallistBadge: false,  
-        MovieNighterBadge: false,
-        CelebratorBadge: false,
-        PollerBadge: false,
-        PublisherBadge: false,
-        PartyBadge: false,
-        HorderBadge: false,
-        PainterBadge: false,
-        MinerBadge: false,
-        GamerBadge: false,
-        EvilBadge: false,
-        GoodBadge: false,
-        GopbotBadge: false,
-        TranslatorBadge: false,
-        UpgraderBadge: false,
-      
         BadgeGredit: 0,
         BadgeExp: 0,
       
@@ -1875,6 +1851,9 @@ peeky.on('message', async (message) => {
         //Ownership
     if  (peeky.userData.get(key, "OwnershipBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:ownership:624330470796296202> Ownership", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fownership.png?v=1568922631330"]);  };
       
+        //Functional
+    if  (peeky.userData.get(key, "FunctionalBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:functioncal:671566795420991490> Functional", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunctioncal.png?v=1580184733818"]);  };
+      
         //Gopbot
     if  (peeky.userData.get(key, "GopbotBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gopbot:624643543037771841> GOPBOT", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgopbot.png?v=1568997070177"]);  };
       
@@ -1888,7 +1867,7 @@ peeky.on('message', async (message) => {
     if  (peeky.userData.get(key, "HorderBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:horder:624330470561153040> Horder", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fhorder.png?v=1568922626526"]);  };
       
         //Gambler
-    if  (peeky.userData.get(key, "GamblerBadge") >= 10)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gambler:624330470825525248> Gambler", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgambler.png?v=1568922623251"]);  };
+    if  (peeky.userData.get(key, "GamblerBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gambler:624330470825525248> Gambler", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgambler.png?v=1568922623251"]);  };
       
         //Charity
     if  (peeky.userData.get(key, "CharityBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:charity:624330470515277853> Charity", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcharity.png?v=1568922627904"]);  };
@@ -3109,7 +3088,7 @@ if  (keySF == SupportServer)  {
         //Complete Purchase
         if  (PurchaseComplete == true)  {
 
-            if  (peeky.userData.get(key, "ContributorBadge") == false)  {
+            if  (!peeky.userData.get(key, "ContributorBadge"))  {
                 peeky.userData.set(key, true, "ContributorBadge");
                 Rewards.push("The **Contributor** badge");
             };
@@ -3332,7 +3311,7 @@ const member = reaction.message.guild.members.find(m => m.user.id == user.id);
 
 //Poller Badge
 if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reaction.message.content.toLowerCase().includes("**voting time**"))  {
-    if  (peeky.userData.has(key) && peeky.userData.get(key, "PollerBadge") == false)  {
+    if  (!peeky.userData.has(key) && peeky.userData.get(key, "PollerBadge"))  {
         peeky.userData.set(key, true, "PollerBadge");
     };
 };
@@ -3375,7 +3354,7 @@ if  (!user.bot && KarmaImages.findIndex(i => i[0] == reaction.message.id) >= 0) 
 
                     if  (peeky.userData.get(key2, "Karma") == 50)  {
 
-                        if  (peeky.userData.has(key2) && peeky.userData.get(key2, "GoodBadge") == false)  {
+                        if  (!peeky.userData.has(key2) && peeky.userData.get(key2, "GoodBadge"))  {
                             peeky.userData.set(key2, true, "GoodBadge");
                             peeky.userData.set(key2, false, "EvilBadge");
                         };                    
@@ -3408,7 +3387,7 @@ if  (!user.bot && KarmaImages.findIndex(i => i[0] == reaction.message.id) >= 0) 
 
                     if  (peeky.userData.get(key2, "Karma") == -50)  {
 
-                        if  (peeky.userData.has(key2) && peeky.userData.get(key2, "EvilBadge") == false)  {
+                        if  (!peeky.userData.has(key2) && peeky.userData.get(key2, "EvilBadge"))  {
                             peeky.userData.set(key2, false, "GoodBadge");
                             peeky.userData.set(key2, true, "EvilBadge");
                         };                    
@@ -3985,12 +3964,12 @@ if  (message.guild.owner !== undefined && !message.author.bot)  {
         setTimeout(() => {BadgeCheckCooldown.delete(message.guild.id + message.author.id)}, 300000);
 
         //Ownership Badge
-        if  (peeky.userData.get(key, "OwnershipBadge") == false && message.author.id == message.guild.owner.user.id)  {
+        if  (!peeky.userData.get(key, "OwnershipBadge") && message.author.id == message.guild.owner.user.id)  {
             peeky.userData.set(key, true, "OwnershipBadge");
         };
 
         //Gopbot Badge
-        if  (peeky.userData.get(key, "GopbotBadge") == false && message.author.id == message.guild.owner.user.id && message.guild.members.filter(m => m.user.id == GopbotId).size > 0)  {
+        if  (!peeky.userData.get(key, "GopbotBadge") && message.author.id == message.guild.owner.user.id && message.guild.members.filter(m => m.user.id == GopbotId).size > 0)  {
             peeky.userData.set(key, true, "GopbotBadge");
         };
 
@@ -4004,7 +3983,7 @@ if  (message.channel.id == WorkshopChannel && !message.author.bot)  {
     if  (message.attachments.size == 1 && message.content.split('\n').length == 3 && message.content.split('\n')[0].startsWith("Name: ") && message.content.split('\n')[1].startsWith("Credit: ") && message.content.split('\n')[2].startsWith("Price: ") && isNaN(message.content.split('\n')[2].replace("Price: ", "")) == false)  {  // && message.content.toLowerCase().split('\n')[3] == undefined
       
         //Publisher Badge
-        if  (peeky.userData.has(key) && peeky.userData.get(key, "PublisherBadge") == false)  {
+        if  (!peeky.userData.has(key) && peeky.userData.get(key, "PublisherBadge"))  {
             peeky.userData.set(key, true, "PublisherBadge");
         };
  
@@ -4773,7 +4752,7 @@ if (CommandName.startsWith("upgrade"))  {
             peeky.serverData.set(keySF, true, "server_upgraded");
             peeky.userData.math(key, "+", 1, "UpgradedServers");
 
-            if  (peeky.userData.get(key, "UpgraderBadge") == false)  {
+            if  (!peeky.userData.get(key, "UpgraderBadge"))  {
                 peeky.userData.set(key, true, "UpgraderBadge");
                 InfoMessages.push(InfoMessage1[Language]);
             };
@@ -4947,6 +4926,11 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
       
         var TranslatedBonuses = [InfoIcon + " Created a role called **@X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **@X001** pro funkci **X002**."];
         var RoleCreation = TranslatedBonuses[Language];
+    };
+  
+    if  (!peeky.userData.get(key, "FunctionalBadge"))  {
+        peeky.userData.set(key, true, "FunctionalBadge");
+        InfoMessages.push(InfoMessage1[Language]);
     };
       
 //Toggle Automatic Reactions
@@ -5913,6 +5897,11 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
   
     var TranslatedMessages = [SuccessIcon + " The setting for the **X001** function is now **X002**.", SuccessIcon + " Nastavení pro funkci **X001** je nyní **X002**."];
     var TranslatedFullSetting = [ErrorIcon + " The setting for the **X001** function is full.", ErrorIcon + " Nastavení pro funcki **X001** je plné."];
+  
+    if  (!peeky.userData.get(key, "FunctionalBadge"))  {
+        peeky.userData.set(key, true, "FunctionalBadge");
+        InfoMessages.push(InfoMessage1[Language]);
+    };
       
 //Set Welcome Messages
 if  (FunctioName.startsWith("welcome messages "))  {
@@ -6525,14 +6514,14 @@ if  (CommandName.startsWith("buybackground"))  {
                             var CustomBackgroundAmount = 1;
                         } else {  var CustomBackgroundAmount = 0;  };
 
-                        if  (peeky.userData.get(key, "HorderBadge") == false && (peeky.userData.get(key, "Inventory").length + CustomBackgroundAmount) >= 10)  {
+                        if  (!peeky.userData.get(key, "HorderBadge") && (peeky.userData.get(key, "Inventory").length + CustomBackgroundAmount) >= 10)  {
 
                             InfoMessages.push(InfoMessage1[Language]);
                             peeky.userData.set(key, true, "HorderBadge");
 
                         };
 
-                        if  (peeky.userData.get(key, "MinerBadge") == false && i == 283)  {
+                        if  (!peeky.userData.get(key, "MinerBadge") && i == 283)  {
 
                             InfoMessages.push(InfoMessage1[Language]);
                             peeky.userData.set(key, true, "MinerBadge");
@@ -6600,7 +6589,7 @@ if (CommandName.startsWith("custombackground"))  {
 
                 if  (function_DetectLink(Thumbnail) == true)  {
 
-                    if  (peeky.userData.get(key, "PainterBadge") == false)  {
+                    if  (!peeky.userData.get(key, "PainterBadge"))  {
 
                         InfoMessages.push(InfoMessage1[Language]);
                         peeky.userData.set(key, true, "PainterBadge");
@@ -6650,7 +6639,7 @@ if (CommandName.startsWith("setbackground"))  {
               
                 var i = Number(i);
 
-                if  (peeky.userData.get(key, "FashionBadge") == false && i !== 1)  {
+                if  (!peeky.userData.get(key, "FashionBadge") && i !== 1)  {
 
                     InfoMessages.push(InfoMessage1[0]);
                     peeky.userData.set(key, true, "FashionBadge");    
@@ -6910,12 +6899,10 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
               CurrentChest ++;
 
               //Gambler Badge Progress
-              peeky.userData.math(key, "+", 1, "GamblerBadge");
 
-              if  (peeky.userData.get(key, "GamblerBadge") == 10)  {
-
+              if  (!peeky.userData.get(key, "GamblerBadge"))  {
+                  peeky.userData.set(key, true, "GamblerBadge");
                   InfoMessages.push(InfoMessage1[Language]);
-
               };
             
               //Background Drop
@@ -7058,7 +7045,7 @@ if (CommandName == "daily")  {
     if  (CountedVotes == 0)  {
         Footer = "You can get more rewards by typing \"" + Prefix + "help\" and voting for me!";
     } else {
-      if  (peeky.userData.get(key, "VoterBadge") == false)  {
+      if  (!peeky.userData.get(key, "VoterBadge"))  {
           peeky.userData.set(key, true, "VoterBadge");  
             InfoMessages.push("•" + " You have received a new [badge](https://peeky.glitch.me/badges.html).");
       };    
@@ -7106,7 +7093,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
           
         if  (peeky.userData.get(key, "Gredit") >= DonatedAmount)  {
 
-        if  (DonatedAmount >= 1000 && peeky.userData.get(key, "CharityBadge") == false)  {
+        if  (DonatedAmount >= 1000 && !peeky.userData.get(key, "CharityBadge"))  {
       
             peeky.userData.set(key, true, "CharityBadge");
             InfoMessages.push(InfoMessage1[Language]);
@@ -7467,7 +7454,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'image.png');
     await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
 
-    if  (peeky.userData.get(key2, "FashionBadge") == false)  {
+    if  (!peeky.userData.get(key2, "FashionBadge"))  {
         InfoMessages.push(InfoIcon + " Visit  the [Tutorials page](https://peeky.glitch.me/tutorials.html#backgrounds) for help with buying a background.");
     };    
 
@@ -7607,7 +7594,7 @@ if (CommandName.startsWith("play"))  {
 
                                     Listeners.forEach(id => {
 
-                                        if  (peeky.userData.has(id) && peeky.userData.get(id, "PartyBadge") == false)  {
+                                        if  (!peeky.userData.has(id) && peeky.userData.get(id, "PartyBadge"))  {
                                             peeky.userData.set(id, true, "PartyBadge");
                                         };
 
@@ -8157,7 +8144,7 @@ if (CommandName == "guessthesong")  {
                       var key = collected.first().author.id;
                         
                       //Gamer Badge
-                      if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
+                      if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
                           peeky.userData.set(key, true, "GamerBadge");
                           InfoMessages.push(InfoMessage1[Language]);
                       };
@@ -8223,7 +8210,7 @@ if (CommandName == "triviaquestions")  {
              var key = collected.first().author.id;
 
              //Gamer Badge
-             if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
+             if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
                  peeky.userData.set(key, true, "GamerBadge");
                  InfoMessages.push(InfoMessage1[Language]);
              };
@@ -8305,7 +8292,7 @@ if (CommandName == "drawandguess")  {
                 Active = false;
 
                  //Gamer Badge
-                 if  (peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge") == false)  {
+                 if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
                      peeky.userData.set(key, true, "GamerBadge");
                      InfoMessages.push(InfoMessage1[Language]);
                  };
