@@ -3270,7 +3270,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 
         };
       
-        } else {
+        };/* else {
           
           if  (!RoleCooldown.has(member.guild.id))  {
 
@@ -3286,8 +3286,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 
           };
           
-        };
-          
+        };*/
           
         });
       
@@ -8661,8 +8660,9 @@ if  (CommandName.startsWith("slowmode"))  {
             if  (isNaN(CommandArgument) == false && CommandArgument <= 21600)  {
 
                 message.channel.setRateLimitPerUser(CommandArgument, "Slowmode set by " + message.author.tag + ".").catch(error => ErrorBag.add(error));
-
-                const embed = {"description":  SuccessIcon + " I have set the slowmode to **" + CommandArgument + " seconds** at **" + function_RemoveFormatting(message.member.displayName, "other", true) + "**'s request.",  "color": EmbedColor}; 
+                  
+                var TranslatedMessages = [SuccessIcon + " I have set the slowmode to **X001 seconds** at **X002**'s request.", SuccessIcon + " Nastavil jsem pomalý režím na **X001 vteřin** na požádání od **X002**."];
+                const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             }
@@ -8711,7 +8711,6 @@ if  (CommandName.startsWith("purge"))  {
             if  (isNaN(CommandArgument) == false && CommandArgument > 0 && CommandArgument <= 100)  {
 
                     await message.delete().catch(error => ErrorBag.add(error));
-
                     message.channel.bulkDelete(CommandArgument, { reason: "Purged by " + message.author.tag + "." }).catch(error => {
                         const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -8912,8 +8911,9 @@ if  (CommandName.startsWith("muterole"))  {
                          color: Setting.Blurple
                        }
                    }).catch(error => ErrorBag.add(error));
-
-                   InfoMessages.push(InfoIcon + " Created a role called **" + CommandArgument + "**.");
+                  
+                   var TranslatedMessages = [InfoIcon + " Created a role called **X001**.", InfoIcon + " Vytvořil jsem roli s názvem **X001**."];
+                   InfoMessages.push(TranslatedMessages[Language].replace("X001", CommandArgument));
 
                    if  (message.guild.roles.find(role => role.name == CommandArgument) && message.guild.me.permissions.has("MANAGE_CHANNELS") && !RoleCooldown.has(message.guild.id + "muterole"))  {
                        
