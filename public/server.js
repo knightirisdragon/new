@@ -482,7 +482,7 @@ const Banners = [
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground262.png?1558103379729", 675, "Ashen", "Ashen", undefined, 0],
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground263.png?1558103382341", 525, "Roll out!", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground264.png?1558103383792", 725, "The Ghost", "Call of Duty Ghosts", undefined, 0],
-    ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground265.jpg?1558783572490", 200, "Gun Kid", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground265.jpg?v=1580181622898", 875, "Gordon Freedomfighter", "Half Life 2", undefined, 1580181630139],
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground266.jpg?1558783583054", 575, "Sleeping King", "Shrek", undefined, 0],
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground267.png?1558783596081", 425, "Gaming Pattern", "Discord", undefined, 0],
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground268.png?1558783610734", 375, "Afterthoughts", "Discord", undefined, 0],
@@ -668,7 +668,9 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground448.png?v=1580050899305", 925, "Geralt the witcher", "The Witcher movie", undefined, 1580050873747],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground449.png?v=1580050958140", 975, "Little mouse", "u/xanaxandcheese", undefined, 1580050927737],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground450.png?v=1580071007780", 900, "Landscapes", "Unknown", undefined, 1580070929915],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground451.png?v=1580071146303", 850, "Shieldwall", "Unknown", undefined, 1580071117394]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground451.png?v=1580071146303", 850, "Shieldwall", "Unknown", undefined, 1580071117394],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground452.png?v=1580181512170", 1000, "The city of dreams", "Cyberpunk 2077", undefined, 1580181526889],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground453.png?v=1580181513732", 950, "The battle for Azeroth", "Warcraft 3 Reforged", undefined, 1580181530480]
 
 ];
 
