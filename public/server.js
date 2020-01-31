@@ -8235,39 +8235,48 @@ if (CommandName == "triviaquestions")  {
 };
 
 //Hangman  
-if (CommandName == "triviaquestions")  {
+if (CommandName == "hangman")  {
 
     if  (!ActiveMinigames.has(message.guild.id))  {
 
-        var ChosenQuestion = Math.floor((Math.random() * TriviaQuestions.length));
-        var Answers = function_ShuffleArray(TriviaQuestions[ChosenQuestion].slice(1, 4));
+        var ChosenQuestion = Math.floor((Math.random() * RandomWords.length));
+        var Answer = RandomWords[ChosenQuestion];
+        var CensoredAnswer = "";
+        var GuessedLetters = [];
+        var HangmanLevels = [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+        ];
+
+        for (var i = 0; i < Answer.length; i++) {
+            CensoredAnswer = CensoredAnswer + "X";
+        };
 
         ActiveMinigames.add(message.guild.id);
-        setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 30000);
+        setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 60000);
       
-        const embed = {"description": "**" + TriviaQuestions[ChosenQuestion][0] + "**\n" + TriviaQuestions[ChosenQuestion][4] + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
+        const embed = {"description": "**Hangman**\n" + CensoredAnswer + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
         message.channel.send({ embed });
     
-        message.channel.awaitMessages(response => response.content.toLowerCase() == TriviaQuestions[ChosenQuestion][1][0].toLowerCase(), { max: 1, time: 30000, errors: ['time'] })
+        message.channel.awaitMessages(response => !GuessedLetters.includes(response.content.toLowerCase()), { max: Answer.length, maxProcessed: 11, time: 60000, errors: ['time'] })
         .then(collected => {
-             var key = collected.first().author.id;
-
-             //Gamer Badge
-             if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
-                 peeky.userData.set(key, true, "GamerBadge");
-                 InfoMessages.push(InfoMessage1[Language]);
-             };
-
-             if  (peeky.userData.has(key))  {
-                 peeky.userData.math(key, "+", 50, "Gredit");
-             };
-
-             const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-             message.channel.send({ embed });
+            var key = collected.first().author.id;
+            GuessedLetters.push(collected.first().content.toLowerCase());
+            
+            
         })
         .catch(collected => {
-              const embed = {"description": ErrorIcon + " The question's answer was **" + TriviaQuestions[ChosenQuestion][1][0] + "**.",  "color": EmbedColor}; 
-              message.channel.send({ embed });
+            const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
+            message.channel.send({ embed });
         });
 
       
