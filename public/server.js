@@ -8266,8 +8266,6 @@ if (CommandName == "hangman")  {
         };
       
         function Generate(message)  {
-          
-            console.log(Answer)
 
             if  (WrongLetters.length < HangmanLevels.length && CensoredAnswer !== Answer.toLowerCase())  {
 
@@ -8295,8 +8293,11 @@ if (CommandName == "hangman")  {
                     } else {
                       WrongLetters.push(letter);
                     };
+
+                    var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));                 
                   
-                    if  (WrongLetters.length >= HangmanLevels.length && CensoredAnswer == Answer.toLowerCase())  {
+                    if  (WrongLetters.length >= HangmanLevels.length - 1 || CensoredAnswer == Answer.toLowerCase())  {
                         if  (CensoredAnswer == Answer.toLowerCase())  {
                            const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(LastMember.displayName, "other", true) + "** has completed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                            message.channel.send({ embed });
@@ -8305,14 +8306,9 @@ if (CommandName == "hangman")  {
                           const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
                           message.channel.send({ embed });
                         };
-                      
+                    
                     } else {
-
-                      var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
-                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
                       Generate(message);
-                      
                     };
 
                 })
