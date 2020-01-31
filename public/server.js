@@ -8268,7 +8268,7 @@ if (CommandName == "hangman")  {
           
           console.log(Answer)
 
-          message.channel.awaitMessages(response => response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 1, time: 60000, errors: ['time'] })
+          message.channel.awaitMessages(response => !response.author.bot && response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 1, time: 60000, errors: ['time'] })
           .then(collected => {
 
               var key = collected.first().author.id;
@@ -8298,9 +8298,7 @@ if (CommandName == "hangman")  {
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                   Generate(message);
-                
-              } else {
-                
+        
               };
 
           })
