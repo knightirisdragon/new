@@ -8243,6 +8243,7 @@ if (CommandName == "hangman")  {
         var CensoredAnswer = "";
         var GuessedLetters = [];
         var WrongLetters = [];
+        var RightLetters = [];
         var HangmanLevels = [
             "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel0.png?v=1580464414092",
             "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel1.png?v=1580464415444",
@@ -8276,15 +8277,24 @@ if (CommandName == "hangman")  {
               if  (WrongLetters.length < 12 || CensoredAnswer == Answer.toLowerCase())  {
                 
                   GuessedLetters.push(collected.first().content.toLowerCase());
+                  RightLetters.push(letter);
 
                   if  (Answer.toLowerCase().includes(letter))  {
-                      var Temp = CensoredAnswer//.replace(new RegExp(find, "X"), "");
+                      var Temp = "";//.replace(new RegExp(find, "X"), "");
                       for (var i = 0; i < Answer.length; i++) {
+                        
+                          if  (RightLetters.includes(Answer.toLowerCase()[i]))  {
+                              Temp = Temp + Answer.toLowerCase()[i];
+                          } else {
+                            Temp = Temp + "X";
+                          };
+                        
+                          /*
                           if  (CensoredAnswer[i] == "X" && Answer.toLowerCase()[i] == letter)  {
                               Temp = Temp + letter;
                           } else {
                             Temp = Temp + "X";
-                          };
+                          };*/
                       };
                       CensoredAnswer = Temp;
                   } else {
