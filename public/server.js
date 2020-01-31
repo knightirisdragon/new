@@ -8262,7 +8262,7 @@ if (CommandName == "hangman")  {
         ];
 
         for (var i = 0; i < Answer.length; i++) {
-            CensoredAnswer = CensoredAnswer + "- ";
+            CensoredAnswer = CensoredAnswer + "-";
         };
       
         function Generate(message)  {
@@ -8286,7 +8286,7 @@ if (CommandName == "hangman")  {
                             if  (RightLetters.includes(Answer.toLowerCase()[i]))  {
                                 Temp = Temp + Answer.toLowerCase()[i];
                             } else {
-                              Temp = Temp + "- ";
+                              Temp = Temp + "-";
                             };
                         };
                         CensoredAnswer = Temp;
