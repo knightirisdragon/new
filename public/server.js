@@ -8244,6 +8244,7 @@ if (CommandName == "hangman")  {
         var GuessedLetters = [];
         var WrongLetters = [];
         var RightLetters = [];
+        var LastMember = message.member;
         var HangmanLevels = [
             "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel0.png?v=1580464414092",
             "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel1.png?v=1580464415444",
@@ -8273,8 +8274,9 @@ if (CommandName == "hangman")  {
                 message.channel.awaitMessages(response => !response.author.bot && response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 1, time: 60000, errors: ['time'] })
                 .then(collected => {
 
-                    var key = collected.first().author.id;
                     var letter = collected.first().content.toLowerCase();
+                  
+                    LastMember = collected.first().member;
 
                     GuessedLetters.push(collected.first().content.toLowerCase());
                     RightLetters.push(letter);
@@ -8293,11 +8295,25 @@ if (CommandName == "hangman")  {
                     } else {
                       WrongLetters.push(letter);
                     };
+                  
+                    if  (WrongLetters.length >= HangmanLevels.length && CensoredAnswer == Answer.toLowerCase())  {
+                        if  (CensoredAnswer == Answer.toLowerCase())  {
+                           const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(LastMember.displayName, "other", true) + "** has completed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                           message.channel.send({ embed });
 
-                    var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        } else {
+                          const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
+                          message.channel.send({ embed });
+                        };
+                      
+                    } else {
 
-                    Generate(message);
+                      var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                      Generate(message);
+                      
+                    };
 
                 })
                 .catch(collected => {
@@ -8305,8 +8321,6 @@ if (CommandName == "hangman")  {
                     message.channel.send({ embed });
                 });
               
-            } else {
-
             };
 
       };
