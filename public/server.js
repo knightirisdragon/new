@@ -8243,19 +8243,21 @@ if (CommandName == "hangman")  {
         var Answer = RandomWords[ChosenQuestion];
         var CensoredAnswer = "";
         var GuessedLetters = [];
+        var WrongLetters = [];
         var HangmanLevels = [
             "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel0.png?v=1580464414092",
             "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel1.png?v=1580464415444",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel2.png?v=1580464417011",
+            "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel3.png?v=1580464419122",
+            "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel4.png?v=1580464421007",
+            "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel5.png?v=1580464423125",
+            "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel6.png?v=1580464425032",
+            "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel7.png?v=1580464427313",
+            "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel8.png?v=1580464429259",
+            "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel9.png?v=1580464431763",
+            "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel10.png?v=1580464433957",
+            "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel11.png?v=1580464435591",
+            "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel12.png?v=1580464437719",
         ];
 
         for (var i = 0; i < Answer.length; i++) {
@@ -8265,14 +8267,24 @@ if (CommandName == "hangman")  {
         ActiveMinigames.add(message.guild.id);
         setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 60000);
       
-        const embed = {"description": "**Hangman**\n" + CensoredAnswer + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
+        const embed = {"description": "**Hangman**\n" + CensoredAnswer + "\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[GuessedLetters] },  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
     
-            message.channel.awaitMessages(response => !GuessedLetters.includes(response.content.toLowerCase()), { max: Answer.length, maxProcessed: HangmanLevels.length, time: 60000, errors: ['time'] })
+            message.channel.awaitMessages(response => response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: Answer.length, maxProcessed: HangmanLevels.length, time: 60000, errors: ['time'] })
             .then(collected => {
                 var key = collected.first().author.id;
+                var letter = collected.first().content.toLowerCase();
+              
                 GuessedLetters.push(collected.first().content.toLowerCase());
-
+              
+                if  (Answer.toLowerCase().includes(letter))  {
+                    
+                } else {
+                  
+                };
+              
+            const newEmbed = new Discord.MessageEmbed({ description: "**Hangman**\n" + CensoredAnswer + "\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[GuessedLetters] },  "color": EmbedColor });
+            m.edit("", newEmbed).catch(error => ErrorBag.add(error));
 
             })
             .catch(collected => {
