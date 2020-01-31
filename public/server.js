@@ -8263,12 +8263,10 @@ if (CommandName == "hangman")  {
             CensoredAnswer = CensoredAnswer + "X";
         };
       
-        function Generate()  {
+        function Generate(message)  {
 
           message.channel.awaitMessages(response => response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 1, time: 60000, errors: ['time'] })
           .then(collected => {
-
-              console.log("stupid fuckign shit work");
 
               var key = collected.first().author.id;
               var letter = collected.first().content.toLowerCase();
@@ -8276,13 +8274,15 @@ if (CommandName == "hangman")  {
               GuessedLetters.push(collected.first().content.toLowerCase());
 
               if  (Answer.toLowerCase().includes(letter))  {
-
+                  
               } else {
                 WrongLetters.push(letter);
               };
 
-              var Embed = { description: "**Hangman**\n" + CensoredAnswer + "\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
+              var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            
+              Generate(message);
 
           })
           .catch(collected => {
@@ -8295,7 +8295,9 @@ if (CommandName == "hangman")  {
         ActiveMinigames.add(message.guild.id);
         setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 60000);
       
-        var embed = {"description": "**Hangman**\n" + CensoredAnswer + "\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor}; 
+        Generate(message);
+
+        var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     } else {
