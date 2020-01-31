@@ -8264,6 +8264,8 @@ if (CommandName == "hangman")  {
         };
       
         function Generate(message)  {
+          
+          console.log(Answer)
 
           message.channel.awaitMessages(response => response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 1, time: 60000, errors: ['time'] })
           .then(collected => {
@@ -8271,18 +8273,28 @@ if (CommandName == "hangman")  {
               var key = collected.first().author.id;
               var letter = collected.first().content.toLowerCase();
 
-              GuessedLetters.push(collected.first().content.toLowerCase());
+              if  (WrongLetters.length < 12)  {
+                
+                  GuessedLetters.push(collected.first().content.toLowerCase());
 
-              if  (Answer.toLowerCase().includes(letter))  {
-                  
+                  if  (Answer.toLowerCase().includes(letter))  {
+                      for (var i = 0; i < Answer.length; i++) {
+                          if  (Answer[i].toLowerCase().includes(letter))  {
+                              CensoredAnswer = CensoredAnswer[i].replace("X", letter);
+                          };
+                      };
+                  } else {
+                    WrongLetters.push(letter);
+                  };
+
+                  var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                  Generate(message);
+                
               } else {
-                WrongLetters.push(letter);
+                
               };
-
-              var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            
-              Generate(message);
 
           })
           .catch(collected => {
