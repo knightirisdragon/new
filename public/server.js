@@ -8278,10 +8278,15 @@ if (CommandName == "hangman")  {
                   GuessedLetters.push(collected.first().content.toLowerCase());
 
                   if  (Answer.toLowerCase().includes(letter))  {
+                      var Temp = CensoredAnswer//.replace(new RegExp(find, "X"), "");
                       for (var i = 0; i < Answer.length; i++) {
-                          if  (Answer.toLowerCase()[i])
-                          CensoredAnswer = CensoredAnswer + "X";
+                          if  (CensoredAnswer[i] == "X" && Answer.toLowerCase()[i] == letter)  {
+                              Temp = Temp + letter;
+                          } else {
+                            Temp = Temp + "X";
+                          };
                       };
+                      CensoredAnswer = Temp;
                   } else {
                     WrongLetters.push(letter);
                   };
