@@ -6021,7 +6021,7 @@ if  (FunctioName.startsWith("event countdown "))  {
 
     peeky.serverData.set(keySF, GivenDate.getTime(), "event_countdown_bonus_setting");
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", "" + peeky.serverData.get(keySF, "event_countdown_bonus_setting")),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", "" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting"))),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
