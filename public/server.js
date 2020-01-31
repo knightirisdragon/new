@@ -8273,15 +8273,14 @@ if (CommandName == "hangman")  {
               var key = collected.first().author.id;
               var letter = collected.first().content.toLowerCase();
 
-              if  (WrongLetters.length < 12)  {
+              if  (WrongLetters.length < 12 || CensoredAnswer == Answer.toLowerCase())  {
                 
                   GuessedLetters.push(collected.first().content.toLowerCase());
 
                   if  (Answer.toLowerCase().includes(letter))  {
                       for (var i = 0; i < Answer.length; i++) {
-                          if  (Answer[i].toLowerCase().includes(letter))  {
-                              CensoredAnswer = CensoredAnswer[i].replace("X", letter);
-                          };
+                          if  (Answer.toLowerCase()[i])
+                          CensoredAnswer = CensoredAnswer + "X";
                       };
                   } else {
                     WrongLetters.push(letter);
