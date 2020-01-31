@@ -8225,7 +8225,6 @@ if (CommandName == "triviaquestions")  {
               const embed = {"description": ErrorIcon + " The question's answer was **" + TriviaQuestions[ChosenQuestion][1][0] + "**.",  "color": EmbedColor}; 
               message.channel.send({ embed });
         });
-
       
     } else {
       const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
@@ -8263,39 +8262,41 @@ if (CommandName == "hangman")  {
         for (var i = 0; i < Answer.length; i++) {
             CensoredAnswer = CensoredAnswer + "X";
         };
+      
+        function Generate()  {
+
+          message.channel.awaitMessages(response => response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 1, time: 60000, errors: ['time'] })
+          .then(collected => {
+
+              console.log("stupid fuckign shit work");
+
+              var key = collected.first().author.id;
+              var letter = collected.first().content.toLowerCase();
+
+              GuessedLetters.push(collected.first().content.toLowerCase());
+
+              if  (Answer.toLowerCase().includes(letter))  {
+
+              } else {
+                WrongLetters.push(letter);
+              };
+
+              var Embed = { description: "**Hangman**\n" + CensoredAnswer + "\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+          })
+          .catch(collected => {
+              const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
+              message.channel.send({ embed });
+          });
+
+        };
 
         ActiveMinigames.add(message.guild.id);
         setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 60000);
       
         var embed = {"description": "**Hangman**\n" + CensoredAnswer + "\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      
-        console.log(Answer)
-    
-        message.channel.awaitMessages(response => !response.author.bot && response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 100, time: 60000, errors: ['time'] })
-        .then(collected => {
-
-            var key = collected.first().author.id;
-            var letter = collected.first().content.toLowerCase();
-
-            console.log(letter);
-
-            GuessedLetters.push(collected.first().content.toLowerCase());
-
-            if  (Answer.toLowerCase().includes(letter))  {
-
-            } else {
-              WrongLetters.push(letter);
-            };
-
-        var Embed = { description: "**Hangman**\n" + CensoredAnswer + "\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-        })
-        .catch(collected => {
-            const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
-            message.channel.send({ embed });
-        });
 
     } else {
       const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
