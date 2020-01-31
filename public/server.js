@@ -1666,9 +1666,9 @@ peeky.on('ready', () => {
         var GuildSize = peeky.guilds.size;
       
         //Set user info
-        peeky.user.setAvatar(RandomAvatars[Math.floor(Math.random()*RandomAvatars.length)]).catch(error => ErrorBag.add(error));
         peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
-        console.log("Updated PEEKY's avatar.");
+        /*peeky.user.setAvatar(RandomAvatars[Math.floor(Math.random()*RandomAvatars.length)]).catch(error => ErrorBag.add(error));
+        console.log("Updated PEEKY's avatar.");*/
 
         //Post Server Counts - DDBL
         ddbl.postStats(GuildSize).catch(err => {console.log("Failed to post the server count to DDBL."); ErrorBag.add(err)});
@@ -8149,7 +8149,7 @@ if (CommandName == "guessthesong")  {
                       };
                       
                       if  (peeky.userData.has(key))  {
-                          peeky.userData.math(key, "+", 100, "Gredit");
+                          peeky.userData.math(key, "+", 100, "Exp");
                       };
                       
                       const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has guessed the song's name!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
@@ -8215,7 +8215,7 @@ if (CommandName == "triviaquestions")  {
              };
 
              if  (peeky.userData.has(key))  {
-                 peeky.userData.math(key, "+", 50, "Gredit");
+                 peeky.userData.math(key, "+", 50, "Exp");
              };
 
              const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
@@ -8266,7 +8266,9 @@ if (CommandName == "hangman")  {
       
         function Generate(message)  {
           
-          console.log(Answer)
+          console.log(CensoredAnswer);
+          console.log(Answer.toLowerCase());
+          console.log(CensoredAnswer == Answer.toLowerCase());
 
           message.channel.awaitMessages(response => response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 1, time: 60000, errors: ['time'] })
           .then(collected => {
@@ -8274,33 +8276,50 @@ if (CommandName == "hangman")  {
               var key = collected.first().author.id;
               var letter = collected.first().content.toLowerCase();
 
-              if  (WrongLetters.length < 12 || CensoredAnswer == Answer.toLowerCase())  {
+              if  (Answer.toLowerCase().includes(letter))  {
+                  var Temp = "";
+                  for (var i = 0; i < Answer.length; i++) {
+                      if  (RightLetters.includes(Answer.toLowerCase()[i]))  {
+                          Temp = Temp + Answer.toLowerCase()[i];
+                      } else {
+                        Temp = Temp + "X";
+                      };
+                  };
+                  CensoredAnswer = Temp;
+              } else {
+                WrongLetters.push(letter);
+              };
+            
+              if  (WrongLetters.length < 12 && CensoredAnswer !== Answer.toLowerCase())  {
                 
                   GuessedLetters.push(collected.first().content.toLowerCase());
                   RightLetters.push(letter);
-
-                  if  (Answer.toLowerCase().includes(letter))  {
-                      var Temp = "";
-                      for (var i = 0; i < Answer.length; i++) {
-                        
-                          if  (RightLetters.includes(Answer.toLowerCase()[i]))  {
-                              Temp = Temp + Answer.toLowerCase()[i];
-                          } else {
-                            Temp = Temp + "X";
-                          };
-                      };
-                      CensoredAnswer = Temp;
-                  } else {
-                    WrongLetters.push(letter);
-                  };
+                
+                  Generate(message);
 
                   var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-                  Generate(message);
                 
               } else {
-                
+                if  (CensoredAnswer == Answer.toLowerCase())  {
+
+                   //Gamer Badge
+                   if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
+                       peeky.userData.set(key, true, "GamerBadge");
+                       InfoMessages.push(InfoMessage1[Language]);
+                   };
+                  
+                   if  (peeky.userData.has(key))  {
+                       peeky.userData.math(key, "+", 250, "Exp");
+                   };
+
+                   const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has completed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                   message.channel.send({ embed });
+                  
+                } else {
+                  const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
+                  message.channel.send({ embed });
+                };
               };
 
           })
@@ -8389,7 +8408,7 @@ if (CommandName == "drawandguess")  {
                  };
 
                  if  (peeky.userData.has(key))  {
-                     peeky.userData.math(key, "+", 250, "Gredit");
+                     peeky.userData.math(key, "+", 250, "Exp");
                  };
 
                  const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has guessed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
