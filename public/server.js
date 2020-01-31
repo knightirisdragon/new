@@ -8266,9 +8266,7 @@ if (CommandName == "hangman")  {
       
         function Generate(message)  {
           
-          console.log(CensoredAnswer);
-          console.log(Answer.toLowerCase());
-          console.log(CensoredAnswer == Answer.toLowerCase());
+          console.log(Answer)
 
           message.channel.awaitMessages(response => response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 1, time: 60000, errors: ['time'] })
           .then(collected => {
@@ -8276,50 +8274,33 @@ if (CommandName == "hangman")  {
               var key = collected.first().author.id;
               var letter = collected.first().content.toLowerCase();
 
-              if  (Answer.toLowerCase().includes(letter))  {
-                  var Temp = "";
-                  for (var i = 0; i < Answer.length; i++) {
-                      if  (RightLetters.includes(Answer.toLowerCase()[i]))  {
-                          Temp = Temp + Answer.toLowerCase()[i];
-                      } else {
-                        Temp = Temp + "X";
-                      };
-                  };
-                  CensoredAnswer = Temp;
-              } else {
-                WrongLetters.push(letter);
-              };
-            
-              if  (WrongLetters.length < 12 && CensoredAnswer !== Answer.toLowerCase())  {
+              if  (WrongLetters.length < HangmanLevels.length && CensoredAnswer == Answer.toLowerCase())  {
                 
                   GuessedLetters.push(collected.first().content.toLowerCase());
                   RightLetters.push(letter);
-                
-                  Generate(message);
+
+                  if  (Answer.toLowerCase().includes(letter))  {
+                      var Temp = "";
+                      for (var i = 0; i < Answer.length; i++) {
+                        
+                          if  (RightLetters.includes(Answer.toLowerCase()[i]))  {
+                              Temp = Temp + Answer.toLowerCase()[i];
+                          } else {
+                            Temp = Temp + "X";
+                          };
+                      };
+                      CensoredAnswer = Temp;
+                  } else {
+                    WrongLetters.push(letter);
+                  };
 
                   var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                  Generate(message);
                 
               } else {
-                if  (CensoredAnswer == Answer.toLowerCase())  {
-
-                   //Gamer Badge
-                   if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
-                       peeky.userData.set(key, true, "GamerBadge");
-                       InfoMessages.push(InfoMessage1[Language]);
-                   };
-                  
-                   if  (peeky.userData.has(key))  {
-                       peeky.userData.math(key, "+", 250, "Exp");
-                   };
-
-                   const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has completed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                   message.channel.send({ embed });
-                  
-                } else {
-                  const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
-                  message.channel.send({ embed });
-                };
+                
               };
 
           })
