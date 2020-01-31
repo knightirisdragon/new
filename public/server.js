@@ -8244,7 +8244,8 @@ if (CommandName == "hangman")  {
         var CensoredAnswer = "";
         var GuessedLetters = [];
         var HangmanLevels = [
-            "",
+            "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel0.png?v=1580464414092",
+            "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel1.png?v=1580464415444",
             "",
             "",
             "",
@@ -8265,21 +8266,22 @@ if (CommandName == "hangman")  {
         setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 60000);
       
         const embed = {"description": "**Hangman**\n" + CensoredAnswer + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
-        message.channel.send({ embed });
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
     
-        message.channel.awaitMessages(response => !GuessedLetters.includes(response.content.toLowerCase()), { max: Answer.length, maxProcessed: 11, time: 60000, errors: ['time'] })
-        .then(collected => {
-            var key = collected.first().author.id;
-            GuessedLetters.push(collected.first().content.toLowerCase());
-            
-            
-        })
-        .catch(collected => {
-            const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
-            message.channel.send({ embed });
+            message.channel.awaitMessages(response => !GuessedLetters.includes(response.content.toLowerCase()), { max: Answer.length, maxProcessed: HangmanLevels.length, time: 60000, errors: ['time'] })
+            .then(collected => {
+                var key = collected.first().author.id;
+                GuessedLetters.push(collected.first().content.toLowerCase());
+
+
+            })
+            .catch(collected => {
+                const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
+                message.channel.send({ embed });
+            });
+          
         });
 
-      
     } else {
       const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
