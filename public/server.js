@@ -8280,7 +8280,7 @@ if (CommandName == "hangman")  {
                   RightLetters.push(letter);
 
                   if  (Answer.toLowerCase().includes(letter))  {
-                      var Temp = "";//.replace(new RegExp(find, "X"), "");
+                      var Temp = "";
                       for (var i = 0; i < Answer.length; i++) {
                         
                           if  (RightLetters.includes(Answer.toLowerCase()[i]))  {
@@ -8288,13 +8288,6 @@ if (CommandName == "hangman")  {
                           } else {
                             Temp = Temp + "X";
                           };
-                        
-                          /*
-                          if  (CensoredAnswer[i] == "X" && Answer.toLowerCase()[i] == letter)  {
-                              Temp = Temp + letter;
-                          } else {
-                            Temp = Temp + "X";
-                          };*/
                       };
                       CensoredAnswer = Temp;
                   } else {
