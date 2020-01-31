@@ -8262,7 +8262,7 @@ if (CommandName == "hangman")  {
         ];
 
         for (var i = 0; i < Answer.length; i++) {
-            CensoredAnswer = CensoredAnswer + "X";
+            CensoredAnswer = CensoredAnswer + "- ";
         };
       
         function Generate(message)  {
@@ -8286,7 +8286,7 @@ if (CommandName == "hangman")  {
                             if  (RightLetters.includes(Answer.toLowerCase()[i]))  {
                                 Temp = Temp + Answer.toLowerCase()[i];
                             } else {
-                              Temp = Temp + "X";
+                              Temp = Temp + "- ";
                             };
                         };
                         CensoredAnswer = Temp;
@@ -8294,7 +8294,7 @@ if (CommandName == "hangman")  {
                       WrongLetters.push(letter);
                     };
 
-                    var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
+                    var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "image": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));                 
                   
                     if  (WrongLetters.length >= HangmanLevels.length - 1 || CensoredAnswer == Answer.toLowerCase())  {
