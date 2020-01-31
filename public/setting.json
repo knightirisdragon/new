@@ -2,13 +2,17 @@
   "Description": "PEEKY is a free and reliable multipurpose bot with frequent updates   and lots of unique features.",
   "ShortDescription": "PEEKY is a free and reliable multipurpose bot.",
   "Summary": "Functions, Music, Economy, Moderation, Minigames and much more!",
+  "Message": "",
   
   "DefaultPrefix": "p!",
   "MaxServers": 100,
   
-  "Announcement": "",
   "EventName": "Movie Night: Witcher 1-2",
   "EventStatus": false,
+  "EventBackground": 0,
+  "EventChests": 0,
+  "EventGredit": 0,
+  "EventExp": 0,  
   
   "CustomBackgroundPrice": 1000,
   "SellMultiplier": 2.5,

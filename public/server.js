@@ -1122,7 +1122,7 @@ function function_ServerData(key)  {
 
         peeky.serverData.ensure(key , {
             GuildID: key,
-            lastSeen: Date.now(),
+            lastSeen: new Date(),
             server_upgraded: false,
             server_invite: "no_invite",
             prefix: Setting.DefaultPrefix,
@@ -1169,7 +1169,7 @@ function function_ServerData(key)  {
             spoiler_only_bonus: false,
             spoiler_lock_bonus_setting: 0,
             event_countdown_bonus: false,
-            event_countdown_bonus_setting: 0,
+            event_countdown_bonus_setting: new Date(),
             event_countdown_bonus_id: 0,
             vote_kick_bonus_bonus: false,
             vote_kick_bonus_setting: 10,
@@ -1260,12 +1260,12 @@ function function_UpdateBans()  {
 function function_UpdateAutowipe(key, type)  {
 
     if  (type == "server")  {
-        peeky.serverData.set(key, Date.now(), 'lastSeen');
+        peeky.serverData.set(key, new Date(), 'lastSeen');
         console.log("Updated autowipe for " + key + ".");
     };
 
     if  (type == "user")  {
-        peeky.userData.set(key, Date.now(), 'lastSeen');
+        peeky.userData.set(key, new Date(), 'lastSeen');
         console.log("Updated autowipe for " + key + ".");
     };
   
@@ -2024,7 +2024,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
     WebsiteCooldowns.add("autowipe");
     setTimeout(() => {WebsiteCooldowns.delete("autowipe")}, 3600000);
   
-    const rightNow = Date.now();
+    const rightNow = new Date();
   
     //Guilds
     var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen);
@@ -2203,7 +2203,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
             Price = background_info[1] + " Gredit";
           };
 
-          if  (Date.now() - background_info[5] < DayMs)  {
+          if  (new Date() - background_info[5] < DayMs)  {
               NewString = " <font color='lightgreen'>New</font>";
           };
       
@@ -2263,7 +2263,7 @@ if  (!WebsiteCooldowns.has("messageheader"))  {
     if  (Setting.EventStatus == true)  {
         Message = '<b class="messageheader">You can currently participate in the ' + Setting.EventName + ' event!</b>';  
     }
-    else if  (Setting.Announcement !== "")  {
+    else if  (Setting.Message !== "")  {
         Message = '<b class="messageheader">' + Setting.Announcement + ' </b>';  
     };
 
@@ -3322,7 +3322,7 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
 
         const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted and will be added shortly!",  "color": EmbedColor}; 
         function_DirectMessage(reaction.message.author.id, { embed });
-        function_DirectMessage(OwnerId, '[NoBackground, ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ', ' + Date.now() + ']');
+        function_DirectMessage(OwnerId, '[NoBackground, ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ', ' + new Date() + ']');
       
     };
   
@@ -3506,7 +3506,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "3️⃣")  {
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Event Countdown** " + EC + "\n" + "`" + peeky.serverData.get(keySF, "event_countdown_bonus_setting") + "`" + "\n\n" +
+                  description:  "**Event Countdown** " + EC + "\n" + "`" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting")) + "`" + "\n\n" +
                                 "**Reddit Posts** " + RP + "\n" + "`r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "`" + "\n\n" +
                                 "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
                                 "**Reaction Roles** " + RR + "\n" + "`" + RRArray + "`" + "\n\n" +
@@ -4370,7 +4370,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
             const LastMsgContent = peeky.channelData.get(keyCF, "flood_protection_bonus_lastmsg");
             const LastMsgUser    = peeky.channelData.get(keyCF, "flood_protection_bonus_lastuser");
             const LastMsgDate    = peeky.channelData.get(keyCF, "flood_protection_bonus_lastdate");
-            const ThisMsgDate    = Date.now();
+            const ThisMsgDate    = new Date();
 
             if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent) || (isNaN(message.content) && message.content.toUpperCase() == message.content))  {
 
@@ -4412,7 +4412,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
             };
 
-            peeky.channelData.set(keyCF, Date.now(), "flood_protection_bonus_lastdate");
+            peeky.channelData.set(keyCF, new Date(), "flood_protection_bonus_lastdate");
             peeky.channelData.set(keyCF, message.author.id, "flood_protection_bonus_lastuser");
 
             if  (message.content == "")  {
@@ -4696,16 +4696,17 @@ if (CommandName == "eventrewards")  {
             peeky.userData.get(key, "ParticipatedEvents").push(Setting.EventName);
           
             //Setting
-            var Background = 437;
-            var Chests     = 25;
-            var Gredit     = 0;
+            var Background = Setting.EventBackground;
+            var Chests     = Setting.EventChests;
+            var Gredit     = Setting.EventGredit;
+            var Exp        = Setting.EventExp;
           
             if  (Setting.EventName.includes("PEEKY's Birthday") || Setting.EventName.includes("Christmas"))  {
                 InfoMessages.push("•" + " The **Celebrator** badge.");
                 peeky.userData.set(key, true, "CelebratorBadge");
             };
           
-            if  (Setting.EventName.includes("Movie Nighter"))  {
+            if  (Setting.EventName.includes("Movie Night"))  {
                 InfoMessages.push("•" + " The **Movie Nighter** badge.");
                 peeky.userData.set(key, true, "MovieNighterBadge");
             };
@@ -6970,9 +6971,9 @@ if (CommandName == "daily")  {
     let lastDaily    = peeky.userData.get(key, "DailyRewarded");
     var CountedVotes = 0;
 
-    if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
+    if (lastDaily !== null && cooldown - (new Date() - lastDaily) > 0) {
       
-    let timeObj = ms(cooldown - (Date.now() - lastDaily));
+    let timeObj = ms(cooldown - (new Date() - lastDaily));
   
     var TranslatedMessages = [InfoIcon + " Come back in **X001** and **X002** for your reward.", InfoIcon + " Vraťte se za **X001** a **X002** pro vaši odměnu."];
     var embed = {"description": TranslatedMessages[Language].replace("X001", timeObj.hours + "h").replace("X002", timeObj.minutes + "m"),  "color": EmbedColor};
@@ -6980,7 +6981,7 @@ if (CommandName == "daily")  {
       
     } else {
       
-    peeky.userData.set(key, Date.now(), "DailyRewarded");
+    peeky.userData.set(key, new Date(), "DailyRewarded");
       
     var Rewards = [[GreditIcon, 250, "Gredit"], [ChestIcon, 1, "Chests"], ["Exp", 1000, "Exp"]];
     var Index = Math.floor((Math.random() * Rewards.length));
