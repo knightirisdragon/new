@@ -8267,31 +8267,34 @@ if (CommandName == "hangman")  {
         ActiveMinigames.add(message.guild.id);
         setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 60000);
       
-        const embed = {"description": "**Hangman**\n" + CensoredAnswer + "\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[GuessedLetters] },  "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
+        var embed = {"description": "**Hangman**\n" + CensoredAnswer + "\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      
+        console.log(Answer)
     
-            message.channel.awaitMessages(response => response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: Answer.length, maxProcessed: HangmanLevels.length, time: 60000, errors: ['time'] })
-            .then(collected => {
-                var key = collected.first().author.id;
-                var letter = collected.first().content.toLowerCase();
-              
-                GuessedLetters.push(collected.first().content.toLowerCase());
-              
-                if  (Answer.toLowerCase().includes(letter))  {
-                    
-                } else {
-                  
-                };
-              
-            const newEmbed = new Discord.MessageEmbed({ description: "**Hangman**\n" + CensoredAnswer + "\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[GuessedLetters] },  "color": EmbedColor });
-            m.edit("", newEmbed).catch(error => ErrorBag.add(error));
+        message.channel.awaitMessages(response => !response.author.bot && response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 100, time: 60000, errors: ['time'] })
+        .then(collected => {
 
-            })
-            .catch(collected => {
-                const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
-                message.channel.send({ embed });
-            });
-          
+            var key = collected.first().author.id;
+            var letter = collected.first().content.toLowerCase();
+
+            console.log(letter);
+
+            GuessedLetters.push(collected.first().content.toLowerCase());
+
+            if  (Answer.toLowerCase().includes(letter))  {
+
+            } else {
+              WrongLetters.push(letter);
+            };
+
+        var Embed = { description: "**Hangman**\n" + CensoredAnswer + "\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+        })
+        .catch(collected => {
+            const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
+            message.channel.send({ embed });
         });
 
     } else {
@@ -8337,7 +8340,7 @@ if (CommandName == "drawandguess")  {
                         if  (i == 0)  {
                             Hint = Hint + " " + RandomWords[ChosenQuestion][i] + " ";   
                         }
-                         else  
+                         else
                         {
                          Hint = Hint + " - ";   
                         };
