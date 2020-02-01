@@ -2607,7 +2607,7 @@ const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
 //Server Message
 if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user.bot)  {
       
-    const embed = {"description": peeky.serverData.get(keySF, "server_message_bonus_setting").replace(GuildNameTag, function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym),  "footer":  {"text": "This message's content was not created by PEEKY."},  "color": EmbedColor}; 
+    const embed = {"description": peeky.serverData.get(keySF, "server_message_bonus_setting").replace(GuildNameTag, function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym),  "footer":  {"text": "This message's content was set by the server's staff."},  "color": EmbedColor}; 
     function_DirectMessage(member.user.id, { embed });
 
 };
@@ -3889,7 +3889,7 @@ if  (message.channel.type == "dm")  {
 
             QueuedSOSMessages.add(message.author.id);
 
-            const embed = {"description": "**Do you want to send your message to PEEKY's owner?**\nType `Accept` in under 30 seconds if you do.",  "color": EmbedColor}; 
+            const embed = {"description": "**Do you want to send your message to PEEKY's owner?**\nType `accept` in under 30 seconds if you do.",  "color": EmbedColor}; 
             function_DirectMessage(message.author.id, { embed });
 
             message.channel.awaitMessages(response => response.content.toLowerCase() == "accept", {
@@ -3901,15 +3901,15 @@ if  (message.channel.type == "dm")  {
                 QueuedSOSMessages.delete(message.author.id);
 
                 if  (message.attachments.size > 0) {
-                    const image = message.attachments.array()[0].url;
-                    function_DirectMessage(OwnerId, "**" + function_RemoveFormatting(message.author.tag, "other", true) + ":** " + message.content, {  files: [image]});
-                }
-                 else
-                {
-                    function_DirectMessage(OwnerId, "**" + function_RemoveFormatting(message.author.tag, "other", true) + ":** " + message.content);
+                    var image = message.attachments.array()[0].url;
+                    var embed = {"description": "**" + function_RemoveFormatting(message.author.tag, "other", true) + ":** " + message.content, "footer": { "text": message.author.id }, image: { "url": image }, "color": EmbedColor};
+                    function_DirectMessage(OwnerId, { embed });
+                } else {
+                  var embed = {"description": "**" + function_RemoveFormatting(message.author.tag, "other", true) + ":** " + message.content, "footer": { "text": message.author.id }, "color": EmbedColor};
+                  function_DirectMessage(OwnerId, { embed });
                 };
 
-                const embed = {"description": SuccessIcon + " Your message has been successfuly sent to my owner!",  "color": EmbedColor}; 
+                var embed = {"description": SuccessIcon + " Your message has been successfuly sent to my owner!",  "color": EmbedColor}; 
                 function_DirectMessage(message.author.id, { embed });
 
             }).catch(() => {
@@ -4680,42 +4680,7 @@ if  (CommandName.startsWith("commandtemplate"))  {
 */
 
 //Eval
-if  (CommandName.startsWith("eval "))  {
-    
-    if   (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole)) {
-
-            function clean(text) {
-            if (typeof(text) === "string")
-            return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-            else
-            return text;
-            };
-
-            var EvalResult = CommandName.split("eval ")[1]
-
-            try {
-            const code = EvalResult;
-            let evaled = eval(code);
-
-            if (typeof evaled !== "string")
-                evaled = require("util").inspect(evaled);
-
-            message.channel.send(clean(evaled), {code:"xl"});
-            } catch (err) {
-            message.channel.send(`\`Error Detected\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-            };
-
-    }
-    else
-    {
-    const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-
-};
-
-//Eval
-if  (CommandName.startsWith("message"))  {
+if  (CommandName.startsWith("eval"))  {
   
     var CommandArgument = CommandName.split("eval")[1];
   
@@ -4723,7 +4688,7 @@ if  (CommandName.startsWith("message"))  {
   
         CommandArgument = CommandArgument.replace(" ", "");
       
-        if   (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {
+        if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {
 
             function clean(text) {
             if  (typeof(text) === "string")
@@ -4746,6 +4711,41 @@ if  (CommandName.startsWith("message"))  {
             message.channel.send(`\`Error Detected\` \`\`\`xl\n${clean(err)}\n\`\`\``);
             };
 
+        } else {
+          const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+    }
+     else if (CommandArgument == "")
+    {
+     const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+
+//Message
+if  (CommandName.startsWith("message"))  {
+  
+    var CommandArgument = CommandName.split("message")[1];
+  
+    if  (CommandArgument.startsWith(" "))  {
+  
+        CommandArgument = CommandArgument.replace(" ", "");
+      
+        if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {
+          
+            var user = peeky.users.get(CommandArgument);
+          
+            if  (user)  {
+                var embed = {"description": "**" + message.author.tag + ":** " + CommandArgument, "footer": { "text": "This message was manually sent by someone from PEEKY's staff." }, "color": EmbedColor};
+                function_DirectMessage(user.id, { embed });
+              
+                var embed = {"description": SuccessIcon + " I have sent a message to the user.",  "color": EmbedColor};
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };            
+            
         } else {
           const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
