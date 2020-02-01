@@ -4324,16 +4324,24 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
         if  (peeky.serverData.get(keySF, "event_countdown_bonus_setting") > 0 && TheDate > 0)  {
 
             var Time = peeky.serverData.get(keySF, "event_countdown_bonus_setting");
-            var FixedTime = function_TimeLeft(Time, "hours", null);
-            var LengthName = "hours";
+          
+            var FixedTime = function_TimeLeft(Time, "minutes", null);
+            var LengthName = "minutes";
+          
+            if  (FixedTime > 60)  {  
+              
+                var FixedTime = function_TimeLeft(Time, "hours", null);
+                var LengthName = "hours";
 
-            if  (FixedTime > 24)  {
-                FixedTime = function_TimeLeft(Time, "days", null); LengthName = "days";
+                if  (FixedTime > 24)  {
+                    FixedTime = function_TimeLeft(Time, "days", null); LengthName = "days";
 
-                if  (FixedTime >= 365)  {
-                    FixedTime = "over"; LengthName = "a year";
+                    if  (FixedTime >= 365)  {
+                        FixedTime = "over"; LengthName = "a year";
+                    };
+
                 };
-
+              
             };
           
             var FinalName = "Starting in " + FixedTime.toLocaleString('en') + " " + LengthName;
@@ -4651,6 +4659,26 @@ const InfoMessages = [];
 function_UpdateAutowipe(key, "user");
 function_UpdateAutowipe(keySF, "server");
 
+/*
+//Command Template
+if  (CommandName.startsWith("commandtemplate"))  {
+  
+    var CommandArgument = CommandName.split("commandtemplate")[1];
+  
+    if  (CommandArgument.startsWith(" "))  {
+  
+        CommandArgument = CommandArgument.replace(" ", "");        
+
+    }
+     else if (CommandArgument == "")
+    {
+     const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+*/
+
 //Eval
 if  (CommandName.startsWith("eval "))  {
     
@@ -4682,6 +4710,52 @@ if  (CommandName.startsWith("eval "))  {
     {
     const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+
+//Eval
+if  (CommandName.startsWith("message"))  {
+  
+    var CommandArgument = CommandName.split("eval")[1];
+  
+    if  (CommandArgument.startsWith(" "))  {
+  
+        CommandArgument = CommandArgument.replace(" ", "");
+      
+        if   (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {
+
+            function clean(text) {
+            if  (typeof(text) === "string")
+                return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+            else
+                return text;
+            };
+
+            var EvalResult = CommandArgument;
+
+            try {
+            const code = EvalResult;
+            let evaled = eval(code);
+
+            if (typeof evaled !== "string")
+                evaled = require("util").inspect(evaled);
+
+            message.channel.send(clean(evaled), {code:"xl"});
+            } catch (err) {
+            message.channel.send(`\`Error Detected\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+            };
+
+        } else {
+          const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+    }
+     else if (CommandArgument == "")
+    {
+     const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 };
