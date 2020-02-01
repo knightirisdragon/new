@@ -15,7 +15,7 @@
   "EventExp": 0,  
   
   "CustomBackgroundPrice": 1000,
-  "SellMultiplier": 2.5,
+  "SellMultiplier": 1,
   "ExpNeeded": 125,  
   "MinReviewLength": 100,
   
