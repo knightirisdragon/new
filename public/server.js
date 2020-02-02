@@ -8141,7 +8141,7 @@ if (CommandName == "stop")  {
 //Loop
 if (CommandName == "loop")  {
       
-    if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
+    //if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
       
         if  (message.member.voice.channel)  {
       
@@ -8176,10 +8176,10 @@ if (CommandName == "loop")  {
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
-    } else {
+    /*} else {
       const embed = {"description": ErrorMessage21[Language],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
+    };*/
 
 };
 
