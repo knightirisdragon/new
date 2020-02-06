@@ -670,7 +670,10 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground450.png?v=1580071007780", 900, "Landscapes", "Unknown", undefined, 1580070929915],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground451.png?v=1580071146303", 850, "Shieldwall", "Unknown", undefined, 1580071117394],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground452.png?v=1580181512170", 1000, "The city of dreams", "Cyberpunk 2077", undefined, 1580181526889],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground453.png?v=1580181513732", 950, "The battle for Azeroth", "Warcraft 3 Reforged", undefined, 1580181530480]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground453.png?v=1580181513732", 950, "The battle for Azeroth", "Warcraft 3 Reforged", undefined, 1580181530480],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground454.png?v=1581024166624", 925, "Gone hunting", "u/cubanxdante", undefined, 1581024112050],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground455.png?v=1581024196335", 525, "Memories", "JoJo's Bizarre Adventure Stardust Crusaders", undefined, 1581024152043],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground456.png?v=1581024249725", 875, "Kali", "Rainbow six siege", undefined, 1581024210419]
 
 ];
 
@@ -1744,7 +1747,7 @@ peeky.on('message', async (message) => {
         UserID: message.author.id,
         OverviewID: null,
         LanguageID: null,
-        lastSeen: new Date(),
+        lastSeen: Date.now,
 
         Background: 1,
         Description: function_RandomDescription(),
@@ -2219,7 +2222,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
             Price = background_info[1] + " Gredit";
           };
 
-          if  (new Date() - background_info[5] < DayMs)  {
+          if  (Date.now() - background_info[5] < DayMs)  {
               NewString = " <font color='lightgreen'>New</font>";
           };
       
@@ -3338,7 +3341,7 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
 
         const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted and will be added shortly!",  "color": EmbedColor}; 
         function_DirectMessage(reaction.message.author.id, { embed });
-        function_DirectMessage(OwnerId, '[NoBackground, ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ', ' + new Date() + ']');
+        function_DirectMessage(OwnerId, '[NoBackground, ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ', ' + Date.now() + ']');
       
     };
   
@@ -4334,7 +4337,7 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
             EventCountdownCooldown.add(message.guild.id);
             setTimeout(() => {EventCountdownCooldown.delete(message.guild.id)}, 300000);
 
-            var TheDate = peeky.serverData.get(keySF, "event_countdown_bonus_setting") - new Date();
+            var TheDate = peeky.serverData.get(keySF, "event_countdown_bonus_setting") - Date.now();
             const EndName = "The Countdown has ended.";
 
         if  (peeky.serverData.get(keySF, "event_countdown_bonus_setting") > 0 && TheDate > 0)  {
