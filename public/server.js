@@ -1755,11 +1755,13 @@ peeky.on('message', async (message) => {
         Level: 1,
         Chests: 0,
         Badges: 0,
+        Votes: 0,
         UpgradedServers: 0,
         SupporterSince: 0,
         SupporterLastPurchase: 0,
         BoosterStart: 0,
         DailyRewarded: 0,
+        LeaderboardRank: 1,
 
         Playlist: [],
         PlaylistName: "Favorite Songs",
@@ -1897,6 +1899,13 @@ peeky.on('message', async (message) => {
     peeky.userData.set(key, BadgeGreditAmount, "BadgeGredit");
     peeky.userData.set(key, BadgeExpAmount, "BadgeExp");
     peeky.userData.set(key, CollectedBadges, "Badges");
+      
+    //LEADERBOARD RANK
+    var LeaderboardRank = 1;
+    LeaderboardRank = LeaderboardRank + (peeky.userData.get(key, "Gredit") / 25000);
+    LeaderboardRank = LeaderboardRank + (peeky.userData.get(key, "DailyRewarded") / 10);
+    LeaderboardRank = LeaderboardRank + (peeky.userData.get(key, "Backgrounds").length / 25);
+    LeaderboardRank = LeaderboardRank + (peeky.userData.get(key, "UpgradedServers").length / 5);
 
     };
 
