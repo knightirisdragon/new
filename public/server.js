@@ -1902,7 +1902,7 @@ peeky.on('message', async (message) => {
       
     //LEADERBOARD RANK
     var LeaderboardRank = 1;
-    var Factors = [["Gredit", 50000, false], ["Karma", 50, false], ["Karma", 50, false], ["Levels", 25, false], ["DailyRewarded", 10, false], ["Inventory", 50, true], ["UpgradedServers", 5, true]];
+    var Factors = [["Gredit", 50000, false], ["Karma", 50, false], ["Levels", 25, false], ["DailyRewarded", 10, false], ["Inventory", 50, true], ["UpgradedServers", 5, true]];
     
     Factors.forEach(factor => {
         if  (factor[2] !== true && peeky.userData.get(key, factor[0]) > 0) {
