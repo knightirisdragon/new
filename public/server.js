@@ -1908,7 +1908,7 @@ peeky.on('message', async (message) => {
         if  (factor[2] !== true && peeky.userData.get(key, factor[0]) > 0) {
             LeaderboardRank = LeaderboardRank + peeky.userData.get(key, factor[0]) / factor[1];
         } else if  (factor[2] == true && peeky.userData.get(key, factor[0]).length > 0) {
-          LeaderboardRank = LeaderboardRank + peeky.userData.get(key, factor[0]) / factor[1];
+          LeaderboardRank = LeaderboardRank + peeky.userData.get(key, factor[0]).length / factor[1];
         };
     });
       
