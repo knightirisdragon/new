@@ -1900,9 +1900,9 @@ peeky.on('message', async (message) => {
     peeky.userData.set(key, BadgeExpAmount, "BadgeExp");
     peeky.userData.set(key, CollectedBadges, "Badges");
       
-    //LEADERBOARD RANK
+    //LEADERBOARD SCORE
     var LeaderboardRank = 1;
-    var Factors = [["Gredit", 50000, false], ["Karma", 50, false], ["Levels", 25, false], ["DailyRewarded", 10, false], ["Inventory", 50, true], ["UpgradedServers", 5, true]];
+    var Factors = [["Gredit", 50000, false], ["Karma", 50, false], ["Levels", 25, false], ["Votes", 10, false], ["Inventory", 50, true], ["UpgradedServers", 5, true]];
     
     Factors.forEach(factor => {
         if  (factor[2] !== true && peeky.userData.get(key, factor[0]) > 0) {
@@ -7144,7 +7144,9 @@ if (CommandName == "daily")  {
       if  (!peeky.userData.get(key, "VoterBadge"))  {
           peeky.userData.set(key, true, "VoterBadge");  
             InfoMessages.push("•" + " You have received a new [badge](https://peeky.glitch.me/badges.html).");
-      };    
+      };
+      
+      peeky.userData.math(key, "+", CountedVotes, "Votes");
     };
       
     const embed = {"description": InfoMessages.join("\n"),  "footer":  {"text": Footer},  "color": EmbedColor}; 
