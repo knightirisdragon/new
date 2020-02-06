@@ -1902,10 +1902,15 @@ peeky.on('message', async (message) => {
       
     //LEADERBOARD RANK
     var LeaderboardRank = 1;
-    LeaderboardRank = LeaderboardRank + (peeky.userData.get(key, "Gredit") / 50000);
-    LeaderboardRank = LeaderboardRank + (peeky.userData.get(key, "DailyRewarded") / 10);
-    LeaderboardRank = LeaderboardRank + (peeky.userData.get(key, "Inventory").length / 50);
-    LeaderboardRank = LeaderboardRank + (peeky.userData.get(key, "UpgradedServers").length / 5);
+    var Factors = [["Gredit", 50000, false], ["DailyRewarded", 10, false], ["Inventory", 50, true], ["UpgradedServers", 5, true]];
+    
+    Factors.forEach(factor => {
+        if  (factor[2] !== true && peeky.userData.get(key, factor[0]) > 0) {
+            LeaderboardRank = LeaderboardRank + peeky.userData.get(key, factor[0]) / factor[1];
+        } else if  (factor[2] == true && peeky.userData.get(key, factor[0]).length > 0) {
+          LeaderboardRank = LeaderboardRank + peeky.userData.get(key, factor[0]) / factor[1];
+        };
+    });
       
     peeky.userData.set(key, LeaderboardRank, "LeaderboardRank");
 
