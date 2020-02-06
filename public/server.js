@@ -1260,12 +1260,12 @@ function function_UpdateBans()  {
 function function_UpdateAutowipe(key, type)  {
 
     if  (type == "server")  {
-        peeky.serverData.set(key, new Date(), 'lastSeen');
+        peeky.serverData.set(key, Date.now(), 'lastSeen');
         console.log("Updated autowipe for " + key + ".");
     };
 
     if  (type == "user")  {
-        peeky.userData.set(key, new Date(), 'lastSeen');
+        peeky.userData.set(key, Date.now(), 'lastSeen');
         console.log("Updated autowipe for " + key + ".");
     };
   
