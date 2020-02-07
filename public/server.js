@@ -4929,6 +4929,19 @@ if (CommandName == "setinvite")  {
     };
 
 };
+
+//Command Template
+if  (CommandName.startsWith("userinfo"))  {
+
+    var MentionedMember = message.mentions.members.first();
+    if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
+
+    const key2 = `${SomeoneTagged.user.id}`;
+
+    const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.user.tag, "other", true) + "**" + "\n" + ,  "color": SomeoneTagged.displayColor}; 
+    await message.channel.send({ embed }).catch(error => {ErrorBag.add(error)});
+
+};
       
 //Overview
 if (CommandName == "overview")  {
@@ -7335,9 +7348,8 @@ if  (!ProfileCooldown.has(message.author.id)) {
     ProfileCooldown.add(message.author.id);
     setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
 
-    var SomeoneTagged = null;
     var MentionedMember = message.mentions.members.first();
-    if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.member;  };
+    if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
 
     const key2 = `${SomeoneTagged.user.id}`;
     
@@ -7398,12 +7410,11 @@ if  (!ProfileCooldown.has(message.author.id))  {
       
     const canvas         = Canvas.createCanvas(500, 300);
     const ctx            = canvas.getContext('2d');
-    var   SomeoneTagged  = null;
     const StatsColor     = "lightgray"
     var   ProfileColor   = Setting.LessDark.replace("#", "");
     
     var MentionedMember = message.mentions.members.first();
-    if  (MentionedMember !== undefined)  {  SomeoneTagged = MentionedMember  }  else  {  SomeoneTagged = message.member;  };
+    if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
 
     //Vars
     const ProfileName        = SomeoneTagged.displayName;
