@@ -4938,7 +4938,7 @@ if  (CommandName.startsWith("userinfo"))  {
 
     const key2 = `${SomeoneTagged.user.id}`;
   
-    var Description = "None";
+    var Description = "No Profile";
     if  (peeky.userData.has(key2))  {
         Description = peeky.userData.get(key2, "Description");
     };
