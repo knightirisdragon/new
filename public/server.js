@@ -4930,15 +4930,29 @@ if (CommandName == "setinvite")  {
 
 };
 
-//Command Template
+//UserInfo
 if  (CommandName.startsWith("userinfo"))  {
 
     var MentionedMember = message.mentions.members.first();
     if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
 
     const key2 = `${SomeoneTagged.user.id}`;
-
-    const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.user.tag, "other", true) + "**" + "\n" + ,  "color": SomeoneTagged.displayColor}; 
+  
+    var Description = "None";
+    if  (peeky.userData.has(key2))  {
+        Description = peeky.userData.get(key2, "Description");
+    };
+  
+    var BoostingSince = "Not boosting";
+    if  (SomeoneTagged.premiumSince > 0)  {
+        BoostingSince = function_DateFormat(SomeoneTagged.premiumSince);
+    };
+      
+    const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.user.tag, "other", true) + "**"
+                                  + "\n" + Description
+                                  + "\n\n" + "**Joined Discord**" + "\n" + function_DateFormat(SomeoneTagged.user.createdAt)
+                                  + "\n\n" + "**Joined server**" + "\n" + function_DateFormat(SomeoneTagged.joinedAt)
+                                  + "\n\n" + "**Boosting since**" + "\n" + BoostingSince,  "color": SomeoneTagged.displayColor}; 
     await message.channel.send({ embed }).catch(error => {ErrorBag.add(error)});
 
 };
