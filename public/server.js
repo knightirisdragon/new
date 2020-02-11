@@ -4860,7 +4860,7 @@ if (CommandName.startsWith("upgrade"))  {
             const embed = {"description": TranslatedMessages[Language] + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-            peeky.channels.get("663851702163734599").send("**" + function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
+            peeky.channels.get("676843718539608077").send("**" + function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
         };
     }
      else 
