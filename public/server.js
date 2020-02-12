@@ -2342,13 +2342,8 @@ if  (!WebsiteCooldowns.has("premiumusers"))  {
         var TheBannerShown = DefaultBackground;
         TheBannerShown = function_GetBackground(m.user.id);
         */
-      
-        var SupporterDate = new Date();
-        if  (peeky.userData.has(m.user.id, "SupporterSince"))  {
-            var SupporterDate = peeky.userData.get(m.user.id, "SupporterSince");
-        };
 
-        PremiumUsersList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(m.displayName) + "  <br>  <font size='1' color='lightgray'>  Premium for " + function_TimeLeft(peeky.userData.get(m.user.id, "SupporterSince"), "days", null).toLocaleString('en') + " days" + ".  </font>  </b>  </div>");
+        PremiumUsersList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(m.displayName) + "  </b>  </div>");
       
     };
     });
@@ -3025,7 +3020,6 @@ if  (keySF == SupportServer)  {
                 if  ( (peeky.userData.has(key, "SupporterSince") == false) || (peeky.userData.has(key, "SupporterSince") && (new Date(peeky.userData.get(key, "SupporterSince")) - new Date() > (MonthMs + (DayMs * 5)))) )  {
                     peeky.userData.set(key, new Date(), "SupporterSince");
                 };
-
 
             };
 
