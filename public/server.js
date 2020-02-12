@@ -3960,11 +3960,6 @@ if  (message.guild.owner !== undefined && !message.author.bot)  {
         BadgeCheckCooldown.add(message.guild.id + message.author.id);
         setTimeout(() => {BadgeCheckCooldown.delete(message.guild.id + message.author.id)}, 300000);
 
-        //Ownership Badge
-        if  (!peeky.userData.get(key, "OwnershipBadge") && message.author.id == message.guild.owner.user.id)  {
-            peeky.userData.set(key, true, "OwnershipBadge");
-        };
-
         //Gopbot Badge
         if  (!peeky.userData.get(key, "GopbotBadge") && message.author.id == message.guild.owner.user.id && message.guild.members.filter(m => m.user.id == GopbotId).size > 0)  {
             peeky.userData.set(key, true, "GopbotBadge");
