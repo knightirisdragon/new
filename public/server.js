@@ -2357,7 +2357,7 @@ if  (!WebsiteCooldowns.has("premiumusers"))  {
         PremiumUsersList.push('<center><font size="4">  You can become a Premium user in the <a href="store.html" class="HomeHyperlinks">store</a>!  </font></center>')
     };
 
-    await fs.writeFile('public/premiumsers.txt', PremiumUsersList.join(" "), (err) => {
+    await fs.writeFile('public/premiumusers.txt', PremiumUsersList.join(" "), (err) => {
         if (err) console.log(err);
     });
       
