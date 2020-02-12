@@ -1811,8 +1811,8 @@ peeky.on('message', async (message) => {
         //Veteran
     if  (peeky.userData.get(key, "VeteranBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:veteran:540565010972147724> Veteran", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fveteran.png?1548951084956"]);  };
 
-        //Premium Users
-    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(PremiumRole))  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:supporter:539895190190686238> Premium", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fsupporter.png?1548194367244"]);  };
+        //Premium
+    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(PremiumRole))  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:premium:677075250034376711> Premium", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpremium.png?v=1581497704217"]);  };
 
         //Booster
     if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).premiumSince)  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:booster:622431477384085514> Booster", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbooster.png?v=1568469682712"]);  };
@@ -1852,9 +1852,6 @@ peeky.on('message', async (message) => {
       
         //Publisher
     if  (peeky.userData.get(key, "PublisherBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:publisher:569215883109466143> Publisher", "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpublisher.png?1555782065115"]);  };
-      
-        //Ownership
-    if  (peeky.userData.get(key, "OwnershipBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:ownership:624330470796296202> Ownership", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fownership.png?v=1568922631330"]);  };
       
         //Functional
     if  (peeky.userData.get(key, "FunctionalBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:functional:671566795420991490> Functional", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunctional.png?v=1580185431868"]);  };
@@ -2116,7 +2113,6 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
             LeaderboardPositions.push(data.UserID);
 
         if  (currentplace == 1)  {CurrentID = "first"} else if  (currentplace == 2)  {CurrentID = "second"}  else if  (currentplace == 3){CurrentID = "third"}  else  {CurrentID = "other"};
-        if  (currentplace > 3)  {CurrentID = "premium"};
         if  (currentplace > 3)  {GotBadge = false};
 
         if  (peeky.users.has(data.UserID))  {
