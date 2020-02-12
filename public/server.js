@@ -2100,16 +2100,6 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
             var sorted   = filtered.sort((a, b) => b.LeaderboardRank - a.LeaderboardRank);
         };
 
-        if  (type == "Karma")  {
-            var filtered = peeky.userData.filter( p => p.Karma && p.FashionBadge == true ).array();
-            var sorted   = filtered.sort((a, b) => b.Karma - a.Karma);
-        };
-
-        if  (type == "Levels")  {
-            var filtered  = peeky.userData.filter( p => p.Level && p.FashionBadge == true ).array();
-            var sorted    = filtered.sort((a, b) => b.Level - a.Level);
-        };
-
         const top            = sorted.splice(0, 100);
         var currentplace     = 0;
         var CurrentID        = 0;
@@ -2126,6 +2116,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
             LeaderboardPositions.push(data.UserID);
 
         if  (currentplace == 1)  {CurrentID = "first"} else if  (currentplace == 2)  {CurrentID = "second"}  else if  (currentplace == 3){CurrentID = "third"}  else  {CurrentID = "other"};
+        if  (currentplace > 3)  {CurrentID = "premium"};
         if  (currentplace > 3)  {GotBadge = false};
 
         if  (peeky.users.has(data.UserID))  {
@@ -2134,14 +2125,6 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
 
             if  (type == "Gredit")  {
                 var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'LeaderboardRank').toLocaleString('en');
-            };
-
-            if  (type == "Karma")  {
-                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Karma').toLocaleString('en') + " Karma";
-            };
-
-            if  (type == "Levels")  {
-                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'Level').toLocaleString('en') + " Levels";
             };
 
             if  (GotBadge == true)  {
