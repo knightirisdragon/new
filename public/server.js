@@ -8920,7 +8920,7 @@ if  (CommandName.startsWith("purge"))  {
                     });
 
                     if  (Failed == false)  {
-                        var TranslatedMessages = [SuccessIcon + " I have set purged **X001 messages** at **X002**'s request.", SuccessIcon + " Smazal jsem **X001 zpráv** na požádání od **X002**."];
+                        var TranslatedMessages = [SuccessIcon + " I have purged **X001 messages** at **X002**'s request.", SuccessIcon + " Smazal jsem **X001 zpráv** na požádání od **X002**."];
                         const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
