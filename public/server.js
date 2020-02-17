@@ -149,7 +149,7 @@ const EmojiStorage1        = "493048757286600716";
 const WorkshopChannel      = "501130667078189066";
 const ServerLogChannel     = "610672449738244102";
 
-//Collab Bot IDs
+//Collaboration Bot IDs
 const GopbotId = "458404920970969098";
 
 //Server Message Tags
