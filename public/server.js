@@ -2382,7 +2382,7 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
               var ImmuneString = "Not Immune";
             };
 
-            ServerLogList.push("<div class='displayitem' style='background-image: url(" + guild.iconURL({ format: 'png' }) + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(guild.name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + "  <br>  " + guild.members.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "  <br>  " + guild.owner.user.id + "   </b></div>");
+            ServerLogList.push("<div class='displayitem' style='background-image: url(" + guild.iconURL({ format: 'png' }) + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(guild.name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + "  <br>  " + guild.members.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "  <br>  " + guild.id + "   </b></div>");
           
         };
       
@@ -2534,18 +2534,18 @@ if  (!WebsiteCooldowns.has("botdescription"))  {
 //MISC
 peeky.on("guildCreate", async (guild) =>  {
 
-const keySF = `${guild.id}`;
-  
-const embed = {"description": " I have been added to a server called **" + function_RemoveFormatting(guild.name, "other", true) + "** with **" + guild.members.filter(m => m.user.bot).size + " bots**.",  "footer": {  "text": guild.id  },  "color": 8311585};
-peeky.channels.get(ServerLogChannel).send({ embed });
-  
-if  (peeky.guilds.size > Setting.MaxServers || BannedUsers.includes(guild.owner.user.id))  {
-    const embed = {"description": "Something went wrong while joining your server, try again later.",  "color": EmbedColor}; 
-    await function_DirectMessage(guild.owner.user.id, { embed });
-    guild.leave();
-} else {
-  function_ServerData(keySF);
-};
+    const keySF = `${guild.id}`;
+
+    const embed = {"description": " I have been added to a server called **" + function_RemoveFormatting(guild.name, "other", true) + "** with **" + guild.members.filter(m => m.user.bot).size + " bots**.",  "footer": {  "text": guild.id  },  "color": 8311585};
+    peeky.channels.get(ServerLogChannel).send({ embed });
+
+    if  (peeky.guilds.size > Setting.MaxServers || BannedUsers.includes(guild.owner.user.id))  {
+        const embed = {"description": "Something went wrong while joining your server, try again later.",  "color": EmbedColor}; 
+        await function_DirectMessage(guild.owner.user.id, { embed });
+        guild.leave();
+    } else {
+      function_ServerData(keySF);
+    };
 
 });
 
@@ -2617,7 +2617,7 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
     const BanLimit = peeky.serverData.get(keySF, "suspicion_alert_bonus_setting");
   
     //Account created less than 7 days ago
-    if  (new Date() - new Date(member.user.createdAt) <= 604800000 )  {
+    if  (new Date() - new Date(member.user.createdAt) <= WeekMs )  {
         Reasons.push("Account created less than 7 days ago.");
     };
 
