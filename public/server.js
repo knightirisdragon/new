@@ -2374,13 +2374,15 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
       
         if  (peeky.guilds.has(data.GuildID))  {
           
+            var guild = peeky.guilds.get(data.GuildID);
+          
             if  (ImmuneServers.includes(data.GuildID) || data.server_upgraded == true)  {
                 var ImmuneString = "Immune";
             } else {
               var ImmuneString = "Not Immune";
             };
 
-            ServerLogList.push("<div class='displayitem' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL({ format: 'png' }) + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + "  <br>  " + peeky.guilds.get(data.GuildID).members.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "   </b></div>");
+            ServerLogList.push("<div class='displayitem' style='background-image: url(" + guild.iconURL({ format: 'png' }) + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(guild.name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + "  <br>  " + guild.members.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "  <br>  " + guild.owner.user.id + "   </b></div>");
           
         };
       
