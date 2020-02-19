@@ -61,6 +61,7 @@ var ErrorBag                = new Set();
 var BannedUsers             = new Array();
 var LeaderboardPositions    = new Array();
 var WebsiteCooldowns        = new Set();
+var FunctionCooldowns       = new Set();
 var GainCooldown            = new Set();
 var LimitedRolesCooldown    = new Set();
 var RandomTreasuresCooldown = new Set();
@@ -4521,13 +4522,15 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
   
 };
       
-//Weekend Channel
-if  (peeky.serverData.get(keySF, "weekend_channel_bonus") == true)  {
+//Weekend Channels
+if  (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)  {
 
-    var Channels = message.guilds.channels.filter(c => peeky.channelData.get(`${c.id}`, "weekend_channel_bonus") == true).array();
+    var Channels = message.guilds.channels.filter(c => peeky.channelData.get(`${c.id}`, "weekend_channels_bonus") == true).array();
   
     Channels.forEach(channel => {
         
+        
+      
     });
   
 };
