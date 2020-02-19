@@ -138,10 +138,15 @@ function CN_Popup() {
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="functionname">Clear Nicknames</b>  <br>  <b class="functiondescription">Gives a filtered nickname to any member who has those strange symbols in their username.  <br>  The setting determines what should be their new nickname if the previous one was just fancy letters.</b>  ' + Ignores + '  <b class="functioncommand">Bots and Members with a nickname.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle clear nicknames  <br>  p!set clear nicknames [text]</b>' + Note;
 };
+
+function WC_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<b class="functionname">Weekend Channels</b>  <br>  <b class="functiondescription">Hides specified channels to everyone without additional permissions during weekdays, then opens them during the weekend.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle weekend channels  <br>  p!set weekend channels [channel name]  <br>  p!clear weekend channels</b>' + Note;
+};
   
 function CW_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Classification Wall</b>  <br>  <b class="functiondescription">Creates a wall that displays all the members with a specific role.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle classification wall  <br>  p!set classification wall [role name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Classification Wall</b>  <br>  <b class="functiondescription">Creates a wall that displays all the members with a specific role.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle classification wall  <br>  p!set classification wall [role name]  <br>  p!clear classification wall</b>' + Note;
 };
   
 function RR_Popup() {
@@ -215,7 +220,7 @@ function GR_Popup() {
   
 function RS_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Role Saver</b>  <br>  <b class="functiondescription">If a user were to leave your server and join back, they would get their roles assigned back to them.  <br>  The setting determines what roles should not be saved.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle role saver  <br>  p!set game roles [role name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Role Saver</b>  <br>  <b class="functiondescription">If a user were to leave your server and join back, they would get their roles assigned back to them.  <br>  The setting determines what roles should not be saved.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle role saver  <br>  p!set game roles [role name]  <br>  p!clear role saver</b>' + Note;
 };
   
 function NS_Popup() {
@@ -365,6 +370,14 @@ function Close()  {
       <div class="centered">
         
     <div class="fancybutton" onclick="TS_Popup()">  Ticket System  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunction_classificationwall.png?v=1580061685408');">
+      <div class="centered">
+
+    <div class="fancybutton" onclick="WC_Popup()">  Weekend Channels  </div>
         
       </div>
     </div>

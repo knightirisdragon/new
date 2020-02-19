@@ -3451,8 +3451,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         var BWArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
         if  (BWArray.length < 1)  {  BWArray = "None";  }  else  {  BWArray = BWArray.join("` `");  };
       
-        var WCArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
-        if  (WCArray.length < 1)  {  WCArray = "None";  }  else  {  WCArray = WCArray.join("` `");  };
+        var WCArray = peeky.serverData.get(keySF, "weekend_channels_bonus_setting");
+        if  (WCArray.length < 1)  {  WCArray = "None";  }  else  {  WCArray = WCArray.join("` `#");  };
 
         var RRArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
         if  (RRArray.length < 1)  {  RRArray = "None";  }  else  {  "@" + RRArray.join("` `@");  };
@@ -3526,7 +3526,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "4️⃣")  {        
           
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`",
+                  description:  "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
+                                "**Weekend Channels** " + WC + "\n" + "`" + WCArray + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
