@@ -4521,6 +4521,13 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
   
 };
       
+//Classification Wall
+if  (peeky.serverData.get(keySF, "") == true)  {
+
+    
+  
+};
+      
 //Reaction Roles
 if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
