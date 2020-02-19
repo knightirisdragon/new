@@ -29,6 +29,7 @@
 
   "ClassificationWallLimit": 50,
   "BannedWordsLimit": 10,
+  "WeekendChannelsLimit": 10,
   "GameRolesLimit": 10,
   "RoleSaverLimit": 10,
   "ReactionRolesLimit": 5,
