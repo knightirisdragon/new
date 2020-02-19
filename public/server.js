@@ -4530,11 +4530,12 @@ if  (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)  {
         FunctionCooldowns.add("weekendchannels" + message.guild.id);
         setTimeout(() => {FunctionCooldowns.delete("weekendchannels" + message.guild.id)}, 300000);
 
-        var Channels = message.guilds.channels.filter(c => peeky.channelData.get(`${c.id}`, "weekend_channels_bonus") == true).array();
+        var Channels = message.guilds.channels.filter(c => peeky.channelData.get(`${c.id}`, "weekend_channels_bonus_setting").includes(c.name)).array();
 
         Channels.forEach(channel => {
           
-            
+            channel.updateOverwrite(channel.guild.roles.everyone, { VIEW_CHANNEL: false });
+            channel.updateOverwrite(channel.guild.roles.everyone, { VIEW_CHANNEL: false });
             
         });
       
