@@ -5059,15 +5059,9 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
       
 //Toggle Automatic Reactions
 if  (FunctioName == "automatic reactions")  {
-        
-    if   (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true) {peeky.channelData.set(keyCF, false, "automatic_reactions_bonus")}
-    else peeky.channelData.set(keyCF, true, "automatic_reactions_bonus");
-      
-    if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
+
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Automatic Reactions").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5079,15 +5073,9 @@ else
       
 //Toggle Safe Chat
 if  (FunctioName == "safe chat")  {
-        
-    if   (peeky.channelData.get(keyCF, "safe_chat_bonus") == true) {peeky.channelData.set(keyCF, false, "safe_chat_bonus")}
-    else peeky.channelData.set(keyCF, true, "safe_chat_bonus");
-      
-    if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
+
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Safe Chat").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5103,9 +5091,9 @@ if  (FunctioName.startsWith("welcome messages"))  {
     const guild = message.guild;
     var name = peeky.serverData.get(keySF, "welcome_messages_bonus_setting");
     var channel = guild.channels.find(c=> c.name == name);
-        
-    if   (peeky.serverData.get(keySF, "welcome_messages_bonus") == true) {peeky.serverData.set(keySF, false, "welcome_messages_bonus")}
-    else peeky.serverData.set(keySF, true, "welcome_messages_bonus");
+
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
     
     //Channel Creating
     if (!channel)  {
@@ -5131,12 +5119,6 @@ if  (FunctioName.startsWith("welcome messages"))  {
         };
       
     };
-      
-    if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Welcome Messages").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5152,8 +5134,8 @@ if  (FunctioName.startsWith("classification wall"))  {
     const channel = message.guild.channels.find(channel => channel.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
     const name = peeky.serverData.get(keySF, "donor_wall_bonus_channel");
 
-    if(peeky.serverData.get(keySF, "donor_wall_bonus") == true) {  peeky.serverData.set(keySF, false, "donor_wall_bonus");  }
-    else peeky.serverData.set(keySF, true, "donor_wall_bonus");
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
   
     //Channel Creating    
     if (!channel)  {
@@ -5184,12 +5166,6 @@ if  (FunctioName.startsWith("classification wall"))  {
       
     };
 
-    if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
-
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Classification Wall").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5205,8 +5181,8 @@ if  (FunctioName.startsWith("ticket system"))  {
     const channel = message.guild.channels.find(channel => channel.name == name);
     const category = message.guild.channels.find(c => c.name.includes("Tickets") && c.type == "category");
 
-    if(peeky.serverData.get(keySF, "ticket_system_bonus") == true) {  peeky.serverData.set(keySF, false, "ticket_system_bonus");  }
-    else peeky.serverData.set(keySF, true, "ticket_system_bonus");
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
   
     //Channel Creating    
     if (!channel)  {
@@ -5241,12 +5217,6 @@ if  (FunctioName.startsWith("ticket system"))  {
       
     };
 
-    if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
-
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Ticket System").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5261,8 +5231,8 @@ if  (FunctioName.startsWith("reaction roles"))  {
     const name = "roles";
     const channel = message.guild.channels.find(channel => channel.name == name);
 
-    if(peeky.serverData.get(keySF, "reaction_roles_bonus") == true) {  peeky.serverData.set(keySF, false, "reaction_roles_bonus");  }
-    else peeky.serverData.set(keySF, true, "reaction_roles_bonus");
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
   
     //Channel Creating    
     if (!channel)  {
@@ -5293,12 +5263,6 @@ if  (FunctioName.startsWith("reaction roles"))  {
 
     };
 
-    if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
-
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Reaction Roles").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5313,9 +5277,9 @@ if  (FunctioName.startsWith("join role"))  {
     const guild = message.guild;
     var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
     var role = guild.roles.find(c=> c.name == name);
-    
-    if(peeky.serverData.get(keySF, "join_role_bonus") == true) {peeky.serverData.set(keySF, false, "join_role_bonus");}
-    else peeky.serverData.set(keySF, true, "join_role_bonus");
+
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
       
     if (!role) {
 
@@ -5341,12 +5305,6 @@ if  (FunctioName.startsWith("join role"))  {
         };
       
     };
-      
-    if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Join role").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5362,9 +5320,9 @@ if  (FunctioName.startsWith("verification system"))  {
     const guild = message.guild;
     var name = peeky.serverData.get(keySF, "verification_system_bonus_setting");
     var role = guild.roles.find(c=> c.name == name);
-    
-    if(peeky.serverData.get(keySF, "verification_system_bonus") == true) {peeky.serverData.set(keySF, false, "verification_system_bonus");}
-    else peeky.serverData.set(keySF, true, "verification_system_bonus");
+
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
       
     if (!role) {
 
@@ -5390,12 +5348,6 @@ if  (FunctioName.startsWith("verification system"))  {
         };
       
     };
-      
-    if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Verification System").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5407,15 +5359,9 @@ else
    
 //Toggle Role Saver
 if  (FunctioName.startsWith("role saver"))  {
-    
-    if(peeky.serverData.get(keySF, "role_saver_bonus") == true) {peeky.serverData.set(keySF, false, "role_saver_bonus");}
-    else peeky.serverData.set(keySF, true, "role_saver_bonus");
-      
-    if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
+
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Role Saver").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5428,14 +5374,8 @@ else
 //Toggle Images Only
 if  (FunctioName.startsWith("images only"))  {
 
-    if(peeky.channelData.get(keyCF, "image_only_bonus") == true) {peeky.channelData.set(keyCF, false, "image_only_bonus");}
-    else peeky.channelData.set(keyCF, true, "image_only_bonus");
-      
-    if  (peeky.channelData.get(keyCF, "image_only_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5447,15 +5387,9 @@ else
 
 //Toggle Server Message
 if  (FunctioName.startsWith("server message"))  {
-        
-    if(peeky.serverData.get(keySF, "server_message_bonus") == true) {peeky.serverData.set(keySF, false, "server_message_bonus");}
-    else peeky.serverData.set(keySF, true, "server_message_bonus");
-      
-    if  (peeky.serverData.get(keySF, "server_message_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
+
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Message").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5472,8 +5406,8 @@ if  (FunctioName.startsWith("message log"))  {
     var name = peeky.serverData.get(keySF, "message_log_bonus_setting");
     var channel = guild.channels.find(c=> c.name == name);
 
-    if(peeky.channelData.get(keyCF, "message_log_bonus") == true) {peeky.channelData.set(keyCF, false, "message_log_bonus");}
-    else peeky.channelData.set(keyCF, true, "message_log_bonus");
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
       
     //Channel Creating    
     if (!channel) {
@@ -5497,12 +5431,6 @@ if  (FunctioName.startsWith("message log"))  {
       InfoMessages.push(CooldownMessage2[Language]);
     };
     };
-      
-    if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Message Log").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5519,8 +5447,8 @@ if  (FunctioName.startsWith("stream announcements"))  {
     var name = peeky.serverData.get(keySF, "stream_announcements_bonus_setting");
     var channel = guild.channels.find(c=> c.name == name);
 
-    if(peeky.serverData.get(keySF, "stream_announcements_bonus") == true) {peeky.serverData.set(keySF, false, "stream_announcements_bonus");}
-    else peeky.serverData.set(keySF, true, "stream_announcements_bonus");
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
       
     //Channel Creating    
     if (!channel) {
@@ -5545,12 +5473,6 @@ if  (FunctioName.startsWith("stream announcements"))  {
       InfoMessages.push(CooldownMessage2[Language]);
     };
     };
-      
-    if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Stream Announcements").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5568,8 +5490,8 @@ if  (FunctioName.startsWith("member counter"))  {
     var id = peeky.serverData.get(keySF, "member_counter_bonus_id");
     var channel = guild.channels.find(c=> c.id == id);
 
-    if(peeky.serverData.get(keySF, "member_counter_bonus") == true) {peeky.serverData.set(keySF, false, "member_counter_bonus");}
-    else peeky.serverData.set(keySF, true, "member_counter_bonus");
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
 
     //Channel Creating    
     if (!channel) {
@@ -5598,12 +5520,6 @@ if  (FunctioName.startsWith("member counter"))  {
       InfoMessages.push(CooldownMessage2[Language]);
     };
     };
-      
-    if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Member Counter").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5620,8 +5536,8 @@ if  (FunctioName.startsWith("reddit posts"))  {
     const name = peeky.serverData.get(keySF, "reddit_posts_bonus_setting");
     var channel = guild.channels.find(c=> c.name == name);
 
-    if(peeky.serverData.get(keySF, "reddit_posts_bonus") == true) {peeky.serverData.set(keySF, false, "reddit_posts_bonus");}
-    else peeky.serverData.set(keySF, true, "reddit_posts_bonus");
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
 
     //Channel Creating    
     if (!channel) {
@@ -5646,12 +5562,6 @@ if  (FunctioName.startsWith("reddit posts"))  {
       InfoMessages.push(CooldownMessage2[Language]);
     };
     };
-      
-    if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Reddit Posts").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5669,8 +5579,8 @@ if  (FunctioName.startsWith("server age"))  {
     var id = peeky.serverData.get(keySF, "server_age_bonus_id");
     var channel = guild.channels.find(c=> c.id == id);
 
-    if(peeky.serverData.get(keySF, "server_age_bonus") == true) {peeky.serverData.set(keySF, false, "server_age_bonus");}
-    else peeky.serverData.set(keySF, true, "server_age_bonus");
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
 
     //Channel Creating    
     if (!channel) {
@@ -5699,12 +5609,6 @@ if  (FunctioName.startsWith("server age"))  {
       InfoMessages.push(CooldownMessage2[Language]);
     };
     };
-      
-    if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Age").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5722,8 +5626,8 @@ if  (FunctioName.startsWith("event countdown"))  {
     var id = peeky.serverData.get(keySF, "event_countdown_bonus_id");
     var channel = guild.channels.find(c=> c.id == id);
 
-    if(peeky.serverData.get(keySF, "event_countdown_bonus") == true) {peeky.serverData.set(keySF, false, "event_countdown_bonus");}
-    else peeky.serverData.set(keySF, true, "event_countdown_bonus");
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
 
     //Channel Creating    
     if (!channel) {
@@ -5752,12 +5656,6 @@ if  (FunctioName.startsWith("event countdown"))  {
       InfoMessages.push(CooldownMessage2[Language]);
     };
     };
-      
-    if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5769,15 +5667,9 @@ else
   
 //Toggle Game Roles
 if  (FunctioName.startsWith("game roles"))  {
-        
-    if(peeky.serverData.get(keySF, "game_roles_bonus") == true) {peeky.serverData.set(keySF, false, "game_roles_bonus")}
-    else peeky.serverData.set(keySF, true, "game_roles_bonus");
 
-    if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Game Roles").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5789,15 +5681,9 @@ else
   
 //Toggle Weekend Channels
 if  (FunctioName.startsWith("weekend channels"))  {
-        
-    if(peeky.serverData.get(keySF, "weekend_channels_bonus") == true) {peeky.serverData.set(keySF, false, "weekend_channels_bonus")}
-    else peeky.serverData.set(keySF, true, "weekend_channels_bonus");
 
-    if  (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5809,15 +5695,9 @@ else
 
 //Toggle Clear Nicknames
 if  (FunctioName.startsWith("clear nicknames"))  {
-        
-    if(peeky.serverData.get(keySF, "clear_nicknames_bonus") == true) {peeky.serverData.set(keySF, false, "clear_nicknames_bonus");}
-    else peeky.serverData.set(keySF, true, "clear_nicknames_bonus");
-      
-    if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
+
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Clear Nicknames").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -5830,15 +5710,9 @@ else
 
 //Toggle Suspicion Alert
 if  (FunctioName.startsWith("suspicion alert"))  {
-        
-    if(peeky.serverData.get(keySF, "suspicion_alert_bonus") == true) {peeky.serverData.set(keySF, false, "suspicion_alert_bonus");}
-    else peeky.serverData.set(keySF, true, "suspicion_alert_bonus");
-      
-    if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
+
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Suspicion Alert").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
@@ -5850,16 +5724,10 @@ if  (FunctioName.startsWith("suspicion alert"))  {
 else
 
 //Toggle Vote Kick
-if  (FunctioName.startsWith("vote kick")) {
-        
-    if(peeky.serverData.get(keySF, "vote_kick_bonus") == true) {peeky.serverData.set(keySF, false, "vote_kick_bonus");}
-    else peeky.serverData.set(keySF, true, "vote_kick_bonus");
-      
-    if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
+if  (FunctioName.startsWith("vote kick"))  {
+
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Vote Kick").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
@@ -5870,16 +5738,10 @@ if  (FunctioName.startsWith("vote kick")) {
 else
 
 //Toggle Flood Protection
-if  (FunctioName.startsWith("flood protection")) {
+if  (FunctioName.startsWith("flood protection"))  {
 
-    if(peeky.serverData.get(keySF, "flood_protection_bonus") == true) {peeky.serverData.set(keySF, false, "flood_protection_bonus");}
-    else peeky.serverData.set(keySF, true, "flood_protection_bonus");
-      
-    if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Flood Protection").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
@@ -5890,16 +5752,10 @@ if  (FunctioName.startsWith("flood protection")) {
 else
 
 //Toggle Nickname Saver
-if  (FunctioName.startsWith("nickname saver")) {
+if  (FunctioName.startsWith("nickname saver"))  {
 
-    if(peeky.serverData.get(keySF, "nick_saver_bonus") == true) {peeky.serverData.set(keySF, false, "nick_saver_bonus");}
-    else peeky.serverData.set(keySF, true, "nick_saver_bonus");
-      
-    if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
-        var StatusString = EnableStrings[Language];
-    } else {
-      var StatusString = DisableStrings[Language];
-    };
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("true", DisableStrings[Language]);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Nickname Saver").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
