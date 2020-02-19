@@ -4521,10 +4521,14 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
   
 };
       
-//Classification Wall
-if  (peeky.serverData.get(keySF, "") == true)  {
+//Weekend Channel
+if  (peeky.serverData.get(keySF, "weekend_channel_bonus") == true)  {
 
-    
+    var Channels = message.guilds.channels.filter(c => peeky.channelData.get(`${c.id}`, "weekend_channel_bonus") == true).array();
+  
+    Channels.forEach(channel => {
+        
+    });
   
 };
       
