@@ -4524,14 +4524,21 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
       
 //Weekend Channels
 if  (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)  {
-
-    var Channels = message.guilds.channels.filter(c => peeky.channelData.get(`${c.id}`, "weekend_channels_bonus") == true).array();
   
-    Channels.forEach(channel => {
-        
-        
+    if  (!FunctionCooldowns.has("weekendchannels" + message.guild.id))  {
+
+        FunctionCooldowns.add("weekendchannels" + message.guild.id);
+        setTimeout(() => {FunctionCooldowns.delete("weekendchannels" + message.guild.id)}, 300000);
+
+        var Channels = message.guilds.channels.filter(c => peeky.channelData.get(`${c.id}`, "weekend_channels_bonus") == true).array();
+
+        Channels.forEach(channel => {
+          
+            
+            
+        });
       
-    });
+    };
   
 };
       
