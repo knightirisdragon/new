@@ -3438,6 +3438,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "nick_saver_bonus") == true)             { var NS = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var NS = DisabledIcon};
         if (peeky.serverData.get(keySF, "streamer_role_bonus") == true)          { var SR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SR = DisabledIcon};
         if (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)           { var RP = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var RP = DisabledIcon};
+        if (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)       { var WC = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var WC = DisabledIcon};
         if (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)   { var SA2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA2 = DisabledIcon};
         if (peeky.serverData.get(keySF, "server_age_bonus") == true)             { var SA3 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA3 = DisabledIcon};
         if (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)           { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
@@ -3449,6 +3450,9 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
 
         var BWArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
         if  (BWArray.length < 1)  {  BWArray = "None";  }  else  {  BWArray = BWArray.join("` `");  };
+      
+        var WCArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
+        if  (WCArray.length < 1)  {  WCArray = "None";  }  else  {  WCArray = WCArray.join("` `");  };
 
         var RRArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
         if  (RRArray.length < 1)  {  RRArray = "None";  }  else  {  "@" + RRArray.join("` `@");  };
@@ -4532,10 +4536,10 @@ if  (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)  {
 
         var Channels = message.guilds.channels.filter(c => peeky.channelData.get(`${c.id}`, "weekend_channels_bonus_setting").includes(c.name)).array();
 
-        Channels.forEach(channel => {
-          
-            channel.updateOverwrite(channel.guild.roles.everyone, { VIEW_CHANNEL: false });
-            channel.updateOverwrite(channel.guild.roles.everyone, { VIEW_CHANNEL: false });
+        Channels.forEach(async channel => {
+
+            await channel.updateOverwrite(message.guild.members.get(PeekyId), { VIEW_CHANNEL: true }).catch(error => ErrorBag.add(error));
+            await channel.updateOverwrite(message.guild.id, { VIEW_CHANNEL: ["Saturday", "Sunday"].includes(Days[new Date().getDay()]) }).catch(error => ErrorBag.add(error));
             
         });
       
@@ -5781,6 +5785,26 @@ if  (FunctioName.startsWith("game roles"))  {
 }
   
 else
+  
+//Toggle Weekend Channels
+if  (FunctioName.startsWith("weekend channels"))  {
+        
+    if(peeky.serverData.get(keySF, "weekend_channels_bonus") == true) {peeky.serverData.set(keySF, false, "weekend_channels_bonus")}
+    else peeky.serverData.set(keySF, true, "weekend_channels_bonus");
+
+    if  (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)  {
+        var StatusString = EnableStrings[Language];
+    } else {
+      var StatusString = DisableStrings[Language];
+    };
+
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
 
 //Toggle Clear Nicknames
 if  (FunctioName.startsWith("clear nicknames"))  {
@@ -6356,6 +6380,30 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < Setting.
   
 else
  
+//Set Weekend Channels
+if  (FunctioName.startsWith("weekend channels "))  {
+  
+if  (peeky.serverData.get(keySF, "weekend_channels_bonus_setting").length < Setting.WeekendChannelsLimit)  {
+
+    var ReceivedArray = function_RemoveFormatting(CommandName.split("weekend channels ")[1].toLowerCase(), "channel", true);
+    peeky.serverData.get(keySF, "weekend_channels_bonus_setting").push(ReceivedArray);
+
+    var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "weekend_channels_bonus_setting");
+
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels").replace("X002", FixedArray.join("**, **") + EndString),  "color": EmbedColor};
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  
+}
+ else
+{
+ const embed = {"description": TranslatedFullSetting[Language],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+  
+else
+ 
 //Set Reaction Roles
 if  (FunctioName.startsWith("reaction roles "))  {
   
@@ -6475,6 +6523,18 @@ if  (FunctioName.startsWith("banned words"))  {
      peeky.serverData.set(keySF, [], "banned_words_bonus_setting");
   
      const embed = {"description": TranslatedMessages[Language].replace("X001", "Banned Words"),  "color": EmbedColor};
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+
+else
+ 
+//Clear Weekend Channels
+if  (FunctioName.startsWith("weekend channels"))  {
+      
+     peeky.serverData.set(keySF, [], "weekend_channels_bonus_setting");
+  
+     const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels"),  "color": EmbedColor};
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
