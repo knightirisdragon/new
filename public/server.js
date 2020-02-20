@@ -137,6 +137,8 @@ const StaffRole          = "494429609874685983";
 const VeteranRole        = "679051643756478539";
 const PremiumRole        = "504740473185894400";
 const BoosterRole        = "620654437081415686";
+const TranslatorRole     = "680124113951391776";
+const BugHunterRole      = "680124135816560662";
 const ServerUpgradeRole  = "549190337437106176";
 const ProfileBoosterRole = "603249410532442116";
 const RedeemRoleChests   = "505491936401162270";
@@ -1808,7 +1810,7 @@ peeky.on('message', async (message) => {
     if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:moderator:540036307213221901> Staff", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmoderator.png?1548824732338"]);  };
       
         //Translator
-    if  (peeky.userData.get(key, "TranslatorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:translator:657876886260809728> Translator", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ftranslator.png?v=1576920631134"]);  };
+    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(TranslatorRole))  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:translator:657876886260809728> Translator", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ftranslator.png?v=1576920631134"]);  };
 
         //Veteran
     if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(VeteranRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:veteran:540565010972147724> Veteran", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fveteran.png?1548951084956"]);  };
@@ -1826,7 +1828,7 @@ peeky.on('message', async (message) => {
     if  (peeky.userData.get(key, "ContributorBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:contributor:539895189334917130> Contributor", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fcontributor.png?1548786864495"]);  };
 
         //Bug Hunter
-    if  (peeky.userData.get(key, "BugHunterBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:bugcatcher:539895189737832448> Bug Hunter", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbugcatcher.png?1548261764050"]);  };
+    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BugHunterRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:bugcatcher:539895189737832448> Bug Hunter", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbugcatcher.png?1548261764050"]);  };
 
         //Celebrator
     if  (peeky.userData.get(key, "CelebratorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:celebrator:624237582355529729> Celebrator", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcelebrator.png?v=1568900372214"]);  };
