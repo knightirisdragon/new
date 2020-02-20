@@ -213,6 +213,11 @@ function JR_Popup() {
      document.getElementById('description').innerHTML = '<b class="functionname">Join Role</b>  <br>  <b class="functiondescription">Gives a specific role to anyone who joins your server.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle join role  <br>  p!set join role [role name]</b>' + Note;
 };
   
+function VR_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<b class="functionname">Veteran Role</b>  <br>  <b class="functiondescription">Gives a specified role to anyone who has been on a server for a year.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle veteran role  <br>  p!set veteran role [role name]</b>' + Note;
+};
+  
 function GR_Popup() {
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="functionname">Game Roles</b>  <br>  <b class="functiondescription">Gives a specific role to any server member that starts playing a specific game.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">10 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle game roles  <br>  p!set game roles [game name]</b>' + Note;
@@ -298,6 +303,14 @@ function Close()  {
       <div class="centered"> 
         
     <div class="fancybutton" onclick="JR_Popup()">  Join Role  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunction_veteranrole.png?v=1582226845990');">
+      <div class="centered"> 
+        
+    <div class="fancybutton" onclick="VR_Popup()">  Veteran Role  </div>
         
       </div>
     </div>

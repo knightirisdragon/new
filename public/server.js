@@ -3533,13 +3533,12 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.MessageEmbed({
                   description:  "**Event Countdown** " + EC + "\n" + "`" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting")) + "`" + "\n\n" +
                                 "**Reddit Posts** " + RP + "\n" + "`r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "`" + "\n\n" +
-                                "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
                                 "**Reaction Roles** " + RR + "\n" + "`" + RRArray + "`" + "\n\n" +
                                 "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(peeky.serverData.get(keySF, "server_message_bonus_setting"), "other", true) + "`" + "\n\n" +
                                 "**Role Saver** " + RS + "\n" + "`" + RSArray + "`" + "\n\n" +
                                 "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
-                                "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
+                                "**Veteran Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "veteran_role_bonus_setting") + "`" + "\n\n" +
                                 "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
                                 "**Streamer Role** " + SR + "\n" + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`",
                   color: EmbedColor,
@@ -3552,8 +3551,9 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "4️⃣")  {        
           
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
-                                "**Weekend Channels** " + WC + "\n" + "`" + WCArray + "`",
+                  description:  "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
+                                "**Weekend Channels** " + WC + "\n" + "`" + WCArray + "`" + "\n\n" +
+                                "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
