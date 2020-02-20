@@ -5406,8 +5406,8 @@ if  (FunctioName.startsWith("message log"))  {
     var name = peeky.serverData.get(keySF, "message_log_bonus_setting");
     var channel = guild.channels.find(c=> c.name == name);
 
-    peeky.serverData.set(keyCF, !peeky.serverData.get(keyCF, "message_log_bonus"), "message_log_bonus");
-    var StatusString = peeky.serverData.get(keyCF, "message_log_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
+    peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "message_log_bonus"), "message_log_bonus");
+    var StatusString = peeky.serverData.get(keySF, "message_log_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
       
     //Channel Creating    
     if  (!channel)  {
