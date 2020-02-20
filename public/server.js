@@ -52,6 +52,7 @@ const AutoDeleteTime        = 250;
 const DayMs                 = 86400000;
 const WeekMs                = 604800000;  //7 Days
 const MonthMs               = 2592000000;  //30 Days
+const YearMs                = 31556952000;  //30 Days
 const InactiveWipe          = MonthMs;
 const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 const ProfileBoosterTime    = (DayMs  / ( 60 * 60 * 1000 ));
@@ -3293,6 +3294,27 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
     };
       
 };
+
+//Veteran Role
+if  (peeky.serverData.get(keySF, "veteran_role_bonus") == true)  {
+
+    if  (member.guild.me.permissions.has('MANAGE_ROLES'))  {
+  
+        if  (!member.user.bot && (new Date() - new Date(member.joinedAt) >= YearMs))  {
+
+            var Role = member.guild.roles.find(r => r.name.toLowerCase() == peeky.serverData.get(keySF, "veteran_role_bonus_setting"));
+
+            if  (Role && member.roles.has(Role.id))  {
+
+                member.roles.add(Role.id).catch(error => ErrorBag.add(error));
+
+            };
+
+        };
+      
+    };
+      
+};
   
 };
 });
@@ -3435,6 +3457,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "server_message_bonus") == true)         { var SM = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SM = DisabledIcon};
         if (peeky.serverData.get(keySF, "vote_kick_bonus") == true)              { var VT = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var VT = DisabledIcon};
         if (peeky.serverData.get(keySF, "join_role_bonus") == true)              { var JR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var JR = DisabledIcon};
+        if (peeky.serverData.get(keySF, "veteran_role_bonus") == true)           { var VR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var VR = DisabledIcon};
         if (peeky.serverData.get(keySF, "game_roles_bonus") == true)             { var GR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var GR = DisabledIcon};
         if (peeky.serverData.get(keySF, "role_saver_bonus") == true)             { var RS = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var RS = DisabledIcon};
         if (peeky.serverData.get(keySF, "nick_saver_bonus") == true)             { var NS = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var NS = DisabledIcon};
@@ -3515,6 +3538,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(peeky.serverData.get(keySF, "server_message_bonus_setting"), "other", true) + "`" + "\n\n" +
                                 "**Role Saver** " + RS + "\n" + "`" + RSArray + "`" + "\n\n" +
                                 "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
+                                "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
                                 "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
                                 "**Streamer Role** " + SR + "\n" + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`",
@@ -5824,6 +5848,20 @@ if  (FunctioName.startsWith("banned words"))  {
 }
   
 else
+  
+//Toggle Veteran Role
+if  (FunctioName.startsWith("veteran role"))  {
+
+    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "veteran_role_bonus"), "veteran_role_bonus");
+    var StatusString = peeky.channelData.get(keyCF, "veteran_role_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
+  
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Veteran Role").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
 
 //Toggle Spoiler Lock
 if  (FunctioName.startsWith("spoiler lock"))  {
@@ -5962,6 +6000,19 @@ if  (FunctioName.startsWith("classification wall "))  {
     peeky.serverData.set(keySF, function_RemoveFormatting(ChannelName, "channel") + "s", "donor_wall_bonus_channel", true);
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Classification Wall").replace("X002", "#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "** and **@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting")),  "color": EmbedColor};
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+      
+//Set Veteran Role
+if  (FunctioName.startsWith("veteran role "))  {
+
+    var ChannelName = CommandName.split("veteran role ")[1];
+    peeky.serverData.set(keySF, function_RemoveFormatting(ChannelName, "role"), "veteran_role_bonus_setting", true);
+
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Veteran Role").replace("X002", "@" + peeky.serverData.get(keySF, "veteran_role_bonus_setting")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
