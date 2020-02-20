@@ -5410,7 +5410,7 @@ if  (FunctioName.startsWith("message log"))  {
     var StatusString = peeky.serverData.get(keyCF, "message_log_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
       
     //Channel Creating    
-    if (!channel) {
+    if  (!channel)  {
 
     if  (!ChannelCooldown.has(message.guild.id)) {
 
