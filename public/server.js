@@ -172,14 +172,14 @@ const EnableStrings  = ["enabled", "zapnutá"];
 const DisableStrings = ["disabled", "vypnutá"];
 
 //Response Messages
-const CooldownMessage1 = [ErrorIcon + " You are currently on a cooldown for that command.", ErrorIcon + " Tento příkaz je pro vás momentálně zastaven."];
-const CooldownMessage2 = [ErrorIcon + " Automated channel creation is currently on a cooldown.", ErrorIcon + " Automatická tvorba kanálů je momentálně zastavena.", ErrorIcon + " "];
-const CooldownMessage3 = [ErrorIcon + " Automated role creation is currently on a cooldown.", ErrorIcon + " Automatická tvorba rolí je momentálně zastavena.", ErrorIcon + " "];
-const CooldownMessage4 = [ErrorIcon + " You are currently on a cooldown for that function.", ErrorIcon + " Tato funkce je pro vás momentálně zastavena.", ErrorIcon + " "];
+const CooldownMessage1 = [ErrorIcon + " You are currently on a cooldown for that command.", ErrorIcon + " Tento příkaz je pro vás momentálně zastaven.", ErrorIcon + " Nemôžeš teraz použiť tento command."];
+const CooldownMessage2 = [ErrorIcon + " Automated channel creation is currently on a cooldown.", ErrorIcon + " Automatická tvorba kanálů je momentálně zastavena.", ErrorIcon + " Automatickú tvorbu channelov nemôžeš teraz použiť."];
+const CooldownMessage3 = [ErrorIcon + " Automated role creation is currently on a cooldown.", ErrorIcon + " Automatická tvorba rolí je momentálně zastavena.", ErrorIcon + " Automatické vytváranie rolí nemôžeš práve použiť."];
+const CooldownMessage4 = [ErrorIcon + " You are currently on a cooldown for that function.", ErrorIcon + " Tato funkce je pro vás momentálně zastavena.", ErrorIcon + " Nemôžeš teraz použiť túto funkciu."];
 
-const PermissionsMessageError1 = [ErrorIcon + " You are lacking the required permissions do that.", ErrorIcon + " Chybý vám požadovaná oprávnění.", ErrorIcon + " "];
-const PermissionsMessageError2 = [ErrorIcon + " You need to be the owner of this server to do that.", ErrorIcon + " Musíte být vlastníkem serveru.", ErrorIcon + " "];
-const PermissionsMessageError3 = [ErrorIcon + " I am missing required permissions to do that.", ErrorIcon + " Chybý mi požadovaná opravnění.", ErrorIcon + " "];
+const PermissionsMessageError1 = [ErrorIcon + " You are lacking the required permissions do that.", ErrorIcon + " Chybý vám požadovaná oprávnění.", ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť."];
+const PermissionsMessageError2 = [ErrorIcon + " You need to be the owner of this server to do that.", ErrorIcon + " Musíte být vlastníkem serveru.", ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť."];
+const PermissionsMessageError3 = [ErrorIcon + " I am missing required permissions to do that.", ErrorIcon + " Chybý mi požadovaná opravnění.", ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť."];
 
 const ErrorMessage1  = [ErrorIcon + " You need more Gredit to do that.", ErrorIcon + " Potřebujete získat více Greditu.", ErrorIcon + " Potrebuješ viacej Greditov aby si toto mohol spraviť."]
 const ErrorMessage2  = [ErrorIcon + " The new description is too large.", ErrorIcon + " Nový popisek je příliš dlouhý.", ErrorIcon + " Nový popisok je prílíš veľký."];
@@ -3742,7 +3742,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                     ], reason: "Channel created by @" + reaction.message.author.tag + " through a function." })
                   
                     .then(async function (channel)  {
-                        peeky.serverData.set(${data.GuildID}, [], "ticket_system_bonus_channels");
+                        peeky.serverData.get(keySF, "ticket_system_bonus_channels").push(channel.id);
                       
                         if  (category && category.permissionsFor(peeky.user).has('VIEW_CHANNEL'))  {
                             channel.setParent(category.id).catch(error => ErrorBag.add(error));
@@ -5007,6 +5007,48 @@ if  (CommandName.startsWith("userinfo"))  {
                                   + "\n\n" + "**Joined server**" + "\n" + function_DateFormat(SomeoneTagged.joinedAt)
                                   + "\n\n" + "**Boosting since**" + "\n" + BoostingSince,  "color": SomeoneTagged.displayColor}; 
     await message.channel.send({ embed }).catch(error => {ErrorBag.add(error)});
+
+};
+
+//Ticket
+if  (CommandName.startsWith("ticket"))  {
+  
+    if  (peeky.serverData.get(keySF, "ticket_system_bonus_channels").includes(message.channel.id))  {
+  
+        var CommandArgument = CommandName.split("ticket")[1];
+        var CommandArray = CommandName.split(" ");
+
+        if  (CommandArgument.startsWith(" "))  {
+
+            if  (message.channel.permissionsFor(message.guild.me).has("MANAGE_CHANNELS"))  {
+            
+                if  (CommandArray[1] == "rename" && CommandArray[2])  {
+                    await message.channel.setName(function_RemoveFormatting(CommandArray[2], "channel", true)).catch(error => {ErrorBag.add(error)});
+
+                    var TranslatedMessages = [SuccessIcon + " The ticket has been renamed to **#X001**.", SuccessIcon + " Lístek byl přejmenován na **#X001**.", SuccessIcon + " The ticket has been renamed to **#X001**."];
+                    const embed = {"description": TranslatedMessages[Language].replace("X001", message.channel.name),  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
+
+                if  (CommandArray[1] == "cancel")  {
+                    message.channel.delete().catch(error => {ErrorBag.add(error)});
+                };
+              
+            }
+             else 
+            {
+             const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
+             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
+        }
+         else if (CommandArgument == "")
+        {
+         const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+        
+    };
 
 };
       
