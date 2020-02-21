@@ -24,8 +24,8 @@ Do not replace/remove any symbols such as X001, X002 and so on...
 
 The server language has been set to **LANGUAGE_NAME**. | 
 
-**X001** has been vote kicked with **Y votes**. | 
-**X001** has started a vote kick against **Y**. | 
+**X001** has been vote kicked with **X002 votes**. | 
+**X001** has started a vote kick against **X002**. | 
 You cannot start a vote kick against that user, **X001**. | 
 
 **X001 has created a ticket** | 
