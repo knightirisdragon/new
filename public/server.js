@@ -173,39 +173,39 @@ const DisableStrings = ["disabled", "vypnutá"];
 
 //Response Messages
 const CooldownMessage1 = [ErrorIcon + " You are currently on a cooldown for that command.", ErrorIcon + " Tento příkaz je pro vás momentálně zastaven."];
-const CooldownMessage2 = [ErrorIcon + " Automated channel creation is currently on a cooldown.", ErrorIcon + " Automatická tvorba kanálů je momentálně zastavena."];
-const CooldownMessage3 = [ErrorIcon + " Automated role creation is currently on a cooldown.", ErrorIcon + " Automatická tvorba rolí je momentálně zastavena."];
-const CooldownMessage4 = [ErrorIcon + " You are currently on a cooldown for that function.", ErrorIcon + " Tato funkce je pro vás momentálně zastavena."];
+const CooldownMessage2 = [ErrorIcon + " Automated channel creation is currently on a cooldown.", ErrorIcon + " Automatická tvorba kanálů je momentálně zastavena.", ErrorIcon + " "];
+const CooldownMessage3 = [ErrorIcon + " Automated role creation is currently on a cooldown.", ErrorIcon + " Automatická tvorba rolí je momentálně zastavena.", ErrorIcon + " "];
+const CooldownMessage4 = [ErrorIcon + " You are currently on a cooldown for that function.", ErrorIcon + " Tato funkce je pro vás momentálně zastavena.", ErrorIcon + " "];
 
-const PermissionsMessageError1 = [ErrorIcon + " You are lacking the required permissions do that.", ErrorIcon + " Chybý vám požadovaná oprávnění."];
-const PermissionsMessageError2 = [ErrorIcon + " You need to be the owner of this server to do that.", ErrorIcon + " Musíte být vlastníkem serveru."];
-const PermissionsMessageError3 = [ErrorIcon + " I am missing required permissions to do that.", ErrorIcon + " Chybý mi požadovaná opravnění."];
+const PermissionsMessageError1 = [ErrorIcon + " You are lacking the required permissions do that.", ErrorIcon + " Chybý vám požadovaná oprávnění.", ErrorIcon + " "];
+const PermissionsMessageError2 = [ErrorIcon + " You need to be the owner of this server to do that.", ErrorIcon + " Musíte být vlastníkem serveru.", ErrorIcon + " "];
+const PermissionsMessageError3 = [ErrorIcon + " I am missing required permissions to do that.", ErrorIcon + " Chybý mi požadovaná opravnění.", ErrorIcon + " "];
 
-const ErrorMessage1  = [ErrorIcon + " You need more Gredit to do that.", ErrorIcon + " Potřebujete získat více Greditu."]
-const ErrorMessage2  = [ErrorIcon + " The new description is too large.", ErrorIcon + " Nový popisek je příliš dlouhý."];
-const ErrorMessage3  = [ErrorIcon + " The provided mention is invalid.", ErrorIcon + " Toto označení je invalidní."];
-const ErrorMessage4  = [ErrorIcon + " You need to enter a valid YouTube link.", ErrorIcon + " Vložte validní YouTube odkaz."];
-const ErrorMessage5  = [ErrorIcon + " You do not have that [background](https://peeky.glitch.me/backgrounds.html) in your inventory.", ErrorIcon + " Toto [pozadí](https://peeky.glitch.me/backgrounds.html) ještě nelastníte."];
-const ErrorMessage6  = [ErrorIcon + " You do not have enough chests.", ErrorIcon + " Nemáte dost truhel."];
-const ErrorMessage7  = [ErrorIcon + " The mentioned user has no profile.", ErrorIcon + " Tento uživatel nemá žádný profil."];
-const ErrorMessage8  = [ErrorIcon + " Mentions are not allowed for this command.", ErrorIcon + " Označení nejsou pro tento příkaz povoleny"];
-const ErrorMessage9  = [ErrorIcon + " You must enter a valid amount.", ErrorIcon + " Musíte vložit spravný počet."];
-const ErrorMessage10 = [ErrorIcon + " Make sure the [function's](https://peeky.glitch.me/functions.html) name is all in lowercase.", ErrorIcon + " Ujistěte se, že jméno funkce je v malých písmenkách."];
-const ErrorMessage11 = [ErrorIcon + " You need to become a [Premium user](https://peeky.glitch.me/store.html) to do that.", ErrorIcon + " Pro tohle musíte být [Premium uživatel](https://peeky.glitch.me/store.html)."];
-const ErrorMessage12 = [ErrorIcon + " There are no songs playing right now.", ErrorIcon + " Momentálně nehrajou žádné písničky."];
-const ErrorMessage13 = [ErrorIcon + " Something has gone unexpectedly wrong.", ErrorIcon + " Stalo se něco neočekáváného."];
-const ErrorMessage14 = [ErrorIcon + " You already own that [background](https://peeky.glitch.me/backgrounds.html).", ErrorIcon + " Toto [pozadí](https://peeky.glitch.me/backgrounds.html) již vlastníte."];
-const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist.", ErrorIcon + " Do vašeho playlistu nelze přidat více písniček"];
-const ErrorMessage16 = [ErrorIcon + " That [background](https://peeky.glitch.me/backgrounds.html) doesn't exist.", ErrorIcon + " Toto [pozadí](https://peeky.glitch.me/backgrounds.html) neexistuje."];
-const ErrorMessage17 = [ErrorIcon + " You need to specify the [function](https://peeky.glitch.me/functions.html).", ErrorIcon + " Musíte upřesnit funkci."];
-const ErrorMessage18 = [ErrorIcon + " You need to provide valid arguments for the command.", ErrorIcon + " Musíte přidat spravný argumenty."];
-const ErrorMessage19 = [ErrorIcon + " You need to join the [Support Server](https://peeky.glitch.me/server.html).", ErrorIcon + " Musíte se připojit na můj [server](https://peeky.glitch.me/server.html)."];
-const ErrorMessage20 = [ErrorIcon + " You need to upload a file.", ErrorIcon + " Musíte nahrát soubor."];
-const ErrorMessage21 = [ErrorIcon + " You can only do that in [upgraded servers](https://peeky.glitch.me/store.html).", ErrorIcon + " Tohle funguje jenom ve [vylepšených serverech](https://peeky.glitch.me/store.html)."];
-const ErrorMessage22 = [ErrorIcon + " You need to join a voice channel.", ErrorIcon + " Musíte se připojt se do hlasového kanálu."];
+const ErrorMessage1  = [ErrorIcon + " You need more Gredit to do that.", ErrorIcon + " Potřebujete získat více Greditu.", ErrorIcon + " Potrebuješ viacej Greditov aby si toto mohol spraviť."]
+const ErrorMessage2  = [ErrorIcon + " The new description is too large.", ErrorIcon + " Nový popisek je příliš dlouhý.", ErrorIcon + " Nový popisok je prílíš veľký."];
+const ErrorMessage3  = [ErrorIcon + " The provided mention is invalid.", ErrorIcon + " Toto označení je invalidní.", ErrorIcon + " Zadaná zmienka je neplatná."];
+const ErrorMessage4  = [ErrorIcon + " You need to enter a valid YouTube link.", ErrorIcon + " Vložte validní YouTube odkaz.", ErrorIcon + " Musíš zadať platný Youtube odkaz."];
+const ErrorMessage5  = [ErrorIcon + " You do not have that [background](https://peeky.glitch.me/backgrounds.html) in your inventory.", ErrorIcon + " Toto [pozadí](https://peeky.glitch.me/backgrounds.html) ještě nelastníte.", ErrorIcon + " Nemáš toto [pozadie](https://peeky.glitch.me/backgrounds.html) v tvojom inventári."];
+const ErrorMessage6  = [ErrorIcon + " You do not have enough chests.", ErrorIcon + " Nemáte dost truhel.", ErrorIcon + " Nemáš dostatok truhlí."];
+const ErrorMessage7  = [ErrorIcon + " The mentioned user has no profile.", ErrorIcon + " Tento uživatel nemá žádný profil.", ErrorIcon + " Zmienený uživateľ nemá žiadny profil."];
+const ErrorMessage8  = [ErrorIcon + " Mentions are not allowed for this command.", ErrorIcon + " Označení nejsou pro tento příkaz povoleny", ErrorIcon + " Zmienky niesú povolené pre tento command."];
+const ErrorMessage9  = [ErrorIcon + " You must enter a valid amount.", ErrorIcon + " Musíte vložit spravný počet.", ErrorIcon + " Musíš zadať platnú čiastku."];
+const ErrorMessage10 = [ErrorIcon + " Make sure the [function's](https://peeky.glitch.me/functions.html) name is all in lowercase.", ErrorIcon + " Ujistěte se, že jméno funkce je v malých písmenkách.", ErrorIcon + " Uisti sa že mená funkcie su všetky malými písmenami."];
+const ErrorMessage11 = [ErrorIcon + " You need to become a [Premium user](https://peeky.glitch.me/store.html) to do that.", ErrorIcon + " Pro tohle musíte být [Premium uživatel](https://peeky.glitch.me/store.html).", ErrorIcon + " Musíš sa stať Premium uživatelom aby si to mohol spraviť. "];
+const ErrorMessage12 = [ErrorIcon + " There are no songs playing right now.", ErrorIcon + " Momentálně nehrajou žádné písničky.", ErrorIcon + " "];
+const ErrorMessage13 = [ErrorIcon + " Something has gone unexpectedly wrong.", ErrorIcon + " Stalo se něco neočekáváného.", ErrorIcon + " "];
+const ErrorMessage14 = [ErrorIcon + " You already own that [background](https://peeky.glitch.me/backgrounds.html).", ErrorIcon + " Toto [pozadí](https://peeky.glitch.me/backgrounds.html) již vlastníte.", ErrorIcon + " "];
+const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist.", ErrorIcon + " Do vašeho playlistu nelze přidat více písniček", ErrorIcon + " "];
+const ErrorMessage16 = [ErrorIcon + " That [background](https://peeky.glitch.me/backgrounds.html) doesn't exist.", ErrorIcon + " Toto [pozadí](https://peeky.glitch.me/backgrounds.html) neexistuje.", ErrorIcon + " "];
+const ErrorMessage17 = [ErrorIcon + " You need to specify the [function](https://peeky.glitch.me/functions.html).", ErrorIcon + " Musíte upřesnit funkci.", ErrorIcon + " "];
+const ErrorMessage18 = [ErrorIcon + " You need to provide valid arguments for the command.", ErrorIcon + " Musíte přidat spravný argumenty.", ErrorIcon + " "];
+const ErrorMessage19 = [ErrorIcon + " You need to join the [Support Server](https://peeky.glitch.me/server.html).", ErrorIcon + " Musíte se připojit na můj [server](https://peeky.glitch.me/server.html).", ErrorIcon + " "];
+const ErrorMessage20 = [ErrorIcon + " You need to upload a file.", ErrorIcon + " Musíte nahrát soubor.", ErrorIcon + " "];
+const ErrorMessage21 = [ErrorIcon + " You can only do that in [upgraded servers](https://peeky.glitch.me/store.html).", ErrorIcon + " Tohle funguje jenom ve [vylepšených serverech](https://peeky.glitch.me/store.html).", ErrorIcon + " "];
+const ErrorMessage22 = [ErrorIcon + " You need to join a voice channel.", ErrorIcon + " Musíte se připojt se do hlasového kanálu.", ErrorIcon + " Musíš sa pripojiť do voice channelu."];
 
-const InfoMessage1 = [InfoIcon + " You have earned a new [badge](https://peeky.glitch.me/badges.html).", ErrorIcon + " Dostal jste nový [odznak](https://peeky.glitch.me/badges.html)."];
-const InfoMessage2 = [InfoIcon + " You have set the default background.", ErrorIcon + " Nastavil jste si základní pozadí."];
+const InfoMessage1 = [InfoIcon + " You have earned a new [badge](https://peeky.glitch.me/badges.html).", InfoIcon + " Dostal jste nový [odznak](https://peeky.glitch.me/badges.html).", InfoIcon + " "];
+const InfoMessage2 = [InfoIcon + " You have set the default background.", InfoIcon + " Nastavil jste si základní pozadí.", InfoIcon + " "];
 
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
@@ -7564,7 +7564,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
             if (err) console.log(err); 
         });
 
-        var TranslatedMessages = [InfoIcon + " This profile is now featured on the website.", InfoIcon + " Tento profil je nyní vystaven na strance."];
+        var TranslatedMessages = [InfoIcon + " This profile is now featured on the website.", InfoIcon + " Tento profil je nyní vystaven na strance.", InfoIcon + " Tento profil je teraz uvedený na webstránke."];
         InfoMessages.push(TranslatedMessages[Language]);
       
         console.log("The featured profile has been updated.");
@@ -7679,7 +7679,7 @@ if (CommandName.startsWith("play"))  {
 
                                 const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
 
-                                var TranslatedMessages = [InfoIcon + " The music has now finished with **X001 listeners**.", InfoIcon + " Hudba právě skončila s **X001 posluchateli**."];
+                                var TranslatedMessages = [InfoIcon + " The music has now finished with **X001 listeners**.", InfoIcon + " Hudba právě skončila s **X001 posluchateli**.", InfoIcon + " Hudba sa skončila s **X001 poslucháčmi**."];
                                 const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
                                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7711,7 +7711,7 @@ if (CommandName.startsWith("play"))  {
                     });
 
                 } else {
-                  var TranslatedMessages = [ErrorIcon + " You can only play songs between 1 to 30 minutes.", ErrorIcon + " Můžete pouze hrát písničky které trvají 1 až 30 minut."];
+                  var TranslatedMessages = [ErrorIcon + " You can only play songs between 1 to 30 minutes.", ErrorIcon + " Můžete pouze hrát písničky které trvají 1 až 30 minut.", ErrorIcon + " Môžeš hrať iba pesničky od 1 do 30 minút."];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -7719,7 +7719,7 @@ if (CommandName.startsWith("play"))  {
             }).catch(async (error) => {
                 ErrorBag.add(error);
 
-                var TranslatedMessages = [ErrorIcon + " Failed to get the YouTube video.", ErrorIcon + " Nepodařilo se získat YouTube video."];
+                var TranslatedMessages = [ErrorIcon + " Failed to get the YouTube video.", ErrorIcon + " Nepodařilo se získat YouTube video.", ErrorIcon + " Nepodarilo sa nájsť Youtube video."];
                 const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             });
@@ -7754,7 +7754,7 @@ if (CommandName.startsWith("play"))  {
 
             } else {
 
-              var TranslatedMessages = [InfoIcon + " Previous song not found - playing a random song.", InfoIcon + " Minulá písnička nenalezena - Pehrávám náhodnou písničku."];
+              var TranslatedMessages = [InfoIcon + " Previous song not found - playing a random song.", InfoIcon + " Minulá písnička nenalezena - Pehrávám náhodnou písničku.", InfoIcon + " Predchodzá pesnička nenájdená - hrá sa random pesnička."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7781,7 +7781,7 @@ if (CommandName.startsWith("play"))  {
 
             } else {
 
-              var TranslatedMessages = [InfoIcon + " Your playlist is empty - Playing a random song.", InfoIcon + " Váš playlist je prázdný - Přehrávám náhodnou písničku."];
+              var TranslatedMessages = [InfoIcon + " Your playlist is empty - Playing a random song.", InfoIcon + " Váš playlist je prázdný - Přehrávám náhodnou písničku.", InfoIcon + " Tvôj playlist je prázdny - hrá sa random pesnička."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8548,7 +8548,7 @@ if  (CommandArgument.startsWith(" "))  {
                         });
 
                     if  (Failed == false)  {
-                        var TranslatedMessages = [SuccessIcon + " I have muted **X001** at **X002**'s request.", SuccessIcon + " Ztlumil jsem **X001 zpráv** na požádání od **X002**."];
+                        var TranslatedMessages = [SuccessIcon + " I have muted **X001** at **X002**'s request.", SuccessIcon + " Ztlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Mutnul som **X001** na **X002* požiadavku."];
                         const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
@@ -8629,7 +8629,7 @@ if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
                 });
 
                 if  (Failed == false)  {
-                    var TranslatedMessages = [SuccessIcon + " I have unmuted **X001** at **X002**'s request.", SuccessIcon + " Odztlumil jsem **X001 zpráv** na požádání od **X002**."];
+                    var TranslatedMessages = [SuccessIcon + " I have unmuted **X001** at **X002**'s request.", SuccessIcon + " Odtlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Unmutnul som **X001** na **X002* požiadavku."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -8708,7 +8708,7 @@ if  (CommandName.startsWith("idban"))  {
             });
 
             if  (Failed == false)  {
-                var TranslatedMessages = [SuccessIcon + " I have ID banned **X001** at **X002**'s request.", SuccessIcon + " ID Zabanoval jsem **X001 zpráv** na požádání od **X002**."];
+                var TranslatedMessages = [SuccessIcon + " I have ID banned **X001** at **X002**'s request.", SuccessIcon + " ID Zabanoval jsem **X001 zpráv** na požádání od **X002**.", SuccessIcon + " ID Bannul som **X001** na **X002* požiadavku."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.users.get(CommandArgument).username).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8716,7 +8716,7 @@ if  (CommandName.startsWith("idban"))  {
         }
          else
         {
-         var TranslatedMessages = [ErrorIcon + " You cannot ID ban someone inside the server.", ErrorIcon + " Nemůžete ID Zabanovat někoho na serveru."];
+         var TranslatedMessages = [ErrorIcon + " You cannot ID ban someone inside the server.", ErrorIcon + " Nemůžete ID Zabanovat někoho na serveru.", ErrorIcon + " Nemôžeš ID zabanovať niekoho v serveri."];
          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
@@ -8724,7 +8724,7 @@ if  (CommandName.startsWith("idban"))  {
         }
          else
         {
-         var TranslatedMessages = [ErrorIcon + " You must enter a valid ID.", ErrorIcon + " Musíte zadat validní ID."];
+         var TranslatedMessages = [ErrorIcon + " You must enter a valid ID.", ErrorIcon + " Musíte zadat validní ID.", ErrorIcon + " Músíš zadať platnú ID."];
          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
@@ -8778,7 +8778,7 @@ if  (CommandName.startsWith("ban"))  {
             }
              else
             {
-              var TranslatedMessages = [ErrorIcon + " You cannot ban that user.", ErrorIcon + " Tohoto uživatele zabanovat nemůžete."];
+              var TranslatedMessages = [ErrorIcon + " You cannot ban that user.", ErrorIcon + " Tohoto uživatele zabanovat nemůžete.", ErrorIcon + " Nemôžeš zabanovať tohoto uživateľa."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8825,7 +8825,7 @@ if  (CommandName.startsWith("kick"))  {
             }
              else
             {
-              var TranslatedMessages = [ErrorIcon + " You cannot kick that user.", ErrorIcon + " Tohoto uživatele vykopnout nemůžete."];
+              var TranslatedMessages = [ErrorIcon + " You cannot kick that user.", ErrorIcon + " Tohoto uživatele vykopnout nemůžete.", ErrorIcon + " Nemôžeš vyhodiť tohoto uživateľa."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
             };
 
@@ -8927,7 +8927,7 @@ if  (CommandName.startsWith("purge"))  {
             }
              else
             {
-              var TranslatedMessages = [ErrorIcon + " You can only purge 1 to 100 messages.", ErrorIcon + " Můžete vyčistit jenom 1 až 100 zpráv."];
+              var TranslatedMessages = [ErrorIcon + " You can only purge 1 to 100 messages.", ErrorIcon + " Můžete vyčistit jenom 1 až 100 zpráv.", ErrorIcon + " Môžeš zmazať iba od 1 do 100 správ."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8972,7 +8972,7 @@ if  (CommandName.startsWith("prefix"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "prefix");
           
-            var TranslatedMessages = [SuccessIcon + " The prefix is now **X001**.", SuccessIcon + " Prefix je teď **X001**."];
+            var TranslatedMessages = [SuccessIcon + " The prefix is now **X001**.", SuccessIcon + " Prefix je teď **X001**.", SuccessIcon + " Predvoľba je teraz **X001**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -9014,7 +9014,7 @@ if  (CommandName.startsWith("highlightedchannel"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
           
-            var TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **#X001**."];
+            var TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **#X001**.", SuccessIcon + " Zvýraznený channel je teraz **#X001**"];
             const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -9049,7 +9049,7 @@ if  (CommandName.startsWith("functionnotifications"))  {
         if(peeky.serverData.get(keySF, "function_notifications") == true) {peeky.serverData.set(keySF, false, "function_notifications");}
         else peeky.serverData.set(keySF, true, "function_notifications");
 
-        var TranslatedMessages = [SuccessIcon + " The function notifications are now set to **X001**.", SuccessIcon + " Upozornění na funkce jsou teď nastaveny na **X001**."];
+        var TranslatedMessages = [SuccessIcon + " The function notifications are now set to **X001**.", SuccessIcon + " Upozornění na funkce jsou teď nastaveny na **X001**.", SuccessIcon + " Notifikácie funkcii su teraz nastavené na **X001**."];
         const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "function_notifications")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -9070,7 +9070,7 @@ if  (CommandName.startsWith("levelnotifications"))  {
         if(peeky.serverData.get(keySF, "level_notifications") == true) {peeky.serverData.set(keySF, false, "level_notifications");}
         else peeky.serverData.set(keySF, true, "level_notifications");
 
-        var TranslatedMessages = [SuccessIcon + " The level notifications are now set to **X001**.", SuccessIcon + " Upozornění na levely jsou teď nastaveny na **X001**."];
+        var TranslatedMessages = [SuccessIcon + " The level notifications are now set to **X001**.", SuccessIcon + " Upozornění na levely jsou teď nastaveny na **X001**.", SuccessIcon + " Level notifikácii je teraz nastavený na **X001**."];
         const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "function_notifications")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -9166,7 +9166,7 @@ if  (CommandName.startsWith("muterole"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "muted_role");
           
-            var TranslatedMessages = [SuccessIcon + " The mute role is now set to **@X001**.", SuccessIcon + " Role na ztlumení je teď nastavena na **@X001**."];
+            var TranslatedMessages = [SuccessIcon + " The mute role is now set to **@X001**.", SuccessIcon + " Role na ztlumení je teď nastavena na **@X001**.", SuccessIcon + " Mute rola je teraz nastavená na **@X001*."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 

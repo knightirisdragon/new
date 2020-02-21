@@ -162,7 +162,7 @@ The mentioned user has no profile. |
 Mentions are not allowed for this command. | 
 You must enter a valid amount. | 
 Make sure the function's name is all in lowercase. | 
-You need to become a Supporter to do that. | 
+You need to become a Premium user to do that. | 
 There are no songs playing right now. | 
 Something has gone unexpectedly wrong. | 
 You already own that ackground. | 
