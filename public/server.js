@@ -192,20 +192,20 @@ const ErrorMessage8  = [ErrorIcon + " Mentions are not allowed for this command.
 const ErrorMessage9  = [ErrorIcon + " You must enter a valid amount.", ErrorIcon + " Musíte vložit spravný počet.", ErrorIcon + " Musíš zadať platnú čiastku."];
 const ErrorMessage10 = [ErrorIcon + " Make sure the [function's](https://peeky.glitch.me/functions.html) name is all in lowercase.", ErrorIcon + " Ujistěte se, že jméno funkce je v malých písmenkách.", ErrorIcon + " Uisti sa že mená funkcie su všetky malými písmenami."];
 const ErrorMessage11 = [ErrorIcon + " You need to become a [Premium user](https://peeky.glitch.me/store.html) to do that.", ErrorIcon + " Pro tohle musíte být [Premium uživatel](https://peeky.glitch.me/store.html).", ErrorIcon + " Musíš sa stať Premium uživatelom aby si to mohol spraviť. "];
-const ErrorMessage12 = [ErrorIcon + " There are no songs playing right now.", ErrorIcon + " Momentálně nehrajou žádné písničky.", ErrorIcon + " "];
-const ErrorMessage13 = [ErrorIcon + " Something has gone unexpectedly wrong.", ErrorIcon + " Stalo se něco neočekáváného.", ErrorIcon + " "];
-const ErrorMessage14 = [ErrorIcon + " You already own that [background](https://peeky.glitch.me/backgrounds.html).", ErrorIcon + " Toto [pozadí](https://peeky.glitch.me/backgrounds.html) již vlastníte.", ErrorIcon + " "];
-const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist.", ErrorIcon + " Do vašeho playlistu nelze přidat více písniček", ErrorIcon + " "];
-const ErrorMessage16 = [ErrorIcon + " That [background](https://peeky.glitch.me/backgrounds.html) doesn't exist.", ErrorIcon + " Toto [pozadí](https://peeky.glitch.me/backgrounds.html) neexistuje.", ErrorIcon + " "];
-const ErrorMessage17 = [ErrorIcon + " You need to specify the [function](https://peeky.glitch.me/functions.html).", ErrorIcon + " Musíte upřesnit funkci.", ErrorIcon + " "];
-const ErrorMessage18 = [ErrorIcon + " You need to provide valid arguments for the command.", ErrorIcon + " Musíte přidat spravný argumenty.", ErrorIcon + " "];
-const ErrorMessage19 = [ErrorIcon + " You need to join the [Support Server](https://peeky.glitch.me/server.html).", ErrorIcon + " Musíte se připojit na můj [server](https://peeky.glitch.me/server.html).", ErrorIcon + " "];
-const ErrorMessage20 = [ErrorIcon + " You need to upload a file.", ErrorIcon + " Musíte nahrát soubor.", ErrorIcon + " "];
-const ErrorMessage21 = [ErrorIcon + " You can only do that in [upgraded servers](https://peeky.glitch.me/store.html).", ErrorIcon + " Tohle funguje jenom ve [vylepšených serverech](https://peeky.glitch.me/store.html).", ErrorIcon + " "];
+const ErrorMessage12 = [ErrorIcon + " There are no songs playing right now.", ErrorIcon + " Momentálně nehrajou žádné písničky.", ErrorIcon + " Teraz nehrajú žiadne piesne."];
+const ErrorMessage13 = [ErrorIcon + " Something has gone unexpectedly wrong.", ErrorIcon + " Stalo se něco neočekáváného.", ErrorIcon + " Niečo sa nečakane pokazilo."];
+const ErrorMessage14 = [ErrorIcon + " You already own that [background](https://peeky.glitch.me/backgrounds.html).", ErrorIcon + " Toto [pozadí](https://peeky.glitch.me/backgrounds.html) již vlastníte.", ErrorIcon + " Už vlastníš toto [pozadie](https://peeky.glitch.me/backgrounds.html)."];
+const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist.", ErrorIcon + " Do vašeho playlistu nelze přidat více písniček", ErrorIcon + " Už nemôžeš pridať žiadne piesne do tvojho playlistu."];
+const ErrorMessage16 = [ErrorIcon + " That [background](https://peeky.glitch.me/backgrounds.html) doesn't exist.", ErrorIcon + " Toto [pozadí](https://peeky.glitch.me/backgrounds.html) neexistuje.", ErrorIcon + " To [pozadie](https://peeky.glitch.me/backgrounds.html) neexistuje."];
+const ErrorMessage17 = [ErrorIcon + " You need to specify the [function](https://peeky.glitch.me/functions.html).", ErrorIcon + " Musíte upřesnit funkci.", ErrorIcon + " Musíš specifikovať funkciu."];
+const ErrorMessage18 = [ErrorIcon + " You need to provide valid arguments for the command.", ErrorIcon + " Musíte přidat spravný argumenty.", ErrorIcon + " Musíš zadať platné príkazy pre command."];
+const ErrorMessage19 = [ErrorIcon + " You need to join the [Support Server](https://peeky.glitch.me/server.html).", ErrorIcon + " Musíte se připojit na můj [server](https://peeky.glitch.me/server.html).", ErrorIcon + " Músíš sa pridať na Server Podpory."];
+const ErrorMessage20 = [ErrorIcon + " You need to upload a file.", ErrorIcon + " Musíte nahrát soubor.", ErrorIcon + " Musíš nahrať súbor."];
+const ErrorMessage21 = [ErrorIcon + " You can only do that in [upgraded servers](https://peeky.glitch.me/store.html).", ErrorIcon + " Tohle funguje jenom ve [vylepšených serverech](https://peeky.glitch.me/store.html).", ErrorIcon + " Toto môžeš robiť iba v vylepšených serveroch."];
 const ErrorMessage22 = [ErrorIcon + " You need to join a voice channel.", ErrorIcon + " Musíte se připojt se do hlasového kanálu.", ErrorIcon + " Musíš sa pripojiť do voice channelu."];
 
-const InfoMessage1 = [InfoIcon + " You have earned a new [badge](https://peeky.glitch.me/badges.html).", InfoIcon + " Dostal jste nový [odznak](https://peeky.glitch.me/badges.html).", InfoIcon + " "];
-const InfoMessage2 = [InfoIcon + " You have set the default background.", InfoIcon + " Nastavil jste si základní pozadí.", InfoIcon + " "];
+const InfoMessage1 = [InfoIcon + " You have earned a new [badge](https://peeky.glitch.me/badges.html).", InfoIcon + " Dostal jste nový [odznak](https://peeky.glitch.me/badges.html).", InfoIcon + " Získal si nový [odznak](https://peeky.glitch.me/badges.html)."];
+const InfoMessage2 = [InfoIcon + " You have set the default background.", InfoIcon + " Nastavil jste si základní pozadí.", InfoIcon + " Nastavil si štandardné pozadie."];
 
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
@@ -3598,13 +3598,16 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
          
         CommandCooldown.add("languages" + user.id);
         setTimeout(() => {CommandCooldown.delete("languages" + user.id)}, 2500);
+      
+        var Footer = "Some languages have been translated by PEEKY's community and may not be corrent/filtered in some places."
 
         if  (reaction.emoji.name == "🇺🇸")  {
             peeky.serverData.set(keySF, 0, "language");
 
             const newEmbed = new Discord.MessageEmbed({
                   description:  "**Languages**" + "\n\n" + "The server language has been set to **English**.",
-                  color: EmbedColor
+                  color: EmbedColor,
+                  footer: { "text": Footer }
             });
 
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
@@ -3614,17 +3617,19 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
 
             const newEmbed = new Discord.MessageEmbed({
                   description:  "**Languages**" + "\n\n" + "Jazyk serveru byl nastaven na **Češtinu**.",
-                  color: EmbedColor
+                  color: EmbedColor,
+                  footer: { "text": Footer }
             });
 
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
         } else 
         if  (reaction.emoji.name == "🇸🇰")  {
-            //peeky.serverData.set(keySF, 2, "language");
+            peeky.serverData.set(keySF, 2, "language");
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Languages**" + "\n\n" + "Jazky serveru bol nastavený na **Slovenčina**. (NOT DONE)",
-                  color: EmbedColor
+                  description:  "**Languages**" + "\n\n" + "Jazky serveru bol nastavený na **Slovenčina**.",
+                  color: EmbedColor,
+                  footer: { "text": Footer }
             });
 
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
@@ -3634,7 +3639,8 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
 
             const newEmbed = new Discord.MessageEmbed({
                   description:  "**Languages**" + "\n\n" + "Sunucu dili **Türk** olarak değiştirildi. (NOT DONE)",
-                  color: EmbedColor
+                  color: EmbedColor,
+                  footer: { "text": Footer }
             });
 
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
@@ -5044,7 +5050,7 @@ if (CommandName == "languages")  {
                 CommandCooldown.add("languages" + message.guild.id);
                 setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
 
-                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `100%`" + "\n\n" + "🇨🇿 Čeština `95%`" + "\n\n" + "🇸🇰 Slovenčina `0%`" + "\n\n" + "🇹🇷 Türk `0%`",  "color": EmbedColor}; 
+                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `Vojtch Jílovec`" + "\n\n" + "🇨🇿 Čeština `Vojtch Jílovec`" + "\n\n" + "🇸🇰 Slovenčina `Adriane Jack`" + "\n\n" + "🇹🇷 Türkçe `NOT DONE: Plantinbae`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       peeky.userData.set(key, m.id, "LanguageID");
