@@ -1198,6 +1198,7 @@ function function_ServerData(key)  {
             ticket_system_bonus: false,
             ticket_system_bonus_setting: "Staff",
             ticket_system_bonus_id: null,
+            ticket_system_bonus_channels: [],
             reaction_roles_bonus: false,
             reaction_roles_bonus_setting: [],
             reaction_roles_bonus_id: null,
@@ -3599,7 +3600,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
         CommandCooldown.add("languages" + user.id);
         setTimeout(() => {CommandCooldown.delete("languages" + user.id)}, 2500);
       
-        var Footer = "Some languages have been translated by PEEKY's community and may not be corrent/filtered in some places."
+        var Footer = "Be sure to report invalid translations by creating a Ticket in the Support Server.";
 
         if  (reaction.emoji.name == "🇺🇸")  {
             peeky.serverData.set(keySF, 0, "language");
@@ -3627,7 +3628,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             peeky.serverData.set(keySF, 2, "language");
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Languages**" + "\n\n" + "Jazky serveru bol nastavený na **Slovenčina**.",
+                  description:  "**Languages**" + "\n\n" + "Jazyk serveru bol nastavený na **Slovenčina**.",
                   color: EmbedColor,
                   footer: { "text": Footer }
             });
@@ -3638,7 +3639,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             //peeky.serverData.set(keySF, 3, "language");
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Languages**" + "\n\n" + "Sunucu dili **Türk** olarak değiştirildi. (NOT DONE)",
+                  description:  "**Languages**" + "\n\n" + "Sunucu dili **Türk** olarak değiştirildi.",
                   color: EmbedColor,
                   footer: { "text": Footer }
             });
@@ -3741,6 +3742,8 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                     ], reason: "Channel created by @" + reaction.message.author.tag + " through a function." })
                   
                     .then(async function (channel)  {
+                        peeky.serverData.set(${data.GuildID}, [], "ticket_system_bonus_channels");
+                      
                         if  (category && category.permissionsFor(peeky.user).has('VIEW_CHANNEL'))  {
                             channel.setParent(category.id).catch(error => ErrorBag.add(error));
                         };
@@ -5050,7 +5053,7 @@ if (CommandName == "languages")  {
                 CommandCooldown.add("languages" + message.guild.id);
                 setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
 
-                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `Vojtch Jílovec`" + "\n\n" + "🇨🇿 Čeština `Vojtch Jílovec`" + "\n\n" + "🇸🇰 Slovenčina `Adriane Jack`" + "\n\n" + "🇹🇷 Türkçe `NOT DONE: Plantinbae`",  "color": EmbedColor}; 
+                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `Vojtěch Jílovec`" + "\n\n" + "🇨🇿 Čeština `Vojtěch Jílovec`" + "\n\n" + "🇸🇰 Slovenčina `Adriane Jack`" + "\n\n" + "🇹🇷 Türkçe `NOT DONE: Plantinbae`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       peeky.userData.set(key, m.id, "LanguageID");
