@@ -5025,7 +5025,7 @@ if  (CommandName.startsWith("ticket"))  {
                 if  (CommandArray[1] == "rename" && CommandArray[2])  {
                     await message.channel.setName(function_RemoveFormatting(CommandArray[2], "channel", true)).catch(error => {ErrorBag.add(error)});
 
-                    var TranslatedMessages = [SuccessIcon + " The ticket has been renamed to **#X001**.", SuccessIcon + " Lístek byl přejmenován na **#X001**.", SuccessIcon + " The ticket has been renamed to **#X001**."];
+                    var TranslatedMessages = [SuccessIcon + " The ticket has been renamed to **#X001**.", SuccessIcon + " Lístek byl přejmenován na **#X001**.", SuccessIcon + " Lístok bol premenovaný na**#X001**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", message.channel.name),  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
