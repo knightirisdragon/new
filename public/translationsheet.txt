@@ -31,6 +31,8 @@ You cannot start a vote kick against that user, **X001**. |
 **X001 has created a ticket** | 
 Staff may close the ticket once the issue has been resolved. | 
 
+The ticket has been renamed to **#X001**. | 
+
 **X001** has logged **X002**'s message. | 
 That message was already logged, **X001**. | 
 
