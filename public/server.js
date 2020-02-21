@@ -5044,14 +5044,14 @@ if (CommandName == "languages")  {
                 CommandCooldown.add("languages" + message.guild.id);
                 setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
 
-                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `100%`" + "\n\n" + "🇨🇿 Čeština `95%`" + "\n\n" + "🇨🇿 Slovenčina `0%`" + "\n\n" + "🇨🇿 Türk `0%`",  "color": EmbedColor}; 
+                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `100%`" + "\n\n" + "🇨🇿 Čeština `95%`" + "\n\n" + "🇸🇰 Slovenčina `0%`" + "\n\n" + "🇹🇷 Türk `0%`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       peeky.userData.set(key, m.id, "LanguageID");
                       await m.react("🇺🇸").catch(error => {ErrorBag.add(error)});
                       await m.react("🇨🇿").catch(error => {ErrorBag.add(error)});
-                      await m.react("🇨🇿").catch(error => {ErrorBag.add(error)});
-                      await m.react("🇨🇿").catch(error => {ErrorBag.add(error)});
+                      await m.react("🇸🇰").catch(error => {ErrorBag.add(error)});
+                      await m.react("🇹🇷").catch(error => {ErrorBag.add(error)});
 
                 }).catch(error => {ErrorBag.add(error)});
               
