@@ -5102,11 +5102,12 @@ if (CommandName == "languages")  {
                 const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `Vojtěch Jílovec`" + "\n\n" + "🇨🇿 Čeština `Vojtěch Jílovec`" + "\n\n" + "🇸🇰 Slovenčina `Adriane Jack`" + "\n\n" + "🇹🇷 Türkçe `NOT DONE: Plantinbae`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
-                      peeky.userData.set(key, m.id, "LanguageID");
                       await m.react("🇺🇸").catch(error => {ErrorBag.add(error)});
                       await m.react("🇨🇿").catch(error => {ErrorBag.add(error)});
                       await m.react("🇸🇰").catch(error => {ErrorBag.add(error)});
                       await m.react("🇹🇷").catch(error => {ErrorBag.add(error)});
+
+                      peeky.userData.set(key, m.id, "LanguageID");
 
                 }).catch(error => {ErrorBag.add(error)});
               
