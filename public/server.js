@@ -1114,7 +1114,7 @@ function function_StreamAnnouncements(member, activity)  {
         var GameColor  = 7506394;
         var GameHost   = "Discord";
       
-        if  (member.presence.activity)  {
+        if  (activity)  {
             GameName = function_RemoveFormatting(activity.name, "other", false);
         };
 
@@ -2719,9 +2719,6 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
                         await function_DirectMessage(member.user.id, { embed });
 
                         member.kick("Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
-                    } else {
-                      const embed = {"description": InfoIcon + " Seems like you have already verified yourself in this server.",  "color": EmbedColor}; 
-                      await function_DirectMessage(member.user.id, { embed });
                     };
                 });
               
