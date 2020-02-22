@@ -3637,11 +3637,22 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
 
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
         } else 
-        if  (reaction.emoji.name == "🇫🇷")  {
-            //peeky.serverData.set(keySF, 3, "language");
+        if  (reaction.emoji.name == "🇳🇱")  {
+            peeky.serverData.set(keySF, 0, "language");
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "La langue du serveur a été définie sur **Français**.",
+                  description:  "WEE WOO",
+                  color: EmbedColor,
+                  footer: { "text": Footer }
+            });
+
+            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
+        } else 
+        if  (reaction.emoji.name == "🇫🇷")  {
+            peeky.serverData.set(keySF, 0, "language");
+
+            const newEmbed = new Discord.MessageEmbed({
+                  description:  "WEE WOO",
                   color: EmbedColor,
                   footer: { "text": Footer }
             });
@@ -3649,7 +3660,18 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
         } else 
         if  (reaction.emoji.name == "🇪🇸")  {
-            //peeky.serverData.set(keySF, 4, "language");
+            peeky.serverData.set(keySF, 0, "language");
+
+            const newEmbed = new Discord.MessageEmbed({
+                  description:  "WEE WOO",
+                  color: EmbedColor,
+                  footer: { "text": Footer }
+            });
+
+            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
+        } else 
+        if  (reaction.emoji.name == "🇪🇸")  {
+            peeky.serverData.set(keySF, 0, "language");
 
             const newEmbed = new Discord.MessageEmbed({
                   description:  "WEE WOO",
