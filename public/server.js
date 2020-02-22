@@ -3492,6 +3492,10 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
 
         var GivenMinutes = peeky.serverData.get(keySF, "spoiler_lock_bonus_setting");
         if  (GivenMinutes == 0)  {GivenMinutes = "Never"}  else  {GivenMinutes = GivenMinutes + " minutes"};
+      
+        if  (reaction.emoji.name == "⏹️")  {
+            reaction.message.delete().catch(error => ErrorBag.add(error));        
+        };
 
         if  (reaction.emoji.name == "1️⃣")  {
 
@@ -5063,15 +5067,17 @@ if (CommandName == "overview")  {
             CommandCooldown.add("overview" + message.guild.id);
             setTimeout(() => {CommandCooldown.delete("overview" + message.guild.id)}, 10000);
 
-            const embed = {"description": "**Overview Menu**" + "\n\n" + "1️⃣ Server Settings" + "\n\n" + "2️⃣ Server Functions `[1/3]`" + "\n\n" + "3️⃣ Server Functions `[2/3]`" + "\n\n" + "4️⃣ Server Functions `[3/3]`" + "\n\n" + "5️⃣ Channel Functions",  "color": EmbedColor}; 
+            const embed = {"description": "**Overview Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "1️⃣ Server Settings" + "\n\n" + "2️⃣ Server Functions `[1/3]`" + "\n\n" + "3️⃣ Server Functions `[2/3]`" + "\n\n" + "4️⃣ Server Functions `[3/3]`" + "\n\n" + "5️⃣ Channel Functions",  "color": EmbedColor}; 
             await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
-                  peeky.userData.set(key, m.id, "OverviewID");
+                  await m.react("⏹️").catch(error => {ErrorBag.add(error)});
                   await m.react("1️⃣").catch(error => {ErrorBag.add(error)});
                   await m.react("2️⃣").catch(error => {ErrorBag.add(error)});
                   await m.react("3️⃣").catch(error => {ErrorBag.add(error)});
                   await m.react("4️⃣").catch(error => {ErrorBag.add(error)});
                   await m.react("5️⃣").catch(error => {ErrorBag.add(error)});
+              
+                  peeky.userData.set(key, m.id, "OverviewID");
 
             }).catch(error => {ErrorBag.add(error)});
           
