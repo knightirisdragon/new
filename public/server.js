@@ -194,7 +194,7 @@ const ErrorMessage10 = [ErrorIcon + " Make sure the [function's](https://peeky.g
 const ErrorMessage11 = [ErrorIcon + " You need to become a [Premium user](https://peeky.glitch.me/store.html) to do that.", ErrorIcon + " Pro tohle musíte být [Premium uživatel](https://peeky.glitch.me/store.html).", ErrorIcon + " Musíš sa stať Premium uživatelom aby si to mohol spraviť. "];
 const ErrorMessage12 = [ErrorIcon + " There are no songs playing right now.", ErrorIcon + " Momentálně nehrajou žádné písničky.", ErrorIcon + " Teraz nehrajú žiadne piesne."];
 const ErrorMessage13 = [ErrorIcon + " Something has gone unexpectedly wrong.", ErrorIcon + " Stalo se něco neočekáváného.", ErrorIcon + " Niečo sa nečakane pokazilo."];
-const ErrorMessage14 = [ErrorIcon + " You already own that [background](https://peeky.glitch.me/backgrounds.html).", ErrorIcon + " Toto [pozadí](https://peeky.glitch.me/backgrounds.html) již vlastníte.", ErrorIcon + " Už vlastníš toto [pozadie](https://peeky.glitch.me/backgrounds.html)."];
+const ErrorMessage14 = undefined;
 const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist.", ErrorIcon + " Do vašeho playlistu nelze přidat více písniček", ErrorIcon + " Už nemôžeš pridať žiadne piesne do tvojho playlistu."];
 const ErrorMessage16 = [ErrorIcon + " That [background](https://peeky.glitch.me/backgrounds.html) doesn't exist.", ErrorIcon + " Toto [pozadí](https://peeky.glitch.me/backgrounds.html) neexistuje.", ErrorIcon + " To [pozadie](https://peeky.glitch.me/backgrounds.html) neexistuje."];
 const ErrorMessage17 = [ErrorIcon + " You need to specify the [function](https://peeky.glitch.me/functions.html).", ErrorIcon + " Musíte upřesnit funkci.", ErrorIcon + " Musíš specifikovať funkciu."];
@@ -5099,11 +5099,11 @@ if (CommandName == "overview")  {
 };
       
 //Languages
-if (CommandName == "languages")  {
-  
-    if  (!CommandCooldown.has("languages" + message.guild.id))  {
+if  (CommandName == "languages")  {
       
-        if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
+    if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
+  
+        if  (!CommandCooldown.has("languages" + message.guild.id))  {
           
             if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
@@ -5132,17 +5132,17 @@ if (CommandName == "languages")  {
                       peeky.userData.set(key, m.id, "LanguageID");
 
                 }).catch(error => {ErrorBag.add(error)});
-              
-            } else {
-             const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
-             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };
-          
-        };
 
-    } else {
-      const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            } else {
+              const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
+        } else {
+         const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+          
     };
 
 };
@@ -6675,58 +6675,49 @@ if  (CommandName.startsWith("buybackground"))  {
 
             if  ((i !== 1) && (Banners[i - 1][Banner.Price] !== Exclusive))  {
 
-                if  (!peeky.userData.get(key, "Inventory").includes(i))  {
+                if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
 
-                    if  (peeky.userData.get(key, "Gredit") >= Banners[i - 1][Banner.Price])  {
+                    var i = Number(i);
 
-                        var i = Number(i);
+                    if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
+                        var CustomBackgroundAmount = 1;
+                    } else {  var CustomBackgroundAmount = 0;  };
 
-                        if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
-                            var CustomBackgroundAmount = 1;
-                        } else {  var CustomBackgroundAmount = 0;  };
+                    if  (!peeky.userData.get(key, "HorderBadge") && (peeky.userData.get(key, "Inventory").length + CustomBackgroundAmount) >= 10)  {
 
-                        if  (!peeky.userData.get(key, "HorderBadge") && (peeky.userData.get(key, "Inventory").length + CustomBackgroundAmount) >= 10)  {
+                        InfoMessages.push(InfoMessage1[Language]);
+                        peeky.userData.set(key, true, "HorderBadge");
 
-                            InfoMessages.push(InfoMessage1[Language]);
-                            peeky.userData.set(key, true, "HorderBadge");
-
-                        };
-
-                        if  (!peeky.userData.get(key, "MinerBadge") && i == 283)  {
-
-                            InfoMessages.push(InfoMessage1[Language]);
-                            peeky.userData.set(key, true, "MinerBadge");
-
-                        };
-
-                        var RevenueID = Banners[i - 1][Banner.RevenueID];
-                        if  (RevenueID !== undefined && peeky.userData.has(RevenueID) && message.author.id !== RevenueID && peeky.users.has(RevenueID))  {
-                            peeky.userData.math(RevenueID, "-", (Banners[i - 1][Banner.Price] / Setting.SellMultiplier), "Gredit");
-                            InfoMessages.push(InfoIcon + " Your purchase has generated **" + (Banners[i - 1][Banner.Price] / Setting.SellMultiplier).toLocaleString('en') + " " + GreditIcon + "** of revenue for **" + function_RemoveFormatting(peeky.users.get(RevenueID).username, "other", true) + "**.");
-                        };
-
-                        peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
-                        peeky.userData.get(key, "Inventory").push(i);
-
-                        var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Kupil si **X001** pozadie pre **X002" + " " + GreditIcon + "**."];
-                        var embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", function_GetBackgroundInfo(i, ["price"]).toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
-                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-                        break;
-
-                    } else {
-                      const embed = {"description": ErrorMessage1[Language],  "color": EmbedColor}; 
-                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-                      break;
                     };
 
-                } else { 
-                  const embed = {"description": ErrorMessage14[Language], "color": EmbedColor}; 
+                    if  (!peeky.userData.get(key, "MinerBadge") && i == 283)  {
+
+                        InfoMessages.push(InfoMessage1[Language]);
+                        peeky.userData.set(key, true, "MinerBadge");
+
+                    };
+
+                    var RevenueID = Banners[i - 1][Banner.RevenueID];
+                    if  (RevenueID !== undefined && peeky.userData.has(RevenueID) && message.author.id !== RevenueID && peeky.users.has(RevenueID))  {
+                        peeky.userData.math(RevenueID, "-", (Banners[i - 1][Banner.Price] / Setting.SellMultiplier), "Gredit");
+                        InfoMessages.push(InfoIcon + " Your purchase has generated **" + (Banners[i - 1][Banner.Price] / Setting.SellMultiplier).toLocaleString('en') + " " + GreditIcon + "** of revenue for **" + function_RemoveFormatting(peeky.users.get(RevenueID).username, "other", true) + "**.");
+                    };
+
+                    peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
+                    peeky.userData.get(key, "Inventory").push(i);
+
+                    var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Kupil si **X001** pozadie pre **X002" + " " + GreditIcon + "**."];
+                    var embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", function_GetBackgroundInfo(i, ["price"]).toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                    break;
+
+                } else {
+                  const embed = {"description": ErrorMessage1[Language],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                   break;
-            };
+                };
 
             } else {
               var TranslatedMessages = [ErrorIcon + " You cannot buy the default and exclusive backgrounds.", ErrorIcon + " Nemůžete si koupit základní a exlusivní pozadí.", ErrorIcon + " Nemôžeš kúpiť štandardné a exkluzívne pozadia."];
@@ -7332,7 +7323,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         }
          else
         {
-         const embed = {"description": ErrorMessage14[Language],  "color": EmbedColor}; 
+         const embed = {"description": ErrorMessage5[Language],  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 

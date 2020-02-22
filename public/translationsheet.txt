@@ -167,7 +167,6 @@ Make sure the function's name is all in lowercase. |
 You need to become a Premium user to do that. | 
 There are no songs playing right now. | 
 Something has gone unexpectedly wrong. | 
-You already own that ackground. | 
 You cannot add any more songs to your playlist. | 
 That background doesn't exist. | 
 You need to specify the function. | 
