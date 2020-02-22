@@ -3604,7 +3604,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
       
         var Footer = "Be sure to report invalid translations by creating a Ticket in the Support Server.";
 
-        if  (reaction.emoji.name == "🇺🇸")  {
+        if  (reaction.emoji.name == "🇬🇧")  {
             peeky.serverData.set(keySF, 0, "language");
 
             const newEmbed = new Discord.MessageEmbed({
@@ -5099,10 +5099,10 @@ if (CommandName == "languages")  {
                 CommandCooldown.add("languages" + message.guild.id);
                 setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
 
-                const embed = {"description": "**Languages**" + "\n\n" + "🇺🇸 English `Vojtěch Jílovec`" + "\n\n" + "🇨🇿 Čeština `Vojtěch Jílovec`" + "\n\n" + "🇸🇰 Slovenčina `Adriane Jack`" + "\n\n" + "🇹🇷 Türkçe `NOT DONE: Plantinbae`",  "color": EmbedColor}; 
+                const embed = {"description": "**Languages**" + "\n\n" + "🇬🇧 English `Vojtěch Jílovec`" + "\n\n" + "🇨🇿 Čeština `Vojtěch Jílovec`" + "\n\n" + "🇸🇰 Slovenčina `Adriane Jack`" + "\n\n" + "🇹🇷 Türkçe `NOT DONE: Plantinbae`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
-                      await m.react("🇺🇸").catch(error => {ErrorBag.add(error)});
+                      await m.react("🇬🇧").catch(error => {ErrorBag.add(error)});
                       await m.react("🇨🇿").catch(error => {ErrorBag.add(error)});
                       await m.react("🇸🇰").catch(error => {ErrorBag.add(error)});
                       await m.react("🇹🇷").catch(error => {ErrorBag.add(error)});
