@@ -21,6 +21,7 @@ After translating all the phrases below, send me the translation file on Discord
 
 TRANSLATE:
 Do not replace/remove any symbols such as X001, X002 and so on...
+Put the translated text after the "|" symbol.
 
 The server language has been set to **LANGUAGE_NAME**. | 
 
