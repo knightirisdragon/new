@@ -5109,8 +5109,14 @@ if (CommandName == "languages")  {
 
                 CommandCooldown.add("languages" + message.guild.id);
                 setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
+              
+                var French = "🇫🇷";
+              
+                if  (Math.round(Math.random() * 20) == 0)  {
+                    French = "🥖";
+                };
 
-                const embed = {"description": "🇬🇧 English `Vojtěch Jílovec`" + "\n\n" + "🇨🇿 Čeština `Vojtěch Jílovec`" + "\n\n" + "🇸🇰 Slovenčina `Adriane Jack`" + "\n\n" + "🇫🇷 Française `NOT DONE: Bersekr21`" + "\n\n" + "🇹🇷 Türkçe `NOT DONE: PlantinBae`",  "color": EmbedColor}; 
+                const embed = {"description": "🇬🇧 English `Vojtěch Jílovec`" + "\n\n" + "🇨🇿 Čeština `Vojtěch Jílovec`" + "\n\n" + "🇸🇰 Slovenčina `Adriane Jack`" + "\n\n" + French + " Française `NOT DONE: Bersekr21`" + "\n\n" + "🇹🇷 Türkçe `NOT DONE: PlantinBae`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       await m.react("🇬🇧").catch(error => {ErrorBag.add(error)});
