@@ -157,7 +157,7 @@ I am missing required permissions to do that. |
 
 You need more Gredit to do that. | 
 The new description is too large. | 
-The provided mention is invalid." | 
+The provided mention is invalid. | 
 You need to enter a valid YouTube link. | 
 You do not have that background in your inventory. | 
 You do not have enough chests. | 
