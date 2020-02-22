@@ -3637,8 +3637,19 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
 
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
         } else 
-        if  (reaction.emoji.name == "🇹🇷")  {
+        if  (reaction.emoji.name == "🇫🇷")  {
             //peeky.serverData.set(keySF, 3, "language");
+
+            const newEmbed = new Discord.MessageEmbed({
+                  description:  "**Languages**" + "\n\n" + "La langue du serveur a été définie sur Française.",
+                  color: EmbedColor,
+                  footer: { "text": Footer }
+            });
+
+            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
+        } else 
+        if  (reaction.emoji.name == "🇹🇷")  {
+            //peeky.serverData.set(keySF, 4, "language");
 
             const newEmbed = new Discord.MessageEmbed({
                   description:  "**Languages**" + "\n\n" + "Sunucu dili **Türk** olarak değiştirildi.",
@@ -5025,7 +5036,7 @@ if  (CommandName.startsWith("ticket"))  {
             if  (message.channel.permissionsFor(message.guild.me).has("MANAGE_CHANNELS"))  {
             
                 if  (CommandArray[1] == "rename" && CommandArray[2])  {
-                    await message.channel.setName(function_RemoveFormatting(CommandArray[2], "channel", true)).catch(error => {ErrorBag.add(error)});
+                    await message.channel.setName(function_RemoveFormatting(CommandArray.join(" ").replace("ticket rename ", ""), "channel", true)).catch(error => {ErrorBag.add(error)});
 
                     var TranslatedMessages = [SuccessIcon + " The ticket has been renamed to **#X001**.", SuccessIcon + " Lístek byl přejmenován na **#X001**.", SuccessIcon + " Lístok bol premenovaný na**#X001**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", message.channel.name),  "color": EmbedColor}; 
@@ -5099,12 +5110,13 @@ if (CommandName == "languages")  {
                 CommandCooldown.add("languages" + message.guild.id);
                 setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
 
-                const embed = {"description": "**Languages**" + "\n\n" + "🇬🇧 English `Vojtěch Jílovec`" + "\n\n" + "🇨🇿 Čeština `Vojtěch Jílovec`" + "\n\n" + "🇸🇰 Slovenčina `Adriane Jack`" + "\n\n" + "🇹🇷 Türkçe `NOT DONE: Plantinbae`",  "color": EmbedColor}; 
+                const embed = {"description": "🇬🇧 English `Vojtěch Jílovec`" + "\n\n" + "🇨🇿 Čeština `Vojtěch Jílovec`" + "\n\n" + "🇸🇰 Slovenčina `Adriane Jack`" + "\n\n" + "🇫🇷 Française `NOT DONE: Bersekr21`" + "\n\n" + "🇹🇷 Türkçe `NOT DONE: PlantinBae`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       await m.react("🇬🇧").catch(error => {ErrorBag.add(error)});
                       await m.react("🇨🇿").catch(error => {ErrorBag.add(error)});
                       await m.react("🇸🇰").catch(error => {ErrorBag.add(error)});
+                      await m.react("🇫🇷").catch(error => {ErrorBag.add(error)});
                       await m.react("🇹🇷").catch(error => {ErrorBag.add(error)});
 
                       peeky.userData.set(key, m.id, "LanguageID");
