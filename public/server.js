@@ -5122,12 +5122,13 @@ if  (CommandName == "languages")  {
                     French = "🥖";
                 };
 
-                const embed = {"description": English + " English `Vojtěch Jílovec`" + "\n\n" + Czech +" Čeština `Vojtěch Jílovec`" + "\n\n" + Slovak +" Slovenčina `Adriane Jack`" + "\n\n" + French + " Français `NOT DONE: Bersekr21`" + "\n\n" + Spanish + " Spanish `NOT DONE: TheSongList`" + "\n\n" + Turk + " Türkçe `NOT DONE: PlantinBae`",  "color": EmbedColor}; 
+                const embed = {"description": English + " English `Vojtěch Jílovec`" + "\n\n" + Czech +" Čeština `Vojtěch Jílovec`" + "\n\n" + Slovak +" Slovenčina `Adriane Jack`" + "\n\n" + Dutch + " Dutch `NOT DONE: ZWEKKERBOY`" + "\n\n" + French + " Français `NOT DONE: Bersekr21`" + "\n\n" + Spanish + " Spanish `NOT DONE: TheSongList`" + "\n\n" + Turk + " Türkçe `NOT DONE: PlantinBae`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       await m.react("🇬🇧").catch(error => {ErrorBag.add(error)});
                       await m.react("🇨🇿").catch(error => {ErrorBag.add(error)});
                       await m.react("🇸🇰").catch(error => {ErrorBag.add(error)});
+                      await m.react("🇳🇱").catch(error => {ErrorBag.add(error)});
                       await m.react("🇫🇷").catch(error => {ErrorBag.add(error)});
                       await m.react("🇪🇸").catch(error => {ErrorBag.add(error)});
                       await m.react("🇹🇷").catch(error => {ErrorBag.add(error)});
