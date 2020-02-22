@@ -4718,7 +4718,7 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
     const WebsiteInfo = ["Visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related.", "Navštivte moji stránku aby jste mohli hlasovat, číst návody, koukat na pozadí, otevřit žebříček a vlastně všechno co se týče PEEKYho.", "Navštívte webovú stránku, kde môžete hlasovať, prečítať si návody, prehliadať pozadia, prezerať výsledkové tabuľky a takmer všetko, čo sa týka PEEKYho.", "Visita el sitio web para votar, leer tutoriales, navegar por los fondos, ver la tabla de clasificación y casi todo relacionado con PEEKY."];
     const StoreInfo = ["Support PEEKY by purchasing some neat items from the store!", "Podpořte PEEKYho tím, že si koupíte nějaké supr věcičky z obchodu!", "Navštívte webovú stránku, kde môžete hlasovať, prečítať si návody, prehliadať pozadia, prezerať výsledkové tabuľky a takmer všetko, čo sa týka PEEKYho.", "¡Apoya a PEEKY comprando algunos artículos de la tienda!"];
     const SupportServerInfo = ["Join the Support Server for important announcements, assistance with the bot, giveaways and much more!", "Připojte se na můj Discord server pro důležitá upozornění, podporu s botem, soutěže a mnoho dalšího!", "Pripojte sa k serveru podpory a získajte dôležité oznámenia, pomoc s botom, darčeky a oveľa viac.", "Únete al Servidor de Soporte para anuncios importantes, asistencia con el bot, regalos y mucho más!"];
-    const BotInvite = ["Add PEEKY to your server and get all the features for free and quick!", "Přidejte si PEEKYho na váš server a dostanete všechny funkce zdarma a rychle.", "Pridaj PEEKYho na tvôj server a získaj všetky funkcie.", ""];
+    const BotInvite = ["Add PEEKY to your server and get all the features for free and quick!", "Přidejte si PEEKYho na váš server a dostanete všechny funkce zdarma a rychle.", "Pridaj PEEKYho na tvôj server a získaj všetky funkcie.", "Añade a PEEKY a tu servidor y obtén todas las características de forma rápida y gratuita!"];
   
     const embed = {  "description": 
                      "**Website** [[Open]](https://peeky.glitch.me/)\n" + WebsiteInfo[Language] +
@@ -4922,7 +4922,7 @@ if (CommandName.startsWith("upgrade"))  {
                 InfoMessages.push(InfoMessage1[Language]);
             };
           
-            var TranslatedMessages = [SuccessIcon + " This server is now upgraded!", SuccessIcon + " Tento server je nyní vylepšen!", SuccessIcon + " Tento server je teraz vylepšený!"];
+            var TranslatedMessages = [SuccessIcon + " This server is now upgraded!", SuccessIcon + " Tento server je nyní vylepšen!", SuccessIcon + " Tento server je teraz vylepšený!", SuccessIcon + " ¡Este servidor está ahora actualizado!"];
             const embed = {"description": TranslatedMessages[Language] + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -4931,7 +4931,7 @@ if (CommandName.startsWith("upgrade"))  {
     }
      else 
     {
-      var TranslatedMessages = [ErrorIcon + " You cannot upgrade this server.", ErrorIcon + " Tento server vylepšit nemůžete.", ErrorIcon + " Nemôžeš vylepšiť tento server."];
+      var TranslatedMessages = [ErrorIcon + " You cannot upgrade this server.", ErrorIcon + " Tento server vylepšit nemůžete.", ErrorIcon + " Nemôžeš vylepšiť tento server.", ErrorIcon + " No puedes actualizar este servidor."];
       const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
@@ -4962,11 +4962,11 @@ if (CommandName == "setinvite")  {
 
                 if  (Invites.length > 0) {
                     peeky.serverData.set(keySF, Invites[0].code, "server_invite");
-                    var TranslatedMessages = [InfoIcon + " The server's invite code has been set to **X001**.", InfoIcon + " Pozvánka tohoto server byla nastavea na **X001**.", InfoIcon + " Kód pozvania pre tento server bol nastavený na **X001**."];
+                    var TranslatedMessages = [InfoIcon + " The server's invite code has been set to **X001**.", InfoIcon + " Pozvánka tohoto server byla nastavea na **X001**.", InfoIcon + " Kód pozvania pre tento server bol nastavený na **X001**.", InfoIcon + " El código de invitación del servidor se ha fijado en **X001**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", Invites[0].code),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 } else {
-                    var TranslatedMessages = [ErrorIcon + " I could not find any server invites in this channel.", ErrorIcon + " V tomto kanále jsem nenašel žádné pozvánky.", ErrorIcon + " Nemohol som nájsť žiadne pozvánky pre tento channel."];
+                    var TranslatedMessages = [ErrorIcon + " I could not find any server invites in this channel.", ErrorIcon + " V tomto kanále jsem nenašel žádné pozvánky.", ErrorIcon + " Nemohol som nájsť žiadne pozvánky pre tento channel.", ErrorIcon + " No pude encontrar invitaciones de servidor en este canal."];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -5178,19 +5178,19 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 
     var ManageChannels = false;
     var ManageRoles = false;
-    var TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je nyní **X002**.", SuccessIcon + " **X001** funkcia bola **X002**."];
+    var TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je nyní **X002**.", SuccessIcon + " **X001** funkcia bola **X002**.", SuccessIcon + " La función **X001** ha sido **X002**."];
   
     if  (message.guild.me.permissions.has("MANAGE_CHANNELS"))  {
         ManageChannels = true;  
       
-        var TranslatedBonuses = [InfoIcon + " Created a channel called **X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál s názvem **X001** pro funkci **X002**.", InfoIcon + " Vytvoril som channel pod menom **#X001** pre **X002** funkciu."];
+        var TranslatedBonuses = [InfoIcon + " Created a channel called **X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál s názvem **X001** pro funkci **X002**.", InfoIcon + " Vytvoril som channel pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un canal llamado **#X001** para la función **X002**."];
         var ChannelCreation = TranslatedBonuses[Language]
     };
   
     if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
         ManageRoles = true;
       
-        var TranslatedBonuses = [InfoIcon + " Created a role called **@X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **@X001** pro funkci **X002**.", InfoIcon + " Vytvoril som rolu pod menom **#X001** pre **X002** funkciu."];
+        var TranslatedBonuses = [InfoIcon + " Created a role called **@X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **@X001** pro funkci **X002**.", InfoIcon + " Vytvoril som rolu pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un papel llamado **X001** para la función **@X002**."];
         var RoleCreation = TranslatedBonuses[Language];
     };
   
@@ -6033,8 +6033,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
-    var TranslatedMessages = [SuccessIcon + " The setting for the **X001** function is now **X002**.", SuccessIcon + " Nastavení pro funkci **X001** je nyní **X002**.", SuccessIcon + " Nastavenie pre **X001** funkciu je teraz **X002*."];
-    var TranslatedFullSetting = [ErrorIcon + " The setting for the **X001** function is full.", ErrorIcon + " Nastavení pro funcki **X001** je plné.", ErrorIcon + " Nastavenie pre **X001** funkciu je plné."];
+    var TranslatedMessages = [SuccessIcon + " The setting for the **X001** function is now **X002**.", SuccessIcon + " Nastavení pro funkci **X001** je nyní **X002**.", SuccessIcon + " Nastavenie pre **X001** funkciu je teraz **X002*.", SuccessIcon + " El ajuste de la función **X001** es ahora **X002**."];
+    var TranslatedFullSetting = [ErrorIcon + " The setting for the **X001** function is full.", ErrorIcon + " Nastavení pro funcki **X001** je plné.", ErrorIcon + " Nastavenie pre **X001** funkciu je plné.", ErrorIcon + " El ajuste de la función **X001** está lleno."];
   
     if  (!peeky.userData.get(key, "FunctionalBadge"))  {
         peeky.userData.set(key, true, "FunctionalBadge");
@@ -6523,7 +6523,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-    var TranslatedMessages = [SuccessIcon + " Cleared the setting for the **X001** function.", SuccessIcon + " Nastavení pro funkci **X001** bylo vyčištěno.", SuccessIcon + " Vymazal som nastavenie pre **X001** funkciu."];
+    var TranslatedMessages = [SuccessIcon + " Cleared the setting for the **X001** function.", SuccessIcon + " Nastavení pro funkci **X001** bylo vyčištěno.", SuccessIcon + " Vymazal som nastavenie pre **X001** funkciu.", SuccessIcon + " Despejó la configuración de la función **X001**."];
  
 //Clear Banned Words
 if  (FunctioName.startsWith("banned words"))  {
@@ -6635,7 +6635,7 @@ if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.gui
 
             if  (NewLinesCount < 2)  {
               
-                var TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si nový popisok pre **X001" + " " + GreditIcon + "**."];
+                var TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si nový popisok pre **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una nueva descripción para **X001" + " " + GreditIcon + "**."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6653,7 +6653,7 @@ if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.gui
              else
             {
 
-              var TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si random popisok pre **X001**" + " " + GreditIcon + "**."];
+              var TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si random popisok pre **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una descripción aleatoria para el **X001**" + " " + GreditIcon + "**."];
               const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6722,7 +6722,7 @@ if  (CommandName.startsWith("buybackground"))  {
                     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
                     peeky.userData.get(key, "Inventory").push(i);
 
-                    var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Kupil si **X001** pozadie pre **X002" + " " + GreditIcon + "**."];
+                    var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Kupil si **X001** pozadie pre **X002" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado el fondo **X001** para **X002" + " " + GreditIcon + "**."];
                     var embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", function_GetBackgroundInfo(i, ["price"]).toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6736,7 +6736,7 @@ if  (CommandName.startsWith("buybackground"))  {
                 };
 
             } else {
-              var TranslatedMessages = [ErrorIcon + " You cannot buy the default and exclusive backgrounds.", ErrorIcon + " Nemůžete si koupit základní a exlusivní pozadí.", ErrorIcon + " Nemôžeš kúpiť štandardné a exkluzívne pozadia."];
+              var TranslatedMessages = [ErrorIcon + " You cannot buy the default and exclusive backgrounds.", ErrorIcon + " Nemůžete si koupit základní a exlusivní pozadí.", ErrorIcon + " Nemôžeš kúpiť štandardné a exkluzívne pozadia.", ErrorIcon + " Usted no puede comprar los fondos predeterminados y exclusivos."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6830,7 +6830,7 @@ if (CommandName.startsWith("setbackground"))  {
 
                 peeky.userData.set(key, i, "Background");
 
-                var TranslatedMessages = [SuccessIcon + " You have set the **X001** background.", SuccessIcon + " Nastavil jste si pozadí **X001**.", SuccessIcon + " Nastavil si **X001** pozadie."];
+                var TranslatedMessages = [SuccessIcon + " You have set the **X001** background.", SuccessIcon + " Nastavil jste si pozadí **X001**.", SuccessIcon + " Nastavil si **X001** pozadie.", SuccessIcon + " Usted ha puesto el fondo **X001**"];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6950,14 +6950,14 @@ if  (i !== AllString)  {
                         InfoMessages.push(InfoMessage2[Language]);
                     };
 
-                    var TranslatedMessages = [SuccessIcon + " You have sold the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Predal si **X001** pozadie za **X002" + " " + GreditIcon + "**."];
+                    var TranslatedMessages = [SuccessIcon + " You have sold the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Predal si **X001** pozadie za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido el fondo **X001** por **X002" + " " + GreditIcon + "**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", FinalPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 }
                  else
                 {
-                  var TranslatedMessages = [ErrorIcon + " You cannot sell the default backgrounds.", ErrorIcon + " Nemůžete prodat základní pozadí.", ErrorIcon + " Nemôžeš predať štandardné pozadia."];
+                  var TranslatedMessages = [ErrorIcon + " You cannot sell the default backgrounds.", ErrorIcon + " Nemůžete prodat základní pozadí.", ErrorIcon + " Nemôžeš predať štandardné pozadia.", ErrorIcon + " Usted no puede vender los fondos predeterminados."];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   
                   break;
@@ -7005,7 +7005,7 @@ if  (i !== AllString)  {
       peeky.userData.set(key, SavedBackgrounds, "Inventory");
       peeky.userData.math(key, "+", FullPrice, "Gredit");
 
-      var TranslatedMessages = [SuccessIcon + " You have sold all your backgrounds for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste všechna svá pozadí za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Predal si všetky tvoje pozadia za **X001" + " " + GreditIcon + "**."];
+      var TranslatedMessages = [SuccessIcon + " You have sold all your backgrounds for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste všechna svá pozadí za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Predal si všetky tvoje pozadia za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido todos sus fondos por **X001" + " " + GreditIcon + "**."];
       const embed = {"description": TranslatedMessages[Language].replace("X001", FullPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7122,7 +7122,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
           peeky.userData.math(key, "-", ChestAmount, "Chests");
           peeky.userData.math(key, "+", TotalLoot, "Gredit");
 
-          var TranslatedMessages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** a získal **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otvoril si **X001" + " " + ChestIcon + "** pro **X002" + " " + GreditIcon +"**."];
+          var TranslatedMessages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** a získal **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otvoril si **X001" + " " + ChestIcon + "** pro **X002" + " " + GreditIcon +"**.", SuccessIcon + " Usted ha abierto el **X001" + " " + ChestIcon + "** por **X002" + " " + GreditIcon +"**."];
           const embed = {"description": TranslatedMessages[Language].replace("X001", ChestAmount.toLocaleString('en')).replace("X002", TotalLoot.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
           await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7153,7 +7153,7 @@ if (CommandName == "daily")  {
       
     let timeObj = ms(cooldown - (new Date() - lastDaily));
   
-    var TranslatedMessages = [InfoIcon + " Come back in **X001** and **X002** for your reward.", InfoIcon + " Vraťte se za **X001** a **X002** pro vaši odměnu.", InfoIcon + " Vráť sa v **X001** a **X002** pre tvoju odmenu."];
+    var TranslatedMessages = [InfoIcon + " Come back in **X001** and **X002** for your reward.", InfoIcon + " Vraťte se za **X001** a **X002** pro vaši odměnu.", InfoIcon + " Vráť sa v **X001** a **X002** pre tvoju odmenu.", InfoIcon + " Vuelva en **X001** y **X002** para su recompensa."];
     var embed = {"description": TranslatedMessages[Language].replace("X001", timeObj.hours + "h").replace("X002", timeObj.minutes + "m"),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
