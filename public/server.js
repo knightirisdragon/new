@@ -3608,7 +3608,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             peeky.serverData.set(keySF, 0, "language");
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Languages**" + "\n\n" + "The server language has been set to **English**.",
+                  description:  "The server language has been set to **English**.",
                   color: EmbedColor,
                   footer: { "text": Footer }
             });
@@ -3619,7 +3619,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             peeky.serverData.set(keySF, 1, "language");
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Languages**" + "\n\n" + "Jazyk serveru byl nastaven na **Češtinu**.",
+                  description:  "Jazyk serveru byl nastaven na **Češtinu**.",
                   color: EmbedColor,
                   footer: { "text": Footer }
             });
@@ -3630,7 +3630,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             peeky.serverData.set(keySF, 2, "language");
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Languages**" + "\n\n" + "Jazyk serveru bol nastavený na **Slovenčina**.",
+                  description:  "Jazyk serveru bol nastavený na **Slovenčina**.",
                   color: EmbedColor,
                   footer: { "text": Footer }
             });
@@ -3641,7 +3641,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             //peeky.serverData.set(keySF, 3, "language");
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Languages**" + "\n\n" + "La langue du serveur a été définie sur Française.",
+                  description:  "La langue du serveur a été définie sur **Française**.",
                   color: EmbedColor,
                   footer: { "text": Footer }
             });
@@ -3652,7 +3652,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             //peeky.serverData.set(keySF, 4, "language");
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Languages**" + "\n\n" + "Sunucu dili **Türk** olarak değiştirildi.",
+                  description:  "Sunucu dili **Türk** olarak değiştirildi.",
                   color: EmbedColor,
                   footer: { "text": Footer }
             });
@@ -7697,7 +7697,7 @@ if (CommandName.startsWith("play"))  {
                 const Length     = info.lengthSeconds;
                 const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (Length / 60));
                 const Started    = new Date();
-
+                  
                 if  (Length <= 1800 && Length > 60)  { //1800
 
                     await voiceChannel.join().then(async connection => {
