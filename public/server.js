@@ -1909,7 +1909,7 @@ peeky.on('message', async (message) => {
       
     //LEADERBOARD SCORE
     var LeaderboardRank = 1;
-    var Factors = [["Gredit", 50000, false], ["Karma", 100, false], ["Levels", 25, false], ["Votes", 10, false], ["Inventory", 50, true], ["UpgradedServers", 5, true]];
+    var Factors = [["Gredit", 50000, false], ["Karma", 250, false], ["Levels", 20, false], ["Votes", 5, false], ["Inventory", 25, true], ["UpgradedServers", 5, true]];
     
     Factors.forEach(factor => {
         if  (factor[2] !== true && peeky.userData.get(key, factor[0]) > 0) {
@@ -8196,10 +8196,11 @@ if (CommandName == "stop")  {
 
                 const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
                 if  (connection)  {
-                    peeky.serverData.set(keySF, [], "Queue");
                     connection.dispatcher.end();
-                    message.guild.me.voice.channel.leave();
                 };
+                
+                peeky.serverData.set(keySF, [], "Queue");
+                message.guild.me.voice.channel.leave();
 
             } else {
               var TranslatedMessages = [ErrorIcon + " Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže preskočiť túto pieseň teraz."];
@@ -8302,37 +8303,37 @@ if (CommandName == "guessthesong")  {
 
                     message.channel.awaitMessages(response => response.content.toLowerCase() == GuessTheSong[ChosenSong][1].toLowerCase(), { max: 1, time: 30000, errors: ['time'] })
                     .then(collected => {
-                      var key = collected.first().author.id;
-                        
-                      //Gamer Badge
-                      if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
-                          peeky.userData.set(key, true, "GamerBadge");
-                          InfoMessages.push(InfoMessage1[Language]);
-                      };
-                      
-                      if  (peeky.userData.has(key))  {
-                          peeky.userData.math(key, "+", 100, "Exp");
-                      };
-                      
-                      const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has guessed the song's name!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                      message.channel.send({ embed });
+                        var key = collected.first().author.id;
 
-                      const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-                      if  (connection)  {
-                          connection.dispatcher.end();
-                          message.guild.me.voice.channel.leave();
-                      };
+                        //Gamer Badge
+                        if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
+                            peeky.userData.set(key, true, "GamerBadge");
+                            InfoMessages.push(InfoMessage1[Language]);
+                        };
+
+                        if  (peeky.userData.has(key))  {
+                            peeky.userData.math(key, "+", 100, "Exp");
+                        };
+
+                        const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has guessed the song's name!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                        message.channel.send({ embed });
+
+                        const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                        if  (connection)  {
+                            connection.dispatcher.end();
+                        };
+                        message.guild.me.voice.channel.leave();
                       
                     })
                     .catch(collected => {
-                      const embed = {"description": ErrorIcon + " The song's name was **" + GuessTheSong[ChosenSong][1] + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                      message.channel.send({ embed });
+                        const embed = {"description": ErrorIcon + " The song's name was **" + GuessTheSong[ChosenSong][1] + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                        message.channel.send({ embed });
 
-                      const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-                      if  (connection)  {
-                          connection.dispatcher.end();
-                          message.guild.me.voice.channel.leave();
-                      };
+                        const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                        if  (connection)  {
+                            connection.dispatcher.end();
+                        };
+                        message.guild.me.voice.channel.leave();
                     });
 
                 });
