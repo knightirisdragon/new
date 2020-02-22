@@ -3641,7 +3641,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             //peeky.serverData.set(keySF, 3, "language");
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "La langue du serveur a été définie sur **Française**.",
+                  description:  "La langue du serveur a été définie sur **Français**.",
                   color: EmbedColor,
                   footer: { "text": Footer }
             });
@@ -5110,13 +5110,17 @@ if (CommandName == "languages")  {
                 CommandCooldown.add("languages" + message.guild.id);
                 setTimeout(() => {CommandCooldown.delete("languages" + message.guild.id)}, 10000);
               
+                var English = "🇬🇧";
+                var Czech = "🇨🇿";
+                var Slovak = "🇸🇰";
                 var French = "🇫🇷";
+                var Turk = "🇹🇷";
               
                 if  (Math.round(Math.random() * 20) == 0)  {
                     French = "🥖";
                 };
 
-                const embed = {"description": "🇬🇧 English `Vojtěch Jílovec`" + "\n\n" + "🇨🇿 Čeština `Vojtěch Jílovec`" + "\n\n" + "🇸🇰 Slovenčina `Adriane Jack`" + "\n\n" + French + " Française `NOT DONE: Bersekr21`" + "\n\n" + "🇹🇷 Türkçe `NOT DONE: PlantinBae`",  "color": EmbedColor}; 
+                const embed = {"description": English + " English `Vojtěch Jílovec`" + "\n\n" + Czech +" Čeština `Vojtěch Jílovec`" + "\n\n" + Slovak +" Slovenčina `Adriane Jack`" + "\n\n" + French + " Français `NOT DONE: Bersekr21`" + "\n\n" + Turk + " Türkçe `NOT DONE: PlantinBae`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       await m.react("🇬🇧").catch(error => {ErrorBag.add(error)});
@@ -7099,7 +7103,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
 
                   if  (Background !== 0 && Banners[Background][Banner.Price] !== Exclusive)  {
 
-                      peeky.userData.get(key, "Inventory").push(Background + 1);
+                      peeky.userData.get(key, "Inventory").push(Background);
                       InfoMessages.push(InfoIcon + " You have found the **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
 
                   };
