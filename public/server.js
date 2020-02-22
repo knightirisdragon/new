@@ -3637,11 +3637,11 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
 
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
         } else 
-        if  (reaction.emoji.name == "🇳🇱")  {
+        if  (reaction.emoji.name == "🇪🇸")  {
             peeky.serverData.set(keySF, 0, "language");
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "WEE WOO",
+                  description:  "El idioma del servidor ha sido cambiado a **Español**.",
                   color: EmbedColor,
                   footer: { "text": Footer }
             });
@@ -3652,29 +3652,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             peeky.serverData.set(keySF, 0, "language");
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "WEE WOO",
-                  color: EmbedColor,
-                  footer: { "text": Footer }
-            });
-
-            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
-        } else 
-        if  (reaction.emoji.name == "🇪🇸")  {
-            peeky.serverData.set(keySF, 0, "language");
-
-            const newEmbed = new Discord.MessageEmbed({
-                  description:  "WEE WOO",
-                  color: EmbedColor,
-                  footer: { "text": Footer }
-            });
-
-            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
-        } else 
-        if  (reaction.emoji.name == "🇪🇸")  {
-            peeky.serverData.set(keySF, 0, "language");
-
-            const newEmbed = new Discord.MessageEmbed({
-                  description:  "WEE WOO",
+                  description:  "La langue du serveur a été définie sur **Français**.",
                   color: EmbedColor,
                   footer: { "text": Footer }
             });
@@ -5144,15 +5122,15 @@ if  (CommandName == "languages")  {
                     French = "🥖";
                 };
 
-                const embed = {"description": English + " English `Vojtěch Jílovec`" + "\n\n" + Czech +" Čeština `Vojtěch Jílovec`" + "\n\n" + Slovak +" Slovenčina `Adriane Jack`" + "\n\n" + Dutch + " Dutch `NOT DONE: ZWEKKERBOY`" + "\n\n" + French + " Français `NOT DONE: Bersekr21`" + "\n\n" + Spanish + " Spanish `NOT DONE: TheSongList`" + "\n\n" + Turk + " Türkçe `NOT DONE: PlatinBae`",  "color": EmbedColor}; 
+                const embed = {"description": English + " English `Vojtěch Jílovec`" + "\n\n" + Czech +" Čeština `Vojtěch Jílovec`" + "\n\n" + Slovak +" Slovenčina `Adriane Jack`" + "\n\n" + Spanish + " Español `NOT DONE: TheSongList`" + "\n\n" + French + " Français `NOT DONE: Bersekr21`" + "\n\n" + Dutch + " Dutch `NOT DONE: ZWEKKERBOY`" + "\n\n" + Turk + " Türkçe `NOT DONE: PlatinBae`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       await m.react("🇬🇧").catch(error => {ErrorBag.add(error)});
                       await m.react("🇨🇿").catch(error => {ErrorBag.add(error)});
                       await m.react("🇸🇰").catch(error => {ErrorBag.add(error)});
-                      await m.react("🇳🇱").catch(error => {ErrorBag.add(error)});
-                      await m.react("🇫🇷").catch(error => {ErrorBag.add(error)});
                       await m.react("🇪🇸").catch(error => {ErrorBag.add(error)});
+                      await m.react("🇫🇷").catch(error => {ErrorBag.add(error)});
+                      await m.react("🇳🇱").catch(error => {ErrorBag.add(error)});
                       await m.react("🇹🇷").catch(error => {ErrorBag.add(error)});
 
                       peeky.userData.set(key, m.id, "LanguageID");
