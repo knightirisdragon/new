@@ -168,8 +168,9 @@ const AllString      = "all";
 const RandomString   = "random";
 const BadFormat      = "invalid";
 const Exclusive      = "Exclusive";
-const EnableStrings  = ["enabled", "zapnutá", "zapnutá", "encender"];
-const DisableStrings = ["disabled", "vypnutá", "vypnutá", "apagado"];
+const EnableStrings  = [  "enabled", "zapnutá", "zapnutá", "encender"  ];
+const DisableStrings = [  "disabled", "vypnutá", "vypnutá", "apagado"  ];
+const Languages      = [  "English",  "Čeština", "Slovenina", "Español"  ];
 
 //Response Messages
 const CooldownMessage1 = [ErrorIcon + " You are currently on a cooldown for that command.", ErrorIcon + " Tento příkaz je pro vás momentálně zastaven.", ErrorIcon + " Nemôžeš teraz použiť tento command.", ErrorIcon + " Actualmente estás en un período de enfriamiento para ese comando."];
@@ -217,7 +218,6 @@ const TextChannels        = [  "text", "news"  ];
 
 //Small Objects
 var Banner          = {  Source: 0,  Price: 1 ,  Name: 2 ,  Credit: 3,  RevenueID: 4, AddedDate: 5  };
-var Languages       = [  "English",  "Čeština", "Slovenina", "Türk"  ];
 var StreamOptions   = {  volume: 1  };
 var SearchOptions   = {  maxResults: 1,  key: process.env.YT_TOKEN  };
 
