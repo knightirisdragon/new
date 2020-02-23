@@ -9132,8 +9132,7 @@ if  (CommandName.startsWith("functionnotifications"))  {
 
     if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
-        if(peeky.serverData.get(keySF, "function_notifications") == true) {peeky.serverData.set(keySF, false, "function_notifications");}
-        else peeky.serverData.set(keySF, true, "function_notifications");
+        peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "level_notifications"),"level_notifications");
 
         var TranslatedMessages = [SuccessIcon + " The function notifications are now set to **X001**.", SuccessIcon + " Upozornění na funkce jsou teď nastaveny na **X001**.", SuccessIcon + " Notifikácie funkcii su teraz nastavené na **X001**.", SuccessIcon + " Las notificaciones de función están ahora fijadas en **X001**."];
         const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "function_notifications")),  "color": EmbedColor};
@@ -9153,10 +9152,10 @@ if  (CommandName.startsWith("levelnotifications"))  {
 
     if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
-        peeky.serverData.set(keySF, ,"level_notifications")
+        peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "level_notifications"),"level_notifications");
 
         var TranslatedMessages = [SuccessIcon + " The level notifications are now set to **X001**.", SuccessIcon + " Upozornění na levely jsou teď nastaveny na **X001**.", SuccessIcon + " Level notifikácii je teraz nastavený na **X001**.", SuccessIcon + " Las notificaciones de nivel están ahora fijadas en **X001**."];
-        const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "function_notifications")),  "color": EmbedColor};
+        const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "level_notifications")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
