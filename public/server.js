@@ -2104,7 +2104,7 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
             var sorted   = filtered.sort((a, b) => b.LeaderboardRank - a.LeaderboardRank);
         };
 
-        const top            = sorted.splice(0, 100);
+        const top            = sorted.splice(0, Setting.LeaderboardLimit);
         var currentplace     = 0;
         var CurrentID        = 0;
         var GotBadge         = true;
@@ -7545,7 +7545,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
 
     //Leaderboard Position String
     ctx.textAlign = "left";
-    if  (LeaderboardPositions.includes(SomeoneTagged.user.id))  {  var Position = (LeaderboardPositions.indexOf(SomeoneTagged.user.id) + 1) + ".";  } else {  var Position = "No";  };
+    if  (LeaderboardPositions.includes(SomeoneTagged.user.id))  {  if  (peeky.userData.get(key2, "FashionBadge"))  {  var Position = (LeaderboardPositions.indexOf(SomeoneTagged.user.id) + 1) + ".";  } else {  var Position = Setting.LeaderboardLimit + "+";   };  } else {  var Position = "No";  };
     ctx.font = "15px " + Setting.DefaultFont;
     ctx.fillText("" + Position + " Leaderboard Position", canvas.width / 2 + 45, 175, canvas.width / 2 - 50);
     

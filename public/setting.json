@@ -19,8 +19,6 @@
   "ExpNeeded": 125,  
   "MinReviewLength": 100,
   
-  "SetStringLimit": 50,
-  
   "DefaultFont": "Verdana",
   "Dark": "#36393E",
   "LessDark": "#3f3f3f",
@@ -35,5 +33,6 @@
   "ReactionRolesLimit": 5,
   "BackgroundInvLimit": 25,
   "PlaylistLimit": 10,
-  "RedditLimit": 25
+  "RedditLimit": 25,
+  "LeaderboardLimit": 100
 }
