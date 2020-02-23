@@ -670,7 +670,7 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground445.png?v=1579388666650", 950, "Radio demon", "Hazbin Hotel", undefined, 1579388485754],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground446.png?v=1579585356877", 1000, "Deep within", "The Last of Us 2", undefined, 1579585332845],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground447.png?v=1580050827937", 925, "Ela", "Rainbow Six Siege", undefined, 1580050779446],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground448.png?v=1580050899305", 925, "Geralt the witcher", "The Witcher movie", undefined, 1580050873747],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground448.png?v=1580050899305", 925, "Geralt the witcher", "Netflix's The Witcher", undefined, 1580050873747],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground449.png?v=1580050958140", 975, "Little mouse", "u/xanaxandcheese", undefined, 1580050927737],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground450.png?v=1580071007780", 900, "Landscapes", "Unknown", undefined, 1580070929915],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground451.png?v=1580071146303", 850, "Shieldwall", "Unknown", undefined, 1580071117394],
@@ -679,8 +679,7 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground454.png?v=1581024166624", 925, "Gone hunting", "u/cubanxdante", undefined, 1581024112050],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground455.png?v=1581024196335", 525, "Memories", "JoJo's Bizarre Adventure Stardust Crusaders", undefined, 1581024152043],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground456.png?v=1581024249725", 875, "Kali", "Rainbow Six Siege", undefined, 1581024210419],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground457.png?v=1582358816412", 950, "Geralt of Rivia", "The Witcher", undefined, 1582358788761],
-    [NoBackground, 950, "Rico rodredez", "Just Cause 4", undefined, 1582441802726]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground457.png?v=1582358816412", 950, "Geralt of Rivia", "The Witcher", undefined, 1582358788761]
 
 ];
 
@@ -5151,12 +5150,12 @@ if  (CommandName == "languages")  {
                 }).catch(error => {ErrorBag.add(error)});
 
             } else {
-              const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
+              const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
         } else {
-         const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+         const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
           
@@ -9154,8 +9153,7 @@ if  (CommandName.startsWith("levelnotifications"))  {
 
     if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
-        if(peeky.serverData.get(keySF, "level_notifications") == true) {peeky.serverData.set(keySF, false, "level_notifications");}
-        else peeky.serverData.set(keySF, true, "level_notifications");
+        peeky.serverData.set(keySF, ,"level_notifications")
 
         var TranslatedMessages = [SuccessIcon + " The level notifications are now set to **X001**.", SuccessIcon + " Upozornění na levely jsou teď nastaveny na **X001**.", SuccessIcon + " Level notifikácii je teraz nastavený na **X001**.", SuccessIcon + " Las notificaciones de nivel están ahora fijadas en **X001**."];
         const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "function_notifications")),  "color": EmbedColor};
