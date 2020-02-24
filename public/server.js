@@ -168,194 +168,224 @@ const AllString      = "all";
 const RandomString   = "random";
 const BadFormat      = "invalid";
 const Exclusive      = "Exclusive";
-const EnableStrings  = [  "enabled", "zapnutá", "zapnutá", "encender"  ];
-const DisableStrings = [  "disabled", "vypnutá", "vypnutá", "apagado"  ];
-const Languages      = [  "English",  "Čeština", "Slovenčina", "Español"  ];
+const EnableStrings  = [  "enabled", "zapnutá", "zapnutá", "encender", "aktif"  ];
+const DisableStrings = [  "disabled", "vypnutá", "vypnutá", "apagado", "deaktif"  ];
+const Languages      = [  "English",  "Čeština", "Slovenčina", "Español", "Türkçe (WIP)"  ];
 
 //Response Messages
 const CooldownMessage1 = [
   ErrorIcon + " You are currently on a cooldown for that command.",
   ErrorIcon + " Tento příkaz je pro vás momentálně zastaven.",
   ErrorIcon + " Nemôžeš teraz použiť tento command.",
-  ErrorIcon + " Actualmente estás en un período de enfriamiento para ese comando."
+  ErrorIcon + " Actualmente estás en un período de enfriamiento para ese comando.",
+  ErrorIcon + " "
 ];
 const CooldownMessage2 = [
   ErrorIcon + " Automated channel creation is currently on a cooldown.",
   ErrorIcon + " Automatická tvorba kanálů je momentálně zastavena.",
   ErrorIcon + " Automatickú tvorbu channelov nemôžeš teraz použiť.",
-  ErrorIcon + " La creación de canales automatizada está actualmente en proceso de enfriamiento."
+  ErrorIcon + " La creación de canales automatizada está actualmente en proceso de enfriamiento.",
+  ErrorIcon + " "
 ];
 const CooldownMessage3 = [
   ErrorIcon + " Automated role creation is currently on a cooldown.",
   ErrorIcon + " Automatická tvorba rolí je momentálně zastavena.",
   ErrorIcon + " Automatické vytváranie rolí nemôžeš práve použiť.",
-  ErrorIcon + " La creación automatizada de roles está actualmente en proceso de enfriamiento."
+  ErrorIcon + " La creación automatizada de roles está actualmente en proceso de enfriamiento.",
+  ErrorIcon + " "
 ];
 const CooldownMessage4 = [
   ErrorIcon + " You are currently on a cooldown for that function.",
   ErrorIcon + " Tato funkce je pro vás momentálně zastavena.",
   ErrorIcon + " Nemôžeš teraz použiť túto funkciu.",
-  ErrorIcon + " Usted actualmente está en un período de enfriamiento para esa función."
+  ErrorIcon + " Usted actualmente está en un período de enfriamiento para esa función.",
+  ErrorIcon + " "
 ];
 
 const PermissionsMessageError1 = [
   ErrorIcon + " You are lacking the required permissions do that.",
   ErrorIcon + " Chybý vám požadovaná oprávnění.",
   ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť.",
-  ErrorIcon + " Usted no tiene los permisos necesarios para hacerlo."
+  ErrorIcon + " Usted no tiene los permisos necesarios para hacerlo.",
+  ErrorIcon + " "
 ];
 const PermissionsMessageError2 = [
   ErrorIcon + " You need to be the owner of this server to do that.",
   ErrorIcon + " Musíte být vlastníkem serveru.",
   ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť.",
-  ErrorIcon + " Usted necesita ser el dueño de este servidor para hacer eso."
+  ErrorIcon + " Usted necesita ser el dueño de este servidor para hacer eso.",
+  ErrorIcon + " "
 ];
 const PermissionsMessageError3 = [
   ErrorIcon + " I am missing required permissions to do that.",
   ErrorIcon + " Chybý mi požadovaná opravnění.",
   ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť.",
-  ErrorIcon + " No tengo los permisos necesarios para hacerlo."
+  ErrorIcon + " No tengo los permisos necesarios para hacerlo.",
+  ErrorIcon + " "
 ];
 
 const ErrorMessage1 = [
   ErrorIcon + " You need more Gredit to do that.",
   ErrorIcon + " Potřebujete získat více Greditu.",
   ErrorIcon + " Potrebuješ viacej Greditov aby si toto mohol spraviť.",
-  ErrorIcon + " Usted necesita más Gredit para hacer eso."
+  ErrorIcon + " Usted necesita más Gredit para hacer eso.",
+  ErrorIcon + " "
 ];
 const ErrorMessage2 = [
   ErrorIcon + " The new description is too large.",
   ErrorIcon + " Nový popisek je příliš dlouhý.",
   ErrorIcon + " Nový popisok je prílíš veľký.",
-  ErrorIcon + " La nueva descripción es demasiada larga."
+  ErrorIcon + " La nueva descripción es demasiada larga.",
+  ErrorIcon + " "
 ];
 const ErrorMessage3 = [
   ErrorIcon + " The provided mention is invalid.",
   ErrorIcon + " Toto označení je invalidní.",
   ErrorIcon + " Zadaná zmienka je neplatná.",
-  ErrorIcon + " La mención proporcionada es inválida."
+  ErrorIcon + " La mención proporcionada es inválida.",
+  ErrorIcon + " "
 ];
 const ErrorMessage4 = [
   ErrorIcon + " You need to enter a valid YouTube link.",
   ErrorIcon + " Vložte validní YouTube odkaz.",
   ErrorIcon + " Musíš zadať platný Youtube odkaz.",
-  ErrorIcon + " Usted tiene que entrar en un enlace válido de YouTube."
+  ErrorIcon + " Usted tiene que entrar en un enlace válido de YouTube.",
+  ErrorIcon + " "
 ];
 const ErrorMessage5 = [
   ErrorIcon + " You do not have that background in your inventory.",
   ErrorIcon + " Toto pozadí ještě nelastníte.",
   ErrorIcon + " Nemáš toto pozadie v tvojom inventári.",
-  ErrorIcon + " Usted no tiene esos fondos en su inventario."
+  ErrorIcon + " Usted no tiene esos fondos en su inventario.",
+  ErrorIcon + " "
 ];
 const ErrorMessage6 = [
   ErrorIcon + " You do not have enough chests.",
   ErrorIcon + " Nemáte dost truhel.",
   ErrorIcon + " Nemáš dostatok truhlí.",
-  ErrorIcon + " Usted no tiene suficientes cofres."
+  ErrorIcon + " Usted no tiene suficientes cofres.",
+  ErrorIcon + " "
 ];
 const ErrorMessage7 = [
   ErrorIcon + " The mentioned user has no profile.",
   ErrorIcon + " Tento uživatel nemá žádný profil.",
   ErrorIcon + " Zmienený uživateľ nemá žiadny profil.",
-  ErrorIcon + " El usuario mencionado no tiene un perfil."
+  ErrorIcon + " El usuario mencionado no tiene un perfil.",
+  ErrorIcon + " "
 ];
 const ErrorMessage8 = [
   ErrorIcon + " Mentions are not allowed for this command.",
   ErrorIcon + " Označení nejsou pro tento příkaz povoleny",
   ErrorIcon + " Zmienky niesú povolené pre tento command.",
-  ErrorIcon + " No se permiten menciones para este comando."
+  ErrorIcon + " No se permiten menciones para este comando.",
+  ErrorIcon + " "
 ];
 const ErrorMessage9 = [
   ErrorIcon + " You must enter a valid amount.",
   ErrorIcon + " Musíte vložit spravný počet.",
   ErrorIcon + " Musíš zadať platnú čiastku.",
-  ErrorIcon + " Debe introducir una cantidad válida."
+  ErrorIcon + " Debe introducir una cantidad válida.",
+  ErrorIcon + " "
 ];
 const ErrorMessage10 = [
   ErrorIcon + " Make sure the function's name is all in lowercase.",
   ErrorIcon + " Ujistěte se, že jméno funkce je v malých písmenkách.",
   ErrorIcon + " Uisti sa že mená funkcie su všetky malými písmenami.",
-  ErrorIcon + " Asegúrate de que el nombre de la función esté en minúsculas."
+  ErrorIcon + " Asegúrate de que el nombre de la función esté en minúsculas.",
+  ErrorIcon + " "
 ];
 const ErrorMessage11 = [
   ErrorIcon + " You need to become a Premium user to do that.",
   ErrorIcon + " Pro tohle musíte být Premium uživatel.",
   ErrorIcon + " Musíš sa stať Premium uživatelom aby si to mohol spraviť. ",
-  ErrorIcon + " Necesitas convertirte en un usuario Premium para hacer eso."
+  ErrorIcon + " Necesitas convertirte en un usuario Premium para hacer eso.",
+  ErrorIcon + " "
 ];
 const ErrorMessage12 = [
   ErrorIcon + " There are no songs playing right now.",
   ErrorIcon + " Momentálně nehrajou žádné písničky.",
   ErrorIcon + " Teraz nehrajú žiadne piesne.",
-  ErrorIcon + " No hay ninguna canción sonando ahora mismo."
+  ErrorIcon + " No hay ninguna canción sonando ahora mismo.",
+  ErrorIcon + " "
 ];
 const ErrorMessage13 = [
   ErrorIcon + " Something has gone unexpectedly wrong.",
   ErrorIcon + " Stalo se něco neočekáváného.",
   ErrorIcon + " Niečo sa nečakane pokazilo.",
-  ErrorIcon + " Algo ha salido mal inesperadamente."
+  ErrorIcon + " Algo ha salido mal inesperadamente.",
+  ErrorIcon + " "
 ];
 const ErrorMessage14 = undefined;
 const ErrorMessage15 = [
   ErrorIcon + " You cannot add any more songs to your playlist.",
   ErrorIcon + " Do vašeho playlistu nelze přidat více písniček",
   ErrorIcon + " Už nemôžeš pridať žiadne piesne do tvojho playlistu.",
-  ErrorIcon + " Usted no puede añadir más canciones a su lista de reproducción."
+  ErrorIcon + " Usted no puede añadir más canciones a su lista de reproducción.",
+  ErrorIcon + " "
 ];
 const ErrorMessage16 = [
   ErrorIcon + " That background doesn't exist.",
   ErrorIcon + " Toto pozadí neexistuje.",
   ErrorIcon + " To pozadie neexistuje.",
-  ErrorIcon + " Ese fondo no existe."
+  ErrorIcon + " Ese fondo no existe.",
+  ErrorIcon + " "
 ];
 const ErrorMessage17 = [
   ErrorIcon + " You need to specify the function.",
   ErrorIcon + " Musíte upřesnit funkci.",
   ErrorIcon + " Musíš specifikovať funkciu.",
-  ErrorIcon + " Es necesario especificar la función."
+  ErrorIcon + " Es necesario especificar la función.",
+  ErrorIcon + " "
 ];
 const ErrorMessage18 = [
   ErrorIcon + " You need to provide valid arguments for the command.",
   ErrorIcon + " Musíte přidat spravný argumenty.",
   ErrorIcon + " Musíš zadať platné príkazy pre command.",
-  ErrorIcon + " Tienes que proporcionar argumentos válidos para el comando."
+  ErrorIcon + " Tienes que proporcionar argumentos válidos para el comando.",
+  ErrorIcon + " "
 ];
 const ErrorMessage19 = [
   ErrorIcon + " You need to join the Support Server.",
   ErrorIcon + " Musíte se připojit na můj server.",
   ErrorIcon + " Músíš sa pridať na Server Podpory.",
-  ErrorIcon + " Tienes que unirte al Servidor de Soporte."
+  ErrorIcon + " Tienes que unirte al Servidor de Soporte.",
+  ErrorIcon + " "
 ];
 const ErrorMessage20 = [
   ErrorIcon + " You need to upload a file.",
   ErrorIcon + " Musíte nahrát soubor.",
   ErrorIcon + " Musíš nahrať súbor.",
-  ErrorIcon + " Tienes que subir un archivo."
+  ErrorIcon + " Tienes que subir un archivo.",
+  ErrorIcon + " "
 ];
 const ErrorMessage21 = [
   ErrorIcon + " You can only do that in upgraded servers.",
   ErrorIcon + " Tohle funguje jenom ve vylepšených serverech.",
   ErrorIcon + " Toto môžeš robiť iba v vylepšených serveroch.",
-  ErrorIcon + " Sólo puedes hacer eso en servidores actualizados."
+  ErrorIcon + " Sólo puedes hacer eso en servidores actualizados.",
+  ErrorIcon + " "
 ];
 const ErrorMessage22 = [
   ErrorIcon + " You need to join a voice channel.",
   ErrorIcon + " Musíte se připojt se do hlasového kanálu.",
   ErrorIcon + " Musíš sa pripojiť do voice channelu.",
-  ErrorIcon + " Usted necesita unirse a un canal de voz."
+  ErrorIcon + " Usted necesita unirse a un canal de voz.",
+  ErrorIcon + " "
 ];
 
 const InfoMessage1 = [
   InfoIcon + " You have earned a new badge.",
   InfoIcon + " Dostal jste nový odznak.",
   InfoIcon + " Získal si nový odznak.",
-  ErrorIcon + " Usted ha ganado una nueva placa."
+  ErrorIcon + " Usted ha ganado una nueva placa.",
+  ErrorIcon + " "
 ];
 const InfoMessage2 = [
   InfoIcon + " You have set the default background.",
   InfoIcon + " Nastavil jste si základní pozadí.",
   InfoIcon + " Nastavil si štandardné pozadie.",
-  ErrorIcon + " Usted ha establecido el fondo predeterminado."
+  ErrorIcon + " Usted ha establecido el fondo predeterminado.",
+  ErrorIcon + " "
 ];
 
 //Small Arrays
@@ -3796,6 +3826,17 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
 
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
         } else 
+        if  (reaction.emoji.name == "🇹🇷")  {
+            peeky.serverData.set(keySF, 4, "language");
+
+            const newEmbed = new Discord.MessageEmbed({
+                  description:  "Sunucu dili **Türkçe** olarak değiştirildi.",
+                  color: EmbedColor,
+                  footer: { "text": Footer }
+            });
+
+            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
+        } else 
         if  (reaction.emoji.name == "🇫🇷")  {
             peeky.serverData.set(keySF, 0, "language");
 
@@ -5277,21 +5318,21 @@ if  (CommandName == "languages")  {
                                               Slovak +" Slovenčina `Adriane Jack`"
                                               + "\n\n" +
                                               Spanish + " Español `TheSongList`"
+                                              + "\n\n" + 
+                                              Turk + " Türkçe `PlatinBae`"
                                               + "\n\n" +
                                               French + " Français `NOT DONE: Bersekr21`" 
                                               + "\n\n" +
-                                              Dutch + " Dutch `NOT DONE: ZWEKKERBOY`"
-                                              + "\n\n" + 
-                                              Turk + " Türkçe `NOT DONE: PlatinBae`",  "color": EmbedColor}; 
+                                              Dutch + " Dutch `NOT DONE: ZWEKKERBOY`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       await m.react("🇬🇧").catch(error => {ErrorBag.add(error)});
                       await m.react("🇨🇿").catch(error => {ErrorBag.add(error)});
                       await m.react("🇸🇰").catch(error => {ErrorBag.add(error)});
                       await m.react("🇪🇸").catch(error => {ErrorBag.add(error)});
+                      await m.react("🇹🇷").catch(error => {ErrorBag.add(error)});
                       await m.react("🇫🇷").catch(error => {ErrorBag.add(error)});
                       await m.react("🇳🇱").catch(error => {ErrorBag.add(error)});
-                      await m.react("🇹🇷").catch(error => {ErrorBag.add(error)});
 
                       peeky.userData.set(key, m.id, "LanguageID");
 
