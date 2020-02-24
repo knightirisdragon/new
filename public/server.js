@@ -2388,7 +2388,7 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
               var ImmuneString = "Not Immune";
             };
 
-            ServerLogList.push("<div class='displayitem' style='background-image: url(" + guild.iconURL({ format: 'png' }) + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(guild.name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + "  <br>  " + guild.members.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "  <br>  " + guild.id + "   </b></div>");
+            ServerLogList.push("<div class='displayitem' style='background-image: url(" + guild.iconURL({ format: 'png' }) + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(guild.name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + ", " + Languages[peeky.serverData.get(`${guild.id}`, "language")] + "  <br>  " + guild.members.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "  <br>  " + guild.id + "   </b></div>");
           
         };
       
