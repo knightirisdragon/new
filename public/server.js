@@ -315,7 +315,13 @@ const ErrorMessage13 = [
   ErrorIcon + " Algo ha salido mal inesperadamente.",
   ErrorIcon + " "
 ];
-const ErrorMessage14 = undefined;
+const ErrorMessage14 = [
+  ErrorIcon + " I cannot find a role called **X001**.",
+  ErrorIcon + " Nemohu najít roli s jménem **X001**.",
+  ErrorIcon + " Nemôžem nájsť rolu pod menom **X001**.",
+  ErrorIcon + " No puedo encontrar un papel llamado **X001**.",
+  ErrorIcon + " **X001** adında bir rol bulamıyorum."
+];
 const ErrorMessage15 = [
   ErrorIcon + " You cannot add any more songs to your playlist.",
   ErrorIcon + " Do vašeho playlistu nelze přidat více písniček",
@@ -7335,7 +7341,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
           peeky.userData.math(key, "-", ChestAmount, "Chests");
           peeky.userData.math(key, "+", TotalLoot, "Gredit");
 
-          var TranslatedMessages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** a získal **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otvoril si **X001" + " " + ChestIcon + "** pro **X002" + " " + GreditIcon +"**.", SuccessIcon + " Usted ha abierto el **X001" + " " + ChestIcon + "** por **X002" + " " + GreditIcon +"**.", SuccessIcon + " **X001" + " " + ChestIcon + "****X002" + " " + GreditIcon +"**."];
+          var TranslatedMessages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** a získal **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otvoril si **X001" + " " + ChestIcon + "** pro **X002" + " " + GreditIcon +"**.", SuccessIcon + " Usted ha abierto el **X001" + " " + ChestIcon + "** por **X002" + " " + GreditIcon +"**.", SuccessIcon + " **X002" + " " + GreditIcon + "** için **X001" + " " + ChestIcon +"** ürününü açtınız.."];
           const embed = {"description": TranslatedMessages[Language].replace("X001", ChestAmount.toLocaleString('en')).replace("X002", TotalLoot.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
           await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7366,7 +7372,7 @@ if (CommandName == "daily")  {
       
     let timeObj = ms(cooldown - (new Date() - lastDaily));
   
-    var TranslatedMessages = [InfoIcon + " Come back in **X001** and **X002** for your reward.", InfoIcon + " Vraťte se za **X001** a **X002** pro vaši odměnu.", InfoIcon + " Vráť sa v **X001** a **X002** pre tvoju odmenu.", InfoIcon + " Vuelva en **X001** y **X002** para su recompensa."];
+    var TranslatedMessages = [InfoIcon + " Come back in **X001** and **X002** for your reward.", InfoIcon + " Vraťte se za **X001** a **X002** pro vaši odměnu.", InfoIcon + " Vráť sa v **X001** a **X002** pre tvoju odmenu.", InfoIcon + " Vuelva en **X001** y **X002** para su recompensa.", InfoIcon + " Ödülün için **X001** ve **X002** 'e geri dön."];
     var embed = {"description": TranslatedMessages[Language].replace("X001", timeObj.hours + "h").replace("X002", timeObj.minutes + "m"),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
@@ -8206,7 +8212,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
                     peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
 
-                    var TranslatedMessages = [SuccessIcon + " Added the current song to your playlist.", SuccessIcon + " Aktuální písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pridal som aktuálnu pesničku do tvôjho playlistu.", SuccessIcon + " Añadi la canción actual a su lista de reproducción."];
+                    var TranslatedMessages = [SuccessIcon + " Added the current song to your playlist.", SuccessIcon + " Aktuální písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pridal som aktuálnu pesničku do tvôjho playlistu.", SuccessIcon + " Añadi la canción actual a su lista de reproducción.", SuccessIcon + " Geçerli şarkı çalma listenize eklendi."];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));    
 
@@ -8230,7 +8236,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
                     peeky.userData.get(key, "Playlist").push(PlaylistRequest);
 
-                    var TranslatedMessages = [SuccessIcon + " Added the song to your playlist.", SuccessIcon + " Písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pesnička pridaná do tvojho playlistu.", SuccessIcon + " Añadí la canción a su lista de reproducción."];
+                    var TranslatedMessages = [SuccessIcon + " Added the song to your playlist.", SuccessIcon + " Písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pesnička pridaná do tvojho playlistu.", SuccessIcon + " Añadí la canción a su lista de reproducción.", SuccessIcon + " Şarkı çalma listenize eklendi."];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8245,7 +8251,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
             };
 
         } else {
-          var TranslatedMessages = [ErrorIcon + " You cannot add playlists to your playlist.", ErrorIcon + " Do svého playlistu nemůžete přidat playlisty.", ErrorIcon + " Nemôžeš pridať playlisty do tvojich playlistov.", ErrorIcon + " No puedes añadir listas de reproducción a su lista de reproducción."];
+          var TranslatedMessages = [ErrorIcon + " You cannot add playlists to your playlist.", ErrorIcon + " Do svého playlistu nemůžete přidat playlisty.", ErrorIcon + " Nemôžeš pridať playlisty do tvojich playlistov.", ErrorIcon + " No puedes añadir listas de reproducción a su lista de reproducción.", ErrorIcon + " Oynatma listenize oynatma listesi ekleyemezsiniz."];
           const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
@@ -8266,12 +8272,12 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             peeky.userData.get(key, "Playlist").splice(BackgroundIndex, 1);  //Remove the background
 
-            var TranslatedMessages = [SuccessIcon + " The song has been removed from your playlist.", SuccessIcon + " Písnička byla odebrána z vašeho playlistu.", SuccessIcon + " Pieseň bola vymazaná z tvôjho playlistu.", SuccessIcon + " La canción ha sido eliminada de su lista de reproducción."];
+            var TranslatedMessages = [SuccessIcon + " The song has been removed from your playlist.", SuccessIcon + " Písnička byla odebrána z vašeho playlistu.", SuccessIcon + " Pieseň bola vymazaná z tvôjho playlistu.", SuccessIcon + " La canción ha sido eliminada de su lista de reproducción.", SuccessIcon + " Şarkı, çalma listenizden kaldırıldı."];
             const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             } else {
-              var TranslatedMessages = [ErrorIcon + " That song is not in your playlist.", ErrorIcon + " Tato písnička ve vašem playlistu není.", ErrorIcon + " Táto pesnička neni v tvojom playliste.", ErrorIcon + " Esa canción no está en su lista de reproducción."];
+              var TranslatedMessages = [ErrorIcon + " That song is not in your playlist.", ErrorIcon + " Tato písnička ve vašem playlistu není.", ErrorIcon + " Táto pesnička neni v tvojom playliste.", ErrorIcon + " Esa canción no está en su lista de reproducción.", ErrorIcon + " Bu şarkı çalma listenizde değil."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8283,7 +8289,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             peeky.userData.set(key, PlaylistRequest, "PlaylistName")
 
-            var TranslatedMessages = [SuccessIcon + " Your playlist has been renamed to **X001**.", SuccessIcon + " Váš playlist byl přejmenován na **X001**.", SuccessIcon + " Tvôj playlist bol premenovaný na **X001**.", SuccessIcon + " Su lista de reproducción ha sido renombrada a **X001**."];
+            var TranslatedMessages = [SuccessIcon + " Your playlist has been renamed to **X001**.", SuccessIcon + " Váš playlist byl přejmenován na **X001**.", SuccessIcon + " Tvôj playlist bol premenovaný na **X001**.", SuccessIcon + " Su lista de reproducción ha sido renombrada a **X001**.", SuccessIcon + " Oynatma listeniz yeniden adlandırıldı **X001**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.userData.get(key, "PlaylistName")),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8298,12 +8304,12 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                   
                     peeky.userData.set(key, Thumbnail, "PlaylistThumbnail");
 
-                    var TranslatedMessages = [SuccessIcon + " You have set the thumbnail for your playlist.", SuccessIcon + " Nastavil jste miniaturu pro váš playlist.", SuccessIcon + " Nastavil si náhladovku na tvôj playlist.", SuccessIcon + " Usted ha establecido la miniatura de su lista de reproducción."];
+                    var TranslatedMessages = [SuccessIcon + " You have set the thumbnail for your playlist.", SuccessIcon + " Nastavil jste miniaturu pro váš playlist.", SuccessIcon + " Nastavil si náhladovku na tvôj playlist.", SuccessIcon + " Usted ha establecido la miniatura de su lista de reproducción.", SuccessIcon + " Oynatma listeniz için küçük resmi ayarladınız."];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   
                 } else {
-                  var TranslatedMessages = [ErrorIcon + " Failed to set your playlist thumbnail.", ErrorIcon + " Nepodařilo se nastavit miniaturu pro váš playlist.", ErrorIcon + " Nepodarilo sa nastaviť náhladovku pre tvôj playlist.", ErrorIcon + " Fallo en establecer su miniatura de la lista de reproducción."];
+                  var TranslatedMessages = [ErrorIcon + " Failed to set your playlist thumbnail.", ErrorIcon + " Nepodařilo se nastavit miniaturu pro váš playlist.", ErrorIcon + " Nepodarilo sa nastaviť náhladovku pre tvôj playlist.", ErrorIcon + " Fallo en establecer su miniatura de la lista de reproducción.", ErrorIcon + " Oynatma listesi için küçük resminiz ayarlanamadı."];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -8311,7 +8317,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
             } else {
               peeky.userData.set(key, null, "PlaylistThumbnail");
 
-              var TranslatedMessages = [SuccessIcon + " You have set the default thumbnail for your playlist.", SuccessIcon + " Nastavil jste základní miniaturu pro váš playlist.", SuccessIcon + " Nastavil si štandardnú náhladovku pre tvôj playlist.", SuccessIcon + " Usted ha establecido la miniatura predeterminada para su lista de reproducción."];
+              var TranslatedMessages = [SuccessIcon + " You have set the default thumbnail for your playlist.", SuccessIcon + " Nastavil jste základní miniaturu pro váš playlist.", SuccessIcon + " Nastavil si štandardnú náhladovku pre tvôj playlist.", SuccessIcon + " Usted ha establecido la miniatura predeterminada para su lista de reproducción.", SuccessIcon + " Oynatma listeniz için varsayılan küçük resmi ayarladınız."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8319,7 +8325,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
         } else
         if  (CommandArgument.startsWith(" clear"))  {
 
-            var TranslatedMessages = [SuccessIcon + " You have cleared your playlist of **X001 songs**.", SuccessIcon + " Vyčistili jste svůj playlist od **X001 písniček**.", SuccessIcon + " Vymazal si **X001 piesní** zo svôjho playlistu.", SuccessIcon + " Usted ha limpiado su lista de reproducción de **X001 canciones**."];
+            var TranslatedMessages = [SuccessIcon + " You have cleared your playlist of **X001 songs**.", SuccessIcon + " Vyčistili jste svůj playlist od **X001 písniček**.", SuccessIcon + " Vymazal si **X001 piesní** zo svôjho playlistu.", SuccessIcon + " Usted ha limpiado su lista de reproducción de **X001 canciones**.", SuccessIcon + " **X001 şarkıları** oynatma listesi temizlendi."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.userData.get(key, "Playlist").length),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8371,44 +8377,6 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
 };
 
-//Skip
-if (CommandName == "skip")  {
-      
-    if  (CurrentlyPlaying.has(message.guild.id))  {
-      
-        if  (message.member.voice.channel)  {
-      
-            var OwnerActive = false;
-
-            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
-                OwnerActive = true;
-            };
-
-            if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
-
-                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-                if  (connection)  {
-                    connection.dispatcher.end();
-                };
-
-            } else {
-              var TranslatedMessages = [ErrorIcon + " Only the server owner can skip the song right now.", ErrorIcon + " Písniku může momentálně přeskočit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže zastaviť hudbu teraz.", ErrorIcon + " Sólo el dueño del servidor puede detener esta música ahora mismo."];
-              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };
-
-        } else {
-          const embed = {"description": ErrorMessage22[Language],  "color": EmbedColor};
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
-      
-    } else {
-      const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-
-};
-
 //Stop
 if (CommandName == "stop")  {
       
@@ -8433,7 +8401,45 @@ if (CommandName == "stop")  {
                 message.guild.me.voice.channel.leave();
 
             } else {
-              var TranslatedMessages = [ErrorIcon + " Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže preskočiť túto pieseň teraz.", ErrorIcon + " Sólo el dueño del servidor puede saltarse esta canción ahora mismo."];
+              var TranslatedMessages = [ErrorIcon + " Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže preskočiť túto pieseň teraz.", ErrorIcon + " Sólo el dueño del servidor puede saltarse esta canción ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi ilerletebilir."];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
+        } else {
+          const embed = {"description": ErrorMessage22[Language],  "color": EmbedColor};
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+      
+    } else {
+      const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+
+//Skip
+if (CommandName == "skip")  {
+      
+    if  (CurrentlyPlaying.has(message.guild.id))  {
+      
+        if  (message.member.voice.channel)  {
+      
+            var OwnerActive = false;
+
+            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+                OwnerActive = true;
+            };
+
+            if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
+
+                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                if  (connection)  {
+                    connection.dispatcher.end();
+                };
+
+            } else {
+              var TranslatedMessages = [ErrorIcon + " Only the server owner can skip the song right now.", ErrorIcon + " Písniku může momentálně přeskočit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže zastaviť hudbu teraz.", ErrorIcon + " Sólo el dueño del servidor puede detener esta música ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi durdurabilir."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8478,7 +8484,7 @@ if (CommandName == "loop")  {
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             } else {
-              var TranslatedMessages = [ErrorIcon + " Only the server owner can loop the music right now.", ErrorIcon + " Nastavit smyčku u písniček může pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže opakuvať hudbu teraz.", ErrorIcon + " Sólo el dueño del servidor puede poner la música en bucle ahora mismo."];
+              var TranslatedMessages = [ErrorIcon + " Only the server owner can loop the music right now.", ErrorIcon + " Nastavit smyčku u písniček může pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže opakuvať hudbu teraz.", ErrorIcon + " Sólo el dueño del servidor puede poner la música en bucle ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi döngületebilir."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8527,7 +8533,7 @@ if (CommandName == "guessthesong")  {
                     peeky.serverData.set(keySF, new Date(), "Started");
                     peeky.serverData.set(keySF, "", "Link");
 
-                    var TranslatedMessages = ["**Try to guess the name of this song!**", "**Zkuste uhádnout jméno této písničky!**", "**Pokús sa uhádnuť meno tejto piesne!**", "**¡Trata de adivinar el nombre de esta canción!**"];
+                    var TranslatedMessages = ["**Try to guess the name of this song!**", "**Zkuste uhádnout jméno této písničky!**", "**Pokús sa uhádnuť meno tejto piesne!**", "**¡Trata de adivinar el nombre de esta canción!**", "**Bu şarkının adını tahmin etmeye çalışın!**"];
                     const embed = {"description": TranslatedMessages[Language] + "\n" + GuessTheSong[ChosenSong][2],  "color": EmbedColor};
                     message.channel.send({ embed });
 
@@ -8855,7 +8861,7 @@ if  (CommandArgument.startsWith(" "))  {
                     }
                      else
                     {
-                     var TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete.", ErrorIcon + " Nemôžeš mutnúť tohoto uživateľa.", ErrorIcon + " No puedes silenciar a ese usuario."];
+                     var TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete.", ErrorIcon + " Nemôžeš mutnúť tohoto uživateľa.", ErrorIcon + " No puedes silenciar a ese usuario.", ErrorIcon + " Bu kullanıcının susturamazsınız."];
                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
@@ -8863,8 +8869,7 @@ if  (CommandArgument.startsWith(" "))  {
                 }
                  else
                 {
-                  var TranslatedMessages = [ErrorIcon + " I cannot find a role called **X001**.", ErrorIcon + " Nemohu najít roli s jménem **X001**.", ErrorIcon + " Nemôžem nájsť rolu pod menom **X001**.", ErrorIcon + " No puedo encontrar un papel llamado **X001**."];
-                  const embed = {"description": TranslatedMessages[Language].replace("X001", name),  "color": EmbedColor};
+                  const embed = {"description": ErrorMessage14[Language].replace("X001", name),  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
                 };
 
@@ -8928,7 +8933,7 @@ if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
                 });
 
                 if  (Failed == false)  {
-                    var TranslatedMessages = [SuccessIcon + " I have unmuted **X001** at **X002**'s request.", SuccessIcon + " Odtlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Unmutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He anulado el silencio de **X001** a petición de **X002**."];
+                    var TranslatedMessages = [SuccessIcon + " I have unmuted **X001** at **X002**'s request.", SuccessIcon + " Odtlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Unmutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He anulado el silencio de **X001** a petición de **X002**.", SuccessIcon + " Bu kullanıcının sesini açamazsınız."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -8944,8 +8949,7 @@ if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
         }
          else
         {
-          var TranslatedMessages = [ErrorIcon + " I cannot find a role called **X001**.", ErrorIcon + " Nemohu najít roli s jménem **X001**.", ErrorIcon + " Nemôžem nájsť rolu pod menom **X001**.", ErrorIcon + " No puedo encontrar un papel llamado **X001**."];
-          const embed = {"description": TranslatedMessages[Language].replace("X001", name),  "color": EmbedColor};
+          const embed = {"description": ErrorMessage14[Language].replace("X001", name),  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
         };
 
@@ -9161,7 +9165,7 @@ if  (CommandName.startsWith("slowmode"))  {
 
                 message.channel.setRateLimitPerUser(CommandArgument, "Slowmode set by " + message.author.tag + ".").catch(error => ErrorBag.add(error));
                   
-                var TranslatedMessages = [SuccessIcon + " I have set the slowmode to **X001 seconds** at **X002**'s request.", SuccessIcon + " Nastavil jsem pomalý režím na **X001 vteřin** na požádání od **X002**.", SuccessIcon + " Nastavil som slowmode na **X001 sekundy** na **X002* požiadavku.", SuccessIcon + " He fijado el modo lento a **X001 segundos** a petición de **X002**."];
+                var TranslatedMessages = [SuccessIcon + " I have set the slowmode to **X001 seconds** at **X002**'s request.", SuccessIcon + " Nastavil jsem pomalý režím na **X001 vteřin** na požádání od **X002**.", SuccessIcon + " Nastavil som slowmode na **X001 sekundy** na **X002* požiadavku.", SuccessIcon + " He fijado el modo lento a **X001 segundos** a petición de **X002**.", SuccessIcon + " Yavaş modu **X002**'nin isteği üzerine **X001 saniye** olarak ayarladım."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -9441,13 +9445,13 @@ if  (CommandName.startsWith("muterole"))  {
 
                        });
 
-                       var TranslatedMessages = [InfoIcon + " Edited **X001** channels for the **@X002** role.", InfoIcon + " Upravil jsem **X001** kanálu pro roli **X002**.", InfoIcon + " Upravené **X001** channely pre **@X002** rolu.", InfoIcon + " Edite **X001** canales para el papel **@X002**."];
+                       var TranslatedMessages = [InfoIcon + " Edited **X001** channels for the **@X002** role.", InfoIcon + " Upravil jsem **X001** kanálu pro roli **X002**.", InfoIcon + " Upravené **X001** channely pre **@X002** rolu.", InfoIcon + " Edite **X001** canales para el papel **@X002**.", InfoIcon + " **@X002** rolü için **X001** kanalları düzenlendi."];
                        InfoMessages.push(TranslatedMessages[Language].replace("X001", Amount + "/" + FilteredChannels.length).replace("X002", CommandArgument));     
 
                   }
                    else
                   {
-                   var TranslatedMessages = [ErrorIcon + " Couldn't edit channels for the **@X001** role.", ErrorIcon + " Nemohl jsem upravit kanály pro roli **X001**.", ErrorIcon + " Nemohol som upraviť channely pre **@X001** rolu.", ErrorIcon + " No pude editar los canales para el papel **@X001**."];
+                   var TranslatedMessages = [ErrorIcon + " Couldn't edit channels for the **@X001** role.", ErrorIcon + " Nemohl jsem upravit kanály pro roli **X001**.", ErrorIcon + " Nemohol som upraviť channely pre **@X001** rolu.", ErrorIcon + " No pude editar los canales para el papel **@X001**.", ErrorIcon + " **@X001** rolü için kanallar düzenlenemedi."];
                    InfoMessages.push(TranslatedMessages[Language].replace("X001", CommandArgument));   
                   };
 
