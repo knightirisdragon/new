@@ -170,7 +170,7 @@ const BadFormat      = "invalid";
 const Exclusive      = "Exclusive";
 const EnableStrings  = [  "enabled", "zapnutá", "zapnutá", "encender"  ];
 const DisableStrings = [  "disabled", "vypnutá", "vypnutá", "apagado"  ];
-const Languages      = [  "English",  "Čeština", "Slovenina", "Español"  ];
+const Languages      = [  "English",  "Čeština", "Slovenčina", "Español"  ];
 
 //Response Messages
 const CooldownMessage1 = [
