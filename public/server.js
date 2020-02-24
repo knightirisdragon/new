@@ -1060,7 +1060,8 @@ const RandomWords = [
     "Gems",
     "Cocktail",
     "Dance",
-    "Inventory"
+    "Inventory",
+    "Jazz"
 ];
 
 //FUNCTIONS
