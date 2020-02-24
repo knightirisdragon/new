@@ -5175,11 +5175,11 @@ if (CommandName == "setinvite")  {
 
                 if  (Invites.length > 0) {
                     peeky.serverData.set(keySF, Invites[0].code, "server_invite");
-                    var TranslatedMessages = [InfoIcon + " The server's invite code has been set to **X001**.", InfoIcon + " Pozvánka tohoto server byla nastavea na **X001**.", InfoIcon + " Kód pozvania pre tento server bol nastavený na **X001**.", InfoIcon + " El código de invitación del servidor se ha fijado en **X001**.", InfoIcon + " Sunucunun davet kodu **X001** olarak ayarlandı."];
+                    var TranslatedMessages = [SuccessIcon + " The server's invite code has been set to **X001**.", SuccessIcon + " Pozvánka tohoto server byla nastavea na **X001**.", SuccessIcon + " Kód pozvania pre tento server bol nastavený na **X001**.", SuccessIcon + " El código de invitación del servidor se ha fijado en **X001**.", SuccessIcon + " Sunucunun davet kodu **X001** olarak ayarlandı."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", Invites[0].code),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 } else {
-                    var TranslatedMessages = [ErrorIcon + " I could not find any server invites in this channel.", ErrorIcon + " V tomto kanále jsem nenašel žádné pozvánky.", ErrorIcon + " Nemohol som nájsť žiadne pozvánky pre tento channel.", ErrorIcon + " No pude encontrar invitaciones de servidor en este canal.", ErrorIcon + " No pude encontrar invitaciones de servidor en este canal."];
+                    var TranslatedMessages = [ErrorIcon + " I could not find any server invites in this channel.", ErrorIcon + " V tomto kanále jsem nenašel žádné pozvánky.", ErrorIcon + " Nemohol som nájsť žiadne pozvánky pre tento channel.", ErrorIcon + " No pude encontrar invitaciones de servidor en este canal.", ErrorIcon + " Bu kanalda hiçbir sunucu davetiyesi bulamadım."];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -5391,19 +5391,19 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 
     var ManageChannels = false;
     var ManageRoles = false;
-    var TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je nyní **X002**.", SuccessIcon + " **X001** funkcia bola **X002**.", SuccessIcon + " La función **X001** ha sido **X002**."];
+    var TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je nyní **X002**.", SuccessIcon + " **X001** funkcia bola **X002**.", SuccessIcon + " La función **X001** ha sido **X002**.", SuccessIcon + " **X001** fonksiyonu artık **X002**."];
   
     if  (message.guild.me.permissions.has("MANAGE_CHANNELS"))  {
         ManageChannels = true;  
       
-        var TranslatedBonuses = [InfoIcon + " Created a channel called **X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál s názvem **X001** pro funkci **X002**.", InfoIcon + " Vytvoril som channel pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un canal llamado **#X001** para la función **X002**."];
+        var TranslatedBonuses = [InfoIcon + " Created a channel called **X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál s názvem **X001** pro funkci **X002**.", InfoIcon + " Vytvoril som channel pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un canal llamado **#X001** para la función **X002**.", InfoIcon + " **X002** fonksiyonu için **#X001** adlı bir kanal oluşturuldu."];
         var ChannelCreation = TranslatedBonuses[Language]
     };
   
     if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
         ManageRoles = true;
       
-        var TranslatedBonuses = [InfoIcon + " Created a role called **@X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **@X001** pro funkci **X002**.", InfoIcon + " Vytvoril som rolu pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un papel llamado **X001** para la función **@X002**."];
+        var TranslatedBonuses = [InfoIcon + " Created a role called **@X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **@X001** pro funkci **X002**.", InfoIcon + " Vytvoril som rolu pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un papel llamado **X001** para la función **@X002**.", InfoIcon + " **@X002** işlevi için **X001** adlı bir rol oluşturdu."];
         var RoleCreation = TranslatedBonuses[Language];
     };
   
@@ -6246,8 +6246,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
-    var TranslatedMessages = [SuccessIcon + " The setting for the **X001** function is now **X002**.", SuccessIcon + " Nastavení pro funkci **X001** je nyní **X002**.", SuccessIcon + " Nastavenie pre **X001** funkciu je teraz **X002*.", SuccessIcon + " El ajuste de la función **X001** es ahora **X002**."];
-    var TranslatedFullSetting = [ErrorIcon + " The setting for the **X001** function is full.", ErrorIcon + " Nastavení pro funcki **X001** je plné.", ErrorIcon + " Nastavenie pre **X001** funkciu je plné.", ErrorIcon + " El ajuste de la función **X001** está lleno."];
+    var TranslatedMessages = [SuccessIcon + " The setting for the **X001** function is now **X002**.", SuccessIcon + " Nastavení pro funkci **X001** je nyní **X002**.", SuccessIcon + " Nastavenie pre **X001** funkciu je teraz **X002*.", SuccessIcon + " El ajuste de la función **X001** es ahora **X002**.", SuccessIcon + " **X001** fonksiyonu **X002** olarak ayarlandı."];
+    var TranslatedFullSetting = [ErrorIcon + " The setting for the **X001** function is full.", ErrorIcon + " Nastavení pro funcki **X001** je plné.", ErrorIcon + " Nastavenie pre **X001** funkciu je plné.", ErrorIcon + " El ajuste de la función **X001** está lleno.", ErrorIcon + " **X001** fonksiyonu için ayar dolu."];
   
     if  (!peeky.userData.get(key, "FunctionalBadge"))  {
         peeky.userData.set(key, true, "FunctionalBadge");
@@ -6736,7 +6736,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-    var TranslatedMessages = [SuccessIcon + " Cleared the setting for the **X001** function.", SuccessIcon + " Nastavení pro funkci **X001** bylo vyčištěno.", SuccessIcon + " Vymazal som nastavenie pre **X001** funkciu.", SuccessIcon + " Despejó la configuración de la función **X001**."];
+    var TranslatedMessages = [SuccessIcon + " Cleared the setting for the **X001** function.", SuccessIcon + " Nastavení pro funkci **X001** bylo vyčištěno.", SuccessIcon + " Vymazal som nastavenie pre **X001** funkciu.", SuccessIcon + " Despejó la configuración de la función **X001**.", SuccessIcon + " **X001** adlı fonksiyonun ayarı sıfırlandı."];
  
 //Clear Banned Words
 if  (FunctioName.startsWith("banned words"))  {
@@ -6848,7 +6848,7 @@ if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.gui
 
             if  (NewLinesCount < 2)  {
               
-                var TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si nový popisok pre **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una nueva descripción para **X001" + " " + GreditIcon + "**."];
+                var TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si nový popisok pre **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una nueva descripción para **X001" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için yeni bir açıklama aldınız."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6866,7 +6866,7 @@ if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.gui
              else
             {
 
-              var TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si random popisok pre **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una descripción aleatoria para el **X001**" + " " + GreditIcon + "**."];
+              var TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si random popisok pre **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una descripción aleatoria para el **X001**" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için rastgele bir açıklama aldınız."];
               const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6935,7 +6935,7 @@ if  (CommandName.startsWith("buybackground"))  {
                     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
                     peeky.userData.get(key, "Inventory").push(i);
 
-                    var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Kupil si **X001** pozadie pre **X002" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado el fondo **X001** para **X002" + " " + GreditIcon + "**."];
+                    var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Kupil si **X001** pozadie pre **X002" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado el fondo **X001** para **X002" + " " + GreditIcon + "**.", SuccessIcon + " **X002" + " " + GreditIcon + "** için **X001** arka planını satın aldınız."];
                     var embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", function_GetBackgroundInfo(i, ["price"]).toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6949,7 +6949,7 @@ if  (CommandName.startsWith("buybackground"))  {
                 };
 
             } else {
-              var TranslatedMessages = [ErrorIcon + " You cannot buy the default and exclusive backgrounds.", ErrorIcon + " Nemůžete si koupit základní a exlusivní pozadí.", ErrorIcon + " Nemôžeš kúpiť štandardné a exkluzívne pozadia.", ErrorIcon + " Usted no puede comprar los fondos predeterminados y exclusivos."];
+              var TranslatedMessages = [ErrorIcon + " You cannot buy the default and exclusive backgrounds.", ErrorIcon + " Nemůžete si koupit základní a exlusivní pozadí.", ErrorIcon + " Nemôžeš kúpiť štandardné a exkluzívne pozadia.", ErrorIcon + " Usted no puede comprar los fondos predeterminados y exclusivos.", ErrorIcon + " Varsayılan ve özel arka planları satın alamazsınız."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7043,7 +7043,7 @@ if (CommandName.startsWith("setbackground"))  {
 
                 peeky.userData.set(key, i, "Background");
 
-                var TranslatedMessages = [SuccessIcon + " You have set the **X001** background.", SuccessIcon + " Nastavil jste si pozadí **X001**.", SuccessIcon + " Nastavil si **X001** pozadie.", SuccessIcon + " Usted ha puesto el fondo **X001**"];
+                var TranslatedMessages = [SuccessIcon + " You have set the **X001** background.", SuccessIcon + " Nastavil jste si pozadí **X001**.", SuccessIcon + " Nastavil si **X001** pozadie.", SuccessIcon + " Usted ha puesto el fondo **X001**.", SuccessIcon + " **X001** arka planını ayarladınız."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7163,14 +7163,14 @@ if  (i !== AllString)  {
                         InfoMessages.push(InfoMessage2[Language]);
                     };
 
-                    var TranslatedMessages = [SuccessIcon + " You have sold the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Predal si **X001** pozadie za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido el fondo **X001** por **X002" + " " + GreditIcon + "**."];
+                    var TranslatedMessages = [SuccessIcon + " You have sold the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Predal si **X001** pozadie za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido el fondo **X001** por **X002" + " " + GreditIcon + "**.", SuccessIcon + " **X002** için **X001" + " " + GreditIcon + "** arka planını sattınız.."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", FinalPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 }
                  else
                 {
-                  var TranslatedMessages = [ErrorIcon + " You cannot sell the default backgrounds.", ErrorIcon + " Nemůžete prodat základní pozadí.", ErrorIcon + " Nemôžeš predať štandardné pozadia.", ErrorIcon + " Usted no puede vender los fondos predeterminados."];
+                  var TranslatedMessages = [ErrorIcon + " You cannot sell the default backgrounds.", ErrorIcon + " Nemůžete prodat základní pozadí.", ErrorIcon + " Nemôžeš predať štandardné pozadia.", ErrorIcon + " Usted no puede vender los fondos predeterminados.", ErrorIcon + " Varsayılan arka planları satamazsınız."];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   
                   break;
@@ -7218,7 +7218,7 @@ if  (i !== AllString)  {
       peeky.userData.set(key, SavedBackgrounds, "Inventory");
       peeky.userData.math(key, "+", FullPrice, "Gredit");
 
-      var TranslatedMessages = [SuccessIcon + " You have sold all your backgrounds for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste všechna svá pozadí za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Predal si všetky tvoje pozadia za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido todos sus fondos por **X001" + " " + GreditIcon + "**."];
+      var TranslatedMessages = [SuccessIcon + " You have sold all your backgrounds for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste všechna svá pozadí za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Predal si všetky tvoje pozadia za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido todos sus fondos por **X001" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için tüm arka planlarınızı sattınız."];
       const embed = {"description": TranslatedMessages[Language].replace("X001", FullPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7335,7 +7335,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
           peeky.userData.math(key, "-", ChestAmount, "Chests");
           peeky.userData.math(key, "+", TotalLoot, "Gredit");
 
-          var TranslatedMessages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** a získal **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otvoril si **X001" + " " + ChestIcon + "** pro **X002" + " " + GreditIcon +"**.", SuccessIcon + " Usted ha abierto el **X001" + " " + ChestIcon + "** por **X002" + " " + GreditIcon +"**."];
+          var TranslatedMessages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** a získal **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otvoril si **X001" + " " + ChestIcon + "** pro **X002" + " " + GreditIcon +"**.", SuccessIcon + " Usted ha abierto el **X001" + " " + ChestIcon + "** por **X002" + " " + GreditIcon +"**.", SuccessIcon + " **X001" + " " + ChestIcon + "****X002" + " " + GreditIcon +"**."];
           const embed = {"description": TranslatedMessages[Language].replace("X001", ChestAmount.toLocaleString('en')).replace("X002", TotalLoot.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
           await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
