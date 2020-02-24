@@ -72,14 +72,28 @@ img  {border-radius: 10px; cursor: pointer;}
 }
 
 .homebutton  {
-    background-color: rgba(44, 47, 51, 0.5);
+    background-color: rgba(44, 47, 51, 1);
     border-radius: 0px 100px 0px 0px;
     width: 100px;
-    transition: transform .25s ease;
+    height: 100px;
     position: fixed;
     bottom: 0%;
     left: 0%;
+    z-index: 100;
+    transition: transform .25s ease;
 }
+
+.homebutton img  {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+}
+
+.homebutton:hover  {
+    background-color: rgba(44, 47, 51, 0.5);
+    cursor: pointer;
+    transform: scale(1.1);
+};
 
 .popup:hover,
 a.button:hover {
@@ -88,7 +102,6 @@ a.button:hover {
 
 .popup:hover,
 .fancybutton:hover,
-.homebutton:hover,
 a.button:hover {
     cursor: pointer;
     transform: scale(0.99);
