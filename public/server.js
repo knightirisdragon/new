@@ -5336,6 +5336,7 @@ if  (CommandName == "languages")  {
                 var French = "🇫🇷";
                 var Spanish = "🇪🇸";
                 var Turk = "🇹🇷";
+                var German = "🇩🇪";
               
                 if  (Math.round(Math.random() * 20) == 0)  {
                     French = "🥖";
@@ -5353,16 +5354,19 @@ if  (CommandName == "languages")  {
                                               + "\n\n" +
                                               French + " Français `NOT DONE: Bersekr21`" 
                                               + "\n\n" +
-                                              Dutch + " Dutch `NOT DONE: ZWEKKERBOY`",  "color": EmbedColor}; 
+                                              Dutch + " Dutch `NOT DONE: ZWEKKERBOY`"
+                                              + "\n\n" +
+                                              German + " Deutsch `NOT DONE: Sombraro`" ,  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
-                      await m.react("🇬🇧").catch(error => {ErrorBag.add(error)});
-                      await m.react("🇨🇿").catch(error => {ErrorBag.add(error)});
-                      await m.react("🇸🇰").catch(error => {ErrorBag.add(error)});
-                      await m.react("🇪🇸").catch(error => {ErrorBag.add(error)});
-                      await m.react("🇹🇷").catch(error => {ErrorBag.add(error)});
-                      await m.react("🇫🇷").catch(error => {ErrorBag.add(error)});
-                      await m.react("🇳🇱").catch(error => {ErrorBag.add(error)});
+                      await m.react(English).catch(error => {ErrorBag.add(error)});
+                      await m.react(Czech).catch(error => {ErrorBag.add(error)});
+                      await m.react(Slovak).catch(error => {ErrorBag.add(error)});
+                      await m.react(Spanish).catch(error => {ErrorBag.add(error)});
+                      await m.react(Turk).catch(error => {ErrorBag.add(error)});
+                      await m.react(French).catch(error => {ErrorBag.add(error)});
+                      await m.react(Dutch).catch(error => {ErrorBag.add(error)});
+                      await m.react(German).catch(error => {ErrorBag.add(error)});
 
                       peeky.userData.set(key, m.id, "LanguageID");
 
