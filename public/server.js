@@ -2670,7 +2670,7 @@ if  (!WebsiteCooldowns.has("miscellaneous"))  {
       
     WebsiteCooldowns.add("miscellaneous");
 
-    await fs.writeFile('public/supportedlanguages.txt', Languages.join(", "), (err) => {
+    await fs.writeFile('public/supportedlanguages.txt', Languages.join(", ") + ".", (err) => {
         if (err) console.log(err); 
     });
 
