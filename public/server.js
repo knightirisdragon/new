@@ -173,40 +173,190 @@ const DisableStrings = [  "disabled", "vypnutá", "vypnutá", "apagado"  ];
 const Languages      = [  "English",  "Čeština", "Slovenina", "Español"  ];
 
 //Response Messages
-const CooldownMessage1 = [ErrorIcon + " You are currently on a cooldown for that command.", ErrorIcon + " Tento příkaz je pro vás momentálně zastaven.", ErrorIcon + " Nemôžeš teraz použiť tento command.", ErrorIcon + " Actualmente estás en un período de enfriamiento para ese comando."];
-const CooldownMessage2 = [ErrorIcon + " Automated channel creation is currently on a cooldown.", ErrorIcon + " Automatická tvorba kanálů je momentálně zastavena.", ErrorIcon + " Automatickú tvorbu channelov nemôžeš teraz použiť.", ErrorIcon + " La creación de canales automatizada está actualmente en proceso de enfriamiento."];
-const CooldownMessage3 = [ErrorIcon + " Automated role creation is currently on a cooldown.", ErrorIcon + " Automatická tvorba rolí je momentálně zastavena.", ErrorIcon + " Automatické vytváranie rolí nemôžeš práve použiť.", ErrorIcon + " La creación automatizada de roles está actualmente en proceso de enfriamiento."];
-const CooldownMessage4 = [ErrorIcon + " You are currently on a cooldown for that function.", ErrorIcon + " Tato funkce je pro vás momentálně zastavena.", ErrorIcon + " Nemôžeš teraz použiť túto funkciu.", ErrorIcon + " Usted actualmente está en un período de enfriamiento para esa función."];
+const CooldownMessage1 = [
+  ErrorIcon + " You are currently on a cooldown for that command.",
+  ErrorIcon + " Tento příkaz je pro vás momentálně zastaven.",
+  ErrorIcon + " Nemôžeš teraz použiť tento command.",
+  ErrorIcon + " Actualmente estás en un período de enfriamiento para ese comando."
+];
+const CooldownMessage2 = [
+  ErrorIcon + " Automated channel creation is currently on a cooldown.",
+  ErrorIcon + " Automatická tvorba kanálů je momentálně zastavena.",
+  ErrorIcon + " Automatickú tvorbu channelov nemôžeš teraz použiť.",
+  ErrorIcon + " La creación de canales automatizada está actualmente en proceso de enfriamiento."
+];
+const CooldownMessage3 = [
+  ErrorIcon + " Automated role creation is currently on a cooldown.",
+  ErrorIcon + " Automatická tvorba rolí je momentálně zastavena.",
+  ErrorIcon + " Automatické vytváranie rolí nemôžeš práve použiť.",
+  ErrorIcon + " La creación automatizada de roles está actualmente en proceso de enfriamiento."
+];
+const CooldownMessage4 = [
+  ErrorIcon + " You are currently on a cooldown for that function.",
+  ErrorIcon + " Tato funkce je pro vás momentálně zastavena.",
+  ErrorIcon + " Nemôžeš teraz použiť túto funkciu.",
+  ErrorIcon + " Usted actualmente está en un período de enfriamiento para esa función."
+];
 
-const PermissionsMessageError1 = [ErrorIcon + " You are lacking the required permissions do that.", ErrorIcon + " Chybý vám požadovaná oprávnění.", ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť.", ErrorIcon + " Usted no tiene los permisos necesarios para hacerlo."];
-const PermissionsMessageError2 = [ErrorIcon + " You need to be the owner of this server to do that.", ErrorIcon + " Musíte být vlastníkem serveru.", ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť.", ErrorIcon + " Usted necesita ser el dueño de este servidor para hacer eso."];
-const PermissionsMessageError3 = [ErrorIcon + " I am missing required permissions to do that.", ErrorIcon + " Chybý mi požadovaná opravnění.", ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť.", ErrorIcon + " No tengo los permisos necesarios para hacerlo."];
+const PermissionsMessageError1 = [
+  ErrorIcon + " You are lacking the required permissions do that.",
+  ErrorIcon + " Chybý vám požadovaná oprávnění.",
+  ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť.",
+  ErrorIcon + " Usted no tiene los permisos necesarios para hacerlo."
+];
+const PermissionsMessageError2 = [
+  ErrorIcon + " You need to be the owner of this server to do that.",
+  ErrorIcon + " Musíte být vlastníkem serveru.",
+  ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť.",
+  ErrorIcon + " Usted necesita ser el dueño de este servidor para hacer eso."
+];
+const PermissionsMessageError3 = [
+  ErrorIcon + " I am missing required permissions to do that.",
+  ErrorIcon + " Chybý mi požadovaná opravnění.",
+  ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť.",
+  ErrorIcon + " No tengo los permisos necesarios para hacerlo."
+];
 
-const ErrorMessage1  = [ErrorIcon + " You need more Gredit to do that.", ErrorIcon + " Potřebujete získat více Greditu.", ErrorIcon + " Potrebuješ viacej Greditov aby si toto mohol spraviť.", ErrorIcon + " Usted necesita más Gredit para hacer eso."];
-const ErrorMessage2  = [ErrorIcon + " The new description is too large.", ErrorIcon + " Nový popisek je příliš dlouhý.", ErrorIcon + " Nový popisok je prílíš veľký.", ErrorIcon + " La nueva descripción es demasiada larga."];
-const ErrorMessage3  = [ErrorIcon + " The provided mention is invalid.", ErrorIcon + " Toto označení je invalidní.", ErrorIcon + " Zadaná zmienka je neplatná.", ErrorIcon + " La mención proporcionada es inválida."];
-const ErrorMessage4  = [ErrorIcon + " You need to enter a valid YouTube link.", ErrorIcon + " Vložte validní YouTube odkaz.", ErrorIcon + " Musíš zadať platný Youtube odkaz.", ErrorIcon + " Usted tiene que entrar en un enlace válido de YouTube."];
-const ErrorMessage5  = [ErrorIcon + " You do not have that background in your inventory.", ErrorIcon + " Toto pozadí ještě nelastníte.", ErrorIcon + " Nemáš toto pozadie v tvojom inventári.", ErrorIcon + " Usted no tiene esos fondos en su inventario."];
-const ErrorMessage6  = [ErrorIcon + " You do not have enough chests.", ErrorIcon + " Nemáte dost truhel.", ErrorIcon + " Nemáš dostatok truhlí.", ErrorIcon + " Usted no tiene suficientes cofres."];
-const ErrorMessage7  = [ErrorIcon + " The mentioned user has no profile.", ErrorIcon + " Tento uživatel nemá žádný profil.", ErrorIcon + " Zmienený uživateľ nemá žiadny profil.", ErrorIcon + " El usuario mencionado no tiene un perfil."];
-const ErrorMessage8  = [ErrorIcon + " Mentions are not allowed for this command.", ErrorIcon + " Označení nejsou pro tento příkaz povoleny", ErrorIcon + " Zmienky niesú povolené pre tento command.", ErrorIcon + " No se permiten menciones para este comando."];
-const ErrorMessage9  = [ErrorIcon + " You must enter a valid amount.", ErrorIcon + " Musíte vložit spravný počet.", ErrorIcon + " Musíš zadať platnú čiastku.", ErrorIcon + " Debe introducir una cantidad válida."];
-const ErrorMessage10 = [ErrorIcon + " Make sure the function's name is all in lowercase.", ErrorIcon + " Ujistěte se, že jméno funkce je v malých písmenkách.", ErrorIcon + " Uisti sa že mená funkcie su všetky malými písmenami.", ErrorIcon + " Asegúrate de que el nombre de la función esté en minúsculas."];
-const ErrorMessage11 = [ErrorIcon + " You need to become a Premium user to do that.", ErrorIcon + " Pro tohle musíte být Premium uživatel.", ErrorIcon + " Musíš sa stať Premium uživatelom aby si to mohol spraviť. ", ErrorIcon + " Necesitas convertirte en un usuario Premium para hacer eso."];
-const ErrorMessage12 = [ErrorIcon + " There are no songs playing right now.", ErrorIcon + " Momentálně nehrajou žádné písničky.", ErrorIcon + " Teraz nehrajú žiadne piesne.", ErrorIcon + " No hay ninguna canción sonando ahora mismo."];
-const ErrorMessage13 = [ErrorIcon + " Something has gone unexpectedly wrong.", ErrorIcon + " Stalo se něco neočekáváného.", ErrorIcon + " Niečo sa nečakane pokazilo.", ErrorIcon + " Algo ha salido mal inesperadamente."];
+const ErrorMessage1 = [
+  ErrorIcon + " You need more Gredit to do that.",
+  ErrorIcon + " Potřebujete získat více Greditu.",
+  ErrorIcon + " Potrebuješ viacej Greditov aby si toto mohol spraviť.",
+  ErrorIcon + " Usted necesita más Gredit para hacer eso."
+];
+const ErrorMessage2 = [
+  ErrorIcon + " The new description is too large.",
+  ErrorIcon + " Nový popisek je příliš dlouhý.",
+  ErrorIcon + " Nový popisok je prílíš veľký.",
+  ErrorIcon + " La nueva descripción es demasiada larga."
+];
+const ErrorMessage3 = [
+  ErrorIcon + " The provided mention is invalid.",
+  ErrorIcon + " Toto označení je invalidní.",
+  ErrorIcon + " Zadaná zmienka je neplatná.",
+  ErrorIcon + " La mención proporcionada es inválida."
+];
+const ErrorMessage4 = [
+  ErrorIcon + " You need to enter a valid YouTube link.",
+  ErrorIcon + " Vložte validní YouTube odkaz.",
+  ErrorIcon + " Musíš zadať platný Youtube odkaz.",
+  ErrorIcon + " Usted tiene que entrar en un enlace válido de YouTube."
+];
+const ErrorMessage5 = [
+  ErrorIcon + " You do not have that background in your inventory.",
+  ErrorIcon + " Toto pozadí ještě nelastníte.",
+  ErrorIcon + " Nemáš toto pozadie v tvojom inventári.",
+  ErrorIcon + " Usted no tiene esos fondos en su inventario."
+];
+const ErrorMessage6 = [
+  ErrorIcon + " You do not have enough chests.",
+  ErrorIcon + " Nemáte dost truhel.",
+  ErrorIcon + " Nemáš dostatok truhlí.",
+  ErrorIcon + " Usted no tiene suficientes cofres."
+];
+const ErrorMessage7 = [
+  ErrorIcon + " The mentioned user has no profile.",
+  ErrorIcon + " Tento uživatel nemá žádný profil.",
+  ErrorIcon + " Zmienený uživateľ nemá žiadny profil.",
+  ErrorIcon + " El usuario mencionado no tiene un perfil."
+];
+const ErrorMessage8 = [
+  ErrorIcon + " Mentions are not allowed for this command.",
+  ErrorIcon + " Označení nejsou pro tento příkaz povoleny",
+  ErrorIcon + " Zmienky niesú povolené pre tento command.",
+  ErrorIcon + " No se permiten menciones para este comando."
+];
+const ErrorMessage9 = [
+  ErrorIcon + " You must enter a valid amount.",
+  ErrorIcon + " Musíte vložit spravný počet.",
+  ErrorIcon + " Musíš zadať platnú čiastku.",
+  ErrorIcon + " Debe introducir una cantidad válida."
+];
+const ErrorMessage10 = [
+  ErrorIcon + " Make sure the function's name is all in lowercase.",
+  ErrorIcon + " Ujistěte se, že jméno funkce je v malých písmenkách.",
+  ErrorIcon + " Uisti sa že mená funkcie su všetky malými písmenami.",
+  ErrorIcon + " Asegúrate de que el nombre de la función esté en minúsculas."
+];
+const ErrorMessage11 = [
+  ErrorIcon + " You need to become a Premium user to do that.",
+  ErrorIcon + " Pro tohle musíte být Premium uživatel.",
+  ErrorIcon + " Musíš sa stať Premium uživatelom aby si to mohol spraviť. ",
+  ErrorIcon + " Necesitas convertirte en un usuario Premium para hacer eso."
+];
+const ErrorMessage12 = [
+  ErrorIcon + " There are no songs playing right now.",
+  ErrorIcon + " Momentálně nehrajou žádné písničky.",
+  ErrorIcon + " Teraz nehrajú žiadne piesne.",
+  ErrorIcon + " No hay ninguna canción sonando ahora mismo."
+];
+const ErrorMessage13 = [
+  ErrorIcon + " Something has gone unexpectedly wrong.",
+  ErrorIcon + " Stalo se něco neočekáváného.",
+  ErrorIcon + " Niečo sa nečakane pokazilo.",
+  ErrorIcon + " Algo ha salido mal inesperadamente."
+];
 const ErrorMessage14 = undefined;
-const ErrorMessage15 = [ErrorIcon + " You cannot add any more songs to your playlist.", ErrorIcon + " Do vašeho playlistu nelze přidat více písniček", ErrorIcon + " Už nemôžeš pridať žiadne piesne do tvojho playlistu.", ErrorIcon + " Usted no puede añadir más canciones a su lista de reproducción."];
-const ErrorMessage16 = [ErrorIcon + " That background doesn't exist.", ErrorIcon + " Toto pozadí neexistuje.", ErrorIcon + " To pozadie neexistuje.", ErrorIcon + " Ese fondo no existe."];
-const ErrorMessage17 = [ErrorIcon + " You need to specify the function.", ErrorIcon + " Musíte upřesnit funkci.", ErrorIcon + " Musíš specifikovať funkciu.", ErrorIcon + " Es necesario especificar la función."];
-const ErrorMessage18 = [ErrorIcon + " You need to provide valid arguments for the command.", ErrorIcon + " Musíte přidat spravný argumenty.", ErrorIcon + " Musíš zadať platné príkazy pre command.", ErrorIcon + " Tienes que proporcionar argumentos válidos para el comando."];
-const ErrorMessage19 = [ErrorIcon + " You need to join the Support Server.", ErrorIcon + " Musíte se připojit na můj server.", ErrorIcon + " Músíš sa pridať na Server Podpory.", ErrorIcon + " Tienes que unirte al Servidor de Soporte."];
-const ErrorMessage20 = [ErrorIcon + " You need to upload a file.", ErrorIcon + " Musíte nahrát soubor.", ErrorIcon + " Musíš nahrať súbor.", ErrorIcon + " Tienes que subir un archivo."];
-const ErrorMessage21 = [ErrorIcon + " You can only do that in upgraded servers.", ErrorIcon + " Tohle funguje jenom ve vylepšených serverech.", ErrorIcon + " Toto môžeš robiť iba v vylepšených serveroch.", ErrorIcon + " Sólo puedes hacer eso en servidores actualizados."];
-const ErrorMessage22 = [ErrorIcon + " You need to join a voice channel.", ErrorIcon + " Musíte se připojt se do hlasového kanálu.", ErrorIcon + " Musíš sa pripojiť do voice channelu.", ErrorIcon + " Usted necesita unirse a un canal de voz."];
+const ErrorMessage15 = [
+  ErrorIcon + " You cannot add any more songs to your playlist.",
+  ErrorIcon + " Do vašeho playlistu nelze přidat více písniček",
+  ErrorIcon + " Už nemôžeš pridať žiadne piesne do tvojho playlistu.",
+  ErrorIcon + " Usted no puede añadir más canciones a su lista de reproducción."
+];
+const ErrorMessage16 = [
+  ErrorIcon + " That background doesn't exist.",
+  ErrorIcon + " Toto pozadí neexistuje.",
+  ErrorIcon + " To pozadie neexistuje.",
+  ErrorIcon + " Ese fondo no existe."
+];
+const ErrorMessage17 = [
+  ErrorIcon + " You need to specify the function.",
+  ErrorIcon + " Musíte upřesnit funkci.",
+  ErrorIcon + " Musíš specifikovať funkciu.",
+  ErrorIcon + " Es necesario especificar la función."
+];
+const ErrorMessage18 = [
+  ErrorIcon + " You need to provide valid arguments for the command.",
+  ErrorIcon + " Musíte přidat spravný argumenty.",
+  ErrorIcon + " Musíš zadať platné príkazy pre command.",
+  ErrorIcon + " Tienes que proporcionar argumentos válidos para el comando."
+];
+const ErrorMessage19 = [
+  ErrorIcon + " You need to join the Support Server.",
+  ErrorIcon + " Musíte se připojit na můj server.",
+  ErrorIcon + " Músíš sa pridať na Server Podpory.",
+  ErrorIcon + " Tienes que unirte al Servidor de Soporte."
+];
+const ErrorMessage20 = [
+  ErrorIcon + " You need to upload a file.",
+  ErrorIcon + " Musíte nahrát soubor.",
+  ErrorIcon + " Musíš nahrať súbor.",
+  ErrorIcon + " Tienes que subir un archivo."
+];
+const ErrorMessage21 = [
+  ErrorIcon + " You can only do that in upgraded servers.",
+  ErrorIcon + " Tohle funguje jenom ve vylepšených serverech.",
+  ErrorIcon + " Toto môžeš robiť iba v vylepšených serveroch.",
+  ErrorIcon + " Sólo puedes hacer eso en servidores actualizados."
+];
+const ErrorMessage22 = [
+  ErrorIcon + " You need to join a voice channel.",
+  ErrorIcon + " Musíte se připojt se do hlasového kanálu.",
+  ErrorIcon + " Musíš sa pripojiť do voice channelu.",
+  ErrorIcon + " Usted necesita unirse a un canal de voz."
+];
 
-const InfoMessage1 = [InfoIcon + " You have earned a new badge.", InfoIcon + " Dostal jste nový odznak.", InfoIcon + " Získal si nový odznak.", ErrorIcon + " Usted ha ganado una nueva placa."];
-const InfoMessage2 = [InfoIcon + " You have set the default background.", InfoIcon + " Nastavil jste si základní pozadí.", InfoIcon + " Nastavil si štandardné pozadie.", ErrorIcon + " Usted ha establecido el fondo predeterminado."];
+const InfoMessage1 = [
+  InfoIcon + " You have earned a new badge.",
+  InfoIcon + " Dostal jste nový odznak.",
+  InfoIcon + " Získal si nový odznak.",
+  ErrorIcon + " Usted ha ganado una nueva placa."
+];
+const InfoMessage2 = [
+  InfoIcon + " You have set the default background.",
+  InfoIcon + " Nastavil jste si základní pozadí.",
+  InfoIcon + " Nastavil si štandardné pozadie.",
+  ErrorIcon + " Usted ha establecido el fondo predeterminado."
+];
 
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
@@ -684,7 +834,6 @@ const Banners = [
 ];
 
 const DefaultDescriptions = [  
-
     "I'm very busy and important.",
     "I sip water quite slowly.",
     "Battery low, I'm scared.",
@@ -716,19 +865,15 @@ const DefaultDescriptions = [
     "Born at a very young age.",
     "Is this a JoJo reference?",
     "I did not set this description, I think."
-
 ];
 
 const RandomAvatars = [  
-  
     "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_1.png?v=1560717936708",
     "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_2.png?v=1560717937510",
     "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_3.png?v=1560717937123"
-  
 ];
 
-const RandomSongs = [  
-
+const RandomSongs = [
     "https://www.youtube.com/watch?v=tklQ47Hpfxw",
     "https://www.youtube.com/watch?v=N6hF3EaICxk",
     "https://www.youtube.com/watch?v=NU3aCNQAqwc", 
@@ -781,11 +926,9 @@ const RandomSongs = [
     "https://www.youtube.com/watch?v=GO5utuvcZps",
     "https://www.youtube.com/watch?v=JRfuAukYTKg",
     "https://www.youtube.com/watch?v=16y1AkoZkmQ"
-  
 ];
 
 const GuessTheSong = [
-  
     ["https://www.youtube.com/watch?v=HRDp-Q_DsfE", "Bloody Stream", "Medium"],
     ["https://www.youtube.com/watch?v=cPJUBQd-PNM", "Revenge", "Easy"],
     ["https://www.youtube.com/watch?v=5-uWlFq380M", "Sanctuary", "Medium"],
@@ -824,11 +967,9 @@ const GuessTheSong = [
     ["https://www.youtube.com/watch?v=PoVgCOCt4KA", "Alien Boy", "Medium"],
     ["https://www.youtube.com/watch?v=Sk-U8ruIQyA", "Blood // Water", "Hard"],
     ["https://www.youtube.com/watch?v=eFVj0Z6ahcI", "Last Surprise", "Medium"]
-  
 ];
 
 const TriviaQuestions = [
-  
     ["Who painted the Mona Lisa?", ["Da Vinci"], ["Mona Lisa"], ["Kars"], "Art"],
     ["When did the Second World War end?", ["1945"], ["1939"], ["1944"], "History"],
     ["Who starts first in chess?", ["White"], ["Black"], ["Arbitrary"], "Games"],
@@ -858,11 +999,9 @@ const TriviaQuestions = [
     ["In the film Babe, what type of animal was Babe?", ["Pig"], ["Dog"], ["Bunny"], "Other"],
     ["What’s the total number of dots on a pair of dice?", ["42"], ["6"], ["64"], "Other"],
     ["Which of these is the tallest mammal?", ["Giraffe"], ["Sauropod"], ["Whale"], "Biology"]
-  
 ];
 
 const RandomWords = [
-  
     "Life",
     "Happiness",
     "Goal",
@@ -922,7 +1061,6 @@ const RandomWords = [
     "Cocktail",
     "Dance",
     "Inventory"
-  
 ];
 
 //FUNCTIONS
@@ -1656,6 +1794,11 @@ function UpdateHome(text)  {
     fetch('https://peeky.glitch.me/messageheader.txt')
     .then(response => response.text()).then((data) => {
        document.getElementById("messageheader").innerHTML = data;
+    });
+
+    fetch('https://peeky.glitch.me/supportedlanguages.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("supportedlanguages").innerHTML = data;
     });
   
 };
@@ -2522,16 +2665,20 @@ if  (!WebsiteCooldowns.has("stats"))  {
       
 };
 
-//Bot Description
-if  (!WebsiteCooldowns.has("botdescription"))  {
+//Miscellaneous
+if  (!WebsiteCooldowns.has("miscellaneous"))  {
       
-    WebsiteCooldowns.add("botdescription");
+    WebsiteCooldowns.add("miscellaneous");
+
+    await fs.writeFile('public/supportedlanguages.txt', Languages.join(", "), (err) => {
+        if (err) console.log(err); 
+    });
 
     await fs.writeFile('public/botdescription.txt', Setting.Description, (err) => {
         if (err) console.log(err); 
     });
       
-    console.log("The bot description has been updated.");
+    console.log("The miscellaneous have been updated.");
       
 };
 
