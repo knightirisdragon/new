@@ -55,7 +55,6 @@ const MonthMs               = 2592000000;  //30 Days
 const YearMs                = 31556952000;  //30 Days
 const InactiveWipe          = MonthMs;
 const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
-const ProfileBoosterTime    = (DayMs  / ( 60 * 60 * 1000 ));
 
 //Sets and Arrays
 var ErrorBag                = new Set();
@@ -141,8 +140,6 @@ const BoosterRole        = "620654437081415686";
 const TranslatorRole     = "680124113951391776";
 const BugHunterRole      = "680124135816560662";
 const ServerUpgradeRole  = "549190337437106176";
-const ProfileBoosterRole = "603249410532442116";
-const RedeemRoleChests   = "505491936401162270";
 
 //Other IDs
 const OwnerId              = "108899856889737216";
@@ -2074,11 +2071,6 @@ peeky.on('message', async (message) => {
     if  (Setting.EventStatus == true)  {
         BadgeExpAmount = BadgeExpAmount * 2;
     };
-      
-    //PROFILE BOOSTER DOUBLE EXP
-    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
-        BadgeExpAmount = BadgeExpAmount * 2;
-    };
 
     peeky.userData.math(key, "+", Math.round(Math.random() * BadgeGreditAmount), "Gredit");
     peeky.userData.math(key, "+", Math.round(Math.random() * BadgeExpAmount), "Exp");
@@ -3231,42 +3223,6 @@ if  (keySF == SupportServer)  {
 
         };
 
-        //Profile Booster
-        if  (peeky.userData.has(key))  {
-
-            var HadRole = oldMember.roles.find(r => r.id == ProfileBoosterRole);
-            var HasRole = newMember.roles.find(r => r.id == ProfileBoosterRole);
-
-            if  (HadRole == null && HasRole)  {
-
-                PurchaseComplete = true;
-
-                var PurchaseHeader = "**You have purchased Profile Booster from the [store](https://peeky.glitch.me/store.html)!**";
-                Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (1 * DayMs)) + "**.");
-
-                peeky.userData.set(key, new Date(), "BoosterStart");
-
-            };
-
-        };
-
-        //Chests
-        if  (newMember.roles.has(RedeemRoleChests))  {
-
-            newMember.roles.remove(RedeemRoleChests).catch(error => {ErrorBag.add(error); Failed = true});
-
-            if  (Failed !== true)  {
-
-                PurchaseComplete = true;
-
-                var PurchaseHeader = "**You have purchased Additional Chests from the [store](https://peeky.glitch.me/store.html)!**";
-
-                peeky.userData.math(key, "+", 10, "Chests");
-
-            };
-
-        }; 
-
         //Complete Purchase
         if  (PurchaseComplete == true)  {
 
@@ -4266,18 +4222,6 @@ if  (!LimitedRolesCooldown.has("cooldown"))  {
             m.roles.remove(PremiumRole).catch(error => ErrorBag.add(error));
           
             const embed = {"description": InfoIcon + " Your **Premium** status has just expired.",  "color": EmbedColor}; 
-            m.send({ embed }).catch(error => ErrorBag.add(error));
-        };
-      
-    });
-  
-    //Profile Booster
-    await peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(ProfileBoosterRole)).forEach(m => {
-      
-        if  (peeky.userData.has(m.user.id, "BoosterStart") && (new Date() - new Date(peeky.userData.get(m.user.id, "BoosterStart")) >= DayMs))  {
-            m.roles.remove(ProfileBoosterRole).catch(error => ErrorBag.add(error));
-          
-            const embed = {"description": InfoIcon + " Your **Profile Booster** has just expired.",  "color": EmbedColor}; 
             m.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
@@ -7272,11 +7216,6 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
               TotalAmount += PeekyCoinsPremium;
           };
 
-          //Profile Booster
-          if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
-              TotalAmount += PeekyCoinsOpened;
-          };
-
           //Upgraded Server
           if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
               TotalAmount += PeekyCoinsUpgraded;
@@ -7316,11 +7255,6 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
             
               //Server Booster
               if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
-                  BackgroundNumber = BackgroundNumber - 1;
-              };
-            
-              //Profile Booster
-              if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(ProfileBoosterRole))  {
                   BackgroundNumber = BackgroundNumber - 1;
               };
             
@@ -7857,10 +7791,6 @@ if  (!ProfileCooldown.has(message.author.id))  {
 
     if  (!peeky.userData.get(key2, "FashionBadge") && !peeky.userData.get(key2, "PainterBadge"))  {
         InfoMessages.push(InfoIcon + " Check out this [tutorial](https://peeky.glitch.me/tutorials.html#backgrounds) for help with buying a background.");
-    };    
-
-    if  (peeky.guilds.get(SupportServer).members.has(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(ProfileBoosterRole))  {
-        InfoMessages.push(InfoIcon + " The **Profile Booster** for this profile will remain active for **" + function_TimeLeft(peeky.userData.get(key, "BoosterStart"),  "hours", ProfileBoosterTime) + " hours**.");
     };
 
     if  (!WebsiteCooldowns.has("featuredprofile") && peeky.guilds.get(SupportServer).members.has(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(PremiumRole))  {
