@@ -163,53 +163,6 @@
                                                       + "<b class='storesub'>Opening chests in upgraded servers will grant you up to <b class='highlighted'>25 more Gredit</b>.</b>"
                                                       + "</div>"
     };
-
-    function Chests()
-    { 
-     document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="headername">Additional Chests  <br>  <font size="2">  Buy yourself some additional chests.  </font>  </b>  <br><br>  '
-
-                                                      + "<div class='storecategory'>"
-                                                      + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051'>"
-                                                      + "<b class='storeheader'>Chests</b>"
-                                                      + "<b class='storesub'>You will receive <b class='highlighted'>10 Chests</b> that you can open for rewards or save for later.</b>"
-                                                      + "</div>"
-    };
-
-    function ProfileBooster()
-    { 
-     document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="headername">Profile Booster  <br>  <font size="2">  Boost your profile for 24 hours!  </font>  </b>  <br><br>  '
-
-                                                      + "<div class='storecategory'>"
-                                                      + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_gainboost.png?1558538115818'>"
-                                                      + "<b class='storeheader'>Gain Increase</b>"
-                                                      + "<b class='storesub'>While the Booster is active, your Exp gain is <b class='highlighted'>doubled</b>.</b>"
-                                                      + "</div>"
-
-                                                      + "<div class='storecategory'>"
-                                                      + "<img src='https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051'>"
-                                                      + "<b class='storeheader'>Chest Bonus</b>"
-                                                      + "<b class='storesub'>Opening a chest will grant you up to <b class='highlighted'>25 more Gredit</b> and the chance of getting a background is <b class='highlighted'>increased</b>.</b>"
-                                                      + "</div>"
-    };
-
-    function LapelPin()
-    { 
-     document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="headername">Lapel Pin  <br>  <font size="2">  Buy yourself a nice lapel pin with PEEKY\'s happy face!  </font>  </b>  <br><br>  '
-
-                                                      + "<div class='storecategory'>"
-                                                      + "<img src='https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fimage_merch.png?v=1568384758189'>"
-                                                      + "<b class='storeheader'>Merch</b>"
-                                                      + "<b class='storesub'>You will receive a piece of <b class='highlighted'>merch</b> in real life.</b>"
-                                                      + "</div>"
-    };
-
-    function Close()
-    {
-     document.getElementById('fulldesc').style.display = "none";
-    };
       
     function ToggleCategory(id) {
       
@@ -328,7 +281,7 @@
   
     <center>
       
-    <font class="headername"><a class="show" onclick="ToggleCategory('upgrades');">Open</a>  Upgrades</font> <br>
+    <font class="headername"><a class="show" onclick="ToggleCategory('premium');">Open</a>  Upgrades</font> <br>
     <div class="inlinediv" id="upgrades">
     
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1581500847855');">
@@ -362,40 +315,8 @@
         </div>
     
     </div>
-
-    <font class="headername"><a class="show" onclick="ToggleCategory('resupplies');">Open</a>  Resupplies</font> <br>
-    <div class="inlinediv" id="resupplies">
-    
-        <div class="listitem" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_chestspng.png?v=1576226131537')">
-        <div class="textlistitem">
-        <b>
-        <b class="name">  Additional Chests  </b>  <a class="first" onclick="Alert();"> Purchase </a>
-        <a class="second" onclick="Chests()"> More Info </a>
-        <b class="price">0.99€</b>
-        </b>
-        </div>
-        </div>
-    
-    </div>
-      
-    <font class="headername"><a class="show" onclick="ToggleCategory('miscellaneous');">Open</a>  Miscellaneous</font> <br>
-    <div class="inlinediv" id="miscellaneous">
-    
-        <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_nitroboost.png?v=1568535360407')">
-        <div class="textlistitem">
-        <b>
-        <b class="name">  Server Boost  </b>  <a class="first" href="https://peeky.glitch.me/server.html"> Purchase </a>
-        <a class="second" onclick="ServerBoost()"> More Info </a>
-        <b class="price">   4.99€ / 1m </b>
-        </b>
-        </div>
-        </div>
-    
-    </div>
       
     </center>
-
-    <br>
     
     <a>
     <div class="demo" id="fulldesc">
