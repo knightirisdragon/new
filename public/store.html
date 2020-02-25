@@ -18,9 +18,7 @@
     function ServerBoost()
     {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="headername">Server Booster  <br>  <font size="2">  Boost the Support Server and get lots of cool benefits!  </font>  </b>  <br><br>  '
-
-                                                      + "<div class='storecategory'>"
+     document.getElementById('description').innerHTML = "<div class='storecategory'>"
                                                       + "<img src='https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbadges.png?v=1564245176155'>"
                                                       + "<b class='storeheader'>Special Badge</b>"
                                                       + "<b class='storesub'>You will receive the <b class='highlighted'>Booster badge</b>.</b>"
@@ -59,9 +57,7 @@
     function Premium()
     {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="headername">Premium  <br>  <font size="2">  Become a Premium user and unlock a bunch of cool features!  </font>  </b>  <br><br>  '
-
-                                                      + "<div class='storecategory'>"
+     document.getElementById('description').innerHTML = "<div class='storecategory'>"
                                                       + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_custombackgrounds.png?1558536847863'>"
                                                       + "<b class='storeheader'>Custom Backgrounds</b>"
                                                       + "<b class='storesub'>You will be able to purchase a <b class='highlighted'>custom background</b>.</b>"
@@ -113,9 +109,7 @@
     function ServerUpgrade()
     {    
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="headername">Server Upgrade  <br>  <font size="2">  Upgrade your server and get the party started!  </font>  </b>  <br><br>  '
-
-                                                      + "<div class='storecategory'>"
+     document.getElementById('description').innerHTML = "<div class='storecategory'>"
                                                       + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_serverlist.png?1558538116110'>"
                                                       + "<b class='storeheader'>Server List</b>"
                                                       + "<b class='storesub'>Upgraded servers will be displayed in the <b class='highlighted'>Server List</b> page with the option to set an invite.</b>"
@@ -162,6 +156,23 @@
                                                       + "<b class='storeheader'>Chest Bonus</b>"
                                                       + "<b class='storesub'>Opening chests in upgraded servers will grant you up to <b class='highlighted'>25 more Gredit</b>.</b>"
                                                       + "</div>"
+    };
+
+    function LapelPin()
+    { 
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<b class="headername">Lapel Pin  <br>  <font size="2">  Buy yourself a nice lapel pin with PEEKY\'s happy face!  </font>  </b>  <br><br>  '
+
+                                                      + "<div class='storecategory'>"
+                                                      + "<img src='https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fimage_merch.png?v=1568384758189'>"
+                                                      + "<b class='storeheader'>Merch</b>"
+                                                      + "<b class='storesub'>You will receive a piece of <b class='highlighted'>merch</b> in real life.</b>"
+                                                      + "</div>"
+    };
+
+    function Close()
+    {
+     document.getElementById('fulldesc').style.display = "none";
     };
       
     function ToggleCategory(id) {
@@ -234,13 +245,13 @@
 }
   
 .listitem  {
-    width: 200px;
-    height: 175px;
+    width: 600px;
+    height: 300px;
 }  
   
 .textlistitem .first,
 .textlistitem .second {
-    width: 90px;
+    width: 292.5px;
 }
   
 .inlinediv  {
@@ -255,13 +266,17 @@
 #alert {
     width: 50%;
     height: 13.5%;
+    padding-top: 25px;
     left: 25%;
     top: 40%;
+    overflow: hidden;
     position: fixed;
     display: none;
 }
   
 #fulldesc  {
+    background-color: transparent;
+    background-size: 0% 0%;
     display: block;   
 }
 
@@ -281,7 +296,6 @@
   
     <center>
       
-    <font class="headername"><a class="show" onclick="ToggleCategory('premium');">Open</a>  Upgrades</font> <br>
     <div class="inlinediv" id="upgrades">
     
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1581500847855');">
@@ -303,13 +317,13 @@
         </b>
         </div>
         </div>
-
-        <div class="listitem" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_profilebooster.png?v=1576226131224')">
+    
+        <div class="listitem" style="background-image: url('https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fstore_nitroboost.png?v=1568535360407')">
         <div class="textlistitem">
         <b>
-        <b class="name">  Profile Booster  </b>  <a class="first" onclick="Alert();"> Purchase </a>
-        <a class="second" onclick="ProfileBooster()"> More Info </a>
-        <b class="price">0.99€ / 24h</b>
+        <b class="name">  Server Boost  </b>  <a class="first" href="https://peeky.glitch.me/server.html"> Purchase </a>
+        <a class="second" onclick="ServerBoost()"> More Info </a>
+        <b class="price">   4.99€ / 1m </b>
         </b>
         </div>
         </div>
@@ -317,6 +331,8 @@
     </div>
       
     </center>
+
+    <br>
     
     <a>
     <div class="demo" id="fulldesc">

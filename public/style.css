@@ -206,7 +206,12 @@ a.button:hover {
     margin: 5px;
     display: inline-block;
     position: relative;
+    transition: transform .25s ease;
+}
+  
+.listitem:hover {
     cursor: pointer;
+    transform: scale(0.99);
 }
   
 .textlistitem {
