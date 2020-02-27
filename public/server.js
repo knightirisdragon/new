@@ -8327,7 +8327,7 @@ if (CommandName == "stop")  {
             if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
 
                 const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-                if  (connection)  {
+                if  (connection && connection.dispatcher)  {
                     connection.dispatcher.end();
                 };
                 
@@ -8368,7 +8368,7 @@ if (CommandName == "skip")  {
             if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
 
                 const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-                if  (connection)  {
+                if  (connection && connection.dispatcher)  {
                     connection.dispatcher.end();
                 };
 
