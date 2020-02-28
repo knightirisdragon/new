@@ -10,6 +10,10 @@ const ddbl = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
 const BotList = require('botlist.space');
 const bls = new BotList.Client({  id: "482945063282802698", botToken: process.env.BLS_TOKEN  });
 
+//CDL
+var cdl = require("cloud-list") 
+var cloud_client = new cdl("482945063282802698", process.env.CDL_TOKEN) 
+
 //Music
 const ytdl_discord = require('ytdl-core-discord');
 const search       = require('youtube-search');
