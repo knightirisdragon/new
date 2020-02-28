@@ -10,10 +10,6 @@ const ddbl = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
 const BotList = require('botlist.space');
 const bls = new BotList.Client({  id: "482945063282802698", botToken: process.env.BLS_TOKEN  });
 
-//CDL
-var cdl = require("cloud-list") 
-var cloud_client = new cdl("482945063282802698", process.env.CDL_TOKEN) 
-
 //Music
 const ytdl_discord = require('ytdl-core-discord');
 const search       = require('youtube-search');
@@ -1887,15 +1883,15 @@ peeky.on('ready', () => {
             body: JSON.stringify({  server_count: GuildSize  })
         }).catch(err => {console.log("Failed to post the server count to DB."); ErrorBag.add(err)});
 
-        //Post Server Counts - CL
+        //Post Server Counts - CDL
         node_fetch(`https://www.cloudlist.xyz/api/stats/${peeky.user.id}`, {
             method: 'POST',
             headers: {
-                'Authorization': process.env.CL_TOKEN,
+                'Authorization': process.env.CDL_TOKEN,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({  server_count: GuildSize  })
-        }).catch(err => {console.log("Failed to post the server count to CL."); ErrorBag.add(err)});
+        }).catch(err => {console.log("Failed to post the server count to CDL."); ErrorBag.add(err)});
       
         console.log("Stats posted to Bot Lists.");
 
