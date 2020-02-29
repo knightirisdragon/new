@@ -9351,7 +9351,7 @@ if  (CommandName.startsWith("muterole"))  {
                   
                    InfoMessages.push(InfoIcon + " Created a role called **" + CommandArgument + "**.");
 
-                   if  (message.guild.roles.find(role => role.name == CommandArgument) && message.guild.me.permissions.has("MANAGE_CHANNELS") && !RoleCooldown.has(message.guild.id + "muterole"))  {
+                   /*if  (message.guild.roles.find(role => role.name == CommandArgument) && message.guild.me.permissions.has("MANAGE_CHANNELS") && !RoleCooldown.has(message.guild.id + "muterole"))  {
                        
                        RoleCooldown.add(message.guild.id + "muterole");
                        setTimeout(() => {RoleCooldown.delete(message.guild.id + "muterole")}, 300000);
@@ -9387,7 +9387,7 @@ if  (CommandName.startsWith("muterole"))  {
                   {
                    var TranslatedMessages = [ErrorIcon + " Couldn't edit channels for the **@X001** role.", ErrorIcon + " Nemohl jsem upravit kanály pro roli **X001**.", ErrorIcon + " Nemohol som upraviť channely pre **@X001** rolu.", ErrorIcon + " No pude editar los canales para el papel **@X001**.", ErrorIcon + " **@X001** rolü için kanallar düzenlenemedi."];
                    InfoMessages.push(TranslatedMessages[Language].replace("X001", CommandArgument));   
-                  };
+                  };*/
 
                }
                 else
