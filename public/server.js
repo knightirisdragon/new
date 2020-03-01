@@ -8332,6 +8332,7 @@ if (CommandName == "stop")  {
                 };
                 
                 peeky.serverData.set(keySF, [], "Queue");
+                CurrentlyPlaying.delete(message.guild.id);
                 message.guild.me.voice.channel.leave();
 
             } else {
