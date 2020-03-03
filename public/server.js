@@ -7894,6 +7894,8 @@ if (CommandName.startsWith("play"))  {
                         const stream = ytdl(peeky.serverData.get(keySF, "Queue")[0]);
                         const dispatcher = await connection.play(stream, StreamOptions);
 
+                        CurrentlyPlaying.add(message.guild.id);
+
                         dispatcher.on('finish', async reason => {
                             
                             if  (peeky.serverData.get(keySF, "Looping") == false)  {
