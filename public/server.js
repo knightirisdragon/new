@@ -7872,8 +7872,6 @@ if (CommandName.startsWith("play"))  {
 
                     await voiceChannel.join().then(async connection => {
 
-                        CurrentlyPlaying.add(message.guild.id);
-
                         peeky.serverData.set(keySF, Title, "Title");
                         peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
                         peeky.serverData.set(keySF, Author, "Author");
@@ -7946,6 +7944,8 @@ if (CommandName.startsWith("play"))  {
                         const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                         ErrorBag.add(error);
+
+                        CurrentlyPlaying.delete(message.guild.id);
                     });
 
                 } else {
@@ -8332,7 +8332,6 @@ if (CommandName == "stop")  {
                 };
                 
                 peeky.serverData.set(keySF, [], "Queue");
-                CurrentlyPlaying.delete(message.guild.id);
                 message.guild.me.voice.channel.leave();
 
             } else {
