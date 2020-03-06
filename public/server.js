@@ -1427,7 +1427,7 @@ function  function_DirectMessage(id, message)  {
 function function_UpdateBans()  {
   
     BannedUsers.splice(0, BannedUsers.length);
-    peeky.guilds.get(SupportServer).fetchBans().then(banned => {
+    peeky.guilds.cache.get(SupportServer).fetchBans().then(banned => {
         
         banned.array().forEach(i => {
             BannedUsers.push(i.id);
@@ -1845,7 +1845,7 @@ peeky.on('ready', () => {
     //Update Banned Users
     setTimeout(() => {
         function_UpdateBans();
-        peeky.guilds.get(SupportServer).members.fetch();
+        peeky.guilds.cache.get(SupportServer).members.fetch();
     }, 10000);
 
     setInterval(() => {
@@ -1987,19 +1987,19 @@ peeky.on('message', async (message) => {
     };
 
         //Staff
-    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:moderator:540036307213221901> Staff", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmoderator.png?1548824732338"]);  };
+    if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(StaffRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:moderator:540036307213221901> Staff", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmoderator.png?1548824732338"]);  };
     
         //Premium
-    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(PremiumRole))  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:premium:677075250034376711> Premium", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpremium.png?v=1581497704217"]);  };
+    if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(PremiumRole))  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:premium:677075250034376711> Premium", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpremium.png?v=1581497704217"]);  };
 
         //Booster
-    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).premiumSince)  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:booster:622431477384085514> Booster", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbooster.png?v=1568469682712"]);  };
+    if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).premiumSince)  {  BadgeGreditAmount += 2;  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:booster:622431477384085514> Booster", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbooster.png?v=1568469682712"]);  };
     
         //Veteran
-    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(VeteranRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:veteran:540565010972147724> Veteran", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fveteran.png?1548951084956"]);  };
+    if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(VeteranRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:veteran:540565010972147724> Veteran", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fveteran.png?1548951084956"]);  };
   
         //Translator
-    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(TranslatorRole))  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:translator:657876886260809728> Translator", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ftranslator.png?v=1576920631134"]);  };
+    if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(TranslatorRole))  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:translator:657876886260809728> Translator", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ftranslator.png?v=1576920631134"]);  };
       
         //Upgrader
     if  (peeky.userData.get(key, "UpgradedServers") > 0)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:upgrader:669505308938207233> Upgrader", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fupgrader.png?v=1579693007838"]);  };
@@ -2008,7 +2008,7 @@ peeky.on('message', async (message) => {
     if  (peeky.userData.get(key, "ContributorBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:contributor:539895189334917130> Contributor", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fcontributor.png?1548786864495"]);  };
 
         //Bug Hunter
-    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BugHunterRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:bugcatcher:539895189737832448> Bug Hunter", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbugcatcher.png?1548261764050"]);  };
+    if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(BugHunterRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:bugcatcher:539895189737832448> Bug Hunter", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbugcatcher.png?1548261764050"]);  };
 
         //Celebrator
     if  (peeky.userData.get(key, "CelebratorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:celebrator:624237582355529729> Celebrator", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcelebrator.png?v=1568900372214"]);  };
@@ -2194,7 +2194,7 @@ if  (!WebsiteCooldowns.has("api"))  {
       "serverCount": peeky.guilds.size,
       "upgradedServers": peeky.serverData.filter(i => i.server_upgraded == true).size,
       "profileCount": peeky.userData.count,
-      "supporterCount": peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(PremiumRole)).size,
+      "supporterCount": peeky.guilds.cache.get(SupportServer).members.cache.filter(m => m.roles.has(PremiumRole)).size,
       "backgroundsCount": Banners.length,
 
       "eventName": Setting.EventName,
@@ -2231,7 +2231,7 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
       
             peeky.serverData.delete(data.GuildID);
 
-            var Guild = peeky.guilds.get(data.GuildID);
+            var Guild = peeky.guilds.cache.get(data.GuildID);
             if  (Guild !== undefined)  {
                 if  (Guild.owner)  {
                     const embed = {"description": "I'm leaving your server called **" + Guild.name + "** because of inactivity.", "footer": { "text": "https://peeky.glitch.me/tutorials.html#autowipe" }, "color": EmbedColor}; 
@@ -2406,7 +2406,7 @@ if  (!WebsiteCooldowns.has("workshop"))  {
 
     var WorkshopList = [];
 
-    peeky.channels.get(WorkshopChannel).messages.fetch({ limit: 50 }).then(async (messages) => {
+    peeky.channels.cache.get(WorkshopChannel).messages.fetch({ limit: 50 }).then(async (messages) => {
       
     messages.forEach(m => {
           
@@ -2488,12 +2488,12 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
         if  (peeky.guilds.has(data.GuildID))  {
 
             if  (peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
-                var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
+                var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.cache.get(data.GuildID).members.cache.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
             }  else  {
                 var ServerInfo = "<font size='2' color='pink'>No Invite</font>";    
             };
 
-            ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'>  <div class='displayitem' id='" + data.GuildID + "' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b>  </div>  </a>");
+            ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'>  <div class='displayitem' id='" + data.GuildID + "' style='background-image: url(" + peeky.guilds.cache.get(data.GuildID).iconURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(peeky.guilds.cache.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b>  </div>  </a>");
       
         };
           
@@ -2514,7 +2514,7 @@ if  (!WebsiteCooldowns.has("premiumusers"))  {
     setTimeout(() => {WebsiteCooldowns.delete("premiumusers")}, 600000);
 
     var PremiumUsersList = [];
-    peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(PremiumRole)).forEach(m => {
+    peeky.guilds.cache.get(SupportServer).members.cache.filter(m => m.roles.has(PremiumRole)).forEach(m => {
     if  (peeky.userData.has(m.user.id))  {
 
         /*
@@ -2552,7 +2552,7 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
       
         if  (peeky.guilds.has(data.GuildID))  {
           
-            var guild = peeky.guilds.get(data.GuildID);
+            var guild = peeky.guilds.cache.get(data.GuildID);
           
             if  (ImmuneServers.includes(data.GuildID) || data.server_upgraded == true)  {
                 var ImmuneString = "Immune";
@@ -2560,7 +2560,7 @@ if  (!WebsiteCooldowns.has("serverlog"))  {
               var ImmuneString = "Not Immune";
             };
 
-            ServerLogList.push("<div class='displayitem' style='background-image: url(" + guild.iconURL({ format: 'png' }) + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(guild.name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + ", " + Languages[peeky.serverData.get(`${guild.id}`, "language")] + "  <br>  " + guild.members.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "  <br>  " + guild.id + "   </b></div>");
+            ServerLogList.push("<div class='displayitem' style='background-image: url(" + guild.iconURL({ format: 'png' }) + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(guild.name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + ", " + Languages[peeky.serverData.get(`${guild.id}`, "language")] + "  <br>  " + guild.members.cache.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "  <br>  " + guild.id + "   </b></div>");
           
         };
       
@@ -2582,7 +2582,7 @@ if  (!WebsiteCooldowns.has("news"))  {
 
     var NewsList = [];
 
-    peeky.channels.get(AnnouncementsChannel).messages.fetch({ limit: 10 }).then(async (messages) => {
+    peeky.channels.cache.get(AnnouncementsChannel).messages.fetch({ limit: 10 }).then(async (messages) => {
           
     await messages.forEach(m => {
         var Header = m.content.split("\n")[0];
@@ -2617,7 +2617,7 @@ if  (!WebsiteCooldowns.has("staff"))  {
     var DevList    = [];
     var ModList    = [];
 
-    peeky.guilds.get(SupportServer).members.forEach(m => {
+    peeky.guilds.cache.get(SupportServer).members.forEach(m => {
       
       if  (m.roles.has(StaffRole))  {
 
@@ -2718,8 +2718,8 @@ peeky.on("guildCreate", async (guild) =>  {
 
     const keySF = `${guild.id}`;
 
-    const embed = {"description": " I have been added to a server called **" + function_RemoveFormatting(guild.name, "other", true) + "** with **" + guild.members.filter(m => m.user.bot).size + " bots**.",  "footer": {  "text": guild.id  },  "color": 8311585};
-    peeky.channels.get(ServerLogChannel).send({ embed });
+    const embed = {"description": " I have been added to a server called **" + function_RemoveFormatting(guild.name, "other", true) + "** with **" + guild.members.cache.filter(m => m.user.bot).size + " bots**.",  "footer": {  "text": guild.id  },  "color": 8311585};
+    peeky.channels.cache.get(ServerLogChannel).send({ embed });
 
     if  (peeky.guilds.size > Setting.MaxServers || BannedUsers.includes(guild.owner.user.id))  {
         const embed = {"description": "Something went wrong while joining your server, try again later.",  "color": EmbedColor}; 
@@ -2736,7 +2736,7 @@ peeky.on("guildDelete", async (guild) =>  {
 const keySF = `${guild.id}`;
 
 const embed = {"description": " I have been removed from a server called **" + function_RemoveFormatting(guild.name, "other", true) + "**.",  "footer": {  "text": guild.id  },  "color": 12854839};
-peeky.channels.get(ServerLogChannel).send({ embed });
+peeky.channels.cache.get(ServerLogChannel).send({ embed });
 
 });
 
@@ -2785,7 +2785,7 @@ const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
 //Server Message
 if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user.bot)  {
       
-    const embed = {"description": peeky.serverData.get(keySF, "server_message_bonus_setting").replace(GuildNameTag, function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym),  "footer":  {"text": "This message's content was set by the server's staff."},  "color": EmbedColor}; 
+    const embed = {"description": peeky.serverData.get(keySF, "server_message_bonus_setting").replace(GuildNameTag, function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.cache.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym),  "footer":  {"text": "This message's content was set by the server's staff."},  "color": EmbedColor}; 
     function_DirectMessage(member.user.id, { embed });
 
 };
@@ -2828,7 +2828,7 @@ if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
   
     if  (member.guild.me.permissions.has("MANAGE_ROLES"))  {
 
-        var Role = member.guild.roles.find(role => role.name == peeky.serverData.get(keySF, "join_role_bonus_setting"));
+        var Role = member.guild.roles.cache.get(role => role.name == peeky.serverData.get(keySF, "join_role_bonus_setting"));
 
         if  (Role) {
             member.roles.add(Role.id, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
@@ -2846,7 +2846,7 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
   
     if  (!member.user.bot && member.guild.me.permissions.has("MANAGE_ROLES") && member.guild.me.permissions.has("KICK_MEMBERS"))  {
 
-        var Role = member.guild.roles.find(role => role.name == peeky.serverData.get(keySF, "verification_system_bonus_setting"));
+        var Role = member.guild.roles.cache.get(role => role.name == peeky.serverData.get(keySF, "verification_system_bonus_setting"));
         var Recaptcha = Math.random().toString(36).substr(2,10);
 
         if  (Role)  {
@@ -2926,7 +2926,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
                 
                   current[1].forEach(role => {
                       
-                    if  (member.guild.roles.find(r => r.id == role))  {
+                    if  (member.guild.roles.cache.get(r => r.id == role))  {
                         ValidRoles.push(role);
                     };                  
                     
@@ -3030,7 +3030,7 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
     const name      = peeky.serverData.get(keySF, "welcome_messages_bonus_setting");
     var Detected    = false;
 
-    var channel = guild.channels.find(c=> c.name == name);
+    var channel = guild.channels.cache.get(c=> c.name == name);
     
     if  (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES' && 'ATTACH_FILES'))  {
       
@@ -3081,7 +3081,7 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
     const name      = peeky.serverData.get(keySF, "welcome_messages_bonus_setting");
     var Detected    = false;
 
-    var channel = guild.channels.find(c=> c.name == name);
+    var channel = guild.channels.cache.get(c=> c.name == name);
     
     if  (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES' && 'ATTACH_FILES'))  {
       
@@ -3123,9 +3123,9 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
             const MemberIndex = SavedRoles.findIndex(i => i[0] == member.user.id);
 
             if  (MemberIndex >= 0)  {
-                SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name !== "@everyone" && r.name !== peeky.serverData.get(keySF, "verification_system_bonus_setting") && !Setting.includes(r.name)).map(r => r.id);
+                SavedRoles[MemberIndex][1] = member.roles.cache.filter(r => r.name !== "@everyone" && r.name !== peeky.serverData.get(keySF, "verification_system_bonus_setting") && !Setting.includes(r.name)).map(r => r.id);
             } else {
-              SavedRoles.push([member.user.id, member.roles.filter(r => r.name !== "@everyone" &&r.name !== peeky.serverData.get(keySF, "verification_system_bonus_setting") && !Setting.includes(r.name)).map(r => r.id)]);
+              SavedRoles.push([member.user.id, member.roles.cache.filter(r => r.name !== "@everyone" &&r.name !== peeky.serverData.get(keySF, "verification_system_bonus_setting") && !Setting.includes(r.name)).map(r => r.id)]);
             };
 
         };
@@ -3169,8 +3169,8 @@ if  (keySF == SupportServer)  {
         //Server Boost
         if  (peeky.userData.has(key))  {
 
-            var HadRole = oldMember.roles.find(r => r.id == BoosterRole);
-            var HasRole = newMember.roles.find(r => r.id == BoosterRole);
+            var HadRole = oldMember.roles.cache.get(r => r.id == BoosterRole);
+            var HasRole = newMember.roles.cache.get(r => r.id == BoosterRole);
 
             if  (HadRole == null && HasRole)  {
 
@@ -3187,8 +3187,8 @@ if  (keySF == SupportServer)  {
         //Premium
         if  (peeky.userData.has(key))  {
 
-            var HadRole = oldMember.roles.find(r => r.id == PremiumRole);
-            var HasRole = newMember.roles.find(r => r.id == PremiumRole);
+            var HadRole = oldMember.roles.cache.get(r => r.id == PremiumRole);
+            var HasRole = newMember.roles.cache.get(r => r.id == PremiumRole);
 
             if  (HadRole == null && HasRole)  {
 
@@ -3210,8 +3210,8 @@ if  (keySF == SupportServer)  {
         //Server Upgrade
         if  (peeky.userData.has(key))  {
 
-            var HadRole = oldMember.roles.find(r => r.id == ServerUpgradeRole);
-            var HasRole = newMember.roles.find(r => r.id == ServerUpgradeRole);
+            var HadRole = oldMember.roles.cache.get(r => r.id == ServerUpgradeRole);
+            var HasRole = newMember.roles.cache.get(r => r.id == ServerUpgradeRole);
 
             if  (HadRole == null && HasRole)  {
 
@@ -3309,8 +3309,8 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
   
         if  (!member.user.bot)  {
 
-            var GuildRole = member.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
-            var HasRole = member.roles.find(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
+            var GuildRole = member.guild.roles.cache.get(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
+            var HasRole = member.roles.cache.get(r => r.name == peeky.serverData.get(keySF, "streamer_role_bonus_setting"));
             var Activity = member.presence.activities.find(a => a.type !== "CUSTOM_STATUS");
 
             if  (Activity && Activity.type == "STREAMING" || member.voice.channel && member.voice.streaming == true)  {
@@ -3346,7 +3346,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
   
     if  (!member.user.bot && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SA2"))  {
 
-        var Channel = member.guild.channels.find(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
+        var Channel = member.guild.channels.cache.get(c => c.name == peeky.serverData.get(keySF, "stream_announcements_bonus_setting"));
 
         if  (Channel && Channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
           
@@ -3383,8 +3383,8 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
         peeky.serverData.get(keySF, "game_roles_bonus_setting").forEach(GameName => {
 
         var GameName = GameName.toLowerCase();
-        var HasRole  = member.roles.find(r => r.name.toLowerCase() == GameName);
-        var Role = member.guild.roles.find(r => r.name.toLowerCase() == GameName);
+        var HasRole  = member.roles.cache.get(r => r.name.toLowerCase() == GameName);
+        var Role = member.guild.roles.cache.get(r => r.name.toLowerCase() == GameName);
 
         if  (Role)  {
           
@@ -3441,7 +3441,7 @@ if  (peeky.serverData.get(keySF, "veteran_role_bonus") == true)  {
   
         if  (!member.user.bot && (new Date() - new Date(member.joinedAt) >= YearMs))  {
 
-            var Role = member.guild.roles.find(r => r.name.toLowerCase() == peeky.serverData.get(keySF, "veteran_role_bonus_setting"));
+            var Role = member.guild.roles.cache.get(r => r.name.toLowerCase() == peeky.serverData.get(keySF, "veteran_role_bonus_setting"));
 
             if  (Role && member.roles.has(Role.id))  {
 
@@ -3465,7 +3465,7 @@ const key = `${user.id}`;
 const keyCF = `${reaction.message.channel.id}`;
 const keySF = `${reaction.message.guild.id}`;
 const Language = peeky.serverData.get(keySF, "language");
-const member = reaction.message.guild.members.find(m => m.user.id == user.id);
+const member = reaction.message.guild.members.cache.find(m => m.user.id == user.id);
 
 //Poller Badge
 if  (!user.bot && reaction.message.channel.id == AnnouncementsChannel && reaction.message.content.toLowerCase().includes("**voting time**"))  {
@@ -3822,7 +3822,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
     if  (reaction.emoji.name == "🚪")  {
       
-        var MemberExists = reaction.message.guild.members.find(m => m.id == reaction.message.author.id);
+        var MemberExists = reaction.message.guild.members.cache.find(m => m.id == reaction.message.author.id);
       
         if  (MemberExists && !MemberExists.user.bot && !reaction.message.member.permissions.has("KICK_MEMBERS"))  {
           
@@ -3830,7 +3830,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
                 await reaction.message.member.send("You have been vote kicked from **" + function_RemoveFormatting(reaction.message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
 
-                reaction.message.guild.members.get(reaction.message.member.user.id).kick("Triggered by the Vote Kick function.").catch(error => ErrorBag.add(error));   
+                reaction.message.guild.members.cache.get(reaction.message.member.user.id).kick("Triggered by the Vote Kick function.").catch(error => ErrorBag.add(error));   
 
                 reaction.message.reactions.removeAll().catch(error => ErrorBag.add(error));
               
@@ -3888,8 +3888,8 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                 TicketSystemCooldown.add(user.id);
                 setTimeout(() => {TicketSystemCooldown.delete(user.id)}, 300000);
               
-                const role = reaction.message.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
-                const category = reaction.message.guild.channels.find(c => c.name.includes("Tickets") && c.type == "category");
+                const role = reaction.message.guild.roles.cache.get(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
+                const category = reaction.message.guild.channels.cache.get(c => c.name.includes("Tickets") && c.type == "category");
                 const owner = reaction.message.guild.owner.user;
                 const TicketID = Math.random().toString(36).substr(2, 6);
               
@@ -3947,11 +3947,11 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                     const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
                     const Index = EmojiNumbers.indexOf(reaction.emoji.name);
-                    const role = reaction.message.guild.roles.find(r => r.name.toLowerCase() == Setting[Index].toLowerCase());
+                    const role = reaction.message.guild.roles.cache.get(r => r.name.toLowerCase() == Setting[Index].toLowerCase());
 
                     if  (role)  {
 
-                        const Member = reaction.message.guild.members.get(user.id);
+                        const Member = reaction.message.guild.members.cache.get(user.id);
                         if  (!Member.roles.has(role.id))  {
                             Member.roles.add(role.id).catch(error => ErrorBag.add(error));
                         } else {
@@ -3987,7 +3987,7 @@ if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
         setTimeout(() => {MessageLogCooldown.delete(user.id)}, 30000);
 
         var   name                  = peeky.serverData.get(keySF, "message_log_bonus_setting");
-        var   Channel               = reaction.message.guild.channels.find(c => c.name == name);
+        var   Channel               = reaction.message.guild.channels.cache.get(c => c.name == name);
         const OriginalMessage       = reaction.message;
         const OriginalMessageEdited = OriginalMessage.content.replace(/<@?#?&?!?[0-9]{17,20}>/g, "­");
         var   image                 = "none";   
@@ -4183,7 +4183,7 @@ if  (message.guild.owner !== undefined && !message.author.bot)  {
         setTimeout(() => {BadgeCheckCooldown.delete(message.guild.id + message.author.id)}, 300000);
 
         //Gopbot Badge
-        if  (!peeky.userData.get(key, "GopbotBadge") && message.author.id == message.guild.owner.user.id && message.guild.members.filter(m => m.user.id == GopbotId).size > 0)  {
+        if  (!peeky.userData.get(key, "GopbotBadge") && message.author.id == message.guild.owner.user.id && message.guild.members.cache.filter(m => m.user.id == GopbotId).size > 0)  {
             peeky.userData.set(key, true, "GopbotBadge");
         };
 
@@ -4216,7 +4216,7 @@ if  (!LimitedRolesCooldown.has("cooldown"))  {
     setTimeout(() => {LimitedRolesCooldown.delete("cooldown")}, 1800000);
   
     //Premium
-    await peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(PremiumRole)).forEach(m => {
+    await peeky.guilds.cache.get(SupportServer).members.cache.filter(m => !m.user.bot && m.roles.has(PremiumRole)).forEach(m => {
       
         if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= MonthMs))  {
             m.roles.remove(PremiumRole).catch(error => ErrorBag.add(error));
@@ -4241,8 +4241,8 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
     if  (peeky.guilds.has(server.GuildID) && peeky.serverData.has(`${server.GuildID}`))  {
 
         var name = peeky.serverData.get(`${server.GuildID}`, "highlighted_channel");
-        var guild = peeky.guilds.get(server.GuildID);
-        var channel = guild.channels.find(c => c.name == name);
+        var guild = peeky.guilds.cache.get(server.GuildID);
+        var channel = guild.channels.cache.get(c => c.name == name);
       
         if  (channel)  {
 
@@ -4392,7 +4392,7 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
         setTimeout(() => {RedditPostsCooldown.delete(message.guild.id)}, 1800000);
 
             var name    = peeky.serverData.get(keySF, "reddit_posts_bonus_setting");
-            var channel = message.guild.channels.find(c => c.name == name);
+            var channel = message.guild.channels.cache.get(c => c.name == name);
 
             if  (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
               
@@ -4464,7 +4464,7 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
         if  (message.guild.me.permissions.has("MANAGE_CHANNELS"))  {
 
             var id        = peeky.serverData.get(keySF, "server_age_bonus_id");
-            var channel   = message.guild.channels.find(g => g.id == id);
+            var channel   = message.guild.channels.cache.get(g => g.id == id);
             var TranslatedStrings = [["Server Age", "days"], ["Věk Serveru", "dní"], ["Vek Serveru", "dní"], ["Edad del servidor", "días"], ["Sunucu yaşı", "gün"]];
             var FinalName = TranslatedStrings[Language][0] + ": " + function_TimeLeft(message.guild.createdAt, "days", null).toLocaleString('en') + " " + TranslatedStrings[Language][1];
 
@@ -4493,8 +4493,8 @@ if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
 
             var id         = peeky.serverData.get(keySF, "member_counter_bonus_id");
             var Prefix     = peeky.serverData.get(keySF, "member_counter_bonus_setting");
-            var channel    = message.guild.channels.find(g => g.id == id);
-            var FinalName  = Prefix + ": " + message.guild.members.filter(m => !m.user.bot).size.toLocaleString('en');
+            var channel    = message.guild.channels.cache.get(g => g.id == id);
+            var FinalName  = Prefix + ": " + message.guild.members.cache.filter(m => !m.user.bot).size.toLocaleString('en');
 
             if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
                 channel.setName(FinalName, "Triggered by the Member Counter function.").catch(error => ErrorBag.add(error));    
@@ -4514,7 +4514,7 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
 
     if  (!EventCountdownCooldown.has(message.guild.id))  {
 
-        var channel = message.guild.channels.find(c => c.id == peeky.serverData.get(keySF, "event_countdown_bonus_id"));
+        var channel = message.guild.channels.cache.get(c => c.id == peeky.serverData.get(keySF, "event_countdown_bonus_id"));
 
         if  (channel && channel.permissionsFor(peeky.user).has('CONNECT'))  {
 
@@ -4588,7 +4588,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
             if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length == peeky.serverData.get(keySF, "flood_protection_bonus_setting"))  {
 
             const name = peeky.serverData.get(keySF, "muted_role");
-            const Role = message.guild.roles.find(role => role.name == name);
+            const Role = message.guild.roles.cache.get(role => role.name == name);
 
             if  (Role && !message.member.roles.has(Role.id))  {
 
@@ -4678,8 +4678,8 @@ if  (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)  {
 //Classification Wall
 if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 
-    const Role    = peeky.guilds.get(message.guild.id).roles.find(r => r.name == peeky.serverData.get(keySF, "donor_wall_bonus_setting"));
-    const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
+    const Role    = peeky.guilds.cache.get(message.guild.id).roles.cache.get(r => r.name == peeky.serverData.get(keySF, "donor_wall_bonus_setting"));
+    const Channel = peeky.guilds.cache.get(message.guild.id).channels.cache.get(c => c.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
     var WallList  = [];
     var Tags      = [];
     var EndString = "";
@@ -4742,11 +4742,11 @@ if  (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)  {
         FunctionCooldowns.add("weekendchannels" + message.guild.id);
         setTimeout(() => {FunctionCooldowns.delete("weekendchannels" + message.guild.id)}, 300000);
 
-        var Channels = message.guilds.channels.filter(c => TextChannels.includes(c.type) && peeky.channelData.get(`${c.id}`, "weekend_channels_bonus_setting").includes(c.name)).array();
+        var Channels = message.guilds.channels.cache.filter(c => TextChannels.includes(c.type) && peeky.channelData.get(`${c.id}`, "weekend_channels_bonus_setting").includes(c.name)).array();
 
         Channels.forEach(async channel => {
 
-            await channel.updateOverwrite(message.guild.members.get(PeekyId), { VIEW_CHANNEL: true }).catch(error => ErrorBag.add(error));
+            await channel.updateOverwrite(message.guild.members.cache.get(PeekyId), { VIEW_CHANNEL: true }).catch(error => ErrorBag.add(error));
             await channel.updateOverwrite(message.guild.id, { VIEW_CHANNEL: ["Saturday", "Sunday"].includes(Days[new Date().getDay()]) }).catch(error => ErrorBag.add(error));
             
         });
@@ -4758,7 +4758,7 @@ if  (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)  {
 //Reaction Roles
 if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
-    const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == "roles");
+    const Channel = peeky.guilds.cache.get(message.guild.id).channels.cache.get(c => c.name == "roles");
 
     if  (Channel)  {
 
@@ -4803,8 +4803,8 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 //Ticket System
 if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true)  {
 
-    const Role    = peeky.guilds.get(message.guild.id).roles.find(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
-    const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == "tickets");
+    const Role    = peeky.guilds.cache.get(message.guild.id).roles.cache.get(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
+    const Channel = peeky.guilds.cache.get(message.guild.id).channels.cache.get(c => c.name == "tickets");
 
     if  (Role && Channel)  {
       
@@ -4936,7 +4936,7 @@ if  (CommandName.startsWith("eval"))  {
   
         CommandArgument = CommandArgument.replace(" ", "");
       
-        if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {
+        if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(StaffRole))  {
 
             function clean(text) {
             if  (typeof(text) === "string")
@@ -4985,7 +4985,7 @@ if  (CommandName.startsWith("message"))  {
       
         var UserID = CommandArray[1];
       
-        if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {
+        if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(StaffRole))  {
           
             const user = peeky.users.get(UserID);
           
@@ -5066,8 +5066,8 @@ if (CommandName == "eventrewards")  {
 //Upgrade
 if (CommandName.startsWith("upgrade"))  {
 
-    const PeekySupportServer = peeky.guilds.get(SupportServer);
-    const TheUserWithRole    = PeekySupportServer.members.get(message.author.id);
+    const PeekySupportServer = peeky.guilds.cache.get(SupportServer);
+    const TheUserWithRole    = PeekySupportServer.members.cache.get(message.author.id);
 
     if  (PeekySupportServer.members.has(message.author.id))  {
 
@@ -5089,7 +5089,7 @@ if (CommandName.startsWith("upgrade"))  {
             const embed = {"description": TranslatedMessages[Language] + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-            peeky.channels.get("676843718539608077").send("**" + function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
+            peeky.channels.cache.get("676843718539608077").send("**" + function_RemoveFormatting(message.author.tag, "other", true) + "** has upgraded **" + function_RemoveFormatting(message.guild.owner.user.tag, "other", true) + "**'s server called **" + function_RemoveFormatting(message.guild.name, "other", true) + "**.").catch(error => ErrorBag.add(error));
         };
     }
      else 
@@ -5399,7 +5399,7 @@ if  (FunctioName.startsWith("welcome messages"))  {
   
     const guild = message.guild;
     var name = peeky.serverData.get(keySF, "welcome_messages_bonus_setting");
-    var channel = guild.channels.find(c=> c.name == name);
+    var channel = guild.channels.cache.get(c=> c.name == name);
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "welcome_messages_bonus"), "welcome_messages_bonus");
     var StatusString = peeky.serverData.get(keySF, "welcome_messages_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
@@ -5440,7 +5440,7 @@ else
 //Toggle Classification Wall
 if  (FunctioName.startsWith("classification wall"))  {
     
-    const channel = message.guild.channels.find(channel => channel.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
+    const channel = message.guild.channels.cache.get(channel => channel.name == peeky.serverData.get(keySF, "donor_wall_bonus_channel"));
     const name = peeky.serverData.get(keySF, "donor_wall_bonus_channel");
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "donor_wall_bonus"), "donor_wall_bonus");
@@ -5487,8 +5487,8 @@ else
 if  (FunctioName.startsWith("ticket system"))  {
     
     const name = "tickets";
-    const channel = message.guild.channels.find(channel => channel.name == name);
-    const category = message.guild.channels.find(c => c.name.includes("Tickets") && c.type == "category");
+    const channel = message.guild.channels.cache.get(channel => channel.name == name);
+    const category = message.guild.channels.cache.get(c => c.name.includes("Tickets") && c.type == "category");
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "ticket_system_bonus"), "ticket_system_bonus");
     var StatusString = peeky.serverData.get(keySF, "ticket_system_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
@@ -5538,7 +5538,7 @@ else
 if  (FunctioName.startsWith("reaction roles"))  {
     
     const name = "roles";
-    const channel = message.guild.channels.find(channel => channel.name == name);
+    const channel = message.guild.channels.cache.get(channel => channel.name == name);
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "reaction_roles_bonus"), "reaction_roles_bonus");
     var StatusString = peeky.serverData.get(keySF, "reaction_roles_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
@@ -5585,7 +5585,7 @@ if  (FunctioName.startsWith("join role"))  {
     
     const guild = message.guild;
     var name = peeky.serverData.get(keySF, "join_role_bonus_setting");
-    var role = guild.roles.find(c=> c.name == name);
+    var role = guild.roles.cache.get(c=> c.name == name);
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "join_role_bonus"), "join_role_bonus");
     var StatusString = peeky.serverData.get(keySF, "join_role_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
@@ -5628,7 +5628,7 @@ if  (FunctioName.startsWith("verification system"))  {
     
     const guild = message.guild;
     var name = peeky.serverData.get(keySF, "verification_system_bonus_setting");
-    var role = guild.roles.find(c=> c.name == name);
+    var role = guild.roles.cache.get(c=> c.name == name);
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "verification_system_bonus"), "verification_system_bonus");
     var StatusString = peeky.serverData.get(keySF, "verification_system_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
@@ -5713,7 +5713,7 @@ if  (FunctioName.startsWith("message log"))  {
   
     const guild = message.guild;
     var name = peeky.serverData.get(keySF, "message_log_bonus_setting");
-    var channel = guild.channels.find(c=> c.name == name);
+    var channel = guild.channels.cache.get(c=> c.name == name);
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "message_log_bonus"), "message_log_bonus");
     var StatusString = peeky.serverData.get(keySF, "message_log_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
@@ -5754,7 +5754,7 @@ if  (FunctioName.startsWith("stream announcements"))  {
   
     const guild = message.guild;
     var name = peeky.serverData.get(keySF, "stream_announcements_bonus_setting");
-    var channel = guild.channels.find(c=> c.name == name);
+    var channel = guild.channels.cache.get(c=> c.name == name);
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "stream_announcements_bonus"), "stream_announcements_bonus");
     var StatusString = peeky.serverData.get(keySF, "stream_announcements_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
@@ -5797,7 +5797,7 @@ if  (FunctioName.startsWith("member counter"))  {
     const guild = message.guild;
     const name = peeky.serverData.get(keySF, "member_counter_bonus_setting") + ": ...";
     var id = peeky.serverData.get(keySF, "member_counter_bonus_id");
-    var channel = guild.channels.find(c=> c.id == id);
+    var channel = guild.channels.cache.get(c=> c.id == id);
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "member_counter_bonus"), "member_counter_bonus");
     var StatusString = peeky.serverData.get(keySF, "member_counter_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
@@ -5843,7 +5843,7 @@ if  (FunctioName.startsWith("reddit posts"))  {
   
     const guild = message.guild;
     const name = peeky.serverData.get(keySF, "reddit_posts_bonus_setting");
-    var channel = guild.channels.find(c=> c.name == name);
+    var channel = guild.channels.cache.get(c=> c.name == name);
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "reddit_posts_bonus"), "reddit_posts_bonus");
     var StatusString = peeky.serverData.get(keySF, "reddit_posts_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
@@ -5886,7 +5886,7 @@ if  (FunctioName.startsWith("server age"))  {
     const guild = message.guild;
     const name = "Server Age: ...";
     var id = peeky.serverData.get(keySF, "server_age_bonus_id");
-    var channel = guild.channels.find(c=> c.id == id);
+    var channel = guild.channels.cache.get(c=> c.id == id);
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "server_age_bonus"), "server_age_bonus");
     var StatusString = peeky.serverData.get(keySF, "server_age_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
@@ -5933,7 +5933,7 @@ if  (FunctioName.startsWith("event countdown"))  {
     const guild = message.guild;
     const name = "Countdown Starting Soon..."
     var id = peeky.serverData.get(keySF, "event_countdown_bonus_id");
-    var channel = guild.channels.find(c=> c.id == id);
+    var channel = guild.channels.cache.get(c=> c.id == id);
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "event_countdown_bonus"), "event_countdown_bonus");
     var StatusString = peeky.serverData.get(keySF, "event_countdown_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
@@ -6079,7 +6079,7 @@ if  (FunctioName.startsWith("streamer role"))  {
         
     const guild = message.guild;
     var name = peeky.serverData.get(keySF, "streamer_role_bonus_setting");
-    var role = guild.roles.find(c=> c.name == name);
+    var role = guild.roles.cache.get(c=> c.name == name);
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "streamer_role_bonus"), "streamer_role_bonus");
     var StatusString = peeky.serverData.get(keySF, "streamer_role_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
@@ -6792,7 +6792,7 @@ if  (CommandArgument.startsWith(" "))  {
     var MaxLines = "\n";
     var str = CommandArgument;
   
-if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(PremiumRole))  {  UpdatedAmount = 0;  };
+if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(PremiumRole))  {  UpdatedAmount = 0;  };
 
     for(var i = NewLinesCount = 0; i<str.length; NewLinesCount+=+(MaxLines===str[i++]));
         
@@ -6924,7 +6924,7 @@ if  (CommandName.startsWith("buybackground"))  {
 //CustomBackground
 if (CommandName.startsWith("custombackground"))  {
   
-    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(PremiumRole))  {
+    if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(PremiumRole))  {
   
         if  (peeky.userData.get(key, "Gredit") > Setting.CustomBackgroundPrice)  {
 
@@ -7207,12 +7207,12 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
           var Tokens = CommandName.split("open ");
 
           //Premium
-          if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(PremiumRole))  {
+          if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(PremiumRole))  {
               TotalAmount += PeekyCoinsPremium;
           };
 
           //Server Booster
-          if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
+          if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(BoosterRole))  {
               TotalAmount += PeekyCoinsPremium;
           };
 
@@ -7249,12 +7249,12 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
               var BackgroundNumber = 10;
             
               //Premium
-              if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(PremiumRole))  {
+              if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(PremiumRole))  {
                   BackgroundNumber = BackgroundNumber - 1;
               };
             
               //Server Booster
-              if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
+              if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(BoosterRole))  {
                   BackgroundNumber = BackgroundNumber - 1;
               };
             
@@ -7365,13 +7365,13 @@ if (CommandName == "daily")  {
     };
 
     //Premium Reward
-    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(PremiumRole))  {
+    if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(PremiumRole))  {
         peeky.userData.math(key, "+", 1, "Chests");
             InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a Premium user.");
     };
 
     //Server Booster Reward
-    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
+    if  (peeky.guilds.cache.get(SupportServer).members.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.has(BoosterRole))  {
         peeky.userData.math(key, "+", 1, "Chests");
             InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a Server Booster.");
     };
@@ -7793,7 +7793,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
         InfoMessages.push(InfoIcon + " Check out this [tutorial](https://peeky.glitch.me/tutorials.html#backgrounds) for help with buying a background.");
     };
 
-    if  (!WebsiteCooldowns.has("featuredprofile") && peeky.guilds.get(SupportServer).members.has(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(PremiumRole))  {
+    if  (!WebsiteCooldowns.has("featuredprofile") && peeky.guilds.cache.get(SupportServer).members.has(SomeoneTagged.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(SomeoneTagged.id).roles.has(PremiumRole))  {
       
         WebsiteCooldowns.add("featuredprofile");
         setTimeout(() => {WebsiteCooldowns.delete("featuredprofile")}, 1800000);   
@@ -7905,7 +7905,7 @@ if (CommandName.startsWith("play"))  {
                                 peeky.serverData.get(keySF, "Queue").shift();                     
                             };
 
-                            if  (peeky.serverData.get(keySF, "Queue").length == 0 || message.guild.me.voice.channel.members.filter(m => !m.user.bot).map(m => m.id).length < 1)  {  //
+                            if  (peeky.serverData.get(keySF, "Queue").length == 0 || message.guild.me.voice.channel.members.cache.filter(m => !m.user.bot).map(m => m.id).length < 1)  {  //
 
                                 peeky.serverData.set(keySF, [], "Queue");
                                 CurrentlyPlaying.delete(message.guild.id);
@@ -7915,7 +7915,7 @@ if (CommandName.startsWith("play"))  {
                                     message.guild.me.setNickname(null);
                                 };
 
-                                const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
+                                const Listeners = voiceChannel.members.cache.filter(m => !m.user.bot).map(m => m.id);
 
                                 var TranslatedMessages = [InfoIcon + " The music has now finished with **X001 listeners**.", InfoIcon + " Hudba právě skončila s **X001 posluchateli**.", InfoIcon + " Hudba sa skončila s **X001 poslucháčmi**.", InfoIcon + " La música ya se ha terminado con **X001 oyentes**.", InfoIcon + " Müzik şimdi **X001 dinleyicileri** ile bitti."];
                                 const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
@@ -8322,7 +8322,7 @@ if (CommandName == "stop")  {
       
             var OwnerActive = false;
 
-            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.cache.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
                 OwnerActive = true;
             };
 
@@ -8363,7 +8363,7 @@ if (CommandName == "skip")  {
       
             var OwnerActive = false;
 
-            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.cache.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
                 OwnerActive = true;
             };
 
@@ -8401,7 +8401,7 @@ if (CommandName == "loop")  {
       
             var OwnerActive = false;
 
-            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.cache.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
                 OwnerActive = true;
             };
 
@@ -8774,7 +8774,7 @@ if  (CommandArgument.startsWith(" "))  {
 
             var MentionedMember = message.mentions.members.first();
             var name = peeky.serverData.get(keySF, "muted_role");
-            var Role = message.guild.roles.find(role => role.name == name);
+            var Role = message.guild.roles.cache.get(role => role.name == name);
 
             if  (MentionedMember)  {
 
@@ -8854,7 +8854,7 @@ if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
       
     var MentionedMember = message.mentions.members.first();
     var name = peeky.serverData.get(keySF, "muted_role");
-    var Role = message.guild.roles.find(role => role.name == name);
+    var Role = message.guild.roles.cache.get(role => role.name == name);
 
     if  (MentionedMember)  {
   
@@ -8938,7 +8938,7 @@ if  (CommandName.startsWith("idban"))  {
       
         if  (ValidID == 0) {
 
-        if  (!message.guild.members.find(m => m.id == CommandArgument))  {
+        if  (!message.guild.members.cache.find(m => m.id == CommandArgument))  {
 
             await message.guild.members.ban(CommandArgument, { reason: "ID banned by " + message.author.tag + "." }).catch(error => { 
                   const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
@@ -9334,7 +9334,7 @@ if  (CommandName.startsWith("muterole"))  {
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
             var FixedMutedRole = function_RemoveFormatting(CommandArgument, "role", true);
-            var RoleExist = message.guild.roles.find(role => role.name == CommandArgument);
+            var RoleExist = message.guild.roles.cache.get(role => role.name == CommandArgument);
             var FilteredChannels = message.guild.channels.array().filter(channel => !TextChannels.includes(channel.type));
 
             if  (!RoleExist && message.guild.me.permissions.has("MANAGE_ROLES"))  {
@@ -9353,13 +9353,13 @@ if  (CommandName.startsWith("muterole"))  {
                   
                    InfoMessages.push(InfoIcon + " Created a role called **" + CommandArgument + "**.");
 
-                   /*if  (message.guild.roles.find(role => role.name == CommandArgument) && message.guild.me.permissions.has("MANAGE_CHANNELS") && !RoleCooldown.has(message.guild.id + "muterole"))  {
+                   /*if  (message.guild.roles.cache.get(role => role.name == CommandArgument) && message.guild.me.permissions.has("MANAGE_CHANNELS") && !RoleCooldown.has(message.guild.id + "muterole"))  {
                        
                        RoleCooldown.add(message.guild.id + "muterole");
                        setTimeout(() => {RoleCooldown.delete(message.guild.id + "muterole")}, 300000);
                          
                        var Amount = 0;
-                       var MuteRole = message.guild.roles.find(role => role.name == CommandArgument);
+                       var MuteRole = message.guild.roles.cache.get(role => role.name == CommandArgument);
                      
                        FilteredChannels.forEach(channel => {
                              
