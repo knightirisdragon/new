@@ -3607,9 +3607,9 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "server_age_bonus") == true)             { var SA3 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA3 = DisabledIcon};
         if (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)           { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
         if (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)         { var RR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var RR = DisabledIcon};
+        if (peeky.channelData.get(keySF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
         if (peeky.channelData.get(keyCF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
         if (peeky.channelData.get(keyCF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
-        if (peeky.channelData.get(keyCF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
         if (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)             { var SC = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SC = DisabledIcon};
 
         var BWArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
@@ -3696,7 +3696,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             const newEmbed = new Discord.MessageEmbed({
                   description:  "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
                                 "**Weekend Channels** " + WC + "\n" + "`" + WCArray + "`" + "\n\n" +
-                                "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`",
+                                "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
+                                "**Banned Words** " + BW + "\n" + "`" + BWArray + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -3710,8 +3711,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                   description:  "**Automatic Reactions** " + AR + "\n" + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
                                 "**Message Log** " + ML + "\n" + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`" + "\n\n" +
                                 "**Safe Chat** " + SC + "\n" + "No setting." + "\n\n" +
-                                "**Images Only** " + IO + "\n" + "No setting." + "\n\n" +
-                                "**Banned Words** " + BW + "\n" + "`" + BWArray + "`",
+                                "**Images Only** " + IO + "\n" + "No setting.",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
             });
@@ -4816,7 +4816,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true)  {
 };
 
 //Banned Words
-if  (peeky.channelData.get(keyCF, "banned_words_bonus") == true)  {
+if  (peeky.channelData.get(keySF, "banned_words_bonus") == true)  {
   
     if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
@@ -6121,8 +6121,8 @@ else
 //Toggle Banned Words
 if  (FunctioName.startsWith("banned words"))  {
 
-    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "banned_words_bonus"), "banned_words_bonus");
-    var StatusString = peeky.channelData.get(keyCF, "banned_words_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
+    peeky.channelData.set(keySF, !peeky.channelData.get(keySF, "banned_words_bonus"), "banned_words_bonus");
+    var StatusString = peeky.channelData.get(keySF, "banned_words_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Banned Words").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
@@ -6135,8 +6135,8 @@ else
 //Toggle Veteran Role
 if  (FunctioName.startsWith("veteran role"))  {
 
-    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "veteran_role_bonus"), "veteran_role_bonus");
-    var StatusString = peeky.channelData.get(keyCF, "veteran_role_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
+    peeky.channelData.set(keySF, !peeky.channelData.get(keySF, "veteran_role_bonus"), "veteran_role_bonus");
+    var StatusString = peeky.channelData.get(keySF, "veteran_role_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Veteran Role").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
@@ -7893,6 +7893,8 @@ if (CommandName.startsWith("play"))  {
 
                         const stream = ytdl(peeky.serverData.get(keySF, "Queue")[0]);
                         const dispatcher = await connection.play(stream, StreamOptions);
+                      
+                        CurrentlyPlaying.add(message.guild.id);
 
                         dispatcher.on('finish', async reason => {
                             
@@ -7943,9 +7945,6 @@ if (CommandName.startsWith("play"))  {
                     }).catch(error => { 
                         const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                        ErrorBag.add(error);
-
-                        CurrentlyPlaying.delete(message.guild.id);
                     });
 
                 } else {
@@ -8333,6 +8332,7 @@ if (CommandName == "stop")  {
                 
                 peeky.serverData.set(keySF, [], "Queue");
                 message.guild.me.voice.channel.leave();
+                CurrentlyPlaying.delete(message.guild.id);
 
             } else {
               var TranslatedMessages = [ErrorIcon + " Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže preskočiť túto pieseň teraz.", ErrorIcon + " Sólo el dueño del servidor puede saltarse esta canción ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi ilerletebilir."];
@@ -9351,7 +9351,7 @@ if  (CommandName.startsWith("muterole"))  {
                   
                    InfoMessages.push(InfoIcon + " Created a role called **" + CommandArgument + "**.");
 
-                   /*if  (message.guild.roles.find(role => role.name == CommandArgument) && message.guild.me.permissions.has("MANAGE_CHANNELS") && !RoleCooldown.has(message.guild.id + "muterole"))  {
+                   if  (message.guild.roles.find(role => role.name == CommandArgument) && message.guild.me.permissions.has("MANAGE_CHANNELS") && !RoleCooldown.has(message.guild.id + "muterole"))  {
                        
                        RoleCooldown.add(message.guild.id + "muterole");
                        setTimeout(() => {RoleCooldown.delete(message.guild.id + "muterole")}, 300000);
@@ -9369,7 +9369,7 @@ if  (CommandName.startsWith("muterole"))  {
                              
                           if  (Failed == false && Amount < 25)  {
                              
-                              channel.overwritePermissions(MuteRole, {
+                              channel.updateOverwrite(MuteRole, {
                                   'SEND_MESSAGES': false
                               }).catch(error => ErrorBag.add(error));
                             
@@ -9387,7 +9387,7 @@ if  (CommandName.startsWith("muterole"))  {
                   {
                    var TranslatedMessages = [ErrorIcon + " Couldn't edit channels for the **@X001** role.", ErrorIcon + " Nemohl jsem upravit kanály pro roli **X001**.", ErrorIcon + " Nemohol som upraviť channely pre **@X001** rolu.", ErrorIcon + " No pude editar los canales para el papel **@X001**.", ErrorIcon + " **@X001** rolü için kanallar düzenlenemedi."];
                    InfoMessages.push(TranslatedMessages[Language].replace("X001", CommandArgument));   
-                  };*/
+                  };
 
                }
                 else
