@@ -3450,7 +3450,7 @@ if  (peeky.serverData.get(keySF, "veteran_role_bonus") == true)  {
 
             if  (Role && member.roles.has(Role.id))  {
 
-                member.roles.add(Role.id).catch(error => ErrorBag.add(error));
+                member.roles.add(Role.id, { reason: "Triggered by the Veteran Role function." }).catch(error => ErrorBag.add(error));
 
             };
 
@@ -3624,7 +3624,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (WCArray.length < 1)  {  WCArray = "None";  }  else  {  WCArray = WCArray.join("` `#");  };
 
         var RRArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
-        if  (RRArray.length < 1)  {  RRArray = "None";  }  else  {  "@" + RRArray.join("` `@");  };
+        if  (RRArray.length < 1)  {  RRArray = "None";  }  else  {  RRArray = "@" + RRArray.join("` `@");  };
 
         var GRArray = peeky.serverData.get(keySF, "game_roles_bonus_setting");
         if  (GRArray.length < 1)  {  GRArray = "None";  }  else  {  GRArray = "@" + GRArray.join("` `@");  };
@@ -3958,9 +3958,9 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                         const Member = reaction.message.guild.members.get(user.id);
                         if  (!Member.roles.has(role.id))  {
-                            Member.roles.add(role.id).catch(error => ErrorBag.add(error));
+                            Member.roles.add(role.id, { reason: "Triggered by the Reaction Roles function." }).catch(error => ErrorBag.add(error));
                         } else {
-                          Member.roles.remove(role.id).catch(error => ErrorBag.add(error));
+                          Member.roles.remove(role.id, { reason: "Triggered by the Reaction Roles function." }).catch(error => ErrorBag.add(error));
                         };
 
                         function_UpdateAutowipe(keySF, "server");
