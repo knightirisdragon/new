@@ -1347,7 +1347,7 @@ function function_ServerData(key)  {
             donor_wall_bonus_channel: "boosters",
             donor_wall_bonus_array: [],
             banned_words_bonus_setting: [],
-            spoiler_only_bonus: false,
+            spoiler_lock_bonus: false,
             spoiler_lock_bonus_setting: 0,
             event_countdown_bonus: false,
             event_countdown_bonus_setting: new Date(),
@@ -2802,6 +2802,11 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
     if  (new Date() - new Date(member.user.createdAt) <= WeekMs )  {
         Reasons.push("Account created less than 7 days ago.");
     };
+  
+    //Account has no profile picture.
+    if  (member.user.avatarURL().startsWith("https://cdn.discordapp.com/embed/avatars"))  {
+        Reasons.push("Has a default profile picture.");
+    };
 
     //Account has alot of logged bans
     if  (peeky.userData.has(key) && peeky.userData.get(key, "Bans") >= BanLimit)  {
@@ -3605,9 +3610,9 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)       { var WC = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var WC = DisabledIcon};
         if (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)   { var SA2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA2 = DisabledIcon};
         if (peeky.serverData.get(keySF, "server_age_bonus") == true)             { var SA3 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA3 = DisabledIcon};
-        if (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)           { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
+        if (peeky.serverData.get(keySF, "spoiler_lock_bonus") == true)           { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
         if (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)         { var RR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var RR = DisabledIcon};
-        if (peeky.channelData.get(keySF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
+        if (peeky.serverData.get(keySF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
         if (peeky.channelData.get(keyCF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
         if (peeky.channelData.get(keyCF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
         if (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)             { var SC = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SC = DisabledIcon};
@@ -4639,7 +4644,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 };
 
 //Spoiler Lock
-if  (peeky.serverData.get(keySF, "spoiler_only_bonus") == true)  {
+if  (peeky.serverData.get(keySF, "spoiler_lock_bonus") == true)  {
   
     if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
@@ -4816,7 +4821,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true)  {
 };
 
 //Banned Words
-if  (peeky.channelData.get(keySF, "banned_words_bonus") == true)  {
+if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
   
     if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
@@ -6121,8 +6126,8 @@ else
 //Toggle Banned Words
 if  (FunctioName.startsWith("banned words"))  {
 
-    peeky.channelData.set(keySF, !peeky.channelData.get(keySF, "banned_words_bonus"), "banned_words_bonus");
-    var StatusString = peeky.channelData.get(keySF, "banned_words_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
+    peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "banned_words_bonus"), "banned_words_bonus");
+    var StatusString = peeky.serverData.get(keySF, "banned_words_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Banned Words").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
