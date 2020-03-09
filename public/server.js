@@ -6140,8 +6140,8 @@ else
 //Toggle Veteran Role
 if  (FunctioName.startsWith("veteran role"))  {
 
-    peeky.channelData.set(keySF, !peeky.channelData.get(keySF, "veteran_role_bonus"), "veteran_role_bonus");
-    var StatusString = peeky.channelData.get(keySF, "veteran_role_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
+    peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "veteran_role_bonus"), "veteran_role_bonus");
+    var StatusString = peeky.serverData.get(keySF, "veteran_role_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Veteran Role").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
