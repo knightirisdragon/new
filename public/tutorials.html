@@ -208,12 +208,38 @@ function ToggleCategory(id) {
   
 <br>
       
-<a class="item_header" onclick="ToggleCategory('test');"><font size="5" >Backgrounds for your profile</font></a> <br>
-<div class="inlinediv" id="test">
+<a class="item_header" onclick="ToggleCategory('servermessage');"><font size="5" >The Server Message function and it's Tags</font></a> <br>
+<div class="inlinediv" id="servermessage">
 
     <div class="tutorial_item">
 
-    
+    <u>1. What are Tags?</u>  <br>
+    <font size="2">
+    The Tags in the Server Message function are a great thing that let you customize your server message even more!  <br>
+    In this tutorial you'll learn how to use them what they each tag can do.
+    </font>
+
+    <br>
+    <br>
+
+    <u>2. How to use Tags?</u>  <br>
+    <font size="2">
+    You can use the tags just by typing them between square brackets like [This] in the function's setting.  <br>
+    You'll know if it worked by getting a "Tag was detected" message right after setting the Server Message function.
+    </font>
+
+    <br>
+    <br>
+
+    <u>3. What Tags are there?</u>  <br>
+    <font size="2">
+    These are the Tags that you can currently use:  <br><br>
+    [GuildName] - Shows the server's current name.  <br>
+    [GuildSize] - Shows the amount of members in the server. Excludes bots.  <br>
+    [GuildOwner] - Shows server's current owner.  <br>
+    [GuildLevel] - Shows the current verification level.  <br>
+    [GuildAcronym] - Shows the server's Acronym.
+    </font>
 
     </div>
 
@@ -221,243 +247,192 @@ function ToggleCategory(id) {
   
 <br>
       
-<a class="item_header" onclick="ToggleCategory('test');"><font size="5" >Backgrounds for your profile</font></a> <br>
-<div class="inlinediv" id="test">
+<a class="item_header" onclick="ToggleCategory('workshop');"><font size="5" >About the Workshop and backgrounds</font></a> <br>
+<div class="inlinediv" id="workshop">
 
     <div class="tutorial_item">
 
-    
+    <u>1. Submitting a background</u>  <br>
+    <font size="2">
+    The parameters that PEEKY uses for the profiles is 500x300.
+
+    <br><br>
+
+    This is the format that you should use when submitting a background to the Workshop:
+
+    <br><br>
+
+    <code>
+    Name: [text] <br>
+    Credit: [text]  <br>
+    Price: [number]
+    </code>
+
+    <br><br>
+
+    Having an invalid format or not attaching your background will get your submission automatically deleted.  <br>
+    Posting something NSFW, racist, or anything of that sort will get you banned from submitting to the Workshop.
+    </font>
+
+    <br>
+    <br>
+
+    <u>2. Background Revenue?</u>  <br>
+    <font size="2">
+    Background revenue means that the background's artist gets some Gredit from the background's sales.  <br>
+    You can see if a background has revenue enabled when it says "Revenue Enabled" under it's price tag.
+
+    <br><br>
+
+    To get revenue enabled on your background, keep in mind that:  <br>
+    - You must be the background's original author or have a special permission from the original artist.  <br>
+    - Your profile must be active, otherwise the revenue will be turned off until you get one.
+    </font>
+
+    <br>
+    <br>
+
+    <u>3. Exclusive backgrounds?</u>  <br>
+    <font size="2">
+
+    Only PEEKY's developers can add Exclusive backgrounds to the Workshop.
+
+    <br><br>
+
+    Exclusive backgrounds are backgrounds that cannot be bought with Gredit, but instead have to be earned through special events and so on.  <br>
+    Selling an exclusive background will give you no Gredit.
+    </font>
 
     </div>
 
 </div>
   
 <br>
+      
+<a class="item_header" onclick="ToggleCategory('api');"><font size="5" >API</font></a> <br>
+<div class="inlinediv" id="api">
 
-<font size="5" class="item_header" id="servermessage">
-The Server Message function and it's Tags
-</font>
-<br>
-<br>
-<div class="tutorial_item">
+    <div class="tutorial_item">
 
-<u>1. What are Tags?</u>  <br>
-<font size="2">
-The Tags in the Server Message function are a great thing that let you customize your server message even more!  <br>
-In this tutorial you'll learn how to use them what they each tag can do.
-</font>
-  
-<br>
-<br>
+    <u>1. Node.js</u>  <br>
+    <font size="2">
 
-<u>2. How to use Tags?</u>  <br>
-<font size="2">
-You can use the tags just by typing them between square brackets like [This] in the function's setting.  <br>
-You'll know if it worked by getting a "Tag was detected" message right after setting the Server Message function.
-</font>
-  
-<br>
-<br>
+    <pre>
+    <code>
+    const fetch = require('node-fetch');
 
-<u>3. What Tags are there?</u>  <br>
-<font size="2">
-These are the Tags that you can currently use:  <br><br>
-[GuildName] - Shows the server's current name.  <br>
-[GuildSize] - Shows the amount of members in the server. Excludes bots.  <br>
-[GuildOwner] - Shows server's current owner.  <br>
-[GuildLevel] - Shows the current verification level.  <br>
-[GuildAcronym] - Shows the server's Acronym.
-</font>
-</div>
+    fetch(`https://peeky.glitch.me/api.json`, {
+        method: 'GET'
+    }).then(response =&gt response.json()).then(async (data) =&gt {
+         console.log(data);
+    });
+    </code>
+    </pre>
 
-<br>
+    </font>
 
-<font size="5" class="item_header" id="workshop">
-About the Workshop and backgrounds
-</font>
-<br>
-<br>
-<div class="tutorial_item">
-
-<u>1. Submitting a background</u>  <br>
-<font size="2">
-The parameters that PEEKY uses for the profiles is 500x300.
-  
-<br><br>
-  
-This is the format that you should use when submitting a background to the Workshop:
-
-<br><br>
-  
-<code>
-Name: [text] <br>
-Credit: [text]  <br>
-Price: [number]
-</code>
-  
-<br><br>
-  
-Having an invalid format or not attaching your background will get your submission automatically deleted.  <br>
-Posting something NSFW, racist, or anything of that sort will get you banned from submitting to the Workshop.
-</font>
-
-<br>
-<br>
-
-<u>2. Background Revenue?</u>  <br>
-<font size="2">
-Background revenue means that the background's artist gets some Gredit from the background's sales.  <br>
-You can see if a background has revenue enabled when it says "Revenue Enabled" under it's price tag.
-  
-<br><br>
-  
-To get revenue enabled on your background, keep in mind that:  <br>
-- You must be the background's original author or have a special permission from the original artist.  <br>
-- Your profile must be active, otherwise the revenue will be turned off until you get one.
-</font>
-
-<br>
-<br>
-
-<u>3. Exclusive backgrounds?</u>  <br>
-<font size="2">
-  
-Only PEEKY's developers can add Exclusive backgrounds to the Workshop.
-  
-<br><br>
-
-Exclusive backgrounds are backgrounds that cannot be bought with Gredit, but instead have to be earned through special events and so on.  <br>
-Selling an exclusive background will give you no Gredit.
-</font>
+    </div>
 
 </div>
   
 <br>
-  
-<font size="5" class="item_header" id="api">
-API
-</font>
-<br>
-<br>
-<div class="tutorial_item">
+      
+<a class="item_header" onclick="ToggleCategory('store');"><font size="5" >Some tips about the Store</font></a> <br>
+<div class="inlinediv" id="store">
 
-<u>1. Node.js</u>  <br>
-<font size="2">
+    <div class="tutorial_item">
 
-<pre>
-<code>
-const fetch = require('node-fetch');
-  
-fetch(`https://peeky.glitch.me/api.json`, {
-    method: 'GET'
-}).then(response =&gt response.json()).then(async (data) =&gt {
-     console.log(data);
-});
-</code>
-</pre>
+    <u>1. How do I get my items?</u>  <br>
+    <font size="2">
+    You should normally get a DM from PEEKY saying that the items have been added to your profile right after you purchase said items.  <br>
+    If you don't receive the DM, try waiting a few hours or restart your client.
+    </font>
 
-</font>
+    <br>
+    <br>
+
+    <u>2. How do I get a refund?</u>  <br>
+    <font size="2">
+    The steps on how to issue a refund are in the Refund Policy page.
+    </font>
+
+    </div>
 
 </div>
   
 <br>
+      
+<a class="item_header" onclick="ToggleCategory('autowipe');"><font size="5" >About the Auto Wipe system</font></a> <br>
+<div class="inlinediv" id="autowipe">
 
-<font size="5" class="item_header" id="store">
-Some tips about the Store
-</font>
-<br>
-<br>
-<div class="tutorial_item">
+    <div class="tutorial_item">
 
-<u>1. How do I get my items?</u>  <br>
-<font size="2">
-You should normally get a DM from PEEKY saying that the items have been added to your profile right after you purchase said items.  <br>
-If you don't receive the DM, try waiting a few hours or restart your client.
-</font>
-  
-<br>
-<br>
+    <u>1. What is this?</u>  <br>
+    <font size="2">
+    Auto Wipe is a system that helps PEEKY by removing inactive/unavailable servers and profiles.
+    </font>
 
-<u>2. How do I get a refund?</u>  <br>
-<font size="2">
-The steps on how to issue a refund are in the Refund Policy page.
-</font>
+    <br>
+    <br>
 
-</div>
-  
-<br>
+    <u>2. Normal Servers</u>  <br>
+    <font size="2">
+    PEEKY will leave a server and delete it's settings if it has been inactive for more than 30 days.  <br>
+    Servers can update their Auto Wipe status by using PEEKY's functions and commands.
+    </font>
 
-<font size="5" class="item_header" id="autowipe">
-About the Auto Wipe system
-</font>
-<br>
-<br>
-<div class="tutorial_item">
+    <br>
+    <br>
 
-<u>1. What is this?</u>  <br>
-<font size="2">
-Auto Wipe is a system that helps PEEKY by removing inactive/unavailable servers and profiles.
-</font>
-  
-<br>
-<br>
+    <u>3. Upgraded Servers</u>  <br>
+    <font size="2">
+    Upgraded servers are completely immune to Auto Wipe.
+    </font>
 
-<u>2. Normal Servers</u>  <br>
-<font size="2">
-PEEKY will leave a server and delete it's settings if it has been inactive for more than 30 days.  <br>
-Servers can update their Auto Wipe status by using PEEKY's functions and commands.
-</font>
-  
-<br>
-<br>
+    <br>
+    <br>
 
-<u>3. Upgraded Servers</u>  <br>
-<font size="2">
-Upgraded servers are completely immune to Auto Wipe.
-</font>
-  
-<br>
-<br>
+    <u>4. Profiles</u>  <br>
+    <font size="2">
+    Any profile that are not available to PEEKY or don't have the Fashion badge will get deleted after 30 days of inactivity.  <br>
+    Profiles can update their Auto Wipe status by using PEEKY's commands.
+    </font>
 
-<u>4. Profiles</u>  <br>
-<font size="2">
-Any profile that are not available to PEEKY or don't have the Fashion badge will get deleted after 30 days of inactivity.  <br>
-Profiles can update their Auto Wipe status by using PEEKY's commands.
-</font>
+    </div>
 
 </div>
   
 <br>
+      
+<a class="item_header" onclick="ToggleCategory('serverlist');"><font size="5" >Help with the Server List</font></a> <br>
+<div class="inlinediv" id="serverlist">
 
-<font size="5" class="item_header" id="serverlist">
-Help with the Server List
-</font>
-<br>
-<br>
-<div class="tutorial_item">
+    <div class="tutorial_item">
 
-<u>1. How do I get my server on the list?</u>  <br>
-<font size="2">
-The server list is a reward for anyone that has upgraded their servers.  <br>
-Go to the store to upgrade your server!
-</font>
-  
-<br>
-<br>
+    <u>1. How do I get my server on the list?</u>  <br>
+    <font size="2">
+    The server list is a reward for anyone that has upgraded their servers.  <br>
+    Go to the store to upgrade your server!
+    </font>
 
-<u>2. How do I update my server's invite link?</u>  <br>
-<font size="2">
-To update your invite link in the server list, you have to make a permanent invite and then use the SetInvite command.
-</font>
-  
-<br>
-<br>
+    <br>
+    <br>
 
-<u>3. My upgraded server is not on the list?</u>  <br>
-<font size="2">
-It takes some time for the list to update.  <br>
-If your server still is not on the list, it may be because PEEKY is not on the upgraded server.
-</font>
+    <u>2. How do I update my server's invite link?</u>  <br>
+    <font size="2">
+    To update your invite link in the server list, you have to make a permanent invite and then use the SetInvite command.
+    </font>
+
+    <br>
+    <br>
+
+    <u>3. My upgraded server is not on the list?</u>  <br>
+    <font size="2">
+    It takes some time for the list to update.  <br>
+    If your server still is not on the list, it may be because PEEKY is not on the upgraded server.
+    </font>
+
+    </div>
 
 </div>
   
