@@ -282,6 +282,25 @@
 
 </style>
   
+<script>
+
+    function ToggleCategory(id) {
+
+        var x = document.getElementsByClassName("inlinediv");
+        for (var i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+
+        var Element = document.getElementById(id);
+
+        if  (Element)  {  
+            Element.style.display = "flex";
+        };
+
+    };
+  
+</script>
+  
 <body onload="Premium();" class="imagebackground">
 <b>
   
