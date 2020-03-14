@@ -8203,15 +8203,8 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
               "image": {
                 "url": Thumbnail
               },
-              "fields": [
-              {
-                "name": peeky.userData.get(SomeoneTagged.user.id, "PlaylistName"),
-                "value": function_RemoveFormatting(SomeoneTagged.displayName, "other", true)
-              },
-              {
-                "name": "­\nSongs",
-                "value": FinalizedPlaylist + "\n­"
-              }],  "color": EmbedColor}; 
+              "description":  "",
+              "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
           } else {
