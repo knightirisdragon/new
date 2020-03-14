@@ -8183,10 +8183,11 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
           var MentionedMember = message.mentions.members.first();
           var SomeoneTagged = message.member;
+          const key2 = `${SomeoneTagged.user.id}`;
 
-          if  (peeky.userData.has(SomeoneTagged.user.id))  {
+          if  (peeky.userData.has(key2))  {
 
-              const Playlist = peeky.userData.get(SomeoneTagged.user.id, "Playlist");
+              const Playlist = peeky.userData.get(key2, "Playlist");
 
               if  (Playlist.length > 0)  {
                   var FinalizedPlaylist = function_NumarizeArray(Playlist, ["<", ">"])
@@ -8195,15 +8196,18 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
               };
 
               var Thumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fneedhelp_playlists.png?v=1584183423255";
-              if  (peeky.userData.get(key, "PlaylistThumbnail") !== null)  {
-                  Thumbnail = peeky.userData.get(key, "PlaylistThumbnail");
+              if  (peeky.userData.get(key2, "PlaylistThumbnail") !== null)  {
+                  Thumbnail = peeky.userData.get(key2, "PlaylistThumbnail");
               };
 
               const embed = {
               "image": {
                 "url": Thumbnail
               },
-              "description":  "",
+              "description": "**" + peeky.userData.get(key2, "PlaylistName") + "**" + "\n" + 
+                            function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "\n\n" +
+                            "**Songs**" + "\n" + 
+                            FinalizedPlaylist + "\n­",
               "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
