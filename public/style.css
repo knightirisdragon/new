@@ -163,6 +163,7 @@ a.button:hover {
     border-radius: 10px;
     width: 225px;
     height: 225px;
+    margin: 5px;
     cursor: pointer;
     text-align: left;
     display: inline-block;

@@ -1757,7 +1757,7 @@ function UpdateRandomSongs()  {
   
 };
 
-function UpdateHallOfFame()  {
+function UpdateWallOfFame()  {
 
     fetch('https://peeky.glitch.me/premiumusers.txt')
     .then(response => response.text()).then((data) => {
