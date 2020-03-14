@@ -31,6 +31,8 @@ const Setting = require('./setting.json');
 const http    = require('http');
 const express = require('express');
 const app     = express();
+const port    = process.env.PORT;
+
 app.use(express.static('public'));
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
@@ -39,6 +41,23 @@ app.get('/', function(request, response) {
 app.listen(process.env.PORT);
   setInterval(() => { http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 280000);
+
+http.createServer((req, res) => {
+	let responseCode = 404;
+	let content = '404 Error';
+
+	if (req.url === '/') {
+		responseCode = 200;
+		content = fs.readFileSync('./index.html');
+	}
+
+	res.writeHead(responseCode, {
+		'content-type': 'text/html;charset=utf-8',
+	});
+
+	res.write(content);
+	res.end();
+})
 
 //Miscellaneous Packages
 const fs         = require('fs');
@@ -3710,17 +3729,6 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             });
 
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
-        } else 
-        if  (reaction.emoji.name == "🇫🇷")  {
-            peeky.serverData.set(keySF, 0, "language");
-
-            const newEmbed = new Discord.MessageEmbed({
-                  description:  "La langue du serveur a été définie sur **Français**.",
-                  color: EmbedColor,
-                  footer: { "text": Footer }
-            });
-
-            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
         };
       
   };
@@ -5206,13 +5214,7 @@ if  (CommandName == "languages")  {
                                               + "\n\n" +
                                               Spanish + " Español `TheSongList`"
                                               + "\n\n" + 
-                                              Turk + " Türkçe `PlatinBae`"
-                                              + "\n\n" +
-                                              French + " Français `NOT DONE: Bersekr21`" 
-                                              + "\n\n" +
-                                              Dutch + " Dutch `NOT DONE: ZWEKKERBOY`"
-                                              + "\n\n" +
-                                              German + " Deutsch `NOT DONE: Sombraro`" ,  "color": EmbedColor}; 
+                                              Turk + " Türkçe `PlatinBae`",  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       await m.react(English).catch(error => {ErrorBag.add(error)});
@@ -5220,9 +5222,6 @@ if  (CommandName == "languages")  {
                       await m.react(Slovak).catch(error => {ErrorBag.add(error)});
                       await m.react(Spanish).catch(error => {ErrorBag.add(error)});
                       await m.react(Turk).catch(error => {ErrorBag.add(error)});
-                      await m.react(French).catch(error => {ErrorBag.add(error)});
-                      await m.react(Dutch).catch(error => {ErrorBag.add(error)});
-                      await m.react(German).catch(error => {ErrorBag.add(error)});
 
                       peeky.userData.set(key, m.id, "LanguageID");
 
