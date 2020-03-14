@@ -3650,7 +3650,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Function Notifications** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "function_notifications").toString().replace("true", "Enabled").replace("false", "Disabled") + "`" + "\n\n" +
                                 "**Level Notifications** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "level_notifications").toString().replace("true", "Enabled").replace("false", "Disabled") + "`",
                   color: EmbedColor,
-                  image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
+                  image: {  "url": "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fneedhelp_functions.png?v=1584183423303"  }
             });
 
             reaction.message.edit("**Server Settings** `1/1`", newEmbed).catch(error => ErrorBag.add(error));
@@ -3670,7 +3670,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Verification System** " + VS + "\n" + "`" + peeky.serverData.get(keySF, "verification_system_bonus_setting") + "`" + "\n\n" +
                                 "**Nickname Saver** " + NS + "\n" + "No Setting.",
                   color: EmbedColor,
-                  image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
+                  image: {  "url": "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fneedhelp_functions.png?v=1584183423303"  }
             });
 
             reaction.message.edit("**Server Functions** `1/3`", newEmbed).catch(error => ErrorBag.add(error));
@@ -3690,7 +3690,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`" + "\n\n" +
                                 "**Streamer Role** " + SR + "\n" + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`",
                   color: EmbedColor,
-                  image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
+                  image: {  "url": "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fneedhelp_functions.png?v=1584183423303"  }
             });
 
             reaction.message.edit("**Server Functions** `2/3`", newEmbed).catch(error => ErrorBag.add(error));
@@ -3704,7 +3704,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
                                 "**Banned Words** " + BW + "\n" + "`" + BWArray + "`",
                   color: EmbedColor,
-                  image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
+                  image: {  "url": "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fneedhelp_functions.png?v=1584183423303"  }
             });
 
             reaction.message.edit("**Server Functions** `3/3`", newEmbed).catch(error => ErrorBag.add(error));
@@ -3718,7 +3718,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Safe Chat** " + SC + "\n" + "No setting." + "\n\n" +
                                 "**Images Only** " + IO + "\n" + "No setting.",
                   color: EmbedColor,
-                  image: {  "url": "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Foverview_embed.png"  }
+                  image: {  "url": "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fneedhelp_functions.png?v=1584183423303"  }
             });
 
             reaction.message.edit("**Channel Functions** `1/1`", newEmbed).catch(error => ErrorBag.add(error));
@@ -8287,7 +8287,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                  var FinalizedPlaylist = "The playlist is empty.";
               };
 
-              var Thumbnail = "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fplaylist_embed.png?v=1563967857471";
+              var Thumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fneedhelp_playlists.png?v=1584183423255";
               if  (peeky.userData.get(key, "PlaylistThumbnail") !== null)  {
                   Thumbnail = peeky.userData.get(key, "PlaylistThumbnail");
               };
