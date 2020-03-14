@@ -7924,9 +7924,11 @@ if (CommandName.startsWith("play"))  {
 
             if  (peeky.userData.get(key, "Playlist").length > 0)  {
 
-                //CommandArgument = peeky.userData.get(key, "Playlist")[Math.floor(Math.random()*peeky.userData.get(key, "Playlist").length)];
+                var MentionedMember = message.mentions.members.first();
+                if  (MentionedMember)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
+                const key2 = `${SomeoneTagged.user.id}`;
               
-                function_ShuffleArray(peeky.userData.get(key, "Playlist")).forEach(song => {
+                function_ShuffleArray(peeky.userData.get(key2, "Playlist")).forEach(song => {
                     peeky.serverData.get(keySF, "Queue").push(song);
                 });
                 Type = "Playlist";
@@ -8182,7 +8184,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
         } else  {
 
           var MentionedMember = message.mentions.members.first();
-          var SomeoneTagged = message.member;
+          if  (MentionedMember)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
           const key2 = `${SomeoneTagged.user.id}`;
 
           if  (peeky.userData.has(key2))  {
