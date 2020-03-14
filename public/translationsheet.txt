@@ -80,7 +80,6 @@ You cannot buy the default and exclusive backgrounds. |
 
 You have set a **Custom Background** for **X001**. | 
 Failed to set your custom background. | 
-You have lost your custom background. | 
 
 You have set the **X001** background. | 
 
@@ -178,3 +177,4 @@ You can only do that in upgraded servers. |
 
 You have earned a new badge. | 
 You have set the default background. | 
+You have lost your custom background. | 

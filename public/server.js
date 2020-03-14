@@ -3381,13 +3381,16 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 //Veteran Role
 if  (peeky.serverData.get(keySF, "veteran_role_bonus") == true)  {
 
-    if  (member.guild.me.permissions.has('MANAGE_ROLES'))  {
+    if  (!FunctionCooldowns.has("veteranrole") && member.guild.me.permissions.has('MANAGE_ROLES'))  {
+
+        FunctionCooldowns.add("weekendchannels" + member.guild.id);
+        setTimeout(() => {FunctionCooldowns.delete("weekendchannels" + message.guild.id)}, 300000);
   
         if  (!member.user.bot && (new Date() - new Date(member.joinedAt) >= YearMs))  {
 
             var Role = member.guild.roles.find(r => r.name.toLowerCase() == peeky.serverData.get(keySF, "veteran_role_bonus_setting").toLowerCase());
 
-            if  (Role && member.roles.has(Role.id))  {
+            if  (Role && !member.roles.has(Role.id))  {
 
                 member.roles.add(Role.id, { reason: "Triggered by the Veteran Role function." }).catch(error => ErrorBag.add(error));
 
@@ -4675,7 +4678,7 @@ if  (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)  {
         FunctionCooldowns.add("weekendchannels" + message.guild.id);
         setTimeout(() => {FunctionCooldowns.delete("weekendchannels" + message.guild.id)}, 300000);
 
-        var Channels = message.guilds.channels.filter(c => TextChannels.includes(c.type) && peeky.channelData.get(`${c.id}`, "weekend_channels_bonus_setting").includes(c.name)).array();
+        var Channels = message.guild.channels.filter(c => TextChannels.includes(c.type) && peeky.serverData.get(keySF, "weekend_channels_bonus_setting").includes(c.name)).array();
 
         Channels.forEach(async channel => {
 
