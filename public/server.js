@@ -7577,7 +7577,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
 
                 ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-                var layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fprofile_layout_4.1.png?v=1584228143030"); //"http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout_2.5.png"
+                var layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fprofile_layout_4.3.png?v=1584229481012"); //"http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout_2.5.png"
                 ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
                 //Draw Events
@@ -7687,8 +7687,8 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                 ctx.shadowOffsetX = 0; 
                 ctx.shadowOffsetY = 0;
 
-                ctx.fillStyle = "#7289DA";
-                ctx.fillRect(63, 252, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 127), 28); //Body
+                ctx.fillStyle = "#2C2F33";
+                ctx.fillRect(64, 252, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 128), 28); //Body
 
                 //Avatar
                 const avatar = await Canvas.loadImage(SomeoneTagged.user.displayAvatarURL({ format: 'png' }).replace("https", "http"));
