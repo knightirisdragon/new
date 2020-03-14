@@ -2397,14 +2397,9 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
 
     for (var data of serverlist)  {
       
-        if  (peeky.guilds.has(data.GuildID))  {
-
-            if  (peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
-                var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
-            }  else  {
-                var ServerInfo = "<font size='2' color='pink'>No Invite</font>";    
-            };
-
+        if  (peeky.guilds.has(data.GuildID) && peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
+          
+            var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
             ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'>  <div class='displayitem' id='" + data.GuildID + "' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b>  </div>  </a>");
       
         };
