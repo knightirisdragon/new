@@ -7786,7 +7786,7 @@ if (CommandName.startsWith("play"))  {
 
                         peeky.serverData.set(keySF, Title, "Title");
                         peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
-                        peeky.serverData.set(keySF, Author, "Author");
+                        peeky.serverData.set(keySF, Author, "LastPlaylist");
                         peeky.serverData.set(keySF, LengthDate, "Length");
                         peeky.serverData.set(keySF, Started, "Started");
                         peeky.serverData.set(keySF, peeky.serverData.get(keySF, "Queue")[0], "Link");
@@ -7918,7 +7918,7 @@ if (CommandName.startsWith("play"))  {
 
         };
 
-        if  (CommandArgument == "playlist" && ChoosingMode == true)  {
+        if  (CommandArgument.startsWith("playlist") && ChoosingMode == true)  {
 
             ChoosingMode = false;
 
@@ -7932,6 +7932,7 @@ if (CommandName.startsWith("play"))  {
                     peeky.serverData.get(keySF, "Queue").push(song);
                 });
                 Type = "Playlist";
+                peeky.serverData.set(keySF, Author, "Author");
 
             } else {
 
@@ -7963,7 +7964,7 @@ if (CommandName.startsWith("play"))  {
         var Queue = peeky.serverData.get(keySF, "Queue");
 
         if  ((Queue.length > 0) && (Queue[0].includes("youtube.com") || Queue[0].includes("youtu.be")) && !Queue[0].includes("?list=") && (ytdl.validateURL(Queue[0]) == true))  {
-
+          
         if  (message.member.voice.channel)  {
 
             const voiceChannel  = message.member.voice.channel;
@@ -8080,7 +8081,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
         if  (!PlaylistRequest.includes("?list="))  {
 
-            if  ((PlaylistRequest.includes("youtube.com") || PlaylistRequest.includes("youtu.be")) && ytdl.validateURL(PlaylistRequest) == true)  {
+            if  ((PlaylistRequest.includes("youtube.com") || PlaylistRequest.includes("youtu.be")))  { //ytdl.validateURL(PlaylistRequest) == true
 
                 if  (peeky.userData.get(key, "Playlist").length < Setting.PlaylistLimit)  {
 
