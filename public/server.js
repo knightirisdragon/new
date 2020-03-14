@@ -31,7 +31,6 @@ const Setting = require('./setting.json');
 const http    = require('http');
 const express = require('express');
 const app     = express();
-
 app.use(express.static('public'));
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
@@ -2398,9 +2397,14 @@ if  (!WebsiteCooldowns.has("serverlist"))  {
 
     for (var data of serverlist)  {
       
-        if  (peeky.guilds.has(data.GuildID) && peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
-          
-            var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
+        if  (peeky.guilds.has(data.GuildID))  {
+
+            if  (peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
+                var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
+            }  else  {
+                var ServerInfo = "<font size='2' color='pink'>No Invite</font>";    
+            };
+
             ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'>  <div class='displayitem' id='" + data.GuildID + "' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b>  </div>  </a>");
       
         };
@@ -3706,6 +3710,17 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
 
             const newEmbed = new Discord.MessageEmbed({
                   description:  "Sunucu dili **Türkçe** olarak değiştirildi.",
+                  color: EmbedColor,
+                  footer: { "text": Footer }
+            });
+
+            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
+        } else 
+        if  (reaction.emoji.name == "🇫🇷")  {
+            peeky.serverData.set(keySF, 0, "language");
+
+            const newEmbed = new Discord.MessageEmbed({
+                  description:  "La langue du serveur a été définie sur **Français**.",
                   color: EmbedColor,
                   footer: { "text": Footer }
             });
@@ -5196,7 +5211,13 @@ if  (CommandName == "languages")  {
                                               + "\n\n" +
                                               Spanish + " Español `TheSongList`"
                                               + "\n\n" + 
-                                              Turk + " Türkçe `PlatinBae`",  "color": EmbedColor}; 
+                                              Turk + " Türkçe `PlatinBae`"
+                                              + "\n\n" +
+                                              French + " Français `NOT DONE: Bersekr21`" 
+                                              + "\n\n" +
+                                              Dutch + " Dutch `NOT DONE: ZWEKKERBOY`"
+                                              + "\n\n" +
+                                              German + " Deutsch `NOT DONE: Sombraro`" ,  "color": EmbedColor}; 
                 await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                       await m.react(English).catch(error => {ErrorBag.add(error)});
@@ -5204,6 +5225,9 @@ if  (CommandName == "languages")  {
                       await m.react(Slovak).catch(error => {ErrorBag.add(error)});
                       await m.react(Spanish).catch(error => {ErrorBag.add(error)});
                       await m.react(Turk).catch(error => {ErrorBag.add(error)});
+                      await m.react(French).catch(error => {ErrorBag.add(error)});
+                      await m.react(Dutch).catch(error => {ErrorBag.add(error)});
+                      await m.react(German).catch(error => {ErrorBag.add(error)});
 
                       peeky.userData.set(key, m.id, "LanguageID");
 
