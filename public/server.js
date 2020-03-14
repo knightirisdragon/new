@@ -1215,7 +1215,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
 };
 
 //CANVAS: Music embed
-async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type, Queue, Member)  {
+async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type, Queue, Member, LastPlaylist)  {
 
     var attachment = null;
     var Now = new Date();
@@ -1245,7 +1245,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type,
         ctx.fillText(Member.displayName + " has requested " + Author + "'s song.", 15, 310);
     }  else if  (Type == "Playlist")  {
         //ctx.font = "13px " + Setting.DefaultFont;
-        ctx.fillText(Member.displayName + " has requested " + peeky.userData.get(User, "Playlist").length + " songs from " + peeky.userData.get(User, "PlaylistName") + ".", 15, 310, canvas.width - 30);
+        ctx.fillText(Member.displayName + " has requested " + peeky.userData.get(User, "Playlist").length + " songs from " + LastPlaylist + ".", 15, 310, canvas.width - 30);
     }  else if  (Type == "Queue")  {
         ctx.fillText("Playing the next song from " + Member.displayName + "'s playlist.", 15, 310);
     }  else if  (Type == "Random")  {
@@ -1343,6 +1343,7 @@ function function_ServerData(key)  {
             Length: 60,
             Started: new Date(),
             Link: "None",
+            PlaylistName: "Unknown",
 
             welcome_messages_bonus: false,
             welcome_messages_bonus_setting: "welcome_messages",
@@ -7786,7 +7787,7 @@ if (CommandName.startsWith("play"))  {
 
                         peeky.serverData.set(keySF, Title, "Title");
                         peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
-                        peeky.serverData.set(keySF, Author, "LastPlaylist");
+                        peeky.serverData.set(keySF, Author, "Author");
                         peeky.serverData.set(keySF, LengthDate, "Length");
                         peeky.serverData.set(keySF, Started, "Started");
                         peeky.serverData.set(keySF, peeky.serverData.get(keySF, "Queue")[0], "Link");
@@ -7796,7 +7797,7 @@ if (CommandName.startsWith("play"))  {
                         };            
 
                         message.channel.startTyping();
-                        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type, peeky.serverData.get(keySF, "Queue"), message.member)).catch(error => ErrorBag.add(error));
+                        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type, peeky.serverData.get(keySF, "Queue"), message.member, peeky.serverData.get(keySF, "LastPlaylist"))).catch(error => ErrorBag.add(error));
                         message.channel.stopTyping();
 
                         if  (message.guild.me.permissions.has("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
@@ -7932,7 +7933,7 @@ if (CommandName.startsWith("play"))  {
                     peeky.serverData.get(keySF, "Queue").push(song);
                 });
                 Type = "Playlist";
-                peeky.serverData.set(keySF, Author, "Author");
+                peeky.serverData.set(keySF, peeky.userData.get(key2, "PlaylistName"), "LastPlaylist");
 
             } else {
 
@@ -8024,7 +8025,7 @@ if (CommandName == "current")  {
         const Queue     = peeky.serverData.get(keySF, "Queue");
 
         message.channel.startTyping();
-        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "minutes left", "Current", peeky.serverData.get(keySF, "Queue"), message.member)).catch(error => ErrorBag.add(error));
+        await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "minutes left", "Current", peeky.serverData.get(keySF, "Queue"), message.member, peeky.serverData.get(keySF, "LastPlaylist"))).catch(error => ErrorBag.add(error));
         message.channel.stopTyping();
         
     } else {
