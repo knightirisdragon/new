@@ -1151,7 +1151,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
         TheBannerShown = function_GetBackground(key);
     };
 
-    const background = await Canvas.loadImage(TheBannerShown)//.catch(error => {Failed = true;  peeky.userData.set(member.id, DefaultBackground, "Background");});
+    const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(member.id, DefaultBackground, "Background");});
       
     if  (Failed == false)  {
 
@@ -2058,14 +2058,12 @@ peeky.on('message', async (message) => {
         var TheBannerShown = DefaultBackground;
         var ProfileName = message.member.displayName;
 
-        message.channel.startTyping();
-
         var TheBannerShown = DefaultBackground;
         if  (peeky.userData.has(key))  {
             TheBannerShown = function_GetBackground(key);
         };
 
-        const background = await Canvas.loadImage(TheBannerShown)//.catch(error => {Failed = true;  peeky.userData.set(message.author.id, DefaultBackground, "Background");});
+        const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(message.author.id, DefaultBackground, "Background");});
 
         if  (Failed == false)  {
 
@@ -2102,8 +2100,6 @@ peeky.on('message', async (message) => {
             const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'peeky.png', { quality: 0.1 });
 
             message.channel.send("", attachment).catch(error => ErrorBag.add(error));
-
-            message.channel.stopTyping();
 
             console.log("The Notifications function has been triggered in " + message.guild.name + ".");
             function_UpdateAutowipe(keySF, "server");
@@ -7575,15 +7571,13 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
 
               var TheBannerShown = function_GetBackground(key2);
 
-              var background = await Canvas.loadImage(TheBannerShown)//.catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  message.channel.stopTyping();  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
+              var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
 
               if  (Failed == false)  {
 
-                message.channel.startTyping();
-
                 ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-                var layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout_2.5.png");
+                var layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fprofile_layout_3.5.png?v=1584227661434"); //"http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout_2.5.png"
                 ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
                 //Draw Events
@@ -7743,8 +7737,6 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
 
               }).catch(function(err) {  ErrorBag.add(err);  });
 
-              message.channel.stopTyping();
-
             };
 
           } else {
@@ -7811,9 +7803,7 @@ if (CommandName.startsWith("play"))  {
                             message.delete().catch(error => ErrorBag.add(error));
                         };            
 
-                        message.channel.startTyping();
                         await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type, peeky.serverData.get(keySF, "Queue"), message.member, peeky.serverData.get(keySF, "LastPlaylist"))).catch(error => ErrorBag.add(error));
-                        message.channel.stopTyping();
 
                         if  (message.guild.me.permissions.has("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
                             message.guild.me.setNickname("🎵 " + " PEEKY " + "🎵");
@@ -8039,9 +8029,7 @@ if (CommandName == "current")  {
         const Started   = peeky.serverData.get(keySF, "Started");
         const Queue     = peeky.serverData.get(keySF, "Queue");
 
-        message.channel.startTyping();
         await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "minutes left", "Current", peeky.serverData.get(keySF, "Queue"), message.member, peeky.serverData.get(keySF, "LastPlaylist"))).catch(error => ErrorBag.add(error));
-        message.channel.stopTyping();
         
     } else {
       const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
