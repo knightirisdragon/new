@@ -1964,10 +1964,10 @@ peeky.on('message', async (message) => {
     if  (peeky.userData.get(key, "MedallistBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:medallist:624237944890458123> Medallist", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fmedallist.png?v=1568900374609"]);  };
       
         //Evil
-    if  (peeky.userData.get(key, "EvilBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:evil:604817305247023117> Evil", "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fevil.png?v=1564270118631"]);  };
+    if  (peeky.userData.get(key, "Karma") <= 50)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:evil:604817305247023117> Evil", "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fevil.png?v=1564270118631"]);  };
       
         //Good
-    if  (peeky.userData.get(key, "GoodBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:good:605138883138551838> Good", "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581"]);  };
+    if  (peeky.userData.get(key, "Karma") >= 50)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:good:605138883138551838> Good", "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581"]);  };
       
         //Party
     if  (peeky.userData.get(key, "PartyBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:party:578689336116248618> Party", "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fparty.png?1558040749323"]);  };
@@ -1997,7 +1997,7 @@ peeky.on('message', async (message) => {
     if  (peeky.userData.get(key, "HorderBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:horder:624330470561153040> Horder", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fhorder.png?v=1568922626526"]);  };
       
         //Gambler
-    if  (peeky.userData.get(key, "GamblerBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gambler:624330470825525248> Gambler", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgambler.png?v=1568922623251"]);  };
+    if  (peeky.userData.get(key, "GamblerBadge") > 10)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gambler:624330470825525248> Gambler", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgambler.png?v=1568922623251"]);  };
       
         //Charity
     if  (peeky.userData.get(key, "CharityBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:charity:624330470515277853> Charity", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcharity.png?v=1568922627904"]);  };
@@ -3453,14 +3453,14 @@ if  (!user.bot && KarmaImages.findIndex(i => i[0] == reaction.message.id) >= 0) 
                 
                     peeky.userData.math(key2, "+", 1, "Karma");
 
-                    if  (peeky.userData.get(key2, "Karma") == 50)  {
+                    /*if  (peeky.userData.get(key2, "Karma") == 50)  {
 
                         if  (!peeky.userData.has(key2) && peeky.userData.get(key2, "GoodBadge"))  {
                             peeky.userData.set(key2, true, "GoodBadge");
                             peeky.userData.set(key2, false, "EvilBadge");
                         };                    
 
-                    };
+                    };*/
                   
                 };
               
@@ -3486,14 +3486,14 @@ if  (!user.bot && KarmaImages.findIndex(i => i[0] == reaction.message.id) >= 0) 
                 
                     peeky.userData.math(key2, "-", 1, "Karma");
 
-                    if  (peeky.userData.get(key2, "Karma") == -50)  {
+                    /*if  (peeky.userData.get(key2, "Karma") == -50)  {
 
                         if  (!peeky.userData.has(key2) && peeky.userData.get(key2, "EvilBadge"))  {
                             peeky.userData.set(key2, false, "GoodBadge");
                             peeky.userData.set(key2, true, "EvilBadge");
                         };                    
 
-                    };
+                    };*/
                   
                 };
               
@@ -7162,9 +7162,8 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
               CurrentChest ++;
 
               //Gambler Badge Progress
-
-              if  (!peeky.userData.get(key, "GamblerBadge"))  {
-                  peeky.userData.set(key, true, "GamblerBadge");
+              peeky.userData.math(key, "+", 1, "GamblerBadge");;
+              if  (peeky.userData.get(key, "GamblerBadge") == 10)  {
                   InfoMessages.push(InfoMessage1[Language]);
               };
             
@@ -7577,7 +7576,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
 
                 ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-                var layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fprofile_layout_3.5.png?v=1584227661434"); //"http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout_2.5.png"
+                var layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fprofile_layout_4.1.png?v=1584228143030"); //"http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout_2.5.png"
                 ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
                 //Draw Events
