@@ -410,6 +410,13 @@ const InfoMessage2 = [
   ErrorIcon + " Usted ha establecido el fondo predeterminado.",
   ErrorIcon + " Varsayılan arka planı belirlediniz."
 ];
+const InfoMessage3 = [
+  InfoIcon + " You have lost your custom background.",
+  InfoIcon + " You have lost your custom background.",
+  InfoIcon + " You have lost your custom background.",
+  ErrorIcon + " You have lost your custom background.",
+  ErrorIcon + " You have lost your custom background."
+];
 
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
@@ -883,11 +890,11 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground455.png?v=1581024196335", 525, "Memories", "JoJo's Bizarre Adventure Stardust Crusaders", undefined, 1581024152043],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground456.png?v=1581024249725", 875, "Kali", "Rainbow Six Siege", undefined, 1581024210419],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground457.png?v=1582358816412", 950, "Geralt of Rivia", "The Witcher", undefined, 1582358788761],
-    [],
-    [],
-    [],
-    [],
-    []
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground458.png?v=1584219237321", 950, "Rico rodredez", "Just Cause 4", undefined, 1584219142125],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground459.png?v=1584219272590", 925, "Here's ghost", "Call of Duty Modern Warfare", undefined, 1584219165691],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground460.png?v=1584219289755", 850, "Santa murder", "Stefan Koidl", undefined, 1584219169964],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground461.png?v=1584219318235", 925, "Good", "Overwatch", undefined, 1584219174835],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground462.png?v=1584219319602", 900, "Ben swolo", "Kittrose", undefined, 1584219178299]  
 
 ];
 
@@ -6908,9 +6915,9 @@ if (CommandName.startsWith("setbackground"))  {
 
                 };
 
-                /*if  (isNaN(peeky.userData.get(key, "Background")) == true)  {
+                if  (isNaN(peeky.userData.get(key, "Background")))  {
                     InfoMessages.push(InfoIcon + " You have lost your **Custom Background**.");
-                };*/
+                };
 
                 peeky.userData.set(key, i, "Background");
 
