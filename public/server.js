@@ -3446,7 +3446,7 @@ if  (peeky.serverData.get(keySF, "veteran_role_bonus") == true)  {
   
         if  (!member.user.bot && (new Date() - new Date(member.joinedAt) >= YearMs))  {
 
-            var Role = member.guild.roles.find(r => r.name.toLowerCase() == peeky.serverData.get(keySF, "veteran_role_bonus_setting"));
+            var Role = member.guild.roles.find(r => r.name.toLowerCase() == peeky.serverData.get(keySF, "veteran_role_bonus_setting").toLowerCase());
 
             if  (Role && member.roles.has(Role.id))  {
 
