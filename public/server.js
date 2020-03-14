@@ -882,7 +882,12 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground454.png?v=1581024166624", 925, "Gone hunting", "u/cubanxdante", undefined, 1581024112050],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground455.png?v=1581024196335", 525, "Memories", "JoJo's Bizarre Adventure Stardust Crusaders", undefined, 1581024152043],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground456.png?v=1581024249725", 875, "Kali", "Rainbow Six Siege", undefined, 1581024210419],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground457.png?v=1582358816412", 950, "Geralt of Rivia", "The Witcher", undefined, 1582358788761]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground457.png?v=1582358816412", 950, "Geralt of Rivia", "The Witcher", undefined, 1582358788761],
+    [],
+    [],
+    [],
+    [],
+    []
 
 ];
 
