@@ -3874,9 +3874,9 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                         const Member = reaction.message.guild.members.get(user.id);
                         if  (!Member.roles.has(role.id))  {
-                            Member.roles.add(role.id, { reason: "Triggered by the Reaction Roles function." }).catch(error => ErrorBag.add(error));
+                            Member.roles.add(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
                         } else {
-                          Member.roles.remove(role.id, { reason: "Triggered by the Reaction Roles function." }).catch(error => ErrorBag.add(error));
+                          Member.roles.remove(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
                         };
 
                         function_UpdateAutowipe(keySF, "server");
