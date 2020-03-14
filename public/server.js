@@ -1799,7 +1799,7 @@ function UpdateHome(text)  {
   
     fetch('https://peeky.glitch.me/botdescription.txt')
     .then(response => response.text()).then((data) => {
-       document.getElementById("botdescription").innerHTML = data
+       document.getElementById("BotDescription").innerHTML = data
     });
 
     fetch('https://peeky.glitch.me/randomreview.txt')
@@ -1824,7 +1824,7 @@ function UpdateHome(text)  {
 
     fetch('https://peeky.glitch.me/messageheader.txt')
     .then(response => response.text()).then((data) => {
-       document.getElementById("messageheader").innerHTML = data;
+       document.getElementById("MessageHeader").innerHTML = data;
     });
 
     fetch('https://peeky.glitch.me/supportedlanguages.txt')
@@ -1832,6 +1832,18 @@ function UpdateHome(text)  {
        document.getElementById("supportedlanguages").innerHTML = data;
     });
   
+};
+
+function UpdateWebsiteStuff(data)  {
+  
+    data.forEach(item => {
+      
+        fetch('https://peeky.glitch.me/' + item[0])
+        .then(response => response.text()).then((data) => {
+           document.getElementById(item[1]).innerHTML = data;
+        });
+      
+    });
 };
 
 peeky.on('ready', () => {
