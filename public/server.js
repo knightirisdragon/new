@@ -908,7 +908,10 @@ const RandomAvatars = [
 ];
 
 const RandomSongs = [
-    "https://www.youtube.com/watch?v=tklQ47Hpfxw",
+    "https://www.youtube.com/watch?v=mFGq92BYmt4",
+    "https://www.youtube.com/watch?v=py_MdrpI5vQ",
+    "https://www.youtube.com/watch?v=908kjmbjABI",
+    "https://www.youtube.com/watch?v=99WBsOqSujc",
     "https://www.youtube.com/watch?v=N6hF3EaICxk",
     "https://www.youtube.com/watch?v=NU3aCNQAqwc", 
     "https://www.youtube.com/watch?v=K3Qzzggn--s",
@@ -1732,106 +1735,6 @@ function function_TimeLeft(value, type, since)  {
       
     };
 
-};
-
-function UpdateBackgrounds()  {
-
-    fetch('https://peeky.glitch.me/backgrounds.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("BackgroundList").innerHTML = data;
-    });
-
-    fetch('https://peeky.glitch.me/workshop.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("Workshop").innerHTML = data;
-    });
-  
-};
-
-function UpdateRandomSongs()  {
-
-    fetch('https://peeky.glitch.me/random_songs.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("RandomSongsList").innerHTML = data;
-    });
-  
-};
-
-function UpdateWallOfFame()  {
-
-    fetch('https://peeky.glitch.me/premiumusers.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("PremiumUsersList").innerHTML = data;
-    });
-
-    fetch('https://peeky.glitch.me/server_list.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("ServerList").innerHTML = data;
-    });
-  
-};
-
-function UpdateLeaderboard()  {
-
-    fetch('https://peeky.glitch.me/leaderboard.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("Leaderboard").innerHTML = data;
-    });
-
-  
-};
-
-function UpdateServerLog()  {
-
-    fetch('https://peeky.glitch.me/server_log.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("ServerList").innerHTML = data;
-    });
-  
-};
-
-function UpdateHome(text)  {
-  
-    fetch('https://peeky.glitch.me/stats.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("ServerCount").innerHTML = data
-    });
-  
-    fetch('https://peeky.glitch.me/botdescription.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("BotDescription").innerHTML = data
-    });
-
-    fetch('https://peeky.glitch.me/randomreview.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("Reviews").innerHTML = data
-    });
-
-    fetch('https://peeky.glitch.me/news.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("News").innerHTML = data;
-    });
-
-    fetch('https://peeky.glitch.me/staff.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("StaffList").innerHTML = data;
-    });
-
-    fetch('https://peeky.glitch.me/featured_profile.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("FeaturedProfile").innerHTML = data;
-    });
-
-    fetch('https://peeky.glitch.me/messageheader.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("MessageHeader").innerHTML = data;
-    });
-
-    fetch('https://peeky.glitch.me/supportedlanguages.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("supportedlanguages").innerHTML = data;
-    });
-  
 };
 
 function UpdateWebsiteStuff(data)  {
