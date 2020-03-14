@@ -412,10 +412,10 @@ const InfoMessage2 = [
 ];
 const InfoMessage3 = [
   InfoIcon + " You have lost your custom background.",
+  InfoIcon + " Ztratili jste vaše custom pozadí",
   InfoIcon + " You have lost your custom background.",
-  InfoIcon + " You have lost your custom background.",
-  ErrorIcon + " You have lost your custom background.",
-  ErrorIcon + " You have lost your custom background."
+  ErrorIcon + " Usted ha perdido su fondo personalizado.",
+  ErrorIcon + " Üzerinde bulunan özel arkaplanı kaybettin."
 ];
 
 //Small Arrays

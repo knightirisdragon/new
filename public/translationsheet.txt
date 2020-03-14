@@ -80,6 +80,7 @@ You cannot buy the default and exclusive backgrounds. |
 
 You have set a **Custom Background** for **X001**. | 
 Failed to set your custom background. | 
+You have lost your custom background. | 
 
 You have set the **X001** background. | 
 
@@ -114,21 +115,17 @@ Edited **X001** channels for the **@X002** role. |
 Couldn't edit channels for the **@X001** role. | 
 
 I have set the slowmode to **X001 seconds** at **X002**'s request. | 
+You can only purge 1 to 100 messages. | 
 I have purged **X001 messages** at **X002**'s request. | 
+You cannot kick that user. | 
 I have kicked **X001** at **X002**'s request. | 
+You cannot ban that user. | 
 I have banned **X001** at **X002**'s request. |
+You cannot ID ban someone inside the server. | 
+You must enter a valid ID. | 
 I have ID banned **X001** at **X002**'s request. | 
 I have muted **X001** at **X002**'s request. | 
 I have unmuted **X001** at **X002**'s request. | 
-
-You cannot ID ban someone inside the server. | 
-You must enter a valid ID. | 
-
-You cannot ban that user. | 
-
-You cannot kick that user. | 
-
-You can only purge 1 to 100 messages. | 
 
 The prefix is now **X001**. | 
 
