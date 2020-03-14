@@ -3381,10 +3381,10 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 //Veteran Role
 if  (peeky.serverData.get(keySF, "veteran_role_bonus") == true)  {
 
-    if  (!FunctionCooldowns.has("veteranrole") && member.guild.me.permissions.has('MANAGE_ROLES'))  {
+    if  (!FunctionCooldowns.has("veteranrole" + member.guild.id) && member.guild.me.permissions.has('MANAGE_ROLES'))  {
 
-        FunctionCooldowns.add("weekendchannels" + member.guild.id);
-        setTimeout(() => {FunctionCooldowns.delete("weekendchannels" + message.guild.id)}, 300000);
+        FunctionCooldowns.add("veteranrole" + member.guild.id);
+        setTimeout(() => {FunctionCooldowns.delete("veteranrole" + member.guild.id)}, 300000);
   
         if  (!member.user.bot && (new Date() - new Date(member.joinedAt) >= YearMs))  {
 
@@ -3392,7 +3392,7 @@ if  (peeky.serverData.get(keySF, "veteran_role_bonus") == true)  {
 
             if  (Role && !member.roles.has(Role.id))  {
 
-                member.roles.add(Role.id, { reason: "Triggered by the Veteran Role function." }).catch(error => ErrorBag.add(error));
+                member.roles.add(Role.id, "Triggered by the Veteran Role function.").catch(error => ErrorBag.add(error));
 
             };
 
@@ -4673,7 +4673,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 //Weekend Channels
 if  (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)  {
   
-    if  (!FunctionCooldowns.has("weekendchannels" + message.guild.id))  {
+    if  (!FunctionCooldowns.has("weekendchannels" + message.guild.id) && message.guild.me.permissions.has('MANAGE_CHANNELS'))  {
 
         FunctionCooldowns.add("weekendchannels" + message.guild.id);
         setTimeout(() => {FunctionCooldowns.delete("weekendchannels" + message.guild.id)}, 300000);
