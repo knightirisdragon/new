@@ -1757,11 +1757,16 @@ function UpdateRandomSongs()  {
   
 };
 
-function UpdatePremiumUsers()  {
+function UpdateHallOfFame()  {
 
     fetch('https://peeky.glitch.me/premiumusers.txt')
     .then(response => response.text()).then((data) => {
        document.getElementById("PremiumUsersList").innerHTML = data;
+    });
+
+    fetch('https://peeky.glitch.me/server_list.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("ServerList").innerHTML = data;
     });
   
 };
@@ -1774,15 +1779,6 @@ function UpdateLeaderboard()  {
     });
 
   
-};
-
-function UpdateServerList()  {
-
-    fetch('https://peeky.glitch.me/server_list.txt')
-    .then(response => response.text()).then((data) => {
-       document.getElementById("ServerList").innerHTML = data;
-    });
-
 };
 
 function UpdateServerLog()  {
@@ -7637,8 +7633,6 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
 
         if  (message.channel.permissionsFor(peeky.user).has('ATTACH_FILES'))  {
 
-            message.channel.send(LoadingIcon + " loading your profile!").then(async m => {
-
               const canvas         = Canvas.createCanvas(500, 300);
               const ctx            = canvas.getContext('2d');
               const StatsColor     = "lightgray"
@@ -7795,8 +7789,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                 ctx.fillText("" + ((peeky.userData.get(key2, "Level") * Setting.ExpNeeded) + peeky.userData.get(key2, "Exp")).toLocaleString('en') + " Exp", canvas.width / 2, 271, canvas.width / 2 - 50);
 
                 const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'image.png');
-                //await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {   
-                await m.edit("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {   
+                await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async m => {
 
                 if  (!peeky.userData.get(key2, "FashionBadge") && !peeky.userData.get(key2, "PainterBadge"))  {
                     InfoMessages.push(InfoIcon + " Check out this [tutorial](https://peeky.glitch.me/tutorials.html#backgrounds) for help with buying a background.");
@@ -7833,8 +7826,6 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
             const embed = {"description": ErrorMessage7[Language],  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
           };
-
-        });
 
         } else {
           const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
