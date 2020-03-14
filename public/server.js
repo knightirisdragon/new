@@ -6489,7 +6489,7 @@ if  (peeky.serverData.get(keySF, "weekend_channels_bonus_setting").length < Sett
 
     var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "weekend_channels_bonus_setting");
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels").replace("X002", FixedArray.join("**, **") + EndString),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels").replace("X002", "@" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
@@ -6513,7 +6513,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus_setting").length < Settin
 
     var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
   
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Reaction Roles").replace("X002", FixedArray.join("**, **") + EndString),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Reaction Roles").replace("X002", "@" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
@@ -6537,7 +6537,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus_setting").length < Setting.Ro
 
     var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "role_saver_bonus_setting");
   
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Role Saver").replace("X002", FixedArray.join("**, **") + EndString),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Role Saver").replace("X002", "@" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
