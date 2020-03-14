@@ -1898,6 +1898,8 @@ peeky.on('message', async (message) => {
         PlaylistName: "Favorite Songs",
         PlaylistThumbnail: null,
       
+        GamblerBadge: 0,
+      
         BadgeGredit: 0,
         BadgeExp: 0,
       
@@ -7555,8 +7557,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
 
               const canvas         = Canvas.createCanvas(500, 300);
               const ctx            = canvas.getContext('2d');
-              const StatsColor     = "lightgray"
-              var   ProfileColor   = Setting.LessDark.replace("#", "");
+              const StatsColor     = "lightgray";
 
               var MentionedMember = message.mentions.members.first();
               if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
@@ -7686,8 +7687,8 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                 ctx.shadowOffsetX = 0; 
                 ctx.shadowOffsetY = 0;
 
-                ctx.fillStyle = "#" + ProfileColor;
-                ctx.fillRect(63, 253, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 127), 26); //Body
+                ctx.fillStyle = "#7289DA";
+                ctx.fillRect(63, 252, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 127), 28); //Body
 
                 //Avatar
                 const avatar = await Canvas.loadImage(SomeoneTagged.user.displayAvatarURL({ format: 'png' }).replace("https", "http"));
@@ -8394,7 +8395,7 @@ if (CommandName == "guessthesong")  {
                         var key = collected.first().author.id;
 
                         //Gamer Badge
-                        if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
+                        if  (peeky.userData.has(key) && !peeky.userData.get(key, "GamerBadge"))  {
                             peeky.userData.set(key, true, "GamerBadge");
                             InfoMessages.push(InfoMessage1[Language]);
                         };
