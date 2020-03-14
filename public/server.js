@@ -118,15 +118,14 @@ const DefaultDownvote = "529413312862093322";
 const ErrorIcon       = "<:peeky_error:529412267343872031>";
 const SuccessIcon     = "<:peeky_success:529415084804669487>";
 const InfoIcon        = "<:peeky_info:529412267746394133>";
-const LoadingIcon     = "<:peeky_loading:688396910251344030>";
-const EnabledIcon     = "<:enabled:538295053940948993>";
-const DisabledIcon    = "<:disabled:538295054431813662>";
-const SettingsIcon    = "<:settings:586612320839532573>";
 const Hollow          = "<:peeky_hollow:506921440067452928>";
 const WhiteSquare     = "<:peeky_white:529305474604990464>";
 const TreasureIcon    = "<:treasure:623186257404755969>";
 const GreditIcon      = "<:gredit:558673809343774720>";
 const ChestIcon       = "<:chest:561511603305185280>";
+const EnabledIcon     = "<:enabled:538295053940948993>";
+const DisabledIcon    = "<:disabled:538295054431813662>";
+const SettingsIcon    = "<:settings:586612320839532573>";
 const RedditUpvote    = "<:RedditUpvote:620124949855600640>";
 const RedditDownvote  = "<:RedditDownvote:620122348745523200>";
 const OwnerTag        = "<:owner:543001955921035274>";
@@ -908,10 +907,7 @@ const RandomAvatars = [
 ];
 
 const RandomSongs = [
-    "https://www.youtube.com/watch?v=mFGq92BYmt4",
-    "https://www.youtube.com/watch?v=py_MdrpI5vQ",
-    "https://www.youtube.com/watch?v=908kjmbjABI",
-    "https://www.youtube.com/watch?v=99WBsOqSujc",
+    "https://www.youtube.com/watch?v=tklQ47Hpfxw",
     "https://www.youtube.com/watch?v=N6hF3EaICxk",
     "https://www.youtube.com/watch?v=NU3aCNQAqwc", 
     "https://www.youtube.com/watch?v=K3Qzzggn--s",
@@ -1737,16 +1733,108 @@ function function_TimeLeft(value, type, since)  {
 
 };
 
-function UpdateWebsiteStuff(data)  {
-  
-    data.forEach(item => {
-      
-        fetch('https://peeky.glitch.me/' + item[0])
-        .then(response => response.text()).then((data) => {
-           document.getElementById(item[1]).innerHTML = data;
-        });
-      
+function UpdateBackgrounds()  {
+
+    fetch('https://peeky.glitch.me/backgrounds.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("BackgroundList").innerHTML = data;
     });
+
+    fetch('https://peeky.glitch.me/workshop.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("Workshop").innerHTML = data;
+    });
+  
+};
+
+function UpdateRandomSongs()  {
+
+    fetch('https://peeky.glitch.me/random_songs.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("RandomSongsList").innerHTML = data;
+    });
+  
+};
+
+function UpdatePremiumUsers()  {
+
+    fetch('https://peeky.glitch.me/premiumusers.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("PremiumUsersList").innerHTML = data;
+    });
+  
+};
+
+function UpdateLeaderboard()  {
+
+    fetch('https://peeky.glitch.me/leaderboard.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("Leaderboard").innerHTML = data;
+    });
+
+  
+};
+
+function UpdateServerList()  {
+
+    fetch('https://peeky.glitch.me/server_list.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("ServerList").innerHTML = data;
+    });
+
+};
+
+function UpdateServerLog()  {
+
+    fetch('https://peeky.glitch.me/server_log.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("ServerList").innerHTML = data;
+    });
+  
+};
+
+function UpdateHome(text)  {
+  
+    fetch('https://peeky.glitch.me/stats.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("ServerCount").innerHTML = data
+    });
+  
+    fetch('https://peeky.glitch.me/botdescription.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("botdescription").innerHTML = data
+    });
+
+    fetch('https://peeky.glitch.me/randomreview.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("Reviews").innerHTML = data
+    });
+
+    fetch('https://peeky.glitch.me/news.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("News").innerHTML = data;
+    });
+
+    fetch('https://peeky.glitch.me/staff.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("StaffList").innerHTML = data;
+    });
+
+    fetch('https://peeky.glitch.me/featured_profile.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("FeaturedProfile").innerHTML = data;
+    });
+
+    fetch('https://peeky.glitch.me/messageheader.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("messageheader").innerHTML = data;
+    });
+
+    fetch('https://peeky.glitch.me/supportedlanguages.txt')
+    .then(response => response.text()).then((data) => {
+       document.getElementById("supportedlanguages").innerHTML = data;
+    });
+  
 };
 
 peeky.on('ready', () => {
@@ -7541,217 +7629,216 @@ if  (!ProfileCooldown.has(message.author.id)) {
 //Profile  
 if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
   
-    if  (!ProfileCooldown.has(message.author.id))  {
+if  (!ProfileCooldown.has(message.author.id))  {
+      
+    ProfileCooldown.add(message.author.id);
+    setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
+  
+    if  (message.channel.permissionsFor(peeky.user).has('ATTACH_FILES'))  {
+      
+    const canvas         = Canvas.createCanvas(500, 300);
+    const ctx            = canvas.getContext('2d');
+    const StatsColor     = "lightgray"
+    var   ProfileColor   = Setting.LessDark.replace("#", "");
+    
+    var MentionedMember = message.mentions.members.first();
+    if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
 
-        ProfileCooldown.add(message.author.id);
-        setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
+    //Vars
+    const ProfileName        = SomeoneTagged.displayName;
+    const key2               = SomeoneTagged.user.id;
+    var   Failed             = false;
+      
+    if  (peeky.userData.has(key2))  {
 
-        if  (message.channel.permissionsFor(peeky.user).has('ATTACH_FILES'))  {
+    var TheBannerShown = function_GetBackground(key2);
 
-              const canvas         = Canvas.createCanvas(500, 300);
-              const ctx            = canvas.getContext('2d');
-              const StatsColor     = "lightgray"
-              var   ProfileColor   = Setting.LessDark.replace("#", "");
+    var background = await Canvas.loadImage(TheBannerShown)//.catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  message.channel.stopTyping();  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
+      
+    if  (Failed == false)  {
+      
+    message.channel.startTyping();
 
-              var MentionedMember = message.mentions.members.first();
-              if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+      
+    var layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout_2.5.png");
+    ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
-              //Vars
-              const ProfileName        = SomeoneTagged.displayName;
-              const key2               = SomeoneTagged.user.id;
-              var   Failed             = false;
+    //Draw Events
+      
+    //String Setting
+    ctx.fillStyle = StatsColor;
+    ctx.fillStyle = "white";
+    ctx.shadowColor = "black";
+    ctx.shadowOffsetX = 1; 
+    ctx.shadowOffsetY = 1;
+    ctx.globalAlpha = 1;
 
-              if  (peeky.userData.has(key2))  {
+    //Name String
+    ctx.textAlign = "left";
+    ctx.font = "19px " + Setting.DefaultFont;
+    ctx.fillText(ProfileName, 83, 25, canvas.width - 95);
+      
+    //Coins String
+    ctx.textAlign = "left";
+    ctx.font = "15px " + Setting.DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Gredit").toLocaleString('en') + " Gredit", 45, 105, canvas.width / 2 - 50);
+      
+    //Chests String
+    ctx.textAlign = "left";
+    ctx.font = "15px " + Setting.DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 45, 140, canvas.width / 2 - 50);
+      
+    //Karma String
+    ctx.textAlign = "left";
+    ctx.font = "15px " + Setting.DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Karma") + " Karma", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
+      
+    //Badges String
+    ctx.textAlign = "left";
+    ctx.font = "15px " + Setting.DefaultFont;
+    ctx.fillText("" + peeky.userData.get(key2, "Badges").length.toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
 
-              var TheBannerShown = function_GetBackground(key2);
+    //Backpack String
+    ctx.textAlign = "left";
+    if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {  var CustomBackgroundAmount = 1;  } else {  var CustomBackgroundAmount = 0;  };      
+    ctx.font = "15px " + Setting.DefaultFont;
+    ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 45, 175, canvas.width / 2 - 50);
 
-              var background = await Canvas.loadImage(TheBannerShown)//.catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  message.channel.stopTyping();  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
+    //Leaderboard Position String
+    ctx.textAlign = "left";
+    if  (LeaderboardPositions.includes(SomeoneTagged.user.id))  {  if  (peeky.userData.get(key2, "FashionBadge"))  {  var Position = (LeaderboardPositions.indexOf(SomeoneTagged.user.id) + 1) + ".";  } else {  var Position = Setting.LeaderboardLimit + "+";   };  } else {  var Position = "No";  };
+    ctx.font = "15px " + Setting.DefaultFont;
+    ctx.fillText("" + Position + " Leaderboard Position", canvas.width / 2 + 45, 175, canvas.width / 2 - 50);
+    
+    //Description String
+    var text = peeky.userData.get(key2, "Description");
+    var fontsize = 16;
+    var y_position = 50;      
+    ctx.fillStyle = "white";
+    ctx.textAlign = "left";
+      
+    if (text.includes("\n")) {  y_position = 45;  };
+    ctx.fillText(peeky.userData.get(key2, "Description"), 83, y_position, canvas.width - 95);
+      
+    //Coin Icon
+    const coin_icon = await Canvas.loadImage("https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542");
+    ctx.drawImage(coin_icon, 10, 85, 27, 27);
+      
+    //Chest Icon
+    const chest_icon = await Canvas.loadImage("https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051");
+    ctx.drawImage(chest_icon, 10, 120, 27, 27);
 
-              if  (Failed == false)  {
+    //Backpack Icon
+    const backpack_icon = await Canvas.loadImage("https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_backpack.png?1546614356449");
+    ctx.drawImage(backpack_icon, 10, 155, 27, 27);
 
-                message.channel.startTyping();
+    //Karma Icon
+    const karma_icon = await Canvas.loadImage("https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fkarma.png?v=1564244903816");
+    ctx.drawImage(karma_icon, canvas.width / 2 + 10, 85, 27, 27);
 
-                ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    //Badges Icon
+    const badges_icon = await Canvas.loadImage("https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbadges.png?v=1564245176155");
+    ctx.drawImage(badges_icon, canvas.width / 2 + 10, 120, 27, 27);
 
-                var layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout_2.5.png");
-                ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
+    //Leaderboard Icon
+    const leaderboard_icon = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fleaderboardrank.png?v=1579943651742");
+    ctx.drawImage(leaderboard_icon, canvas.width / 2 + 10, 155, 27, 27);
+      
+    //Badges
+    var   BadgeYpos    = 201.5;
+    var   BadgeXpos    = -24;
+    const BadgeXposAmt = 32.5;
+    var   BadgeAmount  = 0;
+    const MaxBadges    = 15;
+    const BadgeSize    = 25;
+    var   Positions = [];
 
-                //Draw Events
-
-                //String Setting
-                ctx.fillStyle = StatsColor;
-                ctx.fillStyle = "white";
-                ctx.shadowColor = "black";
-                ctx.shadowOffsetX = 1; 
-                ctx.shadowOffsetY = 1;
-                ctx.globalAlpha = 1;
-
-                //Name String
-                ctx.textAlign = "left";
-                ctx.font = "19px " + Setting.DefaultFont;
-                ctx.fillText(ProfileName, 83, 25, canvas.width - 95);
-
-                //Coins String
-                ctx.textAlign = "left";
-                ctx.font = "15px " + Setting.DefaultFont;
-                ctx.fillText("" + peeky.userData.get(key2, "Gredit").toLocaleString('en') + " Gredit", 45, 105, canvas.width / 2 - 50);
-
-                //Chests String
-                ctx.textAlign = "left";
-                ctx.font = "15px " + Setting.DefaultFont;
-                ctx.fillText("" + peeky.userData.get(key2, "Chests").toLocaleString('en') + " Chests", 45, 140, canvas.width / 2 - 50);
-
-                //Karma String
-                ctx.textAlign = "left";
-                ctx.font = "15px " + Setting.DefaultFont;
-                ctx.fillText("" + peeky.userData.get(key2, "Karma") + " Karma", canvas.width / 2 + 45, 105, canvas.width / 2 - 50);
-
-                //Badges String
-                ctx.textAlign = "left";
-                ctx.font = "15px " + Setting.DefaultFont;
-                ctx.fillText("" + peeky.userData.get(key2, "Badges").length.toLocaleString('en') + " Badges", canvas.width / 2 + 45, 140, canvas.width / 2 - 50);
-
-                //Backpack String
-                ctx.textAlign = "left";
-                if  (isNaN(peeky.userData.get(key2, "Background")) == true)  {  var CustomBackgroundAmount = 1;  } else {  var CustomBackgroundAmount = 0;  };      
-                ctx.font = "15px " + Setting.DefaultFont;
-                ctx.fillText("" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds", 45, 175, canvas.width / 2 - 50);
-
-                //Leaderboard Position String
-                ctx.textAlign = "left";
-                if  (LeaderboardPositions.includes(SomeoneTagged.user.id))  {  if  (peeky.userData.get(key2, "FashionBadge"))  {  var Position = (LeaderboardPositions.indexOf(SomeoneTagged.user.id) + 1) + ".";  } else {  var Position = Setting.LeaderboardLimit + "+";   };  } else {  var Position = "No";  };
-                ctx.font = "15px " + Setting.DefaultFont;
-                ctx.fillText("" + Position + " Leaderboard Position", canvas.width / 2 + 45, 175, canvas.width / 2 - 50);
-
-                //Description String
-                var text = peeky.userData.get(key2, "Description");
-                var fontsize = 16;
-                var y_position = 50;      
-                ctx.fillStyle = "white";
-                ctx.textAlign = "left";
-
-                if (text.includes("\n")) {  y_position = 45;  };
-                ctx.fillText(peeky.userData.get(key2, "Description"), 83, y_position, canvas.width - 95);
-
-                //Coin Icon
-                const coin_icon = await Canvas.loadImage("https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?1543767999542");
-                ctx.drawImage(coin_icon, 10, 85, 27, 27);
-
-                //Chest Icon
-                const chest_icon = await Canvas.loadImage("https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?1541260288051");
-                ctx.drawImage(chest_icon, 10, 120, 27, 27);
-
-                //Backpack Icon
-                const backpack_icon = await Canvas.loadImage("https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_backpack.png?1546614356449");
-                ctx.drawImage(backpack_icon, 10, 155, 27, 27);
-
-                //Karma Icon
-                const karma_icon = await Canvas.loadImage("https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fkarma.png?v=1564244903816");
-                ctx.drawImage(karma_icon, canvas.width / 2 + 10, 85, 27, 27);
-
-                //Badges Icon
-                const badges_icon = await Canvas.loadImage("https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbadges.png?v=1564245176155");
-                ctx.drawImage(badges_icon, canvas.width / 2 + 10, 120, 27, 27);
-
-                //Leaderboard Icon
-                const leaderboard_icon = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fleaderboardrank.png?v=1579943651742");
-                ctx.drawImage(leaderboard_icon, canvas.width / 2 + 10, 155, 27, 27);
-
-                //Badges
-                var   BadgeYpos    = 201.5;
-                var   BadgeXpos    = -24;
-                const BadgeXposAmt = 32.5;
-                var   BadgeAmount  = 0;
-                const MaxBadges    = 15;
-                const BadgeSize    = 25;
-                var   Positions = [];
-
-                //Badges
-                for (var i = 0; i < MaxBadges; i++)  {
-                    if  (peeky.userData.get(key2, "Badges")[i])  {
-                        Positions.push([BadgeXpos += BadgeXposAmt]);
-                    };
-                };
-                for (var i = 0; i < MaxBadges; i++)  {
-                    if  (peeky.userData.get(key2, "Badges")[i])  {
-                        var badgeicon = await Canvas.loadImage(peeky.userData.get(key2, "Badges")[i][1]);
-                        await ctx.drawImage(badgeicon, Positions[i][0], BadgeYpos, BadgeSize, BadgeSize);          
-                    };
-                };
-
-                ctx.globalAlpha = 1;
-                ctx.shadowOffsetX = 0; 
-                ctx.shadowOffsetY = 0;
-
-                ctx.fillStyle = "#" + ProfileColor;
-                ctx.fillRect(63, 253, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 127), 26); //Body
-
-                //Avatar
-                const avatar = await Canvas.loadImage(SomeoneTagged.user.displayAvatarURL({ format: 'png' }).replace("https", "http"));
-                ctx.drawImage(avatar, 6, 6, 64, 64);
-
-                //Exp Text
-                ctx.font = "22px " + Setting.DefaultFont;
-                ctx.textAlign = "center";
-                ctx.fillStyle = "white";
-                ctx.shadowOffsetX = 1; 
-                ctx.shadowOffsetY = 1;
-                ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
-                ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
-
-                //Exp String
-                ctx.font = "15px " + Setting.DefaultFont;
-                ctx.fillText("" + ((peeky.userData.get(key2, "Level") * Setting.ExpNeeded) + peeky.userData.get(key2, "Exp")).toLocaleString('en') + " Exp", canvas.width / 2, 271, canvas.width / 2 - 50);
-
-                const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'image.png');
-                await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async m => {
-
-                if  (!peeky.userData.get(key2, "FashionBadge") && !peeky.userData.get(key2, "PainterBadge"))  {
-                    InfoMessages.push(InfoIcon + " Check out this [tutorial](https://peeky.glitch.me/tutorials.html#backgrounds) for help with buying a background.");
-                };
-
-                if  (!WebsiteCooldowns.has("featuredprofile") && peeky.guilds.get(SupportServer).members.has(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(PremiumRole))  {
-
-                    WebsiteCooldowns.add("featuredprofile");
-                    setTimeout(() => {WebsiteCooldowns.delete("featuredprofile")}, 1800000);   
-
-                    fs.writeFile('public/featured_profile.txt', "<center>  <a href='https://peeky.glitch.me/store.html'><img src='" + m.attachments.array()[0].url + "' class='featuredprofile'></a>  </center>", (err) => {
-                        if (err) console.log(err); 
-                    });
-
-                    var TranslatedMessages = [InfoIcon + " This profile is now featured on the website.", InfoIcon + " Tento profil je nyní vystaven na strance.", InfoIcon + " Tento profil je teraz uvedený na webstránke.", InfoIcon + " Este perfil está ahora en el sitio web.", InfoIcon + " Bu profil artık web sitesinde yer alıyor."];
-                    InfoMessages.push(TranslatedMessages[Language]);
-
-                    console.log("The featured profile has been updated.");
-
-                  };
-
-                  if  (InfoMessages.length > 0)  {
-                      const embed = {"description": InfoMessages.join("\n\n"),  "color": EmbedColor};
-                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                  };
-
-              }).catch(function(err) {  ErrorBag.add(err);  });
-
-              message.channel.stopTyping();
-
-            };
-
-          } else {
-            const embed = {"description": ErrorMessage7[Language],  "color": EmbedColor}; 
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-          };
-
-        } else {
-          const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    //Badges
+    for (var i = 0; i < MaxBadges; i++)  {
+        if  (peeky.userData.get(key2, "Badges")[i])  {
+            Positions.push([BadgeXpos += BadgeXposAmt]);
         };
+    };
+    for (var i = 0; i < MaxBadges; i++)  {
+        if  (peeky.userData.get(key2, "Badges")[i])  {
+            var badgeicon = await Canvas.loadImage(peeky.userData.get(key2, "Badges")[i][1]);
+            await ctx.drawImage(badgeicon, Positions[i][0], BadgeYpos, BadgeSize, BadgeSize);          
+        };
+    };
+      
+    ctx.globalAlpha = 1;
+    ctx.shadowOffsetX = 0; 
+    ctx.shadowOffsetY = 0;
 
+    ctx.fillStyle = "#" + ProfileColor;
+    ctx.fillRect(63, 253, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 127), 26); //Body
+  
+    //Avatar
+    const avatar = await Canvas.loadImage(SomeoneTagged.user.displayAvatarURL({ format: 'png' }).replace("https", "http"));
+    ctx.drawImage(avatar, 6, 6, 64, 64);
+
+    //Exp Text
+    ctx.font = "22px " + Setting.DefaultFont;
+    ctx.textAlign = "center";
+    ctx.fillStyle = "white";
+    ctx.shadowOffsetX = 1; 
+    ctx.shadowOffsetY = 1;
+    ctx.fillText(peeky.userData.get(key2, "Level").toLocaleString('en'), 34, 275);
+    ctx.fillText((peeky.userData.get(key2, "Level") + 1).toLocaleString('en'), canvas.width - 34, 275);
+
+    //Exp String
+    ctx.font = "15px " + Setting.DefaultFont;
+    ctx.fillText("" + ((peeky.userData.get(key2, "Level") * Setting.ExpNeeded) + peeky.userData.get(key2, "Exp")).toLocaleString('en') + " Exp", canvas.width / 2, 271, canvas.width / 2 - 50);
+      
+    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'image.png');
+    await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async function (m)  {    
+
+    if  (!peeky.userData.get(key2, "FashionBadge") && !peeky.userData.get(key2, "PainterBadge"))  {
+        InfoMessages.push(InfoIcon + " Check out this [tutorial](https://peeky.glitch.me/tutorials.html#backgrounds) for help with buying a background.");
+    };
+
+    if  (!WebsiteCooldowns.has("featuredprofile") && peeky.guilds.get(SupportServer).members.has(SomeoneTagged.id) && peeky.guilds.get(SupportServer).members.get(SomeoneTagged.id).roles.has(PremiumRole))  {
+      
+        WebsiteCooldowns.add("featuredprofile");
+        setTimeout(() => {WebsiteCooldowns.delete("featuredprofile")}, 1800000);   
+
+        fs.writeFile('public/featured_profile.txt', "<center>  <a href='https://peeky.glitch.me/store.html'><img src='" + m.attachments.array()[0].url + "' class='featuredprofile'></a>  </center>", (err) => {
+            if (err) console.log(err); 
+        });
+
+        var TranslatedMessages = [InfoIcon + " This profile is now featured on the website.", InfoIcon + " Tento profil je nyní vystaven na strance.", InfoIcon + " Tento profil je teraz uvedený na webstránke.", InfoIcon + " Este perfil está ahora en el sitio web.", InfoIcon + " Bu profil artık web sitesinde yer alıyor."];
+        InfoMessages.push(TranslatedMessages[Language]);
+      
+        console.log("The featured profile has been updated.");
+          
+      };
+      
+      if  (InfoMessages.length > 0)  {
+          const embed = {"description": InfoMessages.join("\n\n"),  "color": EmbedColor};
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      };
+
+    }).catch(function(err) {  ErrorBag.add(err);  });
+
+    message.channel.stopTyping();
+      
+    };
+
+    } else {
+      const embed = {"description": ErrorMessage7[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+      
+    } else {
+      const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+  
     } else {
       const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-
 };
 
 //Play 
