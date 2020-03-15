@@ -17,9 +17,9 @@ const ytdl         = require('ytdl-core');
 const opus         = require('node-opus');
 
 //Canvas
-const Canvas     = require('canvas');
-const request    = require('request');
-const rgbHex     = require('rgb-hex');
+const Canvas  = require('canvas');
+const request = require('request');
+const rgbHex  = require('rgb-hex');
 const { getColorFromURL } = require('color-thief-node');
 
 //Data
