@@ -1418,13 +1418,15 @@ function function_ServerData(key)  {
             welcome_messages_bonus_setting: "welcome_messages",
             join_role_bonus: false,
             join_role_bonus_setting: "Member",
+            veteran_role_bonus: false,
+            veteran_role_bonus_setting: "Veteran",
             streamer_role_bonus: false,
             streamer_role_bonus_setting: "Streamer",
             automatic_reactions_bonus: false,
             automatic_reactions_bonus_setting: "peeky",
             server_message_bonus: false,
-            image_only_bonus: false,
-            image_only_bonus_setting: [],
+            images_only_bonus: false,
+            images_only_bonus_setting: [],
             server_message_bonus_setting: "Welcome to the server!",
             message_log_bonus: false,
             message_log_bonus_setting: "logged_messages",
@@ -1471,6 +1473,10 @@ function function_ServerData(key)  {
             reaction_roles_bonus: false,
             reaction_roles_bonus_setting: [],
             reaction_roles_bonus_id: null,
+            weekend_channels_bonus: false,
+            weekend_channels_bonus_setting: [],
+            verification_system_bonus: false,
+            verification_system_bonus_setting: "Verified"
         });
       
         console.log("Created server data for " + key + ".");
@@ -3623,7 +3629,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)         { var RR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var RR = DisabledIcon};
         if (peeky.serverData.get(keySF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
         if (peeky.serverData.get(keySF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
-        if (peeky.serverData.get(keySF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
+        if (peeky.serverData.get(keySF, "images_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
 
         var BWArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
         if  (BWArray.length < 1)  {  BWArray = "None";  }  else  {  BWArray = BWArray.join("` `");  };
@@ -4332,9 +4338,9 @@ if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
 };
   
 //Images Only
-if  (peeky.serverData.get(keySF, "image_only_bonus") == true)  {
+if  (peeky.serverData.get(keySF, "images_only_bonus") == true)  {
   
-    if  (peeky.serverData.get(keySF, "image_only_bonus_setting").toLowerCase().includes(message.channel.name.toLowerCase()))  {
+    if  (peeky.serverData.get(keySF, "images_only_bonus_setting").toLowerCase().includes(message.channel.name.toLowerCase()))  {
     
         if  (message.author.id !== PeekyId && channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
