@@ -886,7 +886,7 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground459.png?v=1584219272590", 925, "Here's ghost", "Call of Duty Modern Warfare", undefined, 1584219165691],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground460.png?v=1584219289755", 850, "Santa murder", "Stefan Koidl", undefined, 1584219169964],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground461.png?v=1584219318235", 925, "Good", "Overwatch", undefined, 1584219174835],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground462.png?v=1584219319602", 900, "Ben swolo", "Kittrose", undefined, 1584219178299]  
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground462.png?v=1584219319602", 900, "Ben swolo", "Kittrose", undefined, 1584219178299]
 
 ];
 
