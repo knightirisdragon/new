@@ -3558,10 +3558,10 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (BWArray.length < 1)  {  BWArray = "None";  }  else  {  BWArray = BWArray.join("` `");  };
       
         var WCArray = peeky.serverData.get(keySF, "weekend_channels_bonus_setting");
-        if  (WCArray.length < 1)  {  WCArray = "None";  }  else  {  WCArray = WCArray.join("` `#");  };
+        if  (WCArray.length < 1)  {  WCArray = "None";  }  else  {  WCArray = "#" + WCArray.join("` `#");  };
       
         var IOArray = peeky.serverData.get(keySF, "images_only_bonus_setting");
-        if  (IOArray.length < 1)  {  IOArray = "None";  }  else  {  IOArray = IOArray.join("` `#");  };
+        if  (IOArray.length < 1)  {  IOArray = "None";  }  else  {  IOArray = "#" + IOArray.join("` `#");  };
 
         var RRArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
         if  (RRArray.length < 1)  {  RRArray = "None";  }  else  {  RRArray = "@" + RRArray.join("` `@");  };
@@ -5247,7 +5247,7 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 //Toggle Automatic Reactions
 if  (FunctioName == "automatic reactions")  {
 
-    peeky.channelData.set(keyCF, !peeky.serverData.get(keySF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
     var StatusString = peeky.serverData.get(keySF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Automatic Reactions").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
@@ -6429,7 +6429,7 @@ if  (peeky.serverData.get(keySF, "weekend_channels_bonus_setting").length < Sett
 
     var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "weekend_channels_bonus_setting");
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels").replace("X002", "@" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels").replace("X002", "#" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
@@ -6453,7 +6453,7 @@ if  (peeky.serverData.get(keySF, "images_only_bonus_setting").length < Setting.W
 
     var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "images_only_bonus_setting");
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", "@" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", "#" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
