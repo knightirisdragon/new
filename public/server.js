@@ -3526,7 +3526,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         var ChannelAmount = 0;
         const Functions   = [];
       
-        if (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)   { var AR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var AR = DisabledIcon};
+        if (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)   { var AR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var AR = DisabledIcon};
         if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)       { var WM = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var WM = DisabledIcon};
         if (peeky.serverData.get(keySF, "member_counter_bonus") == true)         { var MC = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var MC = DisabledIcon};
         if (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)        { var CN = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var CN = DisabledIcon};
@@ -3551,14 +3551,17 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "spoiler_lock_bonus") == true)           { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
         if (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)         { var RR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var RR = DisabledIcon};
         if (peeky.serverData.get(keySF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
-        if (peeky.channelData.get(keyCF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
-        if (peeky.channelData.get(keyCF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
+        if (peeky.serverData.get(keySF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
+        if (peeky.serverData.get(keySF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
 
         var BWArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
         if  (BWArray.length < 1)  {  BWArray = "None";  }  else  {  BWArray = BWArray.join("` `");  };
       
         var WCArray = peeky.serverData.get(keySF, "weekend_channels_bonus_setting");
         if  (WCArray.length < 1)  {  WCArray = "None";  }  else  {  WCArray = WCArray.join("` `#");  };
+      
+        var IOArray = peeky.serverData.get(keySF, "images_only_bonus_setting");
+        if  (IOArray.length < 1)  {  IOArray = "None";  }  else  {  IOArray = IOArray.join("` `#");  };
 
         var RRArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
         if  (RRArray.length < 1)  {  RRArray = "None";  }  else  {  RRArray = "@" + RRArray.join("` `@");  };
@@ -3605,7 +3608,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`" + "\n\n" +
                                 "**Vote Kick** " + VT + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 "**Verification System** " + VS + "\n" + "`" + peeky.serverData.get(keySF, "verification_system_bonus_setting") + "`" + "\n\n" +
-                                "**Nickname Saver** " + NS + "\n" + "No Setting.",
+                                "**Automatic Reactions** " + AR + "\n" + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fneedhelp_functions.png?v=1584183423303"  }
             });
@@ -3639,33 +3642,16 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                   description:  "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
                                 "**Weekend Channels** " + WC + "\n" + "`" + WCArray + "`" + "\n\n" +
                                 "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`" + "\n\n" +
-                                "**Banned Words** " + BW + "\n" + "`" + BWArray + "`",
+                                "**Banned Words** " + BW + "\n" + "`" + BWArray + "`" + "\n\n" +
+                                "**Message Log** " + ML + "\n" + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`" + "\n\n" +
+                                "**Nickname Saver** " + NS + "\n" + "No Setting." + "\n\n" +
+                                "**Images Only** " + IO + "\n" + "`" + IOArray + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fneedhelp_functions.png?v=1584183423303"  }
             });
 
             reaction.message.edit("**Server Functions** `3/3`", newEmbed).catch(error => ErrorBag.add(error));
 
-        } else 
-        if  (reaction.emoji.name == "5️⃣")  {
-
-            const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Automatic Reactions** " + AR + "\n" + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
-                                "**Message Log** " + ML + "\n" + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`" + "\n\n" +
-                                "**Safe Chat** " + SC + "\n" + "No setting." + "\n\n" +
-                                "**Images Only** " + IO + "\n" + "No setting.",
-                  color: EmbedColor,
-                  image: {  "url": "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fneedhelp_functions.png?v=1584183423303"  }
-            });
-
-            reaction.message.edit("**Channel Functions** `1/1`", newEmbed).catch(error => ErrorBag.add(error));
-
-        } else 
-        if  (reaction.emoji.name == "🇺🇸" && reaction.message.member.permissions.has("MANAGE_GUILD"))  {
-            peeky.serverData.set(keySF, 0, "language");
-        } else 
-        if  (reaction.emoji.name == "🇨🇿" && reaction.message.member.permissions.has("MANAGE_GUILD"))  {
-            peeky.serverData.set(keySF, 1, "language");
         };
       
   };
@@ -3904,7 +3890,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 };
   
 //Message Log
-if  (peeky.channelData.get(keyCF, "message_log_bonus") == true)  {
+if  (peeky.serverData.get(keySF, "message_log_bonus") == true)  {
 
     if  (!user.bot && reaction.message.author.id !== PeekyId && reaction.emoji.name == "📌" && reaction.count == 1)  {
       
@@ -4218,7 +4204,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
 if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF) && message.channel.permissionsFor(peeky.user).has('EMBED_LINKS'))  {
   
 //Automatic Reactions
-if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
+if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
   
     if  ((message.attachments.size > 0 || function_DetectLink(message.content) == true) && !message.author.bot)  {
 
@@ -5140,7 +5126,7 @@ if (CommandName == "overview")  {
             CommandCooldown.add("overview" + message.guild.id);
             setTimeout(() => {CommandCooldown.delete("overview" + message.guild.id)}, 10000);
 
-            const embed = {"description": "**Overview Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "1️⃣ Server Settings" + "\n\n" + "2️⃣ Server Functions `[1/3]`" + "\n\n" + "3️⃣ Server Functions `[2/3]`" + "\n\n" + "4️⃣ Server Functions `[3/3]`" + "\n\n" + "5️⃣ Channel Functions",  "color": EmbedColor}; 
+            const embed = {"description": "**Overview Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "1️⃣ Server Settings" + "\n\n" + "2️⃣ Server Functions `[1/3]`" + "\n\n" + "3️⃣ Server Functions `[2/3]`" + "\n\n" + "4️⃣ Server Functions `[3/3]`",  "color": EmbedColor}; 
             await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                   await m.react("⏹️").catch(error => {ErrorBag.add(error)});
@@ -5148,7 +5134,6 @@ if (CommandName == "overview")  {
                   await m.react("2️⃣").catch(error => {ErrorBag.add(error)});
                   await m.react("3️⃣").catch(error => {ErrorBag.add(error)});
                   await m.react("4️⃣").catch(error => {ErrorBag.add(error)});
-                  await m.react("5️⃣").catch(error => {ErrorBag.add(error)});
               
                   peeky.userData.set(key, m.id, "OverviewID");
 
@@ -5262,8 +5247,8 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 //Toggle Automatic Reactions
 if  (FunctioName == "automatic reactions")  {
 
-    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
-    var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
+    peeky.channelData.set(keyCF, !peeky.serverData.get(keySF, "automatic_reactions_bonus"), "automatic_reactions_bonus");
+    var StatusString = peeky.serverData.get(keySF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Automatic Reactions").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
@@ -6445,6 +6430,30 @@ if  (peeky.serverData.get(keySF, "weekend_channels_bonus_setting").length < Sett
     var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "weekend_channels_bonus_setting");
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels").replace("X002", "@" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  
+}
+ else
+{
+ const embed = {"description": TranslatedFullSetting[Language],  "color": EmbedColor}; 
+ message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+};
+
+}
+  
+else
+ 
+//Set Images Only
+if  (FunctioName.startsWith("images only "))  {
+  
+if  (peeky.serverData.get(keySF, "images_only_bonus_setting").length < Setting.WeekendChannelsLimit)  {
+
+    var ReceivedArray = function_RemoveFormatting(CommandName.split("images only ")[1].toLowerCase(), "channel", true);
+    peeky.serverData.get(keySF, "images_only_bonus_setting").push(ReceivedArray);
+
+    var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "images_only_bonus_setting");
+
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", "@" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
