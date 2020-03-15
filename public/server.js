@@ -1363,10 +1363,13 @@ function function_ServerData(key)  {
             join_role_bonus_setting: "Member",
             streamer_role_bonus: false,
             streamer_role_bonus_setting: "Streamer",
+            automatic_reactions_bonus: false,
             automatic_reactions_bonus_setting: "peeky",
             server_message_bonus: false,
-            image_only_bonus_setting: 0,
+            image_only_bonus: false,
+            image_only_bonus_setting: [],
             server_message_bonus_setting: "Welcome to the server!",
+            message_log_bonus: false,
             message_log_bonus_setting: "logged_messages",
             member_counter_bonus: false,
             member_counter_bonus_setting: "Members",
@@ -1427,14 +1430,9 @@ function function_ChannelData(key)  {
         peeky.channelData.ensure(key , {
             ChannelID: key,
 
-            automatic_reactions_bonus: false,
-            image_only_bonus: false,
-            message_log_bonus: false,
-            banned_words_bonus: false,
             flood_protection_bonus_lastdate: null,
             flood_protection_bonus_lastuser: null,
             flood_protection_bonus_lastmsg: null,
-            safe_chat_bonus: false
         });
       
         console.log("Created channel data for " + key + ".");
@@ -3555,7 +3553,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
         if (peeky.channelData.get(keyCF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
         if (peeky.channelData.get(keyCF, "image_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
-        if (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)             { var SC = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SC = DisabledIcon};
 
         var BWArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
         if  (BWArray.length < 1)  {  BWArray = "None";  }  else  {  BWArray = BWArray.join("` `");  };
@@ -4256,63 +4253,34 @@ if  (peeky.channelData.get(keyCF, "automatic_reactions_bonus") == true)  {
 
 };
   
-//Safe Chat
-if  (peeky.channelData.get(keyCF, "safe_chat_bonus") == true)  {
+//Images Only
+if  (peeky.serverData.get(keySF, "image_only_bonus") == true)  {
+  
+    if  (peeky.serverData.get(keySF, "image_only_bonus_setting").toLowerCase().includes(message.channel.name.toLowerCase()))  {
+    
+        if  (message.author.id !== PeekyId && channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
-    if  (message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
-
-        if  (!message.member.permissions.has("MANAGE_MESSAGES"))  {
-      
-            if  (VulgarPhrases.some(text => function_RemoveFormatting(message.content.toLowerCase(), "strict", false).includes(text)))  {
+            if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.size < 1)  {
 
                 message.delete({ timeout: AutoDeleteTime}).catch(error => ErrorBag.add(error));
 
-                if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "SC"))  {
+                if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "IO"))  {
 
-                    ResponseCooldowns.add(message.guild.id + "SC");
-                    setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SC")}, ResponseCooldownMS);
+                    ResponseCooldowns.add(message.guild.id + "IO");
+                    setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "IO")}, ResponseCooldownMS);
 
-                    var TranslatedMessages = [InfoIcon + " Please restrain yourself from using profanity, **X001**.", InfoIcon + " Přestaňte prosím mluvit sprostě, **X001**.", InfoIcon + " Vyhni sa používaniu vulgárností, **X001**.", InfoIcon + " Por favor, absténgase de usar blasfemia, **X001**.", InfoIcon + " Lütfen küfür etmekten kaçının, **X001**."];
+                    var TranslatedMessages = [InfoIcon + " You can only send images in this channel, **X001**.", InfoIcon + " V tomto kanále lze posílat pouze obrázky, **X001**.", InfoIcon + " V tomto channeli môžeš posielať iba obrázky, **X001**.", InfoIcon + " Sólo puedes enviar imágenes en este canal, **X001**.", InfoIcon + " Bu kanalda sadece resim gönderebilirsiniz, **X001**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
 
                 };
 
-                console.log("The Safe Chat function has been triggered in " + message.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");            
-          
-            };
-          
-        };
-
-    };
-
-};
-  
-//Images Only
-if  (peeky.channelData.get(keyCF, "image_only_bonus") == true)  {
-  
-    if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
-
-        if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.size < 1)  {
-
-            message.delete({ timeout: AutoDeleteTime}).catch(error => ErrorBag.add(error));
-
-            if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "IO"))  {
-
-                ResponseCooldowns.add(message.guild.id + "IO");
-                setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "IO")}, ResponseCooldownMS);
-
-                var TranslatedMessages = [InfoIcon + " You can only send images in this channel, **X001**.", InfoIcon + " V tomto kanále lze posílat pouze obrázky, **X001**.", InfoIcon + " V tomto channeli môžeš posielať iba obrázky, **X001**.", InfoIcon + " Sólo puedes enviar imágenes en este canal, **X001**.", InfoIcon + " Bu kanalda sadece resim gönderebilirsiniz, **X001**."];
-                const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
+                console.log("The Images Only function has been triggered in " + message.guild.name + ".");
+                function_UpdateAutowipe(keySF, "server");
 
             };
-
-            console.log("The Images Only function has been triggered in " + message.guild.name + ".");
-            function_UpdateAutowipe(keySF, "server");
-
         };
+         
     };
 
 };
@@ -5298,20 +5266,6 @@ if  (FunctioName == "automatic reactions")  {
     var StatusString = peeky.channelData.get(keyCF, "automatic_reactions_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Automatic Reactions").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
-    
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-}
-  
-else
-      
-//Toggle Safe Chat
-if  (FunctioName == "safe chat")  {
-
-    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "safe_chat_bonus"), "safe_chat_bonus");
-    var StatusString = peeky.channelData.get(keyCF, "safe_chat_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
-
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Safe Chat").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
