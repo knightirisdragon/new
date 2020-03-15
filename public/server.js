@@ -405,8 +405,8 @@ const InfoMessage2 = [
 ];
 const InfoMessage3 = [
   InfoIcon + " You have lost your custom background.",
-  InfoIcon + " Ztratili jste vaše custom pozadí",
-  InfoIcon + " You have lost your custom background.",
+  InfoIcon + " Ztratili jste vaše vlastní pozadí",
+  InfoIcon + " Stratil si svoje vlastné pozadie",
   ErrorIcon + " Usted ha perdido su fondo personalizado.",
   ErrorIcon + " Üzerinde bulunan özel arkaplanı kaybettin."
 ];
@@ -4686,7 +4686,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true)  {
     const Role    = peeky.guilds.get(message.guild.id).roles.find(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
     const Channel = peeky.guilds.get(message.guild.id).channels.find(c => c.name == "tickets");
 
-    if  (Role && Channel)  {
+    if  (!ActivatedTicketSystems.has(message.guild.id) && Role && Channel)  {
       
         ActivatedTicketSystems.add(message.guild.id);
         Channel.messages.fetch({ limit: 1 });
