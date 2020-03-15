@@ -17,8 +17,9 @@ const ytdl         = require('ytdl-core');
 const opus         = require('node-opus');
 
 //Canvas
-const Canvas  = require('canvas');
-const request = require('request');
+const Canvas     = require('canvas');
+const request    = require('request');
+const ColorThief = require('colorthief');
 
 //Data
 const Enmap = require("enmap");
@@ -7510,6 +7511,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
               const canvas         = Canvas.createCanvas(500, 300);
               const ctx            = canvas.getContext('2d');
               const StatsColor     = "lightgray";
+              var   ProfileColor   = "2C2F33";
 
               var MentionedMember = message.mentions.members.first();
               if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
@@ -7528,6 +7530,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
               if  (Failed == false)  {
 
                 ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+                ColorThief.getColor(TheBannerShown).then(color => { ProfileColor = color; console.log(color) }).catch(error => { ErrorBag.add(error); });
 
                 var layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fprofile_layout_4.3.png?v=1584229481012");
                 ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
@@ -7639,12 +7642,13 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                 ctx.shadowOffsetX = 0; 
                 ctx.shadowOffsetY = 0;
 
-                ctx.fillStyle = "#2C2F33";
-                ctx.fillRect(64, 252, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 128), 28); //Body
-
                 //Avatar
                 const avatar = await Canvas.loadImage(SomeoneTagged.user.displayAvatarURL({ format: 'png' }).replace("https", "http"));
                 ctx.drawImage(avatar, 6, 6, 64, 64);
+
+                //Exp Bar
+                ctx.fillStyle = ProfileColor;
+                ctx.fillRect(64, 252, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 128), 28);
 
                 //Exp Text
                 ctx.font = "22px " + Setting.DefaultFont;
