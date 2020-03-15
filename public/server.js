@@ -7530,7 +7530,6 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
               if  (Failed == false)  {
                 
                 const ProfileColor = await getColorFromURL(TheBannerShown).then(color => { return "#" + rgbHex(color[0], color[1], color[2]); }).catch(error => {  ErrorBag.add(error); return "#2C2F33";  });
-                console.log(ProfileColor)
                 ctx.drawImage(background, 0, 0, canvas.width, canvas.height); 
 
                 var layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fprofile_layout_4.3.png?v=1584229481012");
