@@ -127,13 +127,34 @@ function ToggleCategory(id) {
   
 <br>
       
-<a class="item_header" onclick="ToggleCategory('workshop');"><font size="5">Workshop and its rules</font></a> <br>
+<a class="item_header" onclick="ToggleCategory('workshop');"><font size="5">Workshop</font></a> <br>
 <div class="inlinediv" id="workshop">
 
     <div class="tutorial_item">
 
     Workshop is a channel in the Support Server that allows you to submit your images to PEEKY's background gallery.
     <br>
+    <br>
+    <br>
+    When uploading a background, you should also keeep in mind that racist or NSFW images are strongly forbidden and could get you blocked from the Workshop.
+    <br>
+    This is the format that you wanna use, otherwise the submission will be automatically removed.
+    <br>
+    <code>
+    Name: [text] <br>
+    Credit: [text]  <br>
+    Price: [number]
+    </code>
+    <br>
+    <br>
+    If you're submitting your own work, you are eligible for your background to have Background Revenue enabled, which means that you will get Gredit for everytime the backgrounds gets bought.
+    <br>
+    You can see that your background has revenue enabled when it says "revenue enabled" in the Background list.
+    <br>
+    <br>
+    You may have also noticed that there are exclusive backgrounds.
+    <br>
+    Exclusive Backgrounds are usually given out through events and can be only added by PEEKY's developers.
       
     </div>
 
@@ -156,6 +177,34 @@ function ToggleCategory(id) {
     [GuildOwner] - Shows server's current owner.  <br>
     [GuildSize] - Shows the amount of user members in the server.  <br>
     [GuildLevel] - Shows the current verification level.
+      
+    </div>
+
+</div>
+  
+<br>
+      
+<a class="item_header" onclick="ToggleCategory('api');"><font size="5">API</font></a> <br>
+<div class="inlinediv" id="api">
+
+    <div class="tutorial_item">
+
+    You can view PEEKY's API in the <a href="https://peeky.glitch.me/api.json" rel="noopener noreferrer" class="highlighted">API page</a>.
+    <br>
+    <br>
+    Node JS
+    <br>
+    <pre>
+    <code>
+    const fetch = require('node-fetch');
+
+    fetch(`https://peeky.glitch.me/api.json`, {
+        method: 'GET'
+    }).then(response =&gt response.json()).then(async (data) =&gt {
+         console.log(data);
+    });
+    </code>
+    </pre>
       
     </div>
 
