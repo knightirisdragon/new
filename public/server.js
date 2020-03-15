@@ -8551,8 +8551,8 @@ if (CommandName == "drawandguess")  {
         ActiveMinigames.add(message.guild.id);
         setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 90000);
       
-        var embed = {"description": InfoIcon + " Draw the word **" + RandomWords[ChosenQuestion] + "** in under **1 minute**.",  "color": EmbedColor}; 
-        await function_DirectMessage(message.author.id, {  embed,  file: "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fempty_canvas.png"  });
+        var embed = {"description": InfoIcon + " Draw the word **" + RandomWords[ChosenQuestion] + "** in under **1 minute**.", "image": {  "url": "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fempty_canvas.png"  }, "color": EmbedColor}; 
+        await function_DirectMessage(message.author.id, {  embed  });
 
         var embed = {"description": InfoIcon + " **" + function_RemoveFormatting(message.member.displayName, "other", true) + "** has **1 minute** to draw their word!",  "color": EmbedColor}; 
         message.channel.send({ embed });
