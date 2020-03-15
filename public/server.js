@@ -3122,7 +3122,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
             if  (MemberIndex >= 0)  {
                 SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name !== "@everyone" && r.name !== peeky.serverData.get(keySF, "verification_system_bonus_setting") && !Setting.includes(r.name)).map(r => r.id);
             } else {
-              SavedRoles.push([member.user.id, member.roles.filter(r => r.name !== "@everyone" &&r.name !== peeky.serverData.get(keySF, "verification_system_bonus_setting") && !Setting.includes(r.name)).map(r => r.id)]);
+              SavedRoles.push([member.user.id, member.roles.filter(r => r.name !== "@everyone" && r.name !== peeky.serverData.get(keySF, "verification_system_bonus_setting") && !Setting.includes(r.name)).map(r => r.id)]);
             };
 
         };
