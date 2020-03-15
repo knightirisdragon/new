@@ -19,7 +19,7 @@ const opus         = require('node-opus');
 //Canvas
 const Canvas     = require('canvas');
 const request    = require('request');
-const ColorThief = require('colorthief');
+const ColorThief = require('color-thief');
 
 //Data
 const Enmap = require("enmap");
@@ -1757,6 +1757,12 @@ function function_TimeLeft(value, type, since)  {
     };
 
 };
+
+//RGB to Hex
+const rgbToHex = (r, g, b) => '' + [r, g, b].map(x => {
+  const hex = x.toString(16)
+  return hex.length === 1 ? '0' + hex : hex
+}).join('')
 
 function UpdateWebsiteStuff(data)  {
   
@@ -7529,8 +7535,11 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
 
               if  (Failed == false)  {
 
-                ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-                ColorThief.getColor(TheBannerShown).then(color => { ProfileColor = color; console.log(color) }).catch(error => { ErrorBag.add(error); });
+                ctx.drawImage(background, 0, 0, canvas.width, canvas.height); 
+                
+                var colorThief = new ColorThief();
+                var image = fs.readFileSync(TheBannerShown);  
+                ProfileColor = colorThief.getColor(image);  
 
                 var layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fprofile_layout_4.3.png?v=1584229481012");
                 ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
