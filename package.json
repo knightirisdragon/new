@@ -12,6 +12,8 @@
     "youtube-search": "^1.1.4",
     "canvas": "^2.6.1",
     "canvas-node": "^0.3.20",
+    "rgb-hex": "^3.0.0",
+    "color-thief-node": "^1.0.2",
     "enmap": "^5.2.4",
     "better-sqlite-pool": "^0.2.3",
     "sqlite3": "^4.1.1",
@@ -20,8 +22,7 @@
     "require.js": "^1.0.0",
     "node-fetch": "^2.6.0",
     "parse-ms": "^2.0.0",
-    "https": "^1.0.0",
-    "color-thief": "^2.2.5"
+    "https": "^1.0.0"
   },
   "engines": {
     "node": "13.6.0"
