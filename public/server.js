@@ -2509,21 +2509,35 @@ if  (!WebsiteCooldowns.has("premiumusers"))  {
     peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(PremiumRole)).forEach(m => {
     if  (peeky.userData.has(m.user.id))  {
 
-        /*
-        var TheBannerShown = DefaultBackground;
-        TheBannerShown = function_GetBackground(m.user.id);
-        */
+        PremiumUsersList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(m.displayName) + "  <br>  <font size='1' color='lightgray'>  " + function_RemoveFormatting(peeky.userData.get(`${m.user.id}`, "Description"), "other", true) + "  </font>  </b>  </div>");
+      
+    };
+    });
+
+    await fs.writeFile('public/premiumusers.txt', PremiumUsersList.join(" "), (err) => {
+        if (err) console.log(err);
+    });
+      
+    console.log("The supporters list has been updated.");
+
+};
+  
+//Boosters
+if  (!WebsiteCooldowns.has("boosters"))  {
+      
+    WebsiteCooldowns.add("boosters");
+    setTimeout(() => {WebsiteCooldowns.delete("boosters")}, 600000);
+
+    var PremiumUsersList = [];
+    peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(BoosterRole)).forEach(m => {
+    if  (peeky.userData.has(m.user.id))  {
 
         PremiumUsersList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(m.displayName) + "  <br>  <font size='1' color='lightgray'>  " + function_RemoveFormatting(peeky.userData.get(`${m.user.id}`, "Description"), "other", true) + "  </font>  </b>  </div>");
       
     };
     });
-  
-    if  (PremiumUsersList.length == 0)  {
-        PremiumUsersList.push('<center><font size="4">  You can become a Premium user in the <a href="store.html" class="HomeHyperlinks">store</a>!  </font></center>')
-    };
 
-    await fs.writeFile('public/premiumusers.txt', PremiumUsersList.join(" "), (err) => {
+    await fs.writeFile('public/boosters.txt', PremiumUsersList.join(" "), (err) => {
         if (err) console.log(err);
     });
       
