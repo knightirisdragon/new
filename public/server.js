@@ -2021,7 +2021,7 @@ peeky.on('message', async (message) => {
     if  (peeky.userData.get(key, "MedallistBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:medallist:624237944890458123> Medallist", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fmedallist.png?v=1568900374609"]);  };
       
         //Evil
-    if  (peeky.userData.get(key, "Karma") <= 50)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:evil:604817305247023117> Evil", "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fevil.png?v=1564270118631"]);  };
+    if  (peeky.userData.get(key, "Karma") <= -50)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:evil:604817305247023117> Evil", "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fevil.png?v=1564270118631"]);  };
       
         //Good
     if  (peeky.userData.get(key, "Karma") >= 50)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:good:605138883138551838> Good", "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581"]);  };
@@ -7631,7 +7631,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                 const ProfileColor = await getColorFromURL(TheBannerShown).then(color => { return "#" + rgbHex(color[0], color[1], color[2]); }).catch(error => {  ErrorBag.add(error); return "#2C2F33";  });
                 ctx.drawImage(background, 0, 0, canvas.width, canvas.height); 
 
-                var layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fprofile_layout_4.3.png?v=1584229481012");
+                var layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fprofile_layout_4.4.png?v=1584298348459");
                 ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
                 //Draw Events
