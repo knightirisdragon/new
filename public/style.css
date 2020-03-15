@@ -6,7 +6,7 @@ body {
 html {
   scroll-behavior: smooth;
 
-  background-color: #7289DA;
+  background-color: #7289DA;color: white;
   /*background: url("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576177447491") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
