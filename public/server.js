@@ -1157,7 +1157,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
 
     ctx.drawImage(background, 0, 0, canvas.width, 300);       
     
-    const layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fwelcome_messages_layout_3.png?v=1561018982206");
+    const layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fwelcome_messages_layout_4.1.png?v=1584230264421");
     ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
     ctx.shadowColor = "black";
@@ -2071,7 +2071,7 @@ peeky.on('message', async (message) => {
 
             ctx.drawImage(background, 0, 0, canvas.width, 300);  
 
-            const layout = await Canvas.loadImage("http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Flevel_up_layout_2.png?v=1561018982613");
+            const layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flevel_up_layout_4.1.png?v=1584230267500");
             ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
             //Setting
@@ -7577,7 +7577,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
 
                 ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-                var layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fprofile_layout_4.3.png?v=1584229481012"); //"http://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fprofile_layout_2.5.png"
+                var layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fprofile_layout_4.3.png?v=1584229481012");
                 ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
                 //Draw Events
