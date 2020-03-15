@@ -92,15 +92,6 @@ var MusicCmdCooldown        = new Set();
 var PeekyCmdCooldown        = new Set();
 var ChannelCooldown         = new Set();  const ChannelCooldownMS   = 10000;
 var RoleCooldown            = new Set();  const RoleCooldownMS      = 10000;
-var EventCountdownCooldown  = new Set();
-var MemberCounterCooldown   = new Set();
-var GameLogsCooldown        = new Set();
-var MessageLogCooldown      = new Set();
-var DonorWallCooldown       = new Set();
-var ReactionRolesCooldown   = new Set();
-var TicketSystemCooldown    = new Set();
-var ServerAgeCooldown       = new Set();
-var RedditPostsCooldown     = new Set();
 var ResponseCooldowns       = new Set();  const ResponseCooldownMS = 5000;
 var FloodProtectionStrikes  = new Array();
 var KarmaImages             = new Array();
@@ -3800,10 +3791,10 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                 reaction.users.remove(user.id).catch(error => ErrorBag.add(error));
             };
               
-            if  (reaction.message.guild.me.permissions.has("MANAGE_CHANNELS") && !TicketSystemCooldown.has(user.id))  {
+            if  (reaction.message.guild.me.permissions.has("MANAGE_CHANNELS") && !FunctionCooldowns.has("ticketsystem" + user.id))  {
             
-                TicketSystemCooldown.add(user.id);
-                setTimeout(() => {TicketSystemCooldown.delete(user.id)}, 300000);
+                FunctionCooldowns.add("ticketsystem" + user.id);
+                setTimeout(() => {FunctionCooldowns.delete("ticketsystem" + user.id)}, 300000);
               
                 const role = reaction.message.guild.roles.find(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
                 const category = reaction.message.guild.channels.find(c => c.name.includes("Tickets") && c.type == "category");
@@ -3857,10 +3848,10 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
           
             if  (reaction.message.guild.me.permissions.has("MANAGE_ROLES"))  {
 
-                if  (!ReactionRolesCooldown.has(user.id))  {
+                if  (!FunctionCooldowns.has("reactionroles" + user.id))  {
 
-                    ReactionRolesCooldown.add(user.id);
-                    setTimeout(() => {ReactionRolesCooldown.delete(user.id)}, 5000);
+                    FunctionCooldowns.add("reactionroles" + user.id)
+                    setTimeout(() => {FunctionCooldowns.delete("reactionroles" + user.id)}, 5000);
 
                     const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
                     const Index = EmojiNumbers.indexOf(reaction.emoji.name);
@@ -3896,12 +3887,11 @@ if  (peeky.serverData.get(keySF, "message_log_bonus") == true)  {
       
     if  (!LoggedMessages.has(reaction.message.id))  {
       
-    if  (!MessageLogCooldown.has(reaction.message.author.id))  {
+    if  (!FunctionCooldowns.has("messagelog" + reaction.message.guild.id))  {
         
         LoggedMessages.add(reaction.message.id);
-         
-        MessageLogCooldown.add(user.id);
-        setTimeout(() => {MessageLogCooldown.delete(user.id)}, 30000);
+        FunctionCooldowns.add("messagelog" + reaction.message.guild.id);
+        setTimeout(() => {FunctionCooldowns.delete("messagelog" + reaction.message.guild.id)}, 10000);
 
         var   name                  = peeky.serverData.get(keySF, "message_log_bonus_setting");
         var   Channel               = reaction.message.guild.channels.find(c => c.name == name);
@@ -4274,10 +4264,10 @@ if  (peeky.serverData.get(keySF, "image_only_bonus") == true)  {
 //Reddit Posts
 if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
 
-    if  (!RedditPostsCooldown.has(message.guild.id))  {
+    if  (!FunctionCooldowns.has("redditposts" + message.guild.id))  {
 
-        RedditPostsCooldown.add(message.guild.id);
-        setTimeout(() => {RedditPostsCooldown.delete(message.guild.id)}, 1800000);
+        FunctionCooldowns.add("redditposts" + message.guild.id);
+        setTimeout(() => {FunctionCooldowns.delete("redditposts" + message.guild.id)}, 1800000);
 
             var name    = peeky.serverData.get(keySF, "reddit_posts_bonus_setting");
             var channel = message.guild.channels.find(c => c.name == name);
@@ -4344,10 +4334,10 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
 //Server Age
 if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
 
-    if  (!ServerAgeCooldown.has(message.guild.id))  {
+    if  (!FunctionCooldowns.has("serverage" + message.guild.id))  {
 
-        ServerAgeCooldown.add(message.guild.id);
-        setTimeout(() => {ServerAgeCooldown.delete(message.guild.id)}, 3600000);
+        FunctionCooldowns.add("serverage" + message.guild.id);
+        setTimeout(() => {FunctionCooldowns.delete("serverage" + message.guild.id)}, 3600000);
 
         if  (message.guild.me.permissions.has("MANAGE_CHANNELS"))  {
 
@@ -4372,10 +4362,10 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
 //Member Counter
 if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
 
-    if  (!MemberCounterCooldown.has(message.guild.id))  {
+    if  (!FunctionCooldowns.has("membercounter" + message.guild.id))  {
 
-        MemberCounterCooldown.add(message.guild.id);
-        setTimeout(() => {MemberCounterCooldown.delete(message.guild.id)}, 300000);
+        FunctionCooldowns.add("membercounter" + message.guild.id);
+        setTimeout(() => {FunctionCooldowns.delete("membercounter" + message.guild.id)}, 300000);
 
         if  (message.guild.me.permissions.has("MANAGE_CHANNELS"))  {
 
@@ -4400,14 +4390,14 @@ if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
 //Event Countdown
 if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
 
-    if  (!EventCountdownCooldown.has(message.guild.id))  {
+    if  (!FunctionCooldowns.has("eventcountdown" + message.guild.id))  {
 
         var channel = message.guild.channels.find(c => c.id == peeky.serverData.get(keySF, "event_countdown_bonus_id"));
 
         if  (channel && channel.permissionsFor(peeky.user).has('CONNECT'))  {
 
-            EventCountdownCooldown.add(message.guild.id);
-            setTimeout(() => {EventCountdownCooldown.delete(message.guild.id)}, 300000);
+            FunctionCooldowns.add("eventcountdown" + message.guild.id)
+            setTimeout(() => {FunctionCooldowns.delete("eventcountdown" + message.guild.id)}, 300000);
 
             var TheDate = peeky.serverData.get(keySF, "event_countdown_bonus_setting") - Date.now();
             const EndName = "The Countdown has ended.";
@@ -4574,10 +4564,10 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
 
     if  (Role && Channel)  {
 
-        if  (!DonorWallCooldown.has(message.guild.id))  {
+        if  (!FunctionCooldowns.has("classificationwall" + message.guild.id))  {
 
-            DonorWallCooldown.add(message.guild.id);
-            setTimeout(() => {DonorWallCooldown.delete(message.guild.id)}, 300000);
+            FunctionCooldowns.add("classificationwall" + message.guild.id)
+            setTimeout(() => {FunctionCooldowns.delete("classificationwall" + message.guild.id)}, 300000);
           
             await message.guild.members.fetch();
             message.guild.members.forEach(m => {
@@ -4650,10 +4640,10 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
     if  (Channel)  {
 
-        if  (!ReactionRolesCooldown.has(message.guild.id))  {
+        if  (!FunctionCooldowns.has("reactionroles" + message.guild.id))  {
 
-            ReactionRolesCooldown.add(message.guild.id);
-            setTimeout(() => {ReactionRolesCooldown.delete(message.guild.id)}, 300000);
+            FunctionCooldowns.add("reactionroles" + message.guild.id);
+            setTimeout(() => {FunctionCooldowns.delete("reactionroles" + message.guild.id)}, 300000);
           
             Channel.messages.fetch({ limit: 1 }).then(async messages => {
 
