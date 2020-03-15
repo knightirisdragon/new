@@ -7512,7 +7512,6 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
               const canvas         = Canvas.createCanvas(500, 300);
               const ctx            = canvas.getContext('2d');
               const StatsColor     = "lightgray";
-              var   ProfileColor   = "2C2F33";
 
               var MentionedMember = message.mentions.members.first();
               if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
@@ -7529,8 +7528,9 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
               var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
 
               if  (Failed == false)  {
-
-                ProfileColor = await getColorFromURL(TheBannerShown).then(color => { console.log(color); rgbHex(color[0], color[1], color[2]); }).catch(error => {  ErrorBag.add(error);  });
+                
+                const ProfileColor = await getColorFromURL(TheBannerShown).then(color => { return "#" + rgbHex(color[0], color[1], color[2]); }).catch(error => {  ErrorBag.add(error); return "#2C2F33";  });
+                console.log(ProfileColor)
                 ctx.drawImage(background, 0, 0, canvas.width, canvas.height); 
 
                 var layout = await Canvas.loadImage("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fprofile_layout_4.3.png?v=1584229481012");
@@ -7646,7 +7646,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                 //Avatar
                 const avatar = await Canvas.loadImage(SomeoneTagged.user.displayAvatarURL({ format: 'png' }).replace("https", "http"));
                 ctx.drawImage(avatar, 6, 6, 64, 64);
-
+                
                 //Exp Bar
                 ctx.fillStyle = ProfileColor;
                 ctx.fillRect(64, 252, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 128), 28);
