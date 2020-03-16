@@ -8640,7 +8640,7 @@ if (CommandName == "hangman")  {
 
                         } else {
                           const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
-                          message.channel.send({ embed });
+                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                         };
                     
                     } else {
@@ -8650,7 +8650,7 @@ if (CommandName == "hangman")  {
                 })
                 .catch(collected => {
                     const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
-                    message.channel.send({ embed });
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 });
               
             };
@@ -8739,17 +8739,17 @@ if (CommandName == "drawandguess")  {
                  };
 
                  const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has guessed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                 message.channel.send({ embed });
+                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             })
             .catch(collected => {
                 const embed = {"description": ErrorIcon + " The word was **" + RandomWords[ChosenQuestion] + "**.",  "color": EmbedColor}; 
-                message.channel.send({ embed });
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             });
              
         })
         .catch(collected => {          
               const embed = {"description": ErrorIcon + " Sorry, but **" + function_RemoveFormatting(message.member.displayName, "other", true) + "** has ran out of time to draw.",  "color": EmbedColor}; 
-              message.channel.send({ embed });
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         });
 
       
@@ -8771,8 +8771,8 @@ if  (CommandName.startsWith("nsfw"))  {
 
             CommandArgument = CommandArgument.replace(" ", "");
           
-            const attachment = new Discord.MessageAttachment("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fnsfw_tutorial.png?v=1584349105639", 'peeky.png', { quality: 0.1 });
-            message.channel.send("If you wanna see some hot **" + CommandArgument + "**", "")
+            const attachment = await new Discord.MessageAttachment("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fnsfw_tutorial.png?v=1584349105639", 'peeky.png', { quality: 0.1 });
+            message.channel.send("If you wanna see some hot **" + function_RemoveFormatting(CommandArgument, "other", true) + "** action, follow this tutorial!", attachment).catch(error => ErrorBag.add(error));
 
         }
          else if (CommandArgument == "")
