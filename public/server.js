@@ -446,6 +446,15 @@ const ErrorMessage22 = [
   ErrorIcon + " ",
   ErrorIcon + " "
 ];
+const ErrorMessage23 = [
+  ErrorIcon + " This command only works in NSFW channels.",
+  ErrorIcon + " Tento příkaz funguje pouze v NSFW kanálech.",
+  ErrorIcon + " This command only works in NSFW channels.",
+  ErrorIcon + " This command only works in NSFW channels.",
+  ErrorIcon + " This command only works in NSFW channels.",
+  ErrorIcon + " This command only works in NSFW channels.",
+  ErrorIcon + " Bu komut sadece NSFW kanalında çalışır."
+];
 
 const InfoMessage1 = [
   InfoIcon + " You have earned a new badge.",
@@ -7597,7 +7606,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
         AllBadges.push(badge[0]);
     });
       
-    if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > Setting.BackgroundInvLimit)  {  EndString = " and some more.."  };
+    if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > Setting.BackgroundInvLimit)  {  EndString = " and some more..."  };
 
     const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**" + peeky.userData.get(key2, "Badges").length + " Badges**\n" + AllBadges.join(', ') + ".",  "color": EmbedColor}; 
     message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
@@ -8749,6 +8758,33 @@ if (CommandName == "drawandguess")  {
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
+};
+
+//NSFW
+if  (CommandName.startsWith("nsfw"))  {
+  
+    if  (message.channel.nsfw && message.channel.permissionsFor(peeky.user).has('ATTACH_FILES'))  {
+
+        var CommandArgument = CommandName.split("nsfw")[1];
+
+        if  (CommandArgument.startsWith(" "))  {
+
+            CommandArgument = CommandArgument.replace(" ", "");
+          
+            const attachment = new Discord.MessageAttachment("https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fnsfw_tutorial.png?v=1584349105639", 'peeky.png', { quality: 0.1 });
+            message.channel.send("If you wanna see some hot **" + CommandArgument + "**", "")
+
+        }
+         else if (CommandArgument == "")
+        {
+         const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+    } else {
+     const embed = {"description": ErrorMessage23[Language],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
 };
 
 //Mute
