@@ -781,7 +781,7 @@ const Banners = [
     ["https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fbackground280.png?1558783770529", 475, "Spirit tower", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground281.png?1558874631584", 875, "Isaac's nightmare", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground282.png?1558874666863", 425, "Spiritual butterflies", "Judith Haddad", undefined, 0],
-    ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground283.png?1558877694122", 1000000, "Golden", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground283.png?1558877694122", 725, "Golden", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground284.png?1558874673658", 825, "War with zombies", "World War Z", undefined, 0],
     ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground285.png?1558888970896", 425, "Morning", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground286.png?1558888974600", 575, "Zoink", "Unknown", undefined, 0],
@@ -2059,9 +2059,6 @@ peeky.on('message', async (message) => {
         //Gopbot
     if  (peeky.userData.get(key, "GopbotBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gopbot:624643543037771841> GOPBOT", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgopbot.png?v=1568997070177"]);  };
       
-        //Miner
-    if  (peeky.userData.get(key, "MinerBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:miner:624330470460620831> Miner", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fminer.png?v=1568922629305"]);  };
-      
         //Gamer
     if  (peeky.userData.get(key, "GamerBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gamer:624330470288654337> Gamer", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgamer.png?v=1568922624710"]);  };
       
@@ -2389,7 +2386,7 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
           if  (background_info[1] == Exclusive)  {
               Price = Exclusive;
           } else {
-            Price = background_info[1] + " Gredit";
+            Price = background_info[1].toLocaleString('en') + " Gredit";
           };
 
           if  (Date.now() - background_info[5] < DayMs)  {
@@ -6877,13 +6874,6 @@ if  (CommandName.startsWith("buybackground"))  {
 
                         InfoMessages.push(InfoMessage1[Language]);
                         peeky.userData.set(key, true, "HorderBadge");
-
-                    };
-
-                    if  (!peeky.userData.get(key, "MinerBadge") && i == 283)  {
-
-                        InfoMessages.push(InfoMessage1[Language]);
-                        peeky.userData.set(key, true, "MinerBadge");
 
                     };
 
