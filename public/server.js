@@ -7776,7 +7776,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                 
                 //Exp Bar
                 ctx.fillStyle = ProfileColor;
-                ctx.fillRect(65, 254, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 130), 28);
+                ctx.fillRect(65, 252.5, peeky.userData.get(key2, "Exp") / (Setting.ExpNeeded * peeky.userData.get(key2, "Level")) * (canvas.width - 130), 28.5);
 
                 //Exp Text
                 ctx.font = "22px " + Setting.DefaultFont;
