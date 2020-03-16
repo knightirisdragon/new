@@ -7298,7 +7298,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
 //Daily
 if (CommandName == "daily")  {
 
-    let cooldown     = 8.64e+7;
+    let cooldown     = DayMs;
     let lastDaily    = peeky.userData.get(key, "DailyRewarded");
     var CountedVotes = 0;
 
