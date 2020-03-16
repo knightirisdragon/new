@@ -7424,91 +7424,91 @@ if  (!ProfileCooldown.has(message.author.id))  {
       
         if  (DonatedItem == "gredit")  {
           
-            if  (peeky.userData.get(key, "Gredit") >= DonatedAmount)  {
+        if  (peeky.userData.get(key, "Gredit") >= DonatedAmount)  {
 
-                if  (DonatedAmount >= 1000 && !peeky.userData.get(key, "CharityBadge"))  {
+        if  (DonatedAmount >= 1000 && !peeky.userData.get(key, "CharityBadge"))  {
+      
+            peeky.userData.set(key, true, "CharityBadge");
+            InfoMessages.push(InfoMessage1[Language]);
+      
+        };
 
-                    peeky.userData.set(key, true, "CharityBadge");
-                    InfoMessages.push(InfoMessage1[Language]);
+        peeky.userData.math(key, "-", DonatedAmount, "Gredit");
+        peeky.userData.math(key2, "+", DonatedAmount, "Gredit");
+  
+        const embed = {"description": SuccessIcon + " You have given **" + DonatedAmount.toLocaleString('en') + " " + GreditIcon + "** to **" + function_RemoveFormatting(DonatedUser.displayName, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
+          
+        }
+         else
+        {
+         const embed = {"description": ErrorMessage1[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+        
+        } else
+      
+        if  (DonatedItem == "chest")  {
+          
+        if  (peeky.userData.get(key, "Chests") >= DonatedAmount)  {
 
-                };
+        peeky.userData.math(key, "-", DonatedAmount, "Chests");
+        peeky.userData.math(key2, "+", DonatedAmount, "Chests");
+  
+        const embed = {"description": SuccessIcon + " You have given **" + DonatedAmount.toLocaleString('en') + " " + ChestIcon + "** to **" + function_RemoveFormatting(DonatedUser.displayName, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          
+        }
+         else
+        {
+         const embed = {"description": ErrorMessage6[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+        
+        } else
+    
+        if  (DonatedItem == "background")  {
+          
+        if  (peeky.userData.get(key, "Inventory").includes(DonatedAmount))  {
+          
+        if  ((DonatedAmount !== 1) && (DonatedAmount !== Exclusive))  {
+          
+        if  (!peeky.userData.get(key, "Inventory").includes(i))  {
 
-                peeky.userData.math(key, "-", DonatedAmount, "Gredit");
-                peeky.userData.math(key2, "+", DonatedAmount, "Gredit");
+            var BackgroundIndex = peeky.userData.get(key, "Inventory").indexOf(DonatedAmount);
 
-                const embed = {"description": SuccessIcon + " You have given **" + DonatedAmount.toLocaleString('en') + " " + GreditIcon + "** to **" + function_RemoveFormatting(DonatedUser.displayName, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));  
+            peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
+            peeky.userData.get(key2, "Inventory").push(DonatedAmount);
 
-                }
-                 else
-                {
-                 const embed = {"description": ErrorMessage1[Language],  "color": EmbedColor}; 
-                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                };
-
-                } else
-
-                if  (DonatedItem == "chest")  {
-
-                if  (peeky.userData.get(key, "Chests") >= DonatedAmount)  {
-
-                peeky.userData.math(key, "-", DonatedAmount, "Chests");
-                peeky.userData.math(key2, "+", DonatedAmount, "Chests");
-
-                const embed = {"description": SuccessIcon + " You have given **" + DonatedAmount.toLocaleString('en') + " " + ChestIcon + "** to **" + function_RemoveFormatting(DonatedUser.displayName, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-                }
-                 else
-                {
-                 const embed = {"description": ErrorMessage6[Language],  "color": EmbedColor}; 
-                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                };
-
-                } else
-
-                if  (DonatedItem == "background")  {
-
-                if  (peeky.userData.get(key, "Inventory").includes(DonatedAmount))  {
-
-                if  ((DonatedAmount !== 1) && (DonatedAmount !== Exclusive))  {
-
-                if  (!peeky.userData.get(key, "Inventory").includes(i))  {
-
-                    var BackgroundIndex = peeky.userData.get(key, "Inventory").indexOf(DonatedAmount);
-
-                    peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
-                    peeky.userData.get(key2, "Inventory").push(DonatedAmount);
-
-                    //Set Default Background
-                    if  (isNaN(peeky.userData.get(key, "Background")) == false && peeky.userData.get(key, "Background") == DonatedAmount)  {
-                        peeky.userData.set(key, 1, "Background");
-                        InfoMessages.push(InfoMessage2[Language]);
-                    };
-
-                    const embed = {"description": SuccessIcon + " You have given the **" + function_GetBackgroundInfo(DonatedAmount, ["name"]) + "** background to **" + function_RemoveFormatting(DonatedUser.displayName, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-            }
-             else
-            {
-             const embed = {"description": ErrorMessage5[Language],  "color": EmbedColor}; 
-             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            //Set Default Background
+            if  (isNaN(peeky.userData.get(key, "Background")) == false && peeky.userData.get(key, "Background") == DonatedAmount)  {
+                peeky.userData.set(key, 1, "Background");
+                InfoMessages.push(InfoMessage2[Language]);
             };
 
-            }
-             else
-            {
-             const embed = {"description": ErrorIcon + " You cannot gift the default and exclusive backgrounds.",  "color": EmbedColor}; 
-             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };
+            const embed = {"description": SuccessIcon + " You have given the **" + function_GetBackgroundInfo(DonatedAmount, ["name"]) + "** background to **" + function_RemoveFormatting(DonatedUser.displayName, "other", true) + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          
+        }
+         else
+        {
+         const embed = {"description": ErrorMessage5[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
 
-            }
-             else
-            {
-             const embed = {"description": ErrorMessage1[Language],  "color": EmbedColor}; 
-             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };
+        }
+         else
+        {
+         const embed = {"description": ErrorIcon + " You cannot gift the default and exclusive backgrounds.",  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+        }
+         else
+        {
+         const embed = {"description": ErrorMessage1[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
 
         } else {
           const embed = {"description": ErrorIcon + " Be sure to type the item's name in lowercase.",  "color": EmbedColor}; 
