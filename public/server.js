@@ -1784,6 +1784,19 @@ function function_DateFormat(value, type)  {
     value = new Date(value);
   
     if  (type == "Time")  {
+      
+      var ThisDate  = value.getUTCHours();
+      var ThisMonth = value.getUTCMinutes() + 1;
+
+      if  (ThisDate < 10)  {
+          ThisDate = "0" + ThisDate;
+      };
+
+      if  (ThisMonth < 10)  {
+          ThisMonth = "0" + ThisMonth;
+      };
+
+      return Days[value.getUTCDay()] + ", " + ThisDate + ":" + ThisMonth;
         
     } else {
       
