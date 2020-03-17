@@ -7318,7 +7318,7 @@ if  (CommandName == "daily")  {
 
     var CountedVotes = 0;
 
-    if  (new Date() - peeky.userData.get(key, "DailyRewarded") < DayMs)  {
+    if  (new Date() - new Date(peeky.userData.get(key, "DailyRewarded")) < DayMs)  {
   
         var TranslatedMessages = [InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Vraťte se v **X001** pro vaši odměnu.", InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward."];
         var embed = {"description": TranslatedMessages[Language].replace("X001", function_DateFormat(peeky.userData.get(key, "DailyRewarded") + DayMs, "Time")),  "color": EmbedColor};
@@ -7326,7 +7326,7 @@ if  (CommandName == "daily")  {
       
     } else {
 
-      peeky.userData.set(key, new Date(), "DailyRewarded");
+      peeky.userData.set(key, Date.now(), "DailyRewarded");
 
       var Rewards = [[GreditIcon, 250, "Gredit"], [ChestIcon, 1, "Chests"], ["Exp", 1000, "Exp"]];
       var Index = Math.floor((Math.random() * Rewards.length));
@@ -7610,7 +7610,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
         AllBadges.push(badge[0]);
     });
       
-    if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > Setting.BackgroundInvLimit)  {  EndString = " and some more..."  };
+    if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > Setting.BackgroundInvLimit)  {  var EndString = " and some more..."  } else {  var EndString = "";  };
 
     const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**" + peeky.userData.get(key2, "Badges").length + " Badges**\n" + AllBadges.join(', ') + ".",  "color": EmbedColor}; 
     message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
