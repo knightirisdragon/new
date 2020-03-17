@@ -1779,22 +1779,28 @@ function function_ShuffleArray(array) {
 };
 
 //Date Format
-function function_DateFormat(value)  {
+function function_DateFormat(value, type)  {
   
     value = new Date(value);
+  
+    if  (type == "Time")  {
+        
+    } else {
       
-    var ThisDate  = value.getUTCDate();
-    var ThisMonth = value.getUTCMonth() + 1;
-      
-    if  (ThisDate < 10)  {
-        ThisDate = "0" + ThisDate;
-    };
-      
-    if  (ThisMonth < 10)  {
-        ThisMonth = "0" + ThisMonth;
-    };
+      var ThisDate  = value.getUTCDate();
+      var ThisMonth = value.getUTCMonth() + 1;
 
-    return Days[value.getUTCDay()] + ", " + ThisDate + "/" + ThisMonth + "/" + value.getFullYear();
+      if  (ThisDate < 10)  {
+          ThisDate = "0" + ThisDate;
+      };
+
+      if  (ThisMonth < 10)  {
+          ThisMonth = "0" + ThisMonth;
+      };
+
+      return Days[value.getUTCDay()] + ", " + ThisDate + "/" + ThisMonth + "/" + value.getFullYear();
+      
+    };
   
 };
 
@@ -2613,7 +2619,7 @@ if  (!WebsiteCooldowns.has("news"))  {
             ImageLink = m.attachments.array()[0].url;
         }
 
-        NewsList.push('<div class="newsitem" style="background-image: url(' + ImageLink + ')">  <div class="textbackground">  <b class="newsheader">  ' + function_RemoveFormatting(Header, "other", true) + '  </b>  <br>  <b class="newsauthor">  <font color="#7289DA">' + m.author.tag + '</font> @ <font color="#7289DA">' + function_DateFormat(m.createdAt) + '</font>  </b>  <b class="newsbody">  ' + function_ProperSlice(function_RemoveFormatting(Body, "other", false), 250) + '  </b>  <a class="button" href="' + m.url + '">🔍</a>  </div>  </div>');
+        NewsList.push('<div class="newsitem" style="background-image: url(' + ImageLink + ')">  <div class="textbackground">  <b class="newsheader">  ' + function_RemoveFormatting(Header, "other", true) + '  </b>  <br>  <b class="newsauthor">  <font color="#7289DA">' + m.author.tag + '</font> @ <font color="#7289DA">' + function_DateFormat(m.createdAt, "Date") + '</font>  </b>  <b class="newsbody">  ' + function_ProperSlice(function_RemoveFormatting(Body, "other", false), 250) + '  </b>  <a class="button" href="' + m.url + '">🔍</a>  </div>  </div>');
     });
 
     await fs.writeFile('public/news.txt', NewsList.join(""), (err) => {
@@ -2684,7 +2690,7 @@ if  (!WebsiteCooldowns.has("randomreview"))  {
       
     var DaysOld        = Math.ceil((new Date() - peeky.user.createdAt) / 8.64e7) - 1;
     var ReviewDate     = new Date(FilteredReviews[RandomReview].date);
-    var ReviewFullDate = function_DateFormat(ReviewDate);
+    var ReviewFullDate = function_DateFormat(ReviewDate, "Date");
       
     await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + "/5 Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast " + Setting.MinReviewLength + " characters long to show up.</font></center>", (err) => {
         if (err) console.log(err); 
@@ -3220,7 +3226,7 @@ if  (keySF == SupportServer)  {
                 var PurchaseHeader = "**You have purchased Premium status from the [store](https://peeky.glitch.me/store.html)!**";
 
                 peeky.userData.set(key, new Date(), "SupporterLastPurchase");
-                Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs)) + "**.");
+                Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs)) + "**.", "Date");
 
                 if  ( (peeky.userData.has(key, "SupporterSince") == false) || (peeky.userData.has(key, "SupporterSince") && (new Date(peeky.userData.get(key, "SupporterSince")) - new Date() > (MonthMs + (DayMs * 5)))) )  {
                     peeky.userData.set(key, new Date(), "SupporterSince");
@@ -3702,7 +3708,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "3️⃣")  {
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Event Countdown** " + EC + "\n" + "`" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting")) + "`" + "\n\n" +
+                  description:  "**Event Countdown** " + EC + "\n" + "`" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting"), "Date") + "`" + "\n\n" +
                                 "**Reddit Posts** " + RP + "\n" + "`r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "`" + "\n\n" +
                                 "**Vote Kick** " + VK + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 "**Reaction Roles** " + RR + "\n" + "`" + RRArray + "`" + "\n\n" +
@@ -5166,13 +5172,13 @@ if  (CommandName.startsWith("userinfo"))  {
   
     var BoostingSince = "Not boosting";
     if  (SomeoneTagged.premiumSince > 0)  {
-        BoostingSince = function_DateFormat(SomeoneTagged.premiumSince);
+        BoostingSince = function_DateFormat(SomeoneTagged.premiumSince, "Date");
     };
       
     const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.user.tag, "other", true) + "**"
                                   + "\n" + Description
-                                  + "\n\n" + "**Joined Discord**" + "\n" + function_DateFormat(SomeoneTagged.user.createdAt)
-                                  + "\n\n" + "**Joined server**" + "\n" + function_DateFormat(SomeoneTagged.joinedAt)
+                                  + "\n\n" + "**Joined Discord**" + "\n" + function_DateFormat(SomeoneTagged.user.createdAt, "Date")
+                                  + "\n\n" + "**Joined server**" + "\n" + function_DateFormat(SomeoneTagged.joinedAt, "Date")
                                   + "\n\n" + "**Boosting since**" + "\n" + BoostingSince,  "color": SomeoneTagged.displayColor}; 
     await message.channel.send({ embed }).catch(error => {ErrorBag.add(error)});
 
@@ -6320,7 +6326,7 @@ if  (FunctioName.startsWith("event countdown "))  {
 
     peeky.serverData.set(keySF, GivenDate.getTime(), "event_countdown_bonus_setting");
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", "" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting"))),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", "" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting")), "Date"),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
@@ -7259,7 +7265,6 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
               if  (BackgroundChance == 1)  {
 
                   var Background = Math.round(Math.random() * Banners.length);
-                  console.log(Background)
 
                   if  (Background !== 0 && Banners[Background][Banner.Price] !== Exclusive)  {
 
@@ -7298,91 +7303,90 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
 //Daily
 if  (CommandName == "daily")  {
 
-    let cooldown     = DayMs;
     var CountedVotes = 0;
 
-    if  (new Date() - new Date(peeky.userData.get(key, "DailyRewarded")) >= DayMs)  {
+    if  (new Date() - peeky.userData.get(key, "DailyRewarded") < DayMs)  {
   
-    var TranslatedMessages = [InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Vraťte se ", InfoIcon + " Vráť sa v **X001** a **X002** pre tvoju odmenu.", InfoIcon + " Vuelva en **X001** y **X002** para su recompensa.", InfoIcon + " Ödülün için **X001** ve **X002** 'e geri dön."];
-    var embed = {"description": TranslatedMessages[Language].replace("X001", timeObj.hours + "h").replace("X002", timeObj.minutes + "m"),  "color": EmbedColor};
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        var TranslatedMessages = [InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Vraťte se v **X001** pro vaši odměnu.", InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward."];
+        var embed = {"description": TranslatedMessages[Language].replace("X001", function_DateFormat(peeky.userData.get(key, "DailyRewarded") + DayMs, "Time")),  "color": EmbedColor};
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     } else {
-      
-    peeky.userData.set(key, new Date(), "DailyRewarded");
-      
-    var Rewards = [[GreditIcon, 250, "Gredit"], [ChestIcon, 1, "Chests"], ["Exp", 1000, "Exp"]];
-    var Index = Math.floor((Math.random() * Rewards.length));
-    var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
-      
-    //Reward
-    InfoMessages.push("•" + " You have received **" + Amount + " " + Rewards[Index][0] + "** as the Daily reward.");
-    peeky.userData.math(key, "+", Amount, Rewards[Index][2]);
 
-    //Vote DDBL
-    await ddbl.getVotes().then(AllVotes => {
-      
-        var Now = new Date();
-        AllVotes = AllVotes.filter(i => i.id == key && Now - new Date(i.timestamp) <= DayMs);
+      peeky.userData.set(key, new Date(), "DailyRewarded");
 
-        if  (AllVotes.length > 0 == true)  {
-          
-            InfoMessages.push("• " + " You have received **1 " + ChestIcon + "** for voting on DDBL today.");
-            peeky.userData.math(key, "+", 1, "Chests");
-            CountedVotes ++;
+      var Rewards = [[GreditIcon, 250, "Gredit"], [ChestIcon, 1, "Chests"], ["Exp", 1000, "Exp"]];
+      var Index = Math.floor((Math.random() * Rewards.length));
+      var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
 
-        };
-                  
-    }).catch(err => ErrorBag.add(err));
+      //Reward
+      InfoMessages.push("•" + " You have received **" + Amount + " " + Rewards[Index][0] + "** as the Daily reward.");
+      peeky.userData.math(key, "+", Amount, Rewards[Index][2]);
 
-    //Vote BLS
-    await bls.getUpvotes().then(AllVotes => {
-      
-        var Now = new Date();
-        AllVotes = AllVotes.filter(i => i.user.id == key && Now - new Date(i.timestamp) <= DayMs);
+      //Vote DDBL
+      await ddbl.getVotes().then(AllVotes => {
 
-        if  (AllVotes.length > 0 == true)  {
-          
-            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for voting on BLS today.");
-            peeky.userData.math(key, "+", 1, "Chests");
-            CountedVotes ++;
+          var Now = new Date();
+          AllVotes = AllVotes.filter(i => i.id == key && Now - new Date(i.timestamp) <= DayMs);
 
-        };
+          if  (AllVotes.length > 0 == true)  {
 
-    }).catch(err => ErrorBag.add(err));
+              InfoMessages.push("• " + " You have received **1 " + ChestIcon + "** for voting on DDBL today.");
+              peeky.userData.math(key, "+", 1, "Chests");
+              CountedVotes ++;
 
-    //Event Reward
-    if  (Setting.EventStatus == true)  {
-        peeky.userData.math(key, "+", 1, "Chests"); 
-            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** from the event.");
-    };
+          };
 
-    //Premium Reward
-    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(PremiumRole))  {
-        peeky.userData.math(key, "+", 1, "Chests");
-            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a Premium user.");
-    };
+      }).catch(err => ErrorBag.add(err));
 
-    //Server Booster Reward
-    if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
-        peeky.userData.math(key, "+", 1, "Chests");
-            InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a Server Booster.");
-    };
+      //Vote BLS
+      await bls.getUpvotes().then(AllVotes => {
 
-    var Footer = "Thank you for voting for PEEKY!";
-    if  (CountedVotes == 0)  {
-        Footer = "You can get more rewards by typing \"" + Prefix + "help\" and voting for me!";
-    } else {
-      if  (!peeky.userData.get(key, "VoterBadge"))  {
-          peeky.userData.set(key, true, "VoterBadge");  
-            InfoMessages.push("•" + " You have received a new badge.");
+          var Now = new Date();
+          AllVotes = AllVotes.filter(i => i.user.id == key && Now - new Date(i.timestamp) <= DayMs);
+
+          if  (AllVotes.length > 0 == true)  {
+
+              InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for voting on BLS today.");
+              peeky.userData.math(key, "+", 1, "Chests");
+              CountedVotes ++;
+
+          };
+
+      }).catch(err => ErrorBag.add(err));
+
+      //Event Reward
+      if  (Setting.EventStatus == true)  {
+          peeky.userData.math(key, "+", 1, "Chests"); 
+              InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** from the event.");
       };
-      
-      peeky.userData.math(key, "+", CountedVotes, "Votes");
-    };
-      
-    const embed = {"description": InfoMessages.join("\n"),  "footer":  {"text": Footer},  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+      //Premium Reward
+      if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(PremiumRole))  {
+          peeky.userData.math(key, "+", 1, "Chests");
+              InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a Premium user.");
+      };
+
+      //Server Booster Reward
+      if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(BoosterRole))  {
+          peeky.userData.math(key, "+", 1, "Chests");
+              InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a Server Booster.");
+      };
+
+      var Footer = "Thank you for voting for PEEKY!";
+      if  (CountedVotes == 0)  {
+          Footer = "You can get more rewards by typing \"" + Prefix + "help\" and voting for me!";
+      } else {
+        if  (!peeky.userData.get(key, "VoterBadge"))  {
+            peeky.userData.set(key, true, "VoterBadge");  
+              InfoMessages.push("•" + " You have received a new badge.");
+        };
+
+        peeky.userData.math(key, "+", CountedVotes, "Votes");
+      };
+
+      const embed = {"description": InfoMessages.join("\n"),  "footer":  {"text": Footer},  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     };
 
