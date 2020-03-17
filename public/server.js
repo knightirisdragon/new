@@ -7296,17 +7296,14 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
 };
 
 //Daily
-if (CommandName == "daily")  {
+if  (CommandName == "daily")  {
 
     let cooldown     = DayMs;
-    let lastDaily    = peeky.userData.get(key, "DailyRewarded");
     var CountedVotes = 0;
 
-    if (lastDaily !== null && cooldown - (new Date() - lastDaily) > 0) {
-      
-    let timeObj = ms(cooldown - (new Date() - lastDaily));
+    if  (new Date() - new Date(peeky.userData.get(key, "DailyRewarded")) >= DayMs)  {
   
-    var TranslatedMessages = [InfoIcon + " Come back in **X001** and **X002** for your reward.", InfoIcon + " Vraťte se za **X001** a **X002** pro vaši odměnu.", InfoIcon + " Vráť sa v **X001** a **X002** pre tvoju odmenu.", InfoIcon + " Vuelva en **X001** y **X002** para su recompensa.", InfoIcon + " Ödülün için **X001** ve **X002** 'e geri dön."];
+    var TranslatedMessages = [InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Vraťte se ", InfoIcon + " Vráť sa v **X001** a **X002** pre tvoju odmenu.", InfoIcon + " Vuelva en **X001** y **X002** para su recompensa.", InfoIcon + " Ödülün için **X001** ve **X002** 'e geri dön."];
     var embed = {"description": TranslatedMessages[Language].replace("X001", timeObj.hours + "h").replace("X002", timeObj.minutes + "m"),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
