@@ -7326,7 +7326,7 @@ if  (CommandName == "daily")  {
       
     } else {
 
-      peeky.userData.set(key, Date.now(), "DailyRewarded");
+      peeky.userData.set(key, new Date().toString(), "DailyRewarded");
 
       var Rewards = [[GreditIcon, 250, "Gredit"], [ChestIcon, 1, "Chests"], ["Exp", 1000, "Exp"]];
       var Index = Math.floor((Math.random() * Rewards.length));
