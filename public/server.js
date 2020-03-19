@@ -1639,6 +1639,13 @@ function function_RemoveFormatting(text, type, sliced)  {
 
 };
 
+//Censor
+function function_Censor(string, bannedWords)  {
+
+    	
+  
+};
+
 //Detect Link
 function function_DetectLink(string)  {
 
@@ -4876,84 +4883,61 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
         if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(keySF, "banned_words_bonus_setting").some(word => function_RemoveFormatting(message.content.toLowerCase(), "strict", false).includes(word)))  {
 
             message.delete({ timeout: AutoDeleteTime}).catch(error => ErrorBag.add(error));
-          
+
             if  (message.channel.permissionsFor(peeky.user).has('MANAGE_WEBHOOKS'))  {
-            
+
                 message.channel.fetchWebhooks().then(webhook =>  {
 
-                      var FoundHook = webhook.find(w => w.name == "PEEKY: Banned Words");
-                      if  (message.attachments.size > 0)  {  var image = message.attachments.array()[0].url;  } else {  var image = HollowImage;  }; 
+                    var FoundHook = webhook.find(w => w.name == "PEEKY: Banned Words");
+                    var FilteredMessage = function_Censor(message.content, peeky.serverData.get(keySF, "banned_words_bonus_setting"));
+                    if  (message.attachments.size > 0)  {  var image = message.attachments.array()[0].url;  } else {  var image = HollowImage;  }; 
 
-                      var censor = (function() {
-                      function convertToAsterisk(word) {
-                          var asteriskSentence = '';
-                          for(var asterisks=0;asterisks<word.length;asterisks++) {
-                              asteriskSentence+='*';
-                          }
-                          return asteriskSentence;
-                      }
 
-                      return function(sentence, bannedWords) {
-                          sentence    = sentence    || undefined;
-                          bannedWords = bannedWords || undefined;
+                    if  (!FoundHook)  {
 
-                          if(sentence!==undefined && bannedWords!==undefined) {
-                              for(var word=0;word<bannedWords.length;word++) {
-                                  sentence = sentence.replace(bannedWords[word], convertToAsterisk(bannedWords[word]));
-                              }
-                          }
+                        message.channel.createWebhook("PEEKY: Banned Words", peeky.user.displayAvatarURL({ format: 'png' })).catch(error => ErrorBag.add(error)).then(Webhook => {
 
-                          return sentence;
-                      };
-                  })();
+                            Webhook.send(FilteredMessage, {
 
-                      if  (!FoundHook)  {
+                                "username": message.member.displayName,
+                                "avatarURL": message.author.displayAvatarURL({ format: 'png' }),
+                                "files": [image]
 
-                          message.channel.createWebhook("PEEKY: Banned Words", peeky.user.displayAvatarURL({ format: 'png' })).catch(error => ErrorBag.add(error)).then(Webhook => {
+                            }).catch(error => ErrorBag.add(error));
 
-                              Webhook.send(message, {
+                        });
 
-                              "username": message.member.displayName,
-                              "avatarURL": message.author.displayAvatarURL({ format: 'png' }),
-                              "files": [image]
+                    } else {
 
-                              }).catch(error => ErrorBag.add(error));
+                      FoundHook.send(FilteredMessage, {
 
-                          });
+                          "username": message.member.displayName,
+                          "avatarURL": message.author.displayAvatarURL({ format: 'png' }),
+                          "files": [image]
 
-                      } else {
+                      }).catch(error => ErrorBag.add(error));
 
-                         FoundHook.send(message, {
-
-                             "username": message.member.displayName,
-                             "avatarURL": message.author.displayAvatarURL({ format: 'png' }),
-                             "files": [image]
-
-                         }).catch(error => ErrorBag.add(error));
-
-                      };
+                    };
 
                 });
 
             } else
-          
-              if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "BW"))  {
 
-                  ResponseCooldowns.add(message.guild.id + "BW");
-                  setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "BW")}, ResponseCooldownMS);
+            if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "BW"))  {
 
-                  var TranslatedMessages = [InfoIcon + " That phrase is blocked by the **Banned Words** function, **X001**.", InfoIcon + " Tato fráze je pomocí funkce **Banned Words** zablokována, **X001**.", InfoIcon + " Táto fráza je zablokovaná kvôli **Banned Words** funkcii, **X001**.", InfoIcon + " Táto fráza je zablokovaná kvôli **Banned Words** funkcii, **X001**.", InfoIcon + " Esa frase está bloqueada por la función **Banned Words**, **X001**.", InfoIcon + " Bu ifade **Banned Words** fonksiyonu yüzünden engellendi, **X001**.", InfoIcon + " Эта фраза блокируется функцией **Banned Words**, **X001**."];
-                  const embed = {"description": TranslatedMessages[Language].replace("X001", message.member.displayName),  "color": EmbedColor};
-                  message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
+                ResponseCooldowns.add(message.guild.id + "BW");
+                setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "BW")}, ResponseCooldownMS);
 
-              };
+                var TranslatedMessages = [InfoIcon + " That phrase is blocked by the **Banned Words** function, **X001**.", InfoIcon + " Tato fráze je pomocí funkce **Banned Words** zablokována, **X001**.", InfoIcon + " Táto fráza je zablokovaná kvôli **Banned Words** funkcii, **X001**.", InfoIcon + " Táto fráza je zablokovaná kvôli **Banned Words** funkcii, **X001**.", InfoIcon + " Esa frase está bloqueada por la función **Banned Words**, **X001**.", InfoIcon + " Bu ifade **Banned Words** fonksiyonu yüzünden engellendi, **X001**.", InfoIcon + " Эта фраза блокируется функцией **Banned Words**, **X001**."];
+                const embed = {"description": TranslatedMessages[Language].replace("X001", message.member.displayName),  "color": EmbedColor};
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
 
             };
 
-            console.log("The Banned Words function has been triggered in " + message.guild.name + ".");
-            function_UpdateAutowipe(keySF, "server");
-
         };
+
+    console.log("The Banned Words function has been triggered in " + message.guild.name + ".");
+    function_UpdateAutowipe(keySF, "server");
 
     };
   
