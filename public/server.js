@@ -8139,37 +8139,23 @@ if (CommandName == "current")  {
 };
 
 //Queue
-if (CommandName == "queue")  {
+if  (CommandName == "queue")  {
       
-    if  (!MusicCmdCooldown.has(message.author.id))  {
-
-    if  (CurrentlyPlaying.has(message.guild.id) && message.guild.me.voice.channel)  {
-      
-        var Queue = peeky.serverData.get(keySF, "Queue");
-        if  (Queue.length > 0)
-            var FinalizedPlaylist = function_NumarizeArray(Playlist, ["<", ">"])
-        }  else  {
-           var FinalizedPlaylist = "The queue is empty.";
-        };
-
-        const embed = {
-        "image": {
-          "url": Thumbnail
-        },
-        "description": "**Music queue for " + function_RemoveFormatting(message.guild.name, "other", true) + "**" + "\n" +
-                      FinalizedPlaylist + "\n­",
-        "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        
-    } else {
-      const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };  
-
-    } else {
-      const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    var Queue = peeky.serverData.get(keySF, "Queue");
+    if  (Queue.length > 0)  {
+        var FinalizedPlaylist = function_NumarizeArray(Queue, ["<", ">"])
+    }  else  {
+       var FinalizedPlaylist = "The queue is empty.";
     };
+
+    const embed = {
+    "image": {
+      "url": Thumbnail
+    },
+    "description": "**Music queue for " + function_RemoveFormatting(message.guild.name, "other", true) + "**" + "\n" +
+                  FinalizedPlaylist + "\n­",
+    "color": EmbedColor}; 
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 };
 
@@ -8418,14 +8404,17 @@ if (CommandName == "skip")  {
 
                 var CommandArgument = CommandName.split("skip ")[1];
 
-                if  (CommandArgument && peeky.serverData.get(keySF, "Queue").has(CommandArguemnt))  {
+                if  (CommandArgument && peeky.serverData.get(keySF, "Queue").has(CommandArgument) && peeky.serverData.get(keySF, "Queue")[0] !== CommandArgument)  {
+                    var Index = peeky.serverData.get(keySF, "Queue").indexOf(CommandArgument);
+                    peeky.serverData.get(keySF, "Queue").splice(Index, 1);
+                    const embed = {"description": SuccessIcon + " The song has been removed from the queue.", "color": EmbedColor};
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 } else {
                   const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
                   if  (connection && connection.dispatcher)  {
                       connection.dispatcher.end();
                   };
                 };
-
 
             } else {
               var TranslatedMessages = [ErrorIcon + " Only the server owner can skip the song right now.", ErrorIcon + " Písniku může momentálně přeskočit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže zastaviť hudbu teraz.", ErrorIcon + " Sólo el dueño del servidor puede detener esta música ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi durdurabilir."];
