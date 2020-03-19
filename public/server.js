@@ -7043,12 +7043,12 @@ if (CommandName.startsWith("custombackground"))  {
 
                     peeky.userData.math(key, "-", Setting.CustomBackgroundPrice, "Gredit");
                     peeky.userData.set(key, Thumbnail, "Background");
-                    var TranslatedMessages = [SuccessIcon + " You have set your custom background for **X001 " + GreditIcon + "**.", SuccessIcon + " Nastavil jste si vlastní pozadí za **X001 " + GreditIcon + "**.", SuccessIcon + " ", SuccessIcon + " ", SuccessIcon + " ", SuccessIcon + " Вы установили пользовательский фон для **X001 " + GreditIcon + "**."];
+                    var TranslatedMessages = [SuccessIcon + " You have set your custom background for **X001 " + GreditIcon + "**.", SuccessIcon + " Nastavil jste si vlastní pozadí za **X001 " + GreditIcon + "**.", SuccessIcon + " Nastavil si **Vlastné pozadie** pre **X001 " + GreditIcon + "**.", SuccessIcon + " Usted ha establecido un **Fondo personalizado** para **X001 " + GreditIcon + "**.", SuccessIcon + " **X001 " + GreditIcon + "** için bir **Özel Arkaplan** ayarladınız.", SuccessIcon + " Вы установили пользовательский фон для **X001 " + GreditIcon + "**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", Setting.CustomBackgroundPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 } else {
-                  var TranslatedMessages = [ErrorIcon + " Failed to set your custom background.", ErrorIcon + " ", ErrorIcon + " ", ErrorIcon + " ", ErrorIcon + " ", ErrorIcon + " "];
+                  var TranslatedMessages = [ErrorIcon + " Failed to set your custom background.", ErrorIcon + " Nepodařilo se nastavit vaše vlastní pozadí.", ErrorIcon + " Nepodarilo s nastavit vlastné pozadie.", ErrorIcon + " Fallo de establecer su fondo personalizado.", ErrorIcon + " Özel arka planınız ayarlanamadı.", ErrorIcon + " Вы потеряли свой пользовательский опыт."];
                   const embed = {"description": TranslatedMessages[Language].replace("X001", Setting.CustomBackgroundPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -7098,7 +7098,7 @@ if (CommandName.startsWith("setbackground"))  {
 
                 peeky.userData.set(key, i, "Background");
 
-                var TranslatedMessages = [SuccessIcon + " You have set the **X001** background.", SuccessIcon + " Nastavil jste si pozadí **X001**.", SuccessIcon + " Nastavil si **X001** pozadie.", SuccessIcon + " Usted ha puesto el fondo **X001**.", SuccessIcon + " **X001** arka planını ayarladınız."];
+                var TranslatedMessages = [SuccessIcon + " You have set the **X001** background.", SuccessIcon + " Nastavil jste si pozadí **X001**.", SuccessIcon + " Nastavil si **X001** pozadie.", SuccessIcon + " Usted ha puesto el fondo **X001**.", SuccessIcon + " **X001** arka planını ayarladınız.", SuccessIcon + " Вы установили фон **X001**."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7218,14 +7218,14 @@ if  (i !== AllString)  {
                         InfoMessages.push(InfoMessage2[Language]);
                     };
 
-                    var TranslatedMessages = [SuccessIcon + " You have sold the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Predal si **X001** pozadie za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido el fondo **X001** por **X002" + " " + GreditIcon + "**.", SuccessIcon + " **X002** için **X001" + " " + GreditIcon + "** arka planını sattınız.."];
+                    var TranslatedMessages = [SuccessIcon + " You have sold the **X001** background for **X002 " + GreditIcon + "**.", SuccessIcon + " Prodal jste pozadí **X001** za **X002 " + GreditIcon + "**.", SuccessIcon + " Predal si **X001** pozadie za **X002 " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido el fondo **X001** por **X002 " + GreditIcon + "**.", SuccessIcon + " **X002** için **X001 " + GreditIcon + "** arka planını sattınız.", SuccessIcon + " Вы продали фон **X001** за **X002 " + GreditIcon + "**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", FinalPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 }
                  else
                 {
-                  var TranslatedMessages = [ErrorIcon + " You cannot sell the default backgrounds.", ErrorIcon + " Nemůžete prodat základní pozadí.", ErrorIcon + " Nemôžeš predať štandardné pozadia.", ErrorIcon + " Usted no puede vender los fondos predeterminados.", ErrorIcon + " Varsayılan arka planları satamazsınız."];
+                  var TranslatedMessages = [ErrorIcon + " You cannot sell the default backgrounds.", ErrorIcon + " Nemůžete prodat základní pozadí.", ErrorIcon + " Nemôžeš predať štandardné pozadia.", ErrorIcon + " Usted no puede vender los fondos predeterminados.", ErrorIcon + " Varsayılan arka planları satamazsınız.", ErrorIcon + " Вы не можете продать фоны по умолчанию."];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   
                   break;
@@ -7273,7 +7273,7 @@ if  (i !== AllString)  {
       peeky.userData.set(key, SavedBackgrounds, "Inventory");
       peeky.userData.math(key, "+", FullPrice, "Gredit");
 
-      var TranslatedMessages = [SuccessIcon + " You have sold all your backgrounds for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Prodal jste všechna svá pozadí za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Predal si všetky tvoje pozadia za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido todos sus fondos por **X001" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için tüm arka planlarınızı sattınız."];
+      var TranslatedMessages = [SuccessIcon + " You have sold all your backgrounds for **X001 " + GreditIcon + "**.", SuccessIcon + " Prodal jste všechna svá pozadí za **X001 " + GreditIcon + "**.", SuccessIcon + " Predal si všetky tvoje pozadia za **X001 " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido todos sus fondos por **X001 " + GreditIcon + "**.", SuccessIcon + " **X001 " + GreditIcon + "** için tüm arka planlarınızı sattınız.", SuccessIcon + " Вы продали все свои фоны за **X001 " + GreditIcon + "**."];
       const embed = {"description": TranslatedMessages[Language].replace("X001", FullPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7378,7 +7378,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
           peeky.userData.math(key, "-", ChestAmount, "Chests");
           peeky.userData.math(key, "+", TotalLoot, "Gredit");
 
-          var TranslatedMessages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** a získal **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otvoril si **X001" + " " + ChestIcon + "** pro **X002" + " " + GreditIcon +"**.", SuccessIcon + " Usted ha abierto el **X001" + " " + ChestIcon + "** por **X002" + " " + GreditIcon +"**.", SuccessIcon + " **X002" + " " + GreditIcon + "** için **X001" + " " + ChestIcon +"** ürününü açtınız."];
+          var TranslatedMessages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** a získal **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otvoril si **X001" + " " + ChestIcon + "** pro **X002" + " " + GreditIcon +"**.", SuccessIcon + " Usted ha abierto el **X001" + " " + ChestIcon + "** por **X002 " + GreditIcon +"**.", SuccessIcon + " **X002" + " " + GreditIcon + "** için **X001" + " " + ChestIcon +"** ürününü açtınız.", SuccessIcon + " Вы открыли **X001" + " " + ChestIcon + "** за **X002 " + GreditIcon +"**."];
           const embed = {"description": TranslatedMessages[Language].replace("X001", ChestAmount.toLocaleString('en')).replace("X002", TotalLoot.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
           await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
