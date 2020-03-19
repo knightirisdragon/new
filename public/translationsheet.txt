@@ -96,7 +96,6 @@ Your playlist is empty - Playing a random song. |
 The music has now finished with **X001 listeners** | 
 You can only play songs between 1 to 30 minutes. | 
 Failed to get the YouTube video. | 
-You need to join a voice channel. | 
 The song has been added to the queue. | 
 
 Only the server owner can stop this music right now. | 
@@ -178,6 +177,7 @@ You need to provide valid arguments for the command. |
 You need to join the Support Server. | 
 You need to upload a file. | 
 You can only do that in upgraded servers. | 
+You need to join a voice channel. | 
 This command only works in NSFW channels. | 
 
 You have earned a new badge. | 

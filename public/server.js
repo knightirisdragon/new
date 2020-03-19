@@ -180,7 +180,7 @@ const BadFormat      = "invalid";
 const Exclusive      = "Exclusive";
 const EnableStrings  = [  "enabled", "zapnutá", "zapnutá", "encender", "aktif", "Включено"  ];
 const DisableStrings = [  "disabled", "vypnutá", "vypnutá", "apagado", "deaktif", "Включено"  ];
-const Languages      = [  "English",  "Čeština", "Slovenčina", "Español", "Türkçe", "Русский (wip)"  ];
+const Languages      = [  "English",  "Čeština", "Slovenčina", "Español", "Türkçe", "Русский"  ];
 
 //Response Messages
 const CooldownMessage1 = [
@@ -189,7 +189,7 @@ const CooldownMessage1 = [
   ErrorIcon + " Nemôžeš teraz použiť tento command.",
   ErrorIcon + " Actualmente estás en un período de enfriamiento para ese comando.",
   ErrorIcon + " Şu anda bu komutun bekleme süresindesiniz.",
-  ErrorIcon + " ",
+  ErrorIcon + " Вы сейчас на перезагрузке для этой команды.",
   ErrorIcon + " "
 ];
 const CooldownMessage2 = [
@@ -198,7 +198,7 @@ const CooldownMessage2 = [
   ErrorIcon + " Automatickú tvorbu channelov nemôžeš teraz použiť.",
   ErrorIcon + " La creación de canales automatizada está actualmente en proceso de enfriamiento.",
   ErrorIcon + " Otomatik kanal oluşturma şu anda bir bekleme süresinde.",
-  ErrorIcon + " ",
+  ErrorIcon + " Автоматизированное создание канала находится на перезагрузке.",
   ErrorIcon + " "
 ];
 const CooldownMessage3 = [
@@ -207,7 +207,7 @@ const CooldownMessage3 = [
   ErrorIcon + " Automatické vytváranie rolí nemôžeš práve použiť.",
   ErrorIcon + " La creación automatizada de roles está actualmente en proceso de enfriamiento.",
   ErrorIcon + " Otomatik rol oluşturma şu anda bir bekleme süresinde.",
-  ErrorIcon + " ",
+  ErrorIcon + " Автоматизированное создание ролей находится на перезагрузке.",
   ErrorIcon + " "
 ];
 const CooldownMessage4 = [
@@ -216,7 +216,7 @@ const CooldownMessage4 = [
   ErrorIcon + " Nemôžeš teraz použiť túto funkciu.",
   ErrorIcon + " Usted actualmente está en un período de enfriamiento para esa función.",
   ErrorIcon + " Şu anda bu işlev için bir bekleme süresindesiniz.",
-  ErrorIcon + " ",
+  ErrorIcon + " Вы сейчас на перезагрузке для этой функции.",
   ErrorIcon + " "
 ];
 
@@ -226,7 +226,7 @@ const PermissionsMessageError1 = [
   ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť.",
   ErrorIcon + " Usted no tiene los permisos necesarios para hacerlo.",
   ErrorIcon + " Bunu yapmak için gerekli izinlere sahip değilsiniz.",
-  ErrorIcon + " ",
+  ErrorIcon + " У вас нет необходимых разрешений для этого.",
   ErrorIcon + " "
 ];
 const PermissionsMessageError2 = [
@@ -235,7 +235,7 @@ const PermissionsMessageError2 = [
   ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť.",
   ErrorIcon + " Usted necesita ser el dueño de este servidor para hacer eso.",
   ErrorIcon + " Bunu yapmak için bu sunucunun sahibi olmanız gerekir.",
-  ErrorIcon + " ",
+  ErrorIcon + " Для этого вы должны быть владельцем этого сервера.",
   ErrorIcon + " "
 ];
 const PermissionsMessageError3 = [
@@ -244,7 +244,7 @@ const PermissionsMessageError3 = [
   ErrorIcon + " Chýbajú mi požadované povolenia aby som to mohol spraviť.",
   ErrorIcon + " No tengo los permisos necesarios para hacerlo.",
   ErrorIcon + " Bunu yapmak için gerekli izinlere sahip değilim.",
-  ErrorIcon + " ",
+  ErrorIcon + " У меня нет необходимых разрешений для этого.",
   ErrorIcon + " "
 ];
 
@@ -254,7 +254,7 @@ const ErrorMessage1 = [
   ErrorIcon + " Potrebuješ viacej Greditov aby si toto mohol spraviť.",
   ErrorIcon + " Usted necesita más Gredit para hacer eso.",
   ErrorIcon + " Bunu yapmak için daha fazla Gredit'e ihtiyacınız var.",
-  ErrorIcon + " ",
+  ErrorIcon + " Для этого вам нужно больше Gredit.",
   ErrorIcon + " "
 ];
 const ErrorMessage2 = [
@@ -263,7 +263,7 @@ const ErrorMessage2 = [
   ErrorIcon + " Nový popisok je prílíš veľký.",
   ErrorIcon + " La nueva descripción es demasiada larga.",
   ErrorIcon + " Yeni açıklama çok büyük.",
-  ErrorIcon + " ",
+  ErrorIcon + " Новое описание слишком большое.",
   ErrorIcon + " "
 ];
 const ErrorMessage3 = [
@@ -272,7 +272,7 @@ const ErrorMessage3 = [
   ErrorIcon + " Zadaná zmienka je neplatná.",
   ErrorIcon + " La mención proporcionada es inválida.",
   ErrorIcon + " Verilen söz geçersiz.",
-  ErrorIcon + " ",
+  ErrorIcon + " Приведенное упоминание недействительно.",
   ErrorIcon + " "
 ];
 const ErrorMessage4 = [
@@ -281,7 +281,7 @@ const ErrorMessage4 = [
   ErrorIcon + " Musíš zadať platný Youtube odkaz.",
   ErrorIcon + " Usted tiene que entrar en un enlace válido de YouTube.",
   ErrorIcon + " Geçerli bir YouTube bağlantısı girmeniz gerekiyor.",
-  ErrorIcon + " ",
+  ErrorIcon + " Необходимо ввести действительную ссылку YouTube.",
   ErrorIcon + " "
 ];
 const ErrorMessage5 = [
@@ -290,7 +290,7 @@ const ErrorMessage5 = [
   ErrorIcon + " Nemáš toto pozadie v tvojom inventári.",
   ErrorIcon + " Usted no tiene esos fondos en su inventario.",
   ErrorIcon + " nvanterinizde bu arka plan yok.",
-  ErrorIcon + " ",
+  ErrorIcon + " У вас нет этого фона в вашем инвентаре.",
   ErrorIcon + " "
 ];
 const ErrorMessage6 = [
@@ -299,7 +299,7 @@ const ErrorMessage6 = [
   ErrorIcon + " Nemáš dostatok truhlí.",
   ErrorIcon + " Usted no tiene suficientes cofres.",
   ErrorIcon + " Yeterli sandığın yok.",
-  ErrorIcon + " ",
+  ErrorIcon + " У вас недостаточно сундуков.",
   ErrorIcon + " "
 ];
 const ErrorMessage7 = [
@@ -308,7 +308,7 @@ const ErrorMessage7 = [
   ErrorIcon + " Zmienený uživateľ nemá žiadny profil.",
   ErrorIcon + " El usuario mencionado no tiene un perfil.",
   ErrorIcon + " Söz konusu kullanıcının profili yok.",
-  ErrorIcon + " ",
+  ErrorIcon + " У упомянутого пользователя нет профиля.",
   ErrorIcon + " "
 ];
 const ErrorMessage8 = [
@@ -317,7 +317,7 @@ const ErrorMessage8 = [
   ErrorIcon + " Zmienky niesú povolené pre tento command.",
   ErrorIcon + " No se permiten menciones para este comando.",
   ErrorIcon + " Bu komut için bahsetmeye izin verilmez.",
-  ErrorIcon + " ",
+  ErrorIcon + " Упоминания для этой команды запрещены.",
   ErrorIcon + " "
 ];
 const ErrorMessage9 = [
@@ -326,7 +326,7 @@ const ErrorMessage9 = [
   ErrorIcon + " Musíš zadať platnú čiastku.",
   ErrorIcon + " Debe introducir una cantidad válida.",
   ErrorIcon + " Geçerli bir tutar girmelisiniz.",
-  ErrorIcon + " ",
+  ErrorIcon + " Вы должны ввести действительную сумму.",
   ErrorIcon + " "
 ];
 const ErrorMessage10 = [
@@ -335,7 +335,7 @@ const ErrorMessage10 = [
   ErrorIcon + " Uisti sa že mená funkcie su všetky malými písmenami.",
   ErrorIcon + " Asegúrate de que el nombre de la función esté en minúsculas.",
   ErrorIcon + " Fonksiyon adının küçük harfle yazıldığından emin olun.",
-  ErrorIcon + " ",
+  ErrorIcon + " Убедитесь, что название функции написано в нижнем регистре.",
   ErrorIcon + " "
 ];
 const ErrorMessage11 = [
@@ -344,7 +344,7 @@ const ErrorMessage11 = [
   ErrorIcon + " Musíš sa stať Premium uživatelom aby si to mohol spraviť. ",
   ErrorIcon + " Necesitas convertirte en un usuario Premium para hacer eso.",
   ErrorIcon + " Bunu yapmak için Premium kullanıcı olmanız gerekir.",
-  ErrorIcon + " ",
+  ErrorIcon + " Для этого вам нужно стать премиум-пользователем.",
   ErrorIcon + " "
 ];
 const ErrorMessage12 = [
@@ -353,7 +353,7 @@ const ErrorMessage12 = [
   ErrorIcon + " Teraz nehrajú žiadne piesne.",
   ErrorIcon + " No hay ninguna canción sonando ahora mismo.",
   ErrorIcon + " Şu anda çalan şarkı yok.",
-  ErrorIcon + " ",
+  ErrorIcon + " Сейчас не играют песни.",
   ErrorIcon + " "
 ];
 const ErrorMessage13 = [
@@ -362,7 +362,7 @@ const ErrorMessage13 = [
   ErrorIcon + " Niečo sa nečakane pokazilo.",
   ErrorIcon + " Algo ha salido mal inesperadamente.",
   ErrorIcon + " Bir şey beklenmedik bir şekilde yanlış gitti.",
-  ErrorIcon + " ",
+  ErrorIcon + "  Что-то пошло не так.",
   ErrorIcon + " "
 ];
 const ErrorMessage14 = [
@@ -380,7 +380,7 @@ const ErrorMessage15 = [
   ErrorIcon + " Už nemôžeš pridať žiadne piesne do tvojho playlistu.",
   ErrorIcon + " Usted no puede añadir más canciones a su lista de reproducción.",
   ErrorIcon + " Çalma listenize başka şarkı ekleyemezsiniz.",
-  ErrorIcon + " ",
+  ErrorIcon + " Больше нельзя добавлять песни в плейлист.",
   ErrorIcon + " "
 ];
 const ErrorMessage16 = [
@@ -389,7 +389,7 @@ const ErrorMessage16 = [
   ErrorIcon + " To pozadie neexistuje.",
   ErrorIcon + " Ese fondo no existe.",
   ErrorIcon + " Bu arka plan yok.",
-  ErrorIcon + " ",
+  ErrorIcon + " Этот фон не существует.",
   ErrorIcon + " "
 ];
 const ErrorMessage17 = [
@@ -398,7 +398,7 @@ const ErrorMessage17 = [
   ErrorIcon + " Musíš specifikovať funkciu.",
   ErrorIcon + " Es necesario especificar la función.",
   ErrorIcon + " Fonksiyon belirtmeniz gerekir.",
-  ErrorIcon + " ",
+  ErrorIcon + " Вам необходимо указать функцию.",
   ErrorIcon + " "
 ];
 const ErrorMessage18 = [
@@ -407,7 +407,7 @@ const ErrorMessage18 = [
   ErrorIcon + " Musíš zadať platné príkazy pre command.",
   ErrorIcon + " Tienes que proporcionar argumentos válidos para el comando.",
   ErrorIcon + " Komut için geçerli değişkenler sağlamanız gerekiyor.",
-  ErrorIcon + " ",
+  ErrorIcon + " Вам необходимо предоставить действительные аргументы для команды.",
   ErrorIcon + " "
 ];
 const ErrorMessage19 = [
@@ -416,7 +416,7 @@ const ErrorMessage19 = [
   ErrorIcon + " Músíš sa pridať na Server Podpory.",
   ErrorIcon + " Tienes que unirte al Servidor de Soporte.",
   ErrorIcon + " Destek Sunucusuna katılmanız gerekir.",
-  ErrorIcon + " ",
+  ErrorIcon + " Вам нужно присоединиться к серверу поддержки.",
   ErrorIcon + " "
 ];
 const ErrorMessage20 = [
@@ -425,7 +425,7 @@ const ErrorMessage20 = [
   ErrorIcon + " Musíš nahrať súbor.",
   ErrorIcon + " Tienes que subir un archivo.",
   ErrorIcon + " Bir dosya yüklemeniz gerekiyor.",
-  ErrorIcon + " ",
+  ErrorIcon + " Вам нужно загрузить файл.",
   ErrorIcon + " "
 ];
 const ErrorMessage21 = [
@@ -434,7 +434,7 @@ const ErrorMessage21 = [
   ErrorIcon + " Toto môžeš robiť iba v vylepšených serveroch.",
   ErrorIcon + " Sólo puedes hacer eso en servidores actualizados.",
   ErrorIcon + " Bunu yalnızca yükseltilmiş sunucularda yapabilirsiniz.",
-  ErrorIcon + " ",
+  ErrorIcon + " Это можно сделать только на обновленных серверах.",
   ErrorIcon + " "
 ];
 const ErrorMessage22 = [
@@ -443,7 +443,7 @@ const ErrorMessage22 = [
   ErrorIcon + " Musíš sa pripojiť do voice channelu.",
   ErrorIcon + " Usted necesita unirse a un canal de voz.",
   ErrorIcon + " Bir ses kanalına katılmanız gerekir.",
-  ErrorIcon + " ",
+  ErrorIcon + " Вы должны присоединиться к голосовому каналу.",
   ErrorIcon + " "
 ];
 const ErrorMessage23 = [
@@ -451,37 +451,37 @@ const ErrorMessage23 = [
   ErrorIcon + " Tento příkaz funguje pouze v NSFW kanálech.",
   ErrorIcon + " This command only works in NSFW channels.",
   ErrorIcon + " This command only works in NSFW channels.",
-  ErrorIcon + " This command only works in NSFW channels.",
-  ErrorIcon + " This command only works in NSFW channels.",
-  ErrorIcon + " Bu komut sadece NSFW kanalında çalışır."
+  ErrorIcon + " Bu komut sadece NSFW kanalında çalışır.",
+  ErrorIcon + " ",
+  ErrorIcon + " "
 ];
 
 const InfoMessage1 = [
   InfoIcon + " You have earned a new badge.",
   InfoIcon + " Dostal jste nový odznak.",
   InfoIcon + " Získal si nový odznak.",
-  ErrorIcon + " Usted ha ganado una nueva placa.",
-  ErrorIcon + " Yeni bir rozet kazandın.",
-  ErrorIcon + " ",
-  ErrorIcon + " "
+  InfoIcon + " Usted ha ganado una nueva placa.",
+  InfoIcon + " Yeni bir rozet kazandın.",
+  InfoIcon + " Вы заработали новый значок.",
+  InfoIcon + " "
 ];
 const InfoMessage2 = [
   InfoIcon + " You have set the default background.",
   InfoIcon + " Nastavil jste si základní pozadí.",
   InfoIcon + " Nastavil si štandardné pozadie.",
-  ErrorIcon + " Usted ha establecido el fondo predeterminado.",
-  ErrorIcon + " Varsayılan arka planı belirlediniz.",
-  ErrorIcon + " ",
-  ErrorIcon + " "
+  InfoIcon + " Usted ha establecido el fondo predeterminado.",
+  InfoIcon + " Varsayılan arka planı belirlediniz.",
+  InfoIcon + " Вы установили фон по умолчанию.",
+  InfoIcon + " "
 ];
 const InfoMessage3 = [
   InfoIcon + " You have lost your custom background.",
   InfoIcon + " Ztratili jste vaše vlastní pozadí",
   InfoIcon + " Stratil si svoje vlastné pozadie",
-  ErrorIcon + " Usted ha perdido su fondo personalizado.",
-  ErrorIcon + " Üzerinde bulunan özel arkaplanı kaybettin.",
-  ErrorIcon + " Вы потеряли свой пользовательский опыт.",
-  ErrorIcon + " "
+  InfoIcon + " Usted ha perdido su fondo personalizado.",
+  InfoIcon + " Üzerinde bulunan özel arkaplanı kaybettin.",
+  InfoIcon + " Вы потеряли свой пользовательский опыт.",
+  InfoIcon + " "
 ];
 
 //Small Arrays
@@ -3878,7 +3878,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
         } else 
         if  (reaction.emoji.name == "🇷🇺")  {
-            //peeky.serverData.set(keySF, 5, "language");
+            peeky.serverData.set(keySF, 5, "language");
 
             const newEmbed = new Discord.MessageEmbed({
                   description:  "Язык сервера установлен на **Русский**.",
@@ -3889,7 +3889,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
         } else 
         if  (reaction.emoji.name == "🇯🇵")  {
-            //peeky.serverData.set(keySF, 5, "language");
+            //peeky.serverData.set(keySF, 6, "language");
 
             const newEmbed = new Discord.MessageEmbed({
                   description:  "wip",
@@ -5393,7 +5393,7 @@ if  (CommandName == "languages")  {
                                 + "\n\n" + 
                                 Turk + " Türkçe `PlatinBae`"
                                 + "\n\n" + 
-                                Russian + " Русский `TheSongList | WIP`"
+                                Russian + " Русский `TheSongList`"
                                 + "\n\n" + 
                                 Japanese + " Japanese `TheSongList | WIP`",
                   "color": EmbedColor
@@ -7896,7 +7896,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                         if (err) console.log(err); 
                     });
 
-                    var TranslatedMessages = [InfoIcon + " This profile is now featured on the website.", InfoIcon + " Tento profil je nyní vystaven na strance.", InfoIcon + " Tento profil je teraz uvedený na webstránke.", InfoIcon + " Este perfil está ahora en el sitio web.", InfoIcon + " Bu profil artık web sitesinde yer alıyor."];
+                    var TranslatedMessages = [InfoIcon + " This profile is now featured on the website.", InfoIcon + " Tento profil je nyní vystaven na strance.", InfoIcon + " Tento profil je teraz uvedený na webstránke.", InfoIcon + " Este perfil está ahora en el sitio web.", InfoIcon + " Bu profil artık web sitesinde yer alıyor.", InfoIcon + " Этот профиль теперь размещен на сайте."];
                     InfoMessages.push(TranslatedMessages[Language]);
 
                     console.log("The featured profile has been updated.");
@@ -8008,7 +8008,7 @@ if (CommandName.startsWith("play"))  {
 
                                 const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
 
-                                var TranslatedMessages = [InfoIcon + " The music has now finished with **X001 listeners**.", InfoIcon + " Hudba právě skončila s **X001 posluchateli**.", InfoIcon + " Hudba sa skončila s **X001 poslucháčmi**.", InfoIcon + " La música ya se ha terminado con **X001 oyentes**.", InfoIcon + " Müzik şimdi **X001 dinleyicileri** ile bitti."];
+                                var TranslatedMessages = [InfoIcon + " The music has now finished with **X001 listeners**.", InfoIcon + " Hudba právě skončila s **X001 posluchateli**.", InfoIcon + " Hudba sa skončila s **X001 poslucháčmi**.", InfoIcon + " La música ya se ha terminado con **X001 oyentes**.", InfoIcon + " Müzik şimdi **X001 dinleyicileri** ile bitti.", InfoIcon + " Музыка теперь закончена с **X001 слушателей**."];
                                 const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
                                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8040,7 +8040,7 @@ if (CommandName.startsWith("play"))  {
                     });
 
                 } else {
-                  var TranslatedMessages = [ErrorIcon + " You can only play songs between 1 to 30 minutes.", ErrorIcon + " Můžete pouze hrát písničky které trvají 1 až 30 minut.", ErrorIcon + " Môžeš hrať iba pesničky od 1 do 30 minút.", ErrorIcon + " Sólo puedes reproducir canciones entre 1 y 30 minutos.", ErrorIcon + " Yalnızca 1 ila 30 dakika arasında şarkı çalabilirsiniz."];
+                  var TranslatedMessages = [ErrorIcon + " You can only play songs between 1 to 30 minutes.", ErrorIcon + " Můžete pouze hrát písničky které trvají 1 až 30 minut.", ErrorIcon + " Môžeš hrať iba pesničky od 1 do 30 minút.", ErrorIcon + " Sólo puedes reproducir canciones entre 1 y 30 minutos.", ErrorIcon + " Yalnızca 1 ila 30 dakika arasında şarkı çalabilirsiniz.", ErrorIcon + " Вы можете играть песни только от 1 до 30 минут."];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   CurrentlyPlaying.delete(message.guild.id);
@@ -8049,7 +8049,7 @@ if (CommandName.startsWith("play"))  {
             }).catch(error => {
                 ErrorBag.add(error);
 
-                var TranslatedMessages = [ErrorIcon + " Failed to get the YouTube video.", ErrorIcon + " Nepodařilo se získat YouTube video.", ErrorIcon + " Nepodarilo sa nájsť Youtube video.", ErrorIcon + " Fallo en conseguir el vídeo de YouTube.", ErrorIcon + " YouTube videosu alınamadı."];
+                var TranslatedMessages = [ErrorIcon + " Failed to get the YouTube video.", ErrorIcon + " Nepodařilo se získat YouTube video.", ErrorIcon + " Nepodarilo sa nájsť Youtube video.", ErrorIcon + " Fallo en conseguir el vídeo de YouTube.", ErrorIcon + " YouTube videosu alınamadı.", ErrorIcon + " Не смог получить видео с YouTube."];
                 const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 CurrentlyPlaying.delete(message.guild.id);
@@ -8085,7 +8085,7 @@ if (CommandName.startsWith("play"))  {
 
             } else {
 
-              var TranslatedMessages = [InfoIcon + " Previous song not found - playing a random song.", InfoIcon + " Minulá písnička nenalezena - Pehrávám náhodnou písničku.", InfoIcon + " Predchodzá pesnička nenájdená - hrá sa random pesnička.", InfoIcon + " No se ha encontrado la canción anterior... Reproduciendo una canción al azar.", InfoIcon + " Önceki şarkı bulunamadı - rastgele bir şarkı çalıyor."];
+              var TranslatedMessages = [InfoIcon + " Previous song not found - playing a random song.", InfoIcon + " Minulá písnička nenalezena - Pehrávám náhodnou písničku.", InfoIcon + " Predchodzá pesnička nenájdená - hrá sa random pesnička.", InfoIcon + " No se ha encontrado la canción anterior... Reproduciendo una canción al azar.", InfoIcon + " Önceki şarkı bulunamadı - rastgele bir şarkı çalıyor.", InfoIcon + " Предыдущая песня не найдена - исполнение случайной песни."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8122,7 +8122,7 @@ if (CommandName.startsWith("play"))  {
 
             } else {
 
-              var TranslatedMessages = [InfoIcon + " Your playlist is empty - Playing a random song.", InfoIcon + " Váš playlist je prázdný - Přehrávám náhodnou písničku.", InfoIcon + " Tvôj playlist je prázdny - hrá sa random pesnička.", InfoIcon + " Su lista de reproducción está vacía... Reproduciendo una canción al azar.", InfoIcon + " Çalma listeniz boş - Rastgele bir şarkı çalıyor."];
+              var TranslatedMessages = [InfoIcon + " Your playlist is empty - Playing a random song.", InfoIcon + " Váš playlist je prázdný - Přehrávám náhodnou písničku.", InfoIcon + " Tvôj playlist je prázdny - hrá sa random pesnička.", InfoIcon + " Su lista de reproducción está vacía... Reproduciendo una canción al azar.", InfoIcon + " Çalma listeniz boş - Rastgele bir şarkı çalıyor.", InfoIcon + " Ваш плейлист пуст - Воспроизведение случайной песни."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
