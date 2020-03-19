@@ -1969,6 +1969,7 @@ peeky.on('message', async (message) => {
     peeky.userData.ensure(key , {
         UserID: message.author.id,
         OverviewID: null,
+        MusicMenuID: null,
         LanguageID: null,
         lastSeen: Date.now,
 
@@ -5277,6 +5278,35 @@ if (CommandName == "overview")  {
 
 };
       
+//Overview
+if (CommandName == "music")  {
+  
+    if  (!CommandCooldown.has("music" + message.guild.id))  {
+      
+        if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
+
+            CommandCooldown.add("music" + message.guild.id);
+            setTimeout(() => {CommandCooldown.delete("music" + message.guild.id)}, 10000);
+
+            const embed = {"description": "**Music Menu**" + "\n\n" + "🔁 Toggle Loop" + "\n\n" + "🔀 Toggle Randomized Playlists",  "color": EmbedColor}; 
+            await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
+
+                  await m.react("🔁").catch(error => {ErrorBag.add(error)});
+                  await m.react("🔀").catch(error => {ErrorBag.add(error)});
+              
+                  peeky.userData.set(key, m.id, "MusicMenuID");
+
+            }).catch(error => {ErrorBag.add(error)});
+          
+        };
+
+    } else {
+      const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+      
 //Languages
 if  (CommandName == "languages")  {
       
@@ -7859,7 +7889,7 @@ if (CommandName.startsWith("play"))  {
       
         CommandArgument = CommandArgument.replace(" ", "");
   
-    if  (/*!CurrentlyPlaying.has(message.guild.id) &&*/ Queue.length < Setting.QueueLimit && !MusicCmdCooldown.has(message.guild.id))  {
+    if  (/*!CurrentlyPlaying.has(message.guild.id) &&*/ peeky.serverData.get(keySF, "Queue").length < Setting.QueueLimit && !MusicCmdCooldown.has(message.guild.id))  {
       
         var Type = "Started";
         var DeleteMessage = false;
@@ -8029,7 +8059,7 @@ if (CommandName.startsWith("play"))  {
                 const key2 = `${SomeoneTagged.user.id}`;
               
                 function_ShuffleArray(peeky.userData.get(key2, "Playlist")).forEach(song => {
-                    if  (Queue.length < Setting.QueueLimit)  {
+                    if  (peeky.serverData.get(keySF, "Queue").length < Setting.QueueLimit)  {
                         peeky.serverData.get(keySF, "Queue").push(song);
                     };
                 });
