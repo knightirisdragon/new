@@ -4278,6 +4278,11 @@ if  (message.guild.owner !== undefined && !message.author.bot)  {
             peeky.userData.set(key, true, "GopbotBadge");
         };
 
+        //Ownership Badge
+        if  (!peeky.userData.get(key, "OwnershipBadge") && message.author.id == message.guild.owner.user.id)  {
+            peeky.userData.set(key, true, "OwnershipBadge");
+        };
+
     };
   
 };
@@ -4955,7 +4960,7 @@ if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.
 if  ((message.mentions.members.first() && !message.mentions.members.first().user.bot))  {
     const key2 = `${message.mentions.members.first().user.id}`;
     if  (peeky.userData.get(key, "VirusBadge") == true && !peeky.userData.get(key2, "VirusBadge"))  {
-        peeky.userData.get(key2, true, "VirusBadge");
+        peeky.userData.set(key2, true, "VirusBadge");
     };
 };
   
