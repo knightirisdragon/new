@@ -1422,6 +1422,8 @@ function function_ServerData(key)  {
             Started: new Date(),
             Link: "None",
             PlaylistName: "Unknown",
+            Looping: false,
+            RandomPlaylists: false,
 
             welcome_messages_bonus: false,
             welcome_messages_bonus_setting: "welcome_messages",
@@ -3767,8 +3769,50 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
   
 };
   
+//Music Menu
+if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.userData.get(key, "MusicMenuID"))  {           
+  
+    if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+        reaction.users.remove(user.id).catch(error => ErrorBag.add(error));
+    };
+  
+    if  (!CommandCooldown.has("musicmenu" + user.id))  {
+         
+        CommandCooldown.add("musicmenu" + user.id);
+        setTimeout(() => {CommandCooldown.delete("musicmenu" + user.id)}, 2500);
+
+        if  (reaction.emoji.name == "🔁")  {
+          
+            peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "Looping"), "Looping");
+            var StatusString = peeky.serverData.get(keySF, "Looping").toString().replace("true", EnableStrings[0]).replace("false", DisableStrings[0]);
+
+            const newEmbed = new Discord.MessageEmbed({
+                description:  "Looping has been **" + StatusString + "**.",
+                color: EmbedColor
+            });
+
+            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
+        } else
+
+        if  (reaction.emoji.name == "🔀")  {
+          
+            peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "RandomPlaylists"), "RandomPlaylists");
+            var StatusString = peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnableStrings[0]).replace("false", DisableStrings[0]);
+
+            const newEmbed = new Discord.MessageEmbed({
+                description:  "Randomized Playlists have been **" + StatusString + "**.",
+                color: EmbedColor
+            });
+
+            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
+        };      
+      
+  };
+  
+};
+  
 //Language Pages
-if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userData.get(key, "LanguageID"))  {            
+if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userData.get(key, "LanguageID"))  {           
   
     if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
         reaction.users.remove(user.id).catch(error => ErrorBag.add(error));
@@ -8057,8 +8101,13 @@ if (CommandName.startsWith("play"))  {
                 var MentionedMember = message.mentions.members.first();
                 if  (MentionedMember)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
                 const key2 = `${SomeoneTagged.user.id}`;
-              
-                function_ShuffleArray(peeky.userData.get(key2, "Playlist")).forEach(song => {
+
+                var Playlist = peeky.userData.get(key2, "Playlist");
+                if  (peeky.serverData.get(keySF, "RandomPlaylists") == true)  {
+                    Playlist = function_ShuffleArray(peeky.userData.get(key2, "Playlist"));
+                };
+
+                Playlist.forEach(song => {
                     if  (peeky.serverData.get(keySF, "Queue").length < Setting.QueueLimit)  {
                         peeky.serverData.get(keySF, "Queue").push(song);
                     };
@@ -8470,51 +8519,6 @@ if (CommandName == "skip")  {
       const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-
-};
-
-//Loop
-if (CommandName == "loop")  {
-      
-    //if  (peeky.serverData.get(keySF, "server_upgraded") == true)  {
-      
-        if  (message.member.voice.channel)  {
-      
-            var OwnerActive = false;
-
-            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
-                OwnerActive = true;
-            };
-
-            if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
-
-                peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "Looping"), "Looping");
-
-                var TranslatedMessages = [SuccessIcon + " Music looping has been **X001**.", SuccessIcon + " Smyčka u písniček byla **X001**."];
-                if  (peeky.serverData.get(keySF, "Looping") == false)  {
-                    var CurrentString = DisableStrings;
-                } else {
-                  var CurrentString = EnableStrings;
-                };
-
-                const embed = {"description": TranslatedMessages[Language].replace("X001", CurrentString[Language]),  "color": EmbedColor};
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-            } else {
-              var TranslatedMessages = [ErrorIcon + " Only the server owner can loop the music right now.", ErrorIcon + " Nastavit smyčku u písniček může pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže opakuvať hudbu teraz.", ErrorIcon + " Sólo el dueño del servidor puede poner la música en bucle ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi döngületebilir."];
-              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };
-
-        } else {
-          const embed = {"description": ErrorMessage22[Language],  "color": EmbedColor};
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
-      
-    /*} else {
-      const embed = {"description": ErrorMessage21[Language],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };*/
 
 };
 
