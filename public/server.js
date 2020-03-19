@@ -7862,7 +7862,7 @@ if (CommandName.startsWith("play"))  {
         MusicCmdCooldown.add(message.guild.id);
         setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 30000);
       
-        peeky.serverData.set(keySF, [], "Queue");
+        //peeky.serverData.set(keySF, [], "Queue");
       
         async function PlayMusic(voiceChannel)  {
 
@@ -8069,7 +8069,7 @@ if (CommandName.startsWith("play"))  {
                     if  (!CurrentlyPlaying.has(message.guild.id))  {
                         PlayMusic(voiceChannel);
                     } else {
-                      var TranslatedMessages = [ErrorIcon + " The song has been added to the queue.", ErrorIcon + " The song has been added to the queue.", ErrorIcon + " The song has been added to the queue.", ErrorIcon + " The song has been added to the queue.", ErrorIcon + " The song has been added to the queue."];
+                      var TranslatedMessages = [SuccessIcon + " The song has been added to the queue.", SuccessIcon + " The song has been added to the queue.", SuccessIcon + " The song has been added to the queue.", SuccessIcon + " The song has been added to the queue.", SuccessIcon + " The song has been added to the queue."];
                       const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
@@ -8125,6 +8125,41 @@ if (CommandName == "current")  {
         const Queue     = peeky.serverData.get(keySF, "Queue");
 
         await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, Length, "minutes left", "Current", peeky.serverData.get(keySF, "Queue"), message.member, peeky.serverData.get(keySF, "LastPlaylist"))).catch(error => ErrorBag.add(error));
+        
+    } else {
+      const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };  
+
+    } else {
+      const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+
+//Queue
+if (CommandName == "queue")  {
+      
+    if  (!MusicCmdCooldown.has(message.author.id))  {
+
+    if  (CurrentlyPlaying.has(message.guild.id) && message.guild.me.voice.channel)  {
+      
+        var Queue = peeky.serverData.get(keySF, "Queue");
+        if  (Queue.length > 0)
+            var FinalizedPlaylist = function_NumarizeArray(Playlist, ["<", ">"])
+        }  else  {
+           var FinalizedPlaylist = "The queue is empty.";
+        };
+
+        const embed = {
+        "image": {
+          "url": Thumbnail
+        },
+        "description": "**Music queue for " + function_RemoveFormatting(message.guild.name, "other", true) + "**" + "\n" +
+                      FinalizedPlaylist + "\n­",
+        "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         
     } else {
       const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
@@ -8381,10 +8416,16 @@ if (CommandName == "skip")  {
 
             if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
 
-                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-                if  (connection && connection.dispatcher)  {
-                    connection.dispatcher.end();
+                var CommandArgument = CommandName.split("skip ")[1];
+
+                if  (CommandArgument && peeky.serverData.get(keySF, "Queue").has(CommandArguemnt))  {
+                } else {
+                  const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                  if  (connection && connection.dispatcher)  {
+                      connection.dispatcher.end();
+                  };
                 };
+
 
             } else {
               var TranslatedMessages = [ErrorIcon + " Only the server owner can skip the song right now.", ErrorIcon + " Písniku může momentálně přeskočit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže zastaviť hudbu teraz.", ErrorIcon + " Sólo el dueño del servidor puede detener esta música ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi durdurabilir."];
