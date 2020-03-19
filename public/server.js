@@ -7853,7 +7853,7 @@ if (CommandName.startsWith("play"))  {
       
         CommandArgument = CommandArgument.replace(" ", "");
   
-    if  (!CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
+    if  (/*!CurrentlyPlaying.has(message.guild.id) &&*/ !MusicCmdCooldown.has(message.guild.id))  {
       
         var Type = "Started";
         var DeleteMessage = false;
@@ -7961,7 +7961,7 @@ if (CommandName.startsWith("play"))  {
                   CurrentlyPlaying.delete(message.guild.id);
                 };
 
-            }).catch(async (error) => {
+            }).catch(error => {
                 ErrorBag.add(error);
 
                 var TranslatedMessages = [ErrorIcon + " Failed to get the YouTube video.", ErrorIcon + " Nepodařilo se získat YouTube video.", ErrorIcon + " Nepodarilo sa nájsť Youtube video.", ErrorIcon + " Fallo en conseguir el vídeo de YouTube.", ErrorIcon + " YouTube videosu alınamadı."];
@@ -8059,23 +8059,23 @@ if (CommandName.startsWith("play"))  {
 
         if  ((Queue.length > 0) && (Queue[0].includes("youtube.com") || Queue[0].includes("youtu.be")) && !Queue[0].includes("?list=") && (ytdl.validateURL(Queue[0]) == true))  {
           
-        if  (message.member.voice.channel)  {
+            if  (message.member.voice.channel)  {
 
-            const voiceChannel  = message.member.voice.channel;
+                const voiceChannel  = message.member.voice.channel;
 
-        if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
+                if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
 
-            PlayMusic(voiceChannel);
+                    PlayMusic(voiceChannel);
 
-        } else {
-          const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
+                } else {
+                  const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
 
-        } else {
-          const embed = {"description": ErrorMessage22[Language],  "color": EmbedColor};
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
+            } else {
+              const embed = {"description": ErrorMessage22[Language],  "color": EmbedColor};
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
 
         } else {
           const embed = {"description": ErrorMessage4[Language],  "color": EmbedColor}; 
