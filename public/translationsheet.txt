@@ -76,7 +76,7 @@ You have bought a random description for **X001**. |
 You have bought the **X001** background for **X002**. | 
 You cannot buy the default and exclusive backgrounds. | 
 
-You have set a **Custom Background** for **X001**. | 
+You have set a custom background for **X001**. | 
 Failed to set your custom background. | 
 
 You have set the **X001** background. | 

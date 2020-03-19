@@ -480,7 +480,7 @@ const InfoMessage3 = [
   InfoIcon + " Stratil si svoje vlastné pozadie",
   ErrorIcon + " Usted ha perdido su fondo personalizado.",
   ErrorIcon + " Üzerinde bulunan özel arkaplanı kaybettin.",
-  ErrorIcon + " ",
+  ErrorIcon + " Вы потеряли свой пользовательский опыт.",
   ErrorIcon + " "
 ];
 
@@ -5157,7 +5157,7 @@ if (CommandName.startsWith("upgrade"))  {
     }
      else 
     {
-      var TranslatedMessages = [ErrorIcon + " You cannot upgrade this server.", ErrorIcon + " Tento server vylepšit nemůžete.", ErrorIcon + " Nemôžeš vylepšiť tento server.", ErrorIcon + " No puedes actualizar este servidor.", ErrorIcon + " Bu sunucuyu yükseltemezsiniz."];
+      var TranslatedMessages = [ErrorIcon + " You cannot upgrade this server.", ErrorIcon + " Tento server vylepšit nemůžete.", ErrorIcon + " Nemôžeš vylepšiť tento server.", ErrorIcon + " No puedes actualizar este servidor.", ErrorIcon + " Bu sunucuyu yükseltemezsiniz.", ErrorIcon + " Вы не можете обновить этот сервер."];
       const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
@@ -5188,11 +5188,11 @@ if (CommandName == "setinvite")  {
 
                 if  (Invites.length > 0) {
                     peeky.serverData.set(keySF, Invites[0].code, "server_invite");
-                    var TranslatedMessages = [SuccessIcon + " The server's invite code has been set to **X001**.", SuccessIcon + " Pozvánka tohoto server byla nastavea na **X001**.", SuccessIcon + " Kód pozvania pre tento server bol nastavený na **X001**.", SuccessIcon + " El código de invitación del servidor se ha fijado en **X001**.", SuccessIcon + " Sunucunun davet kodu **X001** olarak ayarlandı."];
+                    var TranslatedMessages = [SuccessIcon + " The server's invite code has been set to **X001**.", SuccessIcon + " Pozvánka tohoto server byla nastavea na **X001**.", SuccessIcon + " Kód pozvania pre tento server bol nastavený na **X001**.", SuccessIcon + " El código de invitación del servidor se ha fijado en **X001**.", SuccessIcon + " Sunucunun davet kodu **X001** olarak ayarlandı.", SuccessIcon + " Код приглашения сервера установлен на **X001**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", Invites[0].code),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 } else {
-                    var TranslatedMessages = [ErrorIcon + " I could not find any server invites in this channel.", ErrorIcon + " V tomto kanále jsem nenašel žádné pozvánky.", ErrorIcon + " Nemohol som nájsť žiadne pozvánky pre tento channel.", ErrorIcon + " No pude encontrar invitaciones de servidor en este canal.", ErrorIcon + " Bu kanalda hiçbir sunucu davetiyesi bulamadım."];
+                    var TranslatedMessages = [ErrorIcon + " I could not find any server invites in this channel.", ErrorIcon + " V tomto kanále jsem nenašel žádné pozvánky.", ErrorIcon + " Nemohol som nájsť žiadne pozvánky pre tento channel.", ErrorIcon + " No pude encontrar invitaciones de servidor en este canal.", ErrorIcon + " Bu kanalda hiçbir sunucu davetiyesi bulamadım.", ErrorIcon + " Я не смог найти никаких серверных приглашений в этом канале."];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -5442,19 +5442,19 @@ if  (message.mentions.channels.first() == undefined && message.mentions.roles.fi
 
     var ManageChannels = false;
     var ManageRoles = false;
-    var TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je nyní **X002**.", SuccessIcon + " **X001** funkcia bola **X002**.", SuccessIcon + " La función **X001** ha sido **X002**.", SuccessIcon + " **X001** fonksiyonu artık **X002**."];
+    var TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je nyní **X002**.", SuccessIcon + " **X001** funkcia bola **X002**.", SuccessIcon + " La función **X001** ha sido **X002**.", SuccessIcon + " **X001** fonksiyonu artık **X002**.", SuccessIcon + " Функция **X001** была **X002**."];
   
     if  (message.guild.me.permissions.has("MANAGE_CHANNELS"))  {
         ManageChannels = true;  
       
-        var TranslatedBonuses = [InfoIcon + " Created a channel called **X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál s názvem **X001** pro funkci **X002**.", InfoIcon + " Vytvoril som channel pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un canal llamado **#X001** para la función **X002**.", InfoIcon + " **X002** fonksiyonu için **#X001** adlı bir kanal oluşturuldu."];
+        var TranslatedBonuses = [InfoIcon + " Created a channel called **X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál s názvem **X001** pro funkci **X002**.", InfoIcon + " Vytvoril som channel pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un canal llamado **#X001** para la función **X002**.", InfoIcon + " **X002** fonksiyonu için **#X001** adlı bir kanal oluşturuldu.", InfoIcon + " Создал канал с именем **#X001** для функции **X002**."];
         var ChannelCreation = TranslatedBonuses[Language]
     };
   
     if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
         ManageRoles = true;
       
-        var TranslatedBonuses = [InfoIcon + " Created a role called **@X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **@X001** pro funkci **X002**.", InfoIcon + " Vytvoril som rolu pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un papel llamado **X001** para la función **@X002**.", InfoIcon + " **@X002** işlevi için **X001** adlı bir rol oluşturdu."];
+        var TranslatedBonuses = [InfoIcon + " Created a role called **@X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **@X001** pro funkci **X002**.", InfoIcon + " Vytvoril som rolu pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un papel llamado **X001** para la función **@X002**.", InfoIcon + " **@X002** işlevi için **X001** adlı bir rol oluşturdu.", InfoIcon + " Создал роль под названием **X001** для функции **@X002**."];
         var RoleCreation = TranslatedBonuses[Language];
     };
   
@@ -6283,8 +6283,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
-    var TranslatedMessages = [SuccessIcon + " The setting for the **X001** function is now **X002**.", SuccessIcon + " Nastavení pro funkci **X001** je nyní **X002**.", SuccessIcon + " Nastavenie pre **X001** funkciu je teraz **X002*.", SuccessIcon + " El ajuste de la función **X001** es ahora **X002**.", SuccessIcon + " **X001** fonksiyonu **X002** olarak ayarlandı."];
-    var TranslatedFullSetting = [ErrorIcon + " The setting for the **X001** function is full.", ErrorIcon + " Nastavení pro funcki **X001** je plné.", ErrorIcon + " Nastavenie pre **X001** funkciu je plné.", ErrorIcon + " El ajuste de la función **X001** está lleno.", ErrorIcon + " **X001** fonksiyonu için ayar dolu."];
+    var TranslatedMessages = [SuccessIcon + " The setting for the **X001** function is now **X002**.", SuccessIcon + " Nastavení pro funkci **X001** je nyní **X002**.", SuccessIcon + " Nastavenie pre **X001** funkciu je teraz **X002*.", SuccessIcon + " El ajuste de la función **X001** es ahora **X002**.", SuccessIcon + " **X001** fonksiyonu **X002** olarak ayarlandı.", SuccessIcon + " Настройка для функции **X001** теперь составляет **X002**."];
+    var TranslatedFullSetting = [ErrorIcon + " The setting for the **X001** function is full.", ErrorIcon + " Nastavení pro funcki **X001** je plné.", ErrorIcon + " Nastavenie pre **X001** funkciu je plné.", ErrorIcon + " El ajuste de la función **X001** está lleno.", ErrorIcon + " **X001** fonksiyonu için ayar dolu.", ErrorIcon + " Настройка для функции **X001** заполнена."];
   
     if  (!peeky.userData.get(key, "FunctionalBadge"))  {
         peeky.userData.set(key, true, "FunctionalBadge");
@@ -6797,8 +6797,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 
 if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-    var TranslatedMessages = [SuccessIcon + " Cleared the setting for the **X001** function.", SuccessIcon + " Nastavení pro funkci **X001** bylo vyčištěno.", SuccessIcon + " Vymazal som nastavenie pre **X001** funkciu.", SuccessIcon + " Despejó la configuración de la función **X001**.", SuccessIcon + " **X001** adlı fonksiyonun ayarı sıfırlandı."];
- 
+    var TranslatedMessages = [SuccessIcon + " Cleared the setting for the **X001** function.", SuccessIcon + " Nastavení pro funkci **X001** bylo vyčištěno.", SuccessIcon + " Vymazal som nastavenie pre **X001** funkciu.", SuccessIcon + " Despejó la configuración de la función **X001**.", SuccessIcon + " **X001** adlı fonksiyonun ayarı sıfırlandı.", SuccessIcon + " Очистили настройку для функции **X001**."];
+
 //Clear Banned Words
 if  (FunctioName.startsWith("banned words"))  {
       
@@ -6909,7 +6909,7 @@ if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.gui
 
             if  (NewLinesCount < 2)  {
               
-                var TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si nový popisok pre **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una nueva descripción para **X001" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için yeni bir açıklama aldınız."];
+                var TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si nový popisok pre **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una nueva descripción para **X001" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için yeni bir açıklama aldınız.", SuccessIcon + " Вы купили новое описание для **X001" + " " + GreditIcon + "**."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6927,7 +6927,7 @@ if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.gui
              else
             {
 
-              var TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si random popisok pre **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una descripción aleatoria para el **X001**" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için rastgele bir açıklama aldınız."];
+              var TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si random popisok pre **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una descripción aleatoria para el **X001**" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için rastgele bir açıklama aldınız.", SuccessIcon + " Вы купили случайное описание для **X001" + " " + GreditIcon + "**."];
               const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -6989,7 +6989,7 @@ if  (CommandName.startsWith("buybackground"))  {
                     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
                     peeky.userData.get(key, "Inventory").push(i);
 
-                    var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Kupil si **X001** pozadie pre **X002" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado el fondo **X001** para **X002" + " " + GreditIcon + "**.", SuccessIcon + " **X002" + " " + GreditIcon + "** için **X001** arka planını satın aldınız."];
+                    var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Kupil si **X001** pozadie pre **X002" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado el fondo **X001** para **X002" + " " + GreditIcon + "**.", SuccessIcon + " **X002" + " " + GreditIcon + "** için **X001** arka planını satın aldınız.", SuccessIcon + " Вы купили фон **X001** за **X002" + " " + GreditIcon + "**."];
                     var embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", function_GetBackgroundInfo(i, ["price"]).toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7003,7 +7003,7 @@ if  (CommandName.startsWith("buybackground"))  {
                 };
 
             } else {
-              var TranslatedMessages = [ErrorIcon + " You cannot buy the default and exclusive backgrounds.", ErrorIcon + " Nemůžete si koupit základní a exlusivní pozadí.", ErrorIcon + " Nemôžeš kúpiť štandardné a exkluzívne pozadia.", ErrorIcon + " Usted no puede comprar los fondos predeterminados y exclusivos.", ErrorIcon + " Varsayılan ve özel arka planları satın alamazsınız."];
+              var TranslatedMessages = [ErrorIcon + " You cannot buy the default and exclusive backgrounds.", ErrorIcon + " Nemůžete si koupit základní a exlusivní pozadí.", ErrorIcon + " Nemôžeš kúpiť štandardné a exkluzívne pozadia.", ErrorIcon + " Usted no puede comprar los fondos predeterminados y exclusivos.", ErrorIcon + " Varsayılan ve özel arka planları satın alamazsınız.", ErrorIcon + " Вы не можете купить стандартный и эксклюзивный фон."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7043,12 +7043,13 @@ if (CommandName.startsWith("custombackground"))  {
 
                     peeky.userData.math(key, "-", Setting.CustomBackgroundPrice, "Gredit");
                     peeky.userData.set(key, Thumbnail, "Background");
-
-                    const embed = {"description": SuccessIcon + " You have set a **Custom Background** for **" + Setting.CustomBackgroundPrice.toLocaleString('en') + " " + GreditIcon + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                    var TranslatedMessages = [SuccessIcon + " You have set your custom background for **X001 " + GreditIcon + "**.", SuccessIcon + " Nastavil jste si vlastní pozadí za **X001 " + GreditIcon + "**.", SuccessIcon + " ", SuccessIcon + " ", SuccessIcon + " ", SuccessIcon + " Вы установили пользовательский фон для **X001 " + GreditIcon + "**."];
+                    const embed = {"description": TranslatedMessages[Language].replace("X001", Setting.CustomBackgroundPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 } else {
-                  const embed = {"description": ErrorIcon + " Failed to set your custom background.",  "color": EmbedColor}; 
+                  var TranslatedMessages = [ErrorIcon + " Failed to set your custom background.", ErrorIcon + " ", ErrorIcon + " ", ErrorIcon + " ", ErrorIcon + " ", ErrorIcon + " "];
+                  const embed = {"description": TranslatedMessages[Language].replace("X001", Setting.CustomBackgroundPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
