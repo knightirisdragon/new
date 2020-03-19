@@ -2085,14 +2085,17 @@ peeky.on('message', async (message) => {
         //Publisher
     if  (peeky.userData.get(key, "PublisherBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:publisher:569215883109466143> Publisher", "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpublisher.png?1555782065115"]);  };
       
+        //Ownership
+    if  (peeky.userData.get(key, "OwnershipBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:ownership:690313133893484585> Ownership", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fownership.png?v=1584653887288"]);  };
+      
         //Functional
     if  (peeky.userData.get(key, "FunctionalBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:functional:671566795420991490> Functional", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunctional.png?v=1580185431868"]);  };
       
         //Gopbot
     if  (peeky.userData.get(key, "GopbotBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gopbot:624643543037771841> GOPBOT", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgopbot.png?v=1568997070177"]);  };
       
-        //Miner (Rare)
-    if  (peeky.userData.get(key, "MinerBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:miner:624330470460620831> Miner (Rare)", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fminer.png?v=1568922629305"]);  };
+        //Miner
+    if  (peeky.userData.get(key, "MinerBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:miner:624330470460620831> Miner", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fminer.png?v=1568922629305"]);  };
       
         //Gamer
     if  (peeky.userData.get(key, "GamerBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gamer:624330470288654337> Gamer", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgamer.png?v=1568922624710"]);  };
@@ -4947,14 +4950,13 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
 if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.author.id) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES' && 'EMBED_LINKS'))  {
   
 //Mention Commands
-
+  
+//Virus Badge
 if  ((message.mentions.members.first() && !message.mentions.members.first().user.bot))  {
     const key2 = `${message.mentions.members.first().user.id}`;
-  
     if  (peeky.userData.get(key, "VirusBadge") == true && !peeky.userData.get(key2, "VirusBadge"))  {
         peeky.userData.get(key2, true, "VirusBadge");
     };
-
 };
   
 //Help
