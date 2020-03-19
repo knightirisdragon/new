@@ -1319,7 +1319,8 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type,
 
     //Header
     ctx.font = "15px " + Setting.DefaultFont;
-    if  (Type == "Started")  {
+    ctx.fillText("Playing a song from " + Author + ".", 15, 310);
+    /*if  (Type == "Started")  {
         ctx.fillText(Member.displayName + " has requested " + Author + "'s song.", 15, 310);
     }  else if  (Type == "Playlist")  {
         //ctx.font = "13px " + Setting.DefaultFont;
@@ -1336,7 +1337,7 @@ async function function_MusicEmbed(Title, Thumbnail, Author, Length, User, Type,
         } else {
           ctx.fillText("Next song is starting in approximately " + function_TimeLeft(Length, "minutes", null) + " minutes.", 15, 310);
         };
-    };
+    };*/
 
     //Song Name
     ctx.font = "20px " + Setting.DefaultFont;
@@ -3785,10 +3786,6 @@ if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.user
           
             peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "Looping"), "Looping");
             var StatusString = peeky.serverData.get(keySF, "Looping").toString().replace("true", EnableStrings[0]).replace("false", DisableStrings[0]);
-        
-            const newEmbed = {"description": "Looping has been **" + StatusString + "**.",
-                              "color": EmbedColor}; 
-            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
 
         } else
 
@@ -3796,12 +3793,16 @@ if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.user
           
             peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "RandomPlaylists"), "RandomPlaylists");
             var StatusString = peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnableStrings[0]).replace("false", DisableStrings[0]);
-        
-            const newEmbed = new Discord.MessageEmbed({"description": "Randomized Playlists have been **" + StatusString + "**.",
-                              "color": EmbedColor});
-            reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
           
         };
+      
+        const newEmbed = new Discord.MessageEmbed({
+          "description":
+          "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" +
+          "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon),
+          "color": EmbedColor
+        });
+        reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
       
   };
   

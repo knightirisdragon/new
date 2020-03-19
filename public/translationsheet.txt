@@ -104,7 +104,6 @@ You have cleared your playlist of **X001 songs**. |
 The song has been added to the queue. | 
 Only the server owner can stop this music right now. | 
 Only the server owner can skip this song right now. | 
-Only the server owner can loop the music right now. | 
 
 **Try to guess the name of this song!** | 
 
