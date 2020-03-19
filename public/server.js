@@ -1639,13 +1639,6 @@ function function_RemoveFormatting(text, type, sliced)  {
 
 };
 
-//Censor
-function function_Censor(string, bannedWords)  {
-
-    	
-  
-};
-
 //Detect Link
 function function_DetectLink(string)  {
 
@@ -4889,13 +4882,14 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
                 message.channel.fetchWebhooks().then(webhook =>  {
 
                     var FoundHook = webhook.find(w => w.name == "PEEKY: Banned Words");
-                    var FilteredMessage = function_Censor(message.content, peeky.serverData.get(keySF, "banned_words_bonus_setting"));
+                    var FilteredMessage = message.content.replace(new RegExp(peeky.serverData.get(keySF, "banned_words_bonus_setting").join("|"),"gi"), word => { return word.replace(/./g,'#') });
                     if  (message.attachments.size > 0)  {  var image = message.attachments.array()[0].url;  } else {  var image = HollowImage;  }; 
-
 
                     if  (!FoundHook)  {
 
-                        message.channel.createWebhook("PEEKY: Banned Words", peeky.user.displayAvatarURL({ format: 'png' })).catch(error => ErrorBag.add(error)).then(Webhook => {
+                        message.channel.createWebhook("PEEKY: Banned Words", { avatar: 'https://i.imgur.com/mI8XcpG.jpg',
+  reason: 'Needed a cool new Webhook'
+}).catch(error => ErrorBag.add(error)).then(Webhook => {
 
                             Webhook.send(FilteredMessage, {
 
