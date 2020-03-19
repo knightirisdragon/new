@@ -2070,6 +2070,9 @@ peeky.on('message', async (message) => {
         //Good
     if  (peeky.userData.get(key, "Karma") >= 50)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:good:605138883138551838> Good", "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581"]);  };
       
+        //Virus
+    if  (peeky.userData.get(key, "VirusBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:Virus:690307666991644896> Virus", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2FVirus.png?v=1584652541863"]);  };
+      
         //Party
     if  (peeky.userData.get(key, "PartyBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:party:578689336116248618> Party", "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fparty.png?1558040749323"]);  };
       
@@ -4089,7 +4092,7 @@ if  (peeky.serverData.get(keySF, "message_log_bonus") == true)  {
 
               if  (!FoundHook)  {
 
-                  Channel.createWebhook("PEEKY: Message Log", peeky.user.displayAvatarURL({ format: 'png' })).catch(error => ErrorBag.add(error)).then(Webhook => {
+                  Channel.createWebhook("PEEKY: Message Log", { avatar: peeky.user.displayAvatarURL({ format: 'png' }) }).catch(error => ErrorBag.add(error)).then(Webhook => {
 
                       Webhook.send(OriginalMessageEdited + "\n­", {
 
@@ -4887,9 +4890,7 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
 
                     if  (!FoundHook)  {
 
-                        message.channel.createWebhook("PEEKY: Banned Words", { avatar: 'https://i.imgur.com/mI8XcpG.jpg',
-  reason: 'Needed a cool new Webhook'
-}).catch(error => ErrorBag.add(error)).then(Webhook => {
+                        message.channel.createWebhook("PEEKY: Banned Words", { avatar: peeky.user.displayAvatarURL({ format: 'png' }) }).catch(error => ErrorBag.add(error)).then(Webhook => {
 
                             Webhook.send(FilteredMessage, {
 
