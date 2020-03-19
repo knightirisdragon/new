@@ -40,8 +40,6 @@ The ticket has been renamed to **#X001**. |
 **X001** has logged **X002**'s message. | 
 That message was already logged, **X001**. | 
 
-Please restrain yourself from using profanity, **X001**. | 
-
 You can only send images in this channel, **X001**. | 
 
 Server Age: X001 days | 
@@ -57,8 +55,8 @@ Support PEEKY by purchasing some neat items from the store! |
 Join the Support Server for important announcements, assistance with the bot, giveaways and much more! | 
 Add PEEKY to your server and get all the features for free and quick! | 
 
-You cannot upgrade this server. | 
 This server is now upgraded! | 
+You cannot upgrade this server. | 
 
 The server's invite code has been set to **X001**. | 
 I could not find any server invites in this channel. | 
