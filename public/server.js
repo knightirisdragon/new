@@ -1880,6 +1880,12 @@ peeky.on('ready', () => {
         function_UpdateBans();
         peeky.guilds.get(SupportServer).members.fetch();
     }, 10000);
+  
+    //Clear Queues
+    var filtered = peeky.serverData.filter( p => p.GuildID && p.Queue && p.Queue.length > 0);
+    filtered.forEach(data => {
+        peeky.serverData.set(data.GuildID, [], "Queue");
+    });
 
     setInterval(() => {
       
@@ -7853,7 +7859,7 @@ if (CommandName.startsWith("play"))  {
       
         CommandArgument = CommandArgument.replace(" ", "");
   
-    if  (/*!CurrentlyPlaying.has(message.guild.id) &&*/ !MusicCmdCooldown.has(message.guild.id))  {
+    if  (/*!CurrentlyPlaying.has(message.guild.id) &&*/ Queue.length < Setting.QueueLimit && !MusicCmdCooldown.has(message.guild.id))  {
       
         var Type = "Started";
         var DeleteMessage = false;
@@ -8023,7 +8029,9 @@ if (CommandName.startsWith("play"))  {
                 const key2 = `${SomeoneTagged.user.id}`;
               
                 function_ShuffleArray(peeky.userData.get(key2, "Playlist")).forEach(song => {
-                    peeky.serverData.get(keySF, "Queue").push(song);
+                    if  (Queue.length < Setting.QueueLimit)  {
+                        peeky.serverData.get(keySF, "Queue").push(song);
+                    };
                 });
                 Type = "Playlist";
                 peeky.serverData.set(keySF, peeky.userData.get(key2, "PlaylistName"), "LastPlaylist");
@@ -8152,8 +8160,9 @@ if  (CommandName == "queue")  {
     "image": {
       "url": Thumbnail
     },
-    "description": "**Music queue for " + function_RemoveFormatting(message.guild.name, "other", true) + "**" + "\n" +
-                  FinalizedPlaylist + "\n­",
+    "description": "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s Queue**" + "\n" +
+                   peeky.serverData.get(keySF, "Queue").length + "/" + Setting.QueueLimit + " songs" + "\n\n" +
+                   FinalizedPlaylist,
     "color": EmbedColor}; 
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
