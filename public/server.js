@@ -371,7 +371,7 @@ const ErrorMessage14 = [
   ErrorIcon + " Nemôžem nájsť rolu pod menom **X001**.",
   ErrorIcon + " No puedo encontrar un papel llamado **X001**.",
   ErrorIcon + " **X001** adında bir rol bulamıyorum.",
-  ErrorIcon + " ",
+  ErrorIcon + " Я не могу найти роль под названием **X001**.",
   ErrorIcon + " "
 ];
 const ErrorMessage15 = [
@@ -8904,7 +8904,7 @@ if  (CommandArgument.startsWith(" "))  {
                         });
 
                     if  (Failed == false)  {
-                        var TranslatedMessages = [SuccessIcon + " I have muted **X001** at **X002**'s request.", SuccessIcon + " Ztlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Mutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He silenciado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine susturdum."];
+                        var TranslatedMessages = [SuccessIcon + " I have muted **X001** at **X002**'s request.", SuccessIcon + " Ztlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Mutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He silenciado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine susturdum.", SuccessIcon + " Я приглушил **X001** по запросу **X002**."];
                         const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
@@ -8984,7 +8984,7 @@ if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
                 });
 
                 if  (Failed == false)  {
-                    var TranslatedMessages = [SuccessIcon + " I have unmuted **X001** at **X002**'s request.", SuccessIcon + " Odtlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Unmutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He anulado el silencio de **X001** a petición de **X002**.", SuccessIcon + " **X002**'nin isteği üzerine **X001**'in sesini açtım."];
+                    var TranslatedMessages = [SuccessIcon + " I have unmuted **X001** at **X002**'s request.", SuccessIcon + " Odtlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Unmutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He anulado el silencio de **X001** a petición de **X002**.", SuccessIcon + " **X002**'nin isteği üzerine **X001**'in sesini açtım.", SuccessIcon + " Я отглушить **X001** по запросу **X002**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -9062,7 +9062,7 @@ if  (CommandName.startsWith("idban"))  {
             });
 
             if  (Failed == false)  {
-                var TranslatedMessages = [SuccessIcon + " I have ID banned **X001** at **X002**'s request.", SuccessIcon + " ID Zabanoval jsem **X001 zpráv** na požádání od **X002**.", SuccessIcon + " ID Bannul som **X001** na **X002* požiadavku.", SuccessIcon + " He baneado por ID a **X001** a petición de **X002**.", SuccessIcon + " **X002**'nin isteği üzerine **X001** ID ile yasakladım."];
+                var TranslatedMessages = [SuccessIcon + " I have ID banned **X001** at **X002**'s request.", SuccessIcon + " ID Zabanoval jsem **X001 zpráv** na požádání od **X002**.", SuccessIcon + " ID Bannul som **X001** na **X002* požiadavku.", SuccessIcon + " He baneado por ID a **X001** a petición de **X002**.", SuccessIcon + " **X002**'nin isteği üzerine **X001** ID ile yasakladım.", SuccessIcon + " Я запретил **X001** по ID по запросу **X002**."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.users.get(CommandArgument).username).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -9070,7 +9070,7 @@ if  (CommandName.startsWith("idban"))  {
         }
          else
         {
-         var TranslatedMessages = [ErrorIcon + " You cannot ID ban someone inside the server.", ErrorIcon + " Nemůžete ID Zabanovat někoho na serveru.", ErrorIcon + " Nemôžeš ID zabanovať niekoho v serveri.", ErrorIcon + " No se puede banear por ID a alguien dentro del servidor.", ErrorIcon + " Sunucu içindeki birisinin kimliğini yasaklayamazsınız."];
+         var TranslatedMessages = [ErrorIcon + " You cannot ID ban someone inside the server.", ErrorIcon + " Nemůžete ID Zabanovat někoho na serveru.", ErrorIcon + " Nemôžeš ID zabanovať niekoho v serveri.", ErrorIcon + " No se puede banear por ID a alguien dentro del servidor.", ErrorIcon + " Sunucu içindeki birisinin kimliğini yasaklayamazsınız.", ErrorIcon + " Вы не можете запретить кого-то по ID внутри сервера."];
          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
@@ -9078,7 +9078,7 @@ if  (CommandName.startsWith("idban"))  {
         }
          else
         {
-         var TranslatedMessages = [ErrorIcon + " You must enter a valid ID.", ErrorIcon + " Musíte zadat validní ID.", ErrorIcon + " Músíš zadať platnú ID.", ErrorIcon + " Debe introducir un ID válido.", ErrorIcon + " Geçerli bir ID girmelisiniz."];
+         var TranslatedMessages = [ErrorIcon + " You must enter a valid ID.", ErrorIcon + " Musíte zadat validní ID.", ErrorIcon + " Músíš zadať platnú ID.", ErrorIcon + " Debe introducir un ID válido.", ErrorIcon + " Geçerli bir ID girmelisiniz.", ErrorIcon + " Вы должны ввести действительное ID."];
          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
@@ -9124,7 +9124,7 @@ if  (CommandName.startsWith("ban"))  {
                 });
 
                 if  (Failed == false)  {
-                    var TranslatedMessages = [SuccessIcon + " I have banned **X001** at **X002**'s request.", SuccessIcon + " Zabanoval jsem **X001 zpráv** na požádání od **X002**.", SuccessIcon + " Bannul som **X001** na **X002* požiadavku.", SuccessIcon + " He baneado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine yasakladım."];
+                    var TranslatedMessages = [SuccessIcon + " I have banned **X001** at **X002**'s request.", SuccessIcon + " Zabanoval jsem **X001 zpráv** na požádání od **X002**.", SuccessIcon + " Bannul som **X001** na **X002* požiadavku.", SuccessIcon + " He baneado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine yasakladım.", SuccessIcon + " Я запретил **X001** по запросу **X002**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -9132,7 +9132,7 @@ if  (CommandName.startsWith("ban"))  {
             }
              else
             {
-              var TranslatedMessages = [ErrorIcon + " You cannot ban that user.", ErrorIcon + " Tohoto uživatele zabanovat nemůžete.", ErrorIcon + " Nemôžeš zabanovať tohoto uživateľa.", ErrorIcon + " Usted no puede banear a aquel usuario.", ErrorIcon + " Bu kullanıcıyı yasaklayamazsınız."];
+              var TranslatedMessages = [ErrorIcon + " You cannot ban that user.", ErrorIcon + " Tohoto uživatele zabanovat nemůžete.", ErrorIcon + " Nemôžeš zabanovať tohoto uživateľa.", ErrorIcon + " Usted no puede banear a aquel usuario.", ErrorIcon + " Bu kullanıcıyı yasaklayamazsınız.", ErrorIcon + " Вы не можете запретить этого пользователя."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -9171,7 +9171,7 @@ if  (CommandName.startsWith("kick"))  {
                 });
 
                 if  (Failed == false)  {
-                    var TranslatedMessages = [SuccessIcon + " I have kicked **X001** at **X002**'s request.", SuccessIcon + " Vykopl jsem **X001 zpráv** na požádání od **X002**.", SuccessIcon + " Vyhodul som **X001** na **X002* požiadavku.", SuccessIcon + " He kickeado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine attım."];
+                    var TranslatedMessages = [SuccessIcon + " I have kicked **X001** at **X002**'s request.", SuccessIcon + " Vykopl jsem **X001 zpráv** na požádání od **X002**.", SuccessIcon + " Vyhodul som **X001** na **X002* požiadavku.", SuccessIcon + " He kickeado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine attım.", SuccessIcon + " выгнал **X001** по запросу **X002**."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -9179,7 +9179,7 @@ if  (CommandName.startsWith("kick"))  {
             }
              else
             {
-              var TranslatedMessages = [ErrorIcon + " You cannot kick that user.", ErrorIcon + " Tohoto uživatele vykopnout nemůžete.", ErrorIcon + " Nemôžeš vyhodiť tohoto uživateľa.", ErrorIcon + " Usted no puede kickear a aquel usuario.", ErrorIcon + " Bu kullanıcıyı atamazsın."];
+              var TranslatedMessages = [ErrorIcon + " You cannot kick that user.", ErrorIcon + " Tohoto uživatele vykopnout nemůžete.", ErrorIcon + " Nemôžeš vyhodiť tohoto uživateľa.", ErrorIcon + " Usted no puede kickear a aquel usuario.", ErrorIcon + " Bu kullanıcıyı atamazsın.", ErrorIcon + " Вы не можете выгнать этого пользователя."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
             };
 
@@ -9216,7 +9216,7 @@ if  (CommandName.startsWith("slowmode"))  {
 
                 message.channel.setRateLimitPerUser(CommandArgument, "Slowmode set by " + message.author.tag + ".").catch(error => ErrorBag.add(error));
                   
-                var TranslatedMessages = [SuccessIcon + " I have set the slowmode to **X001 seconds** at **X002**'s request.", SuccessIcon + " Nastavil jsem pomalý režím na **X001 vteřin** na požádání od **X002**.", SuccessIcon + " Nastavil som slowmode na **X001 sekundy** na **X002* požiadavku.", SuccessIcon + " He fijado el modo lento a **X001 segundos** a petición de **X002**.", SuccessIcon + " Yavaş modu **X002**'nin isteği üzerine **X001 saniye** olarak ayarladım."];
+                var TranslatedMessages = [SuccessIcon + " I have set the slowmode to **X001 seconds** at **X002**'s request.", SuccessIcon + " Nastavil jsem pomalý režím na **X001 vteřin** na požádání od **X002**.", SuccessIcon + " Nastavil som slowmode na **X001 sekundy** na **X002* požiadavku.", SuccessIcon + " He fijado el modo lento a **X001 segundos** a petición de **X002**.", SuccessIcon + " Yavaş modu **X002**'nin isteği üzerine **X001 saniye** olarak ayarladım.", SuccessIcon + " Я установил медленный режим на **X001 секунд** по запросу **X002**."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -9273,7 +9273,7 @@ if  (CommandName.startsWith("purge"))  {
                     });
 
                     if  (Failed == false)  {
-                        var TranslatedMessages = [SuccessIcon + " I have purged **X001 messages** at **X002**'s request.", SuccessIcon + " Smazal jsem **X001 zpráv** na požádání od **X002**.", SuccessIcon + " Vymazal som **X001 správ** na **X002** požiadavku.", SuccessIcon + " He purgado **X001** mensajes a petición de **X002**.", SuccessIcon + " **X002**'nin isteği üzerine **X001 mesajlarını** temizledim."];
+                        var TranslatedMessages = [SuccessIcon + " I have purged **X001 messages** at **X002**'s request.", SuccessIcon + " Smazal jsem **X001 zpráv** na požádání od **X002**.", SuccessIcon + " Vymazal som **X001 správ** na **X002** požiadavku.", SuccessIcon + " He purgado **X001** mensajes a petición de **X002**.", SuccessIcon + " **X002**'nin isteği üzerine **X001 mesajlarını** temizledim.", SuccessIcon + " Я удалил **X001 сообщений** по запросу **X002**."];
                         const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
@@ -9281,7 +9281,7 @@ if  (CommandName.startsWith("purge"))  {
             }
              else
             {
-              var TranslatedMessages = [ErrorIcon + " You can only purge 1 to 100 messages.", ErrorIcon + " Můžete vyčistit jenom 1 až 100 zpráv.", ErrorIcon + " Môžeš zmazať iba od 1 do 100 správ.", ErrorIcon + " Sólo puede purgar de 1 a 100 mensajes.", ErrorIcon + " Yalnızca 1 ila 100 iletiyi temizleyebilirsiniz."];
+              var TranslatedMessages = [ErrorIcon + " You can only purge 1 to 100 messages.", ErrorIcon + " Můžete vyčistit jenom 1 až 100 zpráv.", ErrorIcon + " Môžeš zmazať iba od 1 do 100 správ.", ErrorIcon + " Sólo puede purgar de 1 a 100 mensajes.", ErrorIcon + " Yalnızca 1 ila 100 iletiyi temizleyebilirsiniz.", ErrorIcon + " Вы можете очистить только от 1 до 100 сообщений."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -9326,7 +9326,7 @@ if  (CommandName.startsWith("prefix"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "prefix");
           
-            var TranslatedMessages = [SuccessIcon + " The prefix is now **X001**.", SuccessIcon + " Prefix je teď **X001**.", SuccessIcon + " Predvoľba je teraz **X001**.", SuccessIcon + " El prefijo es ahora **X001**.", SuccessIcon + " Önek(prefix) şimdi **X001**."];
+            var TranslatedMessages = [SuccessIcon + " The prefix is now **X001**.", SuccessIcon + " Prefix je teď **X001**.", SuccessIcon + " Predvoľba je teraz **X001**.", SuccessIcon + " El prefijo es ahora **X001**.", SuccessIcon + " Önek şimdi **X001**.", SuccessIcon + " Префикс теперь **X001**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -9368,7 +9368,7 @@ if  (CommandName.startsWith("highlightedchannel"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
           
-            var TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **#X001**.", SuccessIcon + " Zvýraznený channel je teraz **#X001**.", SuccessIcon + " El canal resaltado es ahora **#X001**.", SuccessIcon + " Vurgulanan kanal şimdi **#X001**."];
+            var TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **#X001**.", SuccessIcon + " Zvýraznený channel je teraz **#X001**.", SuccessIcon + " El canal resaltado es ahora **#X001**.", SuccessIcon + " Vurgulanan kanal şimdi **#X001**.", SuccessIcon + " Выделенный канал теперь **#X001**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -9402,7 +9402,7 @@ if  (CommandName.startsWith("functionnotifications"))  {
 
         peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "level_notifications"),"level_notifications");
 
-        var TranslatedMessages = [SuccessIcon + " The function notifications are now set to **X001**.", SuccessIcon + " Upozornění na funkce jsou teď nastaveny na **X001**.", SuccessIcon + " Notifikácie funkcii su teraz nastavené na **X001**.", SuccessIcon + " Las notificaciones de función están ahora fijadas en **X001**.", SuccessIcon + " Fonksiyon bildirimleri artık **X001** olarak ayarlanmıştır."];
+        var TranslatedMessages = [SuccessIcon + " The function notifications are now set to **X001**.", SuccessIcon + " Upozornění na funkce jsou teď nastaveny na **X001**.", SuccessIcon + " Notifikácie funkcii su teraz nastavené na **X001**.", SuccessIcon + " Las notificaciones de función están ahora fijadas en **X001**.", SuccessIcon + " Fonksiyon bildirimleri artık **X001** olarak ayarlanmıştır.", SuccessIcon + " Функция уведомлений теперь установлена на **X001**."];
         const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "function_notifications")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -9422,7 +9422,7 @@ if  (CommandName.startsWith("levelnotifications"))  {
 
         peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "level_notifications"),"level_notifications");
 
-        var TranslatedMessages = [SuccessIcon + " The level notifications are now set to **X001**.", SuccessIcon + " Upozornění na levely jsou teď nastaveny na **X001**.", SuccessIcon + " Level notifikácii je teraz nastavený na **X001**.", SuccessIcon + " Las notificaciones de nivel están ahora fijadas en **X001**.", SuccessIcon + " Seviye bildirimleri artık **X001** olarak ayarlanmıştır."];
+        var TranslatedMessages = [SuccessIcon + " The level notifications are now set to **X001**.", SuccessIcon + " Upozornění na levely jsou teď nastaveny na **X001**.", SuccessIcon + " Level notifikácii je teraz nastavený na **X001**.", SuccessIcon + " Las notificaciones de nivel están ahora fijadas en **X001**.", SuccessIcon + " Seviye bildirimleri artık **X001** olarak ayarlanmıştır.", SuccessIcon + " Уведомления об уровне теперь установлены на **X001**."];
         const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "level_notifications")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -9496,13 +9496,13 @@ if  (CommandName.startsWith("muterole"))  {
 
                        });
 
-                       var TranslatedMessages = [InfoIcon + " Edited **X001** channels for the **@X002** role.", InfoIcon + " Upravil jsem **X001** kanálu pro roli **X002**.", InfoIcon + " Upravené **X001** channely pre **@X002** rolu.", InfoIcon + " Edite **X001** canales para el papel **@X002**.", InfoIcon + " **@X002** rolü için **X001** kanalları düzenlendi."];
+                       var TranslatedMessages = [InfoIcon + " Edited **X001** channels for the **@X002** role.", InfoIcon + " Upravil jsem **X001** kanálu pro roli **X002**.", InfoIcon + " Upravené **X001** channely pre **@X002** rolu.", InfoIcon + " Edite **X001** canales para el papel **@X002**.", InfoIcon + " **@X002** rolü için **X001** kanalları düzenlendi.", InfoIcon + " Отредактировано **X001** каналов для роли **@X002**."];
                        InfoMessages.push(TranslatedMessages[Language].replace("X001", Amount + "/" + FilteredChannels.length).replace("X002", CommandArgument));     
 
                   }
                    else
                   {
-                   var TranslatedMessages = [ErrorIcon + " Couldn't edit channels for the **@X001** role.", ErrorIcon + " Nemohl jsem upravit kanály pro roli **X001**.", ErrorIcon + " Nemohol som upraviť channely pre **@X001** rolu.", ErrorIcon + " No pude editar los canales para el papel **@X001**.", ErrorIcon + " **@X001** rolü için kanallar düzenlenemedi."];
+                   var TranslatedMessages = [ErrorIcon + " Couldn't edit channels for the **@X001** role.", ErrorIcon + " Nemohl jsem upravit kanály pro roli **X001**.", ErrorIcon + " Nemohol som upraviť channely pre **@X001** rolu.", ErrorIcon + " No pude editar los canales para el papel **@X001**.", ErrorIcon + " **@X001** rolü için kanallar düzenlenemedi.", ErrorIcon + " Не смог отредактировать каналы для роли **@X001**."];
                    InfoMessages.push(TranslatedMessages[Language].replace("X001", CommandArgument));   
                   };
 
@@ -9517,7 +9517,7 @@ if  (CommandName.startsWith("muterole"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "muted_role");
           
-            var TranslatedMessages = [SuccessIcon + " The mute role is now set to **@X001**.", SuccessIcon + " Role na ztlumení je teď nastavena na **@X001**.", SuccessIcon + " Mute rola je teraz nastavená na **@X001*.", SuccessIcon + " El papel de mute está ahora fijado en **@X001**.", SuccessIcon + " Sessiz rolü şimdi **@X001** olarak ayarlanmıştır."];
+            var TranslatedMessages = [SuccessIcon + " The mute role is now set to **@X001**.", SuccessIcon + " Role na ztlumení je teď nastavena na **@X001**.", SuccessIcon + " Mute rola je teraz nastavená na **@X001*.", SuccessIcon + " El papel de mute está ahora fijado en **@X001**.", SuccessIcon + " Sessiz rolü şimdi **@X001** olarak ayarlanmıştır.", SuccessIcon + " Роль отглушение теперь установлена на **@X001**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 

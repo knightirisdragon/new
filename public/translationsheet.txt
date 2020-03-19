@@ -89,7 +89,16 @@ You have opened **X001** for **X002**. |
 
 Come back at **X001** for your daily reward. | 
 
+This profile is now featured on the website. | 
+
+Previous song not found - playing a random song. | 
+Your playlist is empty - Playing a random song. | 
+The music has now finished with **X001 listeners** | 
+You can only play songs between 1 to 30 minutes. | 
+Failed to get the YouTube video. | 
+You need to join a voice channel. | 
 The song has been added to the queue. | 
+
 Only the server owner can stop this music right now. | 
 Only the server owner can skip this song right now. | 
 
@@ -106,30 +115,26 @@ You have cleared your playlist of **X001 songs**. |
 
 **Try to guess the name of this song!** | 
 
-I cannot find a role called **X001**. | 
-Edited **X001** channels for the **@X002** role. | 
-Couldn't edit channels for the **@X001** role. | 
-
 I have set the slowmode to **X001 seconds** at **X002**'s request. | 
-
-You can only purge 1 to 100 messages. | 
-I have purged **X001 messages** at **X002**'s request. | 
-
-I have kicked **X001** at **X002**'s request. | 
-You cannot kick that user. | 
-
-I have banned **X001** at **X002**'s request. |
-You cannot ban that user. | 
-
-I have ID banned **X001** at **X002**'s request. | 
-You cannot ID ban someone inside the server. | 
-You must enter a valid ID. | 
 
 I have muted **X001** at **X002**'s request. | 
 You cannot unmute that user. | 
 
 I have unmuted **X001** at **X002**'s request. | 
 You cannot mute that user. | 
+
+I have ID banned **X001** at **X002**'s request. | 
+You cannot ID ban someone inside the server. | 
+You must enter a valid ID. | 
+
+I have banned **X001** at **X002**'s request. |
+You cannot ban that user. | 
+
+I have kicked **X001** at **X002**'s request. | 
+You cannot kick that user. | 
+
+You can only purge 1 to 100 messages. | 
+I have purged **X001 messages** at **X002**'s request. | 
 
 The prefix is now **X001**. | 
 
@@ -140,15 +145,8 @@ The function notifications are now set to **X001**. |
 The level notifications are now set to **X001**. | 
 
 The mute role is now set to **@X001**. | 
-
-This profile is now featured on the website. | 
-
-Previous song not found - playing a random song. | 
-Your playlist is empty - Playing a random song. | 
-The music has now finished with **X001 listeners** | 
-You can only play songs between 1 to 30 minutes. | 
-Failed to get the YouTube video. | 
-You need to join a voice channel. | 
+Edited **X001** channels for the **@X002** role. | 
+Couldn't edit channels for the **@X001** role. | 
 
 You are currently on a cooldown for that command. | 
 Automated channel creation is currently on a cooldown. | 
@@ -172,6 +170,7 @@ Make sure the function's name is all in lowercase. |
 You need to become a Premium user to do that. | 
 There are no songs playing right now. | 
 Something has gone unexpectedly wrong. | 
+I cannot find a role called **X001**. | 
 You cannot add any more songs to your playlist. | 
 That background doesn't exist. | 
 You need to specify the function. | 
