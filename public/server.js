@@ -4882,12 +4882,30 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
                 message.channel.fetchWebhooks().then(webhook =>  {
 
                       var FoundHook = webhook.find(w => w.name == "PEEKY: Banned Words");
-                      if  (message.attachments.size > 0)  {  var image = message.attachments.array()[0].url;  }  else  {  var image = HollowImage;  }; 
+                      if  (message.attachments.size > 0)  {  var image = message.attachments.array()[0].url;  } else {  var image = HollowImage;  }; 
 
-                      var FilteredMsg = message.content.split(" ");
-                      FilteredMsg.forEach(word => {
-                        
-                      });
+                      var censor = (function() {
+                      function convertToAsterisk(word) {
+                          var asteriskSentence = '';
+                          for(var asterisks=0;asterisks<word.length;asterisks++) {
+                              asteriskSentence+='*';
+                          }
+                          return asteriskSentence;
+                      }
+
+                      return function(sentence, bannedWords) {
+                          sentence    = sentence    || undefined;
+                          bannedWords = bannedWords || undefined;
+
+                          if(sentence!==undefined && bannedWords!==undefined) {
+                              for(var word=0;word<bannedWords.length;word++) {
+                                  sentence = sentence.replace(bannedWords[word], convertToAsterisk(bannedWords[word]));
+                              }
+                          }
+
+                          return sentence;
+                      };
+                  })();
 
                       if  (!FoundHook)  {
 
