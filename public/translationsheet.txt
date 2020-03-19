@@ -89,6 +89,10 @@ You have opened **X001** for **X002**. |
 
 Come back at **X001** for your daily reward. | 
 
+The song has been added to the queue. | 
+Only the server owner can stop this music right now. | 
+Only the server owner can skip this song right now. | 
+
 Added the current song to your playlist. | 
 Added the song to your playlist. | 
 You cannot add playlists to your playlist. | 
@@ -96,33 +100,36 @@ The song has been removed from your playlist. |
 That song is not in your playlist. | 
 Your playlist has been renamed to **X001**. | 
 You have set the thumbnail for your playlist. | 
-You have set the default thumbnail for your playlist. | 
 Failed to set your playlist thumbnail. | 
+You have set the default thumbnail for your playlist. | 
 You have cleared your playlist of **X001 songs**. | 
-The song has been added to the queue. | 
-Only the server owner can stop this music right now. | 
-Only the server owner can skip this song right now. | 
 
 **Try to guess the name of this song!** | 
 
-You cannot mute that user. | 
-You cannot unmute that user. | 
 I cannot find a role called **X001**. | 
 Edited **X001** channels for the **@X002** role. | 
 Couldn't edit channels for the **@X001** role. | 
 
 I have set the slowmode to **X001 seconds** at **X002**'s request. | 
+
 You can only purge 1 to 100 messages. | 
 I have purged **X001 messages** at **X002**'s request. | 
-You cannot kick that user. | 
+
 I have kicked **X001** at **X002**'s request. | 
-You cannot ban that user. | 
+You cannot kick that user. | 
+
 I have banned **X001** at **X002**'s request. |
+You cannot ban that user. | 
+
+I have ID banned **X001** at **X002**'s request. | 
 You cannot ID ban someone inside the server. | 
 You must enter a valid ID. | 
-I have ID banned **X001** at **X002**'s request. | 
+
 I have muted **X001** at **X002**'s request. | 
+You cannot unmute that user. | 
+
 I have unmuted **X001** at **X002**'s request. | 
+You cannot mute that user. | 
 
 The prefix is now **X001**. | 
 

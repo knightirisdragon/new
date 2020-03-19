@@ -7405,7 +7405,7 @@ if  (CommandName == "daily")  {
 
     if  (new Date() - new Date(peeky.userData.get(key, "DailyRewarded")) < DayMs)  {
   
-        var TranslatedMessages = [InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Vraťte se v **X001** pro vaši odměnu.", InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward."];
+        var TranslatedMessages = [InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Vraťte se v **X001** pro vaši odměnu.", InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward."];
         var embed = {"description": TranslatedMessages[Language].replace("X001", function_DateFormat(peeky.userData.get(key, "DailyRewarded") + DayMs, "Time")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
@@ -8161,7 +8161,7 @@ if (CommandName.startsWith("play"))  {
                     if  (!CurrentlyPlaying.has(message.guild.id))  {
                         PlayMusic(voiceChannel);
                     } else {
-                      const embed = {"description": SuccessIcon + " The song has been added to the queue.",  "color": EmbedColor};
+                      const embed = {"description": SuccessIcon + " Added the song(s) to the queue.",  "color": EmbedColor};
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
 
@@ -8275,7 +8275,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
                     peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
 
-                    var TranslatedMessages = [SuccessIcon + " Added the current song to your playlist.", SuccessIcon + " Aktuální písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pridal som aktuálnu pesničku do tvôjho playlistu.", SuccessIcon + " Añadi la canción actual a su lista de reproducción.", SuccessIcon + " Geçerli şarkı çalma listenize eklendi."];
+                    var TranslatedMessages = [SuccessIcon + " Added the current song to your playlist.", SuccessIcon + " Aktuální písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pridal som aktuálnu pesničku do tvôjho playlistu.", SuccessIcon + " Añadi la canción actual a su lista de reproducción.", SuccessIcon + " Geçerli şarkı çalma listenize eklendi.", SuccessIcon + " Добавлена текущая песня в плейлист."];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));    
 
@@ -8299,7 +8299,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
                     peeky.userData.get(key, "Playlist").push(PlaylistRequest);
 
-                    var TranslatedMessages = [SuccessIcon + " Added the song to your playlist.", SuccessIcon + " Písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pesnička pridaná do tvojho playlistu.", SuccessIcon + " Añadí la canción a su lista de reproducción.", SuccessIcon + " Şarkı çalma listenize eklendi."];
+                    var TranslatedMessages = [SuccessIcon + " Added the song to your playlist.", SuccessIcon + " Písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pesnička pridaná do tvojho playlistu.", SuccessIcon + " Añadí la canción a su lista de reproducción.", SuccessIcon + " Şarkı çalma listenize eklendi.", SuccessIcon + " Добавил песню в плейлист."];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8314,7 +8314,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
             };
 
         } else {
-          var TranslatedMessages = [ErrorIcon + " You cannot add playlists to your playlist.", ErrorIcon + " Do svého playlistu nemůžete přidat playlisty.", ErrorIcon + " Nemôžeš pridať playlisty do tvojich playlistov.", ErrorIcon + " No puedes añadir listas de reproducción a su lista de reproducción.", ErrorIcon + " Oynatma listenize oynatma listesi ekleyemezsiniz."];
+          var TranslatedMessages = [ErrorIcon + " You cannot add playlists to your playlist.", ErrorIcon + " Do svého playlistu nemůžete přidat playlisty.", ErrorIcon + " Nemôžeš pridať playlisty do tvojich playlistov.", ErrorIcon + " No puedes añadir listas de reproducción a su lista de reproducción.", ErrorIcon + " Oynatma listenize oynatma listesi ekleyemezsiniz.", ErrorIcon + " Вы не можете добавлять плейлисты в свой плейлист."];
           const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
@@ -8335,12 +8335,12 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             peeky.userData.get(key, "Playlist").splice(BackgroundIndex, 1);  //Remove the background
 
-            var TranslatedMessages = [SuccessIcon + " The song has been removed from your playlist.", SuccessIcon + " Písnička byla odebrána z vašeho playlistu.", SuccessIcon + " Pieseň bola vymazaná z tvôjho playlistu.", SuccessIcon + " La canción ha sido eliminada de su lista de reproducción.", SuccessIcon + " Şarkı, çalma listenizden kaldırıldı."];
+            var TranslatedMessages = [SuccessIcon + " The song has been removed from your playlist.", SuccessIcon + " Písnička byla odebrána z vašeho playlistu.", SuccessIcon + " Pieseň bola vymazaná z tvôjho playlistu.", SuccessIcon + " La canción ha sido eliminada de su lista de reproducción.", SuccessIcon + " Şarkı, çalma listenizden kaldırıldı.", SuccessIcon + " Песня была удалена из вашего плейлиста."];
             const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             } else {
-              var TranslatedMessages = [ErrorIcon + " That song is not in your playlist.", ErrorIcon + " Tato písnička ve vašem playlistu není.", ErrorIcon + " Táto pesnička neni v tvojom playliste.", ErrorIcon + " Esa canción no está en su lista de reproducción.", ErrorIcon + " Bu şarkı çalma listenizde değil."];
+              var TranslatedMessages = [ErrorIcon + " That song is not in your playlist.", ErrorIcon + " Tato písnička ve vašem playlistu není.", ErrorIcon + " Táto pesnička neni v tvojom playliste.", ErrorIcon + " Esa canción no está en su lista de reproducción.", ErrorIcon + " Bu şarkı çalma listenizde değil.", ErrorIcon + " Этой песни нет в твоем плейлисте."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8352,7 +8352,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             peeky.userData.set(key, PlaylistRequest, "PlaylistName")
 
-            var TranslatedMessages = [SuccessIcon + " Your playlist has been renamed to **X001**.", SuccessIcon + " Váš playlist byl přejmenován na **X001**.", SuccessIcon + " Tvôj playlist bol premenovaný na **X001**.", SuccessIcon + " Su lista de reproducción ha sido renombrada a **X001**.", SuccessIcon + " Oynatma listeniz yeniden adlandırıldı **X001**."];
+            var TranslatedMessages = [SuccessIcon + " Your playlist has been renamed to **X001**.", SuccessIcon + " Váš playlist byl přejmenován na **X001**.", SuccessIcon + " Tvôj playlist bol premenovaný na **X001**.", SuccessIcon + " Su lista de reproducción ha sido renombrada a **X001**.", SuccessIcon + " Oynatma listeniz yeniden adlandırıldı **X001**.", SuccessIcon + " Ваш плейлист был переименован в **X001**."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.userData.get(key, "PlaylistName")),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8367,12 +8367,12 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                   
                     peeky.userData.set(key, Thumbnail, "PlaylistThumbnail");
 
-                    var TranslatedMessages = [SuccessIcon + " You have set the thumbnail for your playlist.", SuccessIcon + " Nastavil jste miniaturu pro váš playlist.", SuccessIcon + " Nastavil si náhladovku na tvôj playlist.", SuccessIcon + " Usted ha establecido la miniatura de su lista de reproducción.", SuccessIcon + " Oynatma listeniz için küçük resmi ayarladınız."];
+                    var TranslatedMessages = [SuccessIcon + " You have set the thumbnail for your playlist.", SuccessIcon + " Nastavil jste miniaturu pro váš playlist.", SuccessIcon + " Nastavil si náhladovku na tvôj playlist.", SuccessIcon + " Usted ha establecido la miniatura de su lista de reproducción.", SuccessIcon + " Oynatma listeniz için küçük resmi ayarladınız.", SuccessIcon + " Вы установили миниатюру для своего плейлиста."];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   
                 } else {
-                  var TranslatedMessages = [ErrorIcon + " Failed to set your playlist thumbnail.", ErrorIcon + " Nepodařilo se nastavit miniaturu pro váš playlist.", ErrorIcon + " Nepodarilo sa nastaviť náhladovku pre tvôj playlist.", ErrorIcon + " Fallo en establecer su miniatura de la lista de reproducción.", ErrorIcon + " Oynatma listesi için küçük resminiz ayarlanamadı."];
+                  var TranslatedMessages = [ErrorIcon + " Failed to set your playlist thumbnail.", ErrorIcon + " Nepodařilo se nastavit miniaturu pro váš playlist.", ErrorIcon + " Nepodarilo sa nastaviť náhladovku pre tvôj playlist.", ErrorIcon + " Fallo en establecer su miniatura de la lista de reproducción.", ErrorIcon + " Oynatma listesi için küçük resminiz ayarlanamadı.", ErrorIcon + " Не смог установить миниатюру для плейлиста."];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -8380,7 +8380,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
             } else {
               peeky.userData.set(key, null, "PlaylistThumbnail");
 
-              var TranslatedMessages = [SuccessIcon + " You have set the default thumbnail for your playlist.", SuccessIcon + " Nastavil jste základní miniaturu pro váš playlist.", SuccessIcon + " Nastavil si štandardnú náhladovku pre tvôj playlist.", SuccessIcon + " Usted ha establecido la miniatura predeterminada para su lista de reproducción.", SuccessIcon + " Oynatma listeniz için varsayılan küçük resmi ayarladınız."];
+              var TranslatedMessages = [SuccessIcon + " You have set the default thumbnail for your playlist.", SuccessIcon + " Nastavil jste základní miniaturu pro váš playlist.", SuccessIcon + " Nastavil si štandardnú náhladovku pre tvôj playlist.", SuccessIcon + " Usted ha establecido la miniatura predeterminada para su lista de reproducción.", SuccessIcon + " Oynatma listeniz için varsayılan küçük resmi ayarladınız.", SuccessIcon + " Вы установили миниатюру по умолчанию для своего плейлиста."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8388,7 +8388,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
         } else
         if  (CommandArgument.startsWith(" clear"))  {
 
-            var TranslatedMessages = [SuccessIcon + " You have cleared your playlist of **X001 songs**.", SuccessIcon + " Vyčistili jste svůj playlist od **X001 písniček**.", SuccessIcon + " Vymazal si **X001 piesní** zo svôjho playlistu.", SuccessIcon + " Usted ha limpiado su lista de reproducción de **X001 canciones**.", SuccessIcon + " **X001 şarkıları** oynatma listesi temizlendi."];
+            var TranslatedMessages = [SuccessIcon + " You have cleared your playlist of **X001 songs**.", SuccessIcon + " Vyčistili jste svůj playlist od **X001 písniček**.", SuccessIcon + " Vymazal si **X001 piesní** zo svôjho playlistu.", SuccessIcon + " Usted ha limpiado su lista de reproducción de **X001 canciones**.", SuccessIcon + " **X001 şarkıları** oynatma listesi temizlendi.", SuccessIcon + " Вы очистили свой плейлист от **X001** песен."];
             const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.userData.get(key, "Playlist").length),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8462,7 +8462,7 @@ if (CommandName == "stop")  {
                 CurrentlyPlaying.delete(message.guild.id);
 
             } else {
-              var TranslatedMessages = [ErrorIcon + " Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže preskočiť túto pieseň teraz.", ErrorIcon + " Sólo el dueño del servidor puede saltarse esta canción ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi ilerletebilir."];
+              var TranslatedMessages = [ErrorIcon + " Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže preskočiť túto pieseň teraz.", ErrorIcon + " Sólo el dueño del servidor puede saltarse esta canción ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi ilerletebilir.", ErrorIcon + " Только владелец сервера может остановить эту музыку прямо сейчас."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8508,7 +8508,7 @@ if (CommandName.startsWith("skip ") || CommandName == "skip")  {
                 };
 
             } else {
-              var TranslatedMessages = [ErrorIcon + " Only the server owner can skip the song right now.", ErrorIcon + " Písniku může momentálně přeskočit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže zastaviť hudbu teraz.", ErrorIcon + " Sólo el dueño del servidor puede detener esta música ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi durdurabilir."];
+              var TranslatedMessages = [ErrorIcon + " Only the server owner can skip the song right now.", ErrorIcon + " Písniku může momentálně přeskočit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže zastaviť hudbu teraz.", ErrorIcon + " Sólo el dueño del servidor puede detener esta música ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi durdurabilir.", ErrorIcon + " Только владелец сервера может пропустить эту песню прямо сейчас."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8557,7 +8557,7 @@ if (CommandName == "guessthesong")  {
                     peeky.serverData.set(keySF, new Date(), "Started");
                     peeky.serverData.set(keySF, "", "Link");
 
-                    var TranslatedMessages = ["**Try to guess the name of this song!**", "**Zkuste uhádnout jméno této písničky!**", "**Pokús sa uhádnuť meno tejto piesne!**", "**¡Trata de adivinar el nombre de esta canción!**", "**Bu şarkının adını tahmin etmeye çalışın!**"];
+                    var TranslatedMessages = ["**Try to guess the name of this song!**", "**Zkuste uhádnout jméno této písničky!**", "**Pokús sa uhádnuť meno tejto piesne!**", "**¡Trata de adivinar el nombre de esta canción!**", "**Bu şarkının adını tahmin etmeye çalışın!**", "**Попробуй угадать название этой песни!**"];
                     const embed = {"description": TranslatedMessages[Language] + "\n" + GuessTheSong[ChosenSong][2],  "color": EmbedColor};
                     message.channel.send({ embed });
 
@@ -8912,7 +8912,7 @@ if  (CommandArgument.startsWith(" "))  {
                     }
                      else
                     {
-                     var TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete.", ErrorIcon + " Nemôžeš mutnúť tohoto uživateľa.", ErrorIcon + " No puedes silenciar a ese usuario.", ErrorIcon + " Bu kullanıcının susturamazsınız."];
+                     var TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete.", ErrorIcon + " Nemôžeš mutnúť tohoto uživateľa.", ErrorIcon + " No puedes silenciar a ese usuario.", ErrorIcon + " Bu kullanıcının susturamazsınız.", ErrorIcon + " Вы не можете отключить звук этого пользователя."];
                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
@@ -8992,7 +8992,7 @@ if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
             }
              else
             {
-              var TranslatedMessages = [ErrorIcon + " You cannot unmute that user.", ErrorIcon + " Tohoto uživatele odztlumit nemůžete.", ErrorIcon + " Nemôžeš unmutnúť tohoto uživateľa.", ErrorIcon + " No puedes anular el silencio de ese usuario.", ErrorIcon + " Bu kullanıcının sesini açamazsınız."];
+              var TranslatedMessages = [ErrorIcon + " You cannot unmute that user.", ErrorIcon + " Tohoto uživatele odztlumit nemůžete.", ErrorIcon + " Nemôžeš unmutnúť tohoto uživateľa.", ErrorIcon + " No puedes anular el silencio de ese usuario.", ErrorIcon + " Bu kullanıcının sesini açamazsınız.", ErrorIcon + " Вы не можете отглушить этого пользователя."];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
