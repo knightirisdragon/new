@@ -8057,7 +8057,8 @@ if (CommandName.startsWith("play"))  {
       
         var Queue = peeky.serverData.get(keySF, "Queue");
 
-        if  ((Queue.length > 0) && (Queue[0].includes("youtube.com") || Queue[0].includes("youtu.be")) && !Queue[0].includes("?list=") && (ytdl.validateURL(Queue[0]) == true))  {
+        //if  ((Queue.length > 0) && (Queue[0].includes("youtube.com") || Queue[0].includes("youtu.be")) && !Queue[0].includes("?list=") && (ytdl.validateURL(Queue[0]) == true))  {
+        if  ((Queue.length > 0) && (Queue[Queue.length - 1].includes("youtube.com") || Queue[Queue.length - 1].includes("youtu.be")) && !Queue[Queue.length - 1].includes("?list=") && (ytdl.validateURL(Queue[Queue.length - 1]) == true))  {
           
             if  (message.member.voice.channel)  {
 
@@ -8065,7 +8066,13 @@ if (CommandName.startsWith("play"))  {
 
                 if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
 
-                    PlayMusic(voiceChannel);
+                    if  (!CurrentlyPlaying.has(message.guild.id))  {
+                        PlayMusic(voiceChannel);
+                    } else {
+                      var TranslatedMessages = [ErrorIcon + " The song has been added to the queue.", ErrorIcon + " The song has been added to the queue.", ErrorIcon + " The song has been added to the queue.", ErrorIcon + " The song has been added to the queue.", ErrorIcon + " The song has been added to the queue."];
+                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    };
 
                 } else {
                   const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
