@@ -8156,8 +8156,7 @@ if (CommandName.startsWith("play"))  {
                     if  (!CurrentlyPlaying.has(message.guild.id))  {
                         PlayMusic(voiceChannel);
                     } else {
-                      var TranslatedMessages = [SuccessIcon + " The song has been added to the queue.", SuccessIcon + " The song has been added to the queue.", SuccessIcon + " The song has been added to the queue.", SuccessIcon + " The song has been added to the queue.", SuccessIcon + " The song has been added to the queue."];
-                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                      const embed = {"description": SuccessIcon + " The song has been added to the queue.",  "color": EmbedColor};
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
 
@@ -8476,7 +8475,7 @@ if (CommandName == "stop")  {
 };
 
 //Skip
-if (CommandName == "skip")  {
+if (CommandName.startsWith("skip ") || CommandName == "skip")  {
       
     if  (CurrentlyPlaying.has(message.guild.id))  {
       
@@ -8491,8 +8490,7 @@ if (CommandName == "skip")  {
             if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
 
                 var CommandArgument = CommandName.split("skip ")[1];
-
-                if  (CommandArgument && peeky.serverData.get(keySF, "Queue").has(CommandArgument) && peeky.serverData.get(keySF, "Queue")[0] !== CommandArgument)  {
+                if  (CommandArgument && peeky.serverData.get(keySF, "Queue").includes(CommandArgument) && peeky.serverData.get(keySF, "Queue")[0] !== CommandArgument)  {
                     var Index = peeky.serverData.get(keySF, "Queue").indexOf(CommandArgument);
                     peeky.serverData.get(keySF, "Queue").splice(Index, 1);
                     const embed = {"description": SuccessIcon + " The song has been removed from the queue.", "color": EmbedColor};
