@@ -3785,27 +3785,23 @@ if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.user
           
             peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "Looping"), "Looping");
             var StatusString = peeky.serverData.get(keySF, "Looping").toString().replace("true", EnableStrings[0]).replace("false", DisableStrings[0]);
-
-            const newEmbed = new Discord.MessageEmbed({
-                description:  "Looping has been **" + StatusString + "**.",
-                color: EmbedColor
-            });
-
+        
+            const newEmbed = {"description": "Looping has been **" + StatusString + "**.",
+                              "color": EmbedColor}; 
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
+
         } else
 
         if  (reaction.emoji.name == "🔀")  {
           
             peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "RandomPlaylists"), "RandomPlaylists");
             var StatusString = peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnableStrings[0]).replace("false", DisableStrings[0]);
-
-            const newEmbed = new Discord.MessageEmbed({
-                description:  "Randomized Playlists have been **" + StatusString + "**.",
-                color: EmbedColor
-            });
-
+        
+            const newEmbed = new Discord.MessageEmbed({"description": "Randomized Playlists have been **" + StatusString + "**.",
+                              "color": EmbedColor});
             reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
-        };      
+          
+        };
       
   };
   
@@ -5322,7 +5318,7 @@ if (CommandName == "overview")  {
 
 };
       
-//Overview
+//Music
 if (CommandName == "music")  {
   
     if  (!CommandCooldown.has("music" + message.guild.id))  {
@@ -5332,7 +5328,10 @@ if (CommandName == "music")  {
             CommandCooldown.add("music" + message.guild.id);
             setTimeout(() => {CommandCooldown.delete("music" + message.guild.id)}, 10000);
 
-            const embed = {"description": "**Music Menu**" + "\n\n" + "🔁 Toggle Loop" + "\n\n" + "🔀 Toggle Randomized Playlists",  "color": EmbedColor}; 
+            const embed = {"description":
+                          "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" +
+                          "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon),
+                          "color": EmbedColor};
             await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                   await m.react("🔁").catch(error => {ErrorBag.add(error)});
