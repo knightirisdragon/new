@@ -2071,7 +2071,7 @@ peeky.on('message', async (message) => {
     if  (peeky.userData.get(key, "Karma") >= 50)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:good:605138883138551838> Good", "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fgood.png?v=1564346700581"]);  };
       
         //Virus
-    if  (peeky.userData.get(key, "VirusBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:Virus:690307666991644896> Virus", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2FVirus.png?v=1584652541863"]);  };
+    if  (peeky.userData.get(key, "VirusBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:virus:690307666991644896> Virus", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2FVirus.png?v=1584652541863"]);  };
       
         //Party
     if  (peeky.userData.get(key, "PartyBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:party:578689336116248618> Party", "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fparty.png?1558040749323"]);  };
@@ -2090,6 +2090,9 @@ peeky.on('message', async (message) => {
       
         //Gopbot
     if  (peeky.userData.get(key, "GopbotBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gopbot:624643543037771841> GOPBOT", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgopbot.png?v=1568997070177"]);  };
+      
+        //Miner (Rare)
+    if  (peeky.userData.get(key, "MinerBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:miner:624330470460620831> Miner (Rare)", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fminer.png?v=1568922629305"]);  };
       
         //Gamer
     if  (peeky.userData.get(key, "GamerBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:gamer:624330470288654337> Gamer", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fgamer.png?v=1568922624710"]);  };
@@ -4944,6 +4947,15 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
 if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.author.id) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES' && 'EMBED_LINKS'))  {
   
 //Mention Commands
+
+if  ((message.mentions.members.first() && !message.mentions.members.first().user.bot))  {
+    const key2 = `${message.mentions.members.first().user.id}`;
+  
+    if  (peeky.userData.get(key, "VirusBadge") == true && !peeky.userData.get(key2, "VirusBadge"))  {
+        peeky.userData.get(key2, true, "VirusBadge");
+    };
+
+};
   
 //Help
 if  ((message.mentions.members.first() && message.mentions.members.first().id == PeekyId) || (message.content == peeky.serverData.get(keySF, "prefix") + "help"))  {
@@ -4994,6 +5006,8 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 };
+  
+
   
 //Prefixed Commands
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
