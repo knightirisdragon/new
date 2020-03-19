@@ -4884,13 +4884,68 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
             message.delete({ timeout: AutoDeleteTime}).catch(error => ErrorBag.add(error));
 
             if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "BW"))  {
+              
+                if  ()  {
+                     
+                    
+            
+                      Channel.fetchWebhooks().then(webhook =>  {
 
-                ResponseCooldowns.add(message.guild.id + "BW");
-                setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "BW")}, ResponseCooldownMS);
+                            var FoundHook = webhook.find(w => w.name == "PEEKY");
 
-                var TranslatedMessages = [InfoIcon + " That phrase is blocked by the **Banned Words** function, **X001**.", InfoIcon + " Tato fráze je pomocí funkce **Banned Words** zablokována, **X001**.", InfoIcon + " Táto fráza je zablokovaná kvôli **Banned Words** funkcii, **X001**.", InfoIcon + " Táto fráza je zablokovaná kvôli **Banned Words** funkcii, **X001**.", InfoIcon + " Esa frase está bloqueada por la función **Banned Words**, **X001**.", InfoIcon + " Bu ifade **Banned Words** fonksiyonu yüzünden engellendi, **X001**.", InfoIcon + " Эта фраза блокируется функцией **Banned Words**, **X001**."];
-                const embed = {"description": TranslatedMessages[Language].replace("X001", message.member.displayName),  "color": EmbedColor};
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
+                            if  (!FoundHook)  {
+
+                                Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL({ format: 'png' })).catch(error => ErrorBag.add(error))
+                                .then(Webhook => {
+
+                                Webhook.send(OriginalMessageEdited + "\n­", {
+
+                                "username": OriginalMessage.member.displayName,
+                                "avatarURL": OriginalMessage.author.displayAvatarURL({ format: 'png' }),
+                                "files": [image],
+
+                                "embeds":  [{
+                                    "description": "[🔍](" + reaction.message.url + ")",
+                                    "color": EmbedColor
+                                }]
+
+                                }).catch(error => ErrorBag.add(error));
+
+                                });
+
+                            }
+                             else
+                            {
+
+                               var Webhook = webhook.find(w => w.name == "PEEKY");
+
+                               Webhook.send(OriginalMessageEdited + "\n­", {
+
+                               "username": OriginalMessage.member.displayName,
+                               "avatarURL": OriginalMessage.author.displayAvatarURL({ format: 'png' }),
+                               "files": [image],
+
+                               "embeds":  [{
+                                   "description": "[🔍](" + reaction.message.url + ")",
+                                   "color": EmbedColor
+                               }]
+
+                               }).catch(error => ErrorBag.add(error));
+
+                            };
+
+                      });
+                     
+                } else {
+
+                    ResponseCooldowns.add(message.guild.id + "BW");
+                    setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "BW")}, ResponseCooldownMS);
+
+                    var TranslatedMessages = [InfoIcon + " That phrase is blocked by the **Banned Words** function, **X001**.", InfoIcon + " Tato fráze je pomocí funkce **Banned Words** zablokována, **X001**.", InfoIcon + " Táto fráza je zablokovaná kvôli **Banned Words** funkcii, **X001**.", InfoIcon + " Táto fráza je zablokovaná kvôli **Banned Words** funkcii, **X001**.", InfoIcon + " Esa frase está bloqueada por la función **Banned Words**, **X001**.", InfoIcon + " Bu ifade **Banned Words** fonksiyonu yüzünden engellendi, **X001**.", InfoIcon + " Эта фраза блокируется функцией **Banned Words**, **X001**."];
+                    const embed = {"description": TranslatedMessages[Language].replace("X001", message.member.displayName),  "color": EmbedColor};
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
+                  
+                };
 
             };
 
