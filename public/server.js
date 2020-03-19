@@ -4078,52 +4078,46 @@ if  (peeky.serverData.get(keySF, "message_log_bonus") == true)  {
         var   Channel               = reaction.message.guild.channels.find(c => c.name == name);
         const OriginalMessage       = reaction.message;
         const OriginalMessageEdited = OriginalMessage.content.replace(/<@?#?&?!?[0-9]{17,20}>/g, "­");
-        var   image                 = "none";   
       
     if  (Channel && reaction.message.guild.me.permissions.has("MANAGE_WEBHOOKS"))  {
 
-    if  (reaction.message.attachments.size > 0)  {  image = reaction.message.attachments.array()[0].url;  }  else  {  image = HollowImage;  }; 
+    if  (reaction.message.attachments.size > 0)  {  var image = reaction.message.attachments.array()[0].url;  }  else  {  var image = HollowImage;  }; 
             
         Channel.fetchWebhooks().then(webhook =>  {
             
-              var FoundHook = webhook.find(w => w.name == "PEEKY");
+              var FoundHook = webhook.find(w => w.name == "PEEKY: Message Log");
 
               if  (!FoundHook)  {
 
-                  Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL({ format: 'png' })).catch(error => ErrorBag.add(error))
-                  .then(Webhook => {
+                  Channel.createWebhook("PEEKY: Message Log", peeky.user.displayAvatarURL({ format: 'png' })).catch(error => ErrorBag.add(error)).then(Webhook => {
 
-                  Webhook.send(OriginalMessageEdited + "\n­", {
+                      Webhook.send(OriginalMessageEdited + "\n­", {
 
-                  "username": OriginalMessage.member.displayName,
-                  "avatarURL": OriginalMessage.author.displayAvatarURL({ format: 'png' }),
-                  "files": [image],
+                          "username": OriginalMessage.member.displayName,
+                          "avatarURL": OriginalMessage.author.displayAvatarURL({ format: 'png' }),
+                          "files": [image],
 
-                  "embeds":  [{
-                      "description": "[🔍](" + reaction.message.url + ")",
-                      "color": EmbedColor
-                  }]
+                          "embeds":  [{
+                              "description": "[🔍](" + reaction.message.url + ")",
+                              "color": EmbedColor
+                          }]
 
-                  }).catch(error => ErrorBag.add(error));
+                      }).catch(error => ErrorBag.add(error));
 
                   });
 
-              }
-               else
-              {
-            
-                 var Webhook = webhook.find(w => w.name == "PEEKY");
+              } else {
 
-                 Webhook.send(OriginalMessageEdited + "\n­", {
+                 FoundHook.send(OriginalMessageEdited + "\n­", {
 
-                 "username": OriginalMessage.member.displayName,
-                 "avatarURL": OriginalMessage.author.displayAvatarURL({ format: 'png' }),
-                 "files": [image],
+                     "username": OriginalMessage.member.displayName,
+                     "avatarURL": OriginalMessage.author.displayAvatarURL({ format: 'png' }),
+                     "files": [image],
 
-                 "embeds":  [{
-                     "description": "[🔍](" + reaction.message.url + ")",
-                     "color": EmbedColor
-                 }]
+                     "embeds":  [{
+                         "description": "[🔍](" + reaction.message.url + ")",
+                         "color": EmbedColor
+                     }]
 
                  }).catch(error => ErrorBag.add(error));
 
@@ -4885,56 +4879,40 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
 
             if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "BW"))  {
               
-                if  ()  {
-                     
-                    
+                if  (message.channel.permissionsFor(peeky.user).has('MANAGE_WEBHOOKS'))  {
             
-                      Channel.fetchWebhooks().then(webhook =>  {
+                    message.channel.fetchWebhooks().then(webhook =>  {
 
-                            var FoundHook = webhook.find(w => w.name == "PEEKY");
+                          var FoundHook = webhook.find(w => w.name == "PEEKY: Banned Words");
+                          if  (message.attachments.size > 0)  {  var image = message.attachments.array()[0].url;  }  else  {  var image = HollowImage;  }; 
 
-                            if  (!FoundHook)  {
+                          if  (!FoundHook)  {
 
-                                Channel.createWebhook("PEEKY", peeky.user.displayAvatarURL({ format: 'png' })).catch(error => ErrorBag.add(error))
-                                .then(Webhook => {
+                              message.channel.createWebhook("PEEKY: Banned Words", peeky.user.displayAvatarURL({ format: 'png' })).catch(error => ErrorBag.add(error)).then(Webhook => {
 
-                                Webhook.send(OriginalMessageEdited + "\n­", {
+                                  Webhook.send(message, {
 
-                                "username": OriginalMessage.member.displayName,
-                                "avatarURL": OriginalMessage.author.displayAvatarURL({ format: 'png' }),
-                                "files": [image],
+                                  "username": message.member.displayName,
+                                  "avatarURL": message.author.displayAvatarURL({ format: 'png' }),
+                                  "files": [image]
 
-                                "embeds":  [{
-                                    "description": "[🔍](" + reaction.message.url + ")",
-                                    "color": EmbedColor
-                                }]
+                                  }).catch(error => ErrorBag.add(error));
 
-                                }).catch(error => ErrorBag.add(error));
+                              });
 
-                                });
+                          } else {
 
-                            }
-                             else
-                            {
+                             FoundHook.send(message, {
 
-                               var Webhook = webhook.find(w => w.name == "PEEKY");
+                                 "username": message.member.displayName,
+                                 "avatarURL": message.author.displayAvatarURL({ format: 'png' }),
+                                 "files": [image]
 
-                               Webhook.send(OriginalMessageEdited + "\n­", {
+                             }).catch(error => ErrorBag.add(error));
 
-                               "username": OriginalMessage.member.displayName,
-                               "avatarURL": OriginalMessage.author.displayAvatarURL({ format: 'png' }),
-                               "files": [image],
+                          };
 
-                               "embeds":  [{
-                                   "description": "[🔍](" + reaction.message.url + ")",
-                                   "color": EmbedColor
-                               }]
-
-                               }).catch(error => ErrorBag.add(error));
-
-                            };
-
-                      });
+                    });
                      
                 } else {
 
