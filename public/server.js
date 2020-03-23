@@ -4946,10 +4946,10 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
 
             };
 
-        };
+            console.log("The Banned Words function has been triggered in " + message.guild.name + ".");
+            function_UpdateAutowipe(keySF, "server");
 
-    console.log("The Banned Words function has been triggered in " + message.guild.name + ".");
-    function_UpdateAutowipe(keySF, "server");
+        };
 
     };
   
