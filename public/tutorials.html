@@ -47,9 +47,15 @@ function ToggleCategory(id) {
 
 };
   
+function ShowHighlighted(hash)  {
+    var id = hash.replace("#", "");
+    if  (hash && document.getElementById(id))  {
+        ToggleCategory(id);
+    };        
+};
 </script>
   
-<body class="imagebackground">
+<body onload="ShowHighlighted(location.hash);" class="imagebackground">
 <b>
   
 <a class="homebutton" href="https://peeky.glitch.me" rel="noopener noreferrer"> <img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fhome.png?v=1573247289278"> </a>
