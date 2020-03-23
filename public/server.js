@@ -3703,8 +3703,10 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (GivenMinutes == 0)  {GivenMinutes = "Never"}  else  {GivenMinutes = GivenMinutes + " minutes"};
       
         if  (reaction.emoji.name == "⏹️")  {
-            reaction.message.delete().catch(error => ErrorBag.add(error));        
-        };
+
+            reaction.message.delete().catch(error => ErrorBag.add(error));   
+
+        } else
 
         if  (reaction.emoji.name == "1️⃣")  {
 
@@ -3723,6 +3725,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             reaction.message.edit("**Server Settings** `1/1`", newEmbed).catch(error => ErrorBag.add(error));
 
         } else 
+          
         if  (reaction.emoji.name == "2️⃣")  {
 
             const newEmbed = new Discord.MessageEmbed({
@@ -3743,6 +3746,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             reaction.message.edit("**Server Functions** `1/3`", newEmbed).catch(error => ErrorBag.add(error));
 
         } else 
+          
         if  (reaction.emoji.name == "3️⃣")  {
 
             const newEmbed = new Discord.MessageEmbed({
@@ -3763,6 +3767,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
             reaction.message.edit("**Server Functions** `2/3`", newEmbed).catch(error => ErrorBag.add(error));
 
         } else 
+          
         if  (reaction.emoji.name == "4️⃣")  {        
           
             const newEmbed = new Discord.MessageEmbed({
@@ -3797,6 +3802,12 @@ if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.user
         CommandCooldown.add("musicmenu" + user.id);
         setTimeout(() => {CommandCooldown.delete("musicmenu" + user.id)}, 2500);
 
+        if  (reaction.emoji.name == "⏹️")  {
+          
+            reaction.message.delete().catch(error => ErrorBag.add(error));        
+          
+        } else
+
         if  (reaction.emoji.name == "🔁")  {
           
             peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "Looping"), "Looping");
@@ -3810,13 +3821,8 @@ if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.user
             var StatusString = peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnableStrings[0]).replace("false", DisableStrings[0]);
           
         };
-      
-        const newEmbed = new Discord.MessageEmbed({
-          "description":
-          "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" +
-          "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon),
-          "color": EmbedColor
-        });
+            
+        const newEmbed = {"description": "**Music Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" + "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon), "color": EmbedColor};
         reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
       
   };
@@ -5302,11 +5308,14 @@ if  (CommandName.startsWith("userinfo"))  {
         BoostingSince = function_DateFormat(SomeoneTagged.premiumSince, "Date");
     };
       
-    const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.user.tag, "other", true) + "**"
-                                  + "\n" + Description
-                                  + "\n\n" + "**Joined Discord**" + "\n" + function_DateFormat(SomeoneTagged.user.createdAt, "Date")
-                                  + "\n\n" + "**Joined server**" + "\n" + function_DateFormat(SomeoneTagged.joinedAt, "Date")
-                                  + "\n\n" + "**Boosting since**" + "\n" + BoostingSince,  "color": SomeoneTagged.displayColor}; 
+    const embed = {
+      "description": 
+       "**" + function_RemoveFormatting(SomeoneTagged.user.tag, "other", true) + "**"
+       + "\n" + Description
+       + "\n\n" + "**Joined Discord**" + "\n" + function_DateFormat(SomeoneTagged.user.createdAt, "Date")
+       + "\n\n" + "**Joined server**" + "\n" + function_DateFormat(SomeoneTagged.joinedAt, "Date")
+       + "\n\n" + "**Boosting since**" + "\n" + BoostingSince,
+       "color": SomeoneTagged.displayColor}; 
     await message.channel.send({ embed }).catch(error => {ErrorBag.add(error)});
 
 };
@@ -5366,13 +5375,13 @@ if (CommandName == "overview")  {
             const embed = {"description": "**Overview Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "1️⃣ Server Settings" + "\n\n" + "2️⃣ Server Functions `[1/3]`" + "\n\n" + "3️⃣ Server Functions `[2/3]`" + "\n\n" + "4️⃣ Server Functions `[3/3]`",  "color": EmbedColor}; 
             await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
-                  await m.react("⏹️").catch(error => {ErrorBag.add(error)});
-                  await m.react("1️⃣").catch(error => {ErrorBag.add(error)});
-                  await m.react("2️⃣").catch(error => {ErrorBag.add(error)});
-                  await m.react("3️⃣").catch(error => {ErrorBag.add(error)});
-                  await m.react("4️⃣").catch(error => {ErrorBag.add(error)});
-              
-                  peeky.userData.set(key, m.id, "OverviewID");
+                await m.react("⏹️").catch(error => {ErrorBag.add(error)});
+                await m.react("1️⃣").catch(error => {ErrorBag.add(error)});
+                await m.react("2️⃣").catch(error => {ErrorBag.add(error)});
+                await m.react("3️⃣").catch(error => {ErrorBag.add(error)});
+                await m.react("4️⃣").catch(error => {ErrorBag.add(error)});
+
+                peeky.userData.set(key, m.id, "OverviewID");
 
             }).catch(error => {ErrorBag.add(error)});
           
@@ -5395,16 +5404,14 @@ if (CommandName == "music")  {
             CommandCooldown.add("music" + message.guild.id);
             setTimeout(() => {CommandCooldown.delete("music" + message.guild.id)}, 10000);
 
-            const embed = {"description":
-                          "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" +
-                          "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon),
-                          "color": EmbedColor};
+            const embed = {"description": "**Music Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" + "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon), "color": EmbedColor};
             await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
-                  await m.react("🔁").catch(error => {ErrorBag.add(error)});
-                  await m.react("🔀").catch(error => {ErrorBag.add(error)});
-              
-                  peeky.userData.set(key, m.id, "MusicMenuID");
+                await m.react("⏹️").catch(error => {ErrorBag.add(error)});
+                await m.react("🔁").catch(error => {ErrorBag.add(error)});
+                await m.react("🔀").catch(error => {ErrorBag.add(error)});
+
+                peeky.userData.set(key, m.id, "MusicMenuID");
 
             }).catch(error => {ErrorBag.add(error)});
           
@@ -7746,7 +7753,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
         FixedBackgrounds.push("Custom `0`");
         var CustomBackgroundAmount = 1;
     } else {  var CustomBackgroundAmount = 0;  };
-    peeky.userData.get(key2, "Inventory").slice(0, Setting.BackgroundInvLimit).forEach(banner => {
+    peeky.userData.get(key2, "Inventory").slice(0, Setting.InventoryLimit).forEach(banner => {
         Current ++;
         FixedBackgrounds.push(function_GetBackgroundInfo(banner, ["name"]) + " `" + banner + "`");
     });
@@ -7757,9 +7764,10 @@ if  (!ProfileCooldown.has(message.author.id)) {
         AllBadges.push(badge[0]);
     });
       
-    if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > Setting.BackgroundInvLimit)  {  var EndString = " and some more..."  } else {  var EndString = "";  };
+    if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > Setting.InventoryLimit)  {  var EndStringBackgrounds = " and some more..."  } else {  var EndStringBackgrounds = "";  };
+    if  ((peeky.userData.get(key2, "Badges").length) > Setting.InventoryLimit)  {  var EndStringBadges = " and some more..."  } else {  var EndStringBadges = "";  };
 
-    const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + "" + EndString + ".\n\n**" + peeky.userData.get(key2, "Badges").length + " Badges**\n" + AllBadges.join(', ') + ".",  "color": EmbedColor}; 
+    const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + EndStringBackgrounds + ".\n\n**" + peeky.userData.get(key2, "Badges").length + " Badges**\n" + AllBadges.slice(0, Setting.InventoryLimit).join(', ') + EndStringBadges + ".",  "color": EmbedColor}; 
     message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
     }

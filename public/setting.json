@@ -33,7 +33,7 @@
   "GameRolesLimit": 10,
   "RoleSaverLimit": 10,
   "ReactionRolesLimit": 5,
-  "BackgroundInvLimit": 25,
+  "InventoryLimit": 25,
   "PlaylistLimit": 10,
   "RedditLimit": 25,
   "LeaderboardLimit": 100
