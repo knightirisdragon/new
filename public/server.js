@@ -1758,20 +1758,37 @@ function function_GetBackgroundInfo(ID, args)  {
 };
 
 //Numarize Array
-function function_NumarizeArray(array, brackets)  {
+function function_NumarizeArray(array, brackets, index)  {
 
     var Current = 0; var List = [];
 
-    if  (array.length > 0)  {
-        array.forEach(i => {
-            Current ++;
-            List.push(Current + ". " + brackets[0] + i + brackets[1] + "\n");
-        });
-    } else {
-      return "None";
-    }
+    if  (index)  {
+  
+        if  (array.length > 0)  {
+            array.forEach(i => {
+                Current ++;
+                List.push(Current + ". " + brackets[0] + i[index] + brackets[1] + "\n");
+            });
+        } else {
+          return "None";
+        }
 
-    return List.join("");
+        return List.join("");      
+      
+    } else {
+  
+        if  (array.length > 0)  {
+            array.forEach(i => {
+                Current ++;
+                List.push(Current + ". " + brackets[0] + i + brackets[1] + "\n");
+            });
+        } else {
+          return "None";
+        }
+
+        return List.join("");
+      
+    };
 
 };
 
@@ -4853,7 +4870,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
             if  (Message && Message.id == peeky.serverData.get(keySF, "reaction_roles_bonus_id"))  {
 
-                const Roles = function_NumarizeArray(Setting, ["", ""]);
+                const Roles = function_NumarizeArray(Setting, ["", ""], null);
               
                 var FinalText = "**Reaction Roles**" + "\n" + Roles;
 
@@ -8021,7 +8038,7 @@ if (CommandName.startsWith("play"))  {
       
         async function PlayMusic(voiceChannel)  {
 
-                await ytdl.getBasicInfo(peeky.serverData.get(keySF, "Queue")[0]).then(async (info) => {
+                await ytdl.getBasicInfo(peeky.serverData.get(keySF, "Queue")[0][0]).then(async (info) => {
                 info = info.player_response.videoDetails;
 
                 const Thumbnail  = info.thumbnail.thumbnails[info.thumbnail.thumbnails.length - 1].url;
@@ -8212,15 +8229,14 @@ if (CommandName.startsWith("play"))  {
             if  (ChoosingMode == true)  {
 
                 if  (results.length > 0)  {      
-                    peeky.serverData.get(keySF, "Queue").push(results[0].link);
+                    peeky.serverData.get(keySF, "Queue").push([results[0].link, results[0].title]);
                 };
 
             };
       
         var Queue = peeky.serverData.get(keySF, "Queue");
 
-        //if  ((Queue.length > 0) && (Queue[0].includes("youtube.com") || Queue[0].includes("youtu.be")) && !Queue[0].includes("?list=") && (ytdl.validateURL(Queue[0]) == true))  {
-        if  ((Queue.length > 0) && (Queue[Queue.length - 1].includes("youtube.com") || Queue[Queue.length - 1].includes("youtu.be")) && !Queue[Queue.length - 1].includes("?list="))  { //&& (ytdl.validateURL(Queue[Queue.length - 1]) == true)
+        if  ((Queue.length > 0) && (Queue[Queue.length - 1][0].includes("youtube.com") || Queue[Queue.length - 1][0].includes("youtu.be")) && !Queue[Queue.length - 1][0].includes("?list="))  { //&& (ytdl.validateURL(Queue[Queue.length - 1]) == true)
           
             if  (message.member.voice.channel)  {
 
@@ -8304,7 +8320,7 @@ if  (CommandName == "queue")  {
       
     var Queue = peeky.serverData.get(keySF, "Queue");
     if  (Queue.length > 0)  {
-        var FinalizedPlaylist = function_NumarizeArray(Queue, ["<", ">"])
+        var FinalizedPlaylist = function_NumarizeArray(Queue, ["<", ">"], 1)
     }  else  {
        var FinalizedPlaylist = "The queue is empty.";
     };
@@ -8472,7 +8488,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
               const Playlist = peeky.userData.get(key2, "Playlist");
 
               if  (Playlist.length > 0)  {
-                  var FinalizedPlaylist = function_NumarizeArray(Playlist, ["<", ">"])
+                  var FinalizedPlaylist = function_NumarizeArray(Playlist, ["<", ">"], null)
               }  else  {
                  var FinalizedPlaylist = "The playlist is empty.";
               };
@@ -8563,7 +8579,7 @@ if (CommandName.startsWith("skip ") || CommandName == "skip")  {
 
                 var CommandArgument = CommandName.split("skip ")[1];
                 if  (CommandArgument && peeky.serverData.get(keySF, "Queue").includes(CommandArgument) && peeky.serverData.get(keySF, "Queue")[0] !== CommandArgument)  {
-                    var Index = peeky.serverData.get(keySF, "Queue").indexOf(CommandArgument);
+                    var Index = peeky.serverData.get(keySF, "Queue").findIndex(i => i[0] == CommandArgument);
                     peeky.serverData.get(keySF, "Queue").splice(Index, 1);
                     const embed = {"description": SuccessIcon + " The song has been removed from the queue.", "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -8691,7 +8707,7 @@ if (CommandName == "triviaquestions")  {
         ActiveMinigames.add(message.guild.id);
         setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 30000);
       
-        const embed = {"description": "**" + TriviaQuestions[ChosenQuestion][0] + "**\n" + TriviaQuestions[ChosenQuestion][4] + "\n\n" + function_NumarizeArray(Answers, ["", ""]),  "color": EmbedColor}; 
+        const embed = {"description": "**" + TriviaQuestions[ChosenQuestion][0] + "**\n" + TriviaQuestions[ChosenQuestion][4] + "\n\n" + function_NumarizeArray(Answers, ["", ""], null),  "color": EmbedColor}; 
         message.channel.send({ embed });
     
         message.channel.awaitMessages(response => response.content.toLowerCase() == TriviaQuestions[ChosenQuestion][1][0].toLowerCase(), { max: 1, time: 30000, errors: ['time'] })
