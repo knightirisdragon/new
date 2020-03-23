@@ -8038,7 +8038,7 @@ if (CommandName.startsWith("play"))  {
       
         async function PlayMusic(voiceChannel)  {
 
-                await ytdl.getBasicInfo(peeky.serverData.get(keySF, "Queue")[0][0]).then(async (info) => {
+                await ytdl.getBasicInfo(peeky.serverData.get(keySF, "Queue")[0]).then(async (info) => {
                 info = info.player_response.videoDetails;
 
                 const Thumbnail  = info.thumbnail.thumbnails[info.thumbnail.thumbnails.length - 1].url;
@@ -8229,14 +8229,14 @@ if (CommandName.startsWith("play"))  {
             if  (ChoosingMode == true)  {
 
                 if  (results.length > 0)  {      
-                    peeky.serverData.get(keySF, "Queue").push([results[0].link, results[0].title]);
+                    peeky.serverData.get(keySF, "Queue").push(results[0].link);
                 };
 
             };
       
         var Queue = peeky.serverData.get(keySF, "Queue");
 
-        if  ((Queue.length > 0) && (Queue[Queue.length - 1][0].includes("youtube.com") || Queue[Queue.length - 1][0].includes("youtu.be")) && !Queue[Queue.length - 1][0].includes("?list="))  { //&& (ytdl.validateURL(Queue[Queue.length - 1]) == true)
+        if  ((Queue.length > 0) && (Queue[Queue.length - 1].includes("youtube.com") || Queue[Queue.length - 1].includes("youtu.be")) && !Queue[Queue.length - 1].includes("?list="))  { //&& (ytdl.validateURL(Queue[Queue.length - 1]) == true)
           
             if  (message.member.voice.channel)  {
 
@@ -8320,7 +8320,7 @@ if  (CommandName == "queue")  {
       
     var Queue = peeky.serverData.get(keySF, "Queue");
     if  (Queue.length > 0)  {
-        var FinalizedPlaylist = function_NumarizeArray(Queue, ["<", ">"], 1)
+        var FinalizedPlaylist = function_NumarizeArray(Queue, ["<", ">"], null)
     }  else  {
        var FinalizedPlaylist = "The queue is empty.";
     };
@@ -8579,7 +8579,7 @@ if (CommandName.startsWith("skip ") || CommandName == "skip")  {
 
                 var CommandArgument = CommandName.split("skip ")[1];
                 if  (CommandArgument && peeky.serverData.get(keySF, "Queue").includes(CommandArgument) && peeky.serverData.get(keySF, "Queue")[0] !== CommandArgument)  {
-                    var Index = peeky.serverData.get(keySF, "Queue").findIndex(i => i[0] == CommandArgument);
+                    var Index = peeky.serverData.get(keySF, "Queue").indexOf(CommandArgument);
                     peeky.serverData.get(keySF, "Queue").splice(Index, 1);
                     const embed = {"description": SuccessIcon + " The song has been removed from the queue.", "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
