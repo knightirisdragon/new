@@ -3255,7 +3255,7 @@ if  (keySF == SupportServer)  {
 
                 PurchaseComplete = true;
 
-                var PurchaseHeader = "**You have purchased Premium status from the [store](https://peeky.glitch.me/store.html)!**";
+                var PurchaseHeader = "**You have purchased Premium status from the [store](https://peeky.glitch.me/store.html#premium)!**";
 
                 peeky.userData.set(key, new Date(), "SupporterLastPurchase");
                 Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs)) + "**.", "Date");
@@ -3278,7 +3278,7 @@ if  (keySF == SupportServer)  {
 
                 PurchaseComplete = true;
 
-                var PurchaseHeader = "**You have purchased Server Upgrade from the [store](https://peeky.glitch.me/store.html)!**";
+                var PurchaseHeader = "**You have purchased Server Upgrade from the [store](https://peeky.glitch.me/store.html#serverupgrade)!**";
 
             };
 
@@ -7948,7 +7948,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                     WebsiteCooldowns.add("featuredprofile");
                     setTimeout(() => {WebsiteCooldowns.delete("featuredprofile")}, 1800000);   
 
-                    fs.writeFile('public/featured_profile.txt', "<center>  <a href='https://peeky.glitch.me/store.html'><img src='" + m.attachments.array()[0].url + "' class='featuredprofile'></a>  </center>", (err) => {
+                    fs.writeFile('public/featured_profile.txt', "<center>  <a href='https://peeky.glitch.me/store.html#premium'><img src='" + m.attachments.array()[0].url + "' class='featuredprofile'></a>  </center>", (err) => {
                         if (err) console.log(err); 
                     });
 
@@ -8316,69 +8316,69 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
         if  (CommandArgument.startsWith(" add "))  {
 
-        if  (!MusicCmdCooldown.has(message.author.id))  {
+            if  (!MusicCmdCooldown.has(message.author.id))  {
 
-            var PlaylistRequest = CommandArgument.replace(" add ", "");
+                var PlaylistRequest = CommandArgument.replace(" add ", "");
 
-            MusicCmdCooldown.add(message.author.id);
-            setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 30000);
+                //MusicCmdCooldown.add(message.author.id);
+                //setTimeout(() => {MusicCmdCooldown.delete(message.author.id)}, 30000);
 
-        if  (PlaylistRequest == "current")  {
+            if  (PlaylistRequest == "current")  {
 
-            if  (CurrentlyPlaying.has(message.guild.id) && peeky.serverData.get(keySF, "Link") !== "None")  {
+                if  (CurrentlyPlaying.has(message.guild.id) && peeky.serverData.get(keySF, "Link") !== "None")  {
 
-                if  (peeky.userData.get(key, "Playlist").length < Setting.PlaylistLimit)  {
+                    if  (peeky.userData.get(key, "Playlist").length < Setting.PlaylistLimit)  {
 
-                    peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
+                        peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
 
-                    var TranslatedMessages = [SuccessIcon + " Added the current song to your playlist.", SuccessIcon + " Aktuální písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pridal som aktuálnu pesničku do tvôjho playlistu.", SuccessIcon + " Añadi la canción actual a su lista de reproducción.", SuccessIcon + " Geçerli şarkı çalma listenize eklendi.", SuccessIcon + " Добавлена текущая песня в плейлист."];
-                    const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));    
+                        var TranslatedMessages = [SuccessIcon + " Added the current song to your playlist.", SuccessIcon + " Aktuální písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pridal som aktuálnu pesničku do tvôjho playlistu.", SuccessIcon + " Añadi la canción actual a su lista de reproducción.", SuccessIcon + " Geçerli şarkı çalma listenize eklendi.", SuccessIcon + " Добавлена текущая песня в плейлист."];
+                        const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));    
+
+                    } else {
+                      const embed = {"description": ErrorMessage15[Language],  "color": EmbedColor}; 
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    };           
 
                 } else {
-                  const embed = {"description": ErrorMessage15[Language],  "color": EmbedColor}; 
+                  const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                };           
+                };
+
+            } else
+
+            if  (!PlaylistRequest.includes("?list="))  {
+
+                if  ((PlaylistRequest.includes("youtube.com") || PlaylistRequest.includes("youtu.be")))  {
+
+                    if  (peeky.userData.get(key, "Playlist").length < Setting.PlaylistLimit)  {
+
+                        peeky.userData.get(key, "Playlist").push(PlaylistRequest);
+
+                        var TranslatedMessages = [SuccessIcon + " Added the song to your playlist.", SuccessIcon + " Písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pesnička pridaná do tvojho playlistu.", SuccessIcon + " Añadí la canción a su lista de reproducción.", SuccessIcon + " Şarkı çalma listenize eklendi.", SuccessIcon + " Добавил песню в плейлист."];
+                        const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                    } else {
+                      const embed = {"description": ErrorMessage15[Language],  "color": EmbedColor}; 
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    }; 
+
+                } else {
+                  const embed = {"description": ErrorMessage4[Language],  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
 
             } else {
-              const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
+              var TranslatedMessages = [ErrorIcon + " You cannot add playlists to your playlist.", ErrorIcon + " Do svého playlistu nemůžete přidat playlisty.", ErrorIcon + " Nemôžeš pridať playlisty do tvojich playlistov.", ErrorIcon + " No puedes añadir listas de reproducción a su lista de reproducción.", ErrorIcon + " Oynatma listenize oynatma listesi ekleyemezsiniz.", ErrorIcon + " Вы не можете добавлять плейлисты в свой плейлист."];
+              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
-        } else
-
-        if  (!PlaylistRequest.includes("?list="))  {
-
-            if  ((PlaylistRequest.includes("youtube.com") || PlaylistRequest.includes("youtu.be")))  { //ytdl.validateURL(PlaylistRequest) == true
-
-                if  (peeky.userData.get(key, "Playlist").length < Setting.PlaylistLimit)  {
-
-                    peeky.userData.get(key, "Playlist").push(PlaylistRequest);
-
-                    var TranslatedMessages = [SuccessIcon + " Added the song to your playlist.", SuccessIcon + " Písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pesnička pridaná do tvojho playlistu.", SuccessIcon + " Añadí la canción a su lista de reproducción.", SuccessIcon + " Şarkı çalma listenize eklendi.", SuccessIcon + " Добавил песню в плейлист."];
-                    const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-                } else {
-                  const embed = {"description": ErrorMessage15[Language],  "color": EmbedColor}; 
-                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                }; 
-
             } else {
-              const embed = {"description": ErrorMessage4[Language],  "color": EmbedColor}; 
+              const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
-
-        } else {
-          var TranslatedMessages = [ErrorIcon + " You cannot add playlists to your playlist.", ErrorIcon + " Do svého playlistu nemůžete přidat playlisty.", ErrorIcon + " Nemôžeš pridať playlisty do tvojich playlistov.", ErrorIcon + " No puedes añadir listas de reproducción a su lista de reproducción.", ErrorIcon + " Oynatma listenize oynatma listesi ekleyemezsiniz.", ErrorIcon + " Вы не можете добавлять плейлисты в свой плейлист."];
-          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
-
-        } else {
-          const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
 
         } else 
         if  (CommandArgument.startsWith(" remove "))  {
