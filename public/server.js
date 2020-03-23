@@ -1061,7 +1061,11 @@ const RandomSongs = [
     "https://www.youtube.com/watch?v=eFVj0Z6ahcI",
     "https://www.youtube.com/watch?v=GO5utuvcZps",
     "https://www.youtube.com/watch?v=JRfuAukYTKg",
-    "https://www.youtube.com/watch?v=16y1AkoZkmQ"
+    "https://www.youtube.com/watch?v=16y1AkoZkmQ",
+    "https://www.youtube.com/watch?v=Akx48dLnccQ",
+    "https://www.youtube.com/watch?v=jBihcsxGFLo",
+    "https://www.youtube.com/watch?v=iYYRH4apXDo",
+    "https://www.youtube.com/watch?v=mXHKjFKBC0g"
 ];
 
 const GuessTheSong = [
