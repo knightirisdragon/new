@@ -625,8 +625,7 @@ th, td {
 
 .description {
     background-color: rgba(35, 39, 42, 0.75);
-    border-left: #7289DA 2px solid;
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 10px 10px 10px 10px;
     padding: 10px;
     width: 85%;
     position: absolute;

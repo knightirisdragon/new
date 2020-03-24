@@ -1204,6 +1204,503 @@ const RandomWords = [
     "Jazz"
 ];
 
+//WEBSITE STUFF
+  
+
+async function WebsiteStuff()  {
+
+    //API
+    setInterval(async () => {
+
+      const UpdatedApi = {
+          "botName": peeky.user.username,
+          "botDescription": Setting.Description,
+          "botShortDescription": Setting.ShortDescription,
+          "botSummary": Setting.Summary,
+          "botAvatar": peeky.user.avatarURL({ format: 'png' }),
+          "botId": peeky.user.id,
+          "ownerId": OwnerId,
+
+          "defaultPrefix": Setting.DefaultPrefix,
+          "ageCount": function_TimeLeft(peeky.user.createdAt, "days", null),
+          "serverLimit": Setting.MaxServers,
+          "serverCount": peeky.guilds.size,
+          "upgradedServers": peeky.serverData.filter(i => i.server_upgraded == true).size,
+          "profileCount": peeky.userData.count,
+          "supporterCount": peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(PremiumRole)).size,
+          "backgroundsCount": Banners.length,
+
+          "eventName": Setting.EventName,
+          "eventStatus": Setting.EventStatus,
+
+          "customBackground": Setting.CustomBackgroundPrice,
+          "sellMultiplier": Setting.SellMultiplier,
+          "expMultiplier": Setting.ExpNeeded
+        };
+
+        await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
+            if (err) console.log(err); 
+        });
+
+        console.log("The API has been updated.");
+
+    }, 300000);
+
+    //Auto Wipe
+    setInterval(async () => {
+
+        const rightNow = new Date();
+
+        //Guilds
+        var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen);
+        var toRemoveGuilds = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
+
+        toRemoveGuilds.forEach(async data => {
+
+            if  (data.server_upgraded !== true && !ImmuneServers.includes(data.GuildID))  {
+
+                peeky.serverData.delete(data.GuildID);
+
+                var Guild = peeky.guilds.get(data.GuildID);
+                if  (Guild !== undefined)  {
+                    if  (Guild.owner)  {
+                        const embed = {"description": "I'm leaving your server called **" + Guild.name + "** because of inactivity.", "footer": { "text": "https://peeky.glitch.me/tutorials.html#autowipe" }, "color": EmbedColor}; 
+                        await function_DirectMessage(Guild.owner.user.id, { embed });
+                    };
+                    await Guild.leave();
+                };
+
+                console.log("I have removed an inactive server.");    
+
+            };
+
+        });
+
+        //Profiles
+        var filtered         = peeky.userData.filter( p => p.UserID && p.lastSeen );
+        var toRemoveProfiles = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
+
+        toRemoveProfiles.forEach(data => {
+            if  (!peeky.users.has(data.UserID) || data.FashionBadge == false)  {
+                console.log("I have wiped an inactive profile.");
+                peeky.userData.delete(`${data.UserID}`);
+            };
+        });
+
+    }, 3600000);
+
+    //Leaderboard
+    setInterval(async () => {
+
+        peeky.userData.filter( p => p.MedallistBadge == true ).array().forEach(data => {
+            peeky.userData.set(`${data.UserID}`, false, "MedallistBadge");
+        });
+
+        function UpdateLeaderboardTypes(type)  {
+
+            if  (type == "Gredit")  {
+                var filtered = peeky.userData.filter( p => p.LeaderboardRank && p.FashionBadge == true ).array();
+                var sorted   = filtered.sort((a, b) => b.LeaderboardRank - a.LeaderboardRank);
+            };
+
+            const top            = sorted.splice(0, Setting.LeaderboardLimit);
+            var currentplace     = 0;
+            var CurrentID        = 0;
+            var GotBadge         = true;
+            const Leaderboard    = [];
+            const LeaderboardTop = [];
+
+            LeaderboardPositions = [];
+
+            for (var data of top)  {
+
+                currentplace ++;
+
+                LeaderboardPositions.push(data.UserID);
+
+            if  (currentplace == 1)  {CurrentID = "first"} else if  (currentplace == 2)  {CurrentID = "second"}  else if  (currentplace == 3){CurrentID = "third"}  else  {CurrentID = "other"};
+            if  (currentplace > 3)  {GotBadge = false};
+
+            if  (peeky.users.has(data.UserID))  {
+
+                var CurrentUser = peeky.users.get(data.UserID);
+
+                if  (type == "Gredit")  {
+                    var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'LeaderboardRank').toLocaleString('en');
+                };
+
+                if  (GotBadge == true)  {
+                    peeky.userData.set(`${data.UserID}`, true, "MedallistBadge");
+                };
+
+                var TheBannerShown = DefaultBackground;
+                TheBannerShown = function_GetBackground(data.UserID);
+
+                var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname' id='" + CurrentUser.id + "'>  <img src='" + CurrentUser.displayAvatarURL({ format: 'png' }) + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + " score.</b>  </div>";
+                if  (currentplace == 1 || currentplace == 2 || currentplace == 3)  {
+                    LeaderboardTop.push(SavedProfile);
+                } else  {
+                    Leaderboard.push(SavedProfile);
+                };
+
+            }
+             else
+            {
+             Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "'  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNAVAILABLE PROFILE  <br>  <font size='2'>  If this profiles stays unavailable for " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days", InactiveTime) + " more days, it will get deleted.  </font></b>  </div>");
+            };
+
+            };
+
+            if  (type == "Gredit")  {
+                return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
+            };
+
+            if  (type == "Karma")  {
+                return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
+            };
+
+            if  (type == "Levels")  {
+                return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
+            };
+
+        };
+
+        var LeaderboardGredit = await UpdateLeaderboardTypes("Gredit");
+        //var LeaderboardKarma  = await UpdateLeaderboardTypes("Karma");
+        //var LeaderboardLevel  = await UpdateLeaderboardTypes("Levels");
+
+        //<div id='karma'>" +  LeaderboardKarma + "</div>  <div id='levels'>" +  LeaderboardLevel + "</div>
+        await fs.writeFile('public/leaderboard.txt', "<div id='gredit'>" +  LeaderboardGredit + "</div>", (err) => {
+            if (err) console.log(err);
+        });
+
+        console.log("The leaderboard has been updated.");
+
+    }, 600000);
+
+    //Backgrounds
+    setInterval(async () => {
+
+        const BackgroundList = [];
+        var   Current        = 0;            
+        var   Fillers        = 0;
+
+        Banners.forEach(background_info => {
+
+              Current ++;
+
+              var CommandString = Setting.DefaultPrefix + 'seebackground ' + Current;
+              var NewString     = "";
+              var RevenueString = "";
+              var Price         = "";
+
+              if  (background_info[4] !== undefined && peeky.userData.has(background_info[4]))  {
+                  RevenueString = " <font color='lightgreen'>Revenue Enabled</font>";
+              };
+
+              if  (background_info[1] == Exclusive)  {
+                  Price = Exclusive;
+              } else {
+                Price = background_info[1].toLocaleString('en') + " Gredit";
+              };
+
+              if  (Date.now() - background_info[5] < DayMs)  {
+                  NewString = " <font color='lightgreen'>New</font>";
+              };
+
+              var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="' + Current + '">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + background_info[2] + RevenueString + NewString + '  </font>  <br>  <font size="2" color="lightgray">' + background_info[3] + '</font>  <br><br>  <font size="2" color="lightgray">' + Price.toLocaleString('en') + '</font>  <br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
+
+              BackgroundList.push(BackgroundString);
+
+        });
+
+        await fs.writeFile('public/backgrounds.txt', "<div> " + BackgroundList.reverse().join(" ") + " </div>", (err) => {
+            if (err) console.log(err);
+        });
+
+        console.log("The backgrounds have been updated.");
+
+    }, 600000);
+
+    //Workshop
+    setInterval(async () => {
+
+        var WorkshopList = [];
+
+        peeky.channels.get(WorkshopChannel).messages.fetch({ limit: 50 }).then(async (messages) => {
+
+        messages.forEach(m => {
+
+            if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.reactions.find(r => r.emoji.id == DefaultUpvote) && m.reactions.find(r => r.emoji.id == DefaultDownvote) && m.attachments.size > 0 && m.content.includes("Name: ") && m.content.includes("Credit: ") && m.content.includes("Price: "))  {
+
+                var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500px" height="300px" class="background_image">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + function_FixCapitalization(m.content.split("\n")[0].replace("Name: ", "")) + '  </font>  <br>  <font size="2" color="lightgray">  ' + m.content.split("\n")[1].replace("Credit: ", "") + '  </font>  <br><br>  <font size="2">  ~ ' + m.content.split("\n")[2].replace("Price: ", "").toLocaleString('en') + ' Gredit </font>  <br>  <font size="1" color="lightgreen">  ' + (m.reactions.find(r => r.emoji.id == DefaultUpvote).count - 1) + '  Upvotes</font>  <font size="1">🞄</font>  <font size="1" color="pink">  ' + (m.reactions.find(r => r.emoji.id == DefaultDownvote).count - 1) + '  Downvotes</font>   </b>  </div>  </div>';
+                WorkshopList.push(BackgroundString);
+
+            };
+
+        });
+
+        await fs.writeFile('public/workshop.txt', "<div class='workshop'>" + WorkshopList.join(" ") + "</div>", (err) => {
+            if (err) console.log(err);
+        });  
+
+        console.log("The workshop has been updated.");
+
+        }).catch(error => ErrorBag.add(error));
+
+    }, 600000);
+
+    //Message Header
+    setInterval(async () => {
+
+        var Message = "";
+
+        if  (Setting.EventStatus == true)  {
+            Message = '<b class="messageheader">You can currently participate in the ' + Setting.EventName + ' event!</b>';  
+        }
+        else if  (Setting.Message !== "")  {
+            Message = '<b class="messageheader">' + Setting.Announcement + ' </b>';  
+        };
+
+        await fs.writeFile('public/messageheader.txt', Message, (err) => {
+            if (err) console.log(err);
+        });
+
+        console.log("The message header has been updated.");
+
+    }, 300000);
+
+    //Server List
+    setInterval(async () => {
+
+        var serverlist = peeky.serverData.filter( p => p.server_upgraded == true && p.GuildID ).array();
+        var ServerList = []; 
+
+        for (var data of serverlist)  {
+
+            if  (peeky.guilds.has(data.GuildID) && peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
+
+                var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
+                ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'>  <div class='displayitem' id='" + data.GuildID + "' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b>  </div>  </a>");
+
+            };
+
+        };
+
+        await fs.writeFile('public/server_list.txt', ServerList.join(" "), (err) => {
+            if (err) console.log(err);
+        });
+
+        console.log("The server list has been updated.");
+
+    }, 600000);
+
+    //Premium Users
+    setInterval(async () => {
+
+        var PremiumUsersList = [];
+        peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(PremiumRole)).forEach(m => {
+            if  (peeky.userData.has(m.user.id))  {
+                PremiumUsersList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(m.displayName) + "  <br>  <font size='1' color='lightgray'>  " + function_RemoveFormatting(peeky.userData.get(`${m.user.id}`, "Description"), "other", true) + "  </font>  </b>  </div>");
+            };
+        });
+
+        await fs.writeFile('public/premiumusers.txt', PremiumUsersList.join(" "), (err) => {
+            if (err) console.log(err);
+        });
+
+        console.log("The list of premium users has been updated.");
+
+    }, 600000);
+
+    //Boosters
+    setInterval(async () => {
+
+        var PremiumUsersList = [];
+        peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(BoosterRole)).forEach(m => {
+        if  (peeky.userData.has(m.user.id))  {
+
+            PremiumUsersList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(m.displayName) + "  <br>  <font size='1' color='lightgray'>  " + function_RemoveFormatting(peeky.userData.get(`${m.user.id}`, "Description"), "other", true) + "  </font>  </b>  </div>");
+
+        };
+        });
+
+        await fs.writeFile('public/boosters.txt', PremiumUsersList.join(" "), (err) => {
+            if (err) console.log(err);
+        });
+
+        console.log("The list of server boosters has been updated.");
+
+    }, 600000);
+
+    //Server Log
+    setInterval(async () => {
+
+        var serverloglist = peeky.serverData.filter( p => p.GuildID ).array();
+        var ServerLogList = [];
+
+        serverloglist.forEach(data =>  {
+
+            if  (peeky.guilds.has(data.GuildID))  {
+
+                var guild = peeky.guilds.get(data.GuildID);
+
+                if  (ImmuneServers.includes(data.GuildID) || data.server_upgraded == true)  {
+                    var ImmuneString = "Immune";
+                } else {
+                  var ImmuneString = "Not Immune";
+                };
+
+                ServerLogList.push("<div class='displayitem' style='background-image: url(" + guild.iconURL({ format: 'png' }) + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(guild.name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + ", " + Languages[peeky.serverData.get(`${guild.id}`, "language")] + "  <br>  " + guild.members.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "  <br>  " + guild.id + "   </b></div>");
+
+            };
+
+        });
+
+        await fs.writeFile('public/server_log.txt', ServerLogList.join(" "), (err) => {
+            if (err) console.log(err);
+        });
+
+        console.log("The server log has been updated.");
+
+    }, 600000);
+
+    //News
+    setInterval(async () => {
+
+        var NewsList = [];
+
+        peeky.channels.get(AnnouncementsChannel).messages.fetch({ limit: 10 }).then(async (messages) => {
+
+        await messages.forEach(m => {
+            var Header = m.content.split("\n")[0];
+            var Body   = m.content.split("\n").join(" ").replace(Header, "");
+            var Image  = [];
+            var PrefixImage = "";
+            var ImageLink   = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576095415615";
+
+            if  (m.attachments.size > 0)  {
+                ImageLink = m.attachments.array()[0].url;
+            }
+
+            NewsList.push('<div class="newsitem" style="background-image: url(' + ImageLink + ')">  <div class="textbackground">  <b class="newsheader">  ' + function_RemoveFormatting(Header, "other", true) + '  </b>  <br>  <b class="newsauthor">  <font color="#7289DA">' + m.author.tag + '</font> @ <font color="#7289DA">' + function_DateFormat(m.createdAt, "Date") + '</font>  </b>  <b class="newsbody">  ' + function_ProperSlice(function_RemoveFormatting(Body, "other", false), 250) + '  </b>  <a class="button" href="' + m.url + '">🔍</a>  </div>  </div>');
+        });
+
+        await fs.writeFile('public/news.txt', NewsList.join(""), (err) => {
+            if (err) console.log(err);
+        });    
+
+        }).catch(error => ErrorBag.add(error));
+
+        console.log("The news have been updated.");
+
+    }, 600000);
+
+    //Staff
+    setInterval(async () => {
+
+        var DevList    = [];
+        var ModList    = [];
+
+        peeky.guilds.get(SupportServer).members.forEach(m => {
+
+          if  (m.roles.has(StaffRole))  {
+
+              var CurrentContact = '<div class="container">  <img src=' + '"' + m.user.displayAvatarURL({ format: 'png' }) + '" width="200px" height="200px" class="stafficon">  <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  <br>  <font size="1" color="lightgray"> ' + function_RemoveTags(m.user.tag) + '  </font>  </b>  </div>';  
+
+              if  (m.roles.has("574255080069398543"))  {
+                  DevList.push(CurrentContact);
+              };
+
+              if  (m.roles.has("574255771840282625"))  {
+                  ModList.push(CurrentContact);
+              };
+
+          };
+
+        });
+
+        if  (ModList.length == 0)  {
+            ModList = ["There are currently no Moderators in the Support Server."];
+        };
+
+        await fs.writeFile('public/staff.txt', '<font size="5" class="item_header">Developers of PEEKY</font>  <br>  <div class="inlinediv">  ' + DevList.join(" ") + '  </div>  <font size="5" class="item_header">Moderators of the Support Server</font>  <br>  <div class="inlinediv">  ' + ModList.join(" ") + '  </div>', (err) => {
+            if (err) console.log(err);
+        });
+
+        console.log("The staff has been updated.");
+
+    }, 600000);
+
+    //Random Review
+    setInterval(async () => {
+
+        node_fetch(`https://ls.terminal.ink/api/v2/bots/${peeky.user.id}`, {
+            method: 'GET'
+        }).then(response => response.json()).then(async (data) => {
+
+        var FilteredReviews = data.data.reviews.filter(r => r.text.length >= Setting.MinReviewLength);
+
+        var Length = FilteredReviews.length;
+        var RandomReview = Math.round(Math.random() * Length);
+
+        if  (RandomReview >= Length)  {  RandomReview = 0  };
+
+        var DaysOld        = Math.ceil((new Date() - peeky.user.createdAt) / 8.64e7) - 1;
+        var ReviewDate     = new Date(FilteredReviews[RandomReview].date);
+        var ReviewFullDate = function_DateFormat(ReviewDate, "Date");
+
+        await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + "/5 Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast " + Setting.MinReviewLength + " characters long to show up.</font></center>", (err) => {
+            if (err) console.log(err); 
+        });
+
+        }).catch(err => {
+            ErrorBag.add(err);
+        });
+
+        console.log("The random review have been updated.");
+
+    }, 600000);
+
+    //PEEKY Stats
+    setInterval(async () => {
+
+        await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + Setting.MaxServers + "</font> Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days old</a>", (err) => {
+            if (err) console.log(err); 
+        });
+
+        console.log("The stats have been updated.");
+
+    }, 600000);
+
+    //Random Songs
+    const SongList = [];
+    var   Current  = 0;
+
+    RandomSongs.forEach(song_info => {
+          Current ++;
+          SongList.push('<iframe width="560px" height="315px" src="' + song_info.replace("watch?v=", "embed/") + '" frameborder="0"></iframe>');
+    });
+
+    await fs.writeFile('public/random_songs.txt', SongList.join(" <br> "), (err) => {
+        if (err) console.log(err);
+    });
+
+    console.log("The random songs have been updated.");
+
+    //Miscellaneous
+    await fs.writeFile('public/supportedlanguages.txt', Languages.join(", ") + ".", (err) => {
+        if (err) console.log(err); 
+    });
+
+    await fs.writeFile('public/botdescription.txt', Setting.Description, (err) => {
+        if (err) console.log(err); 
+    });
+
+    console.log("The miscellaneous stuff has been updated.");
+
+};
+
 //FUNCTIONS
 
 //CANVAS: Welcome Messages embed
@@ -1900,6 +2397,8 @@ peeky.on('ready', () => {
 
 	  console.log("PEEKY is now online.");
     peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
+  
+    WebsiteStuff();
 
     //Update Banned Users
     setTimeout(() => {
@@ -2241,549 +2740,6 @@ peeky.on('message', async (message) => {
     };
     };
   
-};
-  
-//API
-setInterval(async () => {
-      
-  const UpdatedApi = {
-      "botName": peeky.user.username,
-      "botDescription": Setting.Description,
-      "botShortDescription": Setting.ShortDescription,
-      "botSummary": Setting.Summary,
-      "botAvatar": peeky.user.avatarURL({ format: 'png' }),
-      "botId": peeky.user.id,
-      "ownerId": OwnerId,
-      
-      "defaultPrefix": Setting.DefaultPrefix,
-      "ageCount": function_TimeLeft(peeky.user.createdAt, "days", null),
-      "serverLimit": Setting.MaxServers,
-      "serverCount": peeky.guilds.size,
-      "upgradedServers": peeky.serverData.filter(i => i.server_upgraded == true).size,
-      "profileCount": peeky.userData.count,
-      "supporterCount": peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(PremiumRole)).size,
-      "backgroundsCount": Banners.length,
-
-      "eventName": Setting.EventName,
-      "eventStatus": Setting.EventStatus,
-
-      "customBackground": Setting.CustomBackgroundPrice,
-      "sellMultiplier": Setting.SellMultiplier,
-      "expMultiplier": Setting.ExpNeeded
-    };
-  
-    await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
-        if (err) console.log(err); 
-    });
-  
-    console.log("The API has been updated.");
-
-}, 300000);
-  
-//Auto Wipe
-setInterval(async () => {
-  
-    const rightNow = new Date();
-  
-    //Guilds
-    var filtered       = peeky.serverData.filter( p => p.GuildID && p.lastSeen);
-    var toRemoveGuilds = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
-
-    toRemoveGuilds.forEach(async data => {
-      
-        if  (data.server_upgraded !== true && !ImmuneServers.includes(data.GuildID))  {
-      
-            peeky.serverData.delete(data.GuildID);
-
-            var Guild = peeky.guilds.get(data.GuildID);
-            if  (Guild !== undefined)  {
-                if  (Guild.owner)  {
-                    const embed = {"description": "I'm leaving your server called **" + Guild.name + "** because of inactivity.", "footer": { "text": "https://peeky.glitch.me/tutorials.html#autowipe" }, "color": EmbedColor}; 
-                    await function_DirectMessage(Guild.owner.user.id, { embed });
-                };
-                await Guild.leave();
-            };
-
-            console.log("I have removed an inactive server.");    
-          
-        };
-
-    });
-      
-    //Profiles
-    var filtered         = peeky.userData.filter( p => p.UserID && p.lastSeen );
-    var toRemoveProfiles = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
-
-    toRemoveProfiles.forEach(data => {
-        if  (!peeky.users.has(data.UserID) || data.FashionBadge == false)  {
-            console.log("I have wiped an inactive profile.");
-            peeky.userData.delete(`${data.UserID}`);
-        };
-    });
-
-}, 3600000);
-  
-//Leaderboard
-setInterval(async () => {
-  
-    peeky.userData.filter( p => p.MedallistBadge == true ).array().forEach(data => {
-        peeky.userData.set(`${data.UserID}`, false, "MedallistBadge");
-    });
-
-    function UpdateLeaderboardTypes(type)  {
-
-        if  (type == "Gredit")  {
-            var filtered = peeky.userData.filter( p => p.LeaderboardRank && p.FashionBadge == true ).array();
-            var sorted   = filtered.sort((a, b) => b.LeaderboardRank - a.LeaderboardRank);
-        };
-
-        const top            = sorted.splice(0, Setting.LeaderboardLimit);
-        var currentplace     = 0;
-        var CurrentID        = 0;
-        var GotBadge         = true;
-        const Leaderboard    = [];
-        const LeaderboardTop = [];
-
-        LeaderboardPositions = [];
-      
-        for (var data of top)  {
-
-            currentplace ++;
-            
-            LeaderboardPositions.push(data.UserID);
-
-        if  (currentplace == 1)  {CurrentID = "first"} else if  (currentplace == 2)  {CurrentID = "second"}  else if  (currentplace == 3){CurrentID = "third"}  else  {CurrentID = "other"};
-        if  (currentplace > 3)  {GotBadge = false};
-
-        if  (peeky.users.has(data.UserID))  {
-
-            var CurrentUser = peeky.users.get(data.UserID);
-
-            if  (type == "Gredit")  {
-                var PlaceInfo = peeky.userData.get(`${data.UserID}`, 'LeaderboardRank').toLocaleString('en');
-            };
-
-            if  (GotBadge == true)  {
-                peeky.userData.set(`${data.UserID}`, true, "MedallistBadge");
-            };
-
-            var TheBannerShown = DefaultBackground;
-            TheBannerShown = function_GetBackground(data.UserID);
-
-            var SavedProfile = "<div class='leaderboarditem' id='" + CurrentID + "' style='background-image: url(" + TheBannerShown + ")'>  <b class='leaderboardname' id='" + CurrentUser.id + "'>  <img src='" + CurrentUser.displayAvatarURL({ format: 'png' }) + "' class='leaderboardicon'>  " + function_RemoveTags(CurrentUser.tag) + "</b>  <br><br>  <b class='leaderboardstats'>" + currentplace + ". place with " + PlaceInfo + " score.</b>  </div>";
-            if  (currentplace == 1 || currentplace == 2 || currentplace == 3)  {
-                LeaderboardTop.push(SavedProfile);
-            } else  {
-                Leaderboard.push(SavedProfile);
-            };
-
-        }
-         else
-        {
-         Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "'  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNAVAILABLE PROFILE  <br>  <font size='2'>  If this profiles stays unavailable for " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days", InactiveTime) + " more days, it will get deleted.  </font></b>  </div>");
-        };
-
-        };
-
-        if  (type == "Gredit")  {
-            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
-        };
-
-        if  (type == "Karma")  {
-            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
-        };
-
-        if  (type == "Levels")  {
-            return "<center> <div class='leaderboardtop'>" + LeaderboardTop.join("<br><br>") + "  <br><br>  <b class='toptext'> Get in the TOP 3 for the Medallist badge! </b>  </div> </center>" + Leaderboard.join("<br><br>");
-        };
-
-    };
-  
-    var LeaderboardGredit = await UpdateLeaderboardTypes("Gredit");
-    //var LeaderboardKarma  = await UpdateLeaderboardTypes("Karma");
-    //var LeaderboardLevel  = await UpdateLeaderboardTypes("Levels");
-
-    //<div id='karma'>" +  LeaderboardKarma + "</div>  <div id='levels'>" +  LeaderboardLevel + "</div>
-    await fs.writeFile('public/leaderboard.txt', "<div id='gredit'>" +  LeaderboardGredit + "</div>", (err) => {
-        if (err) console.log(err);
-    });
-
-    console.log("The leaderboard has been updated.");
-
-}, 600000);
-  
-//Backgrounds
-setInterval(async () => {
-  
-    const BackgroundList = [];
-    var   Current        = 0;            
-    var   Fillers        = 0;
-
-    Banners.forEach(background_info => {
-
-          Current ++;
-      
-          var CommandString = Setting.DefaultPrefix + 'seebackground ' + Current;
-          var NewString     = "";
-          var RevenueString = "";
-          var Price         = "";
-
-          if  (background_info[4] !== undefined && peeky.userData.has(background_info[4]))  {
-              RevenueString = " <font color='lightgreen'>Revenue Enabled</font>";
-          };
-
-          if  (background_info[1] == Exclusive)  {
-              Price = Exclusive;
-          } else {
-            Price = background_info[1].toLocaleString('en') + " Gredit";
-          };
-
-          if  (Date.now() - background_info[5] < DayMs)  {
-              NewString = " <font color='lightgreen'>New</font>";
-          };
-      
-          var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="' + Current + '">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + background_info[2] + RevenueString + NewString + '  </font>  <br>  <font size="2" color="lightgray">' + background_info[3] + '</font>  <br><br>  <font size="2" color="lightgray">' + Price.toLocaleString('en') + '</font>  <br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
-    
-          BackgroundList.push(BackgroundString);
-    
-    });
-
-    await fs.writeFile('public/backgrounds.txt', "<div> " + BackgroundList.reverse().join(" ") + " </div>", (err) => {
-        if (err) console.log(err);
-    });
-
-    console.log("The backgrounds have been updated.");
-
-}, 600000);
-  
-//Workshop
-setInterval(async () => {
-  
-    var WorkshopList = [];
-
-    peeky.channels.get(WorkshopChannel).messages.fetch({ limit: 50 }).then(async (messages) => {
-      
-    messages.forEach(m => {
-          
-        if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.reactions.find(r => r.emoji.id == DefaultUpvote) && m.reactions.find(r => r.emoji.id == DefaultDownvote) && m.attachments.size > 0 && m.content.includes("Name: ") && m.content.includes("Credit: ") && m.content.includes("Price: "))  {
-        
-            var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500px" height="300px" class="background_image">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + function_FixCapitalization(m.content.split("\n")[0].replace("Name: ", "")) + '  </font>  <br>  <font size="2" color="lightgray">  ' + m.content.split("\n")[1].replace("Credit: ", "") + '  </font>  <br><br>  <font size="2">  ~ ' + m.content.split("\n")[2].replace("Price: ", "").toLocaleString('en') + ' Gredit </font>  <br>  <font size="1" color="lightgreen">  ' + (m.reactions.find(r => r.emoji.id == DefaultUpvote).count - 1) + '  Upvotes</font>  <font size="1">🞄</font>  <font size="1" color="pink">  ' + (m.reactions.find(r => r.emoji.id == DefaultDownvote).count - 1) + '  Downvotes</font>   </b>  </div>  </div>';
-            WorkshopList.push(BackgroundString);
-
-        };
-    
-    });
-
-    await fs.writeFile('public/workshop.txt', "<div class='workshop'>" + WorkshopList.join(" ") + "</div>", (err) => {
-        if (err) console.log(err);
-    });  
-      
-    console.log("The workshop has been updated.");
-    
-    }).catch(error => ErrorBag.add(error));
-  
-}, 00000);
-  
-//Message Header
-setInterval(async () => {
-  
-    var Message = "";
-  
-    if  (Setting.EventStatus == true)  {
-        Message = '<b class="messageheader">You can currently participate in the ' + Setting.EventName + ' event!</b>';  
-    }
-    else if  (Setting.Message !== "")  {
-        Message = '<b class="messageheader">' + Setting.Announcement + ' </b>';  
-    };
-
-    await fs.writeFile('public/messageheader.txt', Message, (err) => {
-        if (err) console.log(err);
-    });
-
-    console.log("The message header has been updated.");
-
-}, 300000);
-  
-//Interval Template
-setInterval(async () => {
-
-}, 300000);
-  
-//Interval Template
-setInterval(async () => {
-
-}, 300000);
-  
-//Interval Template
-setInterval(async () => {
-
-}, 300000);
-  
-//Interval Template
-setInterval(async () => {
-
-}, 300000);
-  
-//Interval Template
-setInterval(async () => {
-
-}, 300000);
-
-//Random Songs
-if  (!WebsiteCooldowns.has("randomsongs"))  {
-
-    WebsiteCooldowns.add("randomsongs");
-
-    
-
-    console.log("The random songs have been updated.");
-
-};
-
-//Server List
-if  (!WebsiteCooldowns.has("serverlist"))  {
-
-    WebsiteCooldowns.add("serverlist");
-    setTimeout(() => {WebsiteCooldowns.delete("serverlist")}, 600000);
-
-    var serverlist = peeky.serverData.filter( p => p.server_upgraded == true && p.GuildID ).array();
-    var ServerList = []; 
-
-    for (var data of serverlist)  {
-      
-        if  (peeky.guilds.has(data.GuildID) && peeky.serverData.get(`${data.GuildID}`, "server_invite") !== "no_invite")  {
-          
-            var ServerInfo = "<font size='2' color='lightgray'>" + peeky.guilds.get(data.GuildID).members.filter(m => !m.user.bot).size.toLocaleString('en') + " members</font>";
-            ServerList.push("<a href='https://discordapp.com/invite/" + data.server_invite + "'>  <div class='displayitem' id='" + data.GuildID + "' style='background-image: url(" + peeky.guilds.get(data.GuildID).iconURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(peeky.guilds.get(data.GuildID).name) + "  <br>  " + ServerInfo + "  </b>  </div>  </a>");
-      
-        };
-          
-    };
-
-    await fs.writeFile('public/server_list.txt', ServerList.join(" "), (err) => {
-        if (err) console.log(err);
-    });
-
-    console.log("The server list has been updated.");
-
-};
-  
-//Premium Users
-if  (!WebsiteCooldowns.has("premiumusers"))  {
-      
-    WebsiteCooldowns.add("premiumusers");
-    setTimeout(() => {WebsiteCooldowns.delete("premiumusers")}, 600000);
-
-    var PremiumUsersList = [];
-    peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(PremiumRole)).forEach(m => {
-    if  (peeky.userData.has(m.user.id))  {
-
-        PremiumUsersList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(m.displayName) + "  <br>  <font size='1' color='lightgray'>  " + function_RemoveFormatting(peeky.userData.get(`${m.user.id}`, "Description"), "other", true) + "  </font>  </b>  </div>");
-      
-    };
-    });
-
-    await fs.writeFile('public/premiumusers.txt', PremiumUsersList.join(" "), (err) => {
-        if (err) console.log(err);
-    });
-      
-    console.log("The supporters list has been updated.");
-
-};
-  
-//Boosters
-if  (!WebsiteCooldowns.has("boosters"))  {
-      
-    WebsiteCooldowns.add("boosters");
-    setTimeout(() => {WebsiteCooldowns.delete("boosters")}, 600000);
-
-    var PremiumUsersList = [];
-    peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(BoosterRole)).forEach(m => {
-    if  (peeky.userData.has(m.user.id))  {
-
-        PremiumUsersList.push("<div class='displayitem' id='" + m.user.id + "' style='background-image: url(" + m.user.displayAvatarURL({ format: 'png' }) + ")'>  <b class='displayname'>" + function_RemoveTags(m.displayName) + "  <br>  <font size='1' color='lightgray'>  " + function_RemoveFormatting(peeky.userData.get(`${m.user.id}`, "Description"), "other", true) + "  </font>  </b>  </div>");
-      
-    };
-    });
-
-    await fs.writeFile('public/boosters.txt', PremiumUsersList.join(" "), (err) => {
-        if (err) console.log(err);
-    });
-      
-    console.log("The supporters list has been updated.");
-
-};
-
-//Server Log
-if  (!WebsiteCooldowns.has("serverlog"))  {
-
-    WebsiteCooldowns.add("serverlog");
-    setTimeout(() => {WebsiteCooldowns.delete("serverlog")}, 600000);
-
-    var serverloglist = peeky.serverData.filter( p => p.GuildID ).array();
-    var ServerLogList = [];
-
-    serverloglist.forEach(data =>  {
-      
-        if  (peeky.guilds.has(data.GuildID))  {
-          
-            var guild = peeky.guilds.get(data.GuildID);
-          
-            if  (ImmuneServers.includes(data.GuildID) || data.server_upgraded == true)  {
-                var ImmuneString = "Immune";
-            } else {
-              var ImmuneString = "Not Immune";
-            };
-
-            ServerLogList.push("<div class='displayitem' style='background-image: url(" + guild.iconURL({ format: 'png' }) + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(guild.name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + ", " + Languages[peeky.serverData.get(`${guild.id}`, "language")] + "  <br>  " + guild.members.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "  <br>  " + guild.id + "   </b></div>");
-          
-        };
-      
-    });
-
-    await fs.writeFile('public/server_log.txt', ServerLogList.join(" "), (err) => {
-        if (err) console.log(err);
-    });
-
-    console.log("The server log has been updated.");
-
-};
-  
-//News
-if  (!WebsiteCooldowns.has("news"))  {
-      
-    WebsiteCooldowns.add("news");
-    setTimeout(() => {WebsiteCooldowns.delete("news")}, 600000);
-
-    var NewsList = [];
-
-    peeky.channels.get(AnnouncementsChannel).messages.fetch({ limit: 10 }).then(async (messages) => {
-          
-    await messages.forEach(m => {
-        var Header = m.content.split("\n")[0];
-        var Body   = m.content.split("\n").join(" ").replace(Header, "");
-        var Image  = [];
-        var PrefixImage = "";
-        var ImageLink   = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpattern_fog.png?v=1576095415615";
-      
-        if  (m.attachments.size > 0)  {
-            ImageLink = m.attachments.array()[0].url;
-        }
-
-        NewsList.push('<div class="newsitem" style="background-image: url(' + ImageLink + ')">  <div class="textbackground">  <b class="newsheader">  ' + function_RemoveFormatting(Header, "other", true) + '  </b>  <br>  <b class="newsauthor">  <font color="#7289DA">' + m.author.tag + '</font> @ <font color="#7289DA">' + function_DateFormat(m.createdAt, "Date") + '</font>  </b>  <b class="newsbody">  ' + function_ProperSlice(function_RemoveFormatting(Body, "other", false), 250) + '  </b>  <a class="button" href="' + m.url + '">🔍</a>  </div>  </div>');
-    });
-
-    await fs.writeFile('public/news.txt', NewsList.join(""), (err) => {
-        if (err) console.log(err);
-    });    
-    
-    }).catch(error => ErrorBag.add(error));
-      
-    console.log("The news have been updated.");
-
-};
-
-//Staff
-if  (!WebsiteCooldowns.has("staff"))  {
-      
-    WebsiteCooldowns.add("staff");
-    setTimeout(() => {WebsiteCooldowns.delete("staff")}, 600000);
-
-    var DevList    = [];
-    var ModList    = [];
-
-    peeky.guilds.get(SupportServer).members.forEach(m => {
-      
-      if  (m.roles.has(StaffRole))  {
-
-          var CurrentContact = '<div class="container">  <img src=' + '"' + m.user.displayAvatarURL({ format: 'png' }) + '" width="200px" height="200px" class="stafficon">  <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  <br>  <font size="1" color="lightgray"> ' + function_RemoveTags(m.user.tag) + '  </font>  </b>  </div>';  
-
-          if  (m.roles.has("574255080069398543"))  {
-              DevList.push(CurrentContact);
-          };
-
-          if  (m.roles.has("574255771840282625"))  {
-              ModList.push(CurrentContact);
-          };
-
-      };
-      
-    });
-  
-    if  (ModList.length == 0)  {
-        ModList = ["There are currently no Moderators in the Support Server."];
-    };
-
-    await fs.writeFile('public/staff.txt', '<font size="5" class="item_header">Developers of PEEKY</font>  <br>  <div class="inlinediv">  ' + DevList.join(" ") + '  </div>  <font size="5" class="item_header">Moderators of the Support Server</font>  <br>  <div class="inlinediv">  ' + ModList.join(" ") + '  </div>', (err) => {
-        if (err) console.log(err);
-    });
-      
-    console.log("The staff has been updated.");
-
-};
-
-//Random Review
-if  (!WebsiteCooldowns.has("randomreview"))  {
-      
-    WebsiteCooldowns.add("randomreview");
-    setTimeout(() => {WebsiteCooldowns.delete("randomreview")}, 600000);
-  
-    node_fetch(`https://ls.terminal.ink/api/v2/bots/${peeky.user.id}`, {
-        method: 'GET'
-    }).then(response => response.json()).then(async (data) => {
-      
-    var FilteredReviews = data.data.reviews.filter(r => r.text.length >= Setting.MinReviewLength);
-      
-    var Length = FilteredReviews.length;
-    var RandomReview = Math.round(Math.random() * Length);
-      
-    if  (RandomReview >= Length)  {  RandomReview = 0  };
-      
-    var DaysOld        = Math.ceil((new Date() - peeky.user.createdAt) / 8.64e7) - 1;
-    var ReviewDate     = new Date(FilteredReviews[RandomReview].date);
-    var ReviewFullDate = function_DateFormat(ReviewDate, "Date");
-      
-    await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + "/5 Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast " + Setting.MinReviewLength + " characters long to show up.</font></center>", (err) => {
-        if (err) console.log(err); 
-    });
-      
-    }).catch(err => {
-        ErrorBag.add(err);
-    });
-      
-    console.log("The featured review have been updated.");
-      
-};
-
-//Stats
-if  (!WebsiteCooldowns.has("stats"))  {
-      
-    WebsiteCooldowns.add("stats");
-    setTimeout(() => {WebsiteCooldowns.delete("stats")}, 600000);
-
-    await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.size + " / " + Setting.MaxServers + "</font> Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days old</a>", (err) => {
-        if (err) console.log(err); 
-    });
-      
-    console.log("The stats have been updated.");
-      
-};
-
-//Miscellaneous
-if  (!WebsiteCooldowns.has("miscellaneous"))  {
-      
-    WebsiteCooldowns.add("miscellaneous");
-
-    await fs.writeFile('public/supportedlanguages.txt', Languages.join(", ") + ".", (err) => {
-        if (err) console.log(err); 
-    });
-
-    await fs.writeFile('public/botdescription.txt', Setting.Description, (err) => {
-        if (err) console.log(err); 
-    });
-      
-    console.log("The miscellaneous have been updated.");
-      
 };
 
 });
