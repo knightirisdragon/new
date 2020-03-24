@@ -2509,7 +2509,6 @@ peeky.on('message', async (message) => {
         Badges: 0,
         Votes: 0,
         UpgradedServers: 0,
-        SupporterSince: 0,
         SupporterLastPurchase: 0,
         BoosterStart: 0,
         DailyRewarded: 0,
@@ -3233,11 +3232,8 @@ if  (keySF == SupportServer)  {
                 var PurchaseHeader = "**You have purchased Premium status from the [store](https://peeky.glitch.me/store.html#premium)!**";
 
                 peeky.userData.set(key, new Date(), "SupporterLastPurchase");
-                Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs)) + "**.", "Date");
-
-                if  ( (peeky.userData.has(key, "SupporterSince") == false) || (peeky.userData.has(key, "SupporterSince") && (new Date(peeky.userData.get(key, "SupporterSince")) - new Date() > (MonthMs + (DayMs * 5)))) )  {
-                    peeky.userData.set(key, new Date(), "SupporterSince");
-                };
+              
+                Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs), "Date") + "**.");
 
             };
 
@@ -7443,7 +7439,7 @@ if  (CommandName == "daily")  {
 
     if  (new Date() - new Date(peeky.userData.get(key, "DailyRewarded")) < DayMs)  {
   
-        var TranslatedMessages = [InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Vraťte se v **X001** pro vaši odměnu.", InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward."];
+        var TranslatedMessages = [InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Vraťte se v **X001** pro vaši odměnu.", InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward."];
         var embed = {"description": TranslatedMessages[Language].replace("X001", function_DateFormat(peeky.userData.get(key, "DailyRewarded") + DayMs, "Time")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
