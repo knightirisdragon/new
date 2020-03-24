@@ -1227,7 +1227,7 @@ async function WebsiteStuff()  {
           "serverCount": peeky.guilds.size,
           "upgradedServers": peeky.serverData.filter(i => i.server_upgraded == true).size,
           "profileCount": peeky.userData.count,
-          "supporterCount": peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(PremiumRole)).size,
+          "premiumCount": peeky.guilds.get(SupportServer).members.filter(m => m.roles.has(PremiumRole)).size,
           "backgroundsCount": Banners.length,
 
           "eventName": Setting.EventName,
