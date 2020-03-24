@@ -3791,7 +3791,7 @@ if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.user
           
         };
             
-        const newEmbed = {"description": "**Music Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" + "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon), "color": EmbedColor};
+        const newEmbed = new Discord.MessageEmbed({"description": "**Music Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" + "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon), "color": EmbedColor});
         reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
       
   };
