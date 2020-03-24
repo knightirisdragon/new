@@ -3209,7 +3209,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Boost", "", "Your reward expires once you stop boosting.", "image_link"];
+                TransactionInfo = ["Server Boost", "serverboost", "Your reward expires once you stop boosting.", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
 
             };
 
@@ -3224,7 +3224,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Premium", "4.99€", "Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs), "Date") + "**.", "image_link"];
+                TransactionInfo = ["Premium", "premium", "Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs), "Date") + "**.", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585077082320"];
 
             };
 
@@ -3239,7 +3239,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Upgrade", "2.49€", "", "image_link"];
+                TransactionInfo = ["Server Upgrade", "serverupgrade", "", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585077082320"];
 
             };
 
@@ -3253,19 +3253,8 @@ if  (keySF == SupportServer)  {
             };
 
             const embed = {
-                "description": 
-                      "" + PurchaseHeader
-                    + "\n"
-                    + "Thank you very much!"
-                    + "\n\n"
-                    + "**Bonus rewards:**"
-                    + "\n"
-                    + "" + Rewards.join("\n")
-                    + "\n\n"
-                    + "**Notes:**"
-                    + "\n"
-                    + "" + Notes.join("\n"),  
-
+                "description": "**Thank you for the purchase of " + TransactionInfo[0] + "** \n [Click here to see what you've got!](https://peeky.glitch.me/store.html#" + TransactionInfo[1] + ") \n\n\n " + TransactionInfo[2],
+                "thumbnail": { "url": TransactionInfo[3] },
                 "color": EmbedColor
             };
 
