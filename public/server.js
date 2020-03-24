@@ -3195,9 +3195,8 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
 if  (keySF == SupportServer)  {
 
     var PurchaseComplete = false;
+    var TransactionInfo = [];
     var Failed = false;
-    var Rewards = [];
-    var Notes = [];
   
     if  (new Date() - new Date(member.joinedAt) > 5000)  {
 
@@ -3207,13 +3206,10 @@ if  (keySF == SupportServer)  {
             var HadRole = oldMember.roles.find(r => r.id == BoosterRole);
             var HasRole = newMember.roles.find(r => r.id == BoosterRole);
 
-            if  (HadRole == null && HasRole)  {
+            if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-
-                var PurchaseHeader = "**You have Server Boosted the [Support Server](https://peeky.glitch.me/server.html)!**";
-              
-                Notes.push("Your reward expires once you stop boosting.");
+                TransactionInfo = ["Server Boost", "", "Your reward expires once you stop boosting.", "image_link"];
 
             };
 
@@ -3225,15 +3221,10 @@ if  (keySF == SupportServer)  {
             var HadRole = oldMember.roles.find(r => r.id == PremiumRole);
             var HasRole = newMember.roles.find(r => r.id == PremiumRole);
 
-            if  (HadRole == null && HasRole)  {
+            if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-
-                var PurchaseHeader = "**You have purchased Premium status from the [store](https://peeky.glitch.me/store.html#premium)!**";
-
-                peeky.userData.set(key, new Date(), "SupporterLastPurchase");
-              
-                Notes.push("Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs), "Date") + "**.");
+                TransactionInfo = ["Premium", "4.99€", "Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs), "Date") + "**.", "image_link"];
 
             };
 
@@ -3245,11 +3236,10 @@ if  (keySF == SupportServer)  {
             var HadRole = oldMember.roles.find(r => r.id == ServerUpgradeRole);
             var HasRole = newMember.roles.find(r => r.id == ServerUpgradeRole);
 
-            if  (HadRole == null && HasRole)  {
+            if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-
-                var PurchaseHeader = "**You have purchased Server Upgrade from the [store](https://peeky.glitch.me/store.html#serverupgrade)!**";
+                TransactionInfo = ["Server Upgrade", "2.49€", "", "image_link"];
 
             };
 
@@ -3260,15 +3250,6 @@ if  (keySF == SupportServer)  {
 
             if  (!peeky.userData.get(key, "ContributorBadge"))  {
                 peeky.userData.set(key, true, "ContributorBadge");
-                Rewards.push("The **Contributor** badge");
-            };
-
-            if  (Rewards.length == 0)  {
-                Rewards = ["None"];
-            };
-
-            if  (Notes.length == 0)  {
-                Notes = ["None"];
             };
 
             const embed = {
