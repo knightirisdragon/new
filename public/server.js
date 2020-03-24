@@ -3224,7 +3224,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Premium", "premium", "4.99€ • ", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585077082320"];
+                TransactionInfo = ["Premium", "premium", "4.99€ • ", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
                 //"Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs), "Date") + "**."
 
             };
@@ -3254,7 +3254,7 @@ if  (keySF == SupportServer)  {
             };
 
             const embed = {
-                "description":  "­\n" + "**Thank you for the purchase of " + TransactionInfo[0] + "!**" + "\n" +
+                "description": /*"­\n" + */ "**Thank you for the purchase of " + TransactionInfo[0] + "!**" + "\n" +
                   "[Click here for more info about this.](https://peeky.glitch.me/store.html#" + TransactionInfo[1] + ")",
                   // + "\n\n\n" + TransactionInfo[2]
                 "thumbnail": { "url": TransactionInfo[3] },
@@ -3325,7 +3325,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
                  member.roles.add(GuildRole.id).catch(error => ErrorBag.add(error));
 
                  CurrentlyStreaming.add(member.user.id + member.guild.id + "SR");
-                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 900000);
+                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 1800000);
 
                  console.log("The Streamer Role function has been triggered in " + member.guild.name + ".");
                  function_UpdateAutowipe(keySF, "server");
@@ -3360,7 +3360,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
             if  (Activity && Activity.type == "STREAMING" || member.voice.channel && member.voice.streaming == true)  {
 
                 CurrentlyStreaming.add(member.user.id + member.guild.id + "SA2");
-                setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 900000);
+                setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SA2")}, 1800000);
                   
                 var SavedMember = member;
 
