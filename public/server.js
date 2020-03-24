@@ -2242,14 +2242,11 @@ peeky.on('message', async (message) => {
     };
   
 };
-
+  
 //API
-if  (!WebsiteCooldowns.has("api"))  {
+setInterval(async () => {
       
-    WebsiteCooldowns.add("api");
-    setTimeout(() => {WebsiteCooldowns.delete("api")}, 300000);
-
-    const UpdatedApi = {
+  const UpdatedApi = {
       "botName": peeky.user.username,
       "botDescription": Setting.Description,
       "botShortDescription": Setting.ShortDescription,
@@ -2278,16 +2275,13 @@ if  (!WebsiteCooldowns.has("api"))  {
     await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
         if (err) console.log(err); 
     });
-      
+  
     console.log("The API has been updated.");
-      
-};
 
+}, 300000);
+  
 //Auto Wipe
-if  (!WebsiteCooldowns.has("autowipe"))  {
-      
-    WebsiteCooldowns.add("autowipe");
-    setTimeout(() => {WebsiteCooldowns.delete("autowipe")}, 3600000);
+setInterval(async () => {
   
     const rightNow = new Date();
   
@@ -2326,15 +2320,12 @@ if  (!WebsiteCooldowns.has("autowipe"))  {
             peeky.userData.delete(`${data.UserID}`);
         };
     });
-    
-};
 
+}, 3600000);
+  
 //Leaderboard
-if  (!WebsiteCooldowns.has("leaderboard"))  {
-
-    WebsiteCooldowns.add("leaderboard");
-    setTimeout(() => {WebsiteCooldowns.delete("leaderboard")}, 600000);
-
+setInterval(async () => {
+  
     peeky.userData.filter( p => p.MedallistBadge == true ).array().forEach(data => {
         peeky.userData.set(`${data.UserID}`, false, "MedallistBadge");
     });
@@ -2419,14 +2410,11 @@ if  (!WebsiteCooldowns.has("leaderboard"))  {
 
     console.log("The leaderboard has been updated.");
 
-};
-
+}, 600000);
+  
 //Backgrounds
-if  (!WebsiteCooldowns.has("backgrounds"))  {
-
-    WebsiteCooldowns.add("backgrounds");
-    setTimeout(() => {WebsiteCooldowns.delete("backgrounds")}, 600000);
-
+setInterval(async () => {
+  
     const BackgroundList = [];
     var   Current        = 0;            
     var   Fillers        = 0;
@@ -2466,14 +2454,11 @@ if  (!WebsiteCooldowns.has("backgrounds"))  {
 
     console.log("The backgrounds have been updated.");
 
-};
+}, 600000);
   
 //Workshop
-if  (!WebsiteCooldowns.has("workshop"))  {
-
-    WebsiteCooldowns.add("workshop");
-    setTimeout(() => {WebsiteCooldowns.delete("workshop")}, 600000);
-
+setInterval(async () => {
+  
     var WorkshopList = [];
 
     peeky.channels.get(WorkshopChannel).messages.fetch({ limit: 50 }).then(async (messages) => {
@@ -2496,15 +2481,12 @@ if  (!WebsiteCooldowns.has("workshop"))  {
     console.log("The workshop has been updated.");
     
     }).catch(error => ErrorBag.add(error));
-
-};
-
-//Message Header
-if  (!WebsiteCooldowns.has("messageheader"))  {
   
-    WebsiteCooldowns.add("messageheader");
-    setTimeout(() => {WebsiteCooldowns.delete("messageheader")}, 300000);
-    
+}, 00000);
+  
+//Message Header
+setInterval(async () => {
+  
     var Message = "";
   
     if  (Setting.EventStatus == true)  {
@@ -2520,25 +2502,39 @@ if  (!WebsiteCooldowns.has("messageheader"))  {
 
     console.log("The message header has been updated.");
 
-};
+}, 300000);
+  
+//Interval Template
+setInterval(async () => {
+
+}, 300000);
+  
+//Interval Template
+setInterval(async () => {
+
+}, 300000);
+  
+//Interval Template
+setInterval(async () => {
+
+}, 300000);
+  
+//Interval Template
+setInterval(async () => {
+
+}, 300000);
+  
+//Interval Template
+setInterval(async () => {
+
+}, 300000);
 
 //Random Songs
 if  (!WebsiteCooldowns.has("randomsongs"))  {
 
     WebsiteCooldowns.add("randomsongs");
 
-    const SongList = [];
-    var   Current  = 0;
-
-    RandomSongs.forEach(song_info => {
-          Current ++;
-          SongList.push('<iframe width="560px" height="315px" src="' + song_info.replace("watch?v=", "embed/") + '" frameborder="0"></iframe>');
-    });
-
-
-    await fs.writeFile('public/random_songs.txt', SongList.join(" <br> "), (err) => {
-        if (err) console.log(err);
-    });
+    
 
     console.log("The random songs have been updated.");
 
