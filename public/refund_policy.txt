@@ -1,7 +1,7 @@
 REFUND POLICY
-Last updated: 27th of January, 2020
+Last updated: 24th of March, 2020
 
-We will only refund fraud purchases that happened up to 168 hours prior the refund request.
+We will mostly only refund fraud purchases that happened up to 168 hours prior the refund request.
 
 HOW TO ISSUE A REFUND
 • Go to the #tickets channel in the Support Server and follow the instructions to make a ticket.

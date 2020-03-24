@@ -3196,7 +3196,6 @@ if  (keySF == SupportServer)  {
 
     var PurchaseComplete = false;
     var TransactionInfo = [];
-    var Failed = false;
   
     if  (new Date() - new Date(member.joinedAt) > 5000)  {
 
@@ -3239,7 +3238,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Upgrade", "serverupgrade", "", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585077082320"];
+                TransactionInfo = ["Server Upgrade", "serverupgrade", "", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverupgrade.png?v=1585078211679"];
 
             };
 
@@ -3253,7 +3252,9 @@ if  (keySF == SupportServer)  {
             };
 
             const embed = {
-                "description": "**Thank you for the purchase of " + TransactionInfo[0] + "** \n [Click here to see what you've got!](https://peeky.glitch.me/store.html#" + TransactionInfo[1] + ") \n\n\n " + TransactionInfo[2],
+                "description": "**Thank you for the purchase of " + TransactionInfo[0] + "**" + "\n" +
+                  "[Click here to see what you've got!](https://peeky.glitch.me/store.html#" + TransactionInfo[1] + ")" + "\n\n\n" +
+                  TransactionInfo[2],
                 "thumbnail": { "url": TransactionInfo[3] },
                 "color": EmbedColor
             };
