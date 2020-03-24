@@ -73,7 +73,6 @@ img  {border-radius: 10px; cursor: pointer;}
 
 .homebutton  {
     background-color: rgba(44, 47, 51, 0);
-    border-radius: 0px 100px 0px 0px;
     width: 100px;
     height: 100px;
     position: fixed;
@@ -84,10 +83,9 @@ img  {border-radius: 10px; cursor: pointer;}
 }
 
 .homebutton img  {
-    width: 50%;
     position: absolute;
-    bottom: 10%;
-    left: 10%;
+    bottom: 17%;
+    left: 17%;
 }
 
 .homebutton:hover  {
