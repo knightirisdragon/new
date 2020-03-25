@@ -636,12 +636,12 @@ th, td {
     background-color: rgba(44, 47, 51, 0.75);
     overflow: scroll;
     padding: 10px;
+    width: 20%;
+    height: 100%;
     position: fixed;
     left: 0%;
     bottom: 0%;
     z-index: 99;
-    width: 20%;
-    height: 100%;
 }
 
 .topnav {

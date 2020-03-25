@@ -2510,7 +2510,6 @@ peeky.on('message', async (message) => {
         Votes: 0,
         UpgradedServers: 0,
         SupporterLastPurchase: 0,
-        PremiumLength: "month",
         BoosterStart: 0,
         DailyRewarded: 0,
         LeaderboardRank: 1,
@@ -4265,10 +4264,7 @@ if  (!LimitedRolesCooldown.has("cooldown"))  {
     //Premium
     await peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(PremiumRole)).forEach(m => {
       
-        var ExpirationMs = MonthMs;
-        if  ()
-      
-        if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= ExpirationMs))  {
+        if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= MonthMs))  {
             m.roles.remove(PremiumRole).catch(error => ErrorBag.add(error));
           
             const embed = {"description": InfoIcon + " Your **Premium** status has just expired.",  "color": EmbedColor}; 

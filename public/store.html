@@ -18,6 +18,16 @@
   
 <style>
   
+.sidemenu  {
+    overflow: scroll;
+    width: 20%;  
+    height: 600px;
+    position: fixed;
+    left: 0%;
+    bottom: 0%;
+    z-index: 99;
+}
+  
 .storecategory  {
     background-color: transparent;
     border-radius: 0px 10px 10px 0px;
@@ -59,8 +69,7 @@
 }
   
 .listitem  {
-    width: 250px;
-    height: 250px;
+    width: 95%;
 }  
   
 .textlistitem .first,
@@ -278,10 +287,8 @@ function ShowHighlighted(hash)  {
 <font size="1">By purchasing any of the items found in the donatebot.io website, you will automatically agree to the <a href="refund_policy.txt" rel="noopener noreferrer"><u>Refund Policy</u></a>.</font></font>
 
     <br><br>
-  
-    <center>
       
-    <div class="inlinediv" style="display: flex;">
+    <div class="sidemenu" style="display: block;">
     
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815');">
         <div class="textlistitem">
@@ -312,18 +319,16 @@ function ShowHighlighted(hash)  {
         </b>
         </div>
         </div>
-    
-    </div>
       
-    </center>
-
-    <br>
-    
-    <a>
-    <div class="demo" id="fulldesc">
-    <b id="description" style="text-align: left;"></b>
+    <div class="subbody">    
+        <a>
+        <div class="demo" id="fulldesc">
+        <b id="description" style="text-align: left;"></b>
+        </div>
+        </a>
     </div>
-    </a>
+    
+    </div>
   
 </div>
    
