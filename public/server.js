@@ -962,7 +962,7 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground461.png?v=1584219318235", 925, "Good", "Overwatch", undefined, 1584219174835],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground462.png?v=1584219319602", 900, "Ben swolo", "Kittrose", undefined, 1584219178299],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground463.png?v=1584965925687", 925, "Slayer bussiness", "DOOM Eternal", undefined, 1584965848228],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground464.png?v=1584965927654", 775, "Hello, mayor", "Animal Crossing New Horizon", undefined, 1584965850554]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground464.png?v=1584965927654", 775, "Hello mayor", "Animal Crossing New Horizon", undefined, 1584965850554]
 
 ];
 
@@ -996,7 +996,6 @@ const DefaultDescriptions = [
     "More than meets the eye.",
     "I draw on fogged up windows.",
     "Born at a very young age.",
-    "Is this a JoJo reference?",
     "I did not set this description, I think."
 ];
 
@@ -1025,7 +1024,6 @@ const YoutubeSongs = [
     ["https://www.youtube.com/watch?v=XUhVCoTsBaM", "Awaken", "Medium"],
     ["https://www.youtube.com/watch?v=DwPWGUhEtP0", "Roundabout", "Medium"],
     ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "Medium"],
-    ["https://www.youtube.com/watch?v=RiifAqNwHoo", "THE HERO", "Medium"],
     ["https://www.youtube.com/watch?v=fcsvE1zv1ek", "Gangsta's Paradise", "Easy"],
     ["https://www.youtube.com/watch?v=d5Ql4Sjo-GU", "Midsummer Madness", "medium"],
     ["https://www.youtube.com/watch?v=ZONlGIshF3o", "Where Does The Time Go", "Hard"],
