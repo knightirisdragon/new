@@ -4274,7 +4274,7 @@ if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
     if  (!FunctionCooldowns.has("automaticreactions" + message.author.id))  {
 
         FunctionCooldowns.add("automaticreactions" + message.author.id);
-        setTimeout(() => {FunctionCooldowns.delete("automaticreactions" + message.guild.id)}, 2000);
+        setTimeout(() => {FunctionCooldowns.delete("automaticreactions" + message.author.id)}, 2000);
   
         if  ((message.attachments.size > 0 || function_DetectLink(message.content) == true) && !message.author.bot)  {
 
