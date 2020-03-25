@@ -1000,75 +1000,7 @@ const DefaultDescriptions = [
     "I did not set this description, I think."
 ];
 
-const RandomAvatars = [  
-    "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_1.png?v=1560717936708",
-    "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_2.png?v=1560717937510",
-    "https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fpeeky_icon_3.png?v=1560717937123"
-];
-
-const RandomSongs = [
-    "https://www.youtube.com/watch?v=mFGq92BYmt4",
-    "https://www.youtube.com/watch?v=py_MdrpI5vQ",
-    "https://www.youtube.com/watch?v=908kjmbjABI",
-    "https://www.youtube.com/watch?v=99WBsOqSujc",
-    "https://www.youtube.com/watch?v=N6hF3EaICxk",
-    "https://www.youtube.com/watch?v=NU3aCNQAqwc", 
-    "https://www.youtube.com/watch?v=K3Qzzggn--s",
-    "https://www.youtube.com/watch?v=PEBS2jbZce4",
-    "https://www.youtube.com/watch?v=8Vlej7QUGGE", 
-    "https://www.youtube.com/watch?v=k92Bgqz-p_8",
-    "https://www.youtube.com/watch?v=R_N15egKj6c",
-    "https://www.youtube.com/watch?v=-WpnPSChVRQ",
-    "https://www.youtube.com/watch?v=ktvTqknDobU",
-    "https://www.youtube.com/watch?v=pXRviuL6vMY",
-    "https://www.youtube.com/watch?v=UprcpdwuwCg",
-    "https://www.youtube.com/watch?v=L3wKzyIN1yk",
-    "https://www.youtube.com/watch?v=PHgc8Q6qTjc",
-    "https://www.youtube.com/watch?v=I-sH53vXP2A",
-    "https://www.youtube.com/watch?v=FTQbiNvZqaY",
-    "https://www.youtube.com/watch?v=1vrEljMfXYo",
-    "https://www.youtube.com/watch?v=V5XOwWOAQBQ",
-    "https://www.youtube.com/watch?v=bl0e5DrYLyY",
-    "https://www.youtube.com/watch?v=jjjaU5kQV8k",
-    "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "https://www.youtube.com/watch?v=P5QbkjnCvl4",
-    "https://www.youtube.com/watch?v=i7fnlJ60RO8",
-    "https://www.youtube.com/watch?v=oY9m2sHQwLs",
-    "https://www.youtube.com/watch?v=eVTXPUF4Oz4",
-    "https://www.youtube.com/watch?v=fPO76Jlnz6c",
-    "https://www.youtube.com/watch?v=PVjiKRfKpPI",
-    "https://www.youtube.com/watch?v=DKL4X0PZz7M",
-    "https://www.youtube.com/watch?v=gUcisIlT7sM",
-    "https://www.youtube.com/watch?v=ytWz0qVvBZ0",
-    "https://www.youtube.com/watch?v=G_Nl5xDNXIs",
-    "https://www.youtube.com/watch?v=t_q1SDzeCqo",
-    "https://www.youtube.com/watch?v=hbrpmQ09juQ",
-    "https://www.youtube.com/watch?v=YWN81V7ojOE",
-    "https://www.youtube.com/watch?v=pcSLtIYLbLQ",
-    "https://www.youtube.com/watch?v=6okxuiiHx2w",
-    "https://www.youtube.com/watch?v=NqpnbSFprB4",
-    "https://www.youtube.com/watch?v=hWfbUTwzzZA",
-    "https://www.youtube.com/watch?v=BGkRUYjflbY",
-    "https://www.youtube.com/watch?v=WTJSt4wP2ME",
-    "https://www.youtube.com/watch?v=al1BNB8bKaE",
-    "https://www.youtube.com/watch?v=3vVSBLkpO-8",
-    "https://www.youtube.com/watch?v=vOXZkm9p_zY",
-    "https://www.youtube.com/watch?v=d5Ql4Sjo-GU",
-    "https://www.youtube.com/watch?v=zKFzKIa_pIM",
-    "https://www.youtube.com/watch?v=PoVgCOCt4KA",
-    "https://www.youtube.com/watch?v=Sk-U8ruIQyA",
-    "https://www.youtube.com/watch?v=y8a65a-B5Zw",
-    "https://www.youtube.com/watch?v=eFVj0Z6ahcI",
-    "https://www.youtube.com/watch?v=GO5utuvcZps",
-    "https://www.youtube.com/watch?v=JRfuAukYTKg",
-    "https://www.youtube.com/watch?v=16y1AkoZkmQ",
-    "https://www.youtube.com/watch?v=Akx48dLnccQ",
-    "https://www.youtube.com/watch?v=jBihcsxGFLo",
-    "https://www.youtube.com/watch?v=iYYRH4apXDo",
-    "https://www.youtube.com/watch?v=mXHKjFKBC0g"
-];
-
-const GuessTheSong = [
+const YoutubeSongs = [
     ["https://www.youtube.com/watch?v=HRDp-Q_DsfE", "Bloody Stream", "Medium"],
     ["https://www.youtube.com/watch?v=cPJUBQd-PNM", "Revenge", "Easy"],
     ["https://www.youtube.com/watch?v=5-uWlFq380M", "Sanctuary", "Medium"],
@@ -1205,7 +1137,6 @@ const RandomWords = [
 ];
 
 //WEBSITE STUFF
-  
 
 async function WebsiteStuff()  {
 
@@ -1677,9 +1608,9 @@ async function WebsiteStuff()  {
     const SongList = [];
     var   Current  = 0;
 
-    RandomSongs.forEach(song_info => {
+    YoutubeSongs.forEach(song_info => {
           Current ++;
-          SongList.push('<iframe width="560px" height="315px" src="' + song_info.replace("watch?v=", "embed/") + '" frameborder="0"></iframe>');
+          SongList.push('<iframe width="560px" height="315px" src="' + song_info[0].replace("watch?v=", "embed/") + '" frameborder="0"></iframe>');
     });
 
     await fs.writeFile('public/random_songs.txt', SongList.join(" <br> "), (err) => {
@@ -4343,33 +4274,40 @@ if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF) && message.chan
   
 //Automatic Reactions
 if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
+
+    if  (!FunctionCooldowns.has("automaticreactions" + message.author.id))  {
+
+        FunctionCooldowns.add("automaticreactions" + message.author.id);
+        setTimeout(() => {FunctionCooldowns.delete("automaticreactions" + message.guild.id)}, 2000);
   
-    if  ((message.attachments.size > 0 || function_DetectLink(message.content) == true) && !message.author.bot)  {
+        if  ((message.attachments.size > 0 || function_DetectLink(message.content) == true) && !message.author.bot)  {
 
-    if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS', 'EXTERNAL_EMOJIS'))  {
+        if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS', 'EXTERNAL_EMOJIS'))  {
 
-        var ReactionEmoji1 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
-        var ReactionEmoji2 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
+            var ReactionEmoji1 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
+            var ReactionEmoji2 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
 
-    if  (ReactionEmoji1 && ReactionEmoji2)  {
-         await message.react(ReactionEmoji1).catch(error => ErrorBag.add(error));
-         await message.react(ReactionEmoji2).catch(error => ErrorBag.add(error));
-      
-         KarmaImages.push([message.id, [message.author.id]]);
+        if  (ReactionEmoji1 && ReactionEmoji2)  {
+             await message.react(ReactionEmoji1).catch(error => ErrorBag.add(error));
+             await message.react(ReactionEmoji2).catch(error => ErrorBag.add(error));
 
-         console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
-         function_UpdateAutowipe(keySF, "server");
-        }
-         else
-        { 
-         await message.react(DefaultUpvote).catch(error => ErrorBag.add(error));
-         await message.react(DefaultDownvote).catch(error => ErrorBag.add(error));
-      
-         KarmaImages.push([message.id, [message.author.id]]);
+             KarmaImages.push([message.id, [message.author.id]]);
 
-         console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
-         function_UpdateAutowipe(keySF, "server");
-        };
+             console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
+             function_UpdateAutowipe(keySF, "server");
+            }
+             else
+            { 
+             await message.react(DefaultUpvote).catch(error => ErrorBag.add(error));
+             await message.react(DefaultDownvote).catch(error => ErrorBag.add(error));
+
+             KarmaImages.push([message.id, [message.author.id]]);
+
+             console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
+             function_UpdateAutowipe(keySF, "server");
+            };
+
+            };
 
         };
 
@@ -8079,7 +8017,7 @@ if (CommandName.startsWith("play"))  {
 
             ChoosingMode = false;
           
-            CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+            CommandArgument = YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0];
             Type = "Random";
               
             peeky.serverData.get(keySF, "Queue").push(CommandArgument);
@@ -8103,7 +8041,7 @@ if (CommandName.startsWith("play"))  {
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-              CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+              CommandArgument = YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0];
               Type = "Random";
               
               peeky.serverData.get(keySF, "Queue").push(CommandArgument);
@@ -8140,7 +8078,7 @@ if (CommandName.startsWith("play"))  {
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-              CommandArgument = RandomSongs[Math.floor(Math.random()*RandomSongs.length)];
+              CommandArgument = YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0];
               Type = "Random";
               
               peeky.serverData.get(keySF, "Queue").push(CommandArgument);
@@ -8543,9 +8481,9 @@ if (CommandName == "guessthesong")  {
         if  (message.member.voice.channel)  {
           
             const voiceChannel  = message.member.voice.channel;
-            var ChosenSong = Math.floor((Math.random() * GuessTheSong.length));
+            var ChosenSong = Math.floor((Math.random() * YoutubeSongs.length));
           
-            InfoMessages.push(InfoIcon + " Full Song: <" + GuessTheSong[ChosenSong][0] + ">");
+            InfoMessages.push(InfoIcon + " Full Song: <" + YoutubeSongs[ChosenSong][0] + ">");
 
             CurrentlyPlaying.add(message.guild.id);
             ActiveMinigames.add(message.guild.id);
@@ -8556,7 +8494,7 @@ if (CommandName == "guessthesong")  {
   
                 await voiceChannel.join().then(async connection => {
 
-                    const stream = ytdl(GuessTheSong[ChosenSong][0]);
+                    const stream = ytdl(YoutubeSongs[ChosenSong][0]);
                     const dispatcher = await connection.play(stream, StreamOptions);
                     const LengthDate = new Date();  LengthDate.setMinutes(LengthDate.getMinutes() + (30 / 60));
           
@@ -8568,10 +8506,10 @@ if (CommandName == "guessthesong")  {
                     peeky.serverData.set(keySF, "", "Link");
 
                     var TranslatedMessages = ["**Try to guess the name of this song!**", "**Zkuste uhádnout jméno této písničky!**", "**Pokús sa uhádnuť meno tejto piesne!**", "**¡Trata de adivinar el nombre de esta canción!**", "**Bu şarkının adını tahmin etmeye çalışın!**", "**Попробуй угадать название этой песни!**"];
-                    const embed = {"description": TranslatedMessages[Language] + "\n" + GuessTheSong[ChosenSong][2],  "color": EmbedColor};
+                    const embed = {"description": TranslatedMessages[Language] + "\n" + YoutubeSongs[ChosenSong][2],  "color": EmbedColor};
                     message.channel.send({ embed });
 
-                    message.channel.awaitMessages(response => response.content.toLowerCase() == GuessTheSong[ChosenSong][1].toLowerCase(), { max: 1, time: 30000, errors: ['time'] })
+                    message.channel.awaitMessages(response => response.content.toLowerCase() == YoutubeSongs[ChosenSong][1].toLowerCase(), { max: 1, time: 30000, errors: ['time'] })
                     .then(collected => {
                         var key = collected.first().author.id;
 
@@ -8596,7 +8534,7 @@ if (CommandName == "guessthesong")  {
                       
                     })
                     .catch(collected => {
-                        const embed = {"description": ErrorIcon + " The song's name was **" + GuessTheSong[ChosenSong][1] + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                        const embed = {"description": ErrorIcon + " The song's name was **" + YoutubeSongs[ChosenSong][1] + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                         message.channel.send({ embed });
 
                         const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
