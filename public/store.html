@@ -18,18 +18,8 @@
   
 <style>
   
-.sidemenu  {
-    overflow: scroll;
-    width: 20%;  
-    height: 600px;
-    position: fixed;
-    left: 0%;
-    bottom: 0%;
-    z-index: 99;
-}
-  
 .storecategory  {
-    background-color: transparent;
+    background-color: rgba(35, 39, 42, 0);
     border-radius: 0px 10px 10px 0px;
     width: 100%;
     padding: 15px;
@@ -69,7 +59,8 @@
 }
   
 .listitem  {
-    width: 95%;
+    width: 250px;
+    height: 250px;
 }  
   
 .textlistitem .first,
@@ -132,7 +123,7 @@ function ServerBoost()
                                                   + "<div class='storecategory'>"
                                                   + "<img src='https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fchannels.png?v=1568536027852'>"
                                                   + "<b class='storeheader'>Special Channel</b>"
-                                                  + "<b class='storesub'>You get access to a special channel called <b class='highlighted'>#giveaways</b>.</b>"
+                                                  + "<b class='storesub'>You get access to a special <b class='highlighted'>#giveaways</b> channel where we give away all sorts of stuff.</b>"
                                                   + "</div>"
 };
 function Premium()
@@ -183,7 +174,7 @@ function Premium()
                                                   + "<div class='storecategory'>"
                                                   + "<img src='https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fchannels.png?v=1568536027852'>"
                                                   + "<b class='storeheader'>Special Channel</b>"
-                                                  + "<b class='storesub'>You get access to a special channel called <b class='highlighted'>#giveaways</b>.</b>"
+                                                  + "<b class='storesub'>You get access to a special <b class='highlighted'>#giveaways</b> channel where we give away all sorts of stuff.</b>"
                                                   + "</div>"
 };
 
@@ -287,8 +278,10 @@ function ShowHighlighted(hash)  {
 <font size="1">By purchasing any of the items found in the donatebot.io website, you will automatically agree to the <a href="refund_policy.txt" rel="noopener noreferrer"><u>Refund Policy</u></a>.</font></font>
 
     <br><br>
+  
+    <center>
       
-    <div class="sidemenu" style="display: block;">
+    <div class="inlinediv" style="display: flex;">
     
         <div class="listitem" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815');">
         <div class="textlistitem">
@@ -319,16 +312,16 @@ function ShowHighlighted(hash)  {
         </b>
         </div>
         </div>
-      
-    <div class="subbody">    
-        <a>
-        <div class="demo" id="fulldesc">
-        <b id="description" style="text-align: left;"></b>
-        </div>
-        </a>
-    </div>
     
     </div>
+      
+    </center>
+    
+    <a>
+    <div class="demo" id="fulldesc">
+    <b id="description" style="text-align: left;"></b>
+    </div>
+    </a>
   
 </div>
    
