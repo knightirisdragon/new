@@ -3139,7 +3139,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Boost", "serverboost", "For boosting the Support Server you get a bunch of small bonuses such as additional daily chests, a place in the Wall of Fame aswell as a cool looking badge!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
+                TransactionInfo = ["Server Boost", "serverboost", "For boosting the Support Server you get a bunch of small but cool things like additional daily chests, a place in the Wall of Fame aswell as a cool looking badge!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
                 //"Your reward expires once you stop boosting."
 
             };
@@ -3155,8 +3155,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Premium", "premium", "Premium users can do alot of cool stuff that ranges from buying custom backgrounds to getting their profile featured on the home page, aswell as a bunch of little bonuses like an additional daily chest!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
-                //"Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs), "Date") + "**."
+                TransactionInfo = ["Premium", "premium", "Premium users can do alot of cool stuff that ranges from buying custom backgrounds to getting their profile featured on the home page!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
 
             };
 
@@ -3171,7 +3170,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Upgrade", "serverupgrade", "You can now upgrade a Discord server of your choice and unlock a bunch of stuff like increased gain for Gredit and Exp, random treasures and !", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverupgrade.png?v=1585078211679"];
+                TransactionInfo = ["Server Upgrade", "serverupgrade", "You can now upgrade a Discord server of your choice and unlock a bunch of neat stuff like randomly appearing treasures that hold alot cool stuff!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverupgrade.png?v=1585078211679"];
 
             };
 
@@ -3186,7 +3185,7 @@ if  (keySF == SupportServer)  {
 
             const embed = {
                 "description": /*"­\n" + */ "**Thank you for the purchase of " + TransactionInfo[0] + "!**" + "\n" +
-                  TransactionInfo[2] + "\n" +" You can click [here](https://peeky.glitch.me/store.html#" + TransactionInfo[1] + ") to see more.",
+                  TransactionInfo[2] + " " + "You can view all the rewards by clicking [here](https://peeky.glitch.me/store.html#" + TransactionInfo[1] + ").",
                 "thumbnail": { "url": TransactionInfo[3] },
                 "color": EmbedColor
             };
