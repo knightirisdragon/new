@@ -3139,7 +3139,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Boost", "serverboost", "", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
+                TransactionInfo = ["Server Boost", "serverboost", "For boosting the Support Server you get a bunch of small bonuses such as additional daily chests, a place in the Wall of Fame aswell as a cool looking badge!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
                 //"Your reward expires once you stop boosting."
 
             };
@@ -3155,7 +3155,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Premium", "premium", "4.99€ • ", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
+                TransactionInfo = ["Premium", "premium", "Premium users can do alot of cool stuff that ranges from buying custom backgrounds to getting their profile featured on the home page, aswell as a bunch of little bonuses like an additional daily chest!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
                 //"Your reward expires on **" + function_DateFormat(new Date().getTime() + (30 * DayMs), "Date") + "**."
 
             };
@@ -3171,7 +3171,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Upgrade", "serverupgrade", "2.49€ • ", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverupgrade.png?v=1585078211679"];
+                TransactionInfo = ["Server Upgrade", "serverupgrade", "You can now upgrade a Discord server of your choice and unlock a bunch of stuff like increased gain for Gredit and Exp, random treasures and !", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverupgrade.png?v=1585078211679"];
 
             };
 
@@ -3186,8 +3186,7 @@ if  (keySF == SupportServer)  {
 
             const embed = {
                 "description": /*"­\n" + */ "**Thank you for the purchase of " + TransactionInfo[0] + "!**" + "\n" +
-                  "[Click here for more info about this.](https://peeky.glitch.me/store.html#" + TransactionInfo[1] + ")",
-                  // + "\n\n\n" + TransactionInfo[2]
+                  TransactionInfo[2] + "\n" +" You can click [here](https://peeky.glitch.me/store.html#" + TransactionInfo[1] + ") to see more.",
                 "thumbnail": { "url": TransactionInfo[3] },
                 "color": EmbedColor
             };
@@ -4364,47 +4363,51 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
                       
                 node_fetch("https://api.reddit.com/r/" + name + "/top.json?sort=top&limit=" + Setting.RedditLimit).then(response => response.json()).then(response => {
                   
-                    for (i = 0; i < response.data.children.length; i++)  {
+                    if  (response.data.children.length > 0)  {
                   
-                        var Post = response.data.children[i].data;
+                        for (i = 0; i < response.data.children.length; i++)  {
 
-                        if  (!peeky.serverData.get(keySF, "reddit_posts_bonus_last").includes(Post.url) && Post.pinned == false)  {
+                            var Post = response.data.children[i].data;
 
-                            if  (peeky.serverData.get(keySF, "reddit_posts_bonus_last").length > Setting.RedditLimit)  {
-                                peeky.serverData.set(keySF, [], "reddit_posts_bonus_last");
+                            if  (!peeky.serverData.get(keySF, "reddit_posts_bonus_last").includes(Post.url) && Post.pinned == false)  {
+
+                                if  (peeky.serverData.get(keySF, "reddit_posts_bonus_last").length > Setting.RedditLimit)  {
+                                    peeky.serverData.set(keySF, [], "reddit_posts_bonus_last");
+                                };
+
+                                peeky.serverData.get(keySF, "reddit_posts_bonus_last").push(Post.url);
+
+                                if  ((Post.url.includes(".png") || Post.url.includes(".gif") || Post.url.includes(".jpg")))  {  var image = Post.url;  }  else  {  var image = HollowImage;  }; 
+
+                                const embed = {  
+                                  "title": function_FixCapitalization(function_RemoveFormatting(function_ProperSlice(Post.title, 100), "other", false)),
+                                  "description": "u/" + function_RemoveFormatting(Post.author, "other", false) + " \n ­",
+                                  "color": EmbedColor,
+                                  "image": {
+                                    "url": image
+                                  },
+                                  "fields": [
+                                    {
+                                      "name": "Links",
+                                      "value": "[Post](" + "https://www.reddit.com" + Post.permalink + ") \n [Media](" + Post.url + ")",
+                                      "inline": true
+                                    },
+                                    {
+                                      "name": "Rating",
+                                      "value":  RedditUpvote + " " + Post.ups + " \n " + RedditDownvote + " " + Post.downs,
+                                      "inline": true
+                                    }
+                                  ]
+                                };
+
+                                Channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                                break;
+
                             };
-                          
-                            peeky.serverData.get(keySF, "reddit_posts_bonus_last").push(Post.url);
-
-                            if  ((Post.url.includes(".png") || Post.url.includes(".gif") || Post.url.includes(".jpg")))  {  var image = Post.url;  }  else  {  var image = HollowImage;  }; 
-
-                            const embed = {  
-                              "title": function_FixCapitalization(function_RemoveFormatting(function_ProperSlice(Post.title, 100), "other", false)),
-                              "description": "u/" + function_RemoveFormatting(Post.author, "other", false) + " \n ­",
-                              "color": EmbedColor,
-                              "image": {
-                                "url": image
-                              },
-                              "fields": [
-                                {
-                                  "name": "Links",
-                                  "value": "[Post](" + "https://www.reddit.com" + Post.permalink + ") \n [Media](" + Post.url + ")",
-                                  "inline": true
-                                },
-                                {
-                                  "name": "Rating",
-                                  "value":  RedditUpvote + " " + Post.ups + " \n " + RedditDownvote + " " + Post.downs,
-                                  "inline": true
-                                }
-                              ]
-                            };
-
-                            Channel.send({ embed }).catch(error => ErrorBag.add(error));
-                          
-                            break;
 
                         };
-                    
+                      
                     };
                   
                 });
