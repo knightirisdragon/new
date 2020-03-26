@@ -105,6 +105,23 @@ a.button:hover {
     transform: scale(0.99);
 }
 
+.sidemenubody {
+    width: 100%;
+    height: 675px;
+    position: relative;
+}
+
+.sidemenu {
+    background-color: rgba(44, 47, 51, 0);
+    overflow: scroll;
+    padding: 10px;
+    width: 16%;
+    height: 100%;
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+}
+
 .textbackground  {
     background-color: rgba(35, 39, 42, 0.95);
     border-radius: 5px;
