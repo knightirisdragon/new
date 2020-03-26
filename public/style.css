@@ -107,7 +107,7 @@ a.button:hover {
 
 .sidemenubody {
     width: 100%;
-    height: ;
+    height: 675px;
     position: relative;
 }
 
@@ -124,7 +124,6 @@ a.button:hover {
 .sidemenucontent {
     background-color: rgba(44, 47, 51, 0.5);
     border-radius: 10px;
-    padding-top: 10px;
     overflow: scroll;
     width: 83%;
     height: 100%;
