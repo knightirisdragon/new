@@ -1182,7 +1182,7 @@ async function WebsiteStuff()  {
 
         //Guilds
         var filtered       = peeky.serverData.filter(p => p.GuildID && p.lastSeen);
-        var toRemoveGuilds = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
+        var toRemoveGuilds = filtered.filter(data => rightNow - data.lastSeen > InactiveWipe); //filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
 
         toRemoveGuilds.forEach(async data => {
 
