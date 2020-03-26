@@ -3950,7 +3950,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 //Message Log
 if  (peeky.serverData.get(keySF, "message_log_bonus") == true)  {
 
-    if  (!user.bot && reaction.message.author.id !== PeekyId && reaction.emoji.name == "📌" && reaction.count == 1)  {
+    if  (!user.bot && !reaction.message.webhookID && reaction.message.author.id !== PeekyId && reaction.emoji.name == "📌" && reaction.count == 1)  {
       
     if  (!LoggedMessages.has(reaction.message.id))  {
       
