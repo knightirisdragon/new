@@ -4271,10 +4271,10 @@ if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF) && message.chan
 //Automatic Reactions
 if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
 
-    if  (!FunctionCooldowns.has("automaticreactions" + message.channel.id))  {
+    //if  (!FunctionCooldowns.has("automaticreactions" + message.channel.id))  {
 
-        FunctionCooldowns.add("automaticreactions" + message.channel.id);
-        setTimeout(() => {FunctionCooldowns.delete("automaticreactions" + message.channel.id)}, 2000);
+        //FunctionCooldowns.add("automaticreactions" + message.channel.id);
+        //setTimeout(() => {FunctionCooldowns.delete("automaticreactions" + message.channel.id)}, 2000);
   
         if  ((message.attachments.size > 0 || function_DetectLink(message.content) == true) && !message.author.bot)  {
 
@@ -4307,7 +4307,7 @@ if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
 
         };
 
-    };
+    //};
 
 };
   
