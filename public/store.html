@@ -30,18 +30,6 @@
     display: inline-block;
 }
   
-.demo  {
-    height: 100%;
-    position: relative;
-}
-
-.demo  img,
-.demo  img:hover {
-    background-color: transparent;
-    width: 75px;  
-    border: transparent;
-}
-  
 .storeheader  {
     font-size: 20px;
     top: 20px;
@@ -60,8 +48,8 @@
 }
   
 .listitem  {
-    width: 250px;
-    height: 250px;
+    width: 90%;
+    height: 37.5%;
 }  
   
 .textlistitem .first,
@@ -83,12 +71,6 @@
     overflow: hidden;
     position: fixed;
     display: none;
-}
-  
-#fulldesc  {
-    background-color: transparent;
-    background-size: 0% 0%;
-    display: block;   
 }
 
 </style>
@@ -320,11 +302,9 @@ function ShowHighlighted(hash)  {
 
     </div>
       
-    <div class="sidemenucontent">
+    <div class="sidemenucontent" id="fulldesc">
       <a>
-      <div class="demo" id="fulldesc">
       <b id="description" style="text-align: left;"></b>
-      </div>
       </a>
     </div>
     
