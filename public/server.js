@@ -3137,7 +3137,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Boost", "serverboost", "For boosting the Support Server you get a bunch of cool stuff and help us stay boosted!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
+                TransactionInfo = ["Server Boost", "serverboost", "For boosting the Support Server you receive a few cool little bonuses and help us stay boosted!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
                 //"Your reward expires once you stop boosting."
 
             };
@@ -3153,7 +3153,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Premium", "premium", "Premium users like you have access to all the premium features that PEEKY has to offer!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
+                TransactionInfo = ["Premium", "premium", "You can now enjoy all of the exciting Premium features that PEEKY has to offer!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
 
             };
 
@@ -3168,7 +3168,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Upgrade", "serverupgrade", "You can now upgrade a Discord server of your choice and unlock a bunch of neat stuff for it!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverupgrade.png?v=1585078211679"];
+                TransactionInfo = ["Server Upgrade", "serverupgrade", "You are now able to upgrade a server of your choice and unlock a bunch of [here](https://peeky.glitch.me/store.html#) for it!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverupgrade.png?v=1585078211679"];
 
             };
 
@@ -3183,7 +3183,7 @@ if  (keySF == SupportServer)  {
 
             const embed = {
                 "description": /*"­\n" + */ "**Thank you for the purchase of " + TransactionInfo[0] + "!**" + "\n" +
-                  TransactionInfo[2] + " " + "You can view all the rewards by clicking [here](https://peeky.glitch.me/store.html#" + TransactionInfo[1] + ").",
+                  TransactionInfo[2] /*+ " " + "You can view all the rewards by clicking [here](https://peeky.glitch.me/store.html#" + TransactionInfo[1] + ")."*/,
                 "thumbnail": { "url": TransactionInfo[3] },
                 "color": EmbedColor
             };
@@ -4203,7 +4203,7 @@ if  (!LimitedRolesCooldown.has("cooldown"))  {
         if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= ExpirationMs))  {
             m.roles.remove(PremiumRole).catch(error => ErrorBag.add(error));
           
-            const embed = {"description": InfoIcon + " Your **Premium** status has just expired.",  "color": EmbedColor}; 
+            const embed = {"description": InfoIcon + " Your Premium has just expired, but you can renew it by going to the [store](https://peeky.glitch.me/store.html#premium)!",  "color": EmbedColor}; 
             m.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
