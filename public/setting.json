@@ -25,7 +25,8 @@
   "Light": "#424549",
   "Blurple": "#7289DA",
 
-  "QueueLimit": 25,
+  "QueueLimit": 50,
+  "PlaylistLimit": 10,
   "ClassificationWallLimit": 50,
   "BannedWordsLimit": 10,
   "WeekendChannelsLimit": 10,
@@ -34,7 +35,6 @@
   "RoleSaverLimit": 10,
   "ReactionRolesLimit": 5,
   "InventoryLimit": 25,
-  "PlaylistLimit": 10,
   "RedditLimit": 25,
   "LeaderboardLimit": 100
 }

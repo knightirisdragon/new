@@ -3686,6 +3686,13 @@ if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.user
             peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "RandomPlaylists"), "RandomPlaylists");
             var StatusString = peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnableStrings[0]).replace("false", DisableStrings[0]);
           
+        } else
+
+        if  (reaction.emoji.name == "🔃")  {
+          
+            peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "AutoQueue"), "AutoQueue");
+            var StatusString = peeky.serverData.get(keySF, "AutoQueue").toString().replace("true", EnableStrings[0]).replace("false", DisableStrings[0]);
+          
         };
             
         const newEmbed = new Discord.MessageEmbed({"description": "**Music Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" + "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon), "color": EmbedColor});
@@ -7948,11 +7955,15 @@ if (CommandName.startsWith("play"))  {
 
                         dispatcher.on('finish', async reason => {
                             
-                            if  (peeky.serverData.get(keySF, "Looping") == false)  {
+                            if  (peeky.serverData.get(keySF, "Looping") == false || peeky.serverData.get(keySF, "Queue").length <= Setting.QueueLimit)  {
                                 peeky.serverData.get(keySF, "Queue").shift();
                             } else {
+                                if  (peeky.serverData.get(keySF, "AutoQueue") == true)  {
+                                    peeky.serverData.get(keySF, "AutoQueue").push(YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0]);
+                                };
+                              
                                 peeky.serverData.get(keySF, "Queue").push(peeky.serverData.get(keySF, "Queue")[0]);
-                                peeky.serverData.get(keySF, "Queue").shift();                     
+                                peeky.serverData.get(keySF, "Queue").shift();                
                             };
 
                             if  (peeky.serverData.get(keySF, "Queue").length == 0 || message.guild.me.voice.channel.members.filter(m => !m.user.bot).map(m => m.id).length < 1)  {  //
