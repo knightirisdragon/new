@@ -703,7 +703,7 @@ const Banners = [
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground202.png?1552129513754", 875, "Freedome", "Grand Theft Auto Online", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground203.png?1552129515227", 825, "This is it Chief", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground204.png?1552129516913", 800, "Boy", "God of War", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground205.png?1552138972456", 225, "PEEKY's old pals", "Vojtěch Jílovec", `108899856889737216`, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground205.png?v=1585306124566", 925, "Don't move", "Half Life Alyx", undefined, 1585306091569],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground206.png?v=1585305469452", 870, "Cube for days", "Sabinyan", `180090347421040640`, 1585305255106],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground207.png?1552151256169", 925, "Jackpot!", "Devil May Cry 5", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground208.png?v=1580071008133", 725, "Raided", "u/Willer_Z", undefined, 1580070968206],
@@ -2561,6 +2561,9 @@ peeky.on('message', async (message) => {
 
         //Painter
     if  (peeky.userData.get(key, "PainterBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:painter:624330470284460033> Painter", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fpainter.png?v=1568922632764"]);  };
+
+        //Exclusive
+    if  (peeky.userData.get(key, "ExclusiveBadge") == true)  {  BadgeGreditAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:exclusive:693044497390764062> Exclusive", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fexclusive.png?v=1585306187000"]);  };
 
         //Fashion
     if  (peeky.userData.get(key, "FashionBadge") == true)  {  BadgeExpAmount += 1;  BadgesAmount ++;  CollectedBadges.push(["<:fashion:624330470255099924> Fashion", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ffashion.png?v=1568922621601"]);  };
@@ -7040,10 +7043,13 @@ if (CommandName.startsWith("setbackground"))  {
                 var i = Number(i);
 
                 if  (!peeky.userData.get(key, "FashionBadge") && i !== 1)  {
-
                     InfoMessages.push(InfoMessage1[0]);
                     peeky.userData.set(key, true, "FashionBadge");    
+                };
 
+                if  (!peeky.userData.get(key, "ExclusiveBadge") && function_GetBackgroundInfo(i, ["price"]) == Exclusive)  {
+                    InfoMessages.push(InfoMessage1[0]);
+                    peeky.userData.set(key, true, "ExclusiveBadge");    
                 };
 
                 if  (isNaN(peeky.userData.get(key, "Background")))  {
