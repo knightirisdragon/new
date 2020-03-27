@@ -7962,10 +7962,10 @@ if (CommandName.startsWith("play"))  {
                             } else {                              
                                 peeky.serverData.get(keySF, "Queue").push(peeky.serverData.get(keySF, "Queue")[0]);
                                 peeky.serverData.get(keySF, "Queue").shift();
+                            };
                               
-                                if  (peeky.serverData.get(keySF, "AutoQueue") == true && peeky.serverData.get(keySF, "Queue").length > 0 && peeky.serverData.get(keySF, "Queue").length < Setting.QueueLimit)  {
-                                    peeky.serverData.get(keySF, "Queue").unshift(YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0]);
-                                };
+                            if  (peeky.serverData.get(keySF, "AutoQueue") == true && peeky.serverData.get(keySF, "Queue").length > 0 && peeky.serverData.get(keySF, "Queue").length < Setting.QueueLimit)  {
+                                peeky.serverData.get(keySF, "Queue").unshift(YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0]);
                             };
 
                             if  (peeky.serverData.get(keySF, "Queue").length == 0 || message.guild.me.voice.channel.members.filter(m => !m.user.bot).map(m => m.id).length < 1)  {  //
