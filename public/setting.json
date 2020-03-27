@@ -25,7 +25,7 @@
   "Light": "#424549",
   "Blurple": "#7289DA",
 
-  "QueueLimit": 50,
+  "QueueLimit": 25,
   "PlaylistLimit": 10,
   "ClassificationWallLimit": 50,
   "BannedWordsLimit": 10,

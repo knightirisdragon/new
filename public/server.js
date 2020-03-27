@@ -1855,6 +1855,7 @@ function function_ServerData(key)  {
             PlaylistName: "Unknown",
             Looping: false,
             RandomPlaylists: false,
+            AutoQueue: false,
 
             welcome_messages_bonus: false,
             welcome_messages_bonus_setting: "welcome_messages",
@@ -3688,14 +3689,14 @@ if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.user
           
         } else
 
-        if  (reaction.emoji.name == "🔃")  {
+        if  (reaction.emoji.name == "⏏️")  {
           
             peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "AutoQueue"), "AutoQueue");
             var StatusString = peeky.serverData.get(keySF, "AutoQueue").toString().replace("true", EnableStrings[0]).replace("false", DisableStrings[0]);
           
         };
             
-        const newEmbed = new Discord.MessageEmbed({"description": "**Music Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" + "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon), "color": EmbedColor});
+        const newEmbed = new Discord.MessageEmbed({"description": "**Music Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" + "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" + "⏏️ Auto Queue " + peeky.serverData.get(keySF, "AutoQueue").toString().replace("true", EnabledIcon).replace("false", DisabledIcon), "color": EmbedColor});
         reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
       
   };
@@ -5297,12 +5298,13 @@ if (CommandName == "music")  {
             CommandCooldown.add("music" + message.guild.id);
             setTimeout(() => {CommandCooldown.delete("music" + message.guild.id)}, 10000);
 
-            const embed = {"description": "**Music Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" + "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon), "color": EmbedColor};
+            const embed = {"description": "**Music Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" + "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" + "⏏️ Auto Queue " + peeky.serverData.get(keySF, "AutoQueue").toString().replace("true", EnabledIcon).replace("false", DisabledIcon), "color": EmbedColor};
             await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                 await m.react("⏹️").catch(error => {ErrorBag.add(error)});
                 await m.react("🔁").catch(error => {ErrorBag.add(error)});
                 await m.react("🔀").catch(error => {ErrorBag.add(error)});
+                await m.react("⏏️").catch(error => {ErrorBag.add(error)});
 
                 peeky.userData.set(key, m.id, "MusicMenuID");
 
@@ -7955,11 +7957,11 @@ if (CommandName.startsWith("play"))  {
 
                         dispatcher.on('finish', async reason => {
                             
-                            if  (peeky.serverData.get(keySF, "Looping") == false || peeky.serverData.get(keySF, "Queue").length <= Setting.QueueLimit)  {
+                            if  (peeky.serverData.get(keySF, "Looping") == false || peeky.serverData.get(keySF, "Queue").length > Setting.QueueLimit)  {
                                 peeky.serverData.get(keySF, "Queue").shift();
                             } else {
-                                if  (peeky.serverData.get(keySF, "AutoQueue") == true)  {
-                                    peeky.serverData.get(keySF, "AutoQueue").push(YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0]);
+                                if  (peeky.serverData.get(keySF, "AutoQueue") == true && peeky.serverData.get(keySF, "Queue").length < Setting.QueueLimit)  {
+                                    peeky.serverData.get(keySF, "Queue").push(YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0]);
                                 };
                               
                                 peeky.serverData.get(keySF, "Queue").push(peeky.serverData.get(keySF, "Queue")[0]);
@@ -8445,9 +8447,12 @@ if (CommandName == "stop")  {
 //Skip
 if (CommandName.startsWith("skip ") || CommandName == "skip")  {
       
-    if  (CurrentlyPlaying.has(message.guild.id))  {
+    if  (CurrentlyPlaying.has(message.guild.id) && ! MusicCmdCooldown.has(message.guild.id))  {
       
         if  (message.member.voice.channel)  {
+        
+            MusicCmdCooldown.add(message.guild.id);
+            setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 10000);
       
             var OwnerActive = false;
 
