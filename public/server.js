@@ -8405,7 +8405,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 //Stop
 if (CommandName == "stop")  {
       
-    if  (CurrentlyPlaying.has(message.guild.id))  {
+    if  (CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
       
         if  (message.member.voice.channel)  {
       
@@ -8447,7 +8447,7 @@ if (CommandName == "stop")  {
 //Skip
 if (CommandName.startsWith("skip ") || CommandName == "skip")  {
       
-    if  (CurrentlyPlaying.has(message.guild.id) && ! MusicCmdCooldown.has(message.guild.id))  {
+    if  (CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
       
         if  (message.member.voice.channel)  {
         
