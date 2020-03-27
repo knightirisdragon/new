@@ -8413,35 +8413,42 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 //Stop
 if (CommandName == "stop")  {
       
-    if  (CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
+    if  (CurrentlyPlaying.has(message.guild.id))  {
       
-        if  (message.member.voice.channel)  {
+        if  (!MusicCmdCooldown.has(message.guild.id))  {
       
-            var OwnerActive = false;
+            if  (message.member.voice.channel)  {
 
-            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
-                OwnerActive = true;
-            };
+                var OwnerActive = false;
 
-            if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
-
-                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-                if  (connection && connection.dispatcher)  {
-                    connection.dispatcher.end();
+                if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+                    OwnerActive = true;
                 };
-                
-                peeky.serverData.set(keySF, [], "Queue");
-                message.guild.me.voice.channel.leave();
-                CurrentlyPlaying.delete(message.guild.id);
+
+                if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
+
+                    const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                    if  (connection && connection.dispatcher)  {
+                        connection.dispatcher.end();
+                    };
+
+                    peeky.serverData.set(keySF, [], "Queue");
+                    message.guild.me.voice.channel.leave();
+                    CurrentlyPlaying.delete(message.guild.id);
+
+                } else {
+                  var TranslatedMessages = [ErrorIcon + " Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže preskočiť túto pieseň teraz.", ErrorIcon + " Sólo el dueño del servidor puede saltarse esta canción ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi ilerletebilir.", ErrorIcon + " Только владелец сервера может остановить эту музыку прямо сейчас."];
+                  const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
 
             } else {
-              var TranslatedMessages = [ErrorIcon + " Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže preskočiť túto pieseň teraz.", ErrorIcon + " Sólo el dueño del servidor puede saltarse esta canción ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi ilerletebilir.", ErrorIcon + " Только владелец сервера может остановить эту музыку прямо сейчас."];
-              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+              const embed = {"description": ErrorMessage22[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
         } else {
-          const embed = {"description": ErrorMessage22[Language],  "color": EmbedColor};
+          const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
@@ -8455,42 +8462,49 @@ if (CommandName == "stop")  {
 //Skip
 if (CommandName.startsWith("skip ") || CommandName == "skip")  {
       
-    if  (CurrentlyPlaying.has(message.guild.id) && !MusicCmdCooldown.has(message.guild.id))  {
+    if  (CurrentlyPlaying.has(message.guild.id))  {
       
-        if  (message.member.voice.channel)  {
-        
-            MusicCmdCooldown.add(message.guild.id);
-            setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 10000);
+        if  (!MusicCmdCooldown.has(message.guild.id))  {
       
-            var OwnerActive = false;
+            if  (message.member.voice.channel)  {
 
-            if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
-                OwnerActive = true;
-            };
+                MusicCmdCooldown.add(message.guild.id);
+                setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 10000);
 
-            if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
+                var OwnerActive = false;
 
-                var CommandArgument = CommandName.split("skip ")[1];
-                if  (CommandArgument && peeky.serverData.get(keySF, "Queue").includes(CommandArgument) && peeky.serverData.get(keySF, "Queue")[0] !== CommandArgument)  {
-                    var Index = peeky.serverData.get(keySF, "Queue").indexOf(CommandArgument);
-                    peeky.serverData.get(keySF, "Queue").splice(Index, 1);
-                    const embed = {"description": SuccessIcon + " The song has been removed from the queue.", "color": EmbedColor};
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+                    OwnerActive = true;
+                };
+
+                if  ((OwnerActive == true && message.author.id == message.guild.owner.user.id) || OwnerActive == false)  {
+
+                    var CommandArgument = CommandName.split("skip ")[1];
+                    if  (CommandArgument && peeky.serverData.get(keySF, "Queue").includes(CommandArgument) && peeky.serverData.get(keySF, "Queue")[0] !== CommandArgument)  {
+                        var Index = peeky.serverData.get(keySF, "Queue").indexOf(CommandArgument);
+                        peeky.serverData.get(keySF, "Queue").splice(Index, 1);
+                        const embed = {"description": SuccessIcon + " The song has been removed from the queue.", "color": EmbedColor};
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    } else {
+                      const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                      if  (connection && connection.dispatcher)  {
+                          connection.dispatcher.end();
+                      };
+                    };
+
                 } else {
-                  const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-                  if  (connection && connection.dispatcher)  {
-                      connection.dispatcher.end();
-                  };
+                  var TranslatedMessages = [ErrorIcon + " Only the server owner can skip the song right now.", ErrorIcon + " Písniku může momentálně přeskočit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže zastaviť hudbu teraz.", ErrorIcon + " Sólo el dueño del servidor puede detener esta música ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi durdurabilir.", ErrorIcon + " Только владелец сервера может пропустить эту песню прямо сейчас."];
+                  const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
             } else {
-              var TranslatedMessages = [ErrorIcon + " Only the server owner can skip the song right now.", ErrorIcon + " Písniku může momentálně přeskočit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže zastaviť hudbu teraz.", ErrorIcon + " Sólo el dueño del servidor puede detener esta música ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi durdurabilir.", ErrorIcon + " Только владелец сервера может пропустить эту песню прямо сейчас."];
-              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+              const embed = {"description": ErrorMessage22[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
         } else {
-          const embed = {"description": ErrorMessage22[Language],  "color": EmbedColor};
+          const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
       

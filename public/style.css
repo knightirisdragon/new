@@ -473,8 +473,9 @@ a.button:hover {
 
 .tutorial_item,
 table {
-    width: 100%;
     background-color: rgba(35, 39, 42, 0.25);
+    border-radius: 10px;
+    width: 100%;
     text-decoration: none;
 }
 
