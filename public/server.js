@@ -1186,7 +1186,7 @@ async function WebsiteStuff()  {
 
         toRemoveGuilds.forEach(async data => {
 
-            if  (data.server_upgraded !== true && !ImmuneServers.includes(data.GuildID))  {
+            if  (data.server_upgraded == false && !ImmuneServers.includes(data.GuildID))  {
 
                 peeky.serverData.delete(data.GuildID);
 
