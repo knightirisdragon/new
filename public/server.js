@@ -1178,11 +1178,9 @@ async function WebsiteStuff()  {
     //Auto Wipe
     setInterval(async () => {
 
-        const rightNow = new Date();
-
         //Guilds
         var filtered       = peeky.serverData.filter(p => p.GuildID && p.lastSeen);
-        var toRemoveGuilds = filtered.filter(data => rightNow - data.lastSeen > InactiveWipe); //filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
+        var toRemoveGuilds = filtered.filter(data => new Date() - new Date(data.lastSeen) > InactiveWipe); //filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
 
         toRemoveGuilds.forEach(async data => {
 
@@ -1207,7 +1205,7 @@ async function WebsiteStuff()  {
 
         //Profiles
         var filtered         = peeky.userData.filter( p => p.UserID && p.lastSeen );
-        var toRemoveProfiles = filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
+        var toRemoveProfiles = filtered.filter(data => new Date() - new Date(data.lastSeen) > InactiveWipe);
 
         toRemoveProfiles.forEach(data => {
             if  (!peeky.users.has(data.UserID) || data.FashionBadge == false)  {
