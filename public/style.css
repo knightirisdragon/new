@@ -51,8 +51,7 @@ img  {border-radius: 10px; cursor: pointer;}
 .serverinvite,
 .button {
     background-color: rgba(35, 39, 42, 0.25);
-    border-left: #7289DA 2px solid;
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 10px;
     padding: 10px;
     position: relative;
     display: inline-block;
@@ -92,11 +91,6 @@ img  {border-radius: 10px; cursor: pointer;}
     cursor: pointer;
     transform: scale(1.1);
 };
-
-.popup:hover,
-a.button:hover {
-    border-left: #8094dd 4px solid;
-}
 
 .popup:hover,
 .fancybutton:hover,
@@ -220,8 +214,7 @@ a.button:hover {
 
 .item_header  {
     background-color: rgba(35, 39, 42, 0.5);
-    border-left: #7289DA 2px solid;
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 10px;
     width: 100%;
     padding: 10px;
     position: relative;
@@ -346,8 +339,7 @@ a.button:hover {
 
 .category_name  {
     background-color: rgba(35, 39, 42, 0.5);
-    border-left: #7289DA 2px solid;
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 10px;
     text-align: center;
   
     padding: 10px;
@@ -382,17 +374,6 @@ a.button:hover {
     overflow: scroll;
 }
 
-.demo  img {
-    background-color: rgba(35, 39, 42, 0.5);
-    border: transparent;
-    border-left: #7289DA 2px solid;
-    border-radius: 0px;
-}
-
-.demo  img:hover {
-    border-left: #8094dd 4px solid;
-}
-
 .demopreview  {
     height: 200px;
     border: rgba(35, 39, 42, 0.95) solid;
@@ -406,7 +387,7 @@ a.button:hover {
 
 .demoitemdesc  {
     background-color: rgba(35, 39, 42, 0.5);
-    border-left: #7289DA 2px solid;
+    border-radius: 10px;
     padding: 10px;
     margin: 5px;
     display: inline-block;
@@ -414,7 +395,7 @@ a.button:hover {
 }
 
 .demoitemdesc:hover  {
-    border-left: #8094dd 4px solid;
+    border-radius: 10px;
     cursor: pointer;
     transform: scale(0.99);
 }
@@ -512,8 +493,7 @@ th, td {
 
 .itemdiv  {
     background-color: rgba(35, 39, 42, 0.5);
-    border-left: #7289DA 2px solid;
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 10px;
     padding: 10px;
     width: 100%;
     margin-bottom: 10px;
@@ -524,8 +504,6 @@ th, td {
 }
 
 .itemdiv:hover  {
-    border-left: #8094dd 4px solid;
-  
     cursor: pointer;
     transform: scale(0.99);
 }
