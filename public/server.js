@@ -1036,7 +1036,14 @@ const YoutubeSongs = [
     ["https://www.youtube.com/watch?v=k1ATPhkVWi0", "My Strange Addiction", "Medium"],
     ["https://www.youtube.com/watch?v=PoVgCOCt4KA", "Alien Boy", "Medium"],
     ["https://www.youtube.com/watch?v=Sk-U8ruIQyA", "Blood // Water", "Hard"],
-    ["https://www.youtube.com/watch?v=eFVj0Z6ahcI", "Last Surprise", "Medium"]
+    ["https://www.youtube.com/watch?v=eFVj0Z6ahcI", "Last Surprise", "Medium"],
+    ["https://www.youtube.com/watch?v=9fWxCIi5PIw", "Gillette", "Hard"],
+    ["https://www.youtube.com/watch?v=tMrRDb3ANx8", "Gotta Let Go", "Hard"],
+    ["https://www.youtube.com/watch?v=lP077RitNAc", "Bullet", "Medium"],
+    ["https://www.youtube.com/watch?v=zHNgeSg5hLw", "I'll Be There", "Hard"],
+    ["https://www.youtube.com/watch?v=_kTBbTSjZpI", "I Am... All of Me", "Hard"],
+    ["https://www.youtube.com/watch?v=fPO76Jlnz6c", "Gangsta's Paradise", "Medium"],
+    ["https://www.youtube.com/watch?v=Akx48dLnccQ", "The Only Thing They Fear is You", "Hard"]
 ];
 
 const TriviaQuestions = [
@@ -7966,6 +7973,7 @@ if (CommandName.startsWith("play"))  {
                                 } else
                                 if  (peeky.serverData.get(keySF, "MusicMode") == "Automated")  {
                                     if  (peeky.serverData.get(keySF, "Queue").length > 0)  {
+                                        peeky.serverData.set(keySF, [], "Queue");
                                         peeky.serverData.get(keySF, "Queue").unshift(YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0]);
                                     };
                                 } else {
