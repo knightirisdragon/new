@@ -3678,15 +3678,15 @@ if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.user
         if  (reaction.emoji.name == "🔁")  {
 
             if  (peeky.serverData.get(keySF, "MusicMode") == "Normal")  {
-                peeky.serverData.set(keySF, "Mus")
+                peeky.serverData.set(keySF, "Looping", "MusicMode");
             } else 
             if  (peeky.serverData.get(keySF, "MusicMode") == "Looping")  {
-
+                peeky.serverData.set(keySF, "Automated", "MusicMode");
             } else 
             if  (peeky.serverData.get(keySF, "MusicMode") == "Automated")  {
-
+                peeky.serverData.set(keySF, "Normal", "MusicMode");
             } else   {
-
+                peeky.serverData.set(keySF, "Normal", "MusicMode");
             };
 
         } else
@@ -5300,13 +5300,12 @@ if (CommandName == "music")  {
             CommandCooldown.add("music" + message.guild.id);
             setTimeout(() => {CommandCooldown.delete("music" + message.guild.id)}, 10000);
 
-            const embed = {"description": "**Music Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "🔁 Loop " + peeky.serverData.get(keySF, "Looping").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" + "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon) + "\n\n" + "⏏️ Auto Queue " + peeky.serverData.get(keySF, "AutoQueue").toString().replace("true", EnabledIcon).replace("false", DisabledIcon), "color": EmbedColor};
+            const embed = new Discord.MessageEmbed({"description": "**Music Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "🔁 Music Mode `" + peeky.serverData.get(keySF, "MusicMode") + "`" + "\n\n" + "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon), "color": EmbedColor});
             await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
                 await m.react("⏹️").catch(error => {ErrorBag.add(error)});
                 await m.react("🔁").catch(error => {ErrorBag.add(error)});
                 await m.react("🔀").catch(error => {ErrorBag.add(error)});
-                await m.react("⏏️").catch(error => {ErrorBag.add(error)});
 
                 peeky.userData.set(key, m.id, "MusicMenuID");
 
@@ -7969,10 +7968,8 @@ if (CommandName.startsWith("play"))  {
                                     if  (peeky.serverData.get(keySF, "Queue").length > 0)  {
                                         peeky.serverData.get(keySF, "Queue").unshift(YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0]);
                                     };
-                                };
-                              
-                                if  (peeky.serverData.get(keySF, "Queue").length > 0)  {
-                                    peeky.serverData.get(keySF, "Queue").shift();
+                                } else {
+                                  peeky.serverData.get(keySF, "Queue").shift();
                                 };
                               
                             } else {
