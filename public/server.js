@@ -1314,17 +1314,18 @@ async function WebsiteStuff()  {
         var backgroundsincategory = 0;
         var backgroundspercategory = 100;
         var category = 1;
+        var BannersReversed = Banners.slice().reverse();
 
-        for (var i = 0; i < Banners.length; i++)  {
+        for (var i = 0; i < BannersReversed.length; i++)  {//.reverse()
           
             var backgroundnumber = i;
-            var backgroundinfo = Banners[backgroundnumber];
+            var backgroundinfo = BannersReversed[backgroundnumber];
           
             if  (backgroundsincategory == 0)  {
-                BackgroundList.push("</div>");
+                BackgroundList.push("<div class='background_category' id='category" + category + "'>");
             };
           
-            var CommandString = Setting.DefaultPrefix + 'seebackground ' + backgroundnumber + 1;
+            var CommandString = Setting.DefaultPrefix + 'seebackground ' + (Number(backgroundnumber) + 1);
             var NewString     = "";
             var RevenueString = "";
             var Price         = "";
@@ -1353,12 +1354,12 @@ async function WebsiteStuff()  {
             if  (backgroundsincategory > backgroundspercategory)  {
                 backgroundsincategory = 0;
                 category = category + 1;
-                BackgroundList.push("<div class='background_category' id='category" + category + "'>");
+                BackgroundList.push("</div>");
             };
           
         };
 
-        await fs.writeFile('public/backgrounds.txt', "<div> " + BackgroundList.reverse().join(" ") + " </div>", (err) => {
+        await fs.writeFile('public/backgrounds.txt', "<div> " + BackgroundList.join(" ") + " </div>", (err) => {
             if (err) console.log(err);
         });
 
