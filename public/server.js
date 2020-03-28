@@ -1350,7 +1350,7 @@ async function WebsiteStuff()  {
             BackgroundList.push(BackgroundString);
 
             backgroundsincategory = backgroundsincategory + 1; 
-            if  (backgroundsincategory >= backgroundspercategory)  {
+            if  (backgroundsincategory > backgroundspercategory)  {
                 backgroundsincategory = 0;
                 category = category + 1;
                 BackgroundList.push("</div>");
