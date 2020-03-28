@@ -1312,6 +1312,18 @@ async function WebsiteStuff()  {
         const BackgroundList = [];
         var   Current        = 0;            
         var   Fillers        = 0;
+      
+        var background = 0;
+        var totalbackgrounds = 0;
+        var category = 1
+      
+        for (var i = totalbackgrounds; i <= 100 && i <= Banners.length; i++) {
+            
+
+            category = category = 1;
+          
+        };
+        
 
         Banners.forEach(background_info => {
 
