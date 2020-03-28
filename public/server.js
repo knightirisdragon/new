@@ -1307,13 +1307,13 @@ async function WebsiteStuff()  {
     }, 600000);
 
     //Backgrounds
-    setInterval(async () => {
+    //setInterval(async () => {
 
         var BackgroundList = [];
 
         var backgroundsincategory = 0;
         var backgroundspercategory = 100;
-        var category = 1
+        var category = 1;
 
         for (var i = 0; i < Banners.length; i++)  {
           
@@ -1321,10 +1321,10 @@ async function WebsiteStuff()  {
             var backgroundinfo = Banners[backgroundnumber];
           
             if  (backgroundsincategory == 0)  {
-                BackgroundList.push("<div class='background_category' id='category" + category + "'>");
+                BackgroundList.push("</div>");
             };
           
-            var CommandString = Setting.DefaultPrefix + 'seebackground ' + backgroundnumber;
+            var CommandString = Setting.DefaultPrefix + 'seebackground ' + backgroundnumber + 1;
             var NewString     = "";
             var RevenueString = "";
             var Price         = "";
@@ -1353,18 +1353,18 @@ async function WebsiteStuff()  {
             if  (backgroundsincategory > backgroundspercategory)  {
                 backgroundsincategory = 0;
                 category = category + 1;
-                BackgroundList.push("</div>");
+                BackgroundList.push("<div class='background_category' id='category" + category + "'>");
             };
           
         };
 
-        await fs.writeFile('public/backgrounds.txt', "<div> " + BackgroundList.join(" ") + " </div>", (err) => {
+        await fs.writeFile('public/backgrounds.txt', "<div> " + BackgroundList.reverse().join(" ") + " </div>", (err) => {
             if (err) console.log(err);
         });
 
         console.log("The backgrounds have been updated.");
 
-    }, 600000);
+    //}, 600000);
 
     //Workshop
     setInterval(async () => {
