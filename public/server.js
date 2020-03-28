@@ -652,7 +652,7 @@ const Banners = [
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground151.png?1543134979962", 525, "The Kekistan army", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground152.png?1543134982640", 675, "Bandit standoff", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground153.png?1543135038818", 775, "Modern warfare", "Call of Duty Modern Warfare", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground154.jpg?1543135041735", 400, "Some ninja idk", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground154.jpg?v=1585397315703", 950, "Final stand", "Battlefield 1", undefined, 1585397139911],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground155.png?1543135044488", 675, "Sliding the mountain", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground156.png?1543173013894", 775, "Captain Price", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground157.jpg?1544049162186", 700, "Miraak the dragonborn", "The Elder Scrolls 5 Skyrim", undefined, 0],
@@ -666,7 +666,7 @@ const Banners = [
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground165.png?1545166008425", 875, "Proper burial", "Kingdom Come Deliverance", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground166.jpg?1545421965715", 775, "The Slayer", "Goblin Slayer", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground167.png?1545631212316", 825, "Home killer", "Resident Evil 7", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground168.png?1545638575351", 250, "Weird cat", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground168.png?v=1585397295911", 825, "Pool party", "Fortnite", undefined, 1585397136717],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground169.png?1545779120615", 925, "White masks", "Rainbow Six Siege", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground170.png?1545823111874", 875, "This is a robbery!", "Grand Theft Auto Online", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground171.png?1546128297923", 850, "This war of theirs", "This War of Mine", undefined, 0],
@@ -707,7 +707,7 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground206.png?v=1585305469452", 870, "Cube for days", "Sabinyan", `180090347421040640`, 1585305255106],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground207.png?1552151256169", 925, "Jackpot!", "Devil May Cry 5", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground208.png?v=1580071008133", 725, "Raided", "u/Willer_Z", undefined, 1580070968206],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground209.png?1552752810447", 275, "FeelsGoodMom", "Vojtěch Jílovec", `108899856889737216`, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground209.png?v=1585397305601", 925, "Fancy man", "Mafia 3", undefined, 1585397142377],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground210.png?1552809489475", 675, "Airsoft", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground211.png?1552809489603", 575, "Orange pattern", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground212.png?1552809503603", 850, "In the battlefield", "Battlefield 1", undefined, 0],
@@ -909,7 +909,7 @@ const Banners = [
     ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground408.png?v=1567938199867", 875, "Ice breaker", "u/neytirixx", undefined, 0],
     ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground409.png?v=1568824760554", 825, "Copper sööp", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground410.png?v=1568913126645", 450, "Link's awakening", "The Legend of Zelda Link's Awakening", undefined, 0],
-    ["https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fbackground411.png?v=1569261662317", 250, "Pudla", "Vlaďka Lišková", `583902709745188875`, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground411.png?v=1585397333509", 875, "Who's laughing now", "Neytrix", undefined, 1585397130514],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground412.png?v=1572542839518", 775, "Storming", "Battlefield 4", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground413.png?v=1569744679704", 625, "Passione", "JoJo's Bizarre Adventures", undefined, 0],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground414.png?v=1569780678572", 250, "Stříbro", "Vlaďka Lišková", `583902709745188875`, 0],
@@ -962,7 +962,10 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground461.png?v=1584219318235", 925, "Good", "Overwatch", undefined, 1584219174835],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground462.png?v=1584219319602", 900, "Ben swolo", "Kittrose", undefined, 1584219178299],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground463.png?v=1584965925687", 925, "Slayer bussiness", "DOOM Eternal", undefined, 1584965848228],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground464.png?v=1584965927654", 775, "Hello mayor", "Animal Crossing New Horizon", undefined, 1584965850554]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground464.png?v=1584965927654", 775, "Hello mayor", "Animal Crossing New Horizon", undefined, 1584965850554],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground465.png?v=1585397248634", 525, "Employees", "Vojtěch Jílovec", `108899856889737216`, 1585397128724],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground466.png?v=1585397240935", 850, "Yennifer", "Witcher 3", undefined, 1585397134562],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground467.png?v=1585397243845", 925, "Hacker squad", "Watch Dogs 2", undefined, 1585397132298]
 
 ];
 
