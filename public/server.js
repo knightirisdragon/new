@@ -1043,7 +1043,8 @@ const YoutubeSongs = [
     ["https://www.youtube.com/watch?v=zHNgeSg5hLw", "I'll Be There", "Hard"],
     ["https://www.youtube.com/watch?v=_kTBbTSjZpI", "I Am... All of Me", "Hard"],
     ["https://www.youtube.com/watch?v=fPO76Jlnz6c", "Gangsta's Paradise", "Medium"],
-    ["https://www.youtube.com/watch?v=Akx48dLnccQ", "The Only Thing They Fear is You", "Hard"]
+    ["https://www.youtube.com/watch?v=Akx48dLnccQ", "The Only Thing They Fear is You", "Hard"],
+    ["https://www.youtube.com/watch?v=hbrpmQ09juQ", "The Middle", "Hard"]
 ];
 
 const TriviaQuestions = [
