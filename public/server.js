@@ -1317,7 +1317,7 @@ async function WebsiteStuff()  {
         var BannersReversed = Banners.slice().reverse();
 
         for (var i = 0; i < BannersReversed.length; i++)  {//.reverse()
-          
+
             var backgroundnumber = i;
             var backgroundinfo = BannersReversed[backgroundnumber];
           
@@ -1325,10 +1325,7 @@ async function WebsiteStuff()  {
                 BackgroundList.push("<div class='background_category' id='category" + category + "'>");
             };
           
-            var CommandString = Setting.DefaultPrefix + 'seebackground ' + (Number(backgroundnumber) + 1);
-            var NewString     = "";
-            var RevenueString = "";
-            var Price         = "";
+            var CommandString = Setting.DefaultPrefix + 'seebackground ' + (Banners.findIndex(i => {i == backgroundinfo}) + 1);
 
             if  (backgroundinfo[4] && peeky.userData.has(backgroundinfo[4]))  {
                 var RevenueString = " <font color='lightgreen'>Revenue Enabled</font>";
