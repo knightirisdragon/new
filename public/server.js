@@ -1307,7 +1307,7 @@ async function WebsiteStuff()  {
     }, 600000);
 
     //Backgrounds
-    //setInterval(async () => {
+    setInterval(async () => {
 
         var BackgroundList = [];
 
@@ -1364,7 +1364,7 @@ async function WebsiteStuff()  {
 
         console.log("The backgrounds have been updated.");
 
-    //}, 600000);
+    }, 600000);
 
     //Workshop
     setInterval(async () => {
