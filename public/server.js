@@ -149,8 +149,6 @@ const StaffRole          = "494429609874685983";
 const VeteranRole        = "679051643756478539";
 const PremiumRole        = "504740473185894400";
 const BoosterRole        = "620654437081415686";
-const TranslatorRole     = "680124113951391776";
-const BugHunterRole      = "680124135816560662";
 const ServerUpgradeRole  = "549190337437106176";
 
 //Other IDs
@@ -2454,8 +2452,7 @@ peeky.on('message', async (message) => {
         BadgeGredit: 0,
         BadgeExp: 0,
       
-        ParticipatedEvents: [],
-        Bans: 0
+        ParticipatedEvents: []
     });
 
     };
@@ -2714,23 +2711,6 @@ if  (peeky.channelData.has(keyCF))  {
 };
 
 });
-
-peeky.on("guildBanAdd", async (guild, user) => {
-  
-const key = `${user.id}`;
-
-//Log Bans
-if  (peeky.userData.has(key))  {
-  
-    if  (peeky.userData.has(key, "Bans"))  {
-        peeky.userData.math(key, "+", 1, "Bans");
-    }  else  {
-       peeky.userData.set(key, 1, "Bans");
-    };
-  
-};
-
-});
 //END
 
 //FUNCTIONS
@@ -2770,11 +2750,6 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
     //Account has no profile picture.
     if  (member.user.avatarURL().startsWith("https://cdn.discordapp.com/embed/avatars"))  {
         Reasons.push("Has a default profile picture.");
-    };
-
-    //Account has alot of logged bans
-    if  (peeky.userData.has(key) && peeky.userData.get(key, "Bans") >= BanLimit)  {
-        Reasons.push("Has " + peeky.userData.get(key, "Bans") + " recorded bans.");
     };
   
     //Account is banned from using PEEKY
