@@ -16,10 +16,14 @@
 </head>
   
 <style>
+  
+.background_category {
+    display: none;    
+}
 
 .background_centered {
     background-color: rgba(35, 39, 42, 0.5);
-      border-radius: 10px;
+    border-radius: 10px;
     padding: 15px;
     position: absolute;
     width: 460px;
@@ -84,6 +88,25 @@
   
 </style>
   
+<script>
+      
+function ToggleCategory(id) {
+
+    var x = document.getElementsByClassName("inlinediv");
+    for (var i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+
+    var Element = document.getElementById(id);
+
+    if  (Element)  {  
+        Element.style.display = "flex";
+    };
+
+};
+
+</script>
+  
 <body onload="UpdateWebsiteStuff([['workshop.txt','Workshop'],['backgrounds.txt','BackgroundList']]);" class="imagebackground">
 <b>
   
@@ -108,6 +131,13 @@
 <font class="headersub">Here are all the backgrounds that you can use on your profile.</font>
 
 <br><br><br>
+
+<a class="item_header" onclick="ToggleCategory('category1');"><font size="5" >1</font></a>
+<a class="item_header" onclick="ToggleCategory('category');"><font size="5" >1</font></a>
+<a class="item_header" onclick="ToggleCategory('category1');"><font size="5" >1</font></a>
+<a class="item_header" onclick="ToggleCategory('category1');"><font size="5" >1</font></a>
+  
+<br><br>
   
 <div id="BackgroundList"></div>
 
