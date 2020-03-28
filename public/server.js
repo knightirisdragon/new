@@ -1317,13 +1317,14 @@ async function WebsiteStuff()  {
 
         for (var i = 0; i < Banners.length; i++)  {
           
-            var backgroundinfo = Banners[i];
+            var backgroundnumber = i;
+            var backgroundinfo = Banners[backgroundnumber];
           
             if  (backgroundsincategory == 0)  {
                 BackgroundList.push("<div class='background_category' id='category" + category + "'>");
             };
           
-            var CommandString = Setting.DefaultPrefix + 'seebackground ' + i;
+            var CommandString = Setting.DefaultPrefix + 'seebackground ' + backgroundnumber;
             var NewString     = "";
             var RevenueString = "";
             var Price         = "";
@@ -1344,7 +1345,7 @@ async function WebsiteStuff()  {
                 var NewString = " <font color='lightgreen'>New</font>";
             };
 
-            var BackgroundString = '<div class="background">  <img src="' + backgroundinfo[0] + '"  width="500" height="300" class="background_image">  <div id="' + i + '">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + backgroundinfo[2] + RevenueString + NewString + '  </font>  <br>  <font size="2" color="lightgray">' + backgroundinfo[3] + '</font>  <br><br>  <font size="2" color="lightgray">' + Price.toLocaleString('en') + '</font>  <br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
+            var BackgroundString = '<div class="background">  <img src="' + backgroundinfo[0] + '"  width="500" height="300" class="background_image">  <div id="' + backgroundnumber + '">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + backgroundinfo[2] + RevenueString + NewString + '  </font>  <br>  <font size="2" color="lightgray">' + backgroundinfo[3] + '</font>  <br><br>  <font size="2" color="lightgray">' + Price.toLocaleString('en') + '</font>  <br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
 
             BackgroundList.push(BackgroundString);
 
