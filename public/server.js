@@ -1307,60 +1307,65 @@ async function WebsiteStuff()  {
     }, 600000);
 
     //Backgrounds
-    setInterval(async () => {
+    //setInterval(async () => {
 
-        const BackgroundList = [];
-        var   Current        = 0;            
-        var   Fillers        = 0;
-      
-        var background = 0;
-        var totalbackgrounds = 0;
+        var BackgroundList = [];
+
+        var backgroundsincategory = 0;
+        var backgroundspercategory = 100;
         var category = 1
-      
-        for (var i = totalbackgrounds; i <= 100 && i <= Banners.length; i++) {
-            
 
-            category = category = 1;
+        for (var i = 0; i <= Banners.length; i++)  {
+          
+            console.log(i)
+          
+            var backgroundinfo = Banners[i];
+          
+            if  (backgroundsincategory == 0)  {
+                BackgroundList.push("<div class='inlinediv' id='category" + category + "'>");
+            };
+          
+            var CommandString = Setting.DefaultPrefix + 'seebackground ' + Current;
+            var NewString     = "";
+            var RevenueString = "";
+            var Price         = "";
+
+            if  (backgroundinfo[4] && peeky.userData.has(backgroundinfo[4]))  {
+                var RevenueString = " <font color='lightgreen'>Revenue Enabled</font>";
+            } else {
+              var RevenueString = "";
+            };
+
+            if  (backgroundinfo[1] == Exclusive)  {
+                var Price = Exclusive;
+            } else {
+              var Price = backgroundinfo[1].toLocaleString('en') + " Gredit";
+            };
+
+            if  (Date.now() - backgroundinfo[5] < DayMs)  {
+                var NewString = " <font color='lightgreen'>New</font>";
+            };
+
+            var BackgroundString = '<div class="background">  <img src="' + backgroundinfo[0] + '"  width="500" height="300" class="background_image">  <div id="' + Current + '">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + backgroundinfo[2] + RevenueString + NewString + '  </font>  <br>  <font size="2" color="lightgray">' + backgroundinfo[3] + '</font>  <br><br>  <font size="2" color="lightgray">' + Price.toLocaleString('en') + '</font>  <br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
+
+            BackgroundList.push(BackgroundString);
+
+            backgroundsincategory = backgroundsincategory + 1; 
+            if  (backgroundsincategory >= backgroundspercategory)  {
+                backgroundsincategory = 0;
+                category = category + 1;
+                BackgroundList.push("</div>");
+            };
           
         };
-        
 
-        Banners.forEach(background_info => {
-
-              Current ++;
-
-              var CommandString = Setting.DefaultPrefix + 'seebackground ' + Current;
-              var NewString     = "";
-              var RevenueString = "";
-              var Price         = "";
-
-              if  (background_info[4] !== undefined && peeky.userData.has(background_info[4]))  {
-                  RevenueString = " <font color='lightgreen'>Revenue Enabled</font>";
-              };
-
-              if  (background_info[1] == Exclusive)  {
-                  Price = Exclusive;
-              } else {
-                Price = background_info[1].toLocaleString('en') + " Gredit";
-              };
-
-              if  (Date.now() - background_info[5] < DayMs)  {
-                  NewString = " <font color='lightgreen'>New</font>";
-              };
-
-              var BackgroundString = '<div class="background">  <img src="' + background_info[0] + '"  width="500" height="300" class="background_image">  <div id="' + Current + '">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + background_info[2] + RevenueString + NewString + '  </font>  <br>  <font size="2" color="lightgray">' + background_info[3] + '</font>  <br><br>  <font size="2" color="lightgray">' + Price.toLocaleString('en') + '</font>  <br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
-
-              BackgroundList.push(BackgroundString);
-
-        });
-
-        await fs.writeFile('public/backgrounds.txt', "<div> " + BackgroundList.reverse().join(" ") + " </div>", (err) => {
+        await fs.writeFile('public/backgrounds.txt', "<div> " + BackgroundList.join(" ") + " </div>", (err) => {
             if (err) console.log(err);
         });
 
         console.log("The backgrounds have been updated.");
 
-    }, 600000);
+    //}, 600000);
 
     //Workshop
     setInterval(async () => {
