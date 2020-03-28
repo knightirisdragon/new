@@ -9160,7 +9160,7 @@ if  (CommandName.startsWith("kick"))  {
 
             var MentionedMember = message.mentions.members.first();
 
-            if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("KICK_MEMBERS"))  {
+            if  (MentionedMember && MentionedMember.kickable && !MentionedMember.permissions.has("KICK_MEMBERS"))  {
 
                 await MentionedMember.kick("Kicked by " + message.author.tag + ".").catch(error => { 
                       const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
