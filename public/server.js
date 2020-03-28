@@ -1307,7 +1307,7 @@ async function WebsiteStuff()  {
     }, 600000);
 
     //Backgrounds
-    //setInterval(async () => {
+    setInterval(async () => {
 
         var BackgroundList = [];
 
@@ -1325,7 +1325,7 @@ async function WebsiteStuff()  {
                 BackgroundList.push("<div class='background_category' id='category" + category + "'>");
             };
           
-            var CommandString = Setting.DefaultPrefix + 'seebackground ' + (Banners.findIndex(i => {i == backgroundinfo}) + 1);
+            var CommandString = Setting.DefaultPrefix + 'seebackground ' + (Banners.findIndex(i => i[0] == backgroundinfo[0]) + 1);
 
             if  (backgroundinfo[4] && peeky.userData.has(backgroundinfo[4]))  {
                 var RevenueString = " <font color='lightgreen'>Revenue Enabled</font>";
@@ -1341,6 +1341,8 @@ async function WebsiteStuff()  {
 
             if  (Date.now() - backgroundinfo[5] < DayMs)  {
                 var NewString = " <font color='lightgreen'>New</font>";
+            } else {
+              var NewString = "";
             };
 
             var BackgroundString = '<div class="background">  <img src="' + backgroundinfo[0] + '"  width="500" height="300" class="background_image">  <div id="' + backgroundnumber + '">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + backgroundinfo[2] + RevenueString + NewString + '  </font>  <br>  <font size="2" color="lightgray">' + backgroundinfo[3] + '</font>  <br><br>  <font size="2" color="lightgray">' + Price.toLocaleString('en') + '</font>  <br>  <font size="1" color="lightgray"> ' + CommandString + '</font></b> </div>  </div>  </div>';
@@ -1362,7 +1364,7 @@ async function WebsiteStuff()  {
 
         console.log("The backgrounds have been updated.");
 
-    //}, 600000);
+    }, 600000);
 
     //Workshop
     setInterval(async () => {
