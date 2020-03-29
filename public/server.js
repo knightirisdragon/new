@@ -3421,8 +3421,8 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
 //Karma System
 if  (!user.bot && KarmaImages.findIndex(i => i[0] == reaction.message.id) >= 0)  {
 
-    var ReactionEmoji1 = reaction.message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
-    var ReactionEmoji2 = reaction.message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
+    var ReactionEmoji1 = reaction.message.guild.emojis.cache.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
+    var ReactionEmoji2 = reaction.message.guild.emojis.cache.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
     var key2 = reaction.message.author.id;
   
     if  ((ReactionEmoji1 && reaction.emoji.name == ReactionEmoji1.name) || (reaction.emoji.id == DefaultUpvote))  {
@@ -4285,8 +4285,8 @@ if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
 
         if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS', 'EXTERNAL_EMOJIS'))  {
 
-            var ReactionEmoji1 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
-            var ReactionEmoji2 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
+            var ReactionEmoji1 = message.guild.emojis.cache.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
+            var ReactionEmoji2 = message.guild.emojis.cache.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
 
         if  (ReactionEmoji1 && ReactionEmoji2)  {
              await message.react(ReactionEmoji1).catch(error => ErrorBag.add(error));
