@@ -2348,7 +2348,7 @@ peeky.on('ready', () => {
     //Update Banned Users
     setTimeout(() => {
         function_UpdateBans();
-        peeky.guilds.cache.get(SupportServer).members.cache.fetch();
+        peeky.guilds.cache.get(SupportServer).members.fetch();
     }, 10000);
   
     //Clear Queues
@@ -4660,7 +4660,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
             FunctionCooldowns.add("classificationwall" + message.guild.id)
             setTimeout(() => {FunctionCooldowns.delete("classificationwall" + message.guild.id)}, 300000);
           
-            await message.guild.members.cache.fetch();
+            await message.guild.members.fetch();
             message.guild.members.cache.forEach(m => {
               
               Tags = [];
@@ -9034,7 +9034,7 @@ if  (CommandName.startsWith("idban"))  {
 
         var ValidID = 0;
 
-        await peeky.users.cache.fetch(CommandArgument, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
+        await peeky.users.fetch(CommandArgument, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
       
         if  (ValidID == 0) {
 
