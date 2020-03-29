@@ -3000,7 +3000,7 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
 
         if  (Detected == true)  {
 
-            await member.guild.members.cache.ban(member.id, "Triggered by the Welcome Messages function.").catch(error => {
+            await member.guild.members.ban(member.id, "Triggered by the Welcome Messages function.").catch(error => {
                   ErrorBag.add(error);
                   var Failed = true;
             });
@@ -9040,7 +9040,7 @@ if  (CommandName.startsWith("idban"))  {
 
         if  (!message.guild.members.cache.find(m => m.id == CommandArgument))  {
 
-            await message.guild.members.cache.ban(CommandArgument, { reason: "ID banned by " + message.author.tag + "." }).catch(error => { 
+            await message.guild.members.ban(CommandArgument, { reason: "ID banned by " + message.author.tag + "." }).catch(error => { 
                   const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   ErrorBag.add(error); Failed = true;
@@ -9102,7 +9102,7 @@ if  (CommandName.startsWith("ban"))  {
 
             if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS"))  {
 
-                await message.guild.members.cache.ban(MentionedMember.user.id, { reason: "Banned by " + message.author.tag + "." }).catch(error => { 
+                await message.guild.members.ban(MentionedMember.user.id, { reason: "Banned by " + message.author.tag + "." }).catch(error => { 
                       const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                       ErrorBag.add(error); Failed = true;
