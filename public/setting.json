@@ -2,6 +2,7 @@
   "Description": "PEEKY is a free and reliable multipurpose bot with frequent updates and lots of unique features.",
   "ShortDescription": "PEEKY is a free and reliable multipurpose bot.",
   "Summary": "Multiple Languages, Functions, Economy System, Music Player, Moderation Commands, Minigames and more!",
+  
   "Message": "",
   
   "DefaultPrefix": "p!",
@@ -12,7 +13,7 @@
   "EventBackground": 0,
   "EventChests": 0,
   "EventGredit": 0,
-  "EventExp": 0,  
+  "EventExp": 0,
   
   "CustomBackgroundPrice": 1000,
   "SellMultiplier": 1,
