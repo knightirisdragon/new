@@ -4235,7 +4235,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
 
             if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
 
-                var Rewards = [[GreditIcon, 250, "Gredit"], [ChestIcon, 1, "Chests"], ["Exp", 500, "Exp"]];
+                var Rewards = [[GreditIcon, 500, "Gredit"], [ChestIcon, 2, "Chests"], ["Exp", 2500, "Exp"]];
                 var Index = Math.floor((Math.random() * Rewards.length));
                 var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
 
@@ -4857,14 +4857,6 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
 if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.author.id) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES' && 'EMBED_LINKS'))  {
   
 //Mention Commands
-  
-//Virus Badge
-if  ((message.mentions.members.first() && !message.mentions.members.first().user.bot))  {
-    const key2 = `${message.mentions.members.first().user.id}`;
-    if  (peeky.userData.get(key, "VirusBadge") == true && !peeky.userData.get(key2, "VirusBadge"))  {
-        peeky.userData.set(key2, true, "VirusBadge");
-    };
-};
   
 //Help
 if  ((message.mentions.members.first() && message.mentions.members.first().id == PeekyId) || (message.content == peeky.serverData.get(keySF, "prefix") + "help"))  {
