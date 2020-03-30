@@ -5189,11 +5189,6 @@ if  (CommandName.startsWith("userinfo"))  {
     if  (SomeoneTagged.premiumSince > 0)  {
         BoostingSince = function_DateFormat(SomeoneTagged.premiumSince, "Date");
     };
-  
-    var PremiumSince = "Not premium";
-    if  (peeky.guilds.get(SupportServer).members.has(key2) && peeky.guilds.get(SupportServer).members.get(key2).roles.has(PremiumRole))  {
-        PremiumSince = function_DateFormat(function_TimeLeft(peeky.userData.get(key, "SupporterLastPurchase"), "days", MonthMs), "Date");
-    };
       
     const embed = {
       "description": 
@@ -5201,8 +5196,7 @@ if  (CommandName.startsWith("userinfo"))  {
        + "\n" + Description
        + "\n\n" + "**Joined Discord**" + "\n" + function_DateFormat(SomeoneTagged.user.createdAt, "Date")
        + "\n\n" + "**Joined server**" + "\n" + function_DateFormat(SomeoneTagged.joinedAt, "Date")
-       + "\n\n" + "**Boosting since**" + "\n" + BoostingSince
-       + "\n\n" + "**Premium status**" + "\n" + PremiumSince,
+       + "\n\n" + "**Boosting since**" + "\n" + BoostingSince,
        "color": SomeoneTagged.displayColor}; 
     await message.channel.send({ embed }).catch(error => {ErrorBag.add(error)});
 
