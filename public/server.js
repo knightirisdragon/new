@@ -963,7 +963,9 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground464.png?v=1584965927654", 775, "Hello mayor", "Animal Crossing New Horizon", undefined, 1584965850554],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground465.png?v=1585397248634", 525, "Employees", "Vojtěch Jílovec", `108899856889737216`, 1585397128724],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground466.png?v=1585397240935", 850, "Yennifer", "Witcher 3", undefined, 1585397134562],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground467.png?v=1585397243845", 925, "Hacker squad", "Watch Dogs 2", undefined, 1585397132298]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground467.png?v=1585397243845", 925, "Hacker squad", "Watch Dogs 2", undefined, 1585397132298],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground468.png?v=1585601759102", 875, "He's back", "Return of Killer Bean", undefined, 1585601570961],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground469.png?v=1585601758266", 725, "Roblox gang", "Vojtěch Jílovec", `108899856889737216`, 1585601572734]
 
 ];
 
