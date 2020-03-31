@@ -1003,7 +1003,6 @@ const DefaultDescriptions = [
 ];
 
 const YoutubeSongs = [
-    ["https://www.youtube.com/watch?v=HRDp-Q_DsfE", "Bloody Stream", "Medium"],
     ["https://www.youtube.com/watch?v=cPJUBQd-PNM", "Revenge", "Easy"],
     ["https://www.youtube.com/watch?v=5-uWlFq380M", "Sanctuary", "Medium"],
     ["https://www.youtube.com/watch?v=bpOSxM0rNPM", "Do I Wanna Know", "Medium"],
