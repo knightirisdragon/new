@@ -9095,7 +9095,7 @@ if  (CommandName.startsWith("ban"))  {
             var MentionedMember = message.mentions.members.first();
 
             if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS"))  {
-
+                  
                 await message.guild.members.ban(MentionedMember.user.id, { reason: "Banned by " + message.author.tag + "." }).catch(error => { 
                       const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -9111,9 +9111,14 @@ if  (CommandName.startsWith("ban"))  {
             }
              else
             {
-              var TranslatedMessages = [ErrorIcon + " You cannot ban that user.", ErrorIcon + " Tohoto uživatele zabanovat nemůžete.", ErrorIcon + " Nemôžeš zabanovať tohoto uživateľa.", ErrorIcon + " Usted no puede banear a aquel usuario.", ErrorIcon + " Bu kullanıcıyı yasaklayamazsınız.", ErrorIcon + " Вы не можете запретить этого пользователя."];
-              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              if  (MentionedMember.user.id == PeekyId)  {
+                  const embed = {"description": ErrorIcon + " What the fuck?",  "color": EmbedColor};
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                } else {
+                  var TranslatedMessages = [ErrorIcon + " You cannot ban that user.", ErrorIcon + " Tohoto uživatele zabanovat nemůžete.", ErrorIcon + " Nemôžeš zabanovať tohoto uživateľa.", ErrorIcon + " Usted no puede banear a aquel usuario.", ErrorIcon + " Bu kullanıcıyı yasaklayamazsınız.", ErrorIcon + " Вы не можете запретить этого пользователя."];
+                  const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              };
             };
 
         }
