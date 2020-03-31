@@ -2886,10 +2886,11 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
                   const ValidRoles = [];
                 
                   current[1].forEach(role => {
-                      
-                    if  (member.guild.roles.find(r => r.id == role))  {
-                        ValidRoles.push(role);
-                    };                  
+                    
+                      var r = member.guild.roles.find(r => r.id == role);
+                      if  (r && r.name.toLowerCase() !== peeky.serverData.get(keySF, "verification_system_bonus_setting").toLowerCase() && !Setting.includes(r.name))  {
+                          ValidRoles.push(role);
+                      };                  
                     
                   });
 
@@ -3084,9 +3085,9 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
             const MemberIndex = SavedRoles.findIndex(i => i[0] == member.user.id);
 
             if  (MemberIndex >= 0)  {
-                SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name !== "@everyone" && r.name !== peeky.serverData.get(keySF, "verification_system_bonus_setting") && !Setting.includes(r.name)).map(r => r.id);
+                SavedRoles[MemberIndex][1] = member.roles.filter(r => r.name !== "@everyone").map(r => r.id);
             } else {
-              SavedRoles.push([member.user.id, member.roles.filter(r => r.name !== "@everyone" && r.name !== peeky.serverData.get(keySF, "verification_system_bonus_setting") && !Setting.includes(r.name)).map(r => r.id)]);
+              SavedRoles.push([member.user.id, member.roles.filter(r => r.name !== "@everyone").map(r => r.id)]);
             };
 
         };
