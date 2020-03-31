@@ -9310,7 +9310,7 @@ if  (CommandName.startsWith("prefix"))  {
             peeky.serverData.set(keySF, CommandArgument, "prefix");
           
             var TranslatedMessages = [SuccessIcon + " The prefix is now **X001**.", SuccessIcon + " Prefix je teď **X001**.", SuccessIcon + " Predvoľba je teraz **X001**.", SuccessIcon + " El prefijo es ahora **X001**.", SuccessIcon + " Önek şimdi **X001**.", SuccessIcon + " Префикс теперь **X001**."];
-            const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
+            const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
@@ -9352,7 +9352,7 @@ if  (CommandName.startsWith("highlightedchannel"))  {
             peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
           
             var TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **#X001**.", SuccessIcon + " Zvýraznený channel je teraz **#X001**.", SuccessIcon + " El canal resaltado es ahora **#X001**.", SuccessIcon + " Vurgulanan kanal şimdi **#X001**.", SuccessIcon + " Выделенный канал теперь **#X001**."];
-            const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + InfoMessages.join("\n\n"),  "color": EmbedColor};
+            const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
