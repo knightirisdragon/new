@@ -4860,53 +4860,33 @@ if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.
   
 //Mention Commands
   
-//Help
-if  ((message.mentions.members.first() && message.mentions.members.first().id == PeekyId) || (message.content == peeky.serverData.get(keySF, "prefix") + "help"))  {
-    
-    const WebsiteInfo = [
-      "Visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related.",
-      "Navštivte moji stránku aby jste mohli hlasovat, číst návody, koukat na pozadí, otevřit žebříček a vlastně všechno co se týče PEEKYho.",
-      "Navštívte webovú stránku, kde môžete hlasovať, prečítať si návody, prehliadať pozadia, prezerať výsledkové tabuľky a takmer všetko, čo sa týka PEEKYho.",
-      "Visita el sitio web para votar, leer tutoriales, navegar por los fondos, ver la tabla de clasificación y casi todo relacionado con PEEKY.",
-      "Oy vermek, öğretici sayfaları okumak, arka planlara göz atmak, Sıralama tablosu ve PEEKY ile ilgili hemen hemen her şeyi görüntülemek için web sitesini ziyaret edin.",
-      "Посетите сайт, чтобы проголосовать, прочитать учебники, просмотреть фоны, просмотреть доску объявлений и многое другое, что связано с PEEKY."
-    ];
-    const StoreInfo = [
-      "Support PEEKY by purchasing some neat items from the store!",
-      "Podpořte PEEKYho tím, že si koupíte nějaké supr věcičky z obchodu!",
-      "Navštívte webovú stránku, kde môžete hlasovať, prečítať si návody, prehliadať pozadia, prezerať výsledkové tabuľky a takmer všetko, čo sa týka PEEKYho.",
-      "¡Apoya a PEEKY comprando algunos artículos de la tienda!",
-      "Mağazadan bazı ürünler satın alarak PEEKY'yi destekleyin.",
-      "Поддержите PEEKY, купив несколько аккуратных вещей в магазине!"
-    ];
-    const SupportServerInfo = [
-      "Join the Support Server for important announcements, assistance with the bot, giveaways and much more!",
-      "Připojte se na můj Discord server pro důležitá upozornění, podporu s botem, soutěže a mnoho dalšího!",
-      "Pripojte sa k serveru podpory a získajte dôležité oznámenia, pomoc s botom, darčeky a oveľa viac.",
-      "Únete al Servidor de Soporte para anuncios importantes, asistencia con el bot, regalos y mucho más!",
-      "Önemli duyurular, botla ilgili yardım, hediyeler ve çok daha fazlası için Destek Sunucusuna katılın!",
-      "Присоединяйтесь к серверу поддержки для важных объявлений, помощи с ботом, подарков и многого другого!"
-    ];
-    const BotInvite = [
-      "Add PEEKY to your server and get all the features for free and quick!",
-      "Přidejte si PEEKYho na váš server a dostanete všechny funkce zdarma a rychle.",
-      "Pridaj PEEKYho na tvôj server a získaj všetky funkcie.",
-      "Añade a PEEKY a tu servidor y obtén todas las características de forma rápida y gratuita!",
-      "Sunucunuza PEEKY ekleyin ve tüm özellikleri ücretsiz ve hızlı bir şekilde alın!",
-      "Добавьте PEEKY на свой сервер и получите все функции бесплатно и быстро!"
-    ];
+//Prefix Troubleshoot
+if  ((message.mentions.members.first() && message.mentions.members.first().id == PeekyId))  {
   
-    const embed = {  "description": 
-                     "**Website** [[Open]](https://peeky.glitch.me/)\n" + WebsiteInfo[Language] +
-                     "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\n" + StoreInfo[Language] +
-                     "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\n" + SupportServerInfo[Language] +
-                     "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\n" + BotInvite[Language] +
-                     "\n\n**Server Prefix: ** " + peeky.serverData.get(keySF, "prefix"),
-                     "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
-                     "color": 7506394 
+    if  (!CommandCooldown.has("prefiltroubleshoot" + message.guild.id))  {
+      
+        if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
+
+            CommandCooldown.add("prefiltroubleshoot" + message.guild.id);
+            setTimeout(() => {CommandCooldown.delete("prefiltroubleshoot" + message.guild.id)}, 10000);
+
+            const embed = new Discord.MessageEmbed({"description": "**Music Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "🔁 Music Mode `" + peeky.serverData.get(keySF, "MusicMode") + "`" + "\n\n" + "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon), "color": EmbedColor});
+            await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
+
+                await m.react("⏹️").catch(error => {ErrorBag.add(error)});
+                await m.react("🔁").catch(error => {ErrorBag.add(error)});
+                await m.react("🔀").catch(error => {ErrorBag.add(error)});
+
+                peeky.userData.set(key, m.id, "MusicMenuID");
+
+            }).catch(error => {ErrorBag.add(error)});
+          
+        };
+
+    } else {
+      const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-  
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 };
   
@@ -5027,6 +5007,55 @@ if  (CommandName.startsWith("message"))  {
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
+};
+
+//Help
+if (CommandName == "help")  {
+  
+    const WebsiteInfo = [
+      "Visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related.",
+      "Navštivte moji stránku aby jste mohli hlasovat, číst návody, koukat na pozadí, otevřit žebříček a vlastně všechno co se týče PEEKYho.",
+      "Navštívte webovú stránku, kde môžete hlasovať, prečítať si návody, prehliadať pozadia, prezerať výsledkové tabuľky a takmer všetko, čo sa týka PEEKYho.",
+      "Visita el sitio web para votar, leer tutoriales, navegar por los fondos, ver la tabla de clasificación y casi todo relacionado con PEEKY.",
+      "Oy vermek, öğretici sayfaları okumak, arka planlara göz atmak, Sıralama tablosu ve PEEKY ile ilgili hemen hemen her şeyi görüntülemek için web sitesini ziyaret edin.",
+      "Посетите сайт, чтобы проголосовать, прочитать учебники, просмотреть фоны, просмотреть доску объявлений и многое другое, что связано с PEEKY."
+    ];
+    const StoreInfo = [
+      "Support PEEKY by purchasing some neat items from the store!",
+      "Podpořte PEEKYho tím, že si koupíte nějaké supr věcičky z obchodu!",
+      "Navštívte webovú stránku, kde môžete hlasovať, prečítať si návody, prehliadať pozadia, prezerať výsledkové tabuľky a takmer všetko, čo sa týka PEEKYho.",
+      "¡Apoya a PEEKY comprando algunos artículos de la tienda!",
+      "Mağazadan bazı ürünler satın alarak PEEKY'yi destekleyin.",
+      "Поддержите PEEKY, купив несколько аккуратных вещей в магазине!"
+    ];
+    const SupportServerInfo = [
+      "Join the Support Server for important announcements, assistance with the bot, giveaways and much more!",
+      "Připojte se na můj Discord server pro důležitá upozornění, podporu s botem, soutěže a mnoho dalšího!",
+      "Pripojte sa k serveru podpory a získajte dôležité oznámenia, pomoc s botom, darčeky a oveľa viac.",
+      "Únete al Servidor de Soporte para anuncios importantes, asistencia con el bot, regalos y mucho más!",
+      "Önemli duyurular, botla ilgili yardım, hediyeler ve çok daha fazlası için Destek Sunucusuna katılın!",
+      "Присоединяйтесь к серверу поддержки для важных объявлений, помощи с ботом, подарков и многого другого!"
+    ];
+    const BotInvite = [
+      "Add PEEKY to your server and get all the features for free and quick!",
+      "Přidejte si PEEKYho na váš server a dostanete všechny funkce zdarma a rychle.",
+      "Pridaj PEEKYho na tvôj server a získaj všetky funkcie.",
+      "Añade a PEEKY a tu servidor y obtén todas las características de forma rápida y gratuita!",
+      "Sunucunuza PEEKY ekleyin ve tüm özellikleri ücretsiz ve hızlı bir şekilde alın!",
+      "Добавьте PEEKY на свой сервер и получите все функции бесплатно и быстро!"
+    ];
+  
+    const embed = {  "description": 
+                     "**Website** [[Open]](https://peeky.glitch.me/)\n" + WebsiteInfo[Language] +
+                     "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\n" + StoreInfo[Language] +
+                     "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\n" + SupportServerInfo[Language] +
+                     "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\n" + BotInvite[Language],
+                     "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
+                     "color": 7506394 
+    };
+  
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  
 };
 
 //EventRewards
