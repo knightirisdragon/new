@@ -3718,7 +3718,7 @@ if  (peeky.userData.has(key, "PrefixTroubleshootID") && reaction.message.id == p
         if  (reaction.emoji.id == DefaultUpvote)  {
           
             var Description = SuccessIcon + " The server prefix has been set to the default prefix.";
-            peeky.userData.set(key, Setting.DefaultPrefix, "prefix");
+            peeky.serverData.set(keySF, Setting.DefaultPrefix, "prefix");
             peeky.userData.set(key, null, "PrefixTroubleshootID");
           
         } else
@@ -9384,7 +9384,8 @@ if  (CommandName.startsWith("prefix"))  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-            const InfoMessages = [InfoIcon + " If the prefix is broken, join the Support Server."];
+            const InfoMessages = [];
+            //InfoMessages.push(InfoIcon + " If the prefix is broken, join the Support Server.");
 
             peeky.serverData.set(keySF, CommandArgument, "prefix");
           
