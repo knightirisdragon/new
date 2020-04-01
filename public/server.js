@@ -2439,9 +2439,6 @@ peeky.on('message', async (message) => {
       
     peeky.userData.ensure(key , {
         UserID: message.author.id,
-        OverviewID: null,
-        MusicMenuID: null,
-        LanguageID: null,
         lastSeen: Date.now,
 
         Background: 1,
@@ -3701,6 +3698,40 @@ if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.user
   
 };
   
+//Prefix Troubleshoot
+if  (peeky.userData.has(key, "PrefixTroubleshootID") && reaction.message.id == peeky.userData.get(key, "PrefixTroubleshootID"))  {           
+  
+    if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+        reaction.users.remove(user.id).catch(error => ErrorBag.add(error));
+    };
+  
+    if  (!CommandCooldown.has("prefixtroubleshoot" + user.id))  {
+         
+        CommandCooldown.add("prefixtroubleshoot" + user.id);
+        setTimeout(() => {CommandCooldown.delete("prefixtroubleshoot" + user.id)}, 2500);
+
+        if  (reaction.emoji.id == DefaultUpvote)  {
+          
+            var Description = SuccessIcon + " The server prefix has been set to the default prefix.";
+            peeky.userData.set(key, Setting.DefaultPrefix, "prefix");
+            peeky.userData.set(key, null, "PrefixTroubleshootID");
+          
+        } else
+
+        if  (reaction.emoji.id == DefaultDownvote)  {
+          
+            var Description = SuccessIcon + " The prefix is still **" + peeky.serverData.get(keySF, "prefix") + "** on this server.";
+            peeky.userData.set(key, null, "PrefixTroubleshootID");
+            
+        };
+            
+        const newEmbed = new Discord.MessageEmbed({"description": Description, "color": EmbedColor});
+        reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
+      
+  };
+  
+};
+  
 //Language Pages
 if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userData.get(key, "LanguageID"))  {           
   
@@ -4863,21 +4894,25 @@ if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.
 //Prefix Troubleshoot
 if  ((message.mentions.members.first() && message.mentions.members.first().id == PeekyId))  {
   
-    if  (!CommandCooldown.has("prefiltroubleshoot" + message.guild.id))  {
+    if  (!CommandCooldown.has("prefixtroubleshoot" + message.guild.id))  {
       
         if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
 
-            CommandCooldown.add("prefiltroubleshoot" + message.guild.id);
-            setTimeout(() => {CommandCooldown.delete("prefiltroubleshoot" + message.guild.id)}, 10000);
+            CommandCooldown.add("prefixtroubleshoot" + message.guild.id);
+            setTimeout(() => {CommandCooldown.delete("prefixtroubleshoot" + message.guild.id)}, 10000);
 
-            const embed = new Discord.MessageEmbed({"description": "**Music Menu**" + "\n\n" + "⏹️ Close Menu" + "\n\n" + "🔁 Music Mode `" + peeky.serverData.get(keySF, "MusicMode") + "`" + "\n\n" + "🔀 Randomized Playlists " + peeky.serverData.get(keySF, "RandomPlaylists").toString().replace("true", EnabledIcon).replace("false", DisabledIcon), "color": EmbedColor});
+            var Description = " The current prefix is **" + peeky.serverData.get(keySF, "prefix") + "** and it can change it with the Prefix command!";
+            if  (message.member.permissions.has("MANAGE_GUILD"))  {
+                Description = " The current prefix is **" + peeky.serverData.get(keySF, "prefix") + "**, wanna change it to **" + Setting.DefaultPrefix + "**?";
+            };
+          
+            const embed = new Discord.MessageEmbed({"description": InfoIcon + Description, "color": EmbedColor});
             await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
-                await m.react("⏹️").catch(error => {ErrorBag.add(error)});
-                await m.react("🔁").catch(error => {ErrorBag.add(error)});
-                await m.react("🔀").catch(error => {ErrorBag.add(error)});
+                await m.react(DefaultUpvote).catch(error => {ErrorBag.add(error)});
+                await m.react(DefaultDownvote).catch(error => {ErrorBag.add(error)});
 
-                peeky.userData.set(key, m.id, "MusicMenuID");
+                peeky.userData.set(key, m.id, "PrefixTroubleshootID");
 
             }).catch(error => {ErrorBag.add(error)});
           

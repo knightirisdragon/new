@@ -50,6 +50,9 @@ You have to mark your image as a spoiler, **X001** |
 
 That phrase is blocked by the **Banned Words** function, **X001**. | 
 
+The server prefix has been set to the default prefix. | 
+The prefix is still **X001** on this server. | 
+
 Visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related. | 
 Support PEEKY by purchasing some neat items from the store! | 
 Join the Support Server for important announcements, assistance with the bot, giveaways and much more! | 
