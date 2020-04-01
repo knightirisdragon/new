@@ -3698,7 +3698,7 @@ if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.user
   
 };
   
-//Prefix Troubleshoot
+//Prefix Troubleshoot Menu
 if  (peeky.userData.has(key, "PrefixTroubleshootID") && reaction.message.id == peeky.userData.get(key, "PrefixTroubleshootID"))  {           
   
     if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
@@ -3727,6 +3727,10 @@ if  (peeky.userData.has(key, "PrefixTroubleshootID") && reaction.message.id == p
             
         const newEmbed = new Discord.MessageEmbed({"description": Description, "color": EmbedColor});
         reaction.message.edit("", newEmbed).catch(error => ErrorBag.add(error));
+      
+        if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+            reaction.message.reactions.removeAll().catch(error => ErrorBag.add(error));
+        };
       
   };
   
@@ -4900,19 +4904,24 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
 
             CommandCooldown.add("prefixtroubleshoot" + message.guild.id);
             setTimeout(() => {CommandCooldown.delete("prefixtroubleshoot" + message.guild.id)}, 10000);
+          
+            var HasPermissions = false;
 
-            var Description = " The current prefix is **" + peeky.serverData.get(keySF, "prefix") + "** and it can change it with the Prefix command!";
+            var Description = " The current prefix is **" + peeky.serverData.get(keySF, "prefix") + "** in this server.";
             if  (message.member.permissions.has("MANAGE_GUILD"))  {
+                HasPermissions = true;
                 Description = " The current prefix is **" + peeky.serverData.get(keySF, "prefix") + "**, wanna change it to **" + Setting.DefaultPrefix + "**?";
             };
           
             const embed = new Discord.MessageEmbed({"description": InfoIcon + Description, "color": EmbedColor});
             await message.channel.send({ embed }).catch(error => {ErrorBag.add(error);}).then(async m => {
 
-                await m.react(DefaultUpvote).catch(error => {ErrorBag.add(error)});
-                await m.react(DefaultDownvote).catch(error => {ErrorBag.add(error)});
+                if  (HasPermissions)  {
+                    await m.react(DefaultUpvote).catch(error => {ErrorBag.add(error)});
+                    await m.react(DefaultDownvote).catch(error => {ErrorBag.add(error)});
 
-                peeky.userData.set(key, m.id, "PrefixTroubleshootID");
+                    peeky.userData.set(key, m.id, "PrefixTroubleshootID");
+                };
 
             }).catch(error => {ErrorBag.add(error)});
           
