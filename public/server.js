@@ -7374,8 +7374,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
               CurrentChest ++;
 
               //Gambler Badge Progress
-              //peeky.userData.math(key, "+", 1, "GamblerBadge");
-              if  (peeky.userData.get(key, "GamblerBadge") == 10)  {
+              if  (!peeky.userData.get(key, "GamblerBadge") && CurrentChest == 10)  {
                   InfoMessages.push(InfoMessage1[Language]);
               };
             
