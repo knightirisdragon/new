@@ -965,7 +965,12 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground466.png?v=1585397240935", 850, "Yennifer", "Witcher 3", undefined, 1585397134562],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground467.png?v=1585397243845", 925, "Hacker squad", "Watch Dogs 2", undefined, 1585397132298],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground468.png?v=1585601759102", 875, "He's back", "Return of Killer Bean", undefined, 1585601570961],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground469.png?v=1585601758266", 725, "Roblox gang", "Vojtěch Jílovec", `108899856889737216`, 1585601572734]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground469.png?v=1585601758266", 725, "Roblox gang", "Vojtěch Jílovec", `108899856889737216`, 1585601572734],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground470.png?v=1585734360742", 825, "Warzone", "Call of Duty Modern Warfare", undefined, 1585734250761],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground471.png?v=1585734351601", 650, "Wrong universe", "Animal Crossing New Horizon", undefined, 1585734253013],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground472.png?v=1585734506047", 775, "Chills and vibes", "The Intouchables", undefined, 1585734257828],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground473.png?v=1585734370505", 780, "Evolution", "Eltorro64Rus", undefined, 1585734269673],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground474.png?v=1585734371596", 725, "Mounted", "Mount & Blade 2 Bannerlord", undefined, 1585734255008]
 
 ];
 
