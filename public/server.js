@@ -2911,6 +2911,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
       if  (peeky.serverData.has(keySF, "role_saver_bonus_array"))  {
       
           var SavedRoles = peeky.serverData.get(keySF, "role_saver_bonus_array");
+          var Setting = peeky.serverData.get(keySF, "role_saver_bonus_setting");
         
           SavedRoles.forEach(current => {
             
@@ -2921,7 +2922,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
                   current[1].forEach(role => {
                     
                       var r = member.guild.roles.find(r => r.id == role);
-                      if  (r && r.name.toLowerCase() !== peeky.serverData.get(keySF, "verification_system_bonus_setting").toLowerCase())  {
+                      if  (r && r.name.toLowerCase() !== peeky.serverData.get(keySF, "verification_system_bonus_setting").toLowerCase() && !Setting.includes(r.name))  {
                           ValidRoles.push(role);
                       };                  
                     
@@ -3114,7 +3115,6 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
         if  (peeky.serverData.has(keySF, "role_saver_bonus_array"))  {
 
             const SavedRoles  = peeky.serverData.get(keySF, "role_saver_bonus_array");
-            const Setting = peeky.serverData.get(keySF, "role_saver_bonus_setting");
             const MemberIndex = SavedRoles.findIndex(i => i[0] == member.user.id);
 
             if  (MemberIndex >= 0)  {
