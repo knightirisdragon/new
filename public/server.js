@@ -8909,20 +8909,21 @@ if  (CommandName == "giveaway")  {
     var CreationProgress = 1;
   
     //1 Prize Name
-    //Max Winners
-    //Length in days
-    //
+    //2 Max Winners
+    //3 Length in days
   
     function Generate(message)  {
 
-        if  (WrongLetters.length < HangmanLevels.length && CensoredAnswer !== Answer.toLowerCase())  {
+        if  (CreationProgress < 3)  {
+          
+            CreationProgress ++;
 
-            message.channel.awaitMessages(response => !response.author.bot && response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 1, time: 60000, errors: ['time'] })
+            message.channel.awaitMessages(response => !response.author.bot && response.author.id == message.author.id, { max: 1, time: 10000, errors: ['time'] })
             .then(collected => {
+              
+                if  
 
-                var letter = collected.first().content.toLowerCase();
-
-                var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "image": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
+                var embed = { description: " Before we start the giveaway, can you tell me what is gonna be the prize?", "color": EmbedColor };
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 Generate(message);
