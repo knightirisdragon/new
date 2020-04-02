@@ -4286,6 +4286,24 @@ if  (!message.author.bot)  {
                         
                         channel.messages.fetch(giveaway[4])
                         .then(message => {
+                          
+                          Giveaways.splice(current, 1);
+                          
+                          var reaction = message.reactions.find(e => e.emoji.name == "🎁");
+                          var Participants = reaction.users.filter(u => !u.bot).map(u => u.id);
+                          var Winners = [];
+                          
+                          Participants.forEach(user => )
+                          
+                          const newEmbed = new Discord.MessageEmbed({
+                              "description": 
+                              "**Giveaway by " + function_RemoveFormatting(message.member.displayName, "other", true) + "**" + "\n" +
+                              "Prize: " + giveaway[0] + "\n" +
+                              "Winners: " + giveaway[1],
+                              "footer": { "text": "This giveaway has ended." },
+                              "color": EmbedColor
+                          });
+                          message.edit(newEmbed).catch(error => ErrorBag.add(error));
                             
                         })
                         .catch(error => {
