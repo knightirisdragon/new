@@ -121,7 +121,10 @@ You have cleared your playlist of **X001 songs**. |
 
 If you want to see some hot **X001** action, follow this tutorial! | 
 
-giveaway_stuff
+Before we start the giveaway, can you tell me what is gonna be the prize? | 
+Nice, now tell me what is gonna be the amount of winners in this giveaway. | 
+Now the last thing, how long is the giveaway gonna be in days? | 
+The provided argument is incorrect and the giveaway creating was cancelled. | 
 
 I have set the slowmode to **X001 seconds** at **X002**'s request. | 
 

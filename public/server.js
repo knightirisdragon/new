@@ -8928,11 +8928,11 @@ if  (CommandName == "giveaway")  {
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 } else 
                 if  (CreationProgress == 2)  {
-                    var embed = { description: InfoIcon + " Nice, now tell me what is gonna be the amount of winners in this giveaway.", "color": EmbedColor };
+                    var embed = { description: InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.", "color": EmbedColor };
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 } else 
                 if  (CreationProgress == 3)  {
-                    var embed = { description: InfoIcon + " And last thing, how long is the giveaway gonna be in days?", "color": EmbedColor };
+                    var embed = { description: InfoIcon + " Now the last thing, how long is the giveaway gonna be in days?", "color": EmbedColor };
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
@@ -8940,24 +8940,34 @@ if  (CommandName == "giveaway")  {
                 .then(collected => {
                   
                     var Answer = collected.first().content;
+                    var InvalidArgument = ErrorIcon + " The provided argument is incorrect and the giveaway creating was cancelled.";
 
                     if  (CreationProgress == 1)  {
                         if  (Answer && Answer.length > 0)  {
                             GiveawayInfo[0] = function_RemoveFormatting(Answer, "other", true);
                             Generate(message);
+                        } else {
+                          const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
+                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                         };  
                     } else 
                     if  (CreationProgress == 2)  {
                         if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 10)  {
                             GiveawayInfo[1] = Answer;
                             Generate(message);
-                        };  
+                        } else {
+                          const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
+                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        };    
                     } else 
                     if  (CreationProgress == 3)  {
                         if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 7)  {
                             GiveawayInfo[2] = Answer;
                             Generate(message);
-                        };  
+                        } else {
+                          const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
+                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        };   
                     };
 
                 })
@@ -8967,7 +8977,12 @@ if  (CommandName == "giveaway")  {
                 });
 
             } else {
-              var embed = { description: GiveawayInfo.join(", "), "color": EmbedColor };
+              var embed = { description: 
+                            "**Giveaway by " + function_RemoveFormatting(message.author.username, "other", true) + "**" + "\n\n" +
+                            "Prize: " + GiveawayInfo[0] + "\n\n" +
+                            "Prize: " + GiveawayInfo[0] + "\n\n" +
+                            "This giveaway ends on " + ,
+                            "color": EmbedColor };
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
