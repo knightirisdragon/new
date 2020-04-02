@@ -4292,7 +4292,9 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                               var reaction = message.reactions.find(e => e.emoji.name == "🎁");
                               
                               if  (reaction)  {
-                                  var Participants = function_ShuffleArray(reaction.users.map(u => u.id)); 
+                                
+                                  var RawParticipants = reaction.users.fetch({ limit: 100 }).map(u => u.id);
+                                  var Participants = function_ShuffleArray(RawParticipants); 
                                   var Winners = [];
                                   var FixedWinners = [];
                                 
@@ -4317,7 +4319,9 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                                               var embed = {"description": SuccessIcon + " You have won a giveaway in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
                                               function_DirectMessage(winner, { embed });
                                           };
+                                        
                                       };
+                                    
                                   });
 
                                   const newEmbed = new Discord.MessageEmbed({
