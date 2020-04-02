@@ -5425,7 +5425,7 @@ if  (CommandName.startsWith("userinfo"))  {
 };
 
 //ServerInfo
-if  (CommandName == "serverinfo")  {
+/*if  (CommandName == "serverinfo")  {
   
     var Giveaways = [];
     peeky.serverData.get(keySF, "ActiveGiveaways").forEach(giveaway => {
@@ -5436,13 +5436,13 @@ if  (CommandName == "serverinfo")  {
       "description": 
        "**" + function_RemoveFormatting(message.guild.name, "other", true) + "**"
        + "\n" + function_RemoveFormatting(message.guild.owner.user.tag, "other", true) 
-       + "\n\n" + "**reated**" + "\n" + function_DateFormat(message.guild.createdAt, "Date")
+       + "\n\n" + "**Server created**" + "\n" + function_DateFormat(message.guild.createdAt, "Date")
        + "\n\n" + "**Members**" + "\n" + message.guild.members.filter(m => !m.user.bot).size + " members, " + message.guild.members.filter(m => m.user.bot).size + " bots"
        + "\n\n" + "**Active Giveaways**" + "\n" + Giveaways.join(", "),
        "color": EmbedColor}; 
     await message.channel.send({ embed }).catch(error => {ErrorBag.add(error)});
 
-};
+};*/
 
 //Ticket
 if  (CommandName.startsWith("ticket"))  {
