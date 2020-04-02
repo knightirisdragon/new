@@ -2260,10 +2260,21 @@ function function_DateFormat(value, type)  {
   
     value = new Date(value);
   
-    if  (type == "Time")  {
+    if  (type == "Both")  {
       
-      var ThisDate  = value.getUTCHours();
-      var ThisMonth = value.getUTCMinutes() + 1;
+      var ThisHour  = value.getUTCHours();
+      var ThisMinute = value.getUTCMinutes();
+      
+      var ThisDate  = value.getUTCDate();
+      var ThisMonth = value.getUTCMonth() + 1;
+
+      if  (ThisHour < 10)  {
+          ThisHour = "0" + ThisHour;
+      };
+
+      if  (ThisMinute < 10)  {
+          ThisMinute = "0" + ThisMinute;
+      };
 
       if  (ThisDate < 10)  {
           ThisDate = "0" + ThisDate;
@@ -2273,7 +2284,24 @@ function function_DateFormat(value, type)  {
           ThisMonth = "0" + ThisMonth;
       };
 
-      return Days[value.getUTCDay()] + ", " + ThisDate + ":" + ThisMonth;
+      return Days[value.getUTCDay()] + ", " + ThisDate + "/" + ThisMonth + "/" + value.getFullYear() + " (" + ThisHour + ":" + ThisMinute + ")";
+        
+    } else
+  
+    if  (type == "Time")  {
+      
+      var ThisHour  = value.getUTCHours();
+      var ThisMinute = value.getUTCMinutes();
+
+      if  (ThisHour < 10)  {
+          ThisHour = "0" + ThisHour;
+      };
+
+      if  (ThisMinute < 10)  {
+          ThisMinute = "0" + ThisMinute;
+      };
+
+      return Days[value.getUTCDay()] + ", " + ThisHour + ":" + ThisMinute;
         
     } else {
       
@@ -2893,7 +2921,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
                   current[1].forEach(role => {
                     
                       var r = member.guild.roles.find(r => r.id == role);
-                      if  (r && r.name.toLowerCase() !== peeky.serverData.get(keySF, "verification_system_bonus_setting").toLowerCase() && !Setting.includes(r.name))  {
+                      if  (r && r.name.toLowerCase() !== peeky.serverData.get(keySF, "verification_system_bonus_setting").toLowerCase())  {
                           ValidRoles.push(role);
                       };                  
                     
@@ -9033,7 +9061,7 @@ if  (CommandName == "giveaway")  {
             if  (peeky.serverData.get(keySF, "ActiveGiveaways").length < Setting.GiveawayLimit)  {
 
             var CreationProgress = 0;
-            var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.member.displayName, message.author.id  ];
+            var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.author.id  ];
 
             function Generate(message)  {
 
@@ -9050,7 +9078,7 @@ if  (CommandName == "giveaway")  {
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     } else 
                     if  (CreationProgress == 3)  {
-                        var embed = { description: InfoIcon + " Now the last thing, how long is the giveaway gonna be in days?", "color": EmbedColor };
+                        var embed = { description: InfoIcon + " Now the last thing, how long is the giveaway gonna be in minutes?", "color": EmbedColor };
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
 
@@ -9079,7 +9107,7 @@ if  (CommandName == "giveaway")  {
                             };    
                         } else 
                         if  (CreationProgress == 3)  {
-                            if  (Answer && !isNaN(Answer) && Answer > 1 && Answer <= 10080)  {
+                            if  (Answer && !isNaN(Answer) && Answer >= 1 && Answer <= 10080)  {
                                 GiveawayInfo[2] = Answer * MinuteMs;
                                 Generate(message);
                             } else {

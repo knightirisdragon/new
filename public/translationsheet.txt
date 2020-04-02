@@ -123,7 +123,7 @@ If you want to see some hot **X001** action, follow this tutorial! |
 
 Before we start the giveaway, can you tell me what is gonna be the prize? | 
 Nice, now tell me what is gonna be the amount of winners in this giveaway. | 
-Now the last thing, how long is the giveaway gonna be in days? | 
+Now the last thing, how long is the giveaway gonna be in minutes? | 
 The provided argument is incorrect and the giveaway creating was cancelled. | 
 You cannot create any more giveaways right now. | 
 The giveaway for **X001** has ended. |
