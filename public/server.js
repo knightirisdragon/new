@@ -4285,75 +4285,79 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                         if  (peeky.channels.has(giveaway[5]) && giveaway[4] > 0)  {
 
                             var channel = peeky.channels.get(giveaway[5]);
+                          
+                            if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
 
-                            channel.messages.fetch(giveaway[4])
-                            .then(async message => {
+                                channel.messages.fetch(giveaway[4])
+                                .then(async message => {
 
-                              var reaction = message.reactions.find(e => e.emoji.name == "🎁");
-                              
-                              if  (reaction)  {
-                                
-                                  var RawParticipants = null;
-                                
-                                  await reaction.users.fetch({ limit: 100 }).then(r => {
-                                      RawParticipants = r.filter(i => i !== PeekyId).map(u => u.id);
-                                  });
-                                                                            
-                                  var Participants = function_ShuffleArray(RawParticipants); 
-                                  var Winners = [];
-                                  var FixedWinners = [];
+                                  var reaction = message.reactions.find(e => e.emoji.name == "🎁");
 
-                                  var current = 0;
-                                  if  (Participants.length > 0)  {
-                                      Participants.forEach(user => {
+                                  if  (reaction)  {
 
-                                          if  (current < giveaway[1])  {
+                                      var RawParticipants = null;
 
-                                              var participants = Participants.filter(i => !Winners.includes(i) && i !== PeekyId);
+                                      await reaction.users.fetch({ limit: 100 }).then(r => {
+                                          RawParticipants = r.filter(i => i !== PeekyId).map(u => u.id);
+                                      });
 
-                                              if  (participants.length > 0)  {
-                                                  var winner = participants[Math.floor(Math.random() * participants.length)];
+                                      var Participants = function_ShuffleArray(RawParticipants); 
+                                      var Winners = [];
+                                      var FixedWinners = [];
 
-                                                  Winners.push(winner);
-                                                  FixedWinners.push("<@" + winner + ">");
+                                      var current = 0;
+                                      if  (Participants.length > 0)  {
+                                          Participants.forEach(user => {
 
-                                                  var embed = {"description": SuccessIcon + " You have won a giveaway for **" + giveaway[0] + "** in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
-                                                  function_DirectMessage(winner, { embed });
+                                              if  (current < giveaway[1])  {
+
+                                                  var participants = Participants.filter(i => !Winners.includes(i) && i !== PeekyId);
+
+                                                  if  (participants.length > 0)  {
+                                                      var winner = participants[Math.floor(Math.random() * participants.length)];
+
+                                                      Winners.push(winner);
+                                                      FixedWinners.push("<@" + winner + ">");
+
+                                                      var embed = {"description": SuccessIcon + " You have won a giveaway for **" + giveaway[0] + "** in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
+                                                      function_DirectMessage(winner, { embed });
+                                                  };
+
                                               };
 
-                                          };
+                                              current ++;
 
-                                          current ++;
+                                          });
+                                      } else {
+                                        FixedWinners = ["No one"];
+                                      };
 
+                                      const newEmbed = new Discord.MessageEmbed({
+                                          "description": 
+                                          "**Giveaway by " + function_RemoveFormatting(giveaway[6], "other", true) + "**" + "\n" +
+                                          "Prize: " + giveaway[0] + "\n" +
+                                          "Winners: " + FixedWinners.join(" "),
+                                          "footer": { "text": "This giveaway has ended." },
+                                          "color": EmbedColor
                                       });
+                                      message.edit(newEmbed).catch(error => ErrorBag.add(error));
+
+                                      var embed = {"description": InfoIcon + " The giveaway for **" + giveaway[0] + "** has ended.", "color": EmbedColor}; 
+                                      channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                                      peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
+
                                   } else {
-                                    FixedWinners = ["No one"];
+                                    peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
                                   };
 
-                                  const newEmbed = new Discord.MessageEmbed({
-                                      "description": 
-                                      "**Giveaway by " + function_RemoveFormatting(giveaway[6], "other", true) + "**" + "\n" +
-                                      "Prize: " + giveaway[0] + "\n" +
-                                      "Winners: " + FixedWinners.join(" "),
-                                      "footer": { "text": "This giveaway has ended." },
-                                      "color": EmbedColor
-                                  });
-                                  message.edit(newEmbed).catch(error => ErrorBag.add(error));
-
-                                  var embed = {"description": InfoIcon + " The giveaway for **" + giveaway[0] + "** has ended.", "color": EmbedColor}; 
-                                  channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-                                  peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
+                                })
+                                .catch(error => {
+                                    ErrorBag.add(error);
+                                    peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
+                                })
                               
-                              } else {
-                                peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
-                              };
-
-                            })
-                            .catch(error => {
-                                ErrorBag.add(error);
-                                peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
-                            })
+                            };
 
                         } else {
                           peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
@@ -9022,14 +9026,12 @@ if  (CommandName == "drawandguess")  {
 if  (CommandName == "giveaway")  {
 
     if  (message.member.permissions.has("MANAGE_GUILD"))  {
-      
-        if  (peeky.serverData.get(keySF, "ActiveGiveaways").length < Setting.GiveawayLimit)  {
+
+        if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
+
+            if  (peeky.serverData.get(keySF, "ActiveGiveaways").length < Setting.GiveawayLimit)  {
 
             var CreationProgress = 0;
-            //1 Prize Name
-            //2 Max Winners
-            //3 Length in days
-
             var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.member.displayName  ];
 
             function Generate(message)  {
@@ -9059,7 +9061,7 @@ if  (CommandName == "giveaway")  {
 
                         if  (CreationProgress == 1)  {
                             if  (Answer && Answer.length > 0)  {
-                                GiveawayInfo[0] = function_FixCapitalization(function_RemoveFormatting(Answer, "other", true));
+                                GiveawayInfo[0] = function_FixCapitalization(function_ProperSlice(function_RemoveFormatting(Answer, "other", true), 25));
                                 Generate(message);
                             } else {
                               const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
@@ -9112,9 +9114,14 @@ if  (CommandName == "giveaway")  {
             setTimeout(() => {CommandCooldown.delete("giveaway" + message.author.id)}, 10000);
 
             Generate(message);
-          
+
+            } else {
+              const embed = {"description": ErrorIcon + " You cannot create any more giveaways right now.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
         } else {
-          const embed = {"description": ErrorIcon + " You cannot create any more giveaways right now.",  "color": EmbedColor}; 
+          const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
@@ -9130,7 +9137,7 @@ if  (CommandName == "giveaway")  {
 //NSFW
 if  (CommandName.startsWith("nsfw"))  {
   
-    if  (message.channel.nsfw && message.channel.permissionsFor(peeky.user).has('ATTACH_FILES'))  {
+    if  (message.channel.nsfw)  {
 
         var CommandArgument = CommandName.split("nsfw")[1];
 
