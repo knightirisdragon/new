@@ -2603,7 +2603,7 @@ peeky.on('message', async (message) => {
       
     //LEADERBOARD SCORE
     var LeaderboardRank = 1;
-    var Factors = [["Gredit", 50000, false], ["Karma", 250, false], ["Levels", 20, false], ["Votes", 5, false], ["Inventory", 25, true], ["UpgradedServers", 1, false]];
+    var Factors = [["Gredit", 50000, false], ["Karma", 250, false], ["Levels", 10, false], ["Inventory", 10, true], ["Badges", 5, true], ["UpgradedServers", 1, false], ["Votes", 10, false]];
     
     Factors.forEach(factor => {
         if  (factor[2] !== true && peeky.userData.get(key, factor[0]) > 0) {
@@ -8901,6 +8901,23 @@ if (CommandName == "drawandguess")  {
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
+};
+//Command Template
+if  (CommandName.startsWith("commandtemplate"))  {
+  
+    var CommandArgument = CommandName.split("commandtemplate")[1];
+  
+    if  (CommandArgument.startsWith(" "))  {
+  
+        CommandArgument = CommandArgument.replace(" ", "");        
+
+    }
+     else if (CommandArgument == "")
+    {
+     const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
 };
 
 //NSFW
