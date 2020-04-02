@@ -4261,89 +4261,107 @@ if  (!AutoManagementCooldown.has("cooldown"))  {
 };
 
 //Giveaway Auto-Management
-if  (!message.author.bot)  {
-
-    AutoManagementCooldown.add(message.guild.id);
-    setTimeout(() => {AutoManagementCooldown.delete(message.guild.id)}, 600000);
+if  (!message.author.bot && message.guild.id == SupportServer)  {
   
     if  (!AutoManagementCooldown.has(message.guild.id))  {
+
+        AutoManagementCooldown.add(message.guild.id);
+        setTimeout(() => {AutoManagementCooldown.delete(message.guild.id)}, 600000);
         
         var Giveaways = peeky.serverData.get(keySF, "ActiveGiveaways");
         var FinishedGiveaway = false;
       
         if  (Giveaways.length > 0)  {
+          
+            console.log("giveaway size good")
 
-          var current = 0;
-          Giveaways.forEach(giveaway => {
+            var current = 0;
+            Giveaways.forEach(giveaway => {
 
-              if  (FinishedGiveaway == false)  {
+                if  (FinishedGiveaway == false)  {
+          
+            console.log("giveaway aint finished mhm")
 
-                  if  (new Date() - new Date(giveaway[3]) >= giveaway[2])  {
+                    if  (new Date() - new Date(giveaway[3]) >= giveaway[2])  {
+          
+            console.log("found finished giveaway yee")
 
-                      FinishedGiveaway = true;
+                        FinishedGiveaway = true;
 
-                      if  (peeky.channels.has(giveaway[5]) && giveaway[4] > 0)  {
+                        if  (peeky.channels.has(giveaway[5]) && giveaway[4] > 0)  {
+                          
+          
+            console.log("found channel of the giveaway")
 
-                          var channel = peeky.channels.get(giveaway[5]);
+                            var channel = peeky.channels.get(giveaway[5]);
 
-                          channel.messages.fetch(giveaway[4])
-                          .then(message => {
+                            channel.messages.fetch(giveaway[4])
+                            .then(message => {
+                              
+          
+            console.log("fetched giveawawy")
 
-                            var reaction = message.reactions.find(e => e.emoji.name == "🎁");
-                            var Participants = reaction.users.filter(u => !u.bot).map(u => u.id);
-                            var Winners = [];
-                            var FixedWinners = [];
+                              var reaction = message.reactions.find(e => e.emoji.name == "🎁");
+                              var Participants = reaction.users.filter(u => !u.bot).map(u => u.id);
+                              var Winners = [];
+                              var FixedWinners = [];
+          
+            console.log(Participants)
 
-                            var current = 0;                          
-                            Participants.forEach(user => {
+                              var current = 0;                          
+                              Participants.forEach(user => {
 
-                                current ++;
+                                  current ++;
 
-                                if  (current < giveaway[1])  {
-                                    var participants = Participants.filter(i => !Winners.includes(i));
-                                  
-                                    if  (participants.length > 0)  {
-                                        var winner = participants[Math.floor(Math.random() * participants.length)];
+                                  if  (current < giveaway[1])  {
+            console.log(current < giveaway[1])
+            console.log(giveaway[1])
+            console.log(current)
+                                      var participants = Participants.filter(i => !Winners.includes(i));
+            console.log(participants)
 
-                                        Winners.push(winner);
-                                        FixedWinners.push("<@" + winner + ">");
+                                      if  (participants.length > 0)  {
+                                          var winner = participants[Math.floor(Math.random() * participants.length)];
 
-                                        var embed = {"description": SuccessIcon + " You have won a giveaway in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
-                                        function_DirectMessage(winner, { embed });
-                                    };
-                                };
-                            });
+                                          Winners.push(winner);
+                                          FixedWinners.push("<@" + winner + ">");
 
-                            const newEmbed = new Discord.MessageEmbed({
-                                "description": 
-                                "**Giveaway by " + function_RemoveFormatting(message.member.displayName, "other", true) + "**" + "\n" +
-                                "Prize: " + giveaway[0] + "\n" +
-                                "Winners: " + FixedWinners.join(" "),
-                                "footer": { "text": "This giveaway has ended." },
-                                "color": EmbedColor
-                            });
-                            message.edit(newEmbed).catch(error => ErrorBag.add(error));
+                                          var embed = {"description": SuccessIcon + " You have won a giveaway in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
+                                          function_DirectMessage(winner, { embed });
+                                      };
+                                  };
+                              });
 
-                            var embed = {"description": InfoIcon + " The giveaway for **" + giveaway[0] + "** has ended.", "color": EmbedColor}; 
-                            channel.send({ embed }).catch(error => ErrorBag.add(error));
+                              const newEmbed = new Discord.MessageEmbed({
+                                  "description": 
+                                  "**Giveaway by " + function_RemoveFormatting(message.member.displayName, "other", true) + "**" + "\n" +
+                                  "Prize: " + giveaway[0] + "\n" +
+                                  "Winners: " + FixedWinners.join(" "),
+                                  "footer": { "text": "This giveaway has ended." },
+                                  "color": EmbedColor
+                              });
+                              message.edit(newEmbed).catch(error => ErrorBag.add(error));
 
-                            Giveaways.splice(current, 1);
+                              var embed = {"description": InfoIcon + " The giveaway for **" + giveaway[0] + "** has ended.", "color": EmbedColor}; 
+                              channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-                          })
-                          .catch(error => {
-                              ErrorBag.add(error);
                               Giveaways.splice(current, 1);
-                          })
 
-                      } else {
-                        Giveaways.splice(current, 1);
-                      };
+                            })
+                            .catch(error => {
+                                ErrorBag.add(error);
+                                Giveaways.splice(current, 1);
+                            })
 
-                  };
+                        } else {
+                          Giveaways.splice(current, 1);
+                        };
 
-              };
+                    };
 
-              current ++;
+                };
+
+                current ++;
 
           });
 
@@ -9003,97 +9021,100 @@ if  (CommandName == "giveaway")  {
 
     if  (message.member.permissions.has("MANAGE_GUILD"))  {
       
-        if  (peeky.serverData.get(keySF, "ActiveGiveaways").length < Setting.MaxGiveaways)  {
-  
-        var CreationProgress = 0;
-        //1 Prize Name
-        //2 Max Winners
-        //3 Length in days
-      
-        var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id  ];
+        if  (peeky.serverData.get(keySF, "ActiveGiveaways").length < Setting.GiveawayLimit)  {
 
-        function Generate(message)  {
+            var CreationProgress = 0;
+            //1 Prize Name
+            //2 Max Winners
+            //3 Length in days
 
-            if  (CreationProgress < 3)  {
+            var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id  ];
 
-                CreationProgress ++;
+            function Generate(message)  {
 
-                if  (CreationProgress == 1)  {
-                    var embed = { description: InfoIcon + " Before we start the giveaway, can you tell me what is gonna be the prize?", "color": EmbedColor };
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                } else 
-                if  (CreationProgress == 2)  {
-                    var embed = { description: InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.", "color": EmbedColor };
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                } else 
-                if  (CreationProgress == 3)  {
-                    var embed = { description: InfoIcon + " Now the last thing, how long is the giveaway gonna be in days?", "color": EmbedColor };
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                };
+                if  (CreationProgress < 3)  {
 
-                message.channel.awaitMessages(response => !response.author.bot && response.author.id == message.author.id, { max: 1, time: 10000, errors: ['time'] })
-                .then(collected => {
-                  
-                    var Answer = collected.first().content;
-                    var InvalidArgument = ErrorIcon + " The provided argument is incorrect and the giveaway creating was cancelled.";
+                    CreationProgress ++;
 
                     if  (CreationProgress == 1)  {
-                        if  (Answer && Answer.length > 0)  {
-                            GiveawayInfo[0] = function_RemoveFormatting(Answer, "other", true);
-                            Generate(message);
-                        } else {
-                          const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
-                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                        };  
+                        var embed = { description: InfoIcon + " Before we start the giveaway, can you tell me what is gonna be the prize?", "color": EmbedColor };
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     } else 
                     if  (CreationProgress == 2)  {
-                        if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 10)  {
-                            GiveawayInfo[1] = Answer;
-                            Generate(message);
-                        } else {
-                          const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
-                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                        };    
+                        var embed = { description: InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.", "color": EmbedColor };
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     } else 
                     if  (CreationProgress == 3)  {
-                        if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 7)  {
-                            GiveawayInfo[2] = Answer * DayMs;
-                            Generate(message);
-                        } else {
-                          const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
-                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                        };   
+                        var embed = { description: InfoIcon + " Now the last thing, how long is the giveaway gonna be in days?", "color": EmbedColor };
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
 
-                })
-                .catch(collected => {
-                    const embed = {"description": ErrorIcon + " The giveaway creation has been cancelled.",  "color": EmbedColor}; 
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                });
+                    message.channel.awaitMessages(response => !response.author.bot && response.author.id == message.author.id, { max: 1, time: 10000, errors: ['time'] })
+                    .then(collected => {
 
-            } else {
-              var embed = { description: 
-                            "**Giveaway by " + function_RemoveFormatting(message.author.username, "other", true) + "**" + "\n" +
-                            "Prize: " + GiveawayInfo[0] + "\n" +
-                            "Winners: " + GiveawayInfo[1],
-                            "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Date") },
-                            "color": EmbedColor };
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
-                  GiveawayInfo[4] = m.id;
-                  peeky.serverData.get(keySF, "ActiveGiveaways").push(GiveawayInfo);
-                  
-                  m.react("🎁").catch(error => ErrorBag.add(error));
-              });
+                        var Answer = collected.first().content;
+                        var InvalidArgument = ErrorIcon + " The provided argument is incorrect and the giveaway creating was cancelled.";
+
+                        if  (CreationProgress == 1)  {
+                            if  (Answer && Answer.length > 0)  {
+                                GiveawayInfo[0] = function_RemoveFormatting(Answer, "other", true);
+                                Generate(message);
+                            } else {
+                              const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
+                              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                            };  
+                        } else 
+                        if  (CreationProgress == 2)  {
+                            if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 10)  {
+                                GiveawayInfo[1] = Answer;
+                                Generate(message);
+                            } else {
+                              const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
+                              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                            };    
+                        } else 
+                        if  (CreationProgress == 3)  {
+                            if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 7)  {
+                                GiveawayInfo[2] = Answer * DayMs;
+                                Generate(message);
+                            } else {
+                              const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
+                              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                            };   
+                        };
+
+                    })
+                    .catch(collected => {
+                        const embed = {"description": ErrorIcon + " The giveaway creation has been cancelled.",  "color": EmbedColor}; 
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    });
+
+                } else {
+                  var embed = { description: 
+                                "**Giveaway by " + function_RemoveFormatting(message.author.username, "other", true) + "**" + "\n" +
+                                "Prize: " + GiveawayInfo[0] + "\n" +
+                                "Winners: " + GiveawayInfo[1],
+                                "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Date") },
+                                "color": EmbedColor };
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
+                      GiveawayInfo[4] = m.id;
+                      peeky.serverData.get(keySF, "ActiveGiveaways").push(GiveawayInfo);
+
+                      m.react("🎁").catch(error => ErrorBag.add(error));
+                  });
+                };
+
             };
 
-        };
+            CommandCooldown.add("giveaway" + message.author.id)
+            setTimeout(() => {CommandCooldown.delete("giveaway" + message.author.id)}, 10000);
 
-        CommandCooldown.add("giveaway" + message.author.id)
-        setTimeout(() => {CommandCooldown.delete("giveaway" + message.author.id)}, 10000);
-
-        Generate(message);
+            Generate(message);
           
-    };
+        } else {
+          const embed = {"description": ErrorIcon + " You cannot create any more giveaways right now.",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
 
     }
      else
