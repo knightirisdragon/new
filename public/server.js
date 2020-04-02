@@ -70,6 +70,7 @@ const https      = require('https');
 //Variables
 var   EmbedColor            = 3093047  //3553599;
 const AutoDeleteTime        = 250;
+const MinuteMs              = 60000;
 const DayMs                 = 86400000;
 const WeekMs                = 604800000;  //7 Days
 const MonthMs               = 2592000000;  //30 Days
@@ -4334,8 +4335,8 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
 
                                       const newEmbed = new Discord.MessageEmbed({
                                           "description": 
-                                          "**Giveaway by " + function_RemoveFormatting(giveaway[6], "other", true) + "**" + "\n" +
-                                          "Prize: " + giveaway[0] + "\n" +
+                                          "**" + giveaway[0] + "**" + "\n" +
+                                          "Host: " + "<@" + giveaway[6] + ">" + "\n" +
                                           "Winners: " + FixedWinners.join(" "),
                                           "footer": { "text": "This giveaway has ended." },
                                           "color": EmbedColor
@@ -9032,7 +9033,7 @@ if  (CommandName == "giveaway")  {
             if  (peeky.serverData.get(keySF, "ActiveGiveaways").length < Setting.GiveawayLimit)  {
 
             var CreationProgress = 0;
-            var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.member.displayName  ];
+            var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.member.displayName, message.author.id  ];
 
             function Generate(message)  {
 
@@ -9078,8 +9079,8 @@ if  (CommandName == "giveaway")  {
                             };    
                         } else 
                         if  (CreationProgress == 3)  {
-                            if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 7)  {
-                                GiveawayInfo[2] = Answer * DayMs;
+                            if  (Answer && !isNaN(Answer) && Answer > 1 && Answer <= 10080)  {
+                                GiveawayInfo[2] = Answer * MinuteMs;
                                 Generate(message);
                             } else {
                               const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
@@ -9095,10 +9096,10 @@ if  (CommandName == "giveaway")  {
 
                 } else {
                   var embed = { description: 
-                                "**Giveaway by " + function_RemoveFormatting(message.member.displayName, "other", true) + "**" + "\n" +
-                                "Prize: " + GiveawayInfo[0] + "\n" +
+                                "**" + GiveawayInfo[0] + "**" + "\n" +
+                                "Host: " + "<@" + GiveawayInfo[6] + ">" + "\n" +
                                 "Winners: " + GiveawayInfo[1],
-                                "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Date") },
+                                "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Both") + "." },
                                 "color": EmbedColor };
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
                       GiveawayInfo[4] = m.id;
