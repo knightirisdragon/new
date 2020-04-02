@@ -8905,43 +8905,79 @@ if  (CommandName == "drawandguess")  {
 
 //Command Template
 if  (CommandName == "giveaway")  {
+
+    if  (message.member.permissions.has("MUTE_MEMBERS"))  {
   
-    var CreationProgress = 1;
-  
-    //1 Prize Name
-    //2 Max Winners
-    //3 Length in days
-  
-    function Generate(message)  {
+        var CreationProgress = 0;
+        //1 Prize Name
+        //2 Max Winners
+        //3 Length in days
+      
+        var GiveawayInfo = {  prizeName: "awesome stuff", maxWinners: 1, lengthDays: 1  };
 
-        if  (CreationProgress < 3)  {
-          
-            CreationProgress ++;
+        function Generate(message)  {
 
-            message.channel.awaitMessages(response => !response.author.bot && response.author.id == message.author.id, { max: 1, time: 10000, errors: ['time'] })
-            .then(collected => {
-              
-                if  
+            if  (CreationProgress < 3)  {
 
-                var embed = { description: " Before we start the giveaway, can you tell me what is gonna be the prize?", "color": EmbedColor };
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                CreationProgress ++;
 
-                Generate(message);
+                if  (CreationProgress == 1)  {
+                    var embed = { description: InfoIcon + " Before we start the giveaway, can you tell me what is gonna be the prize?", "color": EmbedColor };
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                } else 
+                if  (CreationProgress == 2)  {
+                    var embed = { description: InfoIcon + " Nice, now tell me what is gonna be the amount of winners in this giveaway.", "color": EmbedColor };
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                } else 
+                if  (CreationProgress == 3)  {
+                    var embed = { description: InfoIcon + " And last thing, how long is the giveaway gonna be, in days?", "color": EmbedColor };
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
 
-            })
-            .catch(collected => {
-                const embed = {"description": ErrorIcon + " The giveaway creation has been cancelled.",  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            });
+                message.channel.awaitMessages(response => !response.author.bot && response.author.id == message.author.id, { max: 1, time: 10000, errors: ['time'] })
+                .then(collected => {
+                  
+                    var Answer = collected.content;
+
+                    if  (CreationProgress == 1)  {
+                        if  (Answer && Answer.length > 0)  {
+                            GiveawayInfo.prizeName = function_RemoveFormatting(Answer, "other", true);
+                        };  
+                    } else 
+                    if  (CreationProgress == 2)  {
+                        if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 7)  {
+                            GiveawayInfo.prizeName = function_RemoveFormatting(Answer, "other", true);
+                        };  
+                    } else 
+                    if  (CreationProgress == 3)  {
+                        var embed = { description: InfoIcon + " And last thing, how long is the giveaway gonna be, in days?", "color": EmbedColor };
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    };
+
+                })
+                .catch(collected => {
+                    const embed = {"description": ErrorIcon + " The giveaway creation has been cancelled.",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                });
+
+            } else {
+              var embed = { description: " giveaway_info", "color": EmbedColor };
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
 
         };
 
+        CommandCooldown.add("giveaway" + message.author.id)
+        setTimeout(() => {CommandCooldown.delete("giveaway" + message.author.id)}, 10000);
+
+        Generate(message);
+
+    }
+     else
+    {
+     const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-
-    CommandCooldown.add("giveaway" + message.author.id)
-    setTimeout(() => {CommandCooldown.delete("giveaway" + message.author.id)}, 10000);
-
-    Generate(message);
 
 };
 
