@@ -4293,7 +4293,18 @@ if  (!message.author.bot)  {
                           var Participants = reaction.users.filter(u => !u.bot).map(u => u.id);
                           var Winners = [];
                           
-                          Participants.forEach(user => )
+                          var current = 0;                          
+                          Participants.forEach(user => {
+                            
+                              current ++;
+                            
+                              if  (current < Winners.length && current < giveaway[1])  {
+                                  var participants = Participants.filter(i => !Winners.includes(i));
+                                  var winner = participants[Math.floor(Math.random() * participants.length)];
+
+                                  Winners.push(winner);
+                              };
+                          });
                           
                           const newEmbed = new Discord.MessageEmbed({
                               "description": 
