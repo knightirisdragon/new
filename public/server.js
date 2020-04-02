@@ -1242,7 +1242,7 @@ async function WebsiteStuff()  {
         function UpdateLeaderboardTypes(type)  {
 
             if  (type == "Gredit")  {
-                var filtered = peeky.userData.filter( p => p.LeaderboardRank && p.FashionBadge == true ).array();
+                var filtered = peeky.userData.filter( p => p.FashionBadge == true && p.LeaderboardRank && peeky.users.has(p.UserID) ).array();
                 var sorted   = filtered.sort((a, b) => b.LeaderboardRank - a.LeaderboardRank);
             };
 
@@ -1264,8 +1264,6 @@ async function WebsiteStuff()  {
             if  (currentplace == 1)  {CurrentID = "first"} else if  (currentplace == 2)  {CurrentID = "second"}  else if  (currentplace == 3){CurrentID = "third"}  else  {CurrentID = "other"};
             if  (currentplace > 3)  {GotBadge = false};
 
-            if  (peeky.users.has(data.UserID))  {
-
                 var CurrentUser = peeky.users.get(data.UserID);
 
                 if  (type == "Gredit")  {
@@ -1285,12 +1283,6 @@ async function WebsiteStuff()  {
                 } else  {
                     Leaderboard.push(SavedProfile);
                 };
-
-            }
-             else
-            {
-             Leaderboard.push("<div class='leaderboarditem' id='" + CurrentID + "'  style='background-image: url(" + DefaultBackground + ")'>  <b class='unknown'>UNAVAILABLE PROFILE  <br>  <font size='2'>  If this profiles stays unavailable for " + function_TimeLeft(peeky.userData.get(data.UserID, "lastSeen"), "days", InactiveTime) + " more days, it will get deleted.  </font></b>  </div>");
-            };
 
             };
 
