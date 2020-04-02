@@ -8984,6 +8984,9 @@ if  (CommandName == "giveaway")  {
                             "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Date") },
                             "color": EmbedColor };
               message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
+                  GiveawayInfo.push(m.id);
+                  peeky.serverData.push(keySF, "ActiveGiveaways").push(GiveawayInfo);
+                  
                   m.react("🎁").catch(error => ErrorBag.add(error));
               });
             };
