@@ -4310,6 +4310,7 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                     if  (new Date() - new Date(giveaway[3]) >= giveaway[2])  {
 
                         FinishedGiveaway = true;
+                        peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
 
                         if  (peeky.channels.has(giveaway[5]) && giveaway[4] > 0)  {
 
@@ -4374,22 +4375,15 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                                       var embed = {"description": InfoIcon + " The giveaway for **" + giveaway[0] + "** has ended.", "color": EmbedColor}; 
                                       channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-                                      peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
-
-                                  } else {
-                                    peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
                                   };
 
                                 })
                                 .catch(error => {
                                     ErrorBag.add(error);
-                                    peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
                                 })
                               
                             };
 
-                        } else {
-                          peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
                         };
 
                     };
