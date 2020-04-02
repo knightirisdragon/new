@@ -4287,23 +4287,24 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                             var channel = peeky.channels.get(giveaway[5]);
 
                             channel.messages.fetch(giveaway[4])
-                            .then(message => {
+                            .then(async message => {
 
                               var reaction = message.reactions.find(e => e.emoji.name == "🎁");
                               
                               if  (reaction)  {
                                 
-                                  var RawParticipants = reaction.users.fetch({ limit: 100 }).map(u => u.id);
+                                  var RawParticipants = null;
+                                
+                                  await reaction.users.fetch({ limit: 100 }).then(r => {
+                                      RawParticipants = r.map(u => u.id);
+                                  });
+                                                                            
                                   var Participants = function_ShuffleArray(RawParticipants); 
                                   var Winners = [];
                                   var FixedWinners = [];
-                                
-                                  console.log(Participants);
 
                                   var current = 0;                          
                                   Participants.forEach(user => {
-
-                                      current ++;
 
                                       if  (current < giveaway[1])  {
 
@@ -4316,11 +4317,13 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                                               Winners.push(winner);
                                               FixedWinners.push("<@" + winner + ">");
 
-                                              var embed = {"description": SuccessIcon + " You have won a giveaway in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
+                                              var embed = {"description": SuccessIcon + " You have won a giveaway for **" + giveaway[0] + "** in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
                                               function_DirectMessage(winner, { embed });
                                           };
                                         
                                       };
+
+                                      current ++;
                                     
                                   });
 
@@ -4337,20 +4340,20 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                                   var embed = {"description": InfoIcon + " The giveaway for **" + giveaway[0] + "** has ended.", "color": EmbedColor}; 
                                   channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-                                  Giveaways.splice(current, 0);
+                                  Giveaways.splice(current, 1);
                               
                               } else {
-                                Giveaways.splice(current, 0);
+                                Giveaways.splice(current, 1);
                               };
 
                             })
                             .catch(error => {
                                 ErrorBag.add(error);
-                                Giveaways.splice(current, 0);
+                                Giveaways.splice(current, 1);
                             })
 
                         } else {
-                          Giveaways.splice(current, 0);
+                          Giveaways.splice(current, 1);
                         };
 
                     };
@@ -9024,7 +9027,7 @@ if  (CommandName == "giveaway")  {
             //2 Max Winners
             //3 Length in days
 
-            var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id  ];
+            var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.member.displayName  ];
 
             function Generate(message)  {
 
@@ -9087,7 +9090,7 @@ if  (CommandName == "giveaway")  {
 
                 } else {
                   var embed = { description: 
-                                "**Giveaway by " + function_RemoveFormatting(message.author.username, "other", true) + "**" + "\n" +
+                                "**Giveaway by " + function_RemoveFormatting(message.member.displayName, "other", true) + "**" + "\n" +
                                 "Prize: " + GiveawayInfo[0] + "\n" +
                                 "Winners: " + GiveawayInfo[1],
                                 "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Date") },
