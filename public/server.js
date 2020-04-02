@@ -4271,13 +4271,28 @@ if  (!message.author.bot)  {
         var Giveaways = peeky.serverData.get(keySF, "ActiveGiveaways");
         var FinishedGiveaway = false;
       
+        var current = 0;
         Giveaways.forEach(giveaway => {
           
             if  (FinishedGiveaway == false)  {
                 
-                if  (Giveaways.)
+                if  (new Date() - new Date(giveaway[3]) >= giveaway[2])  {
+                  
+                    FinishedGiveaway = true;
+
+                    if  (peeky.channels.has(giveaway[5]) && giveaway[4] !== 0)  {
+                        
+                        
+                      
+                    } else {
+                      Giveaways.splice(current, 1);
+                    };
+
+                };
               
             };
+          
+            current ++;
           
         });
       
@@ -8940,7 +8955,7 @@ if  (CommandName == "giveaway")  {
         //2 Max Winners
         //3 Length in days
       
-        var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0  ];
+        var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id  ];
 
         function Generate(message)  {
 
@@ -9009,7 +9024,7 @@ if  (CommandName == "giveaway")  {
                             "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Date") },
                             "color": EmbedColor };
               message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
-                  GiveawayInfo.push(m.id);
+                  GiveawayInfo[4] = m.id;
                   peeky.serverData.push(keySF, "ActiveGiveaways").push(GiveawayInfo);
                   
                   m.react("🎁").catch(error => ErrorBag.add(error));
