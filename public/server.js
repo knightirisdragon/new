@@ -1867,6 +1867,8 @@ function function_ServerData(key)  {
             highlighted_channel: "treasures",
             function_notifications: false,
             level_notifications: false,
+          
+            ActiveGiveaways: [],
 
             MusicMode: "Normal",
             RandomPlaylists: false,
@@ -8906,14 +8908,14 @@ if  (CommandName == "drawandguess")  {
 //Command Template
 if  (CommandName == "giveaway")  {
 
-    if  (message.member.permissions.has("MUTE_MEMBERS"))  {
+    if  (message.member.permissions.has("MANAGE_GUILD"))  {
   
         var CreationProgress = 0;
         //1 Prize Name
         //2 Max Winners
         //3 Length in days
       
-        var GiveawayInfo = {  prizeName: "awesome stuff", maxWinners: 1, lengthDays: 1  };
+        var GiveawayInfo = [  "nothing", 1, 1  ];
 
         function Generate(message)  {
 
@@ -8930,28 +8932,32 @@ if  (CommandName == "giveaway")  {
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 } else 
                 if  (CreationProgress == 3)  {
-                    var embed = { description: InfoIcon + " And last thing, how long is the giveaway gonna be, in days?", "color": EmbedColor };
+                    var embed = { description: InfoIcon + " And last thing, how long is the giveaway gonna be in days?", "color": EmbedColor };
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
                 message.channel.awaitMessages(response => !response.author.bot && response.author.id == message.author.id, { max: 1, time: 10000, errors: ['time'] })
                 .then(collected => {
                   
-                    var Answer = collected.content;
+                    var Answer = collected.first().content;
 
                     if  (CreationProgress == 1)  {
                         if  (Answer && Answer.length > 0)  {
-                            GiveawayInfo.prizeName = function_RemoveFormatting(Answer, "other", true);
+                            GiveawayInfo[0] = function_RemoveFormatting(Answer, "other", true);
+                            Generate(message);
                         };  
                     } else 
                     if  (CreationProgress == 2)  {
-                        if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 7)  {
-                            GiveawayInfo.prizeName = function_RemoveFormatting(Answer, "other", true);
+                        if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 10)  {
+                            GiveawayInfo[1] = Answer;
+                            Generate(message);
                         };  
                     } else 
                     if  (CreationProgress == 3)  {
-                        var embed = { description: InfoIcon + " And last thing, how long is the giveaway gonna be, in days?", "color": EmbedColor };
-                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 7)  {
+                            GiveawayInfo[2] = Answer;
+                            Generate(message);
+                        };  
                     };
 
                 })
@@ -8961,7 +8967,7 @@ if  (CommandName == "giveaway")  {
                 });
 
             } else {
-              var embed = { description: " giveaway_info", "color": EmbedColor };
+              var embed = { description: GiveawayInfo.join(", "), "color": EmbedColor };
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
