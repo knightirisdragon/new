@@ -4281,8 +4281,17 @@ if  (!message.author.bot)  {
                     FinishedGiveaway = true;
 
                     if  (peeky.channels.has(giveaway[5]) && giveaway[4] !== 0)  {
+                      
+                        var channel = peeky.channels.get(giveaway[5]);
                         
-                        
+                        channel.messages.fetch(giveaway[4])
+                        .then(message => {
+                            
+                        })
+                        .catch(error => {
+                            ErrorBag.add(error);
+                            Giveaways.splice(current, 1);
+                        })
                       
                     } else {
                       Giveaways.splice(current, 1);
