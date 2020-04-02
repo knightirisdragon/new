@@ -8962,7 +8962,7 @@ if  (CommandName == "giveaway")  {
                     } else 
                     if  (CreationProgress == 3)  {
                         if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 7)  {
-                            GiveawayInfo[2] = Answer;
+                            GiveawayInfo[2] = Answer * DayMs;
                             Generate(message);
                         } else {
                           const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
@@ -8978,12 +8978,14 @@ if  (CommandName == "giveaway")  {
 
             } else {
               var embed = { description: 
-                            "**Giveaway by " + function_RemoveFormatting(message.author.username, "other", true) + "**" + "\n\n" +
-                            "Prize: " + GiveawayInfo[0] + "\n\n" +
-                            "Prize: " + GiveawayInfo[0] + "\n\n" +
-                            "This giveaway ends on " + ,
+                            "**Giveaway by " + function_RemoveFormatting(message.author.username, "other", true) + "**" + "\n" +
+                            "Prize: " + GiveawayInfo[0] + "\n" +
+                            "Winners: " + GiveawayInfo[1],
+                            "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Date") },
                             "color": EmbedColor };
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
+                  m.react("🎁").catch(error => ErrorBag.add(error));
+              });
             };
 
         };
