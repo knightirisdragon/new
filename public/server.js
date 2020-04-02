@@ -2641,7 +2641,7 @@ peeky.on('message', async (message) => {
     };
 
     //Level Up
-    if  (peeky.userData.get(key, "Exp") >= Setting.ExpNeeded * peeky.userData.get(key, "Level")) { 
+    if  (peeky.userData.get(key, "Exp") >= Setting.ExpNeeded * peeky.userData.get(key, "Level") && ) { 
         
         peeky.userData.set(key, 1, "Exp");
         peeky.userData.math(key, "+", 1, "Level");
