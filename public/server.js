@@ -4295,7 +4295,7 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
     if  (!AutoManagementCooldown.has(message.guild.id))  {
 
         AutoManagementCooldown.add(message.guild.id);
-        setTimeout(() => {AutoManagementCooldown.delete(message.guild.id)}, 600000);
+        setTimeout(() => {AutoManagementCooldown.delete(message.guild.id)}, 300000);
         
         var Giveaways = peeky.serverData.get(keySF, "ActiveGiveaways");
         var FinishedGiveaway = false;
