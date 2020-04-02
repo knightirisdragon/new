@@ -4298,7 +4298,7 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                                       var RawParticipants = null;
 
                                       await reaction.users.fetch({ limit: 100 }).then(r => {
-                                          RawParticipants = r.filter(i => i !== PeekyId).map(u => u.id);
+                                          RawParticipants = r.filter(i => !i.bot).map(u => u.id);
                                       });
 
                                       var Participants = function_ShuffleArray(RawParticipants); 
@@ -4311,7 +4311,7 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
 
                                               if  (current < giveaway[1])  {
 
-                                                  var participants = Participants.filter(i => !Winners.includes(i) && i !== PeekyId);
+                                                  var participants = Participants.filter(i => !Winners.includes(i));
 
                                                   if  (participants.length > 0)  {
                                                       var winner = participants[Math.floor(Math.random() * participants.length)];
