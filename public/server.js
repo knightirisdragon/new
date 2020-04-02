@@ -4309,7 +4309,6 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                                       if  (current < giveaway[1])  {
 
                                           var participants = Participants.filter(i => !Winners.includes(i) && i !== PeekyId);
-                                          console.log(participants);
 
                                           if  (participants.length > 0)  {
                                               var winner = participants[Math.floor(Math.random() * participants.length)];
@@ -4340,20 +4339,20 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                                   var embed = {"description": InfoIcon + " The giveaway for **" + giveaway[0] + "** has ended.", "color": EmbedColor}; 
                                   channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-                                  Giveaways.splice(current, 1);
+                                  peeky.serverData.get(keySF, "ActiveGiveaways").splice(current + 1, 1);
                               
                               } else {
-                                Giveaways.splice(current, 1);
+                                peeky.serverData.get(keySF, "ActiveGiveaways").splice(current + 1, 1);
                               };
 
                             })
                             .catch(error => {
                                 ErrorBag.add(error);
-                                Giveaways.splice(current, 1);
+                                peeky.serverData.get(keySF, "ActiveGiveaways").splice(current, 1);
                             })
 
                         } else {
-                          Giveaways.splice(current, 1);
+                          peeky.serverData.get(keySF, "ActiveGiveaways").splice(current, 1);
                         };
 
                     };
@@ -9056,7 +9055,7 @@ if  (CommandName == "giveaway")  {
 
                         if  (CreationProgress == 1)  {
                             if  (Answer && Answer.length > 0)  {
-                                GiveawayInfo[0] = function_RemoveFormatting(Answer, "other", true);
+                                GiveawayInfo[0] = function_FixCapitalization(function_RemoveFormatting(Answer, "other", true));
                                 Generate(message);
                             } else {
                               const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
