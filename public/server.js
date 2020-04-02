@@ -4282,14 +4282,12 @@ if  (!message.author.bot)  {
 
                       FinishedGiveaway = true;
 
-                      if  (peeky.channels.has(giveaway[5]) && giveaway[4] !== 0)  {
+                      if  (peeky.channels.has(giveaway[5]) && giveaway[4] > 0)  {
 
                           var channel = peeky.channels.get(giveaway[5]);
 
                           channel.messages.fetch(giveaway[4])
                           .then(message => {
-
-                            Giveaways.splice(current, 1);
 
                             var reaction = message.reactions.find(e => e.emoji.name == "🎁");
                             var Participants = reaction.users.filter(u => !u.bot).map(u => u.id);
@@ -4301,15 +4299,18 @@ if  (!message.author.bot)  {
 
                                 current ++;
 
-                                if  (current < Winners.length && current < giveaway[1])  {
+                                if  (current < giveaway[1])  {
                                     var participants = Participants.filter(i => !Winners.includes(i));
-                                    var winner = participants[Math.floor(Math.random() * participants.length)];
+                                  
+                                    if  (participants.length > 0)  {
+                                        var winner = participants[Math.floor(Math.random() * participants.length)];
 
-                                    Winners.push(winner);
-                                    FixedWinners.push("<@" + winner + ">");
+                                        Winners.push(winner);
+                                        FixedWinners.push("<@" + winner + ">");
 
-                                    var embed = {"description": SuccessIcon + " You have won a giveaway in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
-                                    function_DirectMessage(winner, { embed });
+                                        var embed = {"description": SuccessIcon + " You have won a giveaway in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
+                                        function_DirectMessage(winner, { embed });
+                                    };
                                 };
                             });
 
@@ -4325,6 +4326,8 @@ if  (!message.author.bot)  {
 
                             var embed = {"description": InfoIcon + " The giveaway for **" + giveaway[0] + "** has ended.", "color": EmbedColor}; 
                             channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                            Giveaways.splice(current, 1);
 
                           })
                           .catch(error => {
@@ -8999,6 +9002,8 @@ if  (CommandName == "drawandguess")  {
 if  (CommandName == "giveaway")  {
 
     if  (message.member.permissions.has("MANAGE_GUILD"))  {
+      
+        if  (peeky.serverData.get(keySF, "ActiveGiveaways").length < Setting.MaxGiveaways)  {
   
         var CreationProgress = 0;
         //1 Prize Name
@@ -9075,7 +9080,7 @@ if  (CommandName == "giveaway")  {
                             "color": EmbedColor };
               message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
                   GiveawayInfo[4] = m.id;
-                  peeky.serverData.push(keySF, "ActiveGiveaways").push(GiveawayInfo);
+                  peeky.serverData.get(keySF, "ActiveGiveaways").push(GiveawayInfo);
                   
                   m.react("🎁").catch(error => ErrorBag.add(error));
               });
@@ -9087,6 +9092,8 @@ if  (CommandName == "giveaway")  {
         setTimeout(() => {CommandCooldown.delete("giveaway" + message.author.id)}, 10000);
 
         Generate(message);
+          
+    };
 
     }
      else
