@@ -119,6 +119,10 @@ You have cleared your playlist of **X001 songs**. |
 
 **Try to guess the name of this song!** | 
 
+If you want to see some hot **X001** action, follow this tutorial! | 
+
+giveaway_stuff
+
 I have set the slowmode to **X001 seconds** at **X002**'s request. | 
 
 I have muted **X001** at **X002**'s request. | 

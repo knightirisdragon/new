@@ -8816,7 +8816,7 @@ if (CommandName == "hangman")  {
 };
 
 //DrawAndGuess  
-if (CommandName == "drawandguess")  {
+if  (CommandName == "drawandguess")  {
 
     if  (!ActiveMinigames.has(message.guild.id))  {
 
@@ -8902,21 +8902,45 @@ if (CommandName == "drawandguess")  {
     };
   
 };
-//Command Template
-if  (CommandName.startsWith("commandtemplate"))  {
-  
-    var CommandArgument = CommandName.split("commandtemplate")[1];
-  
-    if  (CommandArgument.startsWith(" "))  {
-  
-        CommandArgument = CommandArgument.replace(" ", "");        
 
-    }
-     else if (CommandArgument == "")
-    {
-     const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+//Command Template
+if  (CommandName == "giveaway")  {
+  
+    var CreationProgress = 1;
+  
+    //1 Prize Name
+    //Max Winners
+    //Length in days
+    //
+  
+    function Generate(message)  {
+
+        if  (WrongLetters.length < HangmanLevels.length && CensoredAnswer !== Answer.toLowerCase())  {
+
+            message.channel.awaitMessages(response => !response.author.bot && response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 1, time: 60000, errors: ['time'] })
+            .then(collected => {
+
+                var letter = collected.first().content.toLowerCase();
+
+                var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "image": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                Generate(message);
+
+            })
+            .catch(collected => {
+                const embed = {"description": ErrorIcon + " The giveaway creation has been cancelled.",  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            });
+
+        };
+
     };
+
+    CommandCooldown.add("giveaway" + message.author.id)
+    setTimeout(() => {CommandCooldown.delete("giveaway" + message.author.id)}, 10000);
+
+    Generate(message);
 
 };
 
