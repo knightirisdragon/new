@@ -4292,7 +4292,7 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                               var reaction = message.reactions.find(e => e.emoji.name == "🎁");
                               
                               if  (reaction)  {
-                                  var Participants = function_ShuffleArray(reaction.users.map(u => u.id));
+                                  var Participants = function_ShuffleArray(reaction.users.map(u => u.id)); 
                                   var Winners = [];
                                   var FixedWinners = [];
                                 
@@ -4305,7 +4305,7 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
 
                                       if  (current < giveaway[1])  {
 
-                                          var participants = Participants.filter(i => !Winners.includes(i) && !i == PeekyId);
+                                          var participants = Participants.filter(i => !Winners.includes(i) && i !== PeekyId);
                                           console.log(participants);
 
                                           if  (participants.length > 0)  {
@@ -4322,7 +4322,7 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
 
                                   const newEmbed = new Discord.MessageEmbed({
                                       "description": 
-                                      "**Giveaway by " + function_RemoveFormatting(message.member.displayName, "other", true) + "**" + "\n" +
+                                      "**Giveaway by " + function_RemoveFormatting(giveaway[6], "other", true) + "**" + "\n" +
                                       "Prize: " + giveaway[0] + "\n" +
                                       "Winners: " + FixedWinners.join(" "),
                                       "footer": { "text": "This giveaway has ended." },
