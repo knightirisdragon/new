@@ -4272,89 +4272,81 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
         var FinishedGiveaway = false;
       
         if  (Giveaways.length > 0)  {
-          
-            console.log("giveaway size good")
 
             var current = 0;
             Giveaways.forEach(giveaway => {
 
                 if  (FinishedGiveaway == false)  {
-          
-            console.log("giveaway aint finished mhm")
 
                     if  (new Date() - new Date(giveaway[3]) >= giveaway[2])  {
-          
-            console.log("found finished giveaway yee")
 
                         FinishedGiveaway = true;
 
                         if  (peeky.channels.has(giveaway[5]) && giveaway[4] > 0)  {
-                          
-          
-            console.log("found channel of the giveaway")
 
                             var channel = peeky.channels.get(giveaway[5]);
 
                             channel.messages.fetch(giveaway[4])
                             .then(message => {
-                              
-          
-            console.log("fetched giveawawy")
 
                               var reaction = message.reactions.find(e => e.emoji.name == "🎁");
-                              var Participants = reaction.users.filter(u => !u.bot).map(u => u.id);
-                              var Winners = [];
-                              var FixedWinners = [];
-          
-            console.log(Participants)
+                              
+                              if  (reaction)  {
+                                  var Participants = function_ShuffleArray(reaction.users.map(u => u.id));
+                                  var Winners = [];
+                                  var FixedWinners = [];
+                                
+                                  console.log(Participants);
 
-                              var current = 0;                          
-                              Participants.forEach(user => {
+                                  var current = 0;                          
+                                  Participants.forEach(user => {
 
-                                  current ++;
+                                      current ++;
 
-                                  if  (current < giveaway[1])  {
-            console.log(current < giveaway[1])
-            console.log(giveaway[1])
-            console.log(current)
-                                      var participants = Participants.filter(i => !Winners.includes(i));
-            console.log(participants)
+                                      if  (current < giveaway[1])  {
 
-                                      if  (participants.length > 0)  {
-                                          var winner = participants[Math.floor(Math.random() * participants.length)];
+                                          var participants = Participants.filter(i => !Winners.includes(i) && !i == PeekyId);
+                                          console.log(participants);
 
-                                          Winners.push(winner);
-                                          FixedWinners.push("<@" + winner + ">");
+                                          if  (participants.length > 0)  {
+                                              var winner = participants[Math.floor(Math.random() * participants.length)];
 
-                                          var embed = {"description": SuccessIcon + " You have won a giveaway in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
-                                          function_DirectMessage(winner, { embed });
+                                              Winners.push(winner);
+                                              FixedWinners.push("<@" + winner + ">");
+
+                                              var embed = {"description": SuccessIcon + " You have won a giveaway in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
+                                              function_DirectMessage(winner, { embed });
+                                          };
                                       };
-                                  };
-                              });
+                                  });
 
-                              const newEmbed = new Discord.MessageEmbed({
-                                  "description": 
-                                  "**Giveaway by " + function_RemoveFormatting(message.member.displayName, "other", true) + "**" + "\n" +
-                                  "Prize: " + giveaway[0] + "\n" +
-                                  "Winners: " + FixedWinners.join(" "),
-                                  "footer": { "text": "This giveaway has ended." },
-                                  "color": EmbedColor
-                              });
-                              message.edit(newEmbed).catch(error => ErrorBag.add(error));
+                                  const newEmbed = new Discord.MessageEmbed({
+                                      "description": 
+                                      "**Giveaway by " + function_RemoveFormatting(message.member.displayName, "other", true) + "**" + "\n" +
+                                      "Prize: " + giveaway[0] + "\n" +
+                                      "Winners: " + FixedWinners.join(" "),
+                                      "footer": { "text": "This giveaway has ended." },
+                                      "color": EmbedColor
+                                  });
+                                  message.edit(newEmbed).catch(error => ErrorBag.add(error));
 
-                              var embed = {"description": InfoIcon + " The giveaway for **" + giveaway[0] + "** has ended.", "color": EmbedColor}; 
-                              channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                  var embed = {"description": InfoIcon + " The giveaway for **" + giveaway[0] + "** has ended.", "color": EmbedColor}; 
+                                  channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-                              Giveaways.splice(current, 1);
+                                  Giveaways.splice(current, 0);
+                              
+                              } else {
+                                Giveaways.splice(current, 0);
+                              };
 
                             })
                             .catch(error => {
                                 ErrorBag.add(error);
-                                Giveaways.splice(current, 1);
+                                Giveaways.splice(current, 0);
                             })
 
                         } else {
-                          Giveaways.splice(current, 1);
+                          Giveaways.splice(current, 0);
                         };
 
                     };
