@@ -83,8 +83,8 @@ var BannedUsers             = new Array();
 var LeaderboardPositions    = new Array();
 var WebsiteCooldowns        = new Set();
 var FunctionCooldowns       = new Set();
+var AutoManagementCooldown  = new Set();
 var GainCooldown            = new Set();
-var LimitedRolesCooldown    = new Set();
 var RandomTreasuresCooldown = new Set();
 var BadgeCheckCooldown      = new Set();
 var CommandCooldown         = new Set();
@@ -4232,10 +4232,10 @@ if  (message.channel.id == WorkshopChannel && !message.author.bot)  {
 };
     
 //Limited Roles Auto-Management
-if  (!LimitedRolesCooldown.has("cooldown"))  {
+if  (!AutoManagementCooldown.has("cooldown"))  {
 
-    LimitedRolesCooldown.add("cooldown");
-    setTimeout(() => {LimitedRolesCooldown.delete("cooldown")}, 1800000);
+    AutoManagementCooldown.add("cooldown");
+    setTimeout(() => {AutoManagementCooldown.delete("cooldown")}, 1800000);
   
     //Premium
     await peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(PremiumRole)).forEach(m => {
@@ -4258,7 +4258,32 @@ if  (!LimitedRolesCooldown.has("cooldown"))  {
       
     });
 
-};  
+};
+
+//Giveaway Auto-Management
+if  (!message.author.bot)  {
+
+    AutoManagementCooldown.add(message.guild.id);
+    setTimeout(() => {AutoManagementCooldown.delete(message.guild.id)}, 600000);
+  
+    if  (!AutoManagementCooldown.has(message.guild.id))  {
+        
+        var Giveaways = peeky.serverData.get(keySF, "ActiveGiveaways");
+        var FinishedGiveaway = false;
+      
+        Giveaways.forEach(giveaway => {
+          
+            if  (FinishedGiveaway == false)  {
+                
+                if  (Giveaways.)
+              
+            };
+          
+        });
+      
+    };
+
+};
     
 //Random Treasures
 if  (!RandomTreasuresCooldown.has("cooldown"))  {
@@ -4312,7 +4337,7 @@ if  (!RandomTreasuresCooldown.has("cooldown"))  {
           
     };
 
-};  
+};
   
 //FUNCTIONS
 if  (peeky.channelData.has(keyCF) && peeky.serverData.has(keySF) && message.channel.permissionsFor(peeky.user).has('EMBED_LINKS'))  {
@@ -8905,7 +8930,7 @@ if  (CommandName == "drawandguess")  {
   
 };
 
-//Command Template
+//Giveaway
 if  (CommandName == "giveaway")  {
 
     if  (message.member.permissions.has("MANAGE_GUILD"))  {
@@ -8915,7 +8940,7 @@ if  (CommandName == "giveaway")  {
         //2 Max Winners
         //3 Length in days
       
-        var GiveawayInfo = [  "nothing", 1, 1  ];
+        var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0  ];
 
         function Generate(message)  {
 
