@@ -3597,10 +3597,16 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         } else
 
         if  (reaction.emoji.name == "1️⃣")  {
+          
+            var TimeZone = peeky.serverData.get(keySF, "timezone");
+            if  (TimeZone > 0)  {
+                TimeZone = "+" + TimeZone;
+            };
 
             const newEmbed = new Discord.MessageEmbed({
                   description:  "**Prefix** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "prefix") + "`" + "\n\n" +
                                 "**Language** " + SettingsIcon + "\n" + "`" + Languages[Language] + "`" + "\n\n" +
+                                "**Time Zone** " + SettingsIcon + "\n" + "`" + TimeZone + "`" + "\n\n" +
                                 "**Server State** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "server_upgraded").toString().replace("true", "Upgraded").replace("false", "Not Upgraded") + "`" + "\n\n" +
                                 "**Mute Role** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "muted_role") + "`" + "\n\n" +
                                 "**Highlighted Channel** " + SettingsIcon + "\n" + "`#" + peeky.serverData.get(keySF, "highlighted_channel") + "`" + "\n\n" +
@@ -9655,7 +9661,7 @@ if  (CommandName.startsWith("prefix"))  {
             peeky.serverData.set(keySF, CommandArgument, "prefix");
           
             var TranslatedMessages = [SuccessIcon + " The prefix is now **X001**.", SuccessIcon + " Prefix je teď **X001**.", SuccessIcon + " Predvoľba je teraz **X001**.", SuccessIcon + " El prefijo es ahora **X001**.", SuccessIcon + " Önek şimdi **X001**.", SuccessIcon + " Префикс теперь **X001**."];
-            const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+            const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "prefix")) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
@@ -9681,23 +9687,22 @@ if  (CommandName.startsWith("prefix"))  {
 
 };
   
-//HighlightedChannel
-if  (CommandName.startsWith("highlightedchannel"))  {
+//TimeZone
+if  (CommandName.startsWith("timezone"))  {
   
-    var CommandArgument = CommandName.split("highlightedchannel")[1];
+    var CommandArgument = CommandName.split("timezone")[1];
   
     if  (CommandArgument.startsWith(" "))  {
 
-        CommandArgument = function_RemoveFormatting(CommandArgument.replace(" ", ""), "channel", true);
+        CommandArgument = CommandArgument.replace(" ", "");
 
-    if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
+    if  (message.member.permissions.has("MANAGE_GUILD"))  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-            peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
+            peeky.serverData.set(keySF, CommandArgument, "timezone");
           
-            var TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **#X001**.", SuccessIcon + " Zvýraznený channel je teraz **#X001**.", SuccessIcon + " El canal resaltado es ahora **#X001**.", SuccessIcon + " Vurgulanan kanal şimdi **#X001**.", SuccessIcon + " Выделенный канал теперь **#X001**."];
-            const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+            const embed = {"description": SuccessIcon + " The time zone is now **" + peeky.serverData.get(keySF, "timezone") + " hours**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
         }
@@ -9710,7 +9715,49 @@ if  (CommandName.startsWith("highlightedchannel"))  {
     }
      else
     {
-      const embed = {"description": PermissionsMessageError2[Language],  "color": EmbedColor}; 
+      const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+  
+    }
+     else if (CommandArgument == "")
+    {      
+     const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };  
+
+};
+  
+//HighlightedChannel
+if  (CommandName.startsWith("highlightedchannel"))  {
+  
+    var CommandArgument = CommandName.split("highlightedchannel")[1];
+  
+    if  (CommandArgument.startsWith(" "))  {
+
+        CommandArgument = function_RemoveFormatting(CommandArgument.replace(" ", ""), "channel", true);
+
+    if  (message.member.permissions.has("MANAGE_GUILD"))  {
+
+        if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+
+            peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
+          
+            var TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **#X001**.", SuccessIcon + " Zvýraznený channel je teraz **#X001**.", SuccessIcon + " El canal resaltado es ahora **#X001**.", SuccessIcon + " Vurgulanan kanal şimdi **#X001**.", SuccessIcon + " Выделенный канал теперь **#X001**."];
+            const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "highlighted_channel")) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+        }
+         else
+        {
+         const embed = {"description": ErrorMessage8[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+    }
+     else
+    {
+      const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
@@ -9770,7 +9817,7 @@ if  (CommandName.startsWith("muterole"))  {
 
     if  (CommandArgument.startsWith(" "))  {
 
-    if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+    if  (message.member.permissions.has("MANAGE_GUILD"))  {
 
         CommandArgument = CommandArgument.replace(" ", "");
 

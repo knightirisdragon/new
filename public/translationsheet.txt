@@ -151,6 +151,8 @@ I have purged **X001 messages** at **X002**'s request. |
 
 The prefix is now **X001**. | 
 
+The timezone is now **X001**. | 
+
 The highlighted channel is now **#X001**. | 
 
 The function notifications are now set to **X001**. | 
