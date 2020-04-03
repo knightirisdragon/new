@@ -1895,6 +1895,10 @@ function function_ServerData(key)  {
             member_counter_bonus: false,
             member_counter_bonus_setting: "Members",
             member_counter_bonus_id: null,
+            server_age_bonus: false,
+            server_age_bonus_id: null,
+            server_timezone_bonus: false,
+            server_timezone_bonus_id: null,
             clear_nicknames_bonus: false,
             clear_nicknames_bonus_setting: "Cleared Nickname",
             suspicion_alert_bonus: false,
@@ -1923,8 +1927,6 @@ function function_ServerData(key)  {
             game_roles_bonus_setting: [],
             nick_saver_bonus: false,
             nick_saver_array: [],
-            server_age_bonus: false,
-            server_age_bonus_id: null,
             reddit_posts_bonus: false,
             reddit_posts_bonus_setting: "discordapp",
             reddit_posts_bonus_last: [],
@@ -2295,6 +2297,23 @@ function function_DateFormat(value, type, timezone)  {
       };
 
       return Days[value.getUTCDay()] + ", " + ThisHour + ":" + ThisMinute;
+        
+    } else
+  
+    if  (type == "JustTime")  {
+      
+      var ThisHour  = value.getUTCHours();
+      var ThisMinute = value.getUTCMinutes();
+
+      if  (ThisHour < 10)  {
+          ThisHour = "0" + ThisHour;
+      };
+
+      if  (ThisMinute < 10)  {
+          ThisMinute = "0" + ThisMinute;
+      };
+
+      return ThisHour + ":" + ThisMinute;
         
     } else {
       
@@ -3566,9 +3585,10 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "server_age_bonus") == true)             { var SA3 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA3 = DisabledIcon};
         if (peeky.serverData.get(keySF, "spoiler_lock_bonus") == true)           { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
         if (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)         { var RR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var RR = DisabledIcon};
-        if (peeky.serverData.get(keySF, "banned_words_bonus") == true)          { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
-        if (peeky.serverData.get(keySF, "message_log_bonus") == true)           { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
+        if (peeky.serverData.get(keySF, "banned_words_bonus") == true)           { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
+        if (peeky.serverData.get(keySF, "message_log_bonus") == true)            { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
         if (peeky.serverData.get(keySF, "images_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
+        if (peeky.serverData.get(keySF, "server_timezone_bonus") == true)        { var ST2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var ST2 = DisabledIcon};
 
         var BWArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
         if  (BWArray.length < 1)  {  BWArray = "None";  }  else  {  BWArray = BWArray.join("` `");  };
@@ -3628,7 +3648,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
                                 "**Automatic Reactions** " + AR + "\n" + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
                                 "**Member Counter** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`" + "\n\n" +
-                                "**Server Timezone** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "server_timezone_bonus_setting") + "`" + "\n\n" +
+                                "**Server Timezone** " + ST2 + "\n" + "No setting" + "\n\n" +
                                 "**Server Age** " + SA3 + "\n" + "No setting" + "\n\n" +
                                 "**Ticket System** " + ST + "\n" + "`@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "`" + "\n\n" +
                                 "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`" + "\n\n" +
@@ -4662,25 +4682,24 @@ if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
   
 };
     
-//Member Counter
+//Server Timezone
 if  (peeky.serverData.get(keySF, "server_timezone_bonus") == true)  {
 
-    if  (!FunctionCooldowns.has("membercounter" + message.guild.id))  {
+    if  (!FunctionCooldowns.has("servertimezone" + message.guild.id))  {
 
-        FunctionCooldowns.add("membercounter" + message.guild.id);
-        setTimeout(() => {FunctionCooldowns.delete("membercounter" + message.guild.id)}, 300000);
+        FunctionCooldowns.add("servertimezone" + message.guild.id);
+        setTimeout(() => {FunctionCooldowns.delete("servertimezone" + message.guild.id)}, 300000);
 
         if  (message.guild.me.permissions.has("MANAGE_CHANNELS"))  {
 
-            var id         = peeky.serverData.get(keySF, "member_counter_bonus_id");
-            var Prefix     = peeky.serverData.get(keySF, "member_counter_bonus_setting");
+            var id         = peeky.serverData.get(keySF, "server_timezone_bonus_id");
             var channel    = message.guild.channels.find(g => g.id == id);
-            var FinalName  = Prefix + ": " + message.guild.members.filter(m => !m.user.bot).size.toLocaleString('en');
+            var FinalName  = "Server Time: " + function_DateFormat(new Date(), "JustTime", peeky.serverData.get(keySF, "timezone"));
 
             if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
-                channel.setName(FinalName, "Triggered by the Member Counter function.").catch(error => ErrorBag.add(error));    
+                channel.setName(FinalName, "Triggered by the Server Timezone function.").catch(error => ErrorBag.add(error));    
               
-                console.log("The Member Counter function has been triggered in " + message.guild.name + ".");
+                console.log("The Server Timezone function has been triggered in " + message.guild.name + ".");
                 function_UpdateAutowipe(keySF, "server");
             };
 
@@ -6085,6 +6104,53 @@ if  (FunctioName.startsWith("member counter"))  {
     };
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Member Counter").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+      
+//Toggle Server Timezone
+if  (FunctioName.startsWith("server timezone"))  {
+  
+    const guild = message.guild;
+    const name = "Server Time" + ": ...";
+    var id = peeky.serverData.get(keySF, "server_timezone_bonus_id");
+    var channel = guild.channels.find(c=> c.id == id);
+
+    peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "server_timezone_bonus"), "server_timezone_bonus");
+    var StatusString = peeky.serverData.get(keySF, "server_timezone_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
+
+    //Channel Creating    
+    if (!channel) {
+
+    if  (!ChannelCooldown.has(message.guild.id)) {
+      
+    if  (ManageChannels == true)  {
+
+    ChannelCooldown.add(message.guild.id);
+    setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
+
+    await message.guild.channels.create(name, { type: 'voice', permissionOverwrites: [
+        {id: PeekyId, allow: ['CONNECT']},
+        {id: message.guild.id, deny: ['CONNECT']}
+    ], reason: "Channel created by @" + message.author.tag + " through a function." })
+
+    .then(async function (channel)  {
+        peeky.serverData.set(keySF, channel.id, "server_timezone_bonus_id");
+    }).catch(function(err) {  ErrorBag.add(err);  });
+
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Server Timezone"));
+    
+    };
+    
+    } else {
+      InfoMessages.push(CooldownMessage2[Language]);
+    };
+    };
+
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Timezone").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
