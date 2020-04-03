@@ -3665,7 +3665,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "3️⃣")  {
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Event Countdown** " + EC + "\n" + "`" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting"), "Date", peeky.serverData.get(keySF, "timezone")) + "`" + "\n\n" +
+                  description:  "**Event Countdown** " + EC + "\n" + "`" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting"), "Date", 0) + "`" + "\n\n" +
                                 "**Verification System** " + VS + "\n" + "`" + peeky.serverData.get(keySF, "verification_system_bonus_setting") + "`" + "\n\n" +
                                 "**Vote Kick** " + VK + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 "**Reaction Roles** " + RR + "\n" + "`" + RRArray + "`" + "\n\n" +
@@ -4694,7 +4694,7 @@ if  (peeky.serverData.get(keySF, "server_timezone_bonus") == true)  {
 
             var id         = peeky.serverData.get(keySF, "server_timezone_bonus_id");
             var channel    = message.guild.channels.find(g => g.id == id);
-            var FinalName  = "Server Time: " + function_DateFormat(new Date(), "JustTime", peeky.serverData.get(keySF, "timezone"));
+            var FinalName  = "Server Time: " + function_DateFormat(Date.now(), "JustTime", peeky.serverData.get(keySF, "timezone"));
 
             if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
                 channel.setName(FinalName, "Triggered by the Server Time function.").catch(error => ErrorBag.add(error));    
@@ -6660,7 +6660,7 @@ if  (FunctioName.startsWith("event countdown "))  {
 
     peeky.serverData.set(keySF, GivenDate.getTime(), "event_countdown_bonus_setting");
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", "" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting")), "Date", peeky.serverData.get(keySF, "timezone")),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", "" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting")), "Date", 0),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
@@ -7645,7 +7645,7 @@ if  (CommandName == "daily")  {
     if  (new Date() - new Date(peeky.userData.get(key, "DailyRewarded")) < DayMs)  {
   
         var TranslatedMessages = [InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Vraťte se v **X001** pro vaši odměnu.", InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward."];
-        var embed = {"description": TranslatedMessages[Language].replace("X001", function_DateFormat(peeky.userData.get(key, "DailyRewarded") + DayMs, "Time"), peeky.serverData.get(keySF, "timezone")),  "color": EmbedColor};
+        var embed = {"description": TranslatedMessages[Language].replace("X001", function_DateFormat(Date.now(peeky.userData.get(key, "DailyRewarded")) + DayMs, "Time"), peeky.serverData.get(keySF, "timezone")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     } else {

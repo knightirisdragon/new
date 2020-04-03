@@ -111,7 +111,7 @@ function WM_Popup() {
   
 function MC_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Member Counter</b>  <br>  <b class="functiondescription">Creates a customizable member counter inside the channel list.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle member counter  <br>  p!set member counter [text]</b>' + Note;  
+     document.getElementById('description').innerHTML = '<b class="functionname">Member Counter</b>  <br>  <b class="functiondescription">Creates a customizable member counter inside the channel list.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle member counter  <br>  p!set member counter [text]</b>' + Note;  
 };
 
 function CN_Popup() {
@@ -241,6 +241,11 @@ function BW_Popup() {
 function SC_Popup() {
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="functionname">Safe Chat</b>  <br>  <b class="functiondescription">Deletes any messages that includes profanity.</b>  ' + Ignores + '  <b class="functioncommand">Members with the MANAGE_MESSAGES permission.</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle safe chat</b>' + Note; 
+};
+
+function ST2_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<b class="functionname">Server Time</b>  <br>  <b class="functiondescription">Creates a voice channel that will display time with the server\'s timezone.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle server time</b>' + Note; 
 };
     
 function Close()  {
@@ -447,6 +452,14 @@ function Close()  {
       <div class="centered">
         
     <div class="fancybutton" onclick="MC_Popup()">  Member Counter  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunction_servertime.png?v=1585909426894');">
+      <div class="centered">
+        
+    <div class="fancybutton" onclick="ST2_Popup()">  Server Time  </div>
         
       </div>
     </div>
