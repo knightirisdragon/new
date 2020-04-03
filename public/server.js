@@ -3648,7 +3648,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
                                 "**Automatic Reactions** " + AR + "\n" + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
                                 "**Member Counter** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`" + "\n\n" +
-                                "**Server Timezone** " + ST2 + "\n" + "No setting" + "\n\n" +
+                                "**Server Time** " + ST2 + "\n" + "No setting" + "\n\n" +
                                 "**Server Age** " + SA3 + "\n" + "No setting" + "\n\n" +
                                 "**Ticket System** " + ST + "\n" + "`@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "`" + "\n\n" +
                                 "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`" + "\n\n" +
@@ -4682,7 +4682,7 @@ if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
   
 };
     
-//Server Timezone
+//Server Time
 if  (peeky.serverData.get(keySF, "server_timezone_bonus") == true)  {
 
     if  (!FunctionCooldowns.has("servertimezone" + message.guild.id))  {
@@ -4697,9 +4697,9 @@ if  (peeky.serverData.get(keySF, "server_timezone_bonus") == true)  {
             var FinalName  = "Server Time: " + function_DateFormat(new Date(), "JustTime", peeky.serverData.get(keySF, "timezone"));
 
             if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
-                channel.setName(FinalName, "Triggered by the Server Timezone function.").catch(error => ErrorBag.add(error));    
+                channel.setName(FinalName, "Triggered by the Server Time function.").catch(error => ErrorBag.add(error));    
               
-                console.log("The Server Timezone function has been triggered in " + message.guild.name + ".");
+                console.log("The Server Time function has been triggered in " + message.guild.name + ".");
                 function_UpdateAutowipe(keySF, "server");
             };
 
@@ -6111,8 +6111,8 @@ if  (FunctioName.startsWith("member counter"))  {
   
 else
       
-//Toggle Server Timezone
-if  (FunctioName.startsWith("server timezone"))  {
+//Toggle Server Time
+if  (FunctioName.startsWith("server time"))  {
   
     const guild = message.guild;
     const name = "Server Time" + ": ...";
@@ -6141,7 +6141,7 @@ if  (FunctioName.startsWith("server timezone"))  {
         peeky.serverData.set(keySF, channel.id, "server_timezone_bonus_id");
     }).catch(function(err) {  ErrorBag.add(err);  });
 
-    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Server Timezone"));
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Server Time"));
     
     };
     
@@ -6150,7 +6150,7 @@ if  (FunctioName.startsWith("server timezone"))  {
     };
     };
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Timezone").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Time").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
