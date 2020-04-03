@@ -7638,7 +7638,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
 };
 
 //Daily
-if  (CommandName == "daily")  {
+/*if  (CommandName == "daily")  {
 
     var CountedVotes = 0;
 
@@ -7727,7 +7727,7 @@ if  (CommandName == "daily")  {
 
     };
 
-};
+};*/
 
 //Gift
 if (CommandName.startsWith("gift"))  {
