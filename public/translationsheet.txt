@@ -44,6 +44,8 @@ You can only send images in this channel, **X001**. |
 
 Server Age: X001 days | 
 
+Server Time: X001 | 
+
 I have muted **X001** because of the **Flood Protection** function. | 
 
 You have to mark your image as a spoiler, **X001** | 

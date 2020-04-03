@@ -4694,7 +4694,8 @@ if  (peeky.serverData.get(keySF, "server_timezone_bonus") == true)  {
 
             var id         = peeky.serverData.get(keySF, "server_timezone_bonus_id");
             var channel    = message.guild.channels.find(g => g.id == id);
-            var FinalName  = "Server Time: " + function_DateFormat(Date.now(), "JustTime", peeky.serverData.get(keySF, "timezone"));
+            var TranslatedStrings = [["Server Time"], ["Čas Serveru"], ["Čas Serveru"], ["Server Time"], ["Sunucu Süresi"], ["Server Time"]];
+            var FinalName = TranslatedStrings[Language] + ": " + function_DateFormat(Date.now(), "JustTime", peeky.serverData.get(keySF, "timezone"));
 
             if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
                 channel.setName(FinalName, "Triggered by the Server Time function.").catch(error => ErrorBag.add(error));    
@@ -9148,7 +9149,7 @@ if  (CommandName == "giveaway")  {
 
                         if  (CreationProgress == 1)  {
                             if  (Answer && Answer.length > 0)  {
-                                GiveawayInfo[0] = function_FixCapitalization(function_ProperSlice(function_RemoveFormatting(Answer, "other", true), 25));
+                                GiveawayInfo[0] = function_ProperSlice(function_RemoveFormatting(Answer, "other", true), 25);
                                 Generate(message);
                             } else {
                               const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
