@@ -1526,7 +1526,7 @@ async function WebsiteStuff()  {
                 ImageLink = m.attachments.array()[0].url;
             }
 
-            NewsList.push('<div class="newsitem" style="background-image: url(' + ImageLink + ')">  <div class="textbackground">  <b class="newsheader">  ' + function_RemoveFormatting(Header, "other", true) + '  </b>  <br>  <b class="newsauthor">  <font color="#7289DA">' + m.author.tag + '</font> @ <font color="#7289DA">' + function_DateFormat(m.createdAt, "Date") + '</font>  </b>  <b class="newsbody">  ' + function_ProperSlice(function_RemoveFormatting(Body, "other", false), 250) + '  </b>  <a class="button" href="' + m.url + '">🔍</a>  </div>  </div>');
+            NewsList.push('<div class="newsitem" style="background-image: url(' + ImageLink + ')">  <div class="textbackground">  <b class="newsheader">  ' + function_RemoveFormatting(Header, "other", true) + '  </b>  <br>  <b class="newsauthor">  <font color="#7289DA">' + m.author.tag + '</font> @ <font color="#7289DA">' + function_DateFormat(m.createdAt, "Date", 0) + '</font>  </b>  <b class="newsbody">  ' + function_ProperSlice(function_RemoveFormatting(Body, "other", false), 250) + '  </b>  <a class="button" href="' + m.url + '">🔍</a>  </div>  </div>');
         });
 
         await fs.writeFile('public/news.txt', NewsList.join(""), (err) => {
@@ -1591,7 +1591,7 @@ async function WebsiteStuff()  {
 
         var DaysOld        = Math.ceil((new Date() - peeky.user.createdAt) / 8.64e7) - 1;
         var ReviewDate     = new Date(FilteredReviews[RandomReview].date);
-        var ReviewFullDate = function_DateFormat(ReviewDate, "Date");
+        var ReviewFullDate = function_DateFormat(ReviewDate, "Date", 0);
 
         await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + "/5 Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast " + Setting.MinReviewLength + " characters long to show up.</font></center>", (err) => {
             if (err) console.log(err); 
@@ -1856,6 +1856,7 @@ function function_ServerData(key)  {
             server_invite: "no_invite",
             prefix: Setting.DefaultPrefix,
             language: 0,
+            timezone: 0,
             muted_role: "Muted",
             highlighted_channel: "treasures",
             function_notifications: false,
@@ -2248,9 +2249,9 @@ function function_ShuffleArray(array) {
 };
 
 //Date Format
-function function_DateFormat(value, type)  {
+function function_DateFormat(value, type, timezone)  {
   
-    value = new Date(value);
+    value = new Date(value + (timezone * 3600000));
   
     if  (type == "Both")  {
       
@@ -3627,12 +3628,12 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Join Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "join_role_bonus_setting") + "`" + "\n\n" +
                                 "**Automatic Reactions** " + AR + "\n" + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`" + "\n\n" +
                                 "**Member Counter** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`" + "\n\n" +
+                                "**Server Timezone** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "server_timezone_bonus_setting") + "`" + "\n\n" +
                                 "**Server Age** " + SA3 + "\n" + "No setting" + "\n\n" +
                                 "**Ticket System** " + ST + "\n" + "`@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "`" + "\n\n" +
                                 "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`" + "\n\n" +
                                 "**Flood Protection** " + FP + "\n" + "`" + peeky.serverData.get(keySF, "flood_protection_bonus_setting") + " strikes`" + "\n\n" +
-                                "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`" + "\n\n" +
-                                "**Verification System** " + VS + "\n" + "`" + peeky.serverData.get(keySF, "verification_system_bonus_setting") + "`",
+                                "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`",
                   color: EmbedColor,
                   image: {  "url": "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fneedhelp_functions.png?v=1584183423303"  }
             });
@@ -3644,8 +3645,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "3️⃣")  {
 
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Event Countdown** " + EC + "\n" + "`" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting"), "Date") + "`" + "\n\n" +
-                                "**Reddit Posts** " + RP + "\n" + "`r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "`" + "\n\n" +
+                  description:  "**Event Countdown** " + EC + "\n" + "`" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting"), "Date", peeky.serverData.get(keySF, "timezone")) + "`" + "\n\n" +
+                                "**Verification System** " + VS + "\n" + "`" + peeky.serverData.get(keySF, "verification_system_bonus_setting") + "`" + "\n\n" +
                                 "**Vote Kick** " + VK + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`" + "\n\n" +
                                 "**Reaction Roles** " + RR + "\n" + "`" + RRArray + "`" + "\n\n" +
                                 "**Nickname Saver** " + NS + "\n" + "No Setting." + "\n\n" +
@@ -3665,7 +3666,8 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if  (reaction.emoji.name == "4️⃣")  {        
           
             const newEmbed = new Discord.MessageEmbed({
-                  description:  "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
+                  description:  "**Reddit Posts** " + RP + "\n" + "`r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "`" + "\n\n" +
+                                "**Game Roles** " + GR + "\n" + "`" + GRArray + "`" + "\n\n" +
                                 "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(peeky.serverData.get(keySF, "server_message_bonus_setting"), "other", true) + "`" + "\n\n" +
                                 "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`" + "\n\n" +
                                 "**Weekend Channels** " + WC + "\n" + "`" + WCArray + "`" + "\n\n" +
@@ -4659,6 +4661,34 @@ if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
     };
   
 };
+    
+//Member Counter
+if  (peeky.serverData.get(keySF, "server_timezone_bonus") == true)  {
+
+    if  (!FunctionCooldowns.has("membercounter" + message.guild.id))  {
+
+        FunctionCooldowns.add("membercounter" + message.guild.id);
+        setTimeout(() => {FunctionCooldowns.delete("membercounter" + message.guild.id)}, 300000);
+
+        if  (message.guild.me.permissions.has("MANAGE_CHANNELS"))  {
+
+            var id         = peeky.serverData.get(keySF, "member_counter_bonus_id");
+            var Prefix     = peeky.serverData.get(keySF, "member_counter_bonus_setting");
+            var channel    = message.guild.channels.find(g => g.id == id);
+            var FinalName  = Prefix + ": " + message.guild.members.filter(m => !m.user.bot).size.toLocaleString('en');
+
+            if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
+                channel.setName(FinalName, "Triggered by the Member Counter function.").catch(error => ErrorBag.add(error));    
+              
+                console.log("The Member Counter function has been triggered in " + message.guild.name + ".");
+                function_UpdateAutowipe(keySF, "server");
+            };
+
+        };
+
+    };
+  
+};
 
 //Event Countdown
 if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
@@ -5391,56 +5421,6 @@ if (CommandName == "setinvite")  {
     };
 
 };
-
-//UserInfo
-if  (CommandName.startsWith("userinfo"))  {
-
-    var MentionedMember = message.mentions.members.first();
-    if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
-
-    const key2 = `${SomeoneTagged.user.id}`;
-  
-    var Description = "No Profile";
-    if  (peeky.userData.has(key2))  {
-        Description = peeky.userData.get(key2, "Description");
-    };
-  
-    var BoostingSince = "Not boosting";
-    if  (SomeoneTagged.premiumSince > 0)  {
-        BoostingSince = function_DateFormat(SomeoneTagged.premiumSince, "Date");
-    };
-      
-    const embed = {
-      "description": 
-       "**" + function_RemoveFormatting(SomeoneTagged.user.tag, "other", true) + "**"
-       + "\n" + Description
-       + "\n\n" + "**Joined Discord**" + "\n" + function_DateFormat(SomeoneTagged.user.createdAt, "Date")
-       + "\n\n" + "**Joined server**" + "\n" + function_DateFormat(SomeoneTagged.joinedAt, "Date")
-       + "\n\n" + "**Boosting since**" + "\n" + BoostingSince,
-       "color": SomeoneTagged.displayColor}; 
-    await message.channel.send({ embed }).catch(error => {ErrorBag.add(error)});
-
-};
-
-//ServerInfo
-/*if  (CommandName == "serverinfo")  {
-  
-    var Giveaways = [];
-    peeky.serverData.get(keySF, "ActiveGiveaways").forEach(giveaway => {
-        Giveaways.push(giveaway[0])
-    });
-      
-    const embed = {
-      "description": 
-       "**" + function_RemoveFormatting(message.guild.name, "other", true) + "**"
-       + "\n" + function_RemoveFormatting(message.guild.owner.user.tag, "other", true) 
-       + "\n\n" + "**Server created**" + "\n" + function_DateFormat(message.guild.createdAt, "Date")
-       + "\n\n" + "**Members**" + "\n" + message.guild.members.filter(m => !m.user.bot).size + " members, " + message.guild.members.filter(m => m.user.bot).size + " bots"
-       + "\n\n" + "**Active Giveaways**" + "\n" + Giveaways.join(", "),
-       "color": EmbedColor}; 
-    await message.channel.send({ embed }).catch(error => {ErrorBag.add(error)});
-
-};*/
 
 //Ticket
 if  (CommandName.startsWith("ticket"))  {
@@ -6614,7 +6594,7 @@ if  (FunctioName.startsWith("event countdown "))  {
 
     peeky.serverData.set(keySF, GivenDate.getTime(), "event_countdown_bonus_setting");
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", "" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting")), "Date"),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", "" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting")), "Date", peeky.serverData.get(keySF, "timezone")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
@@ -7599,7 +7579,7 @@ if  (CommandName == "daily")  {
     if  (new Date() - new Date(peeky.userData.get(key, "DailyRewarded")) < DayMs)  {
   
         var TranslatedMessages = [InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Vraťte se v **X001** pro vaši odměnu.", InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward."];
-        var embed = {"description": TranslatedMessages[Language].replace("X001", function_DateFormat(peeky.userData.get(key, "DailyRewarded") + DayMs, "Time")),  "color": EmbedColor};
+        var embed = {"description": TranslatedMessages[Language].replace("X001", function_DateFormat(peeky.userData.get(key, "DailyRewarded") + DayMs, "Time"), peeky.serverData.get(keySF, "timezone")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     } else {
@@ -9139,7 +9119,7 @@ if  (CommandName == "giveaway")  {
                                 "**" + GiveawayInfo[0] + "**" + "\n" +
                                 "Host: " + "<@" + GiveawayInfo[6] + ">" + "\n" +
                                 "Winners: " + GiveawayInfo[1],
-                                "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Both") + "." },
+                                "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Both", peeky.serverData.get(keySF, "timezone")) + "." },
                                 "color": EmbedColor };
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
                       GiveawayInfo[4] = m.id;
@@ -9651,32 +9631,32 @@ if  (CommandName.startsWith("prefix"))  {
 
         CommandArgument = CommandArgument.replace(" ", "").slice(0, 5).toLowerCase();
 
-    if  (message.member.user.id == message.guild.owner.user.id || message.author.id == OwnerId)  {
+        if  (message.member.user.id == message.guild.owner.user.id)  {
 
-        if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+            if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-            const InfoMessages = [];
-            //InfoMessages.push(InfoIcon + " If the prefix is broken, join the Support Server.");
+                const InfoMessages = [];
+                //InfoMessages.push(InfoIcon + " If the prefix is broken, join the Support Server.");
 
-            peeky.serverData.set(keySF, CommandArgument, "prefix");
-          
-            var TranslatedMessages = [SuccessIcon + " The prefix is now **X001**.", SuccessIcon + " Prefix je teď **X001**.", SuccessIcon + " Predvoľba je teraz **X001**.", SuccessIcon + " El prefijo es ahora **X001**.", SuccessIcon + " Önek şimdi **X001**.", SuccessIcon + " Префикс теперь **X001**."];
-            const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "prefix")) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                peeky.serverData.set(keySF, CommandArgument, "prefix");
+
+                var TranslatedMessages = [SuccessIcon + " The prefix is now **X001**.", SuccessIcon + " Prefix je teď **X001**.", SuccessIcon + " Predvoľba je teraz **X001**.", SuccessIcon + " El prefijo es ahora **X001**.", SuccessIcon + " Önek şimdi **X001**.", SuccessIcon + " Префикс теперь **X001**."];
+                const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "prefix")) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+            }
+             else
+            {
+             const embed = {"description": ErrorMessage8[Language],  "color": EmbedColor}; 
+             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
 
         }
          else
         {
-         const embed = {"description": ErrorMessage8[Language],  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          const embed = {"description": PermissionsMessageError2[Language],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
-
-    }
-     else
-    {
-      const embed = {"description": PermissionsMessageError2[Language],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
   
     }
      else if (CommandArgument == "")
@@ -9699,31 +9679,31 @@ if  (CommandName.startsWith("timezone"))  {
     if  (message.member.permissions.has("MANAGE_GUILD"))  {
 
         if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
-
-            peeky.serverData.set(keySF, CommandArgument, "timezone");
           
-            const embed = {"description": SuccessIcon + " The time zone is now **" + peeky.serverData.get(keySF, "timezone") + " hours**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            if  (!isNaN(CommandArgument) && CommandArgument >= -12 && CommandArgument < 12)  {
 
-        }
-         else
-        {
-         const embed = {"description": ErrorMessage8[Language],  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                peeky.serverData.set(keySF, CommandArgument, "timezone");
+
+                const embed = {"description": SuccessIcon + " The time zone is now **" + peeky.serverData.get(keySF, "timezone") + " hours**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              
+            } else {
+              const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+        } else {
+          const embed = {"description": ErrorMessage8[Language],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
-    }
-     else
-    {
+    } else {
       const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
-    }
-     else if (CommandArgument == "")
-    {      
-     const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    } else if (CommandArgument == "") {      
+      const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };  
 
 };
@@ -9737,29 +9717,29 @@ if  (CommandName.startsWith("highlightedchannel"))  {
 
         CommandArgument = function_RemoveFormatting(CommandArgument.replace(" ", ""), "channel", true);
 
-    if  (message.member.permissions.has("MANAGE_GUILD"))  {
+        if  (message.member.permissions.has("MANAGE_GUILD"))  {
 
-        if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+            if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
-            peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
-          
-            var TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **#X001**.", SuccessIcon + " Zvýraznený channel je teraz **#X001**.", SuccessIcon + " El canal resaltado es ahora **#X001**.", SuccessIcon + " Vurgulanan kanal şimdi **#X001**.", SuccessIcon + " Выделенный канал теперь **#X001**."];
-            const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "highlighted_channel")) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
-            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
+
+                var TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **#X001**.", SuccessIcon + " Zvýraznený channel je teraz **#X001**.", SuccessIcon + " El canal resaltado es ahora **#X001**.", SuccessIcon + " Vurgulanan kanal şimdi **#X001**.", SuccessIcon + " Выделенный канал теперь **#X001**."];
+                const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "highlighted_channel")) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+            }
+             else
+            {
+             const embed = {"description": ErrorMessage8[Language],  "color": EmbedColor}; 
+             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
 
         }
          else
         {
-         const embed = {"description": ErrorMessage8[Language],  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
-
-    }
-     else
-    {
-      const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
   
     }
      else if (CommandArgument == "")
@@ -9773,7 +9753,7 @@ if  (CommandName.startsWith("highlightedchannel"))  {
 //FunctionNotifications
 if  (CommandName.startsWith("functionnotifications"))  {
 
-    if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+    if  (message.member.permissions.has("MANAGE_GUILD"))  {
 
         peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "level_notifications"),"level_notifications");
 
@@ -9793,7 +9773,7 @@ if  (CommandName.startsWith("functionnotifications"))  {
 //LevelNotifications
 if  (CommandName.startsWith("levelnotifications"))  {
 
-    if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
+    if  (message.member.permissions.has("MANAGE_GUILD"))  {
 
         peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "level_notifications"),"level_notifications");
 
