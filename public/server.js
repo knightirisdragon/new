@@ -4336,7 +4336,7 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
 
                             var channel = peeky.channels.get(giveaway[5]);
                           
-                            if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
+                            if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES', 'ADD_REACTIONS'))  {
 
                                 channel.messages.fetch(giveaway[4])
                                 .then(async message => {
@@ -4392,7 +4392,7 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                                       });
                                       message.edit(newEmbed).catch(error => ErrorBag.add(error));
 
-                                      var embed = {"description": InfoIcon + " The giveaway for **" + giveaway[0] + "** has ended.", "color": EmbedColor}; 
+                                      var embed = {"description": InfoIcon + " Congratulations to " + FixedWinners.join(", ") + " for winning the **" + giveaway[0] + "** giveaway!", "color": EmbedColor}; 
                                       channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                                   };
