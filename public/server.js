@@ -8935,6 +8935,9 @@ if (CommandName == "hangman")  {
 
     if  (!ActiveMinigames.has(message.guild.id))  {
 
+        ActiveMinigames.add(message.guild.id);
+        setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 10000);
+
         var ChosenQuestion = Math.floor((Math.random() * RandomWords.length));
         var Answer = RandomWords[ChosenQuestion];
         var CensoredAnswer = "";
@@ -9204,6 +9207,9 @@ if  (CommandName == "giveaway")  {
             if  (!CommandCooldown.has("giveaway" + message.guild.id))  {
 
                 if  (peeky.serverData.get(keySF, "ActiveGiveaways").length < Setting.GiveawayLimit)  {
+
+                    CommandCooldown.add("giveaway" + message.guild.id)
+                    setTimeout(() => {CommandCooldown.delete("giveaway" + message.guild.id)}, 10000);
 
                     var CreationProgress = 0;
                     var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.author.id  ];
