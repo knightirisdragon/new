@@ -9038,7 +9038,7 @@ if  (CommandName == "akinator")  {
 
     if  (!ActiveMinigames.has(message.guild.id))  {
       
-        const data = await aki.start('en');
+        const data = await aki.start('en2');
         const Responses = [  "Yes", "No", "Don't know", "Probably", "Probably not"  ];
         var   Step = 0;
 
@@ -9047,32 +9047,54 @@ if  (CommandName == "akinator")  {
             ActiveMinigames.add(message.guild.id);
             setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 10000);
 
-            message.channel.awaitMessages(response => response.author.id !== message.author.id && response.content.toLowerCase().some(word => Responses.toLowerCase().includes(word)), { max: 1, time: 10000, errors: ['time'] })
+            message.channel.awaitMessages(response => response.author.id !== message.author.id && Responses.toLowerCase().some(word => response.content.toLowerCase().includes(word)), { max: 1, time: 10000, errors: ['time'] })
             .then(async collected => {
 
                 var response = collected.first().message;
-                const nextInfo = await aki.step('en', data.session, data.signature, response.content, Step);      
+                console.log(response);
+                var Continue = false;
+                const nextInfo = await aki.step('en', data.session, data.signature, response.content, Step);    
               
                 Step = nextInfo.currentStep;
 
                 if  (nextInfo.progress >= 80 || nextInfo.currentStep >= 100)  {
                   
                     const win = await aki.win('en', data.session, data.signature, Step);
+                    var WinIndex = 0;
                   
-                    var Header = "**Question #" + Step + "**\n";
-                    var Subheader = "My last guess is gonna be " + win.answers[0].name + ", did I guess it right?";
-                    var Embedthumbnail = win.answers[0].name;
+                    var Header = "**Question #" + (Step + 1) + "**\n";
+                    var Subheader = "I have to make a last guess, is it " + win.answers[WinIndex].name + "?";
+                    var Embedthumbnail = win.answers[WinIndex].absolute_picture_path;
                   
                 } else  {
                   
-                  var Header = "**Question #" + Step + "**\n";
+                  var Header = "**Question #" + (Step + 1) + "**\n";
                   var Subheader = nextInfo.question; 
                   var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_default.png?v=1586110261505";
+                  
+                  Continue = true;
                   
                 };
               
                 var embed = { description: Header + Subheader, "footer": { "text": Responses.join(", ") }, "thumbnail": { "url": Embedthumbnail },  "color": EmbedColor };
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              
+                if  (Continue == false)  {
+                  
+                    //Gamer Badge
+                    if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
+                        peeky.userData.set(key, true, "GamerBadge");
+                        InfoMessages.push(InfoMessage1[Language]);
+                    };
+
+                    if  (peeky.userData.has(key))  {
+                        peeky.userData.math(key, "+", 125, "Exp");
+                    };
+
+                    const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has finished the game!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                  
+                };
 
             })
             .catch(collected => {
