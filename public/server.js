@@ -681,7 +681,7 @@ const Banners = [
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground181.png?1546901088480", 900, "Roof fights", "Dishonored 2", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground182.jpg?1547152599803", 925, "Robot guards", "Dishonored 2", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground183.jpg?1547555333469", 800, "Connected", "Dragon Age 4", undefined, 0],
-    ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground184.png?1547809508673", 200, "Snens", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground184.png?v=1586092178208", 875, "The marauder", "DOOM Eternal", undefined, 1586092287639],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground185.jpg?1547809510214", 350, "Queres puppers", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground186.jpg?1548191942331", 725, "Zombie virus", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground187.png?1548198438043", 325, "Prism pattern", "Unknown", undefined, 0],
@@ -861,7 +861,7 @@ const Banners = [
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground361.png?v=1563964756492", 875, "The prophecy", "The Elder Scrolls Online", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground362.png?v=1563970489879", 725, "Dragon rider", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground363.png?v=1563983696291", 775, "The inferno", "Endless Legend", undefined, 0],
-    ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground364.png?v=1564017185333", 125, "Office night", "Five Nights at Freddy's", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground364.png?v=1586092176633", 850, "Teleports behind you", "Quantum League", undefined, 1586092297831],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground365.png?v=1564058813872", 675, "Joergen's rollercoaster", "u/neytirixx", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground366.png?v=1564058885585", 750, "Dangerous hunt", "Monster Hunters World", undefined, 0],
     ["https://cdn.glitch.com/ea3328c2-6730-46f6-bc6f-bd2820c32afc%2Fbackground367.png?v=1564068410313", 675, "Pillar men", "Jojo's Bizarre Adventure Battle Tendency", undefined, 0],
@@ -879,12 +879,12 @@ const Banners = [
     ["https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground379.jpg?v=1564447989239", 225, "Horse friend", "Unknown", undefined, 0],  
     ["https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground380.jpg?v=1564448048338", 775, "Japaneese terrace", "Unknown", undefined, 0],
     ["https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground381.png?v=1564448236674", 325, "Desolate park", "Zach Soza", undefined, 0],
-    ["https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fbackground382.jpg?v=1564448921669", 275, "Playful dogs", "Unknown", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground382.png?v=1586092170577", 875, "Take the shot", "The Last of Us II", undefined, 1586092296312],
     ["https://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground383.png?v=1565240397152", 875, "Dedicated", "Call of Duty Modern Warfare", undefined, 0],
     ["https://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground384.png?v=1565616356300", 850, "Breaking point", "Ghost Recon Breakpoint", undefined, 0],
     ["https://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground385.png?v=1565616359450", 675, "Conflict", "Total War", undefined, 0],
     ["https://cdn.glitch.com/b3d0aad8-d8f7-425f-8098-d1660ab6a43d%2Fbackground386.png?v=1565616365518", 725, "Interrogation", "Ghost Recon Wildlands", undefined, 0],
-    ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground387.png?v=1565961253024", 525, "Father's pose", "JoJo's Bizarre Adventure Golden Wind", undefined, 0],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground387.png?v=1586092374656", 850, "Stay frosty!", "Call of Duty Modern Warfare", undefined, 1586092290556],
     ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground388.png?v=1565715181405", 750, "Beyond", "No Man's Sky", undefined, 0],
     ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground389.png?v=1565715183258", 475, "Steve hunt", "RobenSikk", undefined, 0],
     ["https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground390.png?v=1565715470915", 875, "Right ahead", "Call of Duty Modern Warfare", undefined, 0],
@@ -971,7 +971,8 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground471.png?v=1585734351601", 650, "Wrong universe", "Animal Crossing New Horizon", undefined, 1585734253013],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground472.png?v=1585734506047", 775, "Chills and vibes", "The Intouchables", undefined, 1585734257828],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground473.png?v=1585734370505", 425, "Evolution", "Eltorro64Rus", undefined, 1585734269673],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground474.png?v=1585734371596", 725, "Mounted", "Mount & Blade 2 Bannerlord", undefined, 1585734255008]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground474.png?v=1585734371596", 725, "Mounted", "Mount & Blade 2 Bannerlord", undefined, 1585734255008],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground475.png?v=1586092179436", 925, "Blossom lake", "Unknown", undefined, 1586092293360]
 
 ];
 
