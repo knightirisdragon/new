@@ -9038,28 +9038,31 @@ if  (CommandName == "akinator")  {
 
     if  (!ActiveMinigames.has(message.guild.id))  {
       
-        const data = await aki.start('en2');
         const Responses = [  "Yes", "No", "Don't know", "Probably", "Probably not"  ];
         var   Step = 0;
+        var Region = 'en2';
+      
+        const data = await aki.start(Region);
 
         function Generate(message)  {
 
             ActiveMinigames.add(message.guild.id);
             setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 10000);
 
-            message.channel.awaitMessages(response => response.author.id !== message.author.id && Responses.toLowerCase().some(word => response.content.toLowerCase().includes(word)), { max: 1, time: 10000, errors: ['time'] })
+            message.channel.awaitMessages(response => /*response.author.id == message.author.id &&*/ (message.content == "Yes" || message.content == "No" || message.content == "Don't know" || message.content == "Probably" || message.content == "Probably not"), { max: 1, time: 10000, errors: ['time'] })
             .then(async collected => {
 
+                console.log("worked");
                 var response = collected.first().message;
-                console.log(response);
+                console.log(response.content);
                 var Continue = false;
-                const nextInfo = await aki.step('en', data.session, data.signature, response.content, Step);    
+                const nextInfo = await aki.step(Region, data.session, data.signature, response.content, Step);    
               
                 Step = nextInfo.currentStep;
 
                 if  (nextInfo.progress >= 80 || nextInfo.currentStep >= 100)  {
                   
-                    const win = await aki.win('en', data.session, data.signature, Step);
+                    const win = await aki.win(Region, data.session, data.signature, Step);
                     var WinIndex = 0;
                   
                     var Header = "**Question #" + (Step + 1) + "**\n";
@@ -9094,6 +9097,8 @@ if  (CommandName == "akinator")  {
                     const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has finished the game!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   
+                } else {
+                  Generate(message);
                 };
 
             })
