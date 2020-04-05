@@ -9175,99 +9175,104 @@ if  (CommandName == "giveaway")  {
           
             if  (CommandCooldown.has("giveaway" + message.guild.id))  {
 
-            if  (peeky.serverData.get(keySF, "ActiveGiveaways").length < Setting.GiveawayLimit)  {
+                if  (peeky.serverData.get(keySF, "ActiveGiveaways").length < Setting.GiveawayLimit)  {
 
-            var CreationProgress = 0;
-            var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.author.id  ];
+                var CreationProgress = 0;
+                var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.author.id  ];
 
-            function Generate(message)  {
+                function Generate(message)  {
 
-                CommandCooldown.add("giveaway" + message.guild.id)
-                setTimeout(() => {CommandCooldown.delete("giveaway" + message.guild.id)}, 10000);
+                    CommandCooldown.add("giveaway" + message.guild.id)
+                    setTimeout(() => {CommandCooldown.delete("giveaway" + message.guild.id)}, 10000);
 
-                if  (CreationProgress < 3)  {
+                    if  (CreationProgress < 3)  {
 
-                    CreationProgress ++;
-
-                    if  (CreationProgress == 1)  {
-                        var embed = { description: InfoIcon + " Before we start the giveaway, can you tell me what is gonna be the prize?", "color": EmbedColor };
-                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                    } else 
-                    if  (CreationProgress == 2)  {
-                        var embed = { description: InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.", "color": EmbedColor };
-                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                    } else 
-                    if  (CreationProgress == 3)  {
-                        var embed = { description: InfoIcon + " Now the last thing, how long is the giveaway gonna be in minutes?", "color": EmbedColor };
-                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                    };
-
-                    message.channel.awaitMessages(response => !response.author.bot && response.author.id == message.author.id, { max: 1, time: 10000, errors: ['time'] })
-                    .then(collected => {
-
-                        var Answer = collected.first().content;
-                        var InvalidArgument = ErrorIcon + " The provided argument is incorrect and the giveaway creating was cancelled.";
+                        CreationProgress ++;
 
                         if  (CreationProgress == 1)  {
-                            if  (Answer && Answer.length > 0)  {
-                                GiveawayInfo[0] = function_ProperSlice(function_RemoveFormatting(Answer, "other", true), 25);
-                                Generate(message);
-                            } else {
-                              const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
-                              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                            };  
+                            var embed = { description: InfoIcon + " Before we start the giveaway, can you tell me what is gonna be the prize?", "color": EmbedColor };
+                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                         } else 
                         if  (CreationProgress == 2)  {
-                            if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 10)  {
-                                GiveawayInfo[1] = Answer;
-                                Generate(message);
-                            } else {
-                              const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
-                              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                            };    
+                            var embed = { description: InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.", "color": EmbedColor };
+                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                         } else 
                         if  (CreationProgress == 3)  {
-                            if  (Answer && !isNaN(Answer) && Answer >= 1 && Answer <= 10080)  {
-                                GiveawayInfo[2] = Answer * MinuteMs;
-                                Generate(message);
-                            } else {
-                              const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
-                              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                            };   
+                            var embed = { description: InfoIcon + " Now the last thing, how long is the giveaway gonna be in minutes?", "color": EmbedColor };
+                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                         };
 
-                    })
-                    .catch(collected => {
-                        const embed = {"description": ErrorIcon + " The giveaway creation has been cancelled.",  "color": EmbedColor}; 
-                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                    });
+                        message.channel.awaitMessages(response => !response.author.bot && response.author.id == message.author.id, { max: 1, time: 10000, errors: ['time'] })
+                        .then(collected => {
 
-                } else {
-                  var embed = { description: 
-                                "**" + GiveawayInfo[0] + "**" + "\n" +
-                                "Host: " + "<@" + GiveawayInfo[6] + ">" + "\n" +
-                                "Winners: " + GiveawayInfo[1],
-                                "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Both", peeky.serverData.get(keySF, "timezone")) + "." },
-                                "color": EmbedColor };
-                  message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
-                      GiveawayInfo[4] = m.id;
-                      peeky.serverData.get(keySF, "ActiveGiveaways").push(GiveawayInfo);
+                            var Answer = collected.first().content;
+                            var InvalidArgument = ErrorIcon + " The provided argument is incorrect and the giveaway creating was cancelled.";
 
-                      m.react("🎁").catch(error => ErrorBag.add(error));
-                  });
+                            if  (CreationProgress == 1)  {
+                                if  (Answer && Answer.length > 0)  {
+                                    GiveawayInfo[0] = function_ProperSlice(function_RemoveFormatting(Answer, "other", true), 25);
+                                    Generate(message);
+                                } else {
+                                  const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
+                                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                };  
+                            } else 
+                            if  (CreationProgress == 2)  {
+                                if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 10)  {
+                                    GiveawayInfo[1] = Answer;
+                                    Generate(message);
+                                } else {
+                                  const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
+                                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                };    
+                            } else 
+                            if  (CreationProgress == 3)  {
+                                if  (Answer && !isNaN(Answer) && Answer >= 1 && Answer <= 10080)  {
+                                    GiveawayInfo[2] = Answer * MinuteMs;
+                                    Generate(message);
+                                } else {
+                                  const embed = {"description": InvalidArgument,  "color": EmbedColor}; 
+                                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                };   
+                            };
+
+                        })
+                        .catch(collected => {
+                            const embed = {"description": ErrorIcon + " The giveaway creation has been cancelled.",  "color": EmbedColor}; 
+                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        });
+
+                    } else {
+                      var embed = { description: 
+                                    "**" + GiveawayInfo[0] + "**" + "\n" +
+                                    "Host: " + "<@" + GiveawayInfo[6] + ">" + "\n" +
+                                    "Winners: " + GiveawayInfo[1],
+                                    "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Both", peeky.serverData.get(keySF, "timezone")) + "." },
+                                    "color": EmbedColor };
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
+                          GiveawayInfo[4] = m.id;
+                          peeky.serverData.get(keySF, "ActiveGiveaways").push(GiveawayInfo);
+
+                          m.react("🎁").catch(error => ErrorBag.add(error));
+                      });
+                    };
+
                 };
 
-            };
+                Generate(message);
 
-            Generate(message);
-
-            } else {
-              const embed = {"description": ErrorIcon + " You cannot create any more giveaways right now.",  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };
+                } else {
+                  const embed = {"description": ErrorIcon + " You cannot create any more giveaways right now.",  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
 
         } else {
           const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+          
+        } else {
+          const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
