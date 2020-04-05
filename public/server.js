@@ -9054,9 +9054,11 @@ if  (CommandName == "akinator")  {
 
                 var Continue = false;
                 var response = collected.first();
-                const nextInfo = await aki.step(Region, data.session, data.signature, function_FixCapitalization(response.content), Step);    
+                const nextInfo = await aki.step(Region, data.session, data.signature, function_FixCapitalization(response.content), Step);
               
-                Step = nextInfo.nextStep;
+                console.log(nextInfo)
+              
+                Step = nextInfo.currentStep;
 
                 if  (nextInfo.progress >= 80 || Step >= 100)  {
                   
@@ -9064,38 +9066,25 @@ if  (CommandName == "akinator")  {
                     var WinIndex = 0;
                   
                     var Header = "**Question #" + (Step + 1) + "**\n";
-                    var Subheader = "I think that its " + win.answers[WinIndex].name + "?";
+                    var Subheader = "I'm " + Number(nextInfo.progress).toFixed(1) + "% sure that it\'s " + win.answers[WinIndex].name + ".";
                     var Embedthumbnail = win.answers[WinIndex].absolute_picture_path;
+                    var FooterText = "­";
                   
                 } else  {
                   
                   var Header = "**Question #" + (Step + 1) + "**\n";
                   var Subheader = nextInfo.nextQuestion; 
                   var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_default.png?v=1586110261505";
+                  var FooterText = Responses.join(", ");
                   
                   Continue = true;
                   
                 };
               
-                var embed = { description: Header + Subheader, "footer": { "text": Responses.join(", ") }, "thumbnail": { "url": Embedthumbnail },  "color": EmbedColor };
+                var embed = { description: Header + Subheader, "footer": { "text": FooterText }, "thumbnail": { "url": Embedthumbnail },  "color": EmbedColor };
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
               
-                if  (Continue == false)  {
-                  
-                    //Gamer Badge
-                    if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
-                        peeky.userData.set(key, true, "GamerBadge");
-                        InfoMessages.push(InfoMessage1[Language]);
-                    };
-
-                    if  (peeky.userData.has(key))  {
-                        peeky.userData.math(key, "+", 125, "Exp");
-                    };
-
-                    const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has finished the game!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                  
-                } else {
+                if  (Continue == true)  {
                   Generate(message);
                 };
 
