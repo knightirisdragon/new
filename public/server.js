@@ -9032,6 +9032,32 @@ if (CommandName == "hangman")  {
   
 };
 
+//Akinator  
+if (CommandName == "akinator")  {
+
+    if  (!ActiveMinigames.has(message.guild.id))  {
+      
+        function Generate(message)  {
+
+          
+
+        };
+
+        ActiveMinigames.add(message.guild.id);
+        setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 60000);
+
+        Generate(message);
+
+        var embed = { description: "**Akinator**\n" + "question", "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+    } else {
+      const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+  
+};
+
 //DrawAndGuess  
 if  (CommandName == "drawandguess")  {
 
