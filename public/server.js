@@ -1383,6 +1383,8 @@ async function WebsiteStuff()  {
             };
 
         });
+          
+        if  (WorkshopList)
 
         await fs.writeFile('public/workshop.txt', "<div class='workshop'>" + WorkshopList.join(" ") + "</div>", (err) => {
             if (err) console.log(err);
