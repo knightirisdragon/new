@@ -9172,6 +9172,8 @@ if  (CommandName == "giveaway")  {
     if  (message.member.permissions.has("MANAGE_GUILD"))  {
 
         if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
+          
+            if  (CommandCooldown.has("giveaway" + message.guild.id))  {
 
             if  (peeky.serverData.get(keySF, "ActiveGiveaways").length < Setting.GiveawayLimit)  {
 
@@ -9179,6 +9181,9 @@ if  (CommandName == "giveaway")  {
             var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.author.id  ];
 
             function Generate(message)  {
+
+                CommandCooldown.add("giveaway" + message.guild.id)
+                setTimeout(() => {CommandCooldown.delete("giveaway" + message.guild.id)}, 10000);
 
                 if  (CreationProgress < 3)  {
 
