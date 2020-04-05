@@ -9034,7 +9034,7 @@ if (CommandName == "hangman")  {
 };
 
 //Akinator  
-if  (CommandName == "akinator")  {
+/*if  (CommandName == "akinator")  {
 
     if  (!ActiveMinigames.has(message.guild.id) && message.author.id == OwnerId)  {
       
@@ -9104,7 +9104,7 @@ if  (CommandName == "akinator")  {
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
-};
+};*/
 
 //DrawAndGuess  
 if  (CommandName == "drawandguess")  {
@@ -9201,7 +9201,7 @@ if  (CommandName == "giveaway")  {
 
         if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
           
-            if  (CommandCooldown.has("giveaway" + message.guild.id))  {
+            if  (!CommandCooldown.has("giveaway" + message.guild.id))  {
 
                 if  (peeky.serverData.get(keySF, "ActiveGiveaways").length < Setting.GiveawayLimit)  {
 
@@ -9293,22 +9293,20 @@ if  (CommandName == "giveaway")  {
                       const embed = {"description": ErrorIcon + " You cannot create any more giveaways right now.",  "color": EmbedColor}; 
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
-
-                } else {
-                  const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
-                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                };
           
+              } else {
+                const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              };
+
         } else {
-          const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
+          const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
-    }
-     else
-    {
-     const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    } else {
+      const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 };
