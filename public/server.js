@@ -9040,7 +9040,7 @@ if  (CommandName == "akinator")  {
       
         const Responses = [  "Yes", "No", "Don't know", "Probably", "Probably not"  ];
         var   Step = 0;
-        var Region = 'en2';
+        var   Region = 'en2';
       
         const data = await aki.start(Region);
 
@@ -9049,30 +9049,28 @@ if  (CommandName == "akinator")  {
             ActiveMinigames.add(message.guild.id);
             setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 10000);
 
-            message.channel.awaitMessages(response => /*response.author.id == message.author.id &&*/ (message.content == "Yes" || message.content == "No" || message.content == "Don't know" || message.content == "Probably" || message.content == "Probably not"), { max: 1, time: 10000, errors: ['time'] })
+            message.channel.awaitMessages(response => response.author.id == message.author.id && Responses.map(v => v.toLowerCase()).some(word => response.content.includes(word)), { max: 1, time: 10000, errors: ['time'] })
             .then(async collected => {
 
-                console.log("worked");
-                var response = collected.first().message;
-                console.log(response.content);
                 var Continue = false;
-                const nextInfo = await aki.step(Region, data.session, data.signature, response.content, Step);    
+                var response = collected.first();
+                const nextInfo = await aki.step(Region, data.session, data.signature, function_FixCapitalization(response.content), Step);    
               
-                Step = nextInfo.currentStep;
+                Step = nextInfo.nextStep;
 
-                if  (nextInfo.progress >= 80 || nextInfo.currentStep >= 100)  {
+                if  (nextInfo.progress >= 80 || Step >= 100)  {
                   
                     const win = await aki.win(Region, data.session, data.signature, Step);
                     var WinIndex = 0;
                   
                     var Header = "**Question #" + (Step + 1) + "**\n";
-                    var Subheader = "I have to make a last guess, is it " + win.answers[WinIndex].name + "?";
+                    var Subheader = "I think that its " + win.answers[WinIndex].name + "?";
                     var Embedthumbnail = win.answers[WinIndex].absolute_picture_path;
                   
                 } else  {
                   
                   var Header = "**Question #" + (Step + 1) + "**\n";
-                  var Subheader = nextInfo.question; 
+                  var Subheader = nextInfo.nextQuestion; 
                   var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_default.png?v=1586110261505";
                   
                   Continue = true;
