@@ -4311,7 +4311,7 @@ if  (!AutoManagementCooldown.has("cooldown"))  {
 
         if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= ExpirationMs))  {
             m.roles.remove(PremiumRole).catch(error => ErrorBag.add(error));
-          
+
             const embed = {"description": InfoIcon + " Your Premium has just expired, but you can renew it by going to the [store](https://peeky.glitch.me/store.html#premium)!",  "color": EmbedColor}; 
             m.send({ embed }).catch(error => ErrorBag.add(error));
         };
@@ -9036,7 +9036,7 @@ if (CommandName == "hangman")  {
 //Akinator  
 if  (CommandName == "akinator")  {
 
-    if  (!ActiveMinigames.has(message.guild.id))  {
+    if  (!ActiveMinigames.has(message.guild.id) && message.author.id == OwnerId)  {
       
         const Responses = [  "Yes", "No", "Don't know", "Probably", "Probably not"  ];
         var   Step = 0;
@@ -9056,9 +9056,7 @@ if  (CommandName == "akinator")  {
                 var response = collected.first();
                 const nextInfo = await aki.step(Region, data.session, data.signature, function_FixCapitalization(response.content), Step);
               
-                console.log(nextInfo)
-              
-                Step = nextInfo.currentStep;
+                Step = nextInfo.nextStep;
 
                 if  (nextInfo.progress >= 80 || Step >= 100)  {
                   
