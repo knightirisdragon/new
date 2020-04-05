@@ -1384,7 +1384,9 @@ async function WebsiteStuff()  {
 
         });
           
-        if  (WorkshopList)
+        if  (WorkshopList.length == 0)  {
+            WorkshopList = ["There are no new submissions in the Workshop right now."];
+        };
 
         await fs.writeFile('public/workshop.txt', "<div class='workshop'>" + WorkshopList.join(" ") + "</div>", (err) => {
             if (err) console.log(err);
