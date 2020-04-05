@@ -9039,7 +9039,7 @@ if  (CommandName == "akinator")  {
     if  (!ActiveMinigames.has(message.guild.id))  {
       
         const data = await aki.start('en');
-        const Responses = [];
+        const Responses = [  "Yes", "No", "Don't know", "Probably", "Probably not"  ];
 
         function Generate(message)  {
 
