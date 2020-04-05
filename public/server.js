@@ -8963,9 +8963,12 @@ if (CommandName == "hangman")  {
       
         function Generate(message)  {
 
+            ActiveMinigames.add(message.guild.id);
+            setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 10000);
+
             if  (WrongLetters.length < HangmanLevels.length && CensoredAnswer !== Answer.toLowerCase())  {
 
-                message.channel.awaitMessages(response => !response.author.bot && response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 1, time: 60000, errors: ['time'] })
+                message.channel.awaitMessages(response => !response.author.bot && response.content.length == 1 && !GuessedLetters.includes(response.content.toLowerCase()), { max: 1, time: 10000, errors: ['time'] })
                 .then(collected => {
 
                     var letter = collected.first().content.toLowerCase();
@@ -9017,9 +9020,6 @@ if (CommandName == "hangman")  {
 
       };
 
-      ActiveMinigames.add(message.guild.id);
-      setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 60000);
-
       Generate(message);
 
       var embed = { description: "**Hangman**\n" + CensoredAnswer + "\n\n" + WrongLetters.join(", "), "thumbnail": { "url": HangmanLevels[WrongLetters.length] },  "color": EmbedColor };
@@ -9039,12 +9039,32 @@ if (CommandName == "akinator")  {
       
         function Generate(message)  {
 
-          
+            ActiveMinigames.add(message.guild.id);
+            setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 10000);
+
+            message.channel.awaitMessages(response => response.author.id !== message.author.id && response.content.toLowerCase() == RandomWords[ChosenQuestion].toLowerCase(), { max: 1, time: 10000, errors: ['time'] })
+              .then(collected => {
+                   var key = collected.first().author.id;
+
+                  Active = false;
+
+                   //Gamer Badge
+                   if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
+                       peeky.userData.set(key, true, "GamerBadge");
+                       InfoMessages.push(InfoMessage1[Language]);
+                   };
+
+                   if  (peeky.userData.has(key))  {
+                       peeky.userData.math(key, "+", 350, "Exp");
+                   };
+
+              })
+              .catch(collected => {
+                  const embed = {"description": ErrorIcon + " You have ran out of time to respond.",  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              });
 
         };
-
-        ActiveMinigames.add(message.guild.id);
-        setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 60000);
 
         Generate(message);
 
@@ -9233,9 +9253,6 @@ if  (CommandName == "giveaway")  {
                 };
 
             };
-
-            CommandCooldown.add("giveaway" + message.author.id)
-            setTimeout(() => {CommandCooldown.delete("giveaway" + message.author.id)}, 10000);
 
             Generate(message);
 
