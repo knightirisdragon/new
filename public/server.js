@@ -5192,7 +5192,7 @@ if  (CommandName.startsWith("eval"))  {
   
         CommandArgument = CommandArgument.replace(" ", "");
       
-        if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {
+        if  (message.author.id == OwnerId)  {  //if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {
 
             function clean(text) {
             if  (typeof(text) === "string")
@@ -9304,7 +9304,16 @@ if  (CommandName == "giveaway")  {
 
                             })
                             .catch(collected => {
-                                const embed = {"description": ErrorIcon + " The giveaway creation has been cancelled.",  "color": EmbedColor}; 
+                                var TranslatedMessages = [
+                                    ErrorIcon + " The giveaway creation has been cancelled.",
+                                    ErrorIcon + " Vytváření soutěže bylo zrušeno.",
+                                    ErrorIcon + " Vytváranie darčekov bolo zrušené.",
+                                    ErrorIcon + " Çekiliş iptal edildi.",
+                                    ErrorIcon + " Creación del sorteo fue cancelada.",
+                                    ErrorIcon + " Создание конкурса было отменено.",
+                                ];
+                              
+                                const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
                                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                               
                                 CommandCooldown.delete("giveaway" + message.guild.id);
