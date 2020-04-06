@@ -4383,6 +4383,17 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
 
                                                       Winners.push(winner);
                                                       FixedWinners.push("<@" + winner + ">");
+                                    
+                                                      var TranslatedMessages = [
+                                                          SuccessIcon + "You have won a giveaway for **X001** in the **X002** server!",
+                                                          SuccessIcon + "Gratulace pro X001 za to že vyhráli soutež o **X002**!",
+                                                          SuccessIcon + "Congratulations to X001 for winning the **X002** giveaway!",
+                                                          SuccessIcon + "Congratulations to X001 for winning the **X002** giveaway!",
+                                                          SuccessIcon + "X001 Tebrikler **X002** çekilişini kazandiniz.",
+                                                          SuccessIcon + "Congratulations to X001 for winning the **X002** giveaway!",
+                                                      ];
+
+                                                      var embed = {"description": TranslatedMessages[Language], "color": EmbedColor}; 
 
                                                       var embed = {"description": SuccessIcon + " You have won a giveaway for **" + giveaway[0] + "** in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
                                                       function_DirectMessage(winner, { embed });
@@ -4406,8 +4417,17 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                                           "color": EmbedColor
                                       });
                                       message.edit(newEmbed).catch(error => ErrorBag.add(error));
+                                    
+                                      var TranslatedMessages = [
+                                          InfoIcon + "Congratulations to X001 for winning the **X002** giveaway!",
+                                          InfoIcon + "Gratulace pro X001 za to že vyhráli soutež o **X002**!",
+                                          InfoIcon + "Congratulations to X001 for winning the **X002** giveaway!",
+                                          InfoIcon + "Congratulations to X001 for winning the **X002** giveaway!",
+                                          InfoIcon + "X001 Tebrikler **X002** çekilişini kazandiniz.",
+                                          InfoIcon + "Congratulations to X001 for winning the **X002** giveaway!",
+                                      ];
 
-                                      var embed = {"description": InfoIcon + " Congratulations to " + FixedWinners.join(", ") + " for winning the **" + giveaway[0] + "** giveaway!", "color": EmbedColor}; 
+                                      var embed = {"description": TranslatedMessages[Language], "color": EmbedColor}; 
                                       channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                                   };
@@ -9088,11 +9108,11 @@ if  (CommandName == "akinator")  {
           
         })
         .catch(collected => {
-              const embed = {"description": ErrorIcon + " You have ran out of time to respond.",  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-              ActiveMinigames.delete(message.guild.id);
-          });
+            ActiveMinigames.delete(message.guild.id);
+        });
 
     } else {
       const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
