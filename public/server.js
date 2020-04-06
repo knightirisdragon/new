@@ -9037,9 +9037,12 @@ if (CommandName == "hangman")  {
 };
 
 //Akinator  
-/*if  (CommandName == "akinator")  {
+if  (CommandName == "akinator")  {
 
-    if  (!ActiveMinigames.has(message.guild.id) && message.author.id == OwnerId)  {
+    if  (!ActiveMinigames.has(message.guild.id))  {
+
+        ActiveMinigames.add(message.guild.id);
+        setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 10000);
       
         const Responses = [  "Yes", "No", "Don't know", "Probably", "Probably not"  ];
         var   Step = 0;
@@ -9052,12 +9055,12 @@ if (CommandName == "hangman")  {
             ActiveMinigames.add(message.guild.id);
             setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 10000);
 
-            message.channel.awaitMessages(response => response.author.id == message.author.id && Responses.map(v => v.toLowerCase()).some(word => response.content.includes(word)), { max: 1, time: 10000, errors: ['time'] })
+            message.channel.awaitMessages(response => response.author.id == message.author.id && Responses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 10000, errors: ['time'] })
             .then(async collected => {
 
                 var Continue = false;
                 var response = collected.first();
-                const nextInfo = await aki.step(Region, data.session, data.signature, function_FixCapitalization(response.content), Step);
+                const nextInfo = await aki.step(Region, data.session, data.signature, Responses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()), Step);
               
                 Step = nextInfo.nextStep;
 
@@ -9086,7 +9089,18 @@ if (CommandName == "hangman")  {
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
               
                 if  (Continue == true)  {
-                  Generate(message);
+                    Generate(message);
+                } else {
+                  
+                    //Gamer Badge
+                    if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
+                        peeky.userData.set(key, true, "GamerBadge");
+                    };
+
+                    if  (peeky.userData.has(key))  {
+                        peeky.userData.math(key, "+", 100, "Exp");
+                    };
+                  
                 };
 
             })
@@ -9107,7 +9121,7 @@ if (CommandName == "hangman")  {
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
-};*/
+};
 
 //DrawAndGuess  
 if  (CommandName == "drawandguess")  {
