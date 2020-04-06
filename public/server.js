@@ -9072,21 +9072,23 @@ if  (CommandName == "akinator")  {
                   
                     var Header = "**Question #" + (Step + 1) + "**\n";
                     var Subheader = "I'm " + Number(nextInfo.progress).toFixed(1) + "% sure that it\'s " + win.answers[WinIndex].name + ".";
-                    var Embedthumbnail = win.answers[WinIndex].absolute_picture_path;
+                    var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_thinkingpng.png?v=1586165635168";
+                    var ImageUrl = win.answers[WinIndex].absolute_picture_path;
                     var FooterText = "­";
                   
                 } else  {
                   
                   var Header = "**Question #" + (Step + 1) + "**\n";
                   var Subheader = nextInfo.nextQuestion; 
-                  var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_default.png?v=1586110261505";
+                  var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_default.png?v=1586165634346";
+                  var ImageUrl = HollowImage;
                   var FooterText = Responses.join(", ");
                   
                   Continue = true;
                   
                 };
               
-                var embed = { description: Header + Subheader, "footer": { "text": FooterText }, "thumbnail": { "url": Embedthumbnail },  "color": EmbedColor };
+                var embed = { description: Header + Subheader, "footer": { "text": FooterText }, "thumbnail": { "url": Embedthumbnail }, "image": { "url": ImageUrl },  "color": EmbedColor };
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
               
                 if  (Continue == true)  {
