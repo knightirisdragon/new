@@ -5216,47 +5216,6 @@ if  (CommandName.startsWith("eval"))  {
 
 };
 
-//Message
-if  (CommandName.startsWith("message"))  {
-  
-    var CommandArgument = CommandName.split("message")[1];
-    var CommandArray = CommandName.split(" ");
-  
-    if  (CommandArgument.startsWith(" "))  {
-  
-        CommandArgument = CommandArgument.replace(" ", "");
-      
-        var UserID = CommandArray[1];
-      
-        if  (peeky.guilds.get(SupportServer).members.has(message.author.id) && peeky.guilds.get(SupportServer).members.get(message.author.id).roles.has(StaffRole))  {
-          
-            const user = peeky.users.get(UserID);
-          
-            if  (user)  {
-                var embed = {"description": "**" + message.author.tag + ":** " + CommandArgument.replace(UserID, ""), "footer": { "text": "This message was manually sent by someone from PEEKY's staff." }, "color": EmbedColor};
-                function_DirectMessage(user.id, { embed });
-              
-                var embed = {"description": SuccessIcon + " I have sent your message to the user.",  "color": EmbedColor};
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            } else {
-              const embed = {"description": ErrorIcon + " I couldn't find the user.",  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };           
-            
-        } else {
-          const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
-
-    }
-     else if (CommandArgument == "")
-    {
-     const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-
-};
-
 //Help
 if (CommandName == "help")  {
   
