@@ -4822,9 +4822,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
             };
 
-            }
-             else
-            {
+            } else {
              FloodProtectionStrikes.push(message.author.id);
 
              setTimeout(() => {
@@ -8805,16 +8803,15 @@ if (CommandName == "guessthesong")  {
     if  (!CurrentlyPlaying.has(message.guild.id) && !ActiveMinigames.has(message.guild.id))  {
 
         if  (message.member.voice.channel)  {
+
+            ActiveMinigames.add(message.guild.id);
           
             const voiceChannel  = message.member.voice.channel;
             var ChosenSong = Math.floor((Math.random() * YoutubeSongs.length));
           
             InfoMessages.push(InfoIcon + " Full Song: <" + YoutubeSongs[ChosenSong][0] + ">");
-
             CurrentlyPlaying.add(message.guild.id);
-            ActiveMinigames.add(message.guild.id);
-            setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)
-                              ActiveMinigames.delete(message.guild.id)}, 30000);
+            setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 30000);
           
             if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
   
@@ -8858,6 +8855,8 @@ if (CommandName == "guessthesong")  {
                         };
                         message.guild.me.voice.channel.leave();
                       
+                        ActiveMinigames.delete(message.guild.id);
+                      
                     })
                     .catch(collected => {
                         const embed = {"description": ErrorIcon + " The song's name was **" + YoutubeSongs[ChosenSong][1] + "**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
@@ -8868,6 +8867,8 @@ if (CommandName == "guessthesong")  {
                             connection.dispatcher.end();
                         };
                         message.guild.me.voice.channel.leave();
+                      
+                        ActiveMinigames.delete(message.guild.id);
                     });
 
                 });
@@ -8892,11 +8893,10 @@ if (CommandName == "triviaquestions")  {
 
     if  (!ActiveMinigames.has(message.guild.id))  {
 
+        ActiveMinigames.add(message.guild.id);
+
         var ChosenQuestion = Math.floor((Math.random() * TriviaQuestions.length));
         var Answers = function_ShuffleArray(TriviaQuestions[ChosenQuestion].slice(1, 4));
-
-        ActiveMinigames.add(message.guild.id);
-        setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 30000);
       
         const embed = {"description": "**" + TriviaQuestions[ChosenQuestion][0] + "**\n" + TriviaQuestions[ChosenQuestion][4] + "\n\n" + function_NumarizeArray(Answers, ["", ""], null),  "color": EmbedColor}; 
         message.channel.send({ embed });
@@ -8917,10 +8917,14 @@ if (CommandName == "triviaquestions")  {
 
              const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
              message.channel.send({ embed });
+                      
+             ActiveMinigames.delete(message.guild.id);
         })
         .catch(collected => {
               const embed = {"description": ErrorIcon + " The question's answer was **" + TriviaQuestions[ChosenQuestion][1][0] + "**.",  "color": EmbedColor}; 
               message.channel.send({ embed });
+                      
+              ActiveMinigames.delete(message.guild.id);
         });
       
     } else {
@@ -8936,7 +8940,6 @@ if (CommandName == "hangman")  {
     if  (!ActiveMinigames.has(message.guild.id))  {
 
         ActiveMinigames.add(message.guild.id);
-        setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 10000);
 
         var ChosenQuestion = Math.floor((Math.random() * RandomWords.length));
         var Answer = RandomWords[ChosenQuestion];
@@ -8966,9 +8969,6 @@ if (CommandName == "hangman")  {
         };
       
         function Generate(message)  {
-
-            ActiveMinigames.add(message.guild.id);
-            setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 10000);
 
             if  (WrongLetters.length < HangmanLevels.length && CensoredAnswer !== Answer.toLowerCase())  {
 
@@ -9002,12 +9002,15 @@ if (CommandName == "hangman")  {
                   
                     if  (WrongLetters.length >= HangmanLevels.length - 1 || CensoredAnswer == Answer.toLowerCase())  {
                         if  (CensoredAnswer == Answer.toLowerCase())  {
-                           const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(LastMember.displayName, "other", true) + "** has completed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                           message.channel.send({ embed });
-
+                            const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(LastMember.displayName, "other", true) + "** has completed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                            message.channel.send({ embed });
+                      
+                            ActiveMinigames.delete(message.guild.id);
                         } else {
                           const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
                           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                      
+                          ActiveMinigames.delete(message.guild.id);
                         };
                     
                     } else {
@@ -9018,6 +9021,8 @@ if (CommandName == "hangman")  {
                 .catch(collected => {
                     const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                      
+                    ActiveMinigames.delete(message.guild.id);
                 });
               
             };
@@ -9042,7 +9047,6 @@ if  (CommandName == "akinator")  {
     if  (!ActiveMinigames.has(message.guild.id))  {
 
         ActiveMinigames.add(message.guild.id);
-        setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 10000);
       
         const Responses = [  "Yes", "No", "Don't know", "Probably", "Probably not"  ];
         var   Step = 0;
@@ -9051,9 +9055,6 @@ if  (CommandName == "akinator")  {
         const data = await aki.start(Region);
 
         function Generate(message)  {
-
-            ActiveMinigames.add(message.guild.id);
-            setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 10000);
 
             message.channel.awaitMessages(response => response.author.id == message.author.id && Responses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 10000, errors: ['time'] })
             .then(async collected => {
@@ -9100,6 +9101,8 @@ if  (CommandName == "akinator")  {
                     if  (peeky.userData.has(key))  {
                         peeky.userData.math(key, "+", 100, "Exp");
                     };
+                      
+                    ActiveMinigames.delete(message.guild.id);
                   
                 };
 
@@ -9107,6 +9110,8 @@ if  (CommandName == "akinator")  {
             .catch(collected => {
                 const embed = {"description": ErrorIcon + " You have ran out of time to respond.",  "color": EmbedColor}; 
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                      
+                ActiveMinigames.delete(message.guild.id);
             });
 
         };
