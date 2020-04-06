@@ -127,6 +127,7 @@ Now the last thing, how long is the giveaway gonna be in minutes? |
 The provided argument is incorrect and the giveaway creating was cancelled. | 
 You cannot create any more giveaways right now. | 
 Congratulations to X001 for winning the **X002** giveaway! |
+The giveaway creation has been cancelled. | 
 
 I have set the slowmode to **X001 seconds** at **X002**'s request. | 
 

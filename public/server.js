@@ -9210,15 +9210,11 @@ if  (CommandName == "giveaway")  {
                 if  (peeky.serverData.get(keySF, "ActiveGiveaways").length < Setting.GiveawayLimit)  {
 
                     CommandCooldown.add("giveaway" + message.guild.id)
-                    setTimeout(() => {CommandCooldown.delete("giveaway" + message.guild.id)}, 10000);
 
                     var CreationProgress = 0;
                     var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.author.id  ];
 
                     function Generate(message)  {
-
-                        CommandCooldown.add("giveaway" + message.guild.id)
-                        setTimeout(() => {CommandCooldown.delete("giveaway" + message.guild.id)}, 10000);
 
                         if  (CreationProgress < 3)  {
 
@@ -9240,7 +9236,7 @@ if  (CommandName == "giveaway")  {
                             if  (CreationProgress == 2)  {
                                 var TranslatedMessages = [
                                     InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.",
-                                    InfoIcon + " Dobre,teraz mi povedz koľko bude počet výhercov pre toto rozdávanie.",
+                                    InfoIcon + " Dobre, teraz mi povedz koľko bude počet výhercov pre toto rozdávanie.",
                                     InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.",
                                     InfoIcon + " Güzel, şimdi söyle bana bu hediyenin kazananlari kaç kişi olacak.",
                                     InfoIcon + " Bien, ahora dime cuántos ganadores habra en este sorteo.",
@@ -9254,7 +9250,7 @@ if  (CommandName == "giveaway")  {
                                 var TranslatedMessages = [
                                     InfoIcon + " Now the last thing, how long is the giveaway gonna be in minutes?",
                                     InfoIcon + " Poslední otázka, kolik minut bude tato soutěž trvat?",
-                                    InfoIcon + " Dobre,teraz mi povedz koľko bude počet výhercov pre toto rozdávanie.",
+                                    InfoIcon + " A teraz posledná vec, aké dlhé bude rozdávanie v minútach?",
                                     InfoIcon + " Ahora lo último, ¿cuánto tiempo va a durar el sorteo en minutos?",
                                     InfoIcon + " Şimdi son şey, çekiliş kaç dakika sürecek?",
                                     InfoIcon + " И последнее, как долго будет продлиться конкурс в минутах?",
@@ -9310,6 +9306,8 @@ if  (CommandName == "giveaway")  {
                             .catch(collected => {
                                 const embed = {"description": ErrorIcon + " The giveaway creation has been cancelled.",  "color": EmbedColor}; 
                                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                              
+                                CommandCooldown.delete("giveaway" + message.guild.id);
                             });
 
                         } else {
@@ -9325,6 +9323,8 @@ if  (CommandName == "giveaway")  {
 
                               m.react("🎁").catch(error => ErrorBag.add(error));
                           });
+                              
+                          CommandCooldown.delete("giveaway" + message.guild.id);
                         };
 
                     };
