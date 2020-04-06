@@ -4168,7 +4168,11 @@ if  (message)  {
   
 //Workshop Response
 if  (message.channel.id == WorkshopChannel && message.author.id !== PeekyId)  {
-    const embed = {"description": ErrorIcon + " Your submission in the Workshop has been denied.",  "color": EmbedColor}; 
+    if  (new Date() - new Date(message.createdAt) < 5000)  {
+        var embed = {"description": ErrorIcon + " Your submission in the Workshop had a wrong format.",  "color": EmbedColor};
+    } else {
+      var embed = {"description": ErrorIcon + " Your submission in the Workshop has been denied.",  "color": EmbedColor};
+    };
     function_DirectMessage(message.author.id, { embed });
 };
   
