@@ -4410,10 +4410,10 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                                       var TranslatedMessages = [
                                           InfoIcon + " Congratulations to X001 for winning the **X002** giveaway!",
                                           InfoIcon + " Gratulace pro X001 za to že vyhráli soutež o **X002**!",
-                                          InfoIcon + " Congratulations to X001 for winning the **X002** giveaway!",
+                                          InfoIcon + " Blahoželanie pre X001 za vyhratie X002 rozdávania!",
                                           InfoIcon + " ¡Felicitaciones a X001 por ganar el sorteo de **X002**!",
                                           InfoIcon + " X001 Tebrikler **X002** çekilişini kazandiniz.",
-                                          InfoIcon + " Congratulations to X001 for winning the **X002** giveaway!",
+                                          InfoIcon + " Поздравляем X001 с выигрышем подарка **X002**!",
                                       ];
 
                                       var embed = {"description": TranslatedMessages[Language], "color": EmbedColor}; 
@@ -9228,10 +9228,10 @@ if  (CommandName == "giveaway")  {
                                 var TranslatedMessages = [
                                     InfoIcon + " Before we start the giveaway, can you tell me what is gonna be the prize?",
                                     InfoIcon + " Než začnem se soutěží, můžete mi říct co o se hraje?",
-                                    InfoIcon + " Before we start the giveaway, can you tell me what is gonna be the prize?",
+                                    InfoIcon + " Predtým než začneme rozdávanie,môžeš mi povedať čo bude cena?",
                                     InfoIcon + " Antes de empezar el sorteo, ¿puedes decirme cuál será el premio?",
                                     InfoIcon + " Çekilişe başlamadan önce bana ödülün ne olacagini söyleyebilir misin?",
-                                    InfoIcon + " Before we start the giveaway, can you tell me what is gonna be the prize?",
+                                    InfoIcon + " Перед тем, как мы начнем конкурс, не могли бы вы сказать мне, какой будет приз?",
                                 ];
                               
                                 var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
@@ -9240,11 +9240,11 @@ if  (CommandName == "giveaway")  {
                             if  (CreationProgress == 2)  {
                                 var TranslatedMessages = [
                                     InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.",
-                                    InfoIcon + " Skělý, teď mi prosím řekněte, kolik lidí může tuto soutěž vyhrát.",
+                                    InfoIcon + " Dobre,teraz mi povedz koľko bude počet výhercov pre toto rozdávanie.",
                                     InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.",
                                     InfoIcon + " Güzel, şimdi söyle bana bu hediyenin kazananlari kaç kişi olacak.",
                                     InfoIcon + " Bien, ahora dime cuántos ganadores habra en este sorteo.",
-                                    InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.",
+                                    InfoIcon + " Отлично, теперь скажи мне, сколько будет победителей в этом конкурсе.",
                                 ];
                               
                                 var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
@@ -9254,10 +9254,10 @@ if  (CommandName == "giveaway")  {
                                 var TranslatedMessages = [
                                     InfoIcon + " Now the last thing, how long is the giveaway gonna be in minutes?",
                                     InfoIcon + " Poslední otázka, kolik minut bude tato soutěž trvat?",
-                                    InfoIcon + " Now the last thing, how long is the giveaway gonna be in minutes?",
+                                    InfoIcon + " Dobre,teraz mi povedz koľko bude počet výhercov pre toto rozdávanie.",
                                     InfoIcon + " Ahora lo último, ¿cuánto tiempo va a durar el sorteo en minutos?",
                                     InfoIcon + " Şimdi son şey, çekiliş kaç dakika sürecek?",
-                                    InfoIcon + " Now the last thing, how long is the giveaway gonna be in minutes?",
+                                    InfoIcon + " И последнее, как долго будет продлиться конкурс в минутах?",
                                 ];
                               
                                 var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
@@ -9271,11 +9271,11 @@ if  (CommandName == "giveaway")  {
                               
                                 var TranslatedMessages = [
                                     ErrorIcon + " The provided argument is incorrect and the giveaway creating was cancelled.",
-                                    ErrorIcon + " The provided argument is incorrect and the giveaway creating was cancelled.",
+                                    ErrorIcon + " Nějaké argumenty byly špatné a vytváření soutěže bylo zrušeno.",
+                                    ErrorIcon + " Zadaný argument je nesprávny a vytváranie darčekov bolo zrušené.",
                                     ErrorIcon + " Yanliş argüman, çekiliş iptal edildi.",
                                     ErrorIcon + " El argumento proporcionado es incorrecto y la creación del sorteo fue cancelada.",
-                                    ErrorIcon + " The provided argument is incorrect and the giveaway creating was cancelled.",
-                                    ErrorIcon + " The provided argument is incorrect and the giveaway creating was cancelled.",
+                                    ErrorIcon + " Предоставленный аргумент неверен, и создание конкурса было отменено.",
                                 ];
 
                                 if  (CreationProgress == 1)  {
@@ -9332,7 +9332,17 @@ if  (CommandName == "giveaway")  {
                     Generate(message);
 
                     } else {
-                      const embed = {"description": ErrorIcon + " You cannot create any more giveaways right now.",  "color": EmbedColor}; 
+                              
+                      var TranslatedMessages = [
+                          ErrorIcon + " You cannot create any more giveaways right now.",
+                          ErrorIcon + " Zatím nemůžete vytvořit více souteží.",
+                          ErrorIcon + " Nemôžeš vytvoriť už žiadne rozdávanie práve teraz.",
+                          ErrorIcon + " YNo puedes crear más sorteos ahora mismo.",
+                          ErrorIcon + " Şu anda başka çekiliş oluşturamazsiniz.",
+                          ErrorIcon + " Вы не можете больше создавать конкурсы прямо сейчас.",
+                      ];
+
+                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
           
