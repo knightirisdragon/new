@@ -8047,7 +8047,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                 ctx.drawImage(leaderboard_icon, canvas.width / 2 + 10, 155, 27, 27);
 
                 //Badges
-                var   BadgeYpos    = 201.5;
+                var   BadgeYpos    = 203;
                 var   BadgeXpos    = -24;
                 const BadgeXposAmt = 32.5;
                 var   BadgeAmount  = 0;
