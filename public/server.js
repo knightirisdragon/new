@@ -8800,7 +8800,7 @@ if (CommandName == "guessthesong")  {
                         var key = collected.first().author.id;
 
                         //Gamer Badge
-                        if  (peeky.userData.has(key) && !peeky.userData.get(key, "GamerBadge"))  {
+                        if  (peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
                             peeky.userData.set(key, true, "GamerBadge");
                             InfoMessages.push(InfoMessage1[Language]);
                         };
@@ -8869,7 +8869,7 @@ if (CommandName == "triviaquestions")  {
              var key = collected.first().author.id;
 
              //Gamer Badge
-             if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
+             if  (!peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
                  peeky.userData.set(key, true, "GamerBadge");
                  InfoMessages.push(InfoMessage1[Language]);
              };
@@ -9015,76 +9015,84 @@ if  (CommandName == "akinator")  {
         var   Step = 0;
         var   Region = 'en2';
       
-        const data = await aki.start(Region);
+        await aki.start(Region).then(data => {
 
-        function Generate(message)  {
+            function Generate(message)  {
 
-            message.channel.awaitMessages(response => response.author.id == message.author.id && Responses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 10000, errors: ['time'] })
-            .then(async collected => {
+                message.channel.awaitMessages(response => response.author.id == message.author.id && Responses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 10000, errors: ['time'] })
+                .then(async collected => {
 
-                var Continue = false;
-                var response = collected.first();
-                const nextInfo = await aki.step(Region, data.session, data.signature, Responses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()), Step);
-              
-                Step = nextInfo.nextStep;
+                    var Continue = false;
+                    var response = collected.first();
+                    const nextInfo = await aki.step(Region, data.session, data.signature, Responses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()), Step);
 
-                if  (nextInfo.progress >= 80 || Step >= 100)  {
-                  
-                    const win = await aki.win(Region, data.session, data.signature, Step);
-                    var WinIndex = 0;
-                  
-                    var Header = "**Question #" + (Step + 1) + "**\n";
-                    var Subheader = "I'm " + Number(nextInfo.progress).toFixed(1) + "% sure that it\'s " + win.answers[WinIndex].name + ".";
-                    var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_thinkingpng.png?v=1586165635168";
-                    var ImageUrl = win.answers[WinIndex].absolute_picture_path;
-                    var FooterText = "­";
-                  
-                } else  {
-                  
-                  var Header = "**Question #" + (Step + 1) + "**\n";
-                  var Subheader = nextInfo.nextQuestion; 
-                  var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_default.png?v=1586165634346";
-                  var ImageUrl = HollowImage;
-                  var FooterText = Responses.join(", ");
-                  
-                  Continue = true;
-                  
-                };
-              
-                var embed = { description: Header + Subheader, "footer": { "text": FooterText }, "thumbnail": { "url": Embedthumbnail }, "image": { "url": ImageUrl },  "color": EmbedColor };
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-              
-                if  (Continue == true)  {
-                    Generate(message);
-                } else {
-                  
-                    //Gamer Badge
-                    if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
-                        peeky.userData.set(key, true, "GamerBadge");
+                    Step = nextInfo.nextStep;
+
+                    if  (nextInfo.progress >= 80 || Step >= 100)  {
+
+                        const win = await aki.win(Region, data.session, data.signature, Step);
+                        var WinIndex = 0;
+
+                        var Header = "**Question #" + (Step + 1) + "**\n";
+                        var Subheader = "I'm " + Number(nextInfo.progress).toFixed(1) + "% sure that it\'s " + win.answers[WinIndex].name + ".";
+                        var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_thinkingpng.png?v=1586165635168";
+                        var ImageUrl = win.answers[WinIndex].absolute_picture_path;
+                        var FooterText = "­";
+
+                    } else  {
+
+                      var Header = "**Question #" + (Step + 1) + "**\n";
+                      var Subheader = nextInfo.nextQuestion; 
+                      var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_default.png?v=1586165634346";
+                      var ImageUrl = HollowImage;
+                      var FooterText = Responses.join(", ");
+
+                      Continue = true;
+
                     };
 
-                    if  (peeky.userData.has(key))  {
-                        peeky.userData.math(key, "+", 100, "Exp");
+                    var embed = { description: Header + Subheader, "footer": { "text": FooterText }, "thumbnail": { "url": Embedthumbnail }, "image": { "url": ImageUrl },  "color": EmbedColor };
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                    if  (Continue == true)  {
+                        Generate(message);
+                    } else {
+
+                        //Gamer Badge
+                        if  (!peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
+                            peeky.userData.set(key, true, "GamerBadge");
+                        };
+
+                        if  (peeky.userData.has(key))  {
+                            peeky.userData.math(key, "+", 100, "Exp");
+                        };
+
+                        ActiveMinigames.delete(message.guild.id);
+
                     };
-                      
+
+                })
+                .catch(collected => {
+                    const embed = {"description": ErrorIcon + " You have ran out of time to respond.",  "color": EmbedColor}; 
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
                     ActiveMinigames.delete(message.guild.id);
-                  
-                };
+                });
 
-            })
-            .catch(collected => {
-                const embed = {"description": ErrorIcon + " You have ran out of time to respond.",  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                      
-                ActiveMinigames.delete(message.guild.id);
-            });
+            };
 
-        };
+            Generate(message);
 
-        Generate(message);
+            var embed = { description: "**Question #" + 1 + "**\n" + data.question, "footer": { "text": Responses.join(", ") }, "thumbnail": { "url": "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_default.png?v=1586110261505" },  "color": EmbedColor };
+            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          
+        })
+        .catch(collected => {
+              const embed = {"description": ErrorIcon + " You have ran out of time to respond.",  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-        var embed = { description: "**Question #" + 1 + "**\n" + data.question, "footer": { "text": Responses.join(", ") }, "thumbnail": { "url": "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_default.png?v=1586110261505" },  "color": EmbedColor };
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              ActiveMinigames.delete(message.guild.id);
+          });
 
     } else {
       const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
@@ -9150,7 +9158,7 @@ if  (CommandName == "drawandguess")  {
                 Active = false;
 
                  //Gamer Badge
-                 if  (!peeky.userData.has(key) && peeky.userData.get(key, "GamerBadge"))  {
+                 if  (!peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
                      peeky.userData.set(key, true, "GamerBadge");
                      InfoMessages.push(InfoMessage1[Language]);
                  };
