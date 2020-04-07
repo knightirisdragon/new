@@ -9052,30 +9052,42 @@ if  (CommandName == "akinator")  {
                         message.channel.awaitMessages(response => response.author.id == message.author.id && WinResponses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 10000, errors: ['time'] })
                         .then(collected => {
                           
-                            if  (WinResponses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase() == 0)) {
+                            var response = collected.first();
+                          
+                            if  (response.content.toLowerCase() == "yes") {
 
                                 var Header = "**Akinator Wins**\n";
                                 var Subheader = "Yay, I guessed it!";
                                 var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_end.png?v=1586230426245";
                                 var ImageUrl = HollowImage;
-                              var FooterText = "­";
+                                var FooterText = "­";
                                  
                             } else {
 
                               var Header = "**Akinator Loses**\n";
-                              var Subheader = "**Congratulations, you've beaten me!**\n";
+                              var Subheader = "Congratulations, you've beaten me!\n";
                               var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_end.png?v=1586230426245";
                               var ImageUrl = HollowImage;
                               var FooterText = "­";
+                          
+                              //Gamer Badge
+                              if  (!peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
+                                  peeky.userData.set(key, true, "GamerBadge");
+                              };
+
+                              if  (peeky.userData.has(key))  {
+                                  peeky.userData.math(key, "+", 350, "Exp");
+                              };
                               
                             };                       
 
                             var embed = { description: Header + Subheader, "footer": { "text": FooterText }, "thumbnail": { "url": Embedthumbnail }, "image": { "url": ImageUrl },  "color": EmbedColor };
                             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                            
+
+                            ActiveMinigames.delete(message.guild.id);
                           
                         }).catch(collected => {
-                          
+                            ActiveMinigames.delete(message.guild.id);
                         });
 
                     } else  {
@@ -9095,19 +9107,6 @@ if  (CommandName == "akinator")  {
 
                     if  (Continue == true)  {
                         Generate(message);
-                    } else {
-
-                        //Gamer Badge
-                        if  (!peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
-                            peeky.userData.set(key, true, "GamerBadge");
-                        };
-
-                        if  (peeky.userData.has(key))  {
-                            peeky.userData.math(key, "+", 100, "Exp");
-                        };
-
-                        ActiveMinigames.delete(message.guild.id);
-
                     };
 
                 })
