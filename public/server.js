@@ -4416,7 +4416,7 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
                                           InfoIcon + " Поздравляем X001 с выигрышем подарка **X002**!",
                                       ];
 
-                                      var embed = {"description": TranslatedMessages[Language], "color": EmbedColor}; 
+                                      var embed = {"description": TranslatedMessages[Language].replace("X001", FixedWinners.Join(" ")).replace("X002", giveaway[0]), "color": EmbedColor}; 
                                       channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                                   };
@@ -9692,25 +9692,29 @@ if  (CommandName.startsWith("kick"))  {
 
             var MentionedMember = message.mentions.members.first();
 
-            if  (MentionedMember && MentionedMember.kickable && !MentionedMember.permissions.has("KICK_MEMBERS"))  {
+            if  (MentionedMember)  {
+              
+                if  (MentionedMember.kickable && !MentionedMember.permissions.has("KICK_MEMBERS"))  {;
 
-                await MentionedMember.kick("Kicked by " + message.author.tag + ".").catch(error => { 
-                      const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
-                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                      ErrorBag.add(error); Failed = true;
-                });
+                    await MentionedMember.kick("Kicked by " + message.author.tag + ".").catch(error => { 
+                          const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
+                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                          ErrorBag.add(error); Failed = true;
+                    });
 
-                if  (Failed == false)  {
-                    var TranslatedMessages = [SuccessIcon + " I have kicked **X001** at **X002**'s request.", SuccessIcon + " Vykopl jsem **X001 zpráv** na požádání od **X002**.", SuccessIcon + " Vyhodul som **X001** na **X002* požiadavku.", SuccessIcon + " He kickeado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine attım.", SuccessIcon + " выгнал **X001** по запросу **X002**."];
-                    const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    if  (Failed == false)  {
+                        var TranslatedMessages = [SuccessIcon + " I have kicked **X001** at **X002**'s request.", SuccessIcon + " Vykopl jsem **X001 zpráv** na požádání od **X002**.", SuccessIcon + " Vyhodul som **X001** na **X002* požiadavku.", SuccessIcon + " He kickeado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine attım.", SuccessIcon + " выгнал **X001** по запросу **X002**."];
+                        const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    };
+
+                }
+                 else
+                {
+                  var TranslatedMessages = [ErrorIcon + " You cannot kick that user.", ErrorIcon + " Tohoto uživatele vykopnout nemůžete.", ErrorIcon + " Nemôžeš vyhodiť tohoto uživateľa.", ErrorIcon + " Usted no puede kickear a aquel usuario.", ErrorIcon + " Bu kullanıcıyı atamazsın.", ErrorIcon + " Вы не можете выгнать этого пользователя."];
+                  const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                 };
-
-            }
-             else
-            {
-              var TranslatedMessages = [ErrorIcon + " You cannot kick that user.", ErrorIcon + " Tohoto uživatele vykopnout nemůžete.", ErrorIcon + " Nemôžeš vyhodiť tohoto uživateľa.", ErrorIcon + " Usted no puede kickear a aquel usuario.", ErrorIcon + " Bu kullanıcıyı atamazsın.", ErrorIcon + " Вы не можете выгнать этого пользователя."];
-              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+              
             };
 
         }
