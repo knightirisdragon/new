@@ -9045,9 +9045,38 @@ if  (CommandName == "akinator")  {
 
                         var Header = "**Question #" + (Step + 1) + "**\n";
                         var Subheader = "I'm " + Number(nextInfo.progress).toFixed(1) + "% sure that it\'s " + win.answers[WinIndex].name + ".";
-                        var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_thinkingpng.png?v=1586165635168";
+                        var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_thinking.png?v=1586230434786";
                         var ImageUrl = win.answers[WinIndex].absolute_picture_path;
                         var FooterText = WinResponses.join(", ");
+                      
+                        message.channel.awaitMessages(response => response.author.id == message.author.id && WinResponses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 10000, errors: ['time'] })
+                        .then(collected => {
+                          
+                            if  (WinResponses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase() == 0)) {
+
+                                var Header = "**Akinator Wins**\n";
+                                var Subheader = "Yay, I guessed it!";
+                                var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_end.png?v=1586230426245";
+                                var ImageUrl = HollowImage;
+                              var FooterText = "­";
+                                 
+                            } else {
+
+                              var Header = "**Akinator Loses**\n";
+                              var Subheader = "**Congratulations, you've beaten me!**\n";
+                              var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_end.png?v=1586230426245";
+                              var ImageUrl = HollowImage;
+                              var FooterText = "­";
+                              
+                            };                       
+
+                            var embed = { description: Header + Subheader, "footer": { "text": FooterText }, "thumbnail": { "url": Embedthumbnail }, "image": { "url": ImageUrl },  "color": EmbedColor };
+                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                            
+                          
+                        }).catch(collected => {
+                          
+                        });
 
                     } else  {
 
@@ -9078,13 +9107,6 @@ if  (CommandName == "akinator")  {
                         };
 
                         ActiveMinigames.delete(message.guild.id);
-                      
-                        message.channel.awaitMessages(response => response.author.id == message.author.id && RWinResponses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 10000, errors: ['time'] })
-                        .then(collected => {
-                          
-                        }).catch(collected => {
-                          
-                        });
 
                     };
 
