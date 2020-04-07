@@ -5,7 +5,7 @@
   "Message": "",
   
   "DefaultPrefix": "p!",
-  "MaxServers": 100,
+  "MaxServers": 1000,
   
   "EventName": "None",
   "EventStatus": false,
