@@ -9057,7 +9057,7 @@ if  (CommandName == "akinator")  {
                             if  (response.content.toLowerCase() == "yes") {
 
                                 var Header = "**Akinator Wins**\n";
-                                var Subheader = "Yay, I guessed it!";
+                                var Subheader = "Yay, I guessed it one more time!";
                                 var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_end.png?v=1586230426245";
                                 var ImageUrl = HollowImage;
                                 var FooterText = "­";
