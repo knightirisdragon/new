@@ -9021,6 +9021,7 @@ if  (CommandName == "akinator")  {
         ActiveMinigames.add(message.guild.id);
       
         const Responses = [  "Yes", "No", "Don't know", "Probably", "Probably not"  ];
+        const WinResponses = [  "Yes", "No"  ];;
         var   Step = 0;
         var   Region = 'en2';
       
@@ -9046,12 +9047,12 @@ if  (CommandName == "akinator")  {
                         var Subheader = "I'm " + Number(nextInfo.progress).toFixed(1) + "% sure that it\'s " + win.answers[WinIndex].name + ".";
                         var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_thinkingpng.png?v=1586165635168";
                         var ImageUrl = win.answers[WinIndex].absolute_picture_path;
-                        var FooterText = "­";
+                        var FooterText = WinResponses.join(", ");
 
                     } else  {
 
                       var Header = "**Question #" + (Step + 1) + "**\n";
-                      var Subheader = nextInfo.nextQuestion; 
+                      var Subheader = nextInfo.nextQuestion;
                       var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_default.png?v=1586165634346";
                       var ImageUrl = HollowImage;
                       var FooterText = Responses.join(", ");
@@ -9077,6 +9078,13 @@ if  (CommandName == "akinator")  {
                         };
 
                         ActiveMinigames.delete(message.guild.id);
+                      
+                        message.channel.awaitMessages(response => response.author.id == message.author.id && RWinResponses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 10000, errors: ['time'] })
+                        .then(collected => {
+                          
+                        }).catch(collected => {
+                          
+                        });
 
                     };
 
@@ -9401,12 +9409,6 @@ if  (CommandName.startsWith("nsfw"))  {
 
 //Mute
 if  (CommandName.startsWith("mute"))  {
-  
-    var CommandArgument = CommandName.split("mute")[1];
-  
-if  (CommandArgument.startsWith(" "))  {
-      
-    CommandArgument = CommandArgument.replace(" ", "");
 
     if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 
@@ -9434,128 +9436,88 @@ if  (CommandArgument.startsWith(" "))  {
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
 
-                    }
-                     else
-                    {
-                     var TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete.", ErrorIcon + " Nemôžeš mutnúť tohoto uživateľa.", ErrorIcon + " No puedes silenciar a ese usuario.", ErrorIcon + " Bu kullanıcının susturamazsınız.", ErrorIcon + " Вы не можете отключить звук этого пользователя."];
-                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                    } else {
+                      var TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete.", ErrorIcon + " Nemôžeš mutnúť tohoto uživateľa.", ErrorIcon + " No puedes silenciar a ese usuario.", ErrorIcon + " Bu kullanıcının susturamazsınız.", ErrorIcon + " Вы не можете отключить звук этого пользователя."];
+                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
 
-                }
-                 else
-                {
+                } else {
                   const embed = {"description": ErrorMessage14[Language].replace("X001", name),  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
                 };
 
-                }
-                 else
-                {
-                  const embed = {"description": ErrorMessage3[Language],  "color": EmbedColor};  
-                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                };
+            } else {
+              const embed = {"description": ErrorMessage3[Language],  "color": EmbedColor};  
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
 
-        }
-         else
-        {
+        } else {
          const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
-    }
-     else
-    {
+    } else {
      const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-
-}
- else if (CommandArgument == "")
-{
- const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 };
 
 //Unmute
 if  (CommandName.startsWith("unmute"))  {
-  
-    var CommandArgument = CommandName.split("unmute")[1];
-  
-if  (CommandArgument.startsWith(" "))  {
-      
-    CommandArgument = CommandArgument.replace(" ", "");
 
-if  (message.member.permissions.has("MUTE_MEMBERS"))  {
-    
-if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
-      
-    var MentionedMember = message.mentions.members.first();
-    var name = peeky.serverData.get(keySF, "muted_role");
-    var Role = message.guild.roles.find(role => role.name == name);
+    if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 
-    if  (MentionedMember)  {
-  
-        if  (Role)  {
+        if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
 
-            if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && MentionedMember.roles.has(Role.id))  {
+            var MentionedMember = message.mentions.members.first();
+            var name = peeky.serverData.get(keySF, "muted_role");
+            var Role = message.guild.roles.find(role => role.name == name);
 
-                await MentionedMember.roles.remove(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => { 
-                    const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                    ErrorBag.add(error); Failed = true;
-                });
+            if  (MentionedMember)  {
 
-                if  (Failed == false)  {
-                    var TranslatedMessages = [SuccessIcon + " I have unmuted **X001** at **X002**'s request.", SuccessIcon + " Odtlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Unmutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He anulado el silencio de **X001** a petición de **X002**.", SuccessIcon + " **X002**'nin isteği üzerine **X001**'in sesini açtım.", SuccessIcon + " Я отглушить **X001** по запросу **X002**."];
-                    const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                if  (Role)  {
+
+                    if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && MentionedMember.roles.has(Role.id))  {
+
+                        await MentionedMember.roles.remove(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => { 
+                            const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
+                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                            ErrorBag.add(error); Failed = true;
+                        });
+
+                        if  (Failed == false)  {
+                            var TranslatedMessages = [SuccessIcon + " I have unmuted **X001** at **X002**'s request.", SuccessIcon + " Odtlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Unmutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He anulado el silencio de **X001** a petición de **X002**.", SuccessIcon + " **X002**'nin isteği üzerine **X001**'in sesini açtım.", SuccessIcon + " Я отглушить **X001** по запросу **X002**."];
+                            const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
+                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        };
+
+                    } else {
+                      var TranslatedMessages = [ErrorIcon + " You cannot unmute that user.", ErrorIcon + " Tohoto uživatele odztlumit nemůžete.", ErrorIcon + " Nemôžeš unmutnúť tohoto uživateľa.", ErrorIcon + " No puedes anular el silencio de ese usuario.", ErrorIcon + " Bu kullanıcının sesini açamazsınız.", ErrorIcon + " Вы не можете отглушить этого пользователя."];
+                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    };
+
+                } else {
+                  const embed = {"description": ErrorMessage14[Language].replace("X001", name),  "color": EmbedColor};
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
                 };
 
-            }
-             else
-            {
-              var TranslatedMessages = [ErrorIcon + " You cannot unmute that user.", ErrorIcon + " Tohoto uživatele odztlumit nemůžete.", ErrorIcon + " Nemôžeš unmutnúť tohoto uživateľa.", ErrorIcon + " No puedes anular el silencio de ese usuario.", ErrorIcon + " Bu kullanıcının sesini açamazsınız.", ErrorIcon + " Вы не можете отглушить этого пользователя."];
-              const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+            } else {
+              const embed = {"description": ErrorMessage3[Language],  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
-        }
-         else
-        {
-          const embed = {"description": ErrorMessage14[Language].replace("X001", name),  "color": EmbedColor};
-          message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
+        } else {
+         const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
-    }
-     else
-    {
-      const embed = {"description": ErrorMessage3[Language],  "color": EmbedColor}; 
+    } else {      
+      const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-  
-}
- else
-{
- const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-
-}
- else
-{      
-  const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
-  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
-
-}
- else if (CommandArgument == "")
-{
- const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 };
 
@@ -9640,45 +9602,48 @@ if  (CommandName.startsWith("ban"))  {
 
             var MentionedMember = message.mentions.members.first();
 
-            if  (MentionedMember && MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS"))  {
+            if  (MentionedMember)  {
+              
+                if  (MentionedMember.kickable && !MentionedMember.permissions.has("BAN_MEMBERS  "))  {
                   
-                await message.guild.members.ban(MentionedMember.user.id, { reason: "Banned by " + message.author.tag + "." }).catch(error => { 
-                      const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
-                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                      ErrorBag.add(error); Failed = true;
-                });
+                    await message.guild.members.ban(MentionedMember.user.id, { reason: "Banned by " + message.author.tag + "." }).catch(error => { 
+                          const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
+                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                          ErrorBag.add(error); Failed = true;
+                    });
 
-                if  (Failed == false)  {
-                    var TranslatedMessages = [SuccessIcon + " I have banned **X001** at **X002**'s request.", SuccessIcon + " Zabanoval jsem **X001 zpráv** na požádání od **X002**.", SuccessIcon + " Bannul som **X001** na **X002* požiadavku.", SuccessIcon + " He baneado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine yasakladım.", SuccessIcon + " Я запретил **X001** по запросу **X002**."];
-                    const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                };
+                    if  (Failed == false)  {
+                        var TranslatedMessages = [SuccessIcon + " I have banned **X001** at **X002**'s request.", SuccessIcon + " Zabanoval jsem **X001 zpráv** na požádání od **X002**.", SuccessIcon + " Bannul som **X001** na **X002* požiadavku.", SuccessIcon + " He baneado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine yasakladım.", SuccessIcon + " Я запретил **X001** по запросу **X002**."];
+                        const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
+                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    };
 
-            }
-             else
-            {
-              if  (MentionedMember.user.id == PeekyId)  {
-                  const embed = {"description": ErrorIcon + " What the fuck?",  "color": EmbedColor};
-                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 } else {
-                  var TranslatedMessages = [ErrorIcon + " You cannot ban that user.", ErrorIcon + " Tohoto uživatele zabanovat nemůžete.", ErrorIcon + " Nemôžeš zabanovať tohoto uživateľa.", ErrorIcon + " Usted no puede banear a aquel usuario.", ErrorIcon + " Bu kullanıcıyı yasaklayamazsınız.", ErrorIcon + " Вы не можете запретить этого пользователя."];
-                  const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-              };
+                  
+                  if  (MentionedMember.user.id == PeekyId)  {
+                      const embed = {"description": ErrorIcon + " What the fuck?",  "color": EmbedColor};
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    } else {
+                      var TranslatedMessages = [ErrorIcon + " You cannot ban that user.", ErrorIcon + " Tohoto uživatele zabanovat nemůžete.", ErrorIcon + " Nemôžeš zabanovať tohoto uživateľa.", ErrorIcon + " Usted no puede banear a aquel usuario.", ErrorIcon + " Bu kullanıcıyı yasaklayamazsınız.", ErrorIcon + " Вы не можете запретить этого пользователя."];
+                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                  };
+                  
+                };
+              
+            } else {
+              const embed = {"description": ErrorMessage3[Language],  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
-        }
-         else
-        {
-         const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        } else {
+          const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
-    }
-     else
-    {
-     const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    } else {
+      const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 };
@@ -9694,7 +9659,7 @@ if  (CommandName.startsWith("kick"))  {
 
             if  (MentionedMember)  {
               
-                if  (MentionedMember.kickable && !MentionedMember.permissions.has("KICK_MEMBERS"))  {;
+                if  (MentionedMember.kickable && !MentionedMember.permissions.has("KICK_MEMBERS"))  {
 
                     await MentionedMember.kick("Kicked by " + message.author.tag + ".").catch(error => { 
                           const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
@@ -9708,26 +9673,23 @@ if  (CommandName.startsWith("kick"))  {
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
 
-                }
-                 else
-                {
+                } else {
                   var TranslatedMessages = [ErrorIcon + " You cannot kick that user.", ErrorIcon + " Tohoto uživatele vykopnout nemůžete.", ErrorIcon + " Nemôžeš vyhodiť tohoto uživateľa.", ErrorIcon + " Usted no puede kickear a aquel usuario.", ErrorIcon + " Bu kullanıcıyı atamazsın.", ErrorIcon + " Вы не можете выгнать этого пользователя."];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                 };
               
+            } else {
+              const embed = {"description": ErrorMessage3[Language],  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
-        }
-         else
-        {
-         const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        } else {
+          const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
-    }
-     else
-    {
-     const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+    } else {
+      const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
