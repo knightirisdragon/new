@@ -1476,7 +1476,7 @@ async function WebsiteStuff()  {
             };
         });
 
-        await fs.writeFile('public/premiumusers.cache.txt', PremiumUsersList.join(" "), (err) => {
+        await fs.writeFile('public/premiumusers.txt', PremiumUsersList.join(" "), (err) => {
             if (err) console.log(err);
         });
 
@@ -2446,8 +2446,8 @@ peeky.on('ready', () => {
 
     //Update Banned Users
     setTimeout(() => {
-        function_UpdateBans();
         peeky.guilds.cache.get(SupportServer).members.cache.fetch();
+        function_UpdateBans();
     }, 10000);
   
     //Clear Queues
@@ -3437,23 +3437,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
 
         };
       
-        };/* else {
-          
-          if  (!RoleCooldown.has(member.guild.id))  {
-
-              member.guild.roles.cache.create({
-                  data: {
-                    name: GameName,
-                    color: Setting.Blurple
-                  }
-              }, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
-
-              RoleCooldown.add(member.guild.id);
-              setTimeout(() => {RoleCooldown.delete(member.guild.id)}, RoleCooldownMS);
-
-          };
-          
-        };*/
+        };
           
         });
       
@@ -3602,7 +3586,7 @@ if  (peeky.userData.has(key) && peeky.channelData.has(keyCF) && peeky.serverData
 if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userData.get(key, "OverviewID"))  {            
   
     if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
-        reaction.users.cache.remove(user.id).catch(error => ErrorBag.add(error));
+        reaction.users.remove(user.id).catch(error => ErrorBag.add(error));
     };
   
     if  (!CommandCooldown.has("overview" + user.id))  {
@@ -3769,7 +3753,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
 if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.userData.get(key, "MusicMenuID"))  {           
   
     if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
-        reaction.users.cache.remove(user.id).catch(error => ErrorBag.add(error));
+        reaction.users.remove(user.id).catch(error => ErrorBag.add(error));
     };
   
     if  (!CommandCooldown.has("musicmenu" + user.id))  {
@@ -3817,7 +3801,7 @@ if  (peeky.userData.has(key, "MusicMenuID") && reaction.message.id == peeky.user
 if  (peeky.userData.has(key, "PrefixTroubleshootID") && reaction.message.id == peeky.userData.get(key, "PrefixTroubleshootID"))  {           
   
     if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
-        reaction.users.cache.remove(user.id).catch(error => ErrorBag.add(error));
+        reaction.users.remove(user.id).catch(error => ErrorBag.add(error));
     };
   
     if  (!CommandCooldown.has("prefixtroubleshoot" + user.id))  {
@@ -3855,7 +3839,7 @@ if  (peeky.userData.has(key, "PrefixTroubleshootID") && reaction.message.id == p
 if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userData.get(key, "LanguageID"))  {           
   
     if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
-        reaction.users.cache.remove(user.id).catch(error => ErrorBag.add(error));
+        reaction.users.remove(user.id).catch(error => ErrorBag.add(error));
     };
   
     if  (!CommandCooldown.has("languages" + user.id))  {
@@ -4012,7 +3996,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
         if  (!user.bot & reaction.message.id == peeky.serverData.get(keySF, "ticket_system_bonus_id"))  {
           
             if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
-                reaction.users.cache.remove(user.id).catch(error => ErrorBag.add(error));
+                reaction.users.remove(user.id).catch(error => ErrorBag.add(error));
             };
               
             if  (reaction.message.guild.me.permissions.has("MANAGE_CHANNELS") && !FunctionCooldowns.has("ticketsystem" + user.id))  {
@@ -4030,7 +4014,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                     var TranslatedMessages = ["**X001 has created a ticket**" + "\n" + "Staff may close the ticket once the issue has been resolved.", "**X001 potřebuje pomoct**" + "\n" + "Jakmile se tento problém vyřeší, personál může tento lístek uzavřít.", "**X001 vytvoril lístok**" + "\n" + "\"Staff\" môže uzavrieť lístok akonáhle bude problém vyriešený.", "**X001 ha creado un ticket**" + "\n" + "\"Staff\" El personal puede cerrar el ticket una vez que el asunto haya sido resuelto.", "**X001 adlı kişi yardım istiyor**" + "\n" + "\"Staff\" Yönetici sorun çözüldüğünde yardım çağrısını kapatabilir.", "**X001 создал тикет**" + "\n" + "Персонал может закрыть билет, как только вопрос будет решен."];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)),  "color": EmbedColor};
 
-                    await reaction.message.guild.channels.cache.create("Ticket_" + TicketID, { type: 'text', permissionOverwrites: [
+                    await reaction.message.guild.channels.create("Ticket_" + TicketID, { type: 'text', permissionOverwrites: [
                         {id: PeekyId, allow: ['VIEW_CHANNEL']},
                         {id: user.id, allow: ['VIEW_CHANNEL']},
                         {id: role.id, allow: ['VIEW_CHANNEL']},
@@ -4067,7 +4051,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
         if  (!user.bot & reaction.message.id == peeky.serverData.get(keySF, "reaction_roles_bonus_id"))  {
           
             if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
-                reaction.users.cache.remove(user.id).catch(error => ErrorBag.add(error));
+                reaction.users.remove(user.id).catch(error => ErrorBag.add(error));
             };
           
             if  (reaction.message.guild.me.permissions.has("MANAGE_ROLES"))  {
@@ -4181,12 +4165,12 @@ if  (peeky.serverData.get(keySF, "message_log_bonus") == true)  {
 
     };
               
-        reaction.users.cache.remove(user).catch(error => ErrorBag.add(error));
+        reaction.users.remove(user).catch(error => ErrorBag.add(error));
             
         }
          else
         {
-          reaction.users.cache.remove(user).catch(error => ErrorBag.add(error));
+          reaction.users.remove(user).catch(error => ErrorBag.add(error));
             
           const embed = {"description": CooldownMessage4[Language],  "color": EmbedColor}; 
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
@@ -4196,7 +4180,7 @@ if  (peeky.serverData.get(keySF, "message_log_bonus") == true)  {
         }
          else
         {
-          reaction.users.cache.remove(user).catch(error => ErrorBag.add(error));
+          reaction.users.remove(user).catch(error => ErrorBag.add(error));
           
           var TranslatedMessages = [ErrorIcon + " That message was already logged, **X001**.", ErrorIcon + " Tato zpráva je již připnutá, **X001**.", ErrorIcon + " Tá správa už bola zaznamenaná, **X001**.", ErrorIcon + " Ese mensaje ya fue registrado, **X001**.", ErrorIcon + " Bu mesaj zaten girildi, **X001**.", ErrorIcon + " Это сообщение уже зарегистрировано, **X001**."];
           const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)),  "color": EmbedColor};
@@ -4434,7 +4418,7 @@ if  (!message.author.bot)  {
 
                                       var RawParticipants = null;
 
-                                      await reaction.users.cache.fetch({ limit: 100 }).then(r => {
+                                      await reaction.users.fetch({ limit: 100 }).then(r => {
                                           RawParticipants = r.filter(i => !i.bot).map(u => u.id);
                                       });
 
@@ -5185,7 +5169,7 @@ if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.
 //Mention Commands
   
 //Prefix Troubleshoot
-if  ((message.mentions.members.cache.first() && message.mentions.members.cache.first().id == PeekyId))  {
+if  ((message.mentions.members.first() && message.mentions.members.first().id == PeekyId))  {
   
     if  (!CommandCooldown.has("prefixtroubleshoot" + message.guild.id))  {
       
@@ -5262,7 +5246,7 @@ if  (CommandName.startsWith("eval"))  {
   
         CommandArgument = CommandArgument.replace(" ", "");
       
-        if  (message.author.id == OwnerId)  {  //if  (peeky.guilds.cache.get(SupportServer).members.cache.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.cache.has(StaffRole))  {
+        if  (message.author.id == OwnerId)  {
 
             function clean(text) {
             if  (typeof(text) === "string")
@@ -5681,7 +5665,7 @@ if  (FunctioName.startsWith(" "))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
-if  (message.mentions.channels.cache.first() == undefined && message.mentions.roles.cache.first() == undefined && message.mentions.members.cache.first() == undefined)  {
+if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
     var ManageChannels = false;
     var ManageRoles = false;
@@ -5740,7 +5724,7 @@ if  (FunctioName.startsWith("welcome messages"))  {
             ChannelCooldown.add(message.guild.id);
             setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-            await message.guild.channels.cache.create(name, { type: 'text', permissionOverwrites: [
+            await message.guild.channels.create(name, { type: 'text', permissionOverwrites: [
                 {id: PeekyId, allow: ['SEND_MESSAGES']},
                 {id: message.guild.id, deny: ['SEND_MESSAGES']}
             ], reason: "Channel created by @" + message.author.tag + " through a function." })
@@ -5782,7 +5766,7 @@ if  (FunctioName.startsWith("classification wall"))  {
             ChannelCooldown.add(message.guild.id);
             setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-            await message.guild.channels.cache.create(name, { type: 'text', permissionOverwrites: [
+            await message.guild.channels.create(name, { type: 'text', permissionOverwrites: [
                 {id: PeekyId, allow: ['SEND_MESSAGES', 'MANAGE_MESSAGES']},
                 {id: message.guild.id, deny: ['SEND_MESSAGES', 'MANAGE_MESSAGES']}
             ], reason: "Channel created by @" + message.author.tag + " through a function." })
@@ -5829,7 +5813,7 @@ if  (FunctioName.startsWith("ticket system"))  {
                 ChannelCooldown.add(message.guild.id);
                 setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-                await message.guild.channels.cache.create(name, { type: 'text', permissionOverwrites: [
+                await message.guild.channels.create(name, { type: 'text', permissionOverwrites: [
                     {id: PeekyId, allow: ['SEND_MESSAGES', 'MANAGE_MESSAGES', 'ADD_REACTIONS']},
                     {id: message.guild.id, deny: ['SEND_MESSAGES', 'MANAGE_MESSAGES', 'ADD_REACTIONS']}
                 ], reason: "Channel created by @" + message.author.tag + " through a function." })
@@ -5879,7 +5863,7 @@ if  (FunctioName.startsWith("reaction roles"))  {
                 ChannelCooldown.add(message.guild.id);
                 setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-                await message.guild.channels.cache.create(name, { type: 'text', permissionOverwrites: [
+                await message.guild.channels.create(name, { type: 'text', permissionOverwrites: [
                     {id: PeekyId, allow: ['SEND_MESSAGES', 'MANAGE_MESSAGES', 'ADD_REACTIONS']},
                     {id: message.guild.id, deny: ['SEND_MESSAGES', 'MANAGE_MESSAGES', 'ADD_REACTIONS']}
                 ], reason: "Channel created by @" + message.author.tag + " through a function." })
@@ -5924,7 +5908,7 @@ if  (FunctioName.startsWith("join role"))  {
 
                 RoleCooldown.add(message.guild.id);
                 setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
-                message.guild.roles.cache.create({
+                message.guild.roles.create({
                     data: {
                       name: name,
                       color: Setting.Blurple
@@ -5967,7 +5951,7 @@ if  (FunctioName.startsWith("verification system"))  {
 
                 RoleCooldown.add(message.guild.id);
                 setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
-                    message.guild.roles.cache.create({
+                    message.guild.roles.create({
                     data: {
                       name: name,
                       color: Setting.Blurple
@@ -6054,7 +6038,7 @@ if  (FunctioName.startsWith("message log"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-    await message.guild.channels.cache.create(name, { type: 'text', permissionOverwrites: [
+    await message.guild.channels.create(name, { type: 'text', permissionOverwrites: [
         {id: PeekyId, allow: ['SEND_MESSAGES']},
         {id: message.guild.id, deny: ['SEND_MESSAGES']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
@@ -6095,7 +6079,7 @@ if  (FunctioName.startsWith("stream announcements"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-    await message.guild.channels.cache.create(name, { type: 'text', permissionOverwrites: [
+    await message.guild.channels.create(name, { type: 'text', permissionOverwrites: [
         {id: PeekyId, allow: ['SEND_MESSAGES']},
         {id: message.guild.id, deny: ['SEND_MESSAGES']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
@@ -6138,7 +6122,7 @@ if  (FunctioName.startsWith("member counter"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-    await message.guild.channels.cache.create(name, { type: 'voice', permissionOverwrites: [
+    await message.guild.channels.create(name, { type: 'voice', permissionOverwrites: [
         {id: PeekyId, allow: ['CONNECT']},
         {id: message.guild.id, deny: ['CONNECT']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
@@ -6185,7 +6169,7 @@ if  (FunctioName.startsWith("server time"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-    await message.guild.channels.cache.create(name, { type: 'voice', permissionOverwrites: [
+    await message.guild.channels.create(name, { type: 'voice', permissionOverwrites: [
         {id: PeekyId, allow: ['CONNECT']},
         {id: message.guild.id, deny: ['CONNECT']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
@@ -6231,7 +6215,7 @@ if  (FunctioName.startsWith("reddit posts"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-    await message.guild.channels.cache.create(name, { type: 'text', permissionOverwrites: [
+    await message.guild.channels.create(name, { type: 'text', permissionOverwrites: [
         {id: PeekyId, allow: ['SEND_MESSAGES']},
         {id: message.guild.id, deny: ['SEND_MESSAGES']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
@@ -6274,7 +6258,7 @@ if  (FunctioName.startsWith("server age"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-    await message.guild.channels.cache.create(name, { type: 'voice', permissionOverwrites: [
+    await message.guild.channels.create(name, { type: 'voice', permissionOverwrites: [
         {id: PeekyId, allow: ['CONNECT']},
         {id: message.guild.id, deny: ['CONNECT']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
@@ -6321,7 +6305,7 @@ if  (FunctioName.startsWith("event countdown"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-    await message.guild.channels.cache.create(name, { type: 'voice', permissionOverwrites: [
+    await message.guild.channels.create(name, { type: 'voice', permissionOverwrites: [
         {id: PeekyId, allow: ['CONNECT']},
         {id: message.guild.id, deny: ['CONNECT']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
@@ -6466,7 +6450,7 @@ if  (FunctioName.startsWith("streamer role"))  {
                 RoleCooldown.add(message.guild.id);
                 setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
 
-                message.guild.roles.cache.create({
+                message.guild.roles.create({
                 data: {
                   name: name,
                   color: Setting.Blurple
@@ -6571,7 +6555,7 @@ if  (FunctioName.startsWith(" "))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
-if  (message.mentions.channels.cache.first() == undefined && message.mentions.roles.cache.first() == undefined && message.mentions.members.cache.first() == undefined)  {
+if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
   
     var TranslatedMessages = [SuccessIcon + " The setting for the **X001** function is now **X002**.", SuccessIcon + " Nastavení pro funkci **X001** je nyní **X002**.", SuccessIcon + " Nastavenie pre **X001** funkciu je teraz **X002*.", SuccessIcon + " El ajuste de la función **X001** es ahora **X002**.", SuccessIcon + " **X001** fonksiyonu **X002** olarak ayarlandı.", SuccessIcon + " Настройка для функции **X001** теперь составляет **X002**."];
     var TranslatedFullSetting = [ErrorIcon + " The setting for the **X001** function is full.", ErrorIcon + " Nastavení pro funcki **X001** je plné.", ErrorIcon + " Nastavenie pre **X001** funkciu je plné.", ErrorIcon + " El ajuste de la función **X001** está lleno.", ErrorIcon + " **X001** fonksiyonu için ayar dolu.", ErrorIcon + " Настройка для функции **X001** заполнена."];
@@ -7085,7 +7069,7 @@ if  (FunctioName.startsWith(" "))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
-if  (message.mentions.channels.cache.first() == undefined && message.mentions.roles.cache.first() == undefined && message.mentions.members.cache.first() == undefined)  {
+if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
     var TranslatedMessages = [SuccessIcon + " Cleared the setting for the **X001** function.", SuccessIcon + " Nastavení pro funkci **X001** bylo vyčištěno.", SuccessIcon + " Vymazal som nastavenie pre **X001** funkciu.", SuccessIcon + " Despejó la configuración de la función **X001**.", SuccessIcon + " **X001** adlı fonksiyonun ayarı sıfırlandı.", SuccessIcon + " Очистили настройку для функции **X001**."];
 
@@ -7696,98 +7680,6 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
   
 };
 
-//Daily
-/*if  (CommandName == "daily")  {
-
-    var CountedVotes = 0;
-
-    if  (new Date() - new Date(peeky.userData.get(key, "DailyRewarded")) < DayMs)  {
-  
-        var TranslatedMessages = [InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Vraťte se v **X001** pro vaši odměnu.", InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Come back on **X001** for your daily reward.", InfoIcon + " Come back at **X001** for your daily reward."];
-        var embed = {"description": TranslatedMessages[Language].replace("X001", function_DateFormat(Date.now(peeky.userData.get(key, "DailyRewarded")) + DayMs, "Time"), peeky.serverData.get(keySF, "timezone")),  "color": EmbedColor};
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      
-    } else {
-
-      peeky.userData.set(key, new Date().toString(), "DailyRewarded");
-
-      var Rewards = [[GreditIcon, 250, "Gredit"], [ChestIcon, 1, "Chests"], ["Exp", 1000, "Exp"]];
-      var Index = Math.floor((Math.random() * Rewards.length));
-      var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
-
-      //Reward
-      InfoMessages.push("•" + " You have received **" + Amount + " " + Rewards[Index][0] + "** as the Daily reward.");
-      peeky.userData.math(key, "+", Amount, Rewards[Index][2]);
-
-      //Vote DDBL
-      await ddbl.getVotes().then(AllVotes => {
-
-          var Now = new Date();
-          AllVotes = AllVotes.filter(i => i.id == key && Now - new Date(i.timestamp) <= DayMs);
-
-          if  (AllVotes.length > 0 == true)  {
-
-              InfoMessages.push("• " + " You have received **1 " + ChestIcon + "** for voting on DDBL today.");
-              peeky.userData.math(key, "+", 1, "Chests");
-              CountedVotes ++;
-
-          };
-
-      }).catch(err => ErrorBag.add(err));
-
-      //Vote BLS
-      await bls.getUpvotes().then(AllVotes => {
-
-          var Now = new Date();
-          AllVotes = AllVotes.filter(i => i.user.id == key && Now - new Date(i.timestamp) <= DayMs);
-
-          if  (AllVotes.length > 0 == true)  {
-
-              InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for voting on BLS today.");
-              peeky.userData.math(key, "+", 1, "Chests");
-              CountedVotes ++;
-
-          };
-
-      }).catch(err => ErrorBag.add(err));
-
-      //Event Reward
-      if  (Setting.EventStatus == true)  {
-          peeky.userData.math(key, "+", 1, "Chests"); 
-              InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** from the event.");
-      };
-
-      //Premium Reward
-      if  (peeky.guilds.cache.get(SupportServer).members.cache.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.cache.has(PremiumRole))  {
-          peeky.userData.math(key, "+", 1, "Chests");
-              InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a Premium user.");
-      };
-
-      //Server Booster Reward
-      if  (peeky.guilds.cache.get(SupportServer).members.cache.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.cache.has(BoosterRole))  {
-          peeky.userData.math(key, "+", 1, "Chests");
-              InfoMessages.push("•" + " You have received **1 " + ChestIcon + "** for being a Server Booster.");
-      };
-
-      var Footer = "Thank you for voting for PEEKY!";
-      if  (CountedVotes == 0)  {
-          Footer = "You can get more rewards by typing \"" + Prefix + "help\" and voting for me!";
-      } else {
-        if  (!peeky.userData.get(key, "VoterBadge"))  {
-            peeky.userData.set(key, true, "VoterBadge");  
-              InfoMessages.push("•" + " You have received a new badge.");
-        };
-
-        peeky.userData.math(key, "+", CountedVotes, "Votes");
-      };
-
-      const embed = {"description": InfoMessages.join("\n"),  "footer":  {"text": Footer},  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-    };
-
-};*/
-
 //Gift
 if (CommandName.startsWith("gift"))  {
   
@@ -7967,7 +7859,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     ProfileCooldown.add(message.author.id);
     setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
 
-    var MentionedMember = message.mentions.members.cache.first();
+    var MentionedMember = message.mentions.members.first();
     if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
 
     const key2 = `${SomeoneTagged.user.id}`;
@@ -8032,7 +7924,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
               const ctx            = canvas.getContext('2d');
               const StatsColor     = "lightgray";
 
-              var MentionedMember = message.mentions.members.cache.first();
+              var MentionedMember = message.mentions.members.first();
               if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
 
               //Vars
@@ -8414,7 +8306,7 @@ if (CommandName.startsWith("play"))  {
 
             if  (peeky.userData.get(key, "Playlist").length > 0)  {
 
-                var MentionedMember = message.mentions.members.cache.first();
+                var MentionedMember = message.mentions.members.first();
                 if  (MentionedMember)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
                 const key2 = `${SomeoneTagged.user.id}`;
 
@@ -8703,7 +8595,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
         } else  {
 
-          var MentionedMember = message.mentions.members.cache.first();
+          var MentionedMember = message.mentions.members.first();
           if  (MentionedMember)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
           const key2 = `${SomeoneTagged.user.id}`;
 
@@ -9526,7 +9418,7 @@ if  (CommandName.startsWith("mute"))  {
 
         if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
 
-            var MentionedMember = message.mentions.members.cache.first();
+            var MentionedMember = message.mentions.members.first();
             var name = peeky.serverData.get(keySF, "muted_role");
             var Role = message.guild.roles.cache.find(role => role.name == name);
 
@@ -9583,7 +9475,7 @@ if  (CommandName.startsWith("unmute"))  {
 
         if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
 
-            var MentionedMember = message.mentions.members.cache.first();
+            var MentionedMember = message.mentions.members.first();
             var name = peeky.serverData.get(keySF, "muted_role");
             var Role = message.guild.roles.cache.find(role => role.name == name);
 
@@ -9712,7 +9604,7 @@ if  (CommandName.startsWith("ban"))  {
 
         if  (message.guild.me.permissions.has("BAN_MEMBERS"))  {
 
-            var MentionedMember = message.mentions.members.cache.first();
+            var MentionedMember = message.mentions.members.first();
 
             if  (MentionedMember)  {
               
@@ -9767,7 +9659,7 @@ if  (CommandName.startsWith("kick"))  {
 
         if  (message.guild.me.permissions.has("KICK_MEMBERS"))  {
 
-            var MentionedMember = message.mentions.members.cache.first();
+            var MentionedMember = message.mentions.members.first();
 
             if  (MentionedMember)  {
               
@@ -9927,8 +9819,8 @@ if  (CommandName.startsWith("prefix"))  {
         CommandArgument = CommandArgument.replace(" ", "").slice(0, 5).toLowerCase();
 
         if  (message.member.user.id == message.guild.owner.user.id)  {
-
-            if  (message.mentions.channels.cache.first() == undefined && message.mentions.roles.cache.first() == undefined && message.mentions.members.cache.first() == undefined)  {
+          
+            if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
                 const InfoMessages = [];
                 //InfoMessages.push(InfoIcon + " If the prefix is broken, join the Support Server.");
@@ -9973,7 +9865,7 @@ if  (CommandName.startsWith("timezone"))  {
 
     if  (message.member.permissions.has("MANAGE_GUILD"))  {
 
-        if  (message.mentions.channels.cache.first() == undefined && message.mentions.roles.cache.first() == undefined && message.mentions.members.cache.first() == undefined)  {
+        if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
           
             if  (!isNaN(CommandArgument) && CommandArgument >= -12 && CommandArgument < 12)  {
 
@@ -10013,8 +9905,7 @@ if  (CommandName.startsWith("highlightedchannel"))  {
         CommandArgument = function_RemoveFormatting(CommandArgument.replace(" ", ""), "channel", true);
 
         if  (message.member.permissions.has("MANAGE_GUILD"))  {
-
-            if  (message.mentions.channels.cache.first() == undefined && message.mentions.roles.cache.first() == undefined && message.mentions.members.cache.first() == undefined)  {
+            if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
 
                 peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
 
@@ -10109,7 +10000,7 @@ if  (CommandName.startsWith("muterole"))  {
                     RoleCooldown.add(message.guild.id);
                     setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
 
-                   await message.guild.roles.cache.create({
+                   await message.guild.roles.create({
                        data: {
                          name: CommandArgument,
                          color: Setting.Blurple
