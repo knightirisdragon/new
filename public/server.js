@@ -9572,7 +9572,7 @@ if  (CommandName.startsWith("idban"))  {
 
         if  (!message.guild.members.cache.find(m => m.id == CommandArgument))  {
 
-            await message.guild.members.cache.ban(CommandArgument, { reason: "ID banned by " + message.author.tag + "." }).catch(error => { 
+            await message.guild.members.ban(CommandArgument, { reason: "ID banned by " + message.author.tag + "." }).catch(error => { 
                   const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   ErrorBag.add(error); Failed = true;
@@ -9634,9 +9634,9 @@ if  (CommandName.startsWith("ban"))  {
 
             if  (MentionedMember)  {
               
-                if  (MentionedMember.kickable && !MentionedMember.permissions.has("BAN_MEMBERS  "))  {
+                if  (MentionedMember.bannable && !MentionedMember.permissions.has("BAN_MEMBERS"))  {
                   
-                    await message.guild.members.cache.ban(MentionedMember.user.id, { reason: "Banned by " + message.author.tag + "." }).catch(error => { 
+                    await message.guild.members.ban(MentionedMember.user.id, { reason: "Banned by " + message.author.tag + "." }).catch(error => { 
                           const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                           ErrorBag.add(error); Failed = true;
