@@ -4415,7 +4415,7 @@ if  (!message.author.bot)  {
                     if  (new Date() - new Date(giveaway[3]) >= giveaway[2])  {
 
                         FinishedGiveaway = true;
-                        peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
+                        peeky.serverData.set(keySF, peeky.serverData.get(keySF, "ActiveGiveaways").slice(currentgiveaway, 1), "ActiveGiveaways");
 
                         if  (peeky.channels.has(giveaway[5]) && giveaway[4] > 0)  {
 
