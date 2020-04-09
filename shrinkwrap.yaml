@@ -6,7 +6,7 @@ dependencies:
   canvas-node: 0.3.23
   color-thief-node: 1.0.3
   ddblapi.js: 1.0.0
-  discord.js: github.com/discordjs/discord.js/828640ca263db2c95ed21e7353a2746fe6ac9fb8
+  discord.js: 12.1.1
   enmap: 5.2.4
   express: 4.17.1
   https: 1.0.0
@@ -376,6 +376,28 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
+  /discord.js/12.1.1:
+    dependencies:
+      '@discordjs/collection': 0.1.5
+      abort-controller: 3.0.0
+      form-data: 3.0.0
+      node-fetch: 2.6.0
+      prism-media: 1.2.1
+      setimmediate: 1.0.5
+      tweetnacl: 1.0.3
+      ws: 7.2.3
+    dev: false
+    engines:
+      node: '>=12.0.0'
+    peerDependencies:
+      bufferutil: ^4.0.1
+      erlpack: discordapp/erlpack
+      libsodium-wrappers: ^0.7.6
+      sodium: ^3.0.2
+      utf-8-validate: ^5.0.2
+      zlib-sync: ^0.1.6
+    resolution:
+      integrity: sha512-Y6+QfAUZkb9cy27cfNqUigAgYVSKTw9jPF3mN4UDMih3Em3VQ0WjGBdX1UbE8CwFkLOu5XWQSNPdsoStTR8c2Q==
   /ecc-jsbn/0.1.2:
     dependencies:
       jsbn: 0.1.1
@@ -1682,30 +1704,6 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-PZBcVzQpkBxi9OQh9I4QIrYNmkbM/zh4QJQuxE8I6RojLUVYkkps5iLYquE3H+pwmBXtEXQMDJfVRajgdiz+iA==
-  github.com/discordjs/discord.js/828640ca263db2c95ed21e7353a2746fe6ac9fb8:
-    dependencies:
-      '@discordjs/collection': 0.1.5
-      abort-controller: 3.0.0
-      form-data: 3.0.0
-      node-fetch: 2.6.0
-      prism-media: 1.2.1
-      setimmediate: 1.0.5
-      tweetnacl: 1.0.3
-      ws: 7.2.3
-    dev: false
-    engines:
-      node: '>=12.0.0'
-    name: discord.js
-    peerDependencies:
-      bufferutil: ^4.0.1
-      erlpack: discordapp/erlpack
-      libsodium-wrappers: ^0.7.6
-      sodium: ^3.0.2
-      utf-8-validate: ^5.0.2
-      zlib-sync: ^0.1.6
-    resolution:
-      tarball: 'https://codeload.github.com/discordjs/discord.js/tar.gz/828640ca263db2c95ed21e7353a2746fe6ac9fb8'
-    version: 12.1.1
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
@@ -1717,7 +1715,7 @@ specifiers:
   canvas-node: ^0.3.20
   color-thief-node: ^1.0.2
   ddblapi.js: ^1.0.0
-  discord.js: 'github:discordjs/discord.js#master'
+  discord.js: ^12.1.1
   enmap: ^5.2.4
   express: ^4.17.1
   https: ^1.0.0
