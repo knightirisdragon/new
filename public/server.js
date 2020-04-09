@@ -1152,6 +1152,16 @@ const RandomWords = [
     "Jazz"
 ];
 
+const DailyChallenges = [
+  
+    ["open_background", "Hunt for Backgrounds", "Open a chest and find a background.", 1000, "Exp"],
+    ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 5, "Chests"],
+    ["50beat_akinator", "Eat that, Akinator", "Beat Akinator after 50 questions.", 500, "Gredit"],
+    ["clean_hangman", "Professional Unhanger", "Win the Hangman minigames with no fails.", 5000, "Exp"],
+    ["clean_hangman", "Professional Unhanger", "Win the Hangman minigames with no fails.", 5000, "Exp"],
+  
+];
+
 //WEBSITE STUFF
 
 async function WebsiteStuff()  {
