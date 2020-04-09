@@ -1398,9 +1398,9 @@ async function WebsiteStuff()  {
 
         messages.forEach(m => {
 
-            if  (!m.reactions.find(r => r.emoji.name == "🏁") && m.reactions.find(r => r.emoji.id == DefaultUpvote) && m.reactions.find(r => r.emoji.id == DefaultDownvote) && m.attachments.size > 0 && m.content.includes("Name: ") && m.content.includes("Credit: ") && m.content.includes("Price: "))  {
+            if  (!m.reactions.cache.find(r => r.emoji.name == "🏁") && m.reactions.cache.find(r => r.emoji.id == DefaultUpvote) && m.reactions.cache.find(r => r.emoji.id == DefaultDownvote) && m.attachments.size > 0 && m.content.includes("Name: ") && m.content.includes("Credit: ") && m.content.includes("Price: "))  {
 
-                var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500px" height="300px" class="background_image">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + function_FixCapitalization(m.content.split("\n")[0].replace("Name: ", "")) + '  </font>  <br>  <font size="2" color="lightgray">  ' + m.content.split("\n")[1].replace("Credit: ", "") + '  </font>  <br><br>  <font size="2">  ~ ' + m.content.split("\n")[2].replace("Price: ", "").toLocaleString('en') + ' Gredit </font>  <br>  <font size="1" color="lightgreen">  ' + (m.reactions.find(r => r.emoji.id == DefaultUpvote).count - 1) + '  Upvotes</font>  <font size="1">🞄</font>  <font size="1" color="pink">  ' + (m.reactions.find(r => r.emoji.id == DefaultDownvote).count - 1) + '  Downvotes</font>   </b>  </div>  </div>';
+                var BackgroundString = '<div class="background">  <img src="' + m.attachments.array()[0].url + '" width="500px" height="300px" class="background_image">  <div class="background_centered">  <b class="background_text">  <font size="3">  ' + function_FixCapitalization(m.content.split("\n")[0].replace("Name: ", "")) + '  </font>  <br>  <font size="2" color="lightgray">  ' + m.content.split("\n")[1].replace("Credit: ", "") + '  </font>  <br><br>  <font size="2">  ~ ' + m.content.split("\n")[2].replace("Price: ", "").toLocaleString('en') + ' Gredit </font>  <br>  <font size="1" color="lightgreen">  ' + (m.reactions.cache.find(r => r.emoji.id == DefaultUpvote).count - 1) + '  Upvotes</font>  <font size="1">🞄</font>  <font size="1" color="pink">  ' + (m.reactions.cache.find(r => r.emoji.id == DefaultDownvote).count - 1) + '  Downvotes</font>   </b>  </div>  </div>';
                 WorkshopList.push(BackgroundString);
 
             };
@@ -4413,7 +4413,7 @@ if  (!message.author.bot)  {
                                 channel.messages.fetch(giveaway[4])
                                 .then(async message => {
 
-                                  var reaction = message.reactions.find(e => e.emoji.name == "🎁");
+                                  var reaction = message.reactions.cache.find(e => e.emoji.name == "🎁");
 
                                   if  (reaction)  {
 
