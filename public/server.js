@@ -4286,11 +4286,12 @@ if  (message.channel.type == "dm")  {
 {
 
 //SOME VARIABLES
-const key      = `${message.author.id}`;
-const keyCF    = `${message.channel.id}`;
-const keySF    = `${message.guild.id}`;
-const Language = peeky.serverData.get(keySF, "language");     
-var   Failed   = false;
+const key = `${message.author.id}`;
+const keyCF = `${message.channel.id}`;
+const keySF = `${message.guild.id}`;
+const Language = peeky.serverData.get(keySF, "language");   
+const InfoMessages = [];
+var Failed = false;
 
 if  (!message.webhookID)  {
   
@@ -4556,8 +4557,13 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
                         var member = collected.first().member;
 
                         if  (peeky.userData.has(member.user.id))  {
+                          
+                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "treasure_hunt" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
+                                function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data"));
+                                InfoMessages.push(InfoMessage4[Language]);
+                            };
 
-                            var embed = {"description": SuccessIcon + " **" + function_RemoveFormatting(member.displayName, "other", true) + "** has claimed the treasure!", "color": EmbedColor}; 
+                            var embed = {"description": SuccessIcon + " **" + function_RemoveFormatting(member.displayName, "other", true) + "** has claimed the treasure!" + "\n\n" + InfoMessages.join("\n\n"), "color": EmbedColor}; 
                             m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
                             peeky.userData.math(member.user.id, "+", Amount, Rewards[Index][2]);
@@ -5237,7 +5243,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
 const Prefix       = peeky.serverData.get(keySF, "prefix");
 const CommandName  = message.content.replace(Prefix, "");
-const InfoMessages = [];
 
 function_UpdateAutowipe(key, "user");
 function_UpdateAutowipe(keySF, "server");
