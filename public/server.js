@@ -1163,10 +1163,12 @@ const RandomWords = [
 
 const DailyChallenges = [
   
-    ["open_background", "Hunt for Backgrounds", "Find a background by opening chests.", 100, "Gredit"],
-    ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 1250, "Exp"],
-    ["beat_akinator", "Eat that, Akinator", "Beat Akinator after 50 questions.", 250, "Gredit"],
-    ["clean_hangman", "Professional Unhanger", "Win the Hangman minigame with no wrong letters.", 1000, "Exp"]
+    ["open_background", "Hunt for Backgrounds", "Find a background by opening chests.", 125, "Gredit"],
+    ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 750, "Exp"],
+    ["beat_akinator", "Eat that, Akinator", "Beat Akinator after 50 questions.", 1, "Chests"],
+    ["clean_hangman", "Professional Unhanger", "Win the Hangman minigame with no wrong letters.", 1250, "Exp"],
+  
+    //["random_chimp_event", "Random Chimp Event", "Send the 🦍 emoji in the Support Server.", 476, "Background"]
   
 ];
 
@@ -4335,7 +4337,7 @@ if  (!AutoManagementCooldown.has("dailychallenge") && new Date() - new Date(peek
       
         "<font size='5'>" + ChallengeChosen[1] + "</font>",
         "<font size='2'>" + ChallengeChosen[2] + "</font>",
-        "<br>",
+        "",
         "<font size='1'>  Complete this challenge for " + ChallengeChosen[3] + " " + ChallengeChosen[4] + ".  </font>"
       
     ].join("<br>"), (err) => {
