@@ -484,12 +484,12 @@ const InfoMessage3 = [
   InfoIcon + " "
 ];
 const InfoMessage4 = [
-  InfoIcon + " You have completed a daily challenge.",
+  InfoIcon + " You have completed the daily challenge.",
   InfoIcon + " Dokončili jste denní výzvu.",
-  InfoIcon + " You have completed a daily challenge.",
-  InfoIcon + " You have completed a daily challenge.",
-  InfoIcon + " You have completed a daily challenge.",
-  InfoIcon + " You have completed a daily challenge.",
+  InfoIcon + " You have completed the daily challenge.",
+  InfoIcon + " You have completed the daily challenge.",
+  InfoIcon + " You have completed the daily challenge.",
+  InfoIcon + " You have completed the daily challenge.",
   InfoIcon + " "
 ];
 
@@ -4336,7 +4336,7 @@ if  (!AutoManagementCooldown.has("dailychallenge") && new Date() - new Date(peek
         "<font size='5'>" + ChallengeChosen[1] + "</font>",
         "<font size='2'>" + ChallengeChosen[2] + "</font>",
         "<br>",
-        "<font size='1'>  Complete this challenge for " + ChallengeChosen[3] + " " + ChallengeChosen[4] + "  </font>"
+        "<font size='1'>  Complete this challenge for " + ChallengeChosen[3] + " " + ChallengeChosen[4] + ".  </font>"
       
     ].join("<br>"), (err) => {
         if (err) console.log(err); 
@@ -7656,7 +7656,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
                       peeky.userData.get(key, "Inventory").push(Background);
                       InfoMessages.push(InfoIcon + " You have found the **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
                     
-                      if  (peeky.peekyData.get("dailychallenge", "data")[0] == "open_background" && peeky.userData.get(key, "LastDailyChallenge")[0] !== peeky.peekyData.get("dailychallenge", "data")[0])  {
+                      if  (peeky.peekyData.get("dailychallenge", "data")[0] == "open_background" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
                           function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data"));
                           InfoMessages.push(InfoMessage4[Language]);
                       };
@@ -7822,7 +7822,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
             InfoMessages.push(InfoMessage1[Language]);
         };
                     
-        if  (DonatedAmount >= 5000 && peeky.peekyData.get("dailychallenge", "data")[0] == "donate_alot" && peeky.userData.get(key, "LastDailyChallenge")[0] !== peeky.peekyData.get("dailychallenge", "data")[0])  {
+        if  (DonatedAmount >= 5000 && peeky.peekyData.get("dailychallenge", "data")[0] == "donate_alot" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
             function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data"));
             InfoMessages.push(InfoMessage4[Language]);
         };
@@ -9051,7 +9051,7 @@ if (CommandName == "hangman")  {
                             const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(LastMember.displayName, "other", true) + "** has completed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                             message.channel.send({ embed });
                           
-                            if  (WrongLetters.length == 0 && peeky.peekyData.get("dailychallenge", "data")[0] == "clean_hangman" && peeky.userData.get(key, "LastDailyChallenge")[0] !== peeky.peekyData.get("dailychallenge", "data")[0])  {
+                            if  (WrongLetters.length == 0 && peeky.peekyData.get("dailychallenge", "data")[0] == "clean_hangman" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
                                 function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data"));
                                 InfoMessages.push(InfoMessage4[Language]);
                             };
@@ -9141,7 +9141,7 @@ if  (CommandName == "akinator")  {
                                 var ImageUrl = HollowImage;
                                 var FooterText = "­";
                               
-                                if  ((Step + 1) >= 50 && peeky.peekyData.get("dailychallenge", "data")[0] == "beat_akinator" && peeky.userData.get(key, "LastDailyChallenge")[0] !== peeky.peekyData.get("dailychallenge", "data")[0])  {
+                                if  ((Step + 1) >= 50 && peeky.peekyData.get("dailychallenge", "data")[0] == "beat_akinator" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
                                     function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data"));
                                     InfoMessages.push(InfoMessage4[Language]);
                                 };
