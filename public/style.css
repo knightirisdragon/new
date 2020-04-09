@@ -126,14 +126,21 @@ a.button:hover {
 
 .textbackground  {
     background-color: rgba(35, 39, 42, 0.95);
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 15px;
     display: inline-block; 
 }
 
+.itembackground  {
+    background-color: rgba(35, 39, 42, 0.5);
+    border-radius: 10px;
+    padding: 25px;  
+    display: inline-block;
+}
+
 .inlinediv  {
     background-color: rgba(35, 39, 42, 0);
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 10px;
     padding: 10px;
 
     overflow: scroll;
