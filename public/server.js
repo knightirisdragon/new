@@ -1164,11 +1164,11 @@ const RandomWords = [
 
 const DailyChallenges = [
   
-    ["open_background", "Hunt for Backgrounds", "Find a background by opening chests.", 1000, "Exp"],
-    ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 5, "Chests"],
-    ["50beat_akinator", "Eat that, Akinator", "Beat Akinator after 50 questions.", 500, "Gredit"],
-    ["clean_hangman", "Professional Unhanger", "Win the Hangman minigames with no fails.", 5000, "Exp"],
-    ["random_chimp_event", "Random Chimp Event", "Post the 🦍 emoji in the Support Server.", 421, "Background"],
+    ["open_background", "Hunt for Backgrounds", "Find a background by opening chests.", 100, "Gredit"],
+    ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 1250, "Exp"],
+    ["50beat_akinator", "Eat that, Akinator", "Beat Akinator after 50 questions.", 250, "Gredit"],
+    ["clean_hangman", "Professional Unhanger", "Win the Hangman minigames with no fails.", 1000, "Exp"],
+    ["random_chimp_event", "Random Chimp Event", "Post the 🦍 emoji in the Support Server.", 421, "Background"]
   
 ];
 
@@ -1996,6 +1996,29 @@ function function_ChannelData(key)  {
   
 };
 
+//Daily Challenge Rewards
+function function_DailyChallengeRewards(id, challenge)  {
+  
+    peeky.userData.set(`${id}`, new Date(), "LastDailyChallenge");
+  
+    var RewardAmount = challenge[3];
+    var RewardName = challenge[4];
+    var TotalReward = RewardAmount;
+  
+    if  (RewardName !== "Background")  {
+        if  (peeky.guilds.get(SupportServer).members.has(id) && peeky.guilds.get(SupportServer).members.get(id).roles.has(PremiumRole))  {
+            TotalReward = TotalReward + RewardAmount;
+        };
+
+        if  (peeky.guilds.get(SupportServer).members.has(id) && peeky.guilds.get(SupportServer).members.get(id).roles.has(BoosterRole))  {
+            TotalReward = TotalReward + RewardAmount;
+        };
+    };
+  
+    peeky.userData.set(`${id}`, TotalReward, RewardName);
+  
+};
+
 //Direct Message
 function  function_DirectMessage(id, message)  {
   
@@ -2541,6 +2564,7 @@ peeky.on('message', async (message) => {
         BoosterStart: 0,
         DailyRewarded: 0,
         LeaderboardRank: 1,
+        LastDailyChallenge: "",
 
         Playlist: [],
         PlaylistName: "Favorite Songs",
