@@ -2016,6 +2016,7 @@ function function_DailyChallengeRewards(id, challenge)  {
     };
   
     peeky.userData.set(id, TotalReward, RewardName);
+    peeky.userData.set(id, true, "CompletionistBadge");
   
 };
 
@@ -2560,8 +2561,6 @@ peeky.on('message', async (message) => {
         Playlist: [],
         PlaylistName: "Favorite Songs",
         PlaylistThumbnail: null,
-      
-        GamblerBadge: 0,
       
         BadgeGredit: 0,
         BadgeExp: 0,
@@ -5340,7 +5339,8 @@ if (CommandName == "help")  {
                      "**Website** [[Open]](https://peeky.glitch.me/)\n" + WebsiteInfo[Language] +
                      "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\n" + StoreInfo[Language] +
                      "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\n" + SupportServerInfo[Language] +
-                     "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\n" + BotInvite[Language],
+                     "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\n" + BotInvite[Language] +
+                     "\n\n**Quick Selection**\n" + " [[Daily Challenge]](https://peeky.glitch.me/dailychallenge.html)" + " [[Backgrounds]](https://peeky.glitch.me/backgrounds.html)" + " [[Leaderboard]](https://peeky.glitch.me/leaderboard.html)",
                      "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
                      "color": 7506394 
     };
@@ -7634,6 +7634,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
 
               //Gambler Badge Progress
               if  (!peeky.userData.get(key, "GamblerBadge") && CurrentChest == 10)  {
+                  peeky.userData.set(key, true, "GamblerBadge")
                   InfoMessages.push(InfoMessage1[Language]);
               };
             
