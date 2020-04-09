@@ -1167,7 +1167,6 @@ const DailyChallenges = [
     ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 500, "Exp"],
     ["beat_akinator", "Eat that, Akinator", "Beat Akinator after 25 questions.", 1, "Chests"],
     ["clean_hangman", "Professional Unhanger", "Win the Hangman minigame.", 250, "Gredit"],
-    ["treasure_hunt", "Treasure Hunting", "Claim a Random Treasure.", 393, "Background"],
   
     //["random_chimp_event", "Random Chimp Event", "Send the 🦍 emoji in the Support Server.", 476, "Background"]
   
@@ -2014,17 +2013,9 @@ function function_DailyChallengeRewards(id, challenge)  {
         if  (peeky.guilds.get(SupportServer).members.has(id) && peeky.guilds.get(SupportServer).members.get(id).roles.has(BoosterRole))  {
             TotalReward = TotalReward + RewardAmount;
         };
-  
-        peeky.userData.set(id, TotalReward, RewardName);
-      
-    } else 
-
-    if  (RewardName == "Background")  {
-      
-        peeky.userData.get(id, "Inventory").push(TotalReward);   
-  
     };
-
+  
+    peeky.userData.set(id, TotalReward, RewardName);
     peeky.userData.set(id, true, "CompletionistBadge");
   
 };
@@ -4286,12 +4277,11 @@ if  (message.channel.type == "dm")  {
 {
 
 //SOME VARIABLES
-const key = `${message.author.id}`;
-const keyCF = `${message.channel.id}`;
-const keySF = `${message.guild.id}`;
-const Language = peeky.serverData.get(keySF, "language");   
-const InfoMessages = [];
-var Failed = false;
+const key      = `${message.author.id}`;
+const keyCF    = `${message.channel.id}`;
+const keySF    = `${message.guild.id}`;
+const Language = peeky.serverData.get(keySF, "language");     
+var   Failed   = false;
 
 if  (!message.webhookID)  {
   
@@ -4557,13 +4547,8 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
                         var member = collected.first().member;
 
                         if  (peeky.userData.has(member.user.id))  {
-                          
-                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "treasure_hunt" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
-                                function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data"));
-                                InfoMessages.push(InfoMessage4[Language]);
-                            };
 
-                            var embed = {"description": SuccessIcon + " **" + function_RemoveFormatting(member.displayName, "other", true) + "** has claimed the treasure!" + "\n\n" + InfoMessages.join("\n\n"), "color": EmbedColor}; 
+                            var embed = {"description": SuccessIcon + " **" + function_RemoveFormatting(member.displayName, "other", true) + "** has claimed the treasure!", "color": EmbedColor}; 
                             m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
                             peeky.userData.math(member.user.id, "+", Amount, Rewards[Index][2]);
@@ -5243,6 +5228,7 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
 const Prefix       = peeky.serverData.get(keySF, "prefix");
 const CommandName  = message.content.replace(Prefix, "");
+const InfoMessages = [];
 
 function_UpdateAutowipe(key, "user");
 function_UpdateAutowipe(keySF, "server");
