@@ -1164,7 +1164,7 @@ const RandomWords = [
 
 const DailyChallenges = [
   
-    ["open_background", "Hunt for Backgrounds", "Open a chest and find a background.", 1000, "Exp"],
+    ["open_background", "Hunt for Backgrounds", "Find a background by opening chests.", 1000, "Exp"],
     ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 5, "Chests"],
     ["50beat_akinator", "Eat that, Akinator", "Beat Akinator after 50 questions.", 500, "Gredit"],
     ["clean_hangman", "Professional Unhanger", "Win the Hangman minigames with no fails.", 5000, "Exp"],
@@ -2419,8 +2419,6 @@ peeky.on('ready', () => {
 
 	  console.log("PEEKY is now online.");
     peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
-  
-    WebsiteStuff();
 
     //Update Banned Users
     setTimeout(() => {
@@ -2434,12 +2432,16 @@ peeky.on('ready', () => {
         peeky.serverData.set(data.GuildID, [], "Queue");
     });
   
-    //Daily Challenges
-    if  (peeky.peekyDate.set("dailychallenge", new Date(), "started"))  {
-        var ChallengeChosen = function_ShuffleArray(DailyChallenges.filter(i => i[0] !== peeky.peekyDate.get("dailychallenge", "data")[0]))[0];
-        peeky.peekyDate.set("dailychallenge", ChallengeChosen, "data");
-        peeky.peekyDate.set("dailychallenge", new Date(), "started");
-    }
+    //Daily Challenges  
+    if  (new Date() - new Date(peeky.peekyData.get("dailychallenge", "started")) >= DayMs )  {
+        var ChallengeChosen = function_ShuffleArray(DailyChallenges.filter(i => i[0] !== peeky.peekyData.get("dailychallenge", "data")[0]))[0];
+        peeky.peekyData.set("dailychallenge", ChallengeChosen, "data");
+        peeky.peekyData.set("dailychallenge", new Date(), "started");
+        
+        console.log("New daily challenge is " + peeky.peekyData.get("dailychallenge", "data")[1] + ".");
+    };
+  
+    WebsiteStuff();
 
     setInterval(() => {
       
