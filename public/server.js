@@ -1167,6 +1167,7 @@ const DailyChallenges = [
     ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 500, "Exp"],
     ["beat_akinator", "Eat that, Akinator", "Beat Akinator after 25 questions.", 1, "Chests"],
     ["clean_hangman", "Professional Unhanger", "Win the Hangman minigame.", 250, "Gredit"],
+    ["treasure_hunt", "Treasure Hunting", "Claim a Random Treasure.", 393, "Background"],
   
     //["random_chimp_event", "Random Chimp Event", "Send the 🦍 emoji in the Support Server.", 476, "Background"]
   
@@ -2013,9 +2014,17 @@ function function_DailyChallengeRewards(id, challenge)  {
         if  (peeky.guilds.get(SupportServer).members.has(id) && peeky.guilds.get(SupportServer).members.get(id).roles.has(BoosterRole))  {
             TotalReward = TotalReward + RewardAmount;
         };
-    };
   
-    peeky.userData.set(id, TotalReward, RewardName);
+        peeky.userData.set(id, TotalReward, RewardName);
+      
+    } else 
+
+    if  (RewardName == "Background")  {
+      
+        peeky.userData.get(id, "Inventory").push(TotalReward);   
+  
+    };
+
     peeky.userData.set(id, true, "CompletionistBadge");
   
 };
