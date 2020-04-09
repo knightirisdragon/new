@@ -2446,7 +2446,7 @@ peeky.on('ready', () => {
 
     //Update Banned Users
     setTimeout(() => {
-        peeky.guilds.cache.get(SupportServer).members.cache.fetch();
+        peeky.guilds.cache.get(SupportServer).members.fetch();
         function_UpdateBans();
     }, 10000);
   
@@ -4970,7 +4970,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
             FunctionCooldowns.add("classificationwall" + message.guild.id)
             setTimeout(() => {FunctionCooldowns.delete("classificationwall" + message.guild.id)}, 300000);
           
-            await message.guild.members.cache.fetch();
+            await message.guild.members.fetch();
             message.guild.members.cache.forEach(m => {
               
               Tags = [];
@@ -8202,7 +8202,7 @@ if (CommandName.startsWith("play"))  {
                               peeky.serverData.get(keySF, "Queue").shift();
                             };
 
-                            if  (peeky.serverData.get(keySF, "Queue").length == 0 || message.guild.me.voice.channel.members.cache.filter(m => !m.user.bot).map(m => m.id).length < 1)  {  //
+                            if  (peeky.serverData.get(keySF, "Queue").length == 0 || message.guild.me.voice.channel.members.filter(m => !m.user.bot).map(m => m.id).length < 1)  {  //
 
                                 peeky.serverData.set(keySF, [], "Queue");
                                 CurrentlyPlaying.delete(message.guild.id);
@@ -8212,7 +8212,7 @@ if (CommandName.startsWith("play"))  {
                                     message.guild.me.setNickname(null);
                                 };
 
-                                const Listeners = voiceChannel.members.cache.filter(m => !m.user.bot).map(m => m.id);
+                                const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
 
                                 var TranslatedMessages = [InfoIcon + " The music has now finished with **X001 listeners**.", InfoIcon + " Hudba právě skončila s **X001 posluchateli**.", InfoIcon + " Hudba sa skončila s **X001 poslucháčmi**.", InfoIcon + " La música ya se ha terminado con **X001 oyentes**.", InfoIcon + " Müzik şimdi **X001 dinleyicileri** ile bitti.", InfoIcon + " Музыка теперь закончена с **X001 слушателей**."];
                                 const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
@@ -8647,7 +8647,7 @@ if (CommandName == "stop")  {
 
                 var OwnerActive = false;
 
-                if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.cache.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+                if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
                     OwnerActive = true;
                 };
 
@@ -8657,9 +8657,12 @@ if (CommandName == "stop")  {
                     if  (connection && connection.dispatcher)  {
                         connection.dispatcher.end();
                     };
+                  
+                    if  (message.guild.me.voice.channel)  {
+                        message.guild.me.voice.channel.leave();     
+                    };
 
                     peeky.serverData.set(keySF, [], "Queue");
-                    message.guild.me.voice.channel.leave();
                     CurrentlyPlaying.delete(message.guild.id);
 
                 } else {
@@ -8699,7 +8702,7 @@ if (CommandName.startsWith("skip ") || CommandName == "skip")  {
 
                 var OwnerActive = false;
 
-                if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.cache.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
+                if  (message.guild.me.voice.channel && message.guild.me.voice.channel.members.filter(m => m.id == message.guild.owner.user.id).map(m => m).length > 0)  {
                     OwnerActive = true;
                 };
 
@@ -9566,7 +9569,7 @@ if  (CommandName.startsWith("idban"))  {
 
         var ValidID = 0;
 
-        await peeky.users.cache.fetch(CommandArgument, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
+        await peeky.users.fetch(CommandArgument, true).catch(error => {  ErrorBag.add(error);  ValidID ++;  });
       
         if  (ValidID == 0) {
 
