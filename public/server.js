@@ -1166,9 +1166,8 @@ const DailyChallenges = [
   
     ["open_background", "Hunt for Backgrounds", "Find a background by opening chests.", 100, "Gredit"],
     ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 1250, "Exp"],
-    ["50beat_akinator", "Eat that, Akinator", "Beat Akinator after 50 questions.", 250, "Gredit"],
-    ["clean_hangman", "Professional Unhanger", "Win the Hangman minigames with no fails.", 1000, "Exp"],
-    ["random_chimp_event", "Random Chimp Event", "Post the 🦍 emoji in the Support Server.", 421, "Background"]
+    ["beat_akinator", "Eat that, Akinator", "Beat Akinator after 50 questions.", 250, "Gredit"],
+    ["clean_hangman", "Professional Unhanger", "Win the Hangman minigames with no fails.", 1000, "Exp"]
   
 ];
 
@@ -1999,7 +1998,7 @@ function function_ChannelData(key)  {
 //Daily Challenge Rewards
 function function_DailyChallengeRewards(id, challenge)  {
   
-    peeky.userData.set(`${id}`, new Date(), "LastDailyChallenge");
+    peeky.userData.set(id, challenge[0], "LastDailyChallenge");
   
     var RewardAmount = challenge[3];
     var RewardName = challenge[4];
@@ -2015,7 +2014,7 @@ function function_DailyChallengeRewards(id, challenge)  {
         };
     };
   
-    peeky.userData.set(`${id}`, TotalReward, RewardName);
+    peeky.userData.set(id, TotalReward, RewardName);
   
 };
 
@@ -2454,15 +2453,6 @@ peeky.on('ready', () => {
     filtered.forEach(data => {
         peeky.serverData.set(data.GuildID, [], "Queue");
     });
-  
-    //Daily Challenges  
-    if  (new Date() - new Date(peeky.peekyData.get("dailychallenge", "started")) >= DayMs )  {
-        var ChallengeChosen = function_ShuffleArray(DailyChallenges.filter(i => i[0] !== peeky.peekyData.get("dailychallenge", "data")[0]))[0];
-        peeky.peekyData.set("dailychallenge", ChallengeChosen, "data");
-        peeky.peekyData.set("dailychallenge", new Date(), "started");
-        
-        console.log("New daily challenge is " + peeky.peekyData.get("dailychallenge", "data")[1] + ".");
-    };
   
     WebsiteStuff();
 
@@ -4309,6 +4299,15 @@ if  (!CheckedDataCreations.has(message.channel.id))  {
     function_ChannelData(keyCF);
   
 };
+  
+//Daily Challenges  
+if  (new Date() - new Date(peeky.peekyData.get("dailychallenge", "started")) >= DayMs )  {
+    var ChallengeChosen = function_ShuffleArray(DailyChallenges.filter(i => i[0] !== peeky.peekyData.get("dailychallenge", "data")[0]))[0];
+    peeky.peekyData.set("dailychallenge", ChallengeChosen, "data");
+    peeky.peekyData.set("dailychallenge", new Date(), "started");
+
+    console.log("New daily challenge is " + peeky.peekyData.get("dailychallenge", "data")[1] + ".");
+};
 
 //Badge Checkers
 if  (message.guild.owner !== undefined && !message.author.bot)  {
@@ -5205,8 +5204,6 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
     };
   
 };
-  
-
   
 //Prefixed Commands
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
@@ -7644,6 +7641,11 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
 
                       peeky.userData.get(key, "Inventory").push(Background);
                       InfoMessages.push(InfoIcon + " You have found the **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
+                    
+                      if  (peeky.peekyData.get("dailychallenges", "data")[0] == "open_background" && peeky.userData.get(key, "LastDailyChallenge")[0] !== peeky.peekyData.get("dailychallenges", "data")[0])  {
+                          function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenges", "data"));
+                          InfoMessages.push(InfoMessage4[Language]);
+                      };
 
                   };
 
@@ -7802,10 +7804,13 @@ if  (!ProfileCooldown.has(message.author.id))  {
         if  (peeky.userData.get(key, "Gredit") >= DonatedAmount)  {
 
         if  (DonatedAmount >= 1000 && !peeky.userData.get(key, "CharityBadge"))  {
-      
             peeky.userData.set(key, true, "CharityBadge");
             InfoMessages.push(InfoMessage1[Language]);
-      
+        };
+                    
+        if  (DonatedAmount >= 5000 && peeky.peekyData.get("dailychallenges", "data")[0] == "donate_alot" && peeky.userData.get(key, "LastDailyChallenge")[0] !== peeky.peekyData.get("dailychallenges", "data")[0])  {
+            function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenges", "data"));
+            InfoMessages.push(InfoMessage4[Language]);
         };
 
         peeky.userData.math(key, "-", DonatedAmount, "Gredit");
@@ -9031,6 +9036,11 @@ if (CommandName == "hangman")  {
                         if  (CensoredAnswer == Answer.toLowerCase())  {
                             const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(LastMember.displayName, "other", true) + "** has completed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                             message.channel.send({ embed });
+                          
+                            if  (WrongLetters.length == 0 && peeky.peekyData.get("dailychallenges", "data")[0] == "clean_hangman" && peeky.userData.get(key, "LastDailyChallenge")[0] !== peeky.peekyData.get("dailychallenges", "data")[0])  {
+                                function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenges", "data"));
+                                InfoMessages.push(InfoMessage4[Language]);
+                            };
                       
                             ActiveMinigames.delete(message.guild.id);
                         } else {
@@ -9116,6 +9126,11 @@ if  (CommandName == "akinator")  {
                                 var Embedthumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fakinator_end.png?v=1586230426245";
                                 var ImageUrl = HollowImage;
                                 var FooterText = "­";
+                              
+                                if  ((Step + 1) >= 50 && peeky.peekyData.get("dailychallenges", "data")[0] == "beat_akinator" && peeky.userData.get(key, "LastDailyChallenge")[0] !== peeky.peekyData.get("dailychallenges", "data")[0])  {
+                                    function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenges", "data"));
+                                    InfoMessages.push(InfoMessage4[Language]);
+                                };
                                  
                             } else {
 
