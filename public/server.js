@@ -1163,10 +1163,10 @@ const RandomWords = [
 
 const DailyChallenges = [
   
-    ["open_background", "Hunt for Backgrounds", "Find a background by opening chests.", 125, "Gredit"],
-    ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 750, "Exp"],
-    ["beat_akinator", "Eat that, Akinator", "Beat Akinator after 50 questions.", 1, "Chests"],
-    ["clean_hangman", "Professional Unhanger", "Win the Hangman minigame with no wrong letters.", 1250, "Exp"],
+    ["open_background", "Hunt for Backgrounds", "Find a background by opening chests.", 250, "Exp"],
+    ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 500, "Exp"],
+    ["beat_akinator", "Eat that, Akinator", "Beat Akinator after 25 questions.", 1, "Chests"],
+    ["clean_hangman", "Professional Unhanger", "Win the Hangman minigame.", 250, "Gredit"],
   
     //["random_chimp_event", "Random Chimp Event", "Send the 🦍 emoji in the Support Server.", 476, "Background"]
   
@@ -9050,13 +9050,14 @@ if (CommandName == "hangman")  {
                   
                     if  (WrongLetters.length >= HangmanLevels.length - 1 || CensoredAnswer == Answer.toLowerCase())  {
                         if  (CensoredAnswer == Answer.toLowerCase())  {
-                            const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(LastMember.displayName, "other", true) + "** has completed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-                            message.channel.send({ embed });
                           
-                            if  (WrongLetters.length == 0 && peeky.peekyData.get("dailychallenge", "data")[0] == "clean_hangman" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
+                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "clean_hangman" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
                                 function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data"));
                                 InfoMessages.push(InfoMessage4[Language]);
                             };
+                          
+                            const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(LastMember.displayName, "other", true) + "** has completed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+                            message.channel.send({ embed });
                       
                             ActiveMinigames.delete(message.guild.id);
                         } else {
@@ -9143,7 +9144,7 @@ if  (CommandName == "akinator")  {
                                 var ImageUrl = HollowImage;
                                 var FooterText = "­";
                               
-                                if  ((Step + 1) >= 50 && peeky.peekyData.get("dailychallenge", "data")[0] == "beat_akinator" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
+                                if  ((Step + 1) >= 25 && peeky.peekyData.get("dailychallenge", "data")[0] == "beat_akinator" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
                                     function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data"));
                                     InfoMessages.push(InfoMessage4[Language]);
                                 };
