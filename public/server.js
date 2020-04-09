@@ -2891,7 +2891,7 @@ if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
         var Role = member.guild.roles.cache.find(role => role.name == peeky.serverData.get(keySF, "join_role_bonus_setting"));
 
         if  (Role) {
-            member.roles.cache.add(Role.id, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
+            member.roles.add(Role.id, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
           
             console.log("The Join Role function has been triggered in " + member.guild.name + ".");
             function_UpdateAutowipe(keySF, "server");
@@ -2945,7 +2945,7 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
                     const embed = {"description": SuccessIcon + " You have unlocked the full access to the server.",  "color": EmbedColor}; 
                     await function_DirectMessage(member.user.id, { embed });
 
-                    member.roles.cache.add(Role.id, "Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
+                    member.roles.add(Role.id, "Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
 
                 }).catch(async () => {
                     QueuedSOSMessages.delete(member.user.id);
@@ -3346,7 +3346,7 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
 
             if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
               
-                 member.roles.cache.add(GuildRole.id).catch(error => ErrorBag.add(error));
+                 member.roles.add(GuildRole.id).catch(error => ErrorBag.add(error));
 
                  CurrentlyStreaming.add(member.user.id + member.guild.id + "SR");
                  setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 1800000);
@@ -3420,7 +3420,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
         if  (member.presence.activity && member.presence.activity.type == 0 && member.presence.activity.name.toLowerCase() == GameName)  {
 
             if  (!HasRole && !RoleCooldown.has(member.user.id + member.guild.id))  {
-                member.roles.cache.add(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
+                member.roles.add(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
               
                 console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
                 function_UpdateAutowipe(keySF, "server");
@@ -3461,7 +3461,7 @@ if  (peeky.serverData.get(keySF, "veteran_role_bonus") == true)  {
 
             if  (Role && !member.roles.cache.has(Role.id))  {
 
-                member.roles.cache.add(Role.id, "Triggered by the Veteran Role function.").catch(error => ErrorBag.add(error));
+                member.roles.add(Role.id, "Triggered by the Veteran Role function.").catch(error => ErrorBag.add(error));
 
             };
 
@@ -3506,8 +3506,8 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
 //Karma System
 if  (!user.bot && KarmaImages.findIndex(i => i[0] == reaction.message.id) >= 0)  {
 
-    var ReactionEmoji1 = reaction.message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
-    var ReactionEmoji2 = reaction.message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
+    var ReactionEmoji1 = reaction.message.guild.emojis.cache.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
+    var ReactionEmoji2 = reaction.message.guild.emojis.cache.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
     var key2 = reaction.message.author.id;
   
     if  ((ReactionEmoji1 && reaction.emoji.name == ReactionEmoji1.name) || (reaction.emoji.id == DefaultUpvote))  {
@@ -4069,7 +4069,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                         const Member = reaction.message.guild.members.cache.get(user.id);
                         if  (!Member.roles.cache.has(role.id))  {
-                            Member.roles.cache.add(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
+                            Member.roles.add(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
                         } else {
                           Member.roles.cache.remove(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
                         };
@@ -4569,8 +4569,8 @@ if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
 
         if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS', 'EXTERNAL_EMOJIS'))  {
 
-            var ReactionEmoji1 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
-            var ReactionEmoji2 = message.guild.emojis.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
+            var ReactionEmoji1 = message.guild.emojis.cache.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote");
+            var ReactionEmoji2 = message.guild.emojis.cache.find(c=> c.name == peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote");
 
         if  (ReactionEmoji1 && ReactionEmoji2)  {
              await message.react(ReactionEmoji1).catch(error => ErrorBag.add(error));
@@ -4873,7 +4873,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
             if  (Role && !message.member.roles.cache.has(Role.id))  {
 
-                message.member.roles.cache.add(Role.id, "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
+                message.member.roles.add(Role.id, "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
 
                 if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "FP"))  {
 
@@ -5665,7 +5665,7 @@ if  (FunctioName.startsWith(" "))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
-if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+if  (!message.mentions.channels.first() && !message.mentions.roles.first() && !message.mentions.members.first())  {
 
     var ManageChannels = false;
     var ManageRoles = false;
@@ -6555,7 +6555,7 @@ if  (FunctioName.startsWith(" "))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
     
-if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+if  (!message.mentions.channels.first() && !message.mentions.roles.first() && !message.mentions.members.first())  {
   
     var TranslatedMessages = [SuccessIcon + " The setting for the **X001** function is now **X002**.", SuccessIcon + " Nastavení pro funkci **X001** je nyní **X002**.", SuccessIcon + " Nastavenie pre **X001** funkciu je teraz **X002*.", SuccessIcon + " El ajuste de la función **X001** es ahora **X002**.", SuccessIcon + " **X001** fonksiyonu **X002** olarak ayarlandı.", SuccessIcon + " Настройка для функции **X001** теперь составляет **X002**."];
     var TranslatedFullSetting = [ErrorIcon + " The setting for the **X001** function is full.", ErrorIcon + " Nastavení pro funcki **X001** je plné.", ErrorIcon + " Nastavenie pre **X001** funkciu je plné.", ErrorIcon + " El ajuste de la función **X001** está lleno.", ErrorIcon + " **X001** fonksiyonu için ayar dolu.", ErrorIcon + " Настройка для функции **X001** заполнена."];
@@ -7069,7 +7069,7 @@ if  (FunctioName.startsWith(" "))  {
   
 if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == OwnerId)  {
 
-if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+if  (!message.mentions.channels.first() && !message.mentions.roles.first() && !message.mentions.members.first())  {
 
     var TranslatedMessages = [SuccessIcon + " Cleared the setting for the **X001** function.", SuccessIcon + " Nastavení pro funkci **X001** bylo vyčištěno.", SuccessIcon + " Vymazal som nastavenie pre **X001** funkciu.", SuccessIcon + " Despejó la configuración de la función **X001**.", SuccessIcon + " **X001** adlı fonksiyonun ayarı sıfırlandı.", SuccessIcon + " Очистили настройку для функции **X001**."];
 
@@ -9413,57 +9413,65 @@ if  (CommandName.startsWith("nsfw"))  {
 
 //Mute
 if  (CommandName.startsWith("mute"))  {
+  
+    var CommandArgument = CommandName.split("idban")[1];
 
-    if  (message.member.permissions.has("MUTE_MEMBERS"))  {
+    if  (CommandArgument.startsWith(" "))  {
+      
+          CommandArgument = CommandArgument.replace(" ", "");
 
-        if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
+      if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 
-            var MentionedMember = message.mentions.members.first();
-            var name = peeky.serverData.get(keySF, "muted_role");
-            var Role = message.guild.roles.cache.find(role => role.name == name);
+          if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
 
-            if  (MentionedMember)  {
+              var MentionedMember = message.mentions.members.first();
+              var name = peeky.serverData.get(keySF, "muted_role");
+              var Role = message.guild.roles.cache.find(role => role.name == name);
 
-                if  (Role)  {
+              if  (MentionedMember)  {
 
-                    if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && !MentionedMember.roles.cache.has(Role.id))  {
+                  if  (Role)  {
 
-                        await MentionedMember.roles.cache.add(Role.id, "Muted by " + message.author.tag + ".").catch(error => {
-                            const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
-                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                            ErrorBag.add(error); Failed = true;
-                        });
+                      if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && !MentionedMember.roles.cache.has(Role.id))  {
 
-                    if  (Failed == false)  {
-                        var TranslatedMessages = [SuccessIcon + " I have muted **X001** at **X002**'s request.", SuccessIcon + " Ztlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Mutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He silenciado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine susturdum.", SuccessIcon + " Я приглушил **X001** по запросу **X002**."];
-                        const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
-                        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                    };
+                          await MentionedMember.roles.add(Role.id, "Muted by " + message.author.tag + ".").catch(error => {
+                              const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
+                              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                              ErrorBag.add(error); Failed = true;
+                          });
 
-                    } else {
-                      var TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete.", ErrorIcon + " Nemôžeš mutnúť tohoto uživateľa.", ErrorIcon + " No puedes silenciar a ese usuario.", ErrorIcon + " Bu kullanıcının susturamazsınız.", ErrorIcon + " Вы не можете отключить звук этого пользователя."];
-                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                    };
+                      if  (Failed == false)  {
+                          var TranslatedMessages = [SuccessIcon + " I have muted **X001** at **X002**'s request.", SuccessIcon + " Ztlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Mutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He silenciado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine susturdum.", SuccessIcon + " Я приглушил **X001** по запросу **X002**."];
+                          const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
+                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                      };
 
-                } else {
-                  const embed = {"description": ErrorMessage14[Language].replace("X001", name),  "color": EmbedColor};
-                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
-                };
+                      } else {
+                        var TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete.", ErrorIcon + " Nemôžeš mutnúť tohoto uživateľa.", ErrorIcon + " No puedes silenciar a ese usuario.", ErrorIcon + " Bu kullanıcının susturamazsınız.", ErrorIcon + " Вы не можете отключить звук этого пользователя."];
+                        const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                      };
 
-            } else {
-              const embed = {"description": ErrorMessage3[Language],  "color": EmbedColor};  
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-            };
+                  } else {
+                    const embed = {"description": ErrorMessage14[Language].replace("X001", name),  "color": EmbedColor};
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
+                  };
 
-        } else {
-         const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-        };
+              } else {
+                const embed = {"description": ErrorMessage3[Language],  "color": EmbedColor};  
+                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              };
 
-    } else {
-     const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
-     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          } else {
+           const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
+           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+          };
+
+      } else {
+       const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      };
+      
     };
 
 };
@@ -9820,7 +9828,7 @@ if  (CommandName.startsWith("prefix"))  {
 
         if  (message.member.user.id == message.guild.owner.user.id)  {
           
-            if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+            if  (!message.mentions.channels.first() && !message.mentions.roles.first() && !message.mentions.members.first())  {
 
                 const InfoMessages = [];
                 //InfoMessages.push(InfoIcon + " If the prefix is broken, join the Support Server.");
@@ -9865,7 +9873,7 @@ if  (CommandName.startsWith("timezone"))  {
 
     if  (message.member.permissions.has("MANAGE_GUILD"))  {
 
-        if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+        if  (!message.mentions.channels.first() && !message.mentions.roles.first() && !message.mentions.members.first())  {
           
             if  (!isNaN(CommandArgument) && CommandArgument >= -12 && CommandArgument < 12)  {
 
@@ -9905,7 +9913,8 @@ if  (CommandName.startsWith("highlightedchannel"))  {
         CommandArgument = function_RemoveFormatting(CommandArgument.replace(" ", ""), "channel", true);
 
         if  (message.member.permissions.has("MANAGE_GUILD"))  {
-            if  (message.mentions.channels.first() == undefined && message.mentions.roles.first() == undefined && message.mentions.members.first() == undefined)  {
+
+            if  (!message.mentions.channels.first() && !message.mentions.roles.first() && !message.mentions.members.first())  {
 
                 peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
 
@@ -9986,8 +9995,8 @@ if  (CommandName.startsWith("muterole"))  {
     if  (message.member.permissions.has("MANAGE_GUILD"))  {
 
         CommandArgument = CommandArgument.replace(" ", "");
-
-        if  (message.mentions.channels.cache.first() == undefined && message.mentions.roles.cache.first() == undefined && message.mentions.members.cache.first() == undefined)  {
+      
+        if  (!message.mentions.channels.first() && !message.mentions.roles.first() && !message.mentions.members.first())  {
 
             var FixedMutedRole = function_RemoveFormatting(CommandArgument, "role", true);
             var RoleExist = message.guild.roles.cache.find(role => role.name == CommandArgument);
