@@ -27,6 +27,7 @@ const Enmap = require("enmap");
 peeky.userData = new Enmap({name: "userData"});
 peeky.serverData = new Enmap({name: "serverData"});
 peeky.channelData = new Enmap({name: "channelData"});
+peeky.peekyData = new Enmap({name: "peekyData"});
 const Setting = require('./setting.json');
 
 //Website
@@ -2432,6 +2433,13 @@ peeky.on('ready', () => {
     filtered.forEach(data => {
         peeky.serverData.set(data.GuildID, [], "Queue");
     });
+  
+    //Daily Challenges
+    if  (peeky.peekyDate.set("dailychallenge", new Date(), "started"))  {
+        var ChallengeChosen = function_ShuffleArray(DailyChallenges.filter(i => i[0] !== peeky.peekyDate.get("dailychallenge", "data")[0]))[0];
+        peeky.peekyDate.set("dailychallenge", ChallengeChosen, "data");
+        peeky.peekyDate.set("dailychallenge", new Date(), "started");
+    }
 
     setInterval(() => {
       
