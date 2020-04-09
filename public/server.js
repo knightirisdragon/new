@@ -483,6 +483,15 @@ const InfoMessage3 = [
   InfoIcon + " Вы потеряли свой пользовательский опыт.",
   InfoIcon + " "
 ];
+const InfoMessage4 = [
+  InfoIcon + " You have completed a daily challenge.",
+  InfoIcon + " Dokončili jste denní výzvu.",
+  InfoIcon + " You have completed a daily challenge.",
+  InfoIcon + " You have completed a daily challenge.",
+  InfoIcon + " You have completed a daily challenge.",
+  InfoIcon + " You have completed a daily challenge.",
+  InfoIcon + " "
+];
 
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
@@ -1158,7 +1167,7 @@ const DailyChallenges = [
     ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 5, "Chests"],
     ["50beat_akinator", "Eat that, Akinator", "Beat Akinator after 50 questions.", 500, "Gredit"],
     ["clean_hangman", "Professional Unhanger", "Win the Hangman minigames with no fails.", 5000, "Exp"],
-    ["clean_hangman", "Professional Unhanger", "Win the Hangman minigames with no fails.", 5000, "Exp"],
+    ["random_chimp_event", "Random Chimp Event", "Post the 🦍 emoji in the Support Server.", 421, "Background"],
   
 ];
 
