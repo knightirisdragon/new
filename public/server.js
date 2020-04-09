@@ -4261,11 +4261,12 @@ if  (message.channel.type == "dm")  {
 {
 
 //SOME VARIABLES
-const key      = `${message.author.id}`;
-const keyCF    = `${message.channel.id}`;
-const keySF    = `${message.guild.id}`;
-const Language = peeky.serverData.get(keySF, "language");     
-var   Failed   = false;
+const key = `${message.author.id}`;
+const keyCF = `${message.channel.id}`;
+const keySF = `${message.guild.id}`;
+const Language = peeky.serverData.get(keySF, "language");   
+const InfoMessages = [];  
+var Failed = false;
 
 if  (!message.webhookID)  {
   
@@ -5212,7 +5213,6 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
 const Prefix       = peeky.serverData.get(keySF, "prefix");
 const CommandName  = message.content.replace(Prefix, "");
-const InfoMessages = [];
 
 function_UpdateAutowipe(key, "user");
 function_UpdateAutowipe(keySF, "server");
@@ -5324,7 +5324,7 @@ if (CommandName == "help")  {
                      "\n\n**Store** [[Open]](https://peeky.glitch.me/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\n" + StoreInfo[Language] +
                      "\n\n**Support Server** [[Join]](https://peeky.glitch.me/server.html)\n" + SupportServerInfo[Language] +
                      "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/invite.html)\n" + BotInvite[Language] +
-                     "\n\n**Quick Selection**\n" + " [[Daily Challenge]](https://peeky.glitch.me/dailychallenge.html)" + " [[Backgrounds]](https://peeky.glitch.me/backgrounds.html)" + " [[Leaderboard]](https://peeky.glitch.me/leaderboard.html)",
+                     "\n\n**Quick Selection**\n" + " [[Daily Challenge]](https://peeky.glitch.me/dailychallenge.html)" + " [[Leaderboard]](https://peeky.glitch.me/leaderboard.html)" + " [[Backgrounds]](https://peeky.glitch.me/backgrounds.html)",
                      "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
                      "color": 7506394 
     };
@@ -9851,7 +9851,6 @@ if  (CommandName.startsWith("prefix"))  {
           
             if  (!message.mentions.channels.first() && !message.mentions.roles.first() && !message.mentions.members.first())  {
 
-                const InfoMessages = [];
                 //InfoMessages.push(InfoIcon + " If the prefix is broken, join the Support Server.");
 
                 peeky.serverData.set(keySF, CommandArgument, "prefix");
