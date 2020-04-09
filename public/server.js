@@ -88,7 +88,6 @@ var WebsiteCooldowns        = new Set();
 var FunctionCooldowns       = new Set();
 var AutoManagementCooldown  = new Set();
 var GainCooldown            = new Set();
-var RandomTreasuresCooldown = new Set();
 var BadgeCheckCooldown      = new Set();
 var CommandCooldown         = new Set();
 var SetInviteCooldown       = new Set();
@@ -4299,15 +4298,6 @@ if  (!CheckedDataCreations.has(message.channel.id))  {
     function_ChannelData(keyCF);
   
 };
-  
-//Daily Challenges  
-if  (new Date() - new Date(peeky.peekyData.get("dailychallenge", "started")) >= DayMs )  {
-    var ChallengeChosen = function_ShuffleArray(DailyChallenges.filter(i => i[0] !== peeky.peekyData.get("dailychallenge", "data")[0]))[0];
-    peeky.peekyData.set("dailychallenge", ChallengeChosen, "data");
-    peeky.peekyData.set("dailychallenge", new Date(), "started");
-
-    console.log("New daily challenge is " + peeky.peekyData.get("dailychallenge", "data")[1] + ".");
-};
 
 //Badge Checkers
 if  (message.guild.owner !== undefined && !message.author.bot)  {
@@ -4330,6 +4320,28 @@ if  (message.guild.owner !== undefined && !message.author.bot)  {
     };
   
 };
+  
+//Daily Challenges Auto-Management
+if  (!AutoManagementCooldown.has("dailychallenges") && new Date() - new Date(peeky.peekyData.get("dailychallenge", "started")) >= DayMs )  {
+
+    AutoManagementCooldown.add("dailychallenges");
+    setTimeout(() => {AutoManagementCooldown.delete("dailychallenges")}, 1800000);
+  
+    var ChallengeChosen = function_ShuffleArray(DailyChallenges.filter(i => i[0] !== peeky.peekyData.get("dailychallenge", "data")[0]))[0];
+    peeky.peekyData.set("dailychallenge", ChallengeChosen, "data");
+    peeky.peekyData.set("dailychallenge", new Date(), "started");
+  
+    fs.writeFile('public/dailychallenge.txt', [
+      
+        "<font size='5'>" + ChallengeChosen[0] + "</font>",
+        ""
+      
+    ], (err) => {
+        if (err) console.log(err); 
+    });
+
+    console.log("The new Daily Challenge is " + peeky.peekyData.get("dailychallenge", "data")[1] + ".");
+};
 
 //Workshop Auto-Management
 if  (message.channel.id == WorkshopChannel && !message.author.bot)  {
@@ -4350,10 +4362,10 @@ if  (message.channel.id == WorkshopChannel && !message.author.bot)  {
 };
     
 //Limited Roles Auto-Management
-if  (!AutoManagementCooldown.has("cooldown"))  {
+if  (!AutoManagementCooldown.has("limitedroles"))  {
 
-    AutoManagementCooldown.add("cooldown");
-    setTimeout(() => {AutoManagementCooldown.delete("cooldown")}, 1800000);
+    AutoManagementCooldown.add("limitedroles");
+    setTimeout(() => {AutoManagementCooldown.delete("limitedroles")}, 1800000);
   
     //Premium
     await peeky.guilds.get(SupportServer).members.filter(m => !m.user.bot && m.roles.has(PremiumRole)).forEach(m => {
@@ -4379,12 +4391,12 @@ if  (!AutoManagementCooldown.has("cooldown"))  {
 };
 
 //Giveaway Auto-Management
-if  (!message.author.bot && message.guild.id == SupportServer)  {
+if  (!message.author.bot)  {
   
-    if  (!AutoManagementCooldown.has(message.guild.id))  {
+    if  (!AutoManagementCooldown.has(message.guild.id + "giveaways"))  {
 
-        AutoManagementCooldown.add(message.guild.id);
-        setTimeout(() => {AutoManagementCooldown.delete(message.guild.id)}, 300000);
+        AutoManagementCooldown.add(message.guild.id + "giveaways");
+        setTimeout(() => {AutoManagementCooldown.delete(message.guild.id + "giveaways")}, 300000);
         
         var Giveaways = peeky.serverData.get(keySF, "ActiveGiveaways");
         var FinishedGiveaway = false;
@@ -4498,11 +4510,11 @@ if  (!message.author.bot && message.guild.id == SupportServer)  {
 
 };
     
-//Random Treasures
-if  (!RandomTreasuresCooldown.has("cooldown"))  {
+//Random Treasures Auto-Management
+if  (!AutoManagementCooldown.has("randomtreasures"))  {
 
-    RandomTreasuresCooldown.add("cooldown");
-    setTimeout(() => {RandomTreasuresCooldown.delete("cooldown")}, 3600000);
+    AutoManagementCooldown.add("randomtreasures");
+    setTimeout(() => {AutoManagementCooldown.delete("randomtreasures")}, 3600000);
   
     var serverlist = peeky.serverData.filter( p => p.server_upgraded == true && p.GuildID ).array();
     var server = serverlist[Math.floor(Math.random()*serverlist.length)];
