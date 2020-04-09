@@ -9414,121 +9414,139 @@ if  (CommandName.startsWith("nsfw"))  {
 //Mute
 if  (CommandName.startsWith("mute"))  {
   
-    var CommandArgument = CommandName.split("idban")[1];
+    var CommandArgument = CommandName.split("mute")[1];
 
     if  (CommandArgument.startsWith(" "))  {
+
+        CommandArgument = CommandArgument.replace(" ", "");
+
+        if  (message.member.permissions.has("MUTE_MEMBERS"))  {
+
+            if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
+
+                var MentionedMember = message.mentions.members.first();
+                var name = peeky.serverData.get(keySF, "muted_role");
+                var Role = message.guild.roles.cache.find(role => role.name == name);
+
+                if  (MentionedMember)  {
+
+                    if  (Role)  {
+
+                        if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && !MentionedMember.roles.cache.has(Role.id))  {
+
+                            await MentionedMember.roles.add(Role.id, "Muted by " + message.author.tag + ".").catch(error => {
+                                const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
+                                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                ErrorBag.add(error); Failed = true;
+                            });
+
+                        if  (Failed == false)  {
+                            var TranslatedMessages = [SuccessIcon + " I have muted **X001** at **X002**'s request.", SuccessIcon + " Ztlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Mutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He silenciado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine susturdum.", SuccessIcon + " Я приглушил **X001** по запросу **X002**."];
+                            const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
+                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        };
+
+                        } else {
+                          var TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete.", ErrorIcon + " Nemôžeš mutnúť tohoto uživateľa.", ErrorIcon + " No puedes silenciar a ese usuario.", ErrorIcon + " Bu kullanıcının susturamazsınız.", ErrorIcon + " Вы не можете отключить звук этого пользователя."];
+                          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        };
+
+                    } else {
+                      const embed = {"description": ErrorMessage14[Language].replace("X001", name),  "color": EmbedColor};
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
+                    };
+
+                } else {
+                  const embed = {"description": ErrorMessage3[Language],  "color": EmbedColor};  
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
+
+            } else {
+             const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
+             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+            };
+
+        } else {
+         const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
       
-          CommandArgument = CommandArgument.replace(" ", "");
-
-      if  (message.member.permissions.has("MUTE_MEMBERS"))  {
-
-          if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
-
-              var MentionedMember = message.mentions.members.first();
-              var name = peeky.serverData.get(keySF, "muted_role");
-              var Role = message.guild.roles.cache.find(role => role.name == name);
-
-              if  (MentionedMember)  {
-
-                  if  (Role)  {
-
-                      if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && !MentionedMember.roles.cache.has(Role.id))  {
-
-                          await MentionedMember.roles.add(Role.id, "Muted by " + message.author.tag + ".").catch(error => {
-                              const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
-                              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                              ErrorBag.add(error); Failed = true;
-                          });
-
-                      if  (Failed == false)  {
-                          var TranslatedMessages = [SuccessIcon + " I have muted **X001** at **X002**'s request.", SuccessIcon + " Ztlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Mutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He silenciado a **X001** a petición de **X002**.", SuccessIcon + " **X001**'i **X002**'nin isteği üzerine susturdum.", SuccessIcon + " Я приглушил **X001** по запросу **X002**."];
-                          const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
-                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                      };
-
-                      } else {
-                        var TranslatedMessages = [ErrorIcon + " You cannot mute that user.", ErrorIcon + " Tohoto uživatele ztlumit nemůžete.", ErrorIcon + " Nemôžeš mutnúť tohoto uživateľa.", ErrorIcon + " No puedes silenciar a ese usuario.", ErrorIcon + " Bu kullanıcının susturamazsınız.", ErrorIcon + " Вы не можете отключить звук этого пользователя."];
-                        const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                      };
-
-                  } else {
-                    const embed = {"description": ErrorMessage14[Language].replace("X001", name),  "color": EmbedColor};
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
-                  };
-
-              } else {
-                const embed = {"description": ErrorMessage3[Language],  "color": EmbedColor};  
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-              };
-
-          } else {
-           const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
-           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-          };
-
-      } else {
-       const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
-       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      };
-      
+    }
+     else if (CommandArgument == "")
+    {
+     const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 };
 
 //Unmute
 if  (CommandName.startsWith("unmute"))  {
+  
+    var CommandArgument = CommandName.split("unmute")[1];
 
-    if  (message.member.permissions.has("MUTE_MEMBERS"))  {
+    if  (CommandArgument.startsWith(" "))  {
 
-        if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
+        CommandArgument = CommandArgument.replace(" ", "");
 
-            var MentionedMember = message.mentions.members.first();
-            var name = peeky.serverData.get(keySF, "muted_role");
-            var Role = message.guild.roles.cache.find(role => role.name == name);
+        if  (message.member.permissions.has("MUTE_MEMBERS"))  {
 
-            if  (MentionedMember)  {
+            if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
 
-                if  (Role)  {
+                var MentionedMember = message.mentions.members.first();
+                var name = peeky.serverData.get(keySF, "muted_role");
+                var Role = message.guild.roles.cache.find(role => role.name == name);
 
-                    if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && MentionedMember.roles.cache.has(Role.id))  {
+                if  (MentionedMember)  {
 
-                        await MentionedMember.roles.cache.remove(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => { 
-                            const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
-                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                            ErrorBag.add(error); Failed = true;
-                        });
+                    if  (Role)  {
 
-                        if  (Failed == false)  {
-                            var TranslatedMessages = [SuccessIcon + " I have unmuted **X001** at **X002**'s request.", SuccessIcon + " Odtlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Unmutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He anulado el silencio de **X001** a petición de **X002**.", SuccessIcon + " **X002**'nin isteği üzerine **X001**'in sesini açtım.", SuccessIcon + " Я отглушить **X001** по запросу **X002**."];
-                            const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
-                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                        if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && MentionedMember.roles.cache.has(Role.id))  {
+
+                            await MentionedMember.roles.cache.remove(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => { 
+                                const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
+                                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                ErrorBag.add(error); Failed = true;
+                            });
+
+                            if  (Failed == false)  {
+                                var TranslatedMessages = [SuccessIcon + " I have unmuted **X001** at **X002**'s request.", SuccessIcon + " Odtlumil jsem **X001** na požádání od **X002**.", SuccessIcon + " Unmutnul som **X001** na **X002* požiadavku.", SuccessIcon + " He anulado el silencio de **X001** a petición de **X002**.", SuccessIcon + " **X002**'nin isteği üzerine **X001**'in sesini açtım.", SuccessIcon + " Я отглушить **X001** по запросу **X002**."];
+                                const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(MentionedMember.displayName, "other", true)).replace("X002", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
+                                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                            };
+
+                        } else {
+                          var TranslatedMessages = [ErrorIcon + " You cannot unmute that user.", ErrorIcon + " Tohoto uživatele odztlumit nemůžete.", ErrorIcon + " Nemôžeš unmutnúť tohoto uživateľa.", ErrorIcon + " No puedes anular el silencio de ese usuario.", ErrorIcon + " Bu kullanıcının sesini açamazsınız.", ErrorIcon + " Вы не можете отглушить этого пользователя."];
+                          const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                         };
 
                     } else {
-                      var TranslatedMessages = [ErrorIcon + " You cannot unmute that user.", ErrorIcon + " Tohoto uživatele odztlumit nemůžete.", ErrorIcon + " Nemôžeš unmutnúť tohoto uživateľa.", ErrorIcon + " No puedes anular el silencio de ese usuario.", ErrorIcon + " Bu kullanıcının sesini açamazsınız.", ErrorIcon + " Вы не можете отглушить этого пользователя."];
-                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                      const embed = {"description": ErrorMessage14[Language].replace("X001", name),  "color": EmbedColor};
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
                     };
 
                 } else {
-                  const embed = {"description": ErrorMessage14[Language].replace("X001", name),  "color": EmbedColor};
-                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));        
+                  const embed = {"description": ErrorMessage3[Language],  "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
 
             } else {
-              const embed = {"description": ErrorMessage3[Language],  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+             const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
+             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
 
-        } else {
-         const embed = {"description": PermissionsMessageError3[Language],  "color": EmbedColor}; 
-         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        } else {      
+          const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
-    } else {      
-      const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    }
+     else if (CommandArgument == "")
+    {
+     const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 };
