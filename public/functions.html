@@ -253,6 +253,11 @@ function ST2_Popup() {
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="functionname">Server Time</b>  <br>  <b class="functiondescription">Creates a voice channel that will display time with the server\'s timezone.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle server time</b>' + Note; 
 };
+
+function AC_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<b class="functionname">Auto Channels</b>  <br>  <b class="functiondescription">Creates a voice channel that will create a temporary voice channel when someone joins it.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">10 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle auto channels</b>' + Note; 
+};
     
 function Close()  {
     document.getElementById('fulldesc').style.display = "none";
@@ -370,6 +375,14 @@ function Close()  {
       <div class="centered">
         
     <div class="fancybutton" onclick="TS_Popup()">  Ticket System  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunction_autochannels.png?v=1586504545438');">
+      <div class="centered">
+
+    <div class="fancybutton" onclick="AC_Popup()">  Auto Channels  </div>
         
       </div>
     </div>

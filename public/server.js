@@ -3706,6 +3706,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
              "**Banned Words** " + BW + "\n" + "`" + BWArray + "`",
              "**Reaction Roles** " + RR + "\n" + "`" + RRArray + "`",
              "**Ticket System** " + ST + "\n" + "`@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "`",
+             "**Auto Channels** " + AC + "\n" + "No Setting.",
              "**Weekend Channels** " + WC + "\n" + "`" + WCArray + "`",
              "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`",
              "**Vote Kick** " + VK + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`",
