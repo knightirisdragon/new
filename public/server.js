@@ -3326,9 +3326,9 @@ const oldChannel = oldState.member.voice.channel;
 //Auto Channels
 if  (peeky.serverData.get(keySF, "auto_channels_bonus") == true)  {
   
-    if  (oldChannel && peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id) && oldChannel.permissionsFor(peeky.user).has("MANAGE_CHANNELS") && oldChannel.members.voice.channel.members.size < 1)  {
+    if  (oldChannel && peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(oldChannel.id) && oldChannel.permissionsFor(peeky.user).has("MANAGE_CHANNELS") && oldChannel.guild.channels.has(oldChannel.id) && oldChannel.guild.channels.get(oldChannel.id).members.size < 1)  {
       
-        channel.delete().catch(error => ErrorBag.add(error));
+        oldChannel.delete().catch(error => ErrorBag.add(error));
 
     } else
   
@@ -3338,19 +3338,19 @@ if  (peeky.serverData.get(keySF, "auto_channels_bonus") == true)  {
         setTimeout(() => {FunctionCooldowns.delete("autochannels" + member.guild.id)}, 10000);
       
         channel.guild.channels.create(function_RemoveFormatting(member.displayName, "other", true) + "'s Channel", { type: 'voice', userLimit: 5, permissionOverwrites: [
-            {id: PeekyId, allow: ['CONNECT', 'MANAGE_CHANNELS']},
+            {id: PeekyId, allow: ['CONNECT', 'MANAGE_CHANNELS', 'MOVE_MEMBERS']},
             {id: member.id, allow: ['MANAGE_CHANNELS']},
             {id: channel.guild.id, allow: ['CONNECT']}
         ], reason: "Channel created by @" + member.user.tag + " through a function." })
-        .then(function (channel)  {
+        .then(function (newchannel)  {
           
             peeky.serverData.get(keySF, "auto_channels_bonus_channels").push(channel.id);
 
             if  (channel.parentID)  {
-                channel.setParent(channel.parentID).catch(error => ErrorBag.add(error));
+                newchannel.setParent(channel.parentID).catch(error => ErrorBag.add(error));
             };
           
-            member.voice.setChannel(channel).catch(error => ErrorBag.add(error));
+            member.voice.setChannel(newchannel).catch(error => ErrorBag.add(error));
 
         })
         .catch(error => ErrorBag.add(error));
@@ -6258,6 +6258,7 @@ if  (FunctioName.startsWith("auto channels"))  {
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
     await message.guild.channels.create(name, { type: 'voice', permissionOverwrites: [
+        {id: PeekyId, allow: ['MOVE_MEMBERS']},
         {id: message.guild.id, allow: ['CONNECT']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(function (channel)  {
