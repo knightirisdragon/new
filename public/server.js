@@ -3319,18 +3319,13 @@ peeky.on("voiceStateUpdate", async (oldState, newState) => {
 const keySF   = `${newState.member.guild.id}`;
 const member  = newState.member;
 const channel = newState.member.voice.channel;
-const oldChannel = oldState.member.voice.channel;
 
 //FUNCTIONS
   
 //Auto Channels
 if  (peeky.serverData.get(keySF, "auto_channels_bonus") == true)  {
   
-    if  (oldChannel && peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(oldChannel.id) && oldChannel.permissionsFor(peeky.user).has("MANAGE_CHANNELS") && oldChannel.guild.channels.has(oldChannel.id) && oldChannel.guild.channels.get(oldChannel.id).members.size < 1)  {
-      
-        oldChannel.delete().catch(error => ErrorBag.add(error));
-
-    } else
+    var filteredChannels = channel.guild.channels.cache
   
     if  (channel && !FunctionCooldowns.has("autochannels" + member.guild.id) && peeky.serverData.get(keySF, "auto_channels_bonus_id") == channel.id && channel.permissionsFor(peeky.user).has("MANAGE_CHANNELS", "MOVE_MEMBERS"))  {
 
@@ -3344,7 +3339,7 @@ if  (peeky.serverData.get(keySF, "auto_channels_bonus") == true)  {
         ], reason: "Channel created by @" + member.user.tag + " through a function." })
         .then(function (newchannel)  {
           
-            peeky.serverData.get(keySF, "auto_channels_bonus_channels").push(channel.id);
+            peeky.serverData.get(keySF, "auto_channels_bonus_channels").push(newchannel.id);
 
             if  (channel.parentID)  {
                 newchannel.setParent(channel.parentID).catch(error => ErrorBag.add(error));
