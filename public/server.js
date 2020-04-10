@@ -2009,6 +2009,7 @@ function function_DailyChallengeRewards(id, challenge)  {
     var TotalReward = RewardAmount;
   
     if  (RewardName !== "Background")  {
+      
         if  (peeky.guilds.cache.get(SupportServer).members.cache.has(id) && peeky.guilds.cache.get(SupportServer).members.cache.get(id).roles.cache.has(PremiumRole))  {
             TotalReward = TotalReward + RewardAmount;
         };
@@ -2016,9 +2017,15 @@ function function_DailyChallengeRewards(id, challenge)  {
         if  (peeky.guilds.cache.get(SupportServer).members.cache.has(id) && peeky.guilds.cache.get(SupportServer).members.cache.get(id).roles.cache.has(BoosterRole))  {
             TotalReward = TotalReward + RewardAmount;
         };
-    };
   
-    peeky.userData.set(id, TotalReward, RewardName);
+        peeky.userData.set(id, TotalReward, RewardName);
+      
+    } else {
+      
+      peeky.userData.get(id, "Inventory").push(TotalReward);
+      
+    };
+
     peeky.userData.set(id, true, "CompletionistBadge");
   
 };
