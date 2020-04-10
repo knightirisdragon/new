@@ -3342,7 +3342,7 @@ if  (peeky.serverData.get(keySF, "auto_channels_bonus") == true)  {
       
         channel.guild.channels.create(function_RemoveFormatting(member.displayName, "other", true) + "'s Channel", { type: 'voice', userLimit: 5, permissionOverwrites: [
             {id: PeekyId, allow: ['CONNECT', 'MANAGE_CHANNELS']},
-            {id: member.id, allow: ['MANAGE_CHANNELS']},
+            {id: member.id, allow: ['CONNECT', 'MANAGE_CHANNELS']},
             {id: channel.guild.id, allow: ['CONNECT']}
         ], reason: "Channel created by @" + member.user.tag + " through a function." })
         .then(function (newchannel)  {
@@ -7786,7 +7786,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
     ProfileCooldown.add(message.author.id);
     setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
 
-    var DonatedUser = message.mentions.members.cache.first();
+    var DonatedUser = message.mentions.members.first();
     
     if  (DonatedUser && DonatedUser.user.id !== message.author.id && !DonatedUser.bot)  {
 
