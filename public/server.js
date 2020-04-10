@@ -3330,18 +3330,19 @@ if  (peeky.serverData.get(keySF, "auto_channels_bonus") == true)  {
       
         var filteredChannels = member.guild.channels.cache.filter(channel => peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id) && channel.members.size < 1);
         if  (filteredChannels.length > 0)  {
+            console.log(filteredChannels[0].name)
             filteredChannels[0].delete().catch(error => ErrorBag.add(error));
         };
       
     } else 
   
-    if  (channel && !FunctionCooldowns.has("autochannels" + member.guild.id) && peeky.serverData.get(keySF, "auto_channels_bonus_id") == channel.id && channel.permissionsFor(peeky.user).has("MANAGE_CHANNELS", "MOVE_MEMBERS"))  {
+    if  (channel && !FunctionCooldowns.has("autochannels" + member.guild.id) && peeky.serverData.get(keySF, "auto_channels_bonus_id") == channel.id && member.guild.me.permissions.has("MOVE_MEMBERS") && channel.permissionsFor(peeky.user).has("MANAGE_CHANNELS"))  {
 
         FunctionCooldowns.add("autochannels" + member.guild.id);
         setTimeout(() => {FunctionCooldowns.delete("autochannels" + member.guild.id)}, 10000);
       
         channel.guild.channels.create(function_RemoveFormatting(member.displayName, "other", true) + "'s Channel", { type: 'voice', userLimit: 5, permissionOverwrites: [
-            {id: PeekyId, allow: ['CONNECT', 'MANAGE_CHANNELS', 'MOVE_MEMBERS']},
+            {id: PeekyId, allow: ['CONNECT', 'MANAGE_CHANNELS']},
             {id: member.id, allow: ['MANAGE_CHANNELS']},
             {id: channel.guild.id, allow: ['CONNECT']}
         ], reason: "Channel created by @" + member.user.tag + " through a function." })
@@ -6261,7 +6262,7 @@ if  (FunctioName.startsWith("auto channels"))  {
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
     await message.guild.channels.create(name, { type: 'voice', permissionOverwrites: [
-        {id: PeekyId, allow: ['MOVE_MEMBERS']},
+        {id: PeekyId, allow: ['CONNECT', 'MANAGE_CHANNELS']},
         {id: message.guild.id, allow: ['CONNECT']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
     .then(function (channel)  {
