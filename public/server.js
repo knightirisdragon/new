@@ -3317,6 +3317,7 @@ if  (channel.guild)  {
 peeky.on("voiceStateUpdate", async (oldState, newState) => {
   
 const keySF   = `${newState.member.guild.id}`;
+const member  = newState.member;
 const channel = newState.member.voice.channel;
 
 //FUNCTIONS
@@ -3327,7 +3328,28 @@ if  (peeky.serverData.get(keySF, "auto_channel_bonus") == true)  {
     if  (peeky.serverData.get(keySF, "auto_channel_bonus_channels").includes(channel.id) && channel.permissionsFor(peeky.user).has("MANAGE_CHANNELS") && channel.members.voice.channel.members.size < 1)  {
       
         channel.delete().catch(error => ErrorBag.add(error));
-        peeky.serverData.get(keySF, "auto_channel_bonus_channels").splice(peeky.serverData.get(keySF, "auto_channel_bonus_channels").indexOf(channel.id));
+
+    } else
+  
+    if  (!FunctionCooldowns.has("autochannels" + member.guild.id) && peeky.serverData.get(keySF, "auto_channel_bonus_id") == channel.id && channel.permissionsFor(peeky.user).has("MANAGE_CHANNELS"))  {
+
+        FunctionCooldowns.add("autochannels" + member.guild.id);
+        setTimeout(() => {FunctionCooldowns.delete("autochannels" + member.guild.id)}, 10000);
+      
+        channel.guild.create(function_RemoveFormatting(member.displayName, "other", true) + "'s Channel", { type: 'text', permissionOverwrites: [
+            {id: PeekyId, allow: ['CONNECT', 'MANAGE_CHANNELS']},
+            {id: member.id, allow: ['MANAGE_CHANNELS']},
+            {id: channel.guild.id, allow: ['CONNECT']}
+        ], reason: "Channel created by @" + member.user.tag + " through a function." })
+        .then(async function (channel)  {
+            peeky.serverData.get(keySF, "auto_channel_bonus_channels").push(channel.id);
+
+            if  (channel.parentID)  {
+                channel.setParent(channel.parentID).catch(error => ErrorBag.add(error));
+            };
+
+        })
+        .catch(error => ErrorBag.add(error));
 
     };
   
@@ -4035,7 +4057,6 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                         {id: role.id, allow: ['VIEW_CHANNEL']},
                         {id: reaction.message.guild.id, deny: ['VIEW_CHANNEL', 'MANAGE_MESSAGES'], allow: ['SEND_MESSAGES']}
                     ], reason: "Channel created by @" + reaction.message.author.tag + " through a function." })
-                  
                     .then(async function (channel)  {
                         peeky.serverData.get(keySF, "ticket_system_bonus_channels").push(channel.id);
                       
@@ -6231,14 +6252,12 @@ if  (FunctioName.startsWith("auto channels"))  {
     ChannelCooldown.add(message.guild.id);
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
-    await message.guild.channels.create(name, { type: 'voice', permissionOverwrites: [
-        {id: PeekyId, allow: ['CONNECT']},
-        {id: PeekyId, allow: ['CONNECT']},
+    await message.guild.channels.create("Join to create a channel.", { type: 'voice', permissionOverwrites: [
+        {id: PeekyId, allow: ['CONNECT', 'MANAGE_CHANNELS']},
         {id: message.guild.id, allow: ['CONNECT']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
-
     .then(async function (channel)  {
-        peeky.serverData.set(keySF, channel.id, "auto_channels_bonus_id");
+        peeky.serverData.set(keySF, channel.id, "auto_channels_bonus_channels");
     }).catch(function(err) {  ErrorBag.add(err);  });
 
     InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Auto Channels"));
