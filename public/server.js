@@ -3328,10 +3328,9 @@ if  (peeky.serverData.get(keySF, "auto_channels_bonus") == true)  {
   
     if  (!channel)  {
       
-        var filteredChannels = member.guild.channels.cache.filter(channel => peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id) && channel.members.size < 1);
+        var filteredChannels = member.guild.channels.cache.filter(channel => peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id) && channel.members.size < 1).map(i => i.id);
         if  (filteredChannels.length > 0)  {
-            console.log(filteredChannels[0].name)
-            filteredChannels[0].delete().catch(error => ErrorBag.add(error));
+            member.guild.channels.cache.get(filteredChannels[0]).delete().catch(error => ErrorBag.add(error));
         };
       
     } else 
@@ -3643,7 +3642,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         var ServerAmount  = 0;
         var ChannelAmount = 0;
  
-        if (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)   { var AR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var AR = DisabledIcon};
+        if (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)    { var AR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var AR = DisabledIcon};
         if (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)       { var WM = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var WM = DisabledIcon};
         if (peeky.serverData.get(keySF, "member_counter_bonus") == true)         { var MC = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var MC = DisabledIcon};
         if (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)        { var CN = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var CN = DisabledIcon};
@@ -3665,12 +3664,13 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)       { var WC = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var WC = DisabledIcon};
         if (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)   { var SA2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA2 = DisabledIcon};
         if (peeky.serverData.get(keySF, "server_age_bonus") == true)             { var SA3 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SA3 = DisabledIcon};
-        if (peeky.serverData.get(keySF, "spoiler_lock_bonus") == true)           { var SL = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var SL = DisabledIcon};
-        if (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)         { var RR = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var RR = DisabledIcon};
-        if (peeky.serverData.get(keySF, "banned_words_bonus") == true)           { var BW = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var BW = DisabledIcon};
-        if (peeky.serverData.get(keySF, "message_log_bonus") == true)            { var ML = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var ML = DisabledIcon};
-        if (peeky.serverData.get(keySF, "images_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ChannelAmount ++; } else { var IO = DisabledIcon};
+        if (peeky.serverData.get(keySF, "spoiler_lock_bonus") == true)           { var SL = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var SL = DisabledIcon};
+        if (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)         { var RR = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var RR = DisabledIcon};
+        if (peeky.serverData.get(keySF, "banned_words_bonus") == true)           { var BW = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var BW = DisabledIcon};
+        if (peeky.serverData.get(keySF, "message_log_bonus") == true)            { var ML = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var ML = DisabledIcon};
+        if (peeky.serverData.get(keySF, "images_only_bonus") == true)            { var IO = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var IO = DisabledIcon};
         if (peeky.serverData.get(keySF, "server_timezone_bonus") == true)        { var ST2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var ST2 = DisabledIcon};
+        if (peeky.serverData.get(keySF, "auto_channels_bonus") == true)          { var AC = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var AC = DisabledIcon};
 
         var BWArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
         if  (BWArray.length < 1)  {  BWArray = "None";  }  else  {  BWArray = BWArray.join("` `");  };
