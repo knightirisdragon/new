@@ -3006,7 +3006,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
 
                   if  (ValidRoles.length > 0)  {
                 
-                      member.roles.cache.set(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
+                      member.roles.set(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
 
                       console.log("The Role Saver function has been triggered in " + member.guild.name + ".");
                       function_UpdateAutowipe(keySF, "server");
