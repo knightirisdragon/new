@@ -3325,7 +3325,15 @@ const channel = newState.member.voice.channel;
 //Auto Channels
 if  (peeky.serverData.get(keySF, "auto_channels_bonus") == true)  {
   
-    var filteredChannels = channel.guild.channels.cache
+  
+    if  (!channel)  {
+      
+        var filteredChannels = member.guild.channels.cache.filter(channel => peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id) && channel.members.size < 1);
+        if  (filteredChannels.length > 0)  {
+            filteredChannels[0].delete().catch(error => ErrorBag.add(error));
+        };
+      
+    } else 
   
     if  (channel && !FunctionCooldowns.has("autochannels" + member.guild.id) && peeky.serverData.get(keySF, "auto_channels_bonus_id") == channel.id && channel.permissionsFor(peeky.user).has("MANAGE_CHANNELS", "MOVE_MEMBERS"))  {
 
