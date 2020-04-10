@@ -3319,7 +3319,19 @@ peeky.on("voiceStateUpdate", async (oldState, newState) => {
 const keySF   = `${newState.member.guild.id}`;
 const channel = newState.member.voice.channel;
 
-if  (channel.)
+//FUNCTIONS
+  
+//Auto Channels
+if  (peeky.serverData.get(keySF, "auto_channel_bonus") == true)  {
+  
+    if  (peeky.serverData.get(keySF, "auto_channel_bonus_channels").includes(channel.id) && channel.permissionsFor(peeky.user).has("MANAGE_CHANNELS") && channel.members.voice.channel.members.size < 1)  {
+      
+        channel.delete().catch(error => ErrorBag.add(error));
+        peeky.serverData.get(keySF, "auto_channel_bonus_channels").splice(peeky.serverData.get(keySF, "auto_channel_bonus_channels").indexOf(channel.id));
+
+    };
+  
+};
 
 });
 
@@ -4032,7 +4044,8 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                         };
                       
                         await channel.send({  embed  }).catch(error => ErrorBag.add(error));
-                    });
+                    })
+                    .catch(error => ErrorBag.add(error));
 
                     function_UpdateAutowipe(keySF, "server");
                   
@@ -6219,6 +6232,7 @@ if  (FunctioName.startsWith("auto channels"))  {
     setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
 
     await message.guild.channels.create(name, { type: 'voice', permissionOverwrites: [
+        {id: PeekyId, allow: ['CONNECT']},
         {id: PeekyId, allow: ['CONNECT']},
         {id: message.guild.id, allow: ['CONNECT']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
