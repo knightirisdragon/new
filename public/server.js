@@ -1968,7 +1968,10 @@ function function_ServerData(key)  {
             weekend_channels_bonus: false,
             weekend_channels_bonus_setting: [],
             verification_system_bonus: false,
-            verification_system_bonus_setting: "Verified"
+            verification_system_bonus_setting: "Verified",
+            auto_channels_bonus: false,
+            auto_channels_bonus_id: null,
+            auto_channels_bonus_channels: []
         });
       
         console.log("Created server data for " + key + ".");
@@ -3311,14 +3314,14 @@ if  (channel.guild)  {
 });
 
 //CHANNEL UPDATE EVENTS
-/*peeky.on("channelUpdate", async (oldChannel, newChannel) => {
+peeky.on("voiceStateUpdate", async (oldState, newState) => {
   
-const keySF   = `${newChannel.guild.id}`;
-const channel = newChannel;
+const keySF   = `${newState.member.guild.id}`;
+const channel = newState.member.voice.channel;
 
-//FUNCTIONS
+if  (channel.)
 
-});*/
+});
 
 //PRESENCE UPDATE EVENTS
 peeky.on("presenceUpdate", async (oldPresence, newPresence) => {
@@ -6188,6 +6191,52 @@ if  (FunctioName.startsWith("server time"))  {
     };
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Server Time").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+    
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+  
+else
+      
+//Toggle Server Time
+if  (FunctioName.startsWith("auto channels"))  {
+  
+    const guild = message.guild;
+    var id = peeky.serverData.get(keySF, "auto_channels_bonus_id");
+    var channel = guild.channels.cache.find(c=> c.id == id);
+
+    peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "auto_channels_bonus"), "auto_channels_bonus");
+    var StatusString = peeky.serverData.get(keySF, "auto_channels_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
+
+    //Channel Creating    
+    if (!channel) {
+
+    if  (!ChannelCooldown.has(message.guild.id)) {
+      
+    if  (ManageChannels == true)  {
+
+    ChannelCooldown.add(message.guild.id);
+    setTimeout(() => {ChannelCooldown.delete(message.guild.id)}, ChannelCooldownMS);
+
+    await message.guild.channels.create(name, { type: 'voice', permissionOverwrites: [
+        {id: PeekyId, allow: ['CONNECT']},
+        {id: message.guild.id, allow: ['CONNECT']}
+    ], reason: "Channel created by @" + message.author.tag + " through a function." })
+
+    .then(async function (channel)  {
+        peeky.serverData.set(keySF, channel.id, "auto_channels_bonus_id");
+    }).catch(function(err) {  ErrorBag.add(err);  });
+
+    InfoMessages.push(ChannelCreation.replace("X001", name).replace("X002", "Auto Channels"));
+    
+    };
+    
+    } else {
+      InfoMessages.push(CooldownMessage2[Language]);
+    };
+    };
+
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Auto Channels").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
