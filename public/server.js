@@ -3319,34 +3319,38 @@ peeky.on("voiceStateUpdate", async (oldState, newState) => {
 const keySF   = `${newState.member.guild.id}`;
 const member  = newState.member;
 const channel = newState.member.voice.channel;
+const oldChannel = oldState.member.voice.channel;
 
 //FUNCTIONS
   
 //Auto Channels
-if  (peeky.serverData.get(keySF, "auto_channel_bonus") == true)  {
+if  (peeky.serverData.get(keySF, "auto_channels_bonus") == true)  {
   
-    if  (peeky.serverData.get(keySF, "auto_channel_bonus_channels").includes(channel.id) && channel.permissionsFor(peeky.user).has("MANAGE_CHANNELS") && channel.members.voice.channel.members.size < 1 && (new Date() - new Date(channel.createdAt) > 5000))  {
+    if  (oldChannel && peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id) && oldChannel.permissionsFor(peeky.user).has("MANAGE_CHANNELS") && oldChannel.members.voice.channel.members.size < 1)  {
       
         channel.delete().catch(error => ErrorBag.add(error));
 
     } else
   
-    if  (!FunctionCooldowns.has("autochannels" + member.guild.id) && peeky.serverData.get(keySF, "auto_channel_bonus_id") == channel.id && channel.permissionsFor(peeky.user).has("MANAGE_CHANNELS"))  {
+    if  (channel && !FunctionCooldowns.has("autochannels" + member.guild.id) && peeky.serverData.get(keySF, "auto_channels_bonus_id") == channel.id && channel.permissionsFor(peeky.user).has("MANAGE_CHANNELS", "MOVE_MEMBERS"))  {
 
         FunctionCooldowns.add("autochannels" + member.guild.id);
         setTimeout(() => {FunctionCooldowns.delete("autochannels" + member.guild.id)}, 10000);
       
-        channel.guild.create(function_RemoveFormatting(member.displayName, "other", true) + "'s Channel", { type: 'text', userLimit: 5, permissionOverwrites: [
+        channel.guild.channels.create(function_RemoveFormatting(member.displayName, "other", true) + "'s Channel", { type: 'voice', userLimit: 5, permissionOverwrites: [
             {id: PeekyId, allow: ['CONNECT', 'MANAGE_CHANNELS']},
             {id: member.id, allow: ['MANAGE_CHANNELS']},
             {id: channel.guild.id, allow: ['CONNECT']}
         ], reason: "Channel created by @" + member.user.tag + " through a function." })
         .then(function (channel)  {
-            peeky.serverData.get(keySF, "auto_channel_bonus_channels").push(channel.id);
+          
+            peeky.serverData.get(keySF, "auto_channels_bonus_channels").push(channel.id);
 
             if  (channel.parentID)  {
                 channel.setParent(channel.parentID).catch(error => ErrorBag.add(error));
             };
+          
+            member.voice.setChannel(channel).catch(error => ErrorBag.add(error));
 
         })
         .catch(error => ErrorBag.add(error));
