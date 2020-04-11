@@ -2002,7 +2002,7 @@ function function_ChannelData(key)  {
 //Daily Challenge Rewards
 function function_DailyChallengeRewards(key, challenge)  {
   
-    if  (peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
+    if  (peeky.userData.get(key, "LastDailyChallenge") !== challenge[0])  {
 
         peeky.userData.set(key, challenge[0], "LastDailyChallenge");
 
@@ -7765,7 +7765,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
                       peeky.userData.get(key, "Inventory").push(Background);
                       InfoMessages.push(InfoIcon + " You have found the **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
                     
-                      if  (peeky.peekyData.get("dailychallenge", "data")[0] == "open_background" && function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data")) == true)  {
+                      if  (peeky.peekyData.get("dailychallenge", "data")[0] == "open_background" && function_DailyChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data")) == true)  {
                           InfoMessages.push(InfoMessage4[Language]);
                       };
 
@@ -7838,7 +7838,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
             InfoMessages.push(InfoMessage1[Language]);
         };
                     
-        if  (DonatedAmount >= 5000 && peeky.peekyData.get("dailychallenge", "data")[0] == "donate_alot" && function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data")) == true)  {
+        if  (DonatedAmount >= 5000 && peeky.peekyData.get("dailychallenge", "data")[0] == "donate_alot" && function_DailyChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data")) == true)  {
             InfoMessages.push(InfoMessage4[Language]);
         };
 
@@ -9067,7 +9067,7 @@ if (CommandName == "hangman")  {
                     if  (WrongLetters.length >= HangmanLevels.length - 1 || CensoredAnswer == Answer.toLowerCase())  {
                         if  (CensoredAnswer == Answer.toLowerCase())  {
                           
-                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "clean_hangman" && function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data")) == true)  {
+                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "clean_hangman" && function_DailyChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data")) == true)  {
                                 InfoMessages.push(InfoMessage4[Language]);
                             };
                           
@@ -9159,7 +9159,7 @@ if  (CommandName == "akinator")  {
                                 var ImageUrl = HollowImage;
                                 var FooterText = "­";
                               
-                                if  ((Step + 1) >= 25 && peeky.peekyData.get("dailychallenge", "data")[0] == "beat_akinator" && function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data")) == true)  {
+                                if  ((Step + 1) >= 25 && peeky.peekyData.get("dailychallenge", "data")[0] == "beat_akinator" && function_DailyChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data")) == true)  {
                                     InfoMessages.push(InfoMessage4[Language]);
                                 };
                                  
