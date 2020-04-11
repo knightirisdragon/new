@@ -1260,7 +1260,7 @@ async function WebsiteStuff()  {
     setInterval(async () => {
 
         peeky.userData.filter( p => p.MedallistBadge == true ).array().forEach(data => {
-            peeky.userData.set(`${data.UserID}`, false, "MedallistBadge");
+            peeky.userData.delete(`${data.UserID}`, "MedallistBadge");
         });
 
         function UpdateLeaderboardTypes(type)  {
@@ -2026,7 +2026,9 @@ function function_DailyChallengeRewards(id, challenge)  {
       
     };
 
-    peeky.userData.set(id, true, "CompletionistBadge");
+    if  (peeky.userData.get(id, "CompletionistBadge"))  {
+        peeky.userData.set(id, true, "CompletionistBadge");
+    };
   
 };
 
