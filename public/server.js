@@ -2018,7 +2018,7 @@ function function_DailyChallengeRewards(id, challenge)  {
             TotalReward = TotalReward + RewardAmount;
         };
   
-        peeky.userData.set(id, TotalReward, RewardName);
+        peeky.userData.math(id, "+", TotalReward, RewardName);
       
     } else {
       
