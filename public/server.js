@@ -2832,10 +2832,25 @@ peeky.channels.cache.get(ServerLogChannel).send({ embed });
 peeky.on("channelDelete", async (channel) => {
   
 const keyCF = `${channel.id}`;
+const keySF = `${channel.guild.id}`;
 
 if  (peeky.channelData.has(keyCF))  {
     console.log("I have wiped the settings of a channel because it got deleted.");
     peeky.channelData.delete(keyCF);
+};
+  
+if  (peeky.serverData.has(keySF))  {
+    
+    if  (peeky.serverData.get(keySF, "auto_channels_bonus_channels").has(channel.id))  {
+        var index = peeky.serverData.get(keySF, "auto_channels_bonus_channels").indexOf(channel.id);
+        peeky.serverData.get(keySF, "auto_channels_bonus_channels").splice(index, 1);
+    };
+    
+    if  (peeky.serverData.get(keySF, "ticket_system_bonus_channels").has(channel.id))  {
+        var index = peeky.serverData.get(keySF, "ticket_system_bonus_channels").indexOf(channel.id);
+        peeky.serverData.get(keySF, "ticket_system_bonus_channels").splice(index, 1);
+    };
+  
 };
 
 });
@@ -4574,7 +4589,7 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
                 var Index = Math.floor((Math.random() * Rewards.length));
                 var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
 
-                var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + Rewards[Index][0],  "footer": {  "icon_url": "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ftreasures.png?v=1568646809345", "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
+                var embed = {"description": "**Random Treasure**" + "\n" + "Reward: " + Amount + " " + Rewards[Index][0],  "thumbnail": {  "url": "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Ftreasures.png?v=1568646809345"  },  "footer": {  "text": "Type \"claim\" to claim this treasure!"  }, "color": EmbedColor}; 
                 channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(async m => {  
 
                     m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { max: 1, time: 3600000, errors: ['time'] }).then(collected => {
@@ -4583,7 +4598,7 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
 
                         if  (peeky.userData.has(member.user.id))  {
 
-                            var embed = {"description": SuccessIcon + " **" + function_RemoveFormatting(member.displayName, "other", true) + "** has claimed the treasure!", "color": EmbedColor}; 
+                            var embed = {"description": SuccessIcon + " The treasure has been claimed by **" + function_RemoveFormatting(member.displayName, "other", true) + "**.", "color": EmbedColor}; 
                             m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
                             peeky.userData.math(member.user.id, "+", Amount, Rewards[Index][2]);
