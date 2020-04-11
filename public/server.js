@@ -2000,48 +2000,56 @@ function function_ChannelData(key)  {
 };
 
 //Daily Challenge Rewards
-function function_DailyChallengeRewards(id, challenge)  {
+function function_DailyChallengeRewards(key, challenge)  {
   
-    peeky.userData.set(id, challenge[0], "LastDailyChallenge");
-  
-    var RewardAmount = challenge[3];
-    var RewardName = challenge[4];
-    var TotalReward = RewardAmount;
-  
-    if  (RewardName !== "Background")  {
-      
-        if  (peeky.guilds.cache.get(SupportServer).members.cache.has(id) && peeky.guilds.cache.get(SupportServer).members.cache.get(id).roles.cache.has(PremiumRole))  {
-            TotalReward = TotalReward + RewardAmount;
+    if  (peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
+
+        peeky.userData.set(key, challenge[0], "LastDailyChallenge");
+
+        var RewardAmount = challenge[3];
+        var RewardName = challenge[4];
+        var TotalReward = RewardAmount;
+
+        if  (RewardName !== "Background")  {
+
+            if  (peeky.guilds.cache.get(SupportServer).members.cache.has(key) && peeky.guilds.cache.get(SupportServer).members.cache.get(key).roles.cache.has(PremiumRole))  {
+                TotalReward = TotalReward + RewardAmount;
+            };
+
+            if  (peeky.guilds.cache.get(SupportServer).members.cache.has(key) && peeky.guilds.cache.get(SupportServer).members.cache.get(key).roles.cache.has(BoosterRole))  {
+                TotalReward = TotalReward + RewardAmount;
+            };
+
+            peeky.userData.math(key, "+", TotalReward, RewardName);
+
+        } else {
+
+          peeky.userData.get(key, "Inventory").push(TotalReward);
+
         };
 
-        if  (peeky.guilds.cache.get(SupportServer).members.cache.has(id) && peeky.guilds.cache.get(SupportServer).members.cache.get(id).roles.cache.has(BoosterRole))  {
-            TotalReward = TotalReward + RewardAmount;
+        if  (peeky.userData.get(key, "CompletionistBadge"))  {
+            peeky.userData.set(key, true, "CompletionistBadge");
         };
-  
-        peeky.userData.math(id, "+", TotalReward, RewardName);
+      
+        return true;
       
     } else {
-      
-      peeky.userData.get(id, "Inventory").push(TotalReward);
-      
-    };
-
-    if  (peeky.userData.get(id, "CompletionistBadge"))  {
-        peeky.userData.set(id, true, "CompletionistBadge");
+      return false;
     };
   
 };
 
 //Direct Message
-function  function_DirectMessage(id, message)  {
+function  function_DirectMessage(key, message)  {
   
-    if  (!FailedDMs.has(id))  {
+    if  (!FailedDMs.has(key))  {
       
-        peeky.users.cache.get(id).send(message).catch(err => {
+        peeky.users.cache.get(key).send(message).catch(err => {
             ErrorBag.add(err); 
 
-            FailedDMs.add(id);
-            setTimeout(() => {FailedDMs.delete(id)}, 300000);          
+            FailedDMs.add(key);
+            setTimeout(() => {FailedDMs.delete(key)}, 300000);          
         });
       
     };
@@ -2841,12 +2849,12 @@ if  (peeky.channelData.has(keyCF))  {
   
 if  (peeky.serverData.has(keySF))  {
     
-    if  (peeky.serverData.get(keySF, "auto_channels_bonus_channels").has(channel.id))  {
+    if  (peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id))  {
         var index = peeky.serverData.get(keySF, "auto_channels_bonus_channels").indexOf(channel.id);
         peeky.serverData.get(keySF, "auto_channels_bonus_channels").splice(index, 1);
     };
     
-    if  (peeky.serverData.get(keySF, "ticket_system_bonus_channels").has(channel.id))  {
+    if  (peeky.serverData.get(keySF, "ticket_system_bonus_channels").includes(channel.id))  {
         var index = peeky.serverData.get(keySF, "ticket_system_bonus_channels").indexOf(channel.id);
         peeky.serverData.get(keySF, "ticket_system_bonus_channels").splice(index, 1);
     };
@@ -7757,8 +7765,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
                       peeky.userData.get(key, "Inventory").push(Background);
                       InfoMessages.push(InfoIcon + " You have found the **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
                     
-                      if  (peeky.peekyData.get("dailychallenge", "data")[0] == "open_background" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
-                          function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data"));
+                      if  (peeky.peekyData.get("dailychallenge", "data")[0] == "open_background" && function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data")) == true)  {
                           InfoMessages.push(InfoMessage4[Language]);
                       };
 
@@ -7831,8 +7838,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
             InfoMessages.push(InfoMessage1[Language]);
         };
                     
-        if  (DonatedAmount >= 5000 && peeky.peekyData.get("dailychallenge", "data")[0] == "donate_alot" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
-            function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data"));
+        if  (DonatedAmount >= 5000 && peeky.peekyData.get("dailychallenge", "data")[0] == "donate_alot" && function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data")) == true)  {
             InfoMessages.push(InfoMessage4[Language]);
         };
 
@@ -9061,8 +9067,7 @@ if (CommandName == "hangman")  {
                     if  (WrongLetters.length >= HangmanLevels.length - 1 || CensoredAnswer == Answer.toLowerCase())  {
                         if  (CensoredAnswer == Answer.toLowerCase())  {
                           
-                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "clean_hangman" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
-                                function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data"));
+                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "clean_hangman" && function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data")) == true)  {
                                 InfoMessages.push(InfoMessage4[Language]);
                             };
                           
@@ -9154,8 +9159,7 @@ if  (CommandName == "akinator")  {
                                 var ImageUrl = HollowImage;
                                 var FooterText = "­";
                               
-                                if  ((Step + 1) >= 25 && peeky.peekyData.get("dailychallenge", "data")[0] == "beat_akinator" && peeky.userData.get(key, "LastDailyChallenge") !== peeky.peekyData.get("dailychallenge", "data")[0])  {
-                                    function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data"));
+                                if  ((Step + 1) >= 25 && peeky.peekyData.get("dailychallenge", "data")[0] == "beat_akinator" && function_DailyChallengeRewards(keySF, peeky.peekyData.get("dailychallenge", "data")) == true)  {
                                     InfoMessages.push(InfoMessage4[Language]);
                                 };
                                  
