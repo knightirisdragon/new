@@ -2256,7 +2256,7 @@ function function_GetBackgroundInfo(ID, args)  {
             };
 
             if  (args.includes("price"))  {
-                Background.push(Banners[i][Banner.Price]);
+                Background.push(Banners[i][Banner.Price].toLocaleString('en'));
             };
 
             if  (args.includes("source"))  {
@@ -4394,12 +4394,18 @@ if  (!AutoManagementCooldown.has("dailychallenge") && new Date() - new Date(peek
     peeky.peekyData.set("dailychallenge", ChallengeChosen, "data");
     peeky.peekyData.set("dailychallenge", new Date(), "started");
   
+    if  (ChallengeChosen[4] !== "Background")  {
+        var Reward = ChallengeChosen[3] + " " + ChallengeChosen[4];
+    } else {
+      var Reward = "the " + function_GetBackgroundInfo(ChallengeChosen[4], ["name"]) + " background";
+    };
+  
     fs.writeFile('public/dailychallenge.txt', [
       
         "<font size='5'>" + ChallengeChosen[1] + "</font>",
         "<font size='2'>" + ChallengeChosen[2] + "</font>",
         "",
-        "<font size='1'>  Complete this challenge for " + ChallengeChosen[3] + " " + ChallengeChosen[4] + ".  </font>"
+        "<font size='1'>  Complete this challenge for " + Reward + ".  </font>"
       
     ].join("<br>"), (err) => {
         if (err) console.log(err); 
@@ -7390,7 +7396,7 @@ if  (CommandName.startsWith("buybackground"))  {
                     peeky.userData.get(key, "Inventory").push(i);
 
                     var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Kupil si **X001** pozadie pre **X002" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado el fondo **X001** para **X002" + " " + GreditIcon + "**.", SuccessIcon + " **X002" + " " + GreditIcon + "** için **X001** arka planını satın aldınız.", SuccessIcon + " Вы купили фон **X001** за **X002" + " " + GreditIcon + "**."];
-                    var embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", function_GetBackgroundInfo(i, ["price"]).toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+                    var embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", function_GetBackgroundInfo(i, ["price"])) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                     break;
