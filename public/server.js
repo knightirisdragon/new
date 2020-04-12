@@ -1167,6 +1167,7 @@ const DailyChallenges = [
     ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 500, "Exp"],
     ["beat_akinator", "Eat that, Akinator", "Beat Akinator after 25 questions.", 1, "Chests"],
     ["clean_hangman", "Professional Unhanger", "Win the Hangman minigame.", 250, "Gredit"],
+    ["treasure_hunt", "Treasure Hunting", "Be the first one to claim a random treasure.", 393, "Background"],
   
     //["random_chimp_event", "Random Chimp Event", "Send the 🦍 emoji in the Support Server.", 476, "Background"]
   
@@ -4607,8 +4608,12 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
                         var member = collected.first().member;
 
                         if  (peeky.userData.has(member.user.id))  {
+                            
+                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "treasure_hunt" && function_DailyChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data")) == true)  {
+                                InfoMessages.push(InfoMessage4[Language]);
+                            };
 
-                            var embed = {"description": SuccessIcon + " The treasure has been claimed by **" + function_RemoveFormatting(member.displayName, "other", true) + "**.", "color": EmbedColor}; 
+                            var embed = {"description": SuccessIcon + " **" + function_RemoveFormatting(member.displayName, "other", true) + "** has claimed the Random Treasure!" + "\n\n" + InfoMessages.join("\n\n"), "color": EmbedColor}; 
                             m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
                             peeky.userData.math(member.user.id, "+", Amount, Rewards[Index][2]);
