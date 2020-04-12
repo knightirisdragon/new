@@ -3427,10 +3427,10 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
               
             };
 
-            }  else  { 
+            }  else  {
 
                if  (HasRole)  {
-                   member.roles.cache.remove(GuildRole.id).catch(error => ErrorBag.add(error));
+                   member.roles.remove(GuildRole.id).catch(error => ErrorBag.add(error));
                };
 
             };
@@ -3503,7 +3503,7 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
         } else { 
 
           if  (HasRole)  {
-                member.roles.cache.remove(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
+              member.roles.remove(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
           };
 
         };
@@ -4144,7 +4144,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
                         if  (!Member.roles.cache.has(role.id))  {
                             Member.roles.add(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
                         } else {
-                          Member.roles.cache.remove(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
+                          Member.roles.remove(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
                         };
 
                         function_UpdateAutowipe(keySF, "server");
@@ -4444,7 +4444,7 @@ if  (!AutoManagementCooldown.has("limitedroles"))  {
         };*/
 
         if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= ExpirationMs))  {
-            m.roles.cache.remove(PremiumRole).catch(error => ErrorBag.add(error));
+            m.roles.remove(PremiumRole).catch(error => ErrorBag.add(error));
 
             const embed = {"description": InfoIcon + " Your Premium has just expired, but you can renew it by going to the [store](https://peeky.glitch.me/store.html#premium)!",  "color": EmbedColor}; 
             m.send({ embed }).catch(error => ErrorBag.add(error));
@@ -5465,7 +5465,7 @@ if (CommandName.startsWith("upgrade"))  {
 
     //Server Upgrade
     if  (TheUserWithRole.roles.cache.has(ServerUpgradeRole) && peeky.serverData.get(keySF, "server_upgraded") == false)  {
-        TheUserWithRole.roles.cache.remove(ServerUpgradeRole).catch(error => {ErrorBag.add(error); Failed = true});
+        TheUserWithRole.roles.remove(ServerUpgradeRole).catch(error => {ErrorBag.add(error); Failed = true});
 
         if  (Failed == false)  {
             
@@ -9622,7 +9622,7 @@ if  (CommandName.startsWith("unmute"))  {
 
                         if  (!MentionedMember.permissions.has("MUTE_MEMBERS") && MentionedMember.id !== message.author.id && MentionedMember.roles.cache.has(Role.id))  {
 
-                            await MentionedMember.roles.cache.remove(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => { 
+                            await MentionedMember.roles.remove(Role.id, "Unmuted by " + message.author.tag + ".").catch(error => { 
                                 const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
                                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                                 ErrorBag.add(error); Failed = true;
