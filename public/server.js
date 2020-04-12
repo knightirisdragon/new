@@ -4530,8 +4530,8 @@ if  (!message.author.bot)  {
                                       const newEmbed = new Discord.MessageEmbed({
                                           "description": 
                                           "**" + giveaway[0] + "**" + "\n" +
-                                          "Host: \n" + "<@" + giveaway[6] + ">" + "\n\n" +
-                                          "Winners: \n" + FixedWinners.join(" "),
+                                          "Host: " + "<@" + giveaway[6] + ">" + "\n" +
+                                          "Winners: " + FixedWinners.join(" "),
                                           "footer": { "text": "This giveaway has ended." },
                                           "color": EmbedColor
                                       });
@@ -4547,7 +4547,9 @@ if  (!message.author.bot)  {
                                       ];
 
                                       var embed = {"description": TranslatedMessages[Language].replace("X001", FixedWinners.Join(" ")).replace("X002", giveaway[0]), "color": EmbedColor}; 
-                                      channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                      channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
+                                          m.react("🎉").catch(error => ErrorBag.add(error));
+                                      });
 
                                   };
 
@@ -9451,9 +9453,9 @@ if  (CommandName == "giveaway")  {
 
                         } else {
                           var embed = { "description": 
-                                         "**Giveaway for " + GiveawayInfo[0] + "**" + "\n" +
-                                        "Host: \n" + "<@" + GiveawayInfo[6] + ">" + "\n\n" +
-                                        "Max Winners: \n" + GiveawayInfo[1],
+                                         "**" + GiveawayInfo[0] + "**" + "\n" +
+                                        "Host: " + "<@" + GiveawayInfo[6] + ">" + "\n" +
+                                        "Max Winners: " + GiveawayInfo[1],
                                         "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Both", peeky.serverData.get(keySF, "timezone")) + "." },
                                         "color": EmbedColor};
                           message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
