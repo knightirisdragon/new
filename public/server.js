@@ -5318,6 +5318,13 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
 //COMMANDS
 if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.author.id) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES', 'EMBED_LINKS'))  {
   
+//Miscellaneous
+if  (message.guild.id == SupportServer && message.content == ":gorilla:")  {
+    if  (peeky.peekyData.get("dailychallenge", "data")[0] == "random_chimp_event" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data", "LastDailyChallenge")) == true)  {
+        message.channel.send(InfoMessage4[Language]).catch(error => ErrorBag.add(error));
+    };
+};
+  
 //Mention Commands
   
 //Prefix Troubleshoot
@@ -5479,6 +5486,13 @@ if (CommandName == "help")  {
                      "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
                      "color": 7506394 
     };
+  
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  
+};
+
+//Help
+if (CommandName == "help")  {
   
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
@@ -8984,7 +8998,7 @@ if (CommandName == "guessthesong")  {
                             InfoMessages.push(InfoMessage1[Language]);
                         };
                             
-                        if  (peeky.peekyData.get("weeklychallenge", "data")[0] == "song_master" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data", "LastWeeklyChallenge")) == true)  {
+                        if  (YoutubeSongs[ChosenSong][2] == "hard" && peeky.peekyData.get("weeklychallenge", "data")[0] == "song_master" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data", "LastWeeklyChallenge")) == true)  {
                             InfoMessages.push(InfoMessage4[Language]);
                         };
 
@@ -9150,6 +9164,10 @@ if (CommandName == "hangman")  {
                         if  (CensoredAnswer == Answer.toLowerCase())  {
                           
                             if  (peeky.peekyData.get("dailychallenge", "data")[0] == "clean_hangman" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data", "LastDailyChallenge")) == true)  {
+                                InfoMessages.push(InfoMessage4[Language]);
+                            };
+                            
+                            if  (WrongLetters.length == 0 && peeky.peekyData.get("weeklychallenge", "data")[0] == "perfect_hangman" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data", "LastWeeklyChallenge")) == true)  {
                                 InfoMessages.push(InfoMessage4[Language]);
                             };
                           
