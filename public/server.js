@@ -154,7 +154,7 @@ const BoosterRole        = "620654437081415686";
 const ServerUpgradeRole  = "549190337437106176";
 
 //Other IDs
-const OwnerId              = "137255897301909504"//"108899856889737216";
+const OwnerId              = "108899856889737216";
 const PeekyId              = "482945063282802698";
 const SupportServer        = "319891596772638744";
 const AnnouncementsChannel = "346710479407808524";
@@ -2013,15 +2013,12 @@ function function_ChannelData(key)  {
   
 };
 
-//Daily Challenge Rewards
+//Challenge Rewards
 function function_ChallengeRewards(key, challenge, type)  {
-  
-    if  (peeky.userData.get(key, type) !== challenge[0])  {
-      
-        console.log(challenge[0]);
-        console.log(type);
-
-        //peeky.userData.set(key, challenge[0], type);
+    
+    if  (type && peeky.userData.get(key, type) !== challenge[0])  {
+    
+        peeky.userData.set(key, challenge[0], type);
 
         var RewardAmount = challenge[3];
         var RewardName = challenge[4];
@@ -7888,7 +7885,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
                       peeky.userData.get(key, "Inventory").push(Background);
                       InfoMessages.push(InfoIcon + " You have found the **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
                     
-                      if  (peeky.peekyData.get("dailychallenge", "data")[0] == "open_background" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data", "LastDailyChallenge")) == true)  {
+                      if  (peeky.peekyData.get("dailychallenge", "data")[0] == "open_background" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
                           InfoMessages.push(InfoMessage4[Language]);
                       };
 
@@ -7961,7 +7958,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
             InfoMessages.push(InfoMessage1[Language]);
         };
                     
-        if  (DonatedAmount >= 5000 && peeky.peekyData.get("dailychallenge", "data")[0] == "donate_alot" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data", "LastDailyChallenge")) == true)  {
+        if  (DonatedAmount >= 5000 && peeky.peekyData.get("dailychallenge", "data")[0] == "donate_alot" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
             InfoMessages.push(InfoMessage4[Language]);
         };
 
@@ -9021,7 +9018,7 @@ if (CommandName == "guessthesong")  {
                             InfoMessages.push(InfoMessage1[Language]);
                         };
                             
-                        if  (YoutubeSongs[ChosenSong][2] == "hard" && peeky.peekyData.get("weeklychallenge", "data")[0] == "song_master" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data", "LastWeeklyChallenge")) == true)  {
+                        if  (YoutubeSongs[ChosenSong][2] == "hard" && peeky.peekyData.get("weeklychallenge", "data")[0] == "song_master" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data"), "LastWeeklyChallenge") == true)  {
                             InfoMessages.push(InfoMessage5[Language]);
                         };
 
