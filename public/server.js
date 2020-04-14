@@ -5498,24 +5498,31 @@ if (CommandName == "help")  {
   
 };
 
-//Help
+//Challenges
 if (CommandName == "challenges")  {
   
     message.channel.send("https://peeky.glitch.me/challenges.html").catch(error => ErrorBag.add(error));
   
 };
 
-//Help
+//Backgrounds
 if (CommandName == "backgrounds")  {
   
     message.channel.send("https://peeky.glitch.me/backgrounds.html").catch(error => ErrorBag.add(error));
   
 };
 
-//Help
+//Leaderboard
 if (CommandName == "leaderboard")  {
   
     message.channel.send("https://peeky.glitch.me/leaderboard.html").catch(error => ErrorBag.add(error));
+  
+};
+
+//Store
+if (CommandName == "store")  {
+  
+    message.channel.send("https://peeky.glitch.me/store.html").catch(error => ErrorBag.add(error));
   
 };
 
