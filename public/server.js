@@ -4420,10 +4420,10 @@ if  (!AutoManagementCooldown.has("challenges"))  {
 
         fs.writeFile('public/dailychallenge.txt', [
 
-            "<font size='5'>" + ChallengeChosen[1] + "</font>",
+            "<b class='itemdiv'>  <font size='5'>" + ChallengeChosen[1] + "</font>",
             "<font size='2'>" + ChallengeChosen[2] + "</font>",
             "",
-            "<font size='1'>  Complete this challenge for " + Reward + ".  </font>"
+            "<font size='1'>  Complete this challenge for " + Reward + ".  </font>  </b>"
 
         ].join("<br>"), (err) => {
             if (err) console.log(err); 
@@ -4446,11 +4446,11 @@ if  (!AutoManagementCooldown.has("challenges"))  {
         };
 
         fs.writeFile('public/dailychallenge.txt', [
-
-            "<font size='5'>" + ChallengeChosen[1] + "</font>",
+          
+            "<b class='itemdiv'>  <font size='5'>" + ChallengeChosen[1] + "</font>",
             "<font size='2'>" + ChallengeChosen[2] + "</font>",
             "",
-            "<font size='1'>  Complete this daily challenge for " + Reward + ".  </font>"
+            "<font size='1'>  Complete this daily challenge for " + Reward + ".  </font>  </b>"
 
         ].join("<br>"), (err) => {
             if (err) console.log(err); 
@@ -8404,10 +8404,6 @@ if (CommandName.startsWith("play"))  {
 
                         await message.channel.send("", await function_MusicEmbed(Title, Thumbnail, Author, LengthDate, message.author.id, Type, peeky.serverData.get(keySF, "Queue"), message.member, peeky.serverData.get(keySF, "LastPlaylist"))).catch(error => ErrorBag.add(error));
 
-                        if  (message.guild.me.permissions.has("CHANGE_NICKNAME") && ((message.guild.me.nickname !== null && message.guild.me.nickname.startsWith("🎵 ")) || message.guild.me.nickname == null))  {
-                            message.guild.me.setNickname("🎵 " + " PEEKY " + "🎵");
-                        };
-
                         const stream = ytdl(peeky.serverData.get(keySF, "Queue")[0]);
                         const dispatcher = await connection.play(stream, StreamOptions);
                       
@@ -8439,10 +8435,6 @@ if (CommandName.startsWith("play"))  {
                                 peeky.serverData.set(keySF, [], "Queue");
                                 CurrentlyPlaying.delete(message.guild.id);
                                 voiceChannel.leave();
-
-                                if  (message.guild.me.permissions.has("CHANGE_NICKNAME") && ((message.guild.me.nickname && message.guild.me.nickname.startsWith("🎵 "))))  {
-                                    message.guild.me.setNickname(null);
-                                };
 
                                 const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
 
