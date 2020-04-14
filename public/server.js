@@ -1163,8 +1163,8 @@ const RandomWords = [
 
 const WeeklyChallenges = [
   
-    ["perfect_hangman", "Professional Unhanger", "Win the Hangman minigame without any errors.", 2500, "Exp"],
-    ["song_master", "Song Master", "Win the Guess the Song minigame by guessing a hard song.", 1250, "Exp"],
+    ["perfect_hangman", "Professional Unhanger", "Win the Hangman minigame without any errors.", 750, "Gredit"],
+    ["song_master", "Song Master", "Win the Guess the Song minigame by guessing a hard song.", 2500, "Exp"],
   
 ];
 
@@ -4391,34 +4391,92 @@ if  (message.guild.owner !== undefined && !message.author.bot)  {
   
 };
   
-//Daily Challenges Auto-Management
-if  (!AutoManagementCooldown.has("dailychallenge") && new Date() - new Date(peeky.peekyData.get("dailychallenge", "started")) >= DayMs )  {
+//Challenges Auto-Management
+if  (!AutoManagementCooldown.has("challenges"))  {
 
-    AutoManagementCooldown.add("dailychallenge");
-    setTimeout(() => {AutoManagementCooldown.delete("dailychallenge")}, 1800000);
+    AutoManagementCooldown.add("challenges");
+    setTimeout(() => {AutoManagementCooldown.delete("challenges")}, 1800000);
   
-    var ChallengeChosen = function_ShuffleArray(DailyChallenges.filter(i => i[0] !== peeky.peekyData.get("dailychallenge", "data")[0]))[0];
-    peeky.peekyData.set("dailychallenge", ChallengeChosen, "data");
-    peeky.peekyData.set("dailychallenge", new Date(), "started");
-  
-    if  (ChallengeChosen[4] !== "Background")  {
-        var Reward = ChallengeChosen[3] + " " + ChallengeChosen[4];
-    } else {
-      var Reward = "the " + function_GetBackgroundInfo(ChallengeChosen[4], ["name"]) + " background";
+    if  (new Date() - new Date(peeky.peekyData.get("dailychallenge", "started")) >= DayMs)  {
+
+        var ChallengeChosen = function_ShuffleArray(DailyChallenges.filter(i => i[0] !== peeky.peekyData.get("dailychallenge", "data")[0]))[0];
+        peeky.peekyData.set("dailychallenge", ChallengeChosen, "data");
+        peeky.peekyData.set("dailychallenge", new Date(), "started");
+
+        if  (ChallengeChosen[4] !== "Background")  {
+            var Reward = ChallengeChosen[3] + " " + ChallengeChosen[4];
+        } else {
+          var Reward = "the " + function_GetBackgroundInfo(ChallengeChosen[4], ["name"]) + " background";
+        };
+
+        fs.writeFile('public/dailychallenge.txt', [
+
+            "<font size='5'>" + ChallengeChosen[1] + "</font>",
+            "<font size='2'>" + ChallengeChosen[2] + "</font>",
+            "",
+            "<font size='1'>  Complete this challenge for " + Reward + ".  </font>"
+
+        ].join("<br>"), (err) => {
+            if (err) console.log(err); 
+        });
+
+        console.log("The new Daily Challenge is " + peeky.peekyData.get("dailychallenge", "data")[1] + ".");
+      
     };
   
-    fs.writeFile('public/dailychallenge.txt', [
-      
-        "<font size='5'>" + ChallengeChosen[1] + "</font>",
-        "<font size='2'>" + ChallengeChosen[2] + "</font>",
-        "",
-        "<font size='1'>  Complete this challenge for " + Reward + ".  </font>"
-      
-    ].join("<br>"), (err) => {
-        if (err) console.log(err); 
-    });
+    if  (new Date() - new Date(peeky.peekyData.get("weeklychallenge", "started")) >= DayMs)  {
 
-    console.log("The new Daily Challenge is " + peeky.peekyData.get("dailychallenge", "data")[1] + ".");
+        var ChallengeChosen = function_ShuffleArray(DailyChallenges.filter(i => i[0] !== peeky.peekyData.get("dailychallenge", "data")[0]))[0];
+        peeky.peekyData.set("dailychallenge", ChallengeChosen, "data");
+        peeky.peekyData.set("dailychallenge", new Date(), "started");
+
+        if  (ChallengeChosen[4] !== "Background")  {
+            var Reward = ChallengeChosen[3] + " " + ChallengeChosen[4];
+        } else {
+          var Reward = "the " + function_GetBackgroundInfo(ChallengeChosen[4], ["name"]) + " background";
+        };
+
+        fs.writeFile('public/dailychallenge.txt', [
+
+            "<font size='5'>" + ChallengeChosen[1] + "</font>",
+            "<font size='2'>" + ChallengeChosen[2] + "</font>",
+            "",
+            "<font size='1'>  Complete this challenge for " + Reward + ".  </font>"
+
+        ].join("<br>"), (err) => {
+            if (err) console.log(err); 
+        });
+
+        console.log("The new Daily Challenge is " + peeky.peekyData.get("dailychallenge", "data")[1] + ".");
+      
+    };
+  
+    if  (new Date() - new Date(peeky.peekyData.get("weeklychallenge", "started")) >= DayMs)  {
+
+        var ChallengeChosen = function_ShuffleArray(WeeklyChallenges.filter(i => i[0] !== peeky.peekyData.get("weeklychallenge", "data")[0]))[0];
+        peeky.peekyData.set("weeklychallenge", ChallengeChosen, "data");
+        peeky.peekyData.set("weeklychallenge", new Date(), "started");
+
+        if  (ChallengeChosen[4] !== "Background")  {
+            var Reward = ChallengeChosen[3] + " " + ChallengeChosen[4];
+        } else {
+          var Reward = "the " + function_GetBackgroundInfo(ChallengeChosen[4], ["name"]) + " background";
+        };
+
+        fs.writeFile('public/weeklychallenge.txt', [
+
+            "<font size='5'>" + ChallengeChosen[1] + "</font>",
+            "<font size='2'>" + ChallengeChosen[2] + "</font>",
+            "",
+            "<font size='1'>  Complete this challenge for " + Reward + ".  </font>"
+
+        ].join("<br>"), (err) => {
+            if (err) console.log(err); 
+        });
+
+        console.log("The new Weekly Challenge is " + peeky.peekyData.get("weeklychallenge", "data")[1] + ".");
+      
+    };
 };
 
 //Workshop Auto-Management
