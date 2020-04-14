@@ -1163,7 +1163,7 @@ const RandomWords = [
 
 const WeeklyChallenges = [
   
-    ["perfect_hangman", "Professional Unhanger", "Win the Hangman minigame without any errors.", 750, "Gredit"],
+    ["perfect_hangman", "Professional Unhanger", "Win the Hangman minigame without any errors.", 1000, "Gredit"],
     ["song_master", "Song Master", "Win the Guess the Song minigame by guessing a hard song.", 2500, "Exp"],
   
 ];
@@ -4441,7 +4441,7 @@ if  (!AutoManagementCooldown.has("challenges"))  {
             "<font size='5'>" + ChallengeChosen[1] + "</font>",
             "<font size='2'>" + ChallengeChosen[2] + "</font>",
             "",
-            "<font size='1'>  Complete this challenge for " + Reward + ".  </font>"
+            "<font size='1'>  Complete this daily challenge for " + Reward + ".  </font>"
 
         ].join("<br>"), (err) => {
             if (err) console.log(err); 
@@ -4468,7 +4468,7 @@ if  (!AutoManagementCooldown.has("challenges"))  {
             "<font size='5'>" + ChallengeChosen[1] + "</font>",
             "<font size='2'>" + ChallengeChosen[2] + "</font>",
             "",
-            "<font size='1'>  Complete this challenge for " + Reward + ".  </font>"
+            "<font size='1'>  Complete this weekly challenge for " + Reward + ".  </font>"
 
         ].join("<br>"), (err) => {
             if (err) console.log(err); 
@@ -8982,6 +8982,10 @@ if (CommandName == "guessthesong")  {
                         if  (peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
                             peeky.userData.set(key, true, "GamerBadge");
                             InfoMessages.push(InfoMessage1[Language]);
+                        };
+                            
+                        if  (peeky.peekyData.get("weeklychallenge", "data")[0] == "song_master" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data", "LastWeeklyChallenge")) == true)  {
+                            InfoMessages.push(InfoMessage4[Language]);
                         };
 
                         if  (peeky.userData.has(key))  {
