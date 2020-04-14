@@ -1233,7 +1233,6 @@ async function WebsiteStuff()  {
     setInterval(async () => {
 
         //Guilds
-        /*
         var filtered       = peeky.serverData.filter(p => p.GuildID && p.lastSeen);
         var toRemoveGuilds = filtered.filter(data => new Date() - new Date(data.lastSeen) > InactiveWipe); //filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
 
@@ -1257,7 +1256,6 @@ async function WebsiteStuff()  {
             };
 
         });
-        */
 
         //Profiles
         var filtered         = peeky.userData.filter( p => p.UserID && p.lastSeen );
