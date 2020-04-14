@@ -492,6 +492,15 @@ const InfoMessage4 = [
   InfoIcon + " You have completed the daily challenge.",
   InfoIcon + " "
 ];
+const InfoMessage5 = [
+  InfoIcon + " You have completed the weekly challenge.",
+  InfoIcon + " Dokončili jste týddení výzvu.",
+  InfoIcon + " You have completed the weekly challenge.",
+  InfoIcon + " You have completed the weekly challenge.",
+  InfoIcon + " You have completed the weekly challenge.",
+  InfoIcon + " You have completed the weekly challenge.",
+  InfoIcon + " "
+];
 
 //Small Arrays
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
@@ -5492,9 +5501,23 @@ if (CommandName == "help")  {
 };
 
 //Help
-if (CommandName == "help")  {
+if (CommandName == "challenges")  {
   
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    message.channel.send("https://peeky.glitch.me/challenges.html").catch(error => ErrorBag.add(error));
+  
+};
+
+//Help
+if (CommandName == "backgrounds")  {
+  
+    message.channel.send("https://peeky.glitch.me/backgrounds.html").catch(error => ErrorBag.add(error));
+  
+};
+
+//Help
+if (CommandName == "leaderboard")  {
+  
+    message.channel.send("https://peeky.glitch.me/leaderboard.html").catch(error => ErrorBag.add(error));
   
 };
 
@@ -8999,7 +9022,7 @@ if (CommandName == "guessthesong")  {
                         };
                             
                         if  (YoutubeSongs[ChosenSong][2] == "hard" && peeky.peekyData.get("weeklychallenge", "data")[0] == "song_master" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data", "LastWeeklyChallenge")) == true)  {
-                            InfoMessages.push(InfoMessage4[Language]);
+                            InfoMessages.push(InfoMessage5[Language]);
                         };
 
                         if  (peeky.userData.has(key))  {
@@ -9168,7 +9191,7 @@ if (CommandName == "hangman")  {
                             };
                             
                             if  (WrongLetters.length == 0 && peeky.peekyData.get("weeklychallenge", "data")[0] == "perfect_hangman" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data", "LastWeeklyChallenge")) == true)  {
-                                InfoMessages.push(InfoMessage4[Language]);
+                                InfoMessages.push(InfoMessage5[Language]);
                             };
                           
                             const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(LastMember.displayName, "other", true) + "** has completed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 

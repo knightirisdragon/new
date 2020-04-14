@@ -200,3 +200,5 @@ This command only works in NSFW channels. |
 You have earned a new badge. | 
 You have set the default background. | 
 You have lost your custom background. | 
+You have completed the daily challenge. | 
+You have completed the weekly challenge. | 
