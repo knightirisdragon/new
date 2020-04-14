@@ -154,7 +154,7 @@ const BoosterRole        = "620654437081415686";
 const ServerUpgradeRole  = "549190337437106176";
 
 //Other IDs
-const OwnerId              = "108899856889737216";
+const OwnerId              = "137255897301909504"//"108899856889737216";
 const PeekyId              = "482945063282802698";
 const SupportServer        = "319891596772638744";
 const AnnouncementsChannel = "346710479407808524";
@@ -2017,8 +2017,11 @@ function function_ChannelData(key)  {
 function function_ChallengeRewards(key, challenge, type)  {
   
     if  (peeky.userData.get(key, type) !== challenge[0])  {
+      
+        console.log(challenge[0]);
+        console.log(type);
 
-        peeky.userData.set(key, challenge[0], type);
+        //peeky.userData.set(key, challenge[0], type);
 
         var RewardAmount = challenge[3];
         var RewardName = challenge[4];
@@ -4687,7 +4690,7 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
 
                         if  (peeky.userData.has(member.user.id))  {
                             
-                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "treasure_hunt" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data", "LastDailyChallenge")) == true)  {
+                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "treasure_hunt" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
                                 InfoMessages.push(InfoMessage4[Language]);
                             };
 
@@ -5327,7 +5330,7 @@ if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.
   
 //Miscellaneous
 if  (message.guild.id == SupportServer && message.content == ":gorilla:")  {
-    if  (peeky.peekyData.get("dailychallenge", "data")[0] == "random_chimp_event" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data", "LastDailyChallenge")) == true)  {
+    if  (peeky.peekyData.get("dailychallenge", "data")[0] == "random_chimp_event" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
         message.channel.send(InfoMessage4[Language]).catch(error => ErrorBag.add(error));
     };
 };
@@ -9183,11 +9186,11 @@ if (CommandName == "hangman")  {
                     if  (WrongLetters.length >= HangmanLevels.length - 1 || CensoredAnswer == Answer.toLowerCase())  {
                         if  (CensoredAnswer == Answer.toLowerCase())  {
                           
-                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "clean_hangman" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data", "LastDailyChallenge")) == true)  {
+                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "clean_hangman" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
                                 InfoMessages.push(InfoMessage4[Language]);
                             };
                             
-                            if  (WrongLetters.length == 0 && peeky.peekyData.get("weeklychallenge", "data")[0] == "perfect_hangman" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data", "LastWeeklyChallenge")) == true)  {
+                            if  (WrongLetters.length == 0 && peeky.peekyData.get("weeklychallenge", "data")[0] == "perfect_hangman" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data"), "LastWeeklyChallenge") == true)  {
                                 InfoMessages.push(InfoMessage5[Language]);
                             };
                           
@@ -9279,7 +9282,7 @@ if  (CommandName == "akinator")  {
                                 var ImageUrl = HollowImage;
                                 var FooterText = "­";
                               
-                                if  ((Step + 1) >= 25 && peeky.peekyData.get("dailychallenge", "data")[0] == "beat_akinator" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data", "LastDailyChallenge")) == true)  {
+                                if  ((Step + 1) >= 25 && peeky.peekyData.get("dailychallenge", "data")[0] == "beat_akinator" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
                                     InfoMessages.push(InfoMessage4[Language]);
                                 };
                                  
