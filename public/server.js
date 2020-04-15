@@ -4423,33 +4423,6 @@ if  (!AutoManagementCooldown.has("challenges"))  {
             "<b class='itemdiv'>  <font size='5'>" + ChallengeChosen[1] + "</font>",
             "<font size='2'>" + ChallengeChosen[2] + "</font>",
             "",
-            "<font size='1'>  Complete this challenge for " + Reward + ".  </font>  </b>"
-
-        ].join("<br>"), (err) => {
-            if (err) console.log(err); 
-        });
-
-        console.log("The new Daily Challenge is " + peeky.peekyData.get("dailychallenge", "data")[1] + ".");
-      
-    };
-  
-    if  (new Date() - new Date(peeky.peekyData.get("weeklychallenge", "started")) >= DayMs)  {
-
-        var ChallengeChosen = function_ShuffleArray(DailyChallenges.filter(i => i[0] !== peeky.peekyData.get("dailychallenge", "data")[0]))[0];
-        peeky.peekyData.set("dailychallenge", ChallengeChosen, "data");
-        peeky.peekyData.set("dailychallenge", new Date(), "started");
-
-        if  (ChallengeChosen[4] !== "Background")  {
-            var Reward = ChallengeChosen[3] + " " + ChallengeChosen[4];
-        } else {
-          var Reward = "the " + function_GetBackgroundInfo(ChallengeChosen[4], ["name"]) + " background";
-        };
-
-        fs.writeFile('public/dailychallenge.txt', [
-          
-            "<b class='itemdiv'>  <font size='5'>" + ChallengeChosen[1] + "</font>",
-            "<font size='2'>" + ChallengeChosen[2] + "</font>",
-            "",
             "<font size='1'>  Complete this daily challenge for " + Reward + ".  </font>  </b>"
 
         ].join("<br>"), (err) => {
@@ -4460,7 +4433,7 @@ if  (!AutoManagementCooldown.has("challenges"))  {
       
     };
   
-    if  (new Date() - new Date(peeky.peekyData.get("weeklychallenge", "started")) >= DayMs)  {
+    if  (new Date() - new Date(peeky.peekyData.get("weeklychallenge", "started")) >= WeekMs)  {
 
         var ChallengeChosen = function_ShuffleArray(WeeklyChallenges.filter(i => i[0] !== peeky.peekyData.get("weeklychallenge", "data")[0]))[0];
         peeky.peekyData.set("weeklychallenge", ChallengeChosen, "data");
@@ -4473,11 +4446,11 @@ if  (!AutoManagementCooldown.has("challenges"))  {
         };
 
         fs.writeFile('public/weeklychallenge.txt', [
-
-            "<font size='5'>" + ChallengeChosen[1] + "</font>",
+          
+            "<b class='itemdiv'>  <font size='5'>" + ChallengeChosen[1] + "</font>",
             "<font size='2'>" + ChallengeChosen[2] + "</font>",
             "",
-            "<font size='1'>  Complete this weekly challenge for " + Reward + ".  </font>"
+            "<font size='1'>  Complete this weekly challenge for " + Reward + ".  </font>  </b>"
 
         ].join("<br>"), (err) => {
             if (err) console.log(err); 
@@ -5328,9 +5301,10 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
 if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.author.id) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES', 'EMBED_LINKS'))  {
   
 //Miscellaneous
-if  (message.guild.id == SupportServer && message.content == ":gorilla:")  {
+if  (message.guild.id == SupportServer && message.content == "🦍")  {
     if  (peeky.peekyData.get("dailychallenge", "data")[0] == "random_chimp_event" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
-        message.channel.send(InfoMessage4[Language]).catch(error => ErrorBag.add(error));
+        const embed = {"description": InfoMessage4[Language],  "color": EmbedColor};
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 };
   
