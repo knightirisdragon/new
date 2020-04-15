@@ -50,7 +50,7 @@ I have muted **X001** because of the **Flood Protection** function. |
 
 You have to mark your image as a spoiler, **X001** | 
 
-That phrase is blocked by the **Banned Words** function, **X001**. | 
+That phrase is blocked by the **Banned Words** function, **X001**. |
 
 The server prefix has been set to the default prefix. | 
 The prefix is still **X001** on this server. | 

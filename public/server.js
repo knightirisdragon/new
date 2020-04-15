@@ -3302,6 +3302,8 @@ if  (keySF == SupportServer)  {
                 PurchaseComplete = true;
                 TransactionInfo = ["Premium", "premium", "You can now enjoy all of the exciting [Premium features](https://peeky.glitch.me/store.html#serverupgrade) that PEEKY has to offer!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
 
+                peeky.userData.set(key, Date.now(), "SupporterLastPurchase");
+              
             };
 
         };
@@ -4691,7 +4693,7 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
                                 InfoMessages.push(InfoMessage4[Language]);
                             };
 
-                            var embed = {"description": SuccessIcon + " **" + function_RemoveFormatting(member.displayName, "other", true) + "** has claimed the Random Treasure!" + "\n\n" + InfoMessages.join("\n\n"), "color": EmbedColor}; 
+                            var embed = {"description": SuccessIcon + " **" + function_RemoveFormatting(member.displayName, "other", true) + "** has claimed the treasure!" + "\n\n" + InfoMessages.join("\n\n"), "color": EmbedColor}; 
                             m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
                             peeky.userData.math(member.user.id, "+", Amount, Rewards[Index][2]);
