@@ -1183,8 +1183,7 @@ const DailyChallenges = [
     ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 500, "Exp"],
     ["beat_akinator", "Eat that, Akinator", "Beat Akinator after 25 questions.", 1, "Chests"],
     ["clean_hangman", "Life Saver", "Win the Hangman minigame.", 250, "Gredit"],
-    ["treasure_hunt", "Treasure Hunting", "Be the first one to claim a random treasure.", 393, "Background"],
-    ["random_chimp_event", "Random Chimp Event", "Send the 🦍 emoji in the Support Server.", 1,"Chests"]
+    ["treasure_hunt", "Treasure Hunting", "Be the first one to claim a random treasure.", 393, "Background"]
   
 ];
 
@@ -4412,18 +4411,12 @@ if  (!AutoManagementCooldown.has("challenges"))  {
         peeky.peekyData.set("dailychallenge", ChallengeChosen, "data");
         peeky.peekyData.set("dailychallenge", new Date(), "started");
 
-        if  (ChallengeChosen[4] !== "Background")  {
-            var Reward = ChallengeChosen[3] + " " + ChallengeChosen[4];
-        } else {
-          var Reward = "the " + function_GetBackgroundInfo(ChallengeChosen[4], ["name"]) + " background";
-        };
-
         fs.writeFile('public/dailychallenge.txt', [
 
             "<b class='itemdiv'>  <font size='5'>" + ChallengeChosen[1] + "</font>",
             "<font size='2'>" + ChallengeChosen[2] + "</font>",
             "",
-            "<font size='1'>  Complete this daily challenge for " + Reward + ".  </font>  </b>"
+            "<font size='1'>  Complete this daily challenge for " + ChallengeChosen[3] + " " + ChallengeChosen[4] + ".  </font>  </b>"
 
         ].join("<br>"), (err) => {
             if (err) console.log(err); 
@@ -4439,18 +4432,12 @@ if  (!AutoManagementCooldown.has("challenges"))  {
         peeky.peekyData.set("weeklychallenge", ChallengeChosen, "data");
         peeky.peekyData.set("weeklychallenge", new Date(), "started");
 
-        if  (ChallengeChosen[4] !== "Background")  {
-            var Reward = ChallengeChosen[3] + " " + ChallengeChosen[4];
-        } else {
-          var Reward = "the " + function_GetBackgroundInfo(ChallengeChosen[4], ["name"]) + " background";
-        };
-
         fs.writeFile('public/weeklychallenge.txt', [
           
             "<b class='itemdiv'>  <font size='5'>" + ChallengeChosen[1] + "</font>",
             "<font size='2'>" + ChallengeChosen[2] + "</font>",
             "",
-            "<font size='1'>  Complete this weekly challenge for " + Reward + ".  </font>  </b>"
+            "<font size='1'>  Complete this weekly challenge for " + ChallengeChosen[3] + " " + ChallengeChosen[4] + ".  </font>  </b>"
 
         ].join("<br>"), (err) => {
             if (err) console.log(err); 
@@ -5299,14 +5286,6 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
 
 //COMMANDS
 if  (!message.webhookID && !message.author.bot && !BannedUsers.includes(message.author.id) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES', 'EMBED_LINKS'))  {
-  
-//Miscellaneous
-if  (message.guild.id == SupportServer && message.content == "🦍")  {
-    if  (peeky.peekyData.get("dailychallenge", "data")[0] == "random_chimp_event" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
-        const embed = {"description": InfoMessage4[Language],  "color": EmbedColor};
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-};
   
 //Mention Commands
   
