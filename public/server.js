@@ -9041,7 +9041,7 @@ if (CommandName == "triviaquestions")  {
              var key = collected.first().author.id;
 
              //Gamer Badge
-             if  (!peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
+             if  (peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
                  peeky.userData.set(key, true, "GamerBadge");
                  InfoMessages.push(InfoMessage1[Language]);
              };
@@ -9247,7 +9247,7 @@ if  (CommandName == "akinator")  {
                               var FooterText = "­";
                           
                               //Gamer Badge
-                              if  (!peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
+                              if  (peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
                                   peeky.userData.set(key, true, "GamerBadge");
                               };
 
@@ -9372,7 +9372,7 @@ if  (CommandName == "drawandguess")  {
                 Active = false;
 
                  //Gamer Badge
-                 if  (!peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
+                 if  (peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
                      peeky.userData.set(key, true, "GamerBadge");
                      InfoMessages.push(InfoMessage1[Language]);
                  };
