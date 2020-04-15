@@ -5813,7 +5813,7 @@ if  (CommandName == "languages")  {
                                 + "\n\n" +
                                 Spanish + " Español `TheSongList`"
                                 + "\n\n" + 
-                                Turk + " Türkçe `PlatinBae`"
+                                Turk + " Türkçe `Bae`"
                                 + "\n\n" + 
                                 Russian + " Русский `TheSongList`"
                                 + "\n\n" + 
