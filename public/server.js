@@ -8942,7 +8942,7 @@ if (CommandName == "guessthesong")  {
           
             InfoMessages.push(InfoIcon + " Full Song: <" + YoutubeSongs[ChosenSong][0] + ">");
             CurrentlyPlaying.add(message.guild.id);
-            setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 30000);
+            setTimeout(() => {CurrentlyPlaying.delete(message.guild.id)}, 10000);
           
             if  (voiceChannel.permissionsFor(peeky.user).has('CONNECT' && 'SPEAK'))  {
   
@@ -8973,7 +8973,7 @@ if (CommandName == "guessthesong")  {
                             InfoMessages.push(InfoMessage1[Language]);
                         };
                             
-                        if  (YoutubeSongs[ChosenSong][2] == "hard" && peeky.peekyData.get("weeklychallenge", "data")[0] == "song_master" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data"), "LastWeeklyChallenge") == true)  {
+                        if  (YoutubeSongs[ChosenSong][2] == "Hard" && peeky.peekyData.get("weeklychallenge", "data")[0] == "song_master" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data"), "LastWeeklyChallenge") == true)  {
                             InfoMessages.push(InfoMessage5[Language]);
                         };
 
@@ -9324,7 +9324,6 @@ if  (CommandName == "drawandguess")  {
         var Active = false;
 
         ActiveMinigames.add(message.guild.id);
-        setTimeout(() => {ActiveMinigames.delete(message.guild.id)}, 90000);
       
         var embed = {"description": "You have to draw **" + RandomWords[ChosenQuestion] + "** within **1 minute**.", "image": {  "url": "https://cdn.glitch.com/a3bbad00-1612-4e6e-b3cf-731aa68e37c4%2Fempty_canvas.png"  }, "color": EmbedColor}; 
         await function_DirectMessage(message.author.id, {  embed  });
@@ -9358,7 +9357,7 @@ if  (CommandName == "drawandguess")  {
                       
                     };
 
-                    const embed = {"description": InfoIcon + " Time's running low, so here's a hint: " + Hint,  "color": EmbedColor}; 
+                    const embed = {"description": InfoIcon + " Time's running low, so here's a hint: " + Hint + ".",  "color": EmbedColor}; 
                     message.channel.send({ embed });
                   
                 };
@@ -9383,16 +9382,22 @@ if  (CommandName == "drawandguess")  {
 
                  const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has guessed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                 
+                 ActiveMinigames.delete(message.guild.id);
             })
             .catch(collected => {
                 const embed = {"description": ErrorIcon + " The word was **" + RandomWords[ChosenQuestion] + "**.",  "color": EmbedColor}; 
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                
+                ActiveMinigames.delete(message.guild.id);
             });
              
         })
         .catch(collected => {          
               const embed = {"description": ErrorIcon + " Sorry, but **" + function_RemoveFormatting(message.member.displayName, "other", true) + "** has ran out of time to draw.",  "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+              
+              ActiveMinigames.delete(message.guild.id);
         });
 
       
