@@ -7395,7 +7395,7 @@ if  (peeky.guilds.cache.get(SupportServer).members.cache.has(message.author.id) 
              else
             {
 
-              var TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si random popisok pre **X001**" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una descripción aleatoria para el **X001**" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için rastgele bir açıklama aldınız.", SuccessIcon + " Вы купили случайное описание для **X001" + " " + GreditIcon + "**."];
+              var TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si random popisok pre **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una descripción aleatoria para el **X001" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için rastgele bir açıklama aldınız.", SuccessIcon + " Вы купили случайное описание для **X001" + " " + GreditIcon + "**."];
               const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
