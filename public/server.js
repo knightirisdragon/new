@@ -2719,7 +2719,7 @@ peeky.on('message', async (message) => {
       
     //BadgeExpAmount    += peeky.userData.get(key, "UpgradedServers");
     //BadgeGreditAmount += peeky.userData.get(key, "UpgradedServers");
-      
+
     //EVENT DOUBLE EXP
     if  (Setting.EventStatus == true)  {
         BadgeExpAmount = BadgeExpAmount * 2;
@@ -2734,7 +2734,7 @@ peeky.on('message', async (message) => {
       
     //LEADERBOARD SCORE
     var LeaderboardRank = 1;
-    var Factors = [["Gredit", 50000, false], ["Karma", 250, false], ["Levels", 10, false], ["Inventory", 10, true], ["Badges", 5, true], ["UpgradedServers", 1, false], ["Votes", 10, false]];
+    var Factors = [["Gredit", 50000, false], ["Karma", 250, false], ["Levels", 10, false], ["Inventory", 10, true], ["Badges", 5, true], ["UpgradedServers", 1, false]];
     
     Factors.forEach(factor => {
         if  (factor[2] !== true && peeky.userData.get(key, factor[0]) > 0) {
