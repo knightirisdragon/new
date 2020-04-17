@@ -1090,22 +1090,9 @@ const YoutubeSongs = [
     ["https://www.youtube.com/watch?v=U1vGosMScjM", "Cash Machine", "Medium"],
     ["https://www.youtube.com/watch?v=oKUVlXlcBQs", "Enemy", "Medium"],
     ["https://www.youtube.com/watch?v=5xwmensMDn0", "SLOW DANCING IN THE DARK", "Easy"],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
+    ["https://www.youtube.com/watch?v=4DQ-2tDzJxw", "Thoughts and Prayers", "Easy"],
+    ["https://www.youtube.com/watch?v=GTISI3Bg4Mc", "Best Friends", "Medium"],
+    ["https://www.youtube.com/watch?v=8XkxjsiZoeo", "Despicable", "Medium"]
 ];
 
 const TriviaQuestions = [
