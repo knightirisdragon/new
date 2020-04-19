@@ -9604,8 +9604,8 @@ if  (CommandName == "giveaway")  {
 };
 
 //Call
-/*if  (CommandName.startsWith("call"))  {
-  
+if  (CommandName.startsWith("call"))  {
+
     var CommandArgument = CommandName.split("call")[1];
   
     if  (CommandArgument.startsWith(" "))  {
@@ -9621,6 +9621,8 @@ if  (CommandName == "giveaway")  {
                     var otherGuild = peeky.guilds.get(CommandArgument);
                   
                     if  (!CallingServers.has(otherGuild.id))  {
+                      
+                        
                         
                     }  else {
                       const embed = {"description": ErrorIcon + " That server is already calling someone.", "color": EmbedColor}; 
@@ -9649,7 +9651,7 @@ if  (CommandName == "giveaway")  {
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
-};*/
+};
 
 //NSFW
 if  (CommandName.startsWith("nsfw"))  {
