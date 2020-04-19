@@ -9612,21 +9612,37 @@ if  (CommandName.startsWith("call"))  {
   
         CommandArgument = CommandArgument.replace(" ", ""); 
       
-        if  (!isNaN(CommandArgument) && peeky.guilds.has(CommandArgument))  {
+        if  (!CallingServers.has(message.guild.id))  {
           
-            if  (!CallingServers.has(message.guild.id))  {
-                
+            if  (peeky.guilds.has(CommandArgument))  {
+          
+                if  (!isNaN(CommandArgument))  {
+                  
+                    var otherGuild = peeky.guilds.get(CommandArgument);
+                  
+                    if  (!CallingServers.has(otherGuild.id))  {
+                        
+                    }                        
+
+                } else {
+                  const embed = {"description": ErrorIcon + " I can find the server you're trying to call.", "color": EmbedColor}; 
+                  message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                };
+            
+            } else {
+              const embed = {"description": ErrorIcon + " I can't find the server that you're trying to call.", "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
           
         } else {
-          const embed = {"description": " You are already trying to call someone,",  "color": EmbedColor}; 
+          const embed = {"description": CooldownMessage1[], "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
     }
      else if (CommandArgument == "")
     {
-     const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage18[Language], "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -9649,12 +9665,12 @@ if  (CommandName.startsWith("nsfw"))  {
         }
          else if (CommandArgument == "")
         {
-         const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+         const embed = {"description": ErrorMessage18[Language], "color": EmbedColor}; 
          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
     } else {
-     const embed = {"description": ErrorMessage23[Language],  "color": EmbedColor}; 
+     const embed = {"description": ErrorMessage23[Language], "color": EmbedColor}; 
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 };
