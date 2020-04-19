@@ -9604,7 +9604,7 @@ if  (CommandName == "giveaway")  {
 };
 
 //Call
-if  (CommandName.startsWith("call"))  {
+/*if  (CommandName.startsWith("call"))  {
   
     var CommandArgument = CommandName.split("call")[1];
   
@@ -9622,10 +9622,13 @@ if  (CommandName.startsWith("call"))  {
                   
                     if  (!CallingServers.has(otherGuild.id))  {
                         
-                    }                        
+                    }  else {
+                      const embed = {"description": ErrorIcon + " That server is already calling someone.", "color": EmbedColor}; 
+                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                    };                       
 
                 } else {
-                  const embed = {"description": ErrorIcon + " I can find the server you're trying to call.", "color": EmbedColor}; 
+                  const embed = {"description": ErrorIcon + " That server surely doesn't exist.", "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
             
@@ -9635,7 +9638,7 @@ if  (CommandName.startsWith("call"))  {
             };
           
         } else {
-          const embed = {"description": CooldownMessage1[], "color": EmbedColor}; 
+          const embed = {"description": CooldownMessage1[Language], "color": EmbedColor}; 
           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
         };
 
@@ -9646,7 +9649,7 @@ if  (CommandName.startsWith("call"))  {
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
-};
+};*/
 
 //NSFW
 if  (CommandName.startsWith("nsfw"))  {
