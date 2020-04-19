@@ -9613,6 +9613,8 @@ if  (CommandName.startsWith("call"))  {
         CommandArgument = CommandArgument.replace(" ", ""); 
       
         if  (!CallingServers.has(message.guild.id))  {
+
+            CallingServers.add(message.guild.id);
           
             if  (peeky.guilds.has(CommandArgument))  {
           
@@ -9621,8 +9623,23 @@ if  (CommandName.startsWith("call"))  {
                     var otherGuild = peeky.guilds.get(CommandArgument);
                   
                     if  (!CallingServers.has(otherGuild.id))  {
+
+                        CallingServers.add(otherGuild.id);
                       
-                        
+                        message.channel.awaitMessages(response => !response.author.bot && response.content.toLowerCase() == "accept", { max: 1, time: 10000, errors: ['time'] })
+                        .then(collected => {
+
+                            var Answer = collected.first();
+
+                        })
+                        .catch(collected => {
+
+                            const embed = {"description": ErrorIcon + " The server has not responded to the call.",  "color": EmbedColor}; 
+                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                            CallingServers.delete(otherGuild.id);
+                            CallingServers.delete(message.guild.id);
+                        });
                         
                     }  else {
                       const embed = {"description": ErrorIcon + " That server is already calling someone.", "color": EmbedColor}; 
