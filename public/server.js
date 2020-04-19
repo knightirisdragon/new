@@ -9604,7 +9604,7 @@ if  (CommandName == "giveaway")  {
 };
 
 //Call
-if  (CommandName.startsWith("call"))  {
+/*if  (CommandName.startsWith("call"))  {
 
     var CommandArgument = CommandName.split("call")[1];
   
@@ -9668,7 +9668,7 @@ if  (CommandName.startsWith("call"))  {
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
-};
+};*/
 
 //NSFW
 if  (CommandName.startsWith("nsfw"))  {
