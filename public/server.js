@@ -100,6 +100,7 @@ var FloodProtectionStrikes  = new Array();
 var KarmaImages             = new Array();
 var CheckedDataCreations    = new Set();
 var QueuedSOSMessages       = new Set();
+var CallingServers          = new Set();
 var ActiveMinigames         = new Set();
 var CurrentlyPlaying        = new Set();
 var CurrentlyStreaming      = new Set();
@@ -9598,6 +9599,35 @@ if  (CommandName == "giveaway")  {
     } else {
       const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+
+//Call
+if  (CommandName.startsWith("call"))  {
+  
+    var CommandArgument = CommandName.split("call")[1];
+  
+    if  (CommandArgument.startsWith(" "))  {
+  
+        CommandArgument = CommandArgument.replace(" ", ""); 
+      
+        if  (!isNaN(CommandArgument) && peeky.guilds.has(CommandArgument))  {
+          
+            if  (!CallingServers.has(message.guild.id))  {
+                
+            };
+          
+        } else {
+          const embed = {"description": " You are already trying to call someone,",  "color": EmbedColor}; 
+          message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+
+    }
+     else if (CommandArgument == "")
+    {
+     const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
 };
