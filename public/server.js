@@ -992,7 +992,11 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground472.png?v=1585734506047", 775, "Chills and vibes", "The Intouchables", undefined, 1585734257828],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground473.png?v=1585734370505", 425, "Evolution", "Eltorro64Rus", undefined, 1585734269673],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground474.png?v=1585734371596", 725, "Mounted", "Mount & Blade 2 Bannerlord", undefined, 1585734255008],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground475.png?v=1586092179436", 925, "Blossom lake", "Unknown", undefined, 1586092293360]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground475.png?v=1586092179436", 925, "Blossom lake", "Unknown", undefined, 1586092293360],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground476.png?v=1587377065472", 950, "The elite", "Counter Strike Global Offensive", undefined, 1587377160336],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground477.png?v=1587376930988", 825, "Homies help homies", "Natasha Allegri", undefined, 1587377167144],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground478.png?v=1587377069512", 900, "Michael's ride", "Grand Theft Auto 5", undefined, 1587377169956],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground479.png?v=1587377073374", 675, "Imaginary friend", "Unknown", undefined, 1587377172809]
 
 ];
 
@@ -1093,7 +1097,10 @@ const YoutubeSongs = [
     ["https://www.youtube.com/watch?v=5xwmensMDn0", "SLOW DANCING IN THE DARK", "Easy"],
     ["https://www.youtube.com/watch?v=4DQ-2tDzJxw", "Thoughts and Prayers", "Easy"],
     ["https://www.youtube.com/watch?v=GTISI3Bg4Mc", "Best Friends", "Medium"],
-    ["https://www.youtube.com/watch?v=8XkxjsiZoeo", "Despicable", "Medium"]
+    ["https://www.youtube.com/watch?v=8XkxjsiZoeo", "Despicable", "Medium"],
+    ["https://www.youtube.com/watch?v=lqSgsq4Bn2c", "Daddy Issues", "Hard"],
+    ["https://www.youtube.com/watch?v=m1jv7D85x-0", "Breezeblocks", "Hard"],
+    ["", "", "Medium"]
 ];
 
 const TriviaQuestions = [
