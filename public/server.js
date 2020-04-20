@@ -1100,7 +1100,7 @@ const YoutubeSongs = [
     ["https://www.youtube.com/watch?v=8XkxjsiZoeo", "Despicable", "Medium"],
     ["https://www.youtube.com/watch?v=lqSgsq4Bn2c", "Daddy Issues", "Hard"],
     ["https://www.youtube.com/watch?v=m1jv7D85x-0", "Breezeblocks", "Hard"],
-    ["", "", "Medium"]
+    ["https://www.youtube.com/watch?v=UlF7LOqp6xY", "Social Man", "Medium"]
 ];
 
 const TriviaQuestions = [
