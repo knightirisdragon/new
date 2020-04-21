@@ -2,10 +2,6 @@
 const Discord = require('discord.js');
 const peeky   = new Discord.Client({  disabledEvents: ["TYPING_START"], disableEveryone: true  });
 
-//DDBL
-const { ddblAPI } = require('ddblapi.js');
-const ddbl = new ddblAPI("482945063282802698", process.env.DDBL_TOKEN);
-
 //BLS
 const BotList = require('botlist.space');
 const bls = new BotList.Client({  id: "482945063282802698", botToken: process.env.BLS_TOKEN  });
@@ -2527,9 +2523,6 @@ peeky.on('ready', () => {
         peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
         /*peeky.user.setAvatar(RandomAvatars[Math.floor(Math.random()*RandomAvatars.length)]).catch(error => ErrorBag.add(error));
         console.log("Updated PEEKY's avatar.");*/
-
-        //Post Server Counts - DDBL
-        ddbl.postStats(GuildSize).catch(err => {console.log("Failed to post the server count to DDBL."); ErrorBag.add(err)});
       
         //Post Server Counts - BLS
         bls.postServerCount(GuildSize).catch(err => {console.log("Failed to post the server count to BLS."); ErrorBag.add(err)});
@@ -4544,7 +4537,7 @@ if  (!message.author.bot)  {
                     if  (new Date() - new Date(giveaway[3]) >= giveaway[2])  {
 
                         FinishedGiveaway = true;
-                        peeky.serverData.get(keySF, "ActiveGiveaways").slice(currentgiveaway, 1);
+                        peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
 
                         if  (peeky.channels.cache.has(giveaway[5]) && giveaway[4] > 0)  {
 
@@ -4552,8 +4545,7 @@ if  (!message.author.bot)  {
                           
                             if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES', 'ADD_REACTIONS'))  {
 
-                                channel.messages.fetch(giveaway[4])
-                                .then(async message => {
+                                channel.messages.fetch(giveaway[4]).then(async message => {
 
                                   var reaction = message.reactions.cache.find(e => e.emoji.name == "🎁");
 
