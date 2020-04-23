@@ -4607,7 +4607,7 @@ if  (!message.author.bot)  {
                                           InfoIcon + " Поздравляем X001 с выигрышем подарка **X002**!",
                                       ];
 
-                                      var embed = {"description": TranslatedMessages[Language].replace("X001", FixedWinners.Join(" ")).replace("X002", giveaway[0]), "color": EmbedColor}; 
+                                      var embed = {"description": TranslatedMessages[Language].replace("X001", FixedWinners.join(" ")).replace("X002", giveaway[0]), "color": EmbedColor}; 
                                       channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
                                           m.react("🎉").catch(error => ErrorBag.add(error));
                                       });
