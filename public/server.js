@@ -1089,14 +1089,19 @@ const YoutubeSongs = [
     ["https://www.youtube.com/watch?v=WXBHCQYxwr0", "Sweet but Psycho", "Medium"],
     ["https://www.youtube.com/watch?v=NuB-1myGido", "RISE", "Medium"],
     ["https://www.youtube.com/watch?v=U1vGosMScjM", "Cash Machine", "Medium"],
-    ["https://www.youtube.com/watch?v=oKUVlXlcBQs", "Enemy", "Medium"],
     ["https://www.youtube.com/watch?v=5xwmensMDn0", "SLOW DANCING IN THE DARK", "Easy"],
     ["https://www.youtube.com/watch?v=4DQ-2tDzJxw", "Thoughts and Prayers", "Easy"],
     ["https://www.youtube.com/watch?v=GTISI3Bg4Mc", "Best Friends", "Medium"],
     ["https://www.youtube.com/watch?v=8XkxjsiZoeo", "Despicable", "Medium"],
     ["https://www.youtube.com/watch?v=lqSgsq4Bn2c", "Daddy Issues", "Hard"],
     ["https://www.youtube.com/watch?v=m1jv7D85x-0", "Breezeblocks", "Hard"],
-    ["https://www.youtube.com/watch?v=UlF7LOqp6xY", "Social Man", "Medium"]
+    ["https://www.youtube.com/watch?v=UlF7LOqp6xY", "Social Man", "Medium"],
+    ["http://youtube.com/watch?v=id5wEaxOVL0", "Flyers", "Hard"],
+    ["https://www.youtube.com/watch?v=l18A5BOTlzE", "Five Nights at Freddy's Song", "Medium"],
+    ["https://www.youtube.com/watch?v=gk-aCL6eyGc", "It's Been So Long", "Easy"],
+    ["https://www.youtube.com/watch?v=AibtyCAhyQE", "Die In A Fire", "Easy"],
+    ["https://www.youtube.com/watch?v=YREhVveHq9k", "I Got No Time", "Easy"],
+    ["https://www.youtube.com/watch?v=kXMwZNRiPe0", "I Can't Fix You", "Easy"]
 ];
 
 const TriviaQuestions = [
