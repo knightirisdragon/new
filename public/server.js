@@ -992,7 +992,13 @@ const Banners = [
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground476.png?v=1587377065472", 950, "The elite", "Counter Strike Global Offensive", undefined, 1587377160336],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground477.png?v=1587376930988", 825, "Homies help homies", "Natasha Allegri", undefined, 1587377167144],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground478.png?v=1587377069512", 900, "Michael's ride", "Grand Theft Auto 5", undefined, 1587377169956],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground479.png?v=1587377073374", 675, "Imaginary friend", "Unknown", undefined, 1587377172809]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground479.png?v=1587377073374", 675, "Imaginary friend", "Unknown", undefined, 1587377172809],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground480.png?v=1587833475463", 925, "Guide's land", "Vsevolod Slavutych", undefined, 1587833299102],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground481.png?v=1587833476716", 900, "Show crasher", "Battlefield 4 ", undefined, 1587833301633],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground482.png?v=1587833479620", 850, "Unfolded adventure", "For The King", undefined, 1587833309001],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground483.png?v=1587833480477", 925, "Skeleton slaying", "Prince of Persia", undefined, 1587833311844],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground484.png?v=1587833482191", 1000, "Stranded", "Death Stranding", undefined, 1587833317293],
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground485.png?v=1587833578766", 950, "Rush C", "VALORANT", undefined, 1587833560795]
 
 ];
 
@@ -1101,7 +1107,8 @@ const YoutubeSongs = [
     ["https://www.youtube.com/watch?v=gk-aCL6eyGc", "It's Been So Long", "Easy"],
     ["https://www.youtube.com/watch?v=AibtyCAhyQE", "Die In A Fire", "Easy"],
     ["https://www.youtube.com/watch?v=YREhVveHq9k", "I Got No Time", "Easy"],
-    ["https://www.youtube.com/watch?v=kXMwZNRiPe0", "I Can't Fix You", "Easy"]
+    ["https://www.youtube.com/watch?v=kXMwZNRiPe0", "I Can't Fix You", "Easy"],
+    ["https://www.youtube.com/watch?v=JWeJHN5P-E8", "Teeth", "Medium"]
 ];
 
 const TriviaQuestions = [
