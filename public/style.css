@@ -50,6 +50,7 @@ img  {border-radius: 10px;}
 .popup,
 .serverinvite,
 .fancybutton,
+.dashboard_button,
 .button {
     background-color: rgba(35, 39, 42, 0.25);
     border-radius: 10px;
@@ -58,6 +59,15 @@ img  {border-radius: 10px;}
     display: inline-block;
     text-decoration: none;
     transition: transform .25s ease;
+}
+
+.dashboard_button  {
+    width: 50%;
+    position: relative;
+}
+
+.dashboard_button img  {
+    width: 25px;
 }
 
 .homebutton  {

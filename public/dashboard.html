@@ -92,13 +92,17 @@
     left: 15%;
 }
   
-.fancybutton  {
-    width: 100%;
-}
-  
 </style>
 
 <script>
+  
+window.onbeforeunload = function() {
+   //return window.confirm();
+};
+  
+var ignored = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpeeky_info.png?v=1587927947015";
+var enabled = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpeeky_upvote_default.png?v=1587927978831";
+var disabled = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpeeky_downvote_default.png?v=1587927959099";
   
 var Note = "";  //"<br>  <b class='functionnote'>  <font size='3'>  Use the Overview command to show:  </font>  <br><br>  - The function's current state  <br>  - The function's function type  <br>  - The function's setting value and setting description  </b>";
 var Ignores = "<br><br>  <b class='functionname'>Function Ignores</b>  <br>";
@@ -287,7 +291,7 @@ function Close()  {
   
 <br><br>
   
-  <script>window.confirm("Are you sure you wanna leave with unsaved changes?");</script>
+<a class="dashboard_button">  <img src="ignored">  </a>
   
 <br><br>
   
