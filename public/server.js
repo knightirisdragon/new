@@ -2029,11 +2029,6 @@ function function_ServerData(key)  {
   
 };
 
-//test
-function testfunc()  {
-    console.log("test")
-};
-
 //Create Channel Data
 function function_ChannelData(key)  {
   
