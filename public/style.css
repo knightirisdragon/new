@@ -63,11 +63,21 @@ img  {border-radius: 10px;}
 
 .dashboard_button  {
     width: 50%;
+    height: 64px;
     position: relative;
 }
 
+.dashboard_name  {
+    left: 64px;
+    bottom: 23px;
+    position: absolute;
+}
+
 .dashboard_button img  {
-    width: 25px;
+    width: 32px;
+    left: 16px;
+    bottom: 16px;
+    position: absolute;
 }
 
 .homebutton  {
