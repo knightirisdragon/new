@@ -30,11 +30,10 @@
 <div id="info">
   Hoi!
 </div>
-<a id="login" style="display: none;" href="https://discordapp.com/api/oauth2/authorize?client_id=482945063282802698&redirect_uri=https%3A%2F%2Fpeeky.glitch.me%2Fdashboard.html&response_type=code&scope=identify%20guilds">Identify Yourself</a>
+<a id="login" style="display: none;" href="https://discordapp.com/api/oauth2/authorize?client_id=482945063282802698&redirect_uri=https%3A%2F%2Fpeeky.glitch.me%2Fdashboard.html&response_type=token&scope=identify">Identify Yourself</a>
 <script>
   window.onload = () => {
-    console.log(window.location.href.slice(1))
-    const fragment = new URLSearchParams(window.location.href.slice(1));
+    const fragment = new URLSearchParams(window.location.hash.slice(1));
 
     if (fragment.has("access_token")) {
       const accessToken = fragment.get("access_token");
@@ -57,7 +56,7 @@
       document.getElementById('login').style.display = 'block';
     }
   }
-</script>
+	</script>
 
 </div>
 
