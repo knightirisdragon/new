@@ -1,0 +1,29 @@
+https://discordapp.com/api/oauth2/authorize?client_id=482945063282802698&redirect_uri=https%3A%2F%2Fpeeky.glitch.me%2F&response_type=code&scope=identify
+
+<a class="profilebutton" id="login" href="https://discordapp.com/api/oauth2/authorize?client_id=482945063282802698&redirect_uri=https%3A%2F%2Fpeeky.glitch.me%2Fdashboard.html&response_type=token&scope=identify"> <img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fpeeky_circle.png?v=1588010796185"> </a>
+<script>
+window.onload = () => {
+  const fragment = new URLSearchParams(window.location.hash.slice(1));
+
+  if (fragment.has("access_token")) {
+    const accessToken = fragment.get("access_token");
+    const tokenType = fragment.get("token_type");
+
+    fetch('https://discordapp.com/api/users/@me', {
+      headers: {
+        authorization: `${tokenType} ${accessToken}`
+      }
+    })
+      .then(res => res.json())
+      .then(response => {
+        const { username, discriminator } = response;
+        document.getElementById('info').innerHTML = "<>"
+      })
+      .catch(console.error);
+
+  }
+  else {
+    document.getElementById('login').style.display = 'block';
+  }
+}
+</script>

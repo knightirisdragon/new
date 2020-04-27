@@ -68,23 +68,34 @@ input  {
     text-align: center;
 }
 
+.profilebutton,
 .homebutton  {
     background-color: rgba(44, 47, 51, 0);
     width: 100px;
     height: 100px;
     position: fixed;
     bottom: 0%;
-    left: 0%;
     z-index: 100;
     transition: transform .25s ease;
 }
 
+.profilebutton  {
+    right: 0%;
+}
+
+.homebutton  {
+    left: 0%;
+}
+
+.profilebutton img,
 .homebutton img  {
     position: absolute;
     bottom: 17%;
     left: 17%;
+    width: 62.5%;
 }
 
+.profilebutton,
 .homebutton:hover  {
     cursor: pointer;
     transform: scale(1.1);
