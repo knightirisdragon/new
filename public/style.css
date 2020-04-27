@@ -68,25 +68,6 @@ input  {
     text-align: center;
 }
 
-.dashboard_button  {
-    width: 50%;
-    height: 64px;
-    position: relative;
-}
-
-.dashboard_name  {
-    left: 64px;
-    bottom: 23px;
-    position: absolute;
-}
-
-.dashboard_button img  {
-    width: 32px;
-    left: 16px;
-    bottom: 16px;
-    position: absolute;
-}
-
 .homebutton  {
     background-color: rgba(44, 47, 51, 0);
     width: 100px;
