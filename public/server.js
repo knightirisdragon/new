@@ -20,7 +20,6 @@ const { getColorFromURL } = require('color-thief-node');
 
 //Data
 const Enmap = require("enmap");
-const Test = new Enmap({name: "test"});
 peeky.userData = new Enmap({name: "userData"});
 peeky.serverData = new Enmap({name: "serverData"});
 peeky.channelData = new Enmap({name: "channelData"});
