@@ -1108,7 +1108,8 @@ const YoutubeSongs = [
     ["https://www.youtube.com/watch?v=AibtyCAhyQE", "Die In A Fire", "Easy"],
     ["https://www.youtube.com/watch?v=YREhVveHq9k", "I Got No Time", "Easy"],
     ["https://www.youtube.com/watch?v=kXMwZNRiPe0", "I Can't Fix You", "Easy"],
-    ["https://www.youtube.com/watch?v=JWeJHN5P-E8", "Teeth", "Medium"]
+    ["https://www.youtube.com/watch?v=JWeJHN5P-E8", "Teeth", "Medium"],
+    ["https://www.youtube.com/watch?v=KsDZix4ZSlU", "Liar", "Medium"]
 ];
 
 const TriviaQuestions = [
