@@ -9536,7 +9536,7 @@ if  (CommandName == "giveaway")  {
                                     };    
                                 } else 
                                 if  (CreationProgress == 3)  {
-                                    if  (Answer && !isNaN(Answer) && Answer >= 1 && Answer <= 10080)  {
+                                    if  (Answer && !isNaN(Answer) && Answer >= 1 && Answer <= 43000)  {
                                         GiveawayInfo[2] = Answer * MinuteMs;
                                         Generate(message);
                                     } else {
