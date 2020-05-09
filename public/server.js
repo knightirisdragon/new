@@ -9524,7 +9524,7 @@ if  (CommandName == "giveaway")  {
 
                                 if  (CreationProgress == 1)  {
                                     if  (Answer && Answer.length > 0)  {
-                                        GiveawayInfo[0] = function_ProperSlice(function_RemoveFormatting(Answer, "other", true), 25);
+                                        GiveawayInfo[0] = function_ProperSlice(function_RemoveFormatting(Answer, "other", true), 50);
                                         Generate(message);
                                     } else {
                                       const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
