@@ -4567,7 +4567,7 @@ if  (!message.author.bot)  {
                                       var RawParticipants = null;
 
                                       await reaction.users.fetch({ limit: 100 }).then(r => {
-                                          RawParticipants = r.filter(i => !i.bot).map(u => u.id);
+                                          RawParticipants = r.filter(i => !i.bot && message.guild.members.cache.has(i.id)).map(u => u.id);
                                       });
 
                                       var Participants = function_ShuffleArray(RawParticipants); 
