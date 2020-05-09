@@ -4600,12 +4600,17 @@ if  (!message.author.bot)  {
                                       } else {
                                         FixedWinners = ["No one"];
                                       };
+                                    
+                                      var WinnerSeparator = " ";
+                                      if  (FixedWinners.length > 1)  {
+                                          WinnerSeparator = "\n";
+                                      };
 
                                       const newEmbed = new Discord.MessageEmbed({
                                           "description": 
                                           "**" + giveaway[0] + "**" + "\n" +
                                           "Host: " + "<@" + giveaway[6] + ">" + "\n" +
-                                          "Winners: " + FixedWinners.join(" "),
+                                          "Winners:" + WinnerSeparator + FixedWinners.join("\n"),
                                           "footer": { "text": "This giveaway has ended." },
                                           "color": EmbedColor
                                       });
