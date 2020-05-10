@@ -7,7 +7,6 @@ const BotList = require('botlist.space');
 const bls = new BotList.Client({  id: "482945063282802698", botToken: process.env.BLS_TOKEN  });
 
 //Music
-const ytdl_discord = require('ytdl-core-discord');
 const search       = require('youtube-search');
 const ytdl         = require('ytdl-core');
 const opus         = require('node-opus');
