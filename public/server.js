@@ -9232,7 +9232,7 @@ if  (CommandName == "akinator")  {
         const Responses = [  "Yes", "No", "Don't know", "Probably", "Probably not"  ];
         const WinResponses = [  "Yes", "No"  ];;
         var   Step = 0;
-        var   Region = 'en2';
+        var   Region = 'en';
       
         await aki.start(Region).then(data => {
 
