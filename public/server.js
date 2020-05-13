@@ -4765,7 +4765,7 @@ if  (peeky.serverData.get(keySF, "images_only_bonus") == true)  {
   
     if  (peeky.serverData.get(keySF, "images_only_bonus_setting").map(c => c.toLowerCase).includes(message.channel.name.toLowerCase()))  {
     
-        if  (message.author.id !== PeekyId && channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+        if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
             if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.size < 1)  {
 
@@ -7183,7 +7183,7 @@ if  (peeky.serverData.get(keySF, "images_only_bonus_setting").length < Setting.I
 
     var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "images_only_bonus_setting");
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", "#" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", "#" + FixedArray.join("**, **#") + EndString),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
@@ -7316,6 +7316,18 @@ if  (FunctioName.startsWith("banned words"))  {
      peeky.serverData.set(keySF, [], "banned_words_bonus_setting");
   
      const embed = {"description": TranslatedMessages[Language].replace("X001", "Banned Words"),  "color": EmbedColor};
+     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+}
+
+else
+ 
+//Clear Images Only
+if  (FunctioName.startsWith("image only"))  {
+      
+     peeky.serverData.set(keySF, [], "images_only_bonus_setting");
+  
+     const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only"),  "color": EmbedColor};
      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
