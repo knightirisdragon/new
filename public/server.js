@@ -4763,7 +4763,7 @@ if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
 //Images Only
 if  (peeky.serverData.get(keySF, "images_only_bonus") == true)  {
   
-    if  (peeky.serverData.get(keySF, "images_only_bonus_setting").toLowerCase().includes(message.channel.name.toLowerCase()))  {
+    if  (peeky.serverData.get(keySF, "images_only_bonus_setting").map(c => c.toLowerCase).includes(message.channel.name.toLowerCase()))  {
     
         if  (message.author.id !== PeekyId && channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
@@ -6184,8 +6184,8 @@ else
 //Toggle Images Only
 if  (FunctioName.startsWith("images only"))  {
 
-    peeky.channelData.set(keyCF, !peeky.channelData.get(keyCF, "images_only_bonus"), "images_only_bonus");
-    var StatusString = peeky.channelData.get(keyCF, "images_only_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
+    peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "images_only_bonus"), "images_only_bonus");
+    var StatusString = peeky.serverData.get(keySF, "images_only_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
