@@ -9067,6 +9067,7 @@ if (CommandName == "triviaquestions")  {
 
         ActiveMinigames.add(message.guild.id);
 
+        var LastMember = message.member;
         var ChosenQuestion = Math.floor((Math.random() * TriviaQuestions.length));
         var Answers = function_ShuffleArray(TriviaQuestions[ChosenQuestion].slice(1, 4));
       
@@ -9075,22 +9076,25 @@ if (CommandName == "triviaquestions")  {
     
         message.channel.awaitMessages(response => response.content.toLowerCase() == TriviaQuestions[ChosenQuestion][1][0].toLowerCase(), { max: 1, time: 30000, errors: ['time'] })
         .then(collected => {
-             var key = collected.first().author.id;
+          
+            LastMember = collected.first().member;
+            var key = collected.first().author.id;
 
-             //Gamer Badge
-             if  (peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
-                 peeky.userData.set(key, true, "GamerBadge");
-                 InfoMessages.push(InfoMessage1[Language]);
-             };
+            //Gamer Badge
+            if  (peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
+               peeky.userData.set(key, true, "GamerBadge");
+               InfoMessages.push(InfoMessage1[Language]);
+            };
 
-             if  (peeky.userData.has(key))  {
-                 peeky.userData.math(key, "+", 50, "Exp");
-             };
+            if  (peeky.userData.has(key))  {
+               peeky.userData.math(key, "+", 50, "Exp");
+            };
 
-             const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
-             message.channel.send({ embed });
-                      
-             ActiveMinigames.delete(message.guild.id);
+            const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            message.channel.send({ embed });
+
+            ActiveMinigames.delete(message.guild.id);
+
         })
         .catch(collected => {
               const embed = {"description": ErrorIcon + " The question's answer was **" + TriviaQuestions[ChosenQuestion][1][0] + "**.",  "color": EmbedColor}; 
@@ -9148,7 +9152,6 @@ if (CommandName == "hangman")  {
                 .then(collected => {
 
                     var letter = collected.first().content.toLowerCase();
-                  
                     LastMember = collected.first().member;
 
                     GuessedLetters.push(collected.first().content.toLowerCase());
@@ -9173,13 +9176,16 @@ if (CommandName == "hangman")  {
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));                 
                   
                     if  (WrongLetters.length >= HangmanLevels.length - 1 || CensoredAnswer == Answer.toLowerCase())  {
+                      
                         if  (CensoredAnswer == Answer.toLowerCase())  {
                           
-                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "clean_hangman" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
+                            var key2 = `${LastMember.user.id}`;
+                          
+                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "clean_hangman" && function_ChallengeRewards(key2, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
                                 InfoMessages.push(InfoMessage4[Language]);
                             };
                             
-                            if  (WrongLetters.length == 0 && peeky.peekyData.get("weeklychallenge", "data")[0] == "perfect_hangman" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data"), "LastWeeklyChallenge") == true)  {
+                            if  (WrongLetters.length == 0 && peeky.peekyData.get("weeklychallenge", "data")[0] == "perfect_hangman" && function_ChallengeRewards(key2, peeky.peekyData.get("weeklychallenge", "data"), "LastWeeklyChallenge") == true)  {
                                 InfoMessages.push(InfoMessage5[Language]);
                             };
                           
@@ -9187,6 +9193,16 @@ if (CommandName == "hangman")  {
                             message.channel.send({ embed });
                       
                             ActiveMinigames.delete(message.guild.id);
+                          
+                            //Gamer Badge
+                            if  (peeky.userData.has(key2) && !peeky.userData.has(key2, "GamerBadge"))  {
+                                peeky.userData.set(key2, true, "GamerBadge");
+                            };
+
+                            if  (peeky.userData.has(key2))  {
+                                peeky.userData.math(key2, "+", 250, "Exp");
+                            };
+                          
                         } else {
                           const embed = {"description": ErrorIcon + " The word was **" + Answer + "**.",  "color": EmbedColor}; 
                           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -9358,6 +9374,7 @@ if  (CommandName == "drawandguess")  {
     if  (!ActiveMinigames.has(message.guild.id))  {
 
         var ChosenQuestion = Math.floor((Math.random() * RandomWords.length));
+        var LastMember = message.member;
         var Active = false;
 
         ActiveMinigames.add(message.guild.id);
@@ -9403,18 +9420,20 @@ if  (CommandName == "drawandguess")  {
           
             message.channel.awaitMessages(response => response.author.id !== message.author.id && response.content.toLowerCase() == RandomWords[ChosenQuestion].toLowerCase(), { max: 1, time: 30000, errors: ['time'] })
             .then(collected => {
-                 var key = collected.first().author.id;
+              
+                LastMember = collected.first().member;
+                var key2 = `${LastMember.user.id}`;
               
                 Active = false;
 
                  //Gamer Badge
-                 if  (peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
-                     peeky.userData.set(key, true, "GamerBadge");
+                 if  (peeky.userData.has(key2) && !peeky.userData.has(key2, "GamerBadge"))  {
+                     peeky.userData.set(key2, true, "GamerBadge");
                      InfoMessages.push(InfoMessage1[Language]);
                  };
 
-                 if  (peeky.userData.has(key))  {
-                     peeky.userData.math(key, "+", 250, "Exp");
+                 if  (peeky.userData.has(key2))  {
+                     peeky.userData.math(key2, "+", 250, "Exp");
                  };
 
                  const embed = {"description": SuccessIcon +  " Congratulations, **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has guessed the word!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
