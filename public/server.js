@@ -1209,19 +1209,18 @@ const RandomWords = [
 const WeeklyChallenges = [
   
     ["perfect_hangman", "Professional Unhanger", "Win the Hangman minigame without any errors.", 5, "Chests"],
-    ["song_master", "Song Master", "Win the Guess the Song minigame by guessing a hard song.", 7500, "Exp"],
-    ["song_master", "Song Master", "Win the Guess the Song minigame by guessing a hard song.", 1000, "Gredit"],
+    ["song_master", "Song Master", "Win the Guess the Song minigame by guessing a hard song.", 5000, "Exp"]
   
 ];
 
 const DailyChallenges = [
   
-    ["open_background", "Hunt for Backgrounds", "Find a background by opening chests.", 1500, "Exp"],
-    ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 1000, "Exp"],
+    ["open_background", "Hunt for Backgrounds", "Find a background by opening chests.", 1000, "Exp"],
+    ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 750, "Exp"],
     ["beat_akinator", "Eat that, Akinator", "Beat Akinator after 25 questions.", 1, "Chests"],
     ["clean_hangman", "Life Saver", "Win the Hangman minigame.", 250, "Gredit"],
     ["treasure_hunt", "Treasure Hunting", "Be the first one to claim a random treasure.", 393, "Background"],
-    ["buy_background", "Going Shopping", "Purchase a new background for your profile.", 1000, "Exp"]
+    ["buy_background", "Going Shopping", "Purchase a new background for your profile.", 500, "Exp"]
   
 ];
 
@@ -7481,16 +7480,18 @@ if  (CommandName.startsWith("buybackground"))  {
                     } else {  var CustomBackgroundAmount = 0;  };
 
                     if  (!peeky.userData.get(key, "HorderBadge") && (peeky.userData.get(key, "Inventory").length + CustomBackgroundAmount) >= 10)  {
-
                         InfoMessages.push(InfoMessage1[Language]);
                         peeky.userData.set(key, true, "HorderBadge");
-
                     };
 
                     var RevenueID = Banners[i - 1][Banner.RevenueID];
                     if  (RevenueID !== undefined && peeky.userData.has(RevenueID) && message.author.id !== RevenueID && peeky.users.cache.has(RevenueID))  {
                         peeky.userData.math(RevenueID, "-", (Banners[i - 1][Banner.Price] / Setting.SellMultiplier), "Gredit");
                         InfoMessages.push(InfoIcon + " Your purchase has generated **" + (Banners[i - 1][Banner.Price] / Setting.SellMultiplier).toLocaleString('en') + " " + GreditIcon + "** of revenue for **" + function_RemoveFormatting(peeky.users.cache.get(RevenueID).username, "other", true) + "**.");
+                    };
+                  
+                    if  (peeky.peekyData.get("dailychallenge", "data")[0] == "buy_background" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
+                        InfoMessages.push(InfoMessage4[Language]);
                     };
 
                     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
