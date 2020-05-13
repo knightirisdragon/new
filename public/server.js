@@ -4075,7 +4075,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
               
                 if  (peeky.serverData.get(keySF, "function_notifications") == true)  {
 
-                    var TranslatedMessages = [InfoIcon + " **X001** has been vote kicked with **X002 votes**.", InfoIcon + " **X** byl vyhlasován ze serveru se **X002 hlasy**.", InfoIcon + " **X001** bol hlasovo-vyhodený s **X002 hlasami**.", InfoIcon + " **X001** ha sido expulsado con **X002 votos**.", InfoIcon + " **X002 oy** adlı kişi **X001** adlı kişiye oy ile atılmasını istedi.", InfoIcon + " "];
+                    var TranslatedMessages = [InfoIcon + " **X001** has been vote kicked with **X002 votes**.", InfoIcon + " **X** byl vyhlasován ze serveru se **X002 hlasy**.", InfoIcon + " **X001** bol hlasovo-vyhodený s **X002 hlasami**.", InfoIcon + " **X001** ha sido expulsado con **X002 votos**.", InfoIcon + " **X002 oy** adlı kişi **X001** adlı kişiye oy ile atılmasını istedi.", InfoIcon + " **X001**は**X002票**でキックされています。"];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(reaction.message.member.displayName, "other", true)).replace("X002", peeky.serverData.get(keySF, "vote_kick_bonus_setting")),  "color": EmbedColor};
                     reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
                   
@@ -4091,7 +4091,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                   ResponseCooldowns.add(reaction.message.guild.id + "VK");
                   setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id + "VK")}, ResponseCooldownMS);
 
-                  var TranslatedMessages = [InfoIcon + " **X001** has started a vote kick against **X002**.", InfoIcon + " **X001** začal hlasovat o vyhození **X002**.", InfoIcon + " **X001** začal hlasovanie za vyhodenie proti **X002**.", InfoIcon + " **X001** ha iniciado una kickeado de voto contra **X002**.", InfoIcon + " **X001** adlı kişi **X002** adlı kişiye karşı oy ile atılmasını istedi.", InfoIcon + " "];
+                  var TranslatedMessages = [InfoIcon + " **X001** has started a vote kick against **X002**.", InfoIcon + " **X001** začal hlasovat o vyhození **X002**.", InfoIcon + " **X001** začal hlasovanie za vyhodenie proti **X002**.", InfoIcon + " **X001** ha iniciado una kickeado de voto contra **X002**.", InfoIcon + " **X001** adlı kişi **X002** adlı kişiye karşı oy ile atılmasını istedi.", InfoIcon + " **X001**は**X002**に投票キックを開始しました。"];
                   const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};
                   reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
                 
@@ -4100,7 +4100,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
             };
  
         } else {
-          var TranslatedMessages = [ErrorIcon + " You cannot start a vote kick against that user, **X001**.", ErrorIcon + " Tohoto uživatele nelze vyhlasovat ze serveru, **X001**.", ErrorIcon + " Nemožeš začať hlasovanie za vyhodenie proti tomu uživateľovi; **X001**.", ErrorIcon + " No puedes iniciar un kick de voto contra ese usuario, **X001**.", ErrorIcon + " **X001**, bu kişiye karşı oy ile atılmasını isteyemezsiniz.", ErrorIcon + " "];
+          var TranslatedMessages = [ErrorIcon + " You cannot start a vote kick against that user, **X001**.", ErrorIcon + " Tohoto uživatele nelze vyhlasovat ze serveru, **X001**.", ErrorIcon + " Nemožeš začať hlasovanie za vyhodenie proti tomu uživateľovi; **X001**.", ErrorIcon + " No puedes iniciar un kick de voto contra ese usuario, **X001**.", ErrorIcon + " **X001**, bu kişiye karşı oy ile atılmasını isteyemezsiniz.", ErrorIcon + " そのユーザーに対して投票キックを開始することはできません、**X001**。"];
           const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)).replace("X002", ""),  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
           
@@ -4134,7 +4134,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
               
                 if  (role)  {
               
-                    var TranslatedMessages = ["**X001 has created a ticket**" + "\n" + "Staff may close the ticket once the issue has been resolved.", "**X001 potřebuje pomoct**" + "\n" + "Jakmile se tento problém vyřeší, personál může tento lístek uzavřít.", "**X001 vytvoril lístok**" + "\n" + "\"Staff\" môže uzavrieť lístok akonáhle bude problém vyriešený.", "**X001 ha creado un ticket**" + "\n" + "\"Staff\" El personal puede cerrar el ticket una vez que el asunto haya sido resuelto.", "**X001 adlı kişi yardım istiyor**" + "\n" + "\"Staff\" Yönetici sorun çözüldüğünde yardım çağrısını kapatabilir.", "**X001 создал тикет**" + "\n" + "Персонал может закрыть билет, как только вопрос будет решен."];
+                    var TranslatedMessages = ["**X001 has created a ticket**" + "\n" + "Staff may close the ticket once the issue has been resolved.", "**X001 potřebuje pomoct**" + "\n" + "Jakmile se tento problém vyřeší, personál může tento lístek uzavřít.", "**X001 vytvoril lístok**" + "\n" + "\"Staff\" môže uzavrieť lístok akonáhle bude problém vyriešený.", "**X001 ha creado un ticket**" + "\n" + "\"Staff\" El personal puede cerrar el ticket una vez que el asunto haya sido resuelto.", "**X001 adlı kişi yardım istiyor**" + "\n" + "\"Staff\" Yönetici sorun çözüldüğünde yardım çağrısını kapatabilir.", "**X001 создал тикет**" + "\n" + "Персонал может закрыть билет, как только вопрос будет решен.", "**X001はチケットを作成しました**" + "\n" + "問題が解決された後、スタッフはチケットを閉じる場合があります。"];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)),  "color": EmbedColor};
 
                     await reaction.message.guild.channels.create("Ticket_" + TicketID, { type: 'text', permissionOverwrites: [
@@ -4277,7 +4277,7 @@ if  (peeky.serverData.get(keySF, "message_log_bonus") == true)  {
   
         if  (peeky.serverData.get(keySF, "function_notifications") == true)  {
                   
-            var TranslatedMessages = [InfoIcon + " **X001** has logged **X002**'s message.", InfoIcon + " **X001** připnul zprávu od **X002**.", InfoIcon + " **X001** zanamenal správu od **X002**.", InfoIcon + " **X001** ha registrado el mensaje de **X002**.", InfoIcon + " **X001** giriş yaptı mesajı **X002**.", InfoIcon + " **X001** зарегистрировал **X002** сообщение."];
+            var TranslatedMessages = [InfoIcon + " **X001** has logged **X002**'s message.", InfoIcon + " **X001** připnul zprávu od **X002**.", InfoIcon + " **X001** zanamenal správu od **X002**.", InfoIcon + " **X001** ha registrado el mensaje de **X002**.", InfoIcon + " **X001** giriş yaptı mesajı **X002**.", InfoIcon + " **X001** зарегистрировал **X002** сообщение.", InfoIcon + " **X001** は**X002**のメッセージを記録しました。"];
             const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};  
             reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
                   
@@ -4305,7 +4305,7 @@ if  (peeky.serverData.get(keySF, "message_log_bonus") == true)  {
         {
           reaction.users.remove(user).catch(error => ErrorBag.add(error));
           
-          var TranslatedMessages = [ErrorIcon + " That message was already logged, **X001**.", ErrorIcon + " Tato zpráva je již připnutá, **X001**.", ErrorIcon + " Tá správa už bola zaznamenaná, **X001**.", ErrorIcon + " Ese mensaje ya fue registrado, **X001**.", ErrorIcon + " Bu mesaj zaten girildi, **X001**.", ErrorIcon + " Это сообщение уже зарегистрировано, **X001**."];
+          var TranslatedMessages = [ErrorIcon + " That message was already logged, **X001**.", ErrorIcon + " Tato zpráva je již připnutá, **X001**.", ErrorIcon + " Tá správa už bola zaznamenaná, **X001**.", ErrorIcon + " Ese mensaje ya fue registrado, **X001**.", ErrorIcon + " Bu mesaj zaten girildi, **X001**.", ErrorIcon + " Это сообщение уже зарегистрировано, **X001**.", ErrorIcon + " そのメッセージは既に記録されています、**X001**。"];
           const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)),  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
           
@@ -4775,7 +4775,7 @@ if  (peeky.serverData.get(keySF, "images_only_bonus") == true)  {
                     ResponseCooldowns.add(message.guild.id + "IO");
                     setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "IO")}, ResponseCooldownMS);
 
-                    var TranslatedMessages = [InfoIcon + " You can only send images in this channel, **X001**.", InfoIcon + " V tomto kanále lze posílat pouze obrázky, **X001**.", InfoIcon + " V tomto channeli môžeš posielať iba obrázky, **X001**.", InfoIcon + " Sólo puedes enviar imágenes en este canal, **X001**.", InfoIcon + " Bu kanalda sadece resim gönderebilirsiniz, **X001**.", InfoIcon + " Вы можете отправлять изображения только в этом канале, **X001**."];
+                    var TranslatedMessages = [InfoIcon + " You can only send images in this channel, **X001**.", InfoIcon + " V tomto kanále lze posílat pouze obrázky, **X001**.", InfoIcon + " V tomto channeli môžeš posielať iba obrázky, **X001**.", InfoIcon + " Sólo puedes enviar imágenes en este canal, **X001**.", InfoIcon + " Bu kanalda sadece resim gönderebilirsiniz, **X001**.", InfoIcon + " Вы можете отправлять изображения только в этом канале, **X001**.", InfoIcon + " このチャンネルでは画像を送信することしかできません、**X001**。"];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
 
@@ -4877,7 +4877,7 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
 
             var id        = peeky.serverData.get(keySF, "server_age_bonus_id");
             var channel   = message.guild.channels.cache.find(g => g.id == id);
-            var TranslatedStrings = [["Server Age", "days"], ["Věk Serveru", "dní"], ["Vek Serveru", "dní"], ["Edad del servidor", "días"], ["Sunucu yaşı", "gün"], ["Возраст сервера", "дней"]];
+            var TranslatedStrings = [["Server Age", "days"], ["Věk Serveru", "dní"], ["Vek Serveru", "dní"], ["Edad del servidor", "días"], ["Sunucu yaşı", "gün"], ["Возраст сервера", "дней"], ["サーバーの経過時間", "日"]];
             var FinalName = TranslatedStrings[Language][0] + ": " + function_TimeLeft(message.guild.createdAt, "days", null).toLocaleString('en') + " " + TranslatedStrings[Language][1];
 
             if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
@@ -5039,7 +5039,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
                     ResponseCooldowns.add(message.guild.id + "FP");
                     setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "FP")}, ResponseCooldownMS);
 
-                    var TranslatedMessages = [InfoIcon + " I have muted **X001** because of the **Flood Protection** function.", InfoIcon + " Ztlumil jsem **X001** kvůli **Flood Protection** funkci.", InfoIcon + " Mutol som **X001** kvôli **Flood Protection** funkcii.", InfoIcon + " He silenciado a **X001** por la función de **Flood Protection**.", InfoIcon + " **Flood Protection** fonksiyonu yüzünden **X001** adlı kişi susturuldu.", InfoIcon + " Я приглушил **X001** из-за функции **Защита от наводнений**."];
+                    var TranslatedMessages = [InfoIcon + " I have muted **X001** because of the **Flood Protection** function.", InfoIcon + " Ztlumil jsem **X001** kvůli **Flood Protection** funkci.", InfoIcon + " Mutol som **X001** kvôli **Flood Protection** funkcii.", InfoIcon + " He silenciado a **X001** por la función de **Flood Protection**.", InfoIcon + " **Flood Protection** fonksiyonu yüzünden **X001** adlı kişi susturuldu.", InfoIcon + " Я приглушил **X001** из-за функции **Защита от наводнений**.", InfoIcon + " **Flood Protection**関数のため、**X001**はミュートされました。"];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", message.member.displayName),  "color": EmbedColor};
                     await message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))}); 
 
@@ -5094,7 +5094,7 @@ if  (peeky.serverData.get(keySF, "spoiler_lock_bonus") == true)  {
                           ResponseCooldowns.add(message.guild.id + "SO");
                           setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "SO")}, ResponseCooldownMS);
 
-                          var TranslatedMessages = [InfoIcon + " You have to mark your image as a spoiler, **X001**.", InfoIcon + " Musíte označit váš obrázek jako spoiler, **X001**.", InfoIcon + " Tienes que marcar tu imagen como un spoiler, **X001**.", InfoIcon + " Lütfen resminizi spoiler olarak işaretleyin, **X001**.", InfoIcon + " Вы должны отметить свое изображение как спойлер, **X001**."];
+                          var TranslatedMessages = [InfoIcon + " You have to mark your image as a spoiler, **X001**.", InfoIcon + " Musíte označit váš obrázek jako spoiler, **X001**.", InfoIcon + " Tienes que marcar tu imagen como un spoiler, **X001**.", InfoIcon + " Lütfen resminizi spoiler olarak işaretleyin, **X001**.", InfoIcon + " Вы должны отметить свое изображение как спойлер, **X001**.", InfoIcon + " スポイラーとしてあなたのイメージをマークする必要があります、**X001**。"];
                           const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(message.member.displayName, "other", true)),  "color": EmbedColor}
                           message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
 
@@ -5305,7 +5305,7 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
                 ResponseCooldowns.add(message.guild.id + "BW");
                 setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "BW")}, ResponseCooldownMS);
 
-                var TranslatedMessages = [InfoIcon + " That phrase is blocked by the **Banned Words** function, **X001**.", InfoIcon + " Tato fráze je pomocí funkce **Banned Words** zablokována, **X001**.", InfoIcon + " Táto fráza je zablokovaná kvôli **Banned Words** funkcii, **X001**.", InfoIcon + " Táto fráza je zablokovaná kvôli **Banned Words** funkcii, **X001**.", InfoIcon + " Esa frase está bloqueada por la función **Banned Words**, **X001**.", InfoIcon + " Bu ifade **Banned Words** fonksiyonu yüzünden engellendi, **X001**.", InfoIcon + " Эта фраза блокируется функцией **Banned Words**, **X001**."];
+                var TranslatedMessages = [InfoIcon + " That phrase is blocked by the **Banned Words** function, **X001**.", InfoIcon + " Tato fráze je pomocí funkce **Banned Words** zablokována, **X001**.", InfoIcon + " Táto fráza je zablokovaná kvôli **Banned Words** funkcii, **X001**.", InfoIcon + " Táto fráza je zablokovaná kvôli **Banned Words** funkcii, **X001**.", InfoIcon + " Esa frase está bloqueada por la función **Banned Words**, **X001**.", InfoIcon + " Bu ifade **Banned Words** fonksiyonu yüzünden engellendi, **X001**.", InfoIcon + " Эта фраза блокируется функцией **Banned Words**, **X001**.", InfoIcon + " そのフレーズは**Banned Words**関数によってブロックされています、**X001**。"];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", message.member.displayName),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
 
@@ -5450,7 +5450,8 @@ if (CommandName == "help")  {
       "Navštívte webovú stránku, kde môžete hlasovať, prečítať si návody, prehliadať pozadia, prezerať výsledkové tabuľky a takmer všetko, čo sa týka PEEKYho.",
       "Visita el sitio web para votar, leer tutoriales, navegar por los fondos, ver la tabla de clasificación y casi todo relacionado con PEEKY.",
       "Oy vermek, öğretici sayfaları okumak, arka planlara göz atmak, Sıralama tablosu ve PEEKY ile ilgili hemen hemen her şeyi görüntülemek için web sitesini ziyaret edin.",
-      "Посетите сайт, чтобы проголосовать, прочитать учебники, просмотреть фоны, просмотреть доску объявлений и многое другое, что связано с PEEKY."
+      "Посетите сайт, чтобы проголосовать, прочитать учебники, просмотреть фоны, просмотреть доску объявлений и многое другое, что связано с PEEKY.",
+      "投票、チュートリアルを読んで、背景を閲覧し、リーダーボードを表示し、ほとんどすべてPEEKY関連を閲覧するために、ウェブサイトを訪問します。"
     ];
     const StoreInfo = [
       "Support PEEKY by purchasing some neat items from the store!",
@@ -5458,7 +5459,8 @@ if (CommandName == "help")  {
       "Navštívte webovú stránku, kde môžete hlasovať, prečítať si návody, prehliadať pozadia, prezerať výsledkové tabuľky a takmer všetko, čo sa týka PEEKYho.",
       "¡Apoya a PEEKY comprando algunos artículos de la tienda!",
       "Mağazadan bazı ürünler satın alarak PEEKY'yi destekleyin.",
-      "Поддержите PEEKY, купив несколько аккуратных вещей в магазине!"
+      "Поддержите PEEKY, купив несколько аккуратных вещей в магазине!",
+      "店からいくつかのきちんとしたアイテムを購入することでPEEKYをサポート!"
     ];
     const SupportServerInfo = [
       "Join the Support Server for important announcements, assistance with the bot, giveaways and much more!",
@@ -5466,7 +5468,8 @@ if (CommandName == "help")  {
       "Pripojte sa k serveru podpory a získajte dôležité oznámenia, pomoc s botom, darčeky a oveľa viac.",
       "Únete al Servidor de Soporte para anuncios importantes, asistencia con el bot, regalos y mucho más!",
       "Önemli duyurular, botla ilgili yardım, hediyeler ve çok daha fazlası için Destek Sunucusuna katılın!",
-      "Присоединяйтесь к серверу поддержки для важных объявлений, помощи с ботом, подарков и многого другого!"
+      "Присоединяйтесь к серверу поддержки для важных объявлений, помощи с ботом, подарков и многого другого!",
+      "重要なお知らせ、ボットの支援、プレゼントなど、サポートサーバーにご参加ください!"
     ];
     const BotInvite = [
       "Add PEEKY to your server and get all the features for free and quick!",
@@ -5474,7 +5477,8 @@ if (CommandName == "help")  {
       "Pridaj PEEKYho na tvôj server a získaj všetky funkcie.",
       "Añade a PEEKY a tu servidor y obtén todas las características de forma rápida y gratuita!",
       "Sunucunuza PEEKY ekleyin ve tüm özellikleri ücretsiz ve hızlı bir şekilde alın!",
-      "Добавьте PEEKY на свой сервер и получите все функции бесплатно и быстро!"
+      "Добавьте PEEKY на свой сервер и получите все функции бесплатно и быстро!",
+      "あなたのサーバーにPEEKYを追加し、無料かつ迅速にすべての機能を取得!"
     ];
   
     const embed = {  "description": 
@@ -5590,7 +5594,7 @@ if (CommandName.startsWith("upgrade"))  {
                 InfoMessages.push(InfoMessage1[Language]);
             };
           
-            var TranslatedMessages = [SuccessIcon + " This server is now upgraded!", SuccessIcon + " Tento server je nyní vylepšen!", SuccessIcon + " Tento server je teraz vylepšený!", SuccessIcon + " ¡Este servidor está ahora actualizado!", SuccessIcon + " Bu sunucu şimdi yükseltildi.", SuccessIcon + " Этот сервер теперь обновлен!"];
+            var TranslatedMessages = [SuccessIcon + " This server is now upgraded!", SuccessIcon + " Tento server je nyní vylepšen!", SuccessIcon + " Tento server je teraz vylepšený!", SuccessIcon + " ¡Este servidor está ahora actualizado!", SuccessIcon + " Bu sunucu şimdi yükseltildi.", SuccessIcon + " Этот сервер теперь обновлен!", SuccessIcon + " このサーバーはアップグレードされました。"];
             const embed = {"description": TranslatedMessages[Language] + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -5599,7 +5603,7 @@ if (CommandName.startsWith("upgrade"))  {
     }
      else 
     {
-      var TranslatedMessages = [ErrorIcon + " You cannot upgrade this server.", ErrorIcon + " Tento server vylepšit nemůžete.", ErrorIcon + " Nemôžeš vylepšiť tento server.", ErrorIcon + " No puedes actualizar este servidor.", ErrorIcon + " Bu sunucuyu yükseltemezsiniz.", ErrorIcon + " Вы не можете обновить этот сервер."];
+      var TranslatedMessages = [ErrorIcon + " You cannot upgrade this server.", ErrorIcon + " Tento server vylepšit nemůžete.", ErrorIcon + " Nemôžeš vylepšiť tento server.", ErrorIcon + " No puedes actualizar este servidor.", ErrorIcon + " Bu sunucuyu yükseltemezsiniz.", ErrorIcon + " Вы не можете обновить этот сервер.", ErrorIcon + " このサーバーをアップグレードできません。"];
       const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
@@ -5630,11 +5634,11 @@ if (CommandName == "setinvite")  {
 
                 if  (Invites.length > 0) {
                     peeky.serverData.set(keySF, Invites[0].code, "server_invite");
-                    var TranslatedMessages = [SuccessIcon + " The server's invite code has been set to **X001**.", SuccessIcon + " Pozvánka tohoto server byla nastavea na **X001**.", SuccessIcon + " Kód pozvania pre tento server bol nastavený na **X001**.", SuccessIcon + " El código de invitación del servidor se ha fijado en **X001**.", SuccessIcon + " Sunucunun davet kodu **X001** olarak ayarlandı.", SuccessIcon + " Код приглашения сервера установлен на **X001**."];
+                    var TranslatedMessages = [SuccessIcon + " The server's invite code has been set to **X001**.", SuccessIcon + " Pozvánka tohoto server byla nastavea na **X001**.", SuccessIcon + " Kód pozvania pre tento server bol nastavený na **X001**.", SuccessIcon + " El código de invitación del servidor se ha fijado en **X001**.", SuccessIcon + " Sunucunun davet kodu **X001** olarak ayarlandı.", SuccessIcon + " Код приглашения сервера установлен на **X001**.", SuccessIcon + " サーバーの招待コードが **X001** に設定されています。"];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", Invites[0].code),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 } else {
-                    var TranslatedMessages = [ErrorIcon + " I could not find any server invites in this channel.", ErrorIcon + " V tomto kanále jsem nenašel žádné pozvánky.", ErrorIcon + " Nemohol som nájsť žiadne pozvánky pre tento channel.", ErrorIcon + " No pude encontrar invitaciones de servidor en este canal.", ErrorIcon + " Bu kanalda hiçbir sunucu davetiyesi bulamadım.", ErrorIcon + " Я не смог найти никаких серверных приглашений в этом канале."];
+                    var TranslatedMessages = [ErrorIcon + " I could not find any server invites in this channel.", ErrorIcon + " V tomto kanále jsem nenašel žádné pozvánky.", ErrorIcon + " Nemohol som nájsť žiadne pozvánky pre tento channel.", ErrorIcon + " No pude encontrar invitaciones de servidor en este canal.", ErrorIcon + " Bu kanalda hiçbir sunucu davetiyesi bulamadım.", ErrorIcon + " Я не смог найти никаких серверных приглашений в этом канале.", ErrorIcon + " このチャネルにサーバー招待が見つかりません。"];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -5679,7 +5683,7 @@ if  (CommandName.startsWith("ticket"))  {
                 if  (CommandArray[1] == "rename" && CommandArray[2])  {
                     await message.channel.setName(function_RemoveFormatting(CommandArray.join(" ").replace("ticket rename ", ""), "channel", true)).catch(error => {ErrorBag.add(error)});
 
-                    var TranslatedMessages = [SuccessIcon + " The ticket has been renamed to **#X001**.", SuccessIcon + " Lístek byl přejmenován na **#X001**.", SuccessIcon + " Lístok bol premenovaný na**#X001**.", SuccessIcon + " El ticket ha sido renombrado a **#X001**.", SuccessIcon + " Yardım çağrısı **#X001** olarak yeniden adlandırıldı.", SuccessIcon + " Билет был переименован в **#X001**."];
+                    var TranslatedMessages = [SuccessIcon + " The ticket has been renamed to **#X001**.", SuccessIcon + " Lístek byl přejmenován na **#X001**.", SuccessIcon + " Lístok bol premenovaný na**#X001**.", SuccessIcon + " El ticket ha sido renombrado a **#X001**.", SuccessIcon + " Yardım çağrısı **#X001** olarak yeniden adlandırıldı.", SuccessIcon + " Билет был переименован в **#X001**.", SuccessIcon + " チケットの名前が**#X001**に変更されました。"];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", message.channel.name),  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -5808,7 +5812,7 @@ if  (CommandName == "languages")  {
                                 + "\n\n" + 
                                 Russian + " Русский `TheSongList`"
                                 + "\n\n" + 
-                                Japanese + " Japanese `TheSongList | WIP`",
+                                Japanese + " Japanese `TheSongList`",
                   "color": EmbedColor
                 }; 
               
@@ -5855,19 +5859,19 @@ if  (!message.mentions.channels.first() && !message.mentions.roles.first() && !m
 
     var ManageChannels = false;
     var ManageRoles = false;
-    var TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je nyní **X002**.", SuccessIcon + " **X001** funkcia bola **X002**.", SuccessIcon + " La función **X001** ha sido **X002**.", SuccessIcon + " **X001** fonksiyonu artık **X002**.", SuccessIcon + " Функция **X001** была **X002**."];
+    var TranslatedMessages = [SuccessIcon + " The **X001** function has been **X002**.", SuccessIcon + " Funkce **X001** je nyní **X002**.", SuccessIcon + " **X001** funkcia bola **X002**.", SuccessIcon + " La función **X001** ha sido **X002**.", SuccessIcon + " **X001** fonksiyonu artık **X002**.", SuccessIcon + " Функция **X001** была **X002**.", SuccessIcon + " **X001**関数は**X002**です。チャネル"];
   
     if  (message.guild.me.permissions.has("MANAGE_CHANNELS"))  {
         ManageChannels = true;  
       
-        var TranslatedBonuses = [InfoIcon + " Created a channel called **X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál s názvem **X001** pro funkci **X002**.", InfoIcon + " Vytvoril som channel pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un canal llamado **#X001** para la función **X002**.", InfoIcon + " **X002** fonksiyonu için **#X001** adlı bir kanal oluşturuldu.", InfoIcon + " Создал канал с именем **#X001** для функции **X002**."];
+        var TranslatedBonuses = [InfoIcon + " Created a channel called **X001** for the **X002** function.", InfoIcon + " Vytvořil jsem kanál s názvem **X001** pro funkci **X002**.", InfoIcon + " Vytvoril som channel pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un canal llamado **#X001** para la función **X002**.", InfoIcon + " **X002** fonksiyonu için **#X001** adlı bir kanal oluşturuldu.", InfoIcon + " Создал канал с именем **#X001** для функции **X002**.", InfoIcon + " **X002**関数に**#X001**という名前のチャネルを作成しました。"];
         var ChannelCreation = TranslatedBonuses[Language]
     };
   
     if  (message.guild.me.permissions.has("MANAGE_ROLES"))  {
         ManageRoles = true;
       
-        var TranslatedBonuses = [InfoIcon + " Created a role called **@X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **@X001** pro funkci **X002**.", InfoIcon + " Vytvoril som rolu pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un papel llamado **X001** para la función **@X002**.", InfoIcon + " **@X002** işlevi için **X001** adlı bir rol oluşturdu.", InfoIcon + " Создал роль под названием **X001** для функции **@X002**."];
+        var TranslatedBonuses = [InfoIcon + " Created a role called **@X001** for the **X002** function.", InfoIcon + " Vytvořil jsem roli s názvem **@X001** pro funkci **X002**.", InfoIcon + " Vytvoril som rolu pod menom **#X001** pre **X002** funkciu.", InfoIcon + " Fue creado un papel llamado **X001** para la función **@X002**.", InfoIcon + " **@X002** işlevi için **X001** adlı bir rol oluşturdu.", InfoIcon + " Создал роль под названием **X001** для функции **@X002**.", InfoIcon + " **@X002**関数に**X001**という名前のロールを作成しました。"];
         var RoleCreation = TranslatedBonuses[Language];
     };
   
@@ -6789,8 +6793,8 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
     
 if  (!message.mentions.channels.first() && !message.mentions.roles.first() && !message.mentions.members.first())  {
   
-    var TranslatedMessages = [SuccessIcon + " The setting for the **X001** function is now **X002**.", SuccessIcon + " Nastavení pro funkci **X001** je nyní **X002**.", SuccessIcon + " Nastavenie pre **X001** funkciu je teraz **X002*.", SuccessIcon + " El ajuste de la función **X001** es ahora **X002**.", SuccessIcon + " **X001** fonksiyonu **X002** olarak ayarlandı.", SuccessIcon + " Настройка для функции **X001** теперь составляет **X002**."];
-    var TranslatedFullSetting = [ErrorIcon + " The setting for the **X001** function is full.", ErrorIcon + " Nastavení pro funcki **X001** je plné.", ErrorIcon + " Nastavenie pre **X001** funkciu je plné.", ErrorIcon + " El ajuste de la función **X001** está lleno.", ErrorIcon + " **X001** fonksiyonu için ayar dolu.", ErrorIcon + " Настройка для функции **X001** заполнена."];
+    var TranslatedMessages = [SuccessIcon + " The setting for the **X001** function is now **X002**.", SuccessIcon + " Nastavení pro funkci **X001** je nyní **X002**.", SuccessIcon + " Nastavenie pre **X001** funkciu je teraz **X002*.", SuccessIcon + " El ajuste de la función **X001** es ahora **X002**.", SuccessIcon + " **X001** fonksiyonu **X002** olarak ayarlandı.", SuccessIcon + " Настройка для функции **X001** теперь составляет **X002**.", SuccessIcon + " **X001**関数の設定は**X002**になりました。"];
+    var TranslatedFullSetting = [ErrorIcon + " The setting for the **X001** function is full.", ErrorIcon + " Nastavení pro funcki **X001** je plné.", ErrorIcon + " Nastavenie pre **X001** funkciu je plné.", ErrorIcon + " El ajuste de la función **X001** está lleno.", ErrorIcon + " **X001** fonksiyonu için ayar dolu.", ErrorIcon + " Настройка для функции **X001** заполнена.", ErrorIcon + " **X001**関数の設定がいっぱいです。"];
   
     if  (!peeky.userData.get(key, "FunctionalBadge"))  {
         peeky.userData.set(key, true, "FunctionalBadge");
@@ -7303,7 +7307,7 @@ if  (message.member.permissions.has("MANAGE_GUILD") || message.author.id == Owne
 
 if  (!message.mentions.channels.first() && !message.mentions.roles.first() && !message.mentions.members.first())  {
 
-    var TranslatedMessages = [SuccessIcon + " Cleared the setting for the **X001** function.", SuccessIcon + " Nastavení pro funkci **X001** bylo vyčištěno.", SuccessIcon + " Vymazal som nastavenie pre **X001** funkciu.", SuccessIcon + " Despejó la configuración de la función **X001**.", SuccessIcon + " **X001** adlı fonksiyonun ayarı sıfırlandı.", SuccessIcon + " Очистили настройку для функции **X001**."];
+    var TranslatedMessages = [SuccessIcon + " Cleared the setting for the **X001** function.", SuccessIcon + " Nastavení pro funkci **X001** bylo vyčištěno.", SuccessIcon + " Vymazal som nastavenie pre **X001** funkciu.", SuccessIcon + " Despejó la configuración de la función **X001**.", SuccessIcon + " **X001** adlı fonksiyonun ayarı sıfırlandı.", SuccessIcon + " Очистили настройку для функции **X001**.", SuccessIcon + " **X001**関数の設定をクリアしました。"];
 
 //Clear Banned Words
 if  (FunctioName.startsWith("banned words"))  {
@@ -7415,7 +7419,7 @@ if  (peeky.guilds.cache.get(SupportServer).members.cache.has(message.author.id) 
 
             if  (NewLinesCount < 2)  {
               
-                var TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si nový popisok pre **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una nueva descripción para **X001" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için yeni bir açıklama aldınız.", SuccessIcon + " Вы купили новое описание для **X001" + " " + GreditIcon + "**."];
+                var TranslatedMessages = [SuccessIcon + " You have bought a new description for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si nový popisek za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si nový popisok pre **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una nueva descripción para **X001" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için yeni bir açıklama aldınız.", SuccessIcon + " Вы купили новое описание для **X001" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "**の新しい説明を購入しました。"];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7433,7 +7437,7 @@ if  (peeky.guilds.cache.get(SupportServer).members.cache.has(message.author.id) 
              else
             {
 
-              var TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si random popisok pre **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una descripción aleatoria para el **X001" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için rastgele bir açıklama aldınız.", SuccessIcon + " Вы купили случайное описание для **X001" + " " + GreditIcon + "**."];
+              var TranslatedMessages = [SuccessIcon + " You have bought a random description for **X001" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si náhodny popisek za **X001" + " " + GreditIcon + "**.", SuccessIcon + " Kúpil si random popisok pre **X001" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado una descripción aleatoria para el **X001" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "** için rastgele bir açıklama aldınız.", SuccessIcon + " Вы купили случайное описание для **X001" + " " + GreditIcon + "**.", SuccessIcon + " **X001" + " " + GreditIcon + "**のランダム説明を購入しました。"];
               const embed = {"description": TranslatedMessages[Language].replace("X001", UpdatedAmount.toLocaleString('en')),  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
