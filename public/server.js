@@ -7501,7 +7501,7 @@ if  (CommandName.startsWith("buybackground"))  {
                     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
                     peeky.userData.get(key, "Inventory").push(i);
 
-                    var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Kupil si **X001** pozadie pre **X002" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado el fondo **X001** para **X002" + " " + GreditIcon + "**.", SuccessIcon + " **X002" + " " + GreditIcon + "** için **X001** arka planını satın aldınız.", SuccessIcon + " Вы купили фон **X001** за **X002" + " " + GreditIcon + "**."];
+                    var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Kupil si **X001** pozadie pre **X002" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado el fondo **X001** para **X002" + " " + GreditIcon + "**.", SuccessIcon + " **X002" + " " + GreditIcon + "** için **X001** arka planını satın aldınız.", SuccessIcon + " Вы купили фон **X001** за **X002" + " " + GreditIcon + "**.", SuccessIcon + " **X002" + " " + GreditIcon + "**の**X001**背景を購入しました。"];
                     var embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", function_GetBackgroundInfo(i, ["price"])) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7515,7 +7515,7 @@ if  (CommandName.startsWith("buybackground"))  {
                 };
 
             } else {
-              var TranslatedMessages = [ErrorIcon + " You cannot buy the default and exclusive backgrounds.", ErrorIcon + " Nemůžete si koupit základní a exlusivní pozadí.", ErrorIcon + " Nemôžeš kúpiť štandardné a exkluzívne pozadia.", ErrorIcon + " Usted no puede comprar los fondos predeterminados y exclusivos.", ErrorIcon + " Varsayılan ve özel arka planları satın alamazsınız.", ErrorIcon + " Вы не можете купить стандартный и эксклюзивный фон."];
+              var TranslatedMessages = [ErrorIcon + " You cannot buy the default and exclusive backgrounds.", ErrorIcon + " Nemůžete si koupit základní a exlusivní pozadí.", ErrorIcon + " Nemôžeš kúpiť štandardné a exkluzívne pozadia.", ErrorIcon + " Usted no puede comprar los fondos predeterminados y exclusivos.", ErrorIcon + " Varsayılan ve özel arka planları satın alamazsınız.", ErrorIcon + " Вы не можете купить стандартный и эксклюзивный фон.", ErrorIcon + " デフォルトの背景と排他的背景は購入できません。"];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7555,12 +7555,12 @@ if (CommandName.startsWith("custombackground"))  {
 
                     peeky.userData.math(key, "-", Setting.CustomBackgroundPrice, "Gredit");
                     peeky.userData.set(key, Thumbnail, "Background");
-                    var TranslatedMessages = [SuccessIcon + " You have set your custom background for **X001 " + GreditIcon + "**.", SuccessIcon + " Nastavil jste si vlastní pozadí za **X001 " + GreditIcon + "**.", SuccessIcon + " Nastavil si **Vlastné pozadie** pre **X001 " + GreditIcon + "**.", SuccessIcon + " Usted ha establecido un **Fondo personalizado** para **X001 " + GreditIcon + "**.", SuccessIcon + " **X001 " + GreditIcon + "** için bir **Özel Arkaplan** ayarladınız.", SuccessIcon + " Вы установили пользовательский фон для **X001 " + GreditIcon + "**."];
+                    var TranslatedMessages = [SuccessIcon + " You have set your custom background for **X001 " + GreditIcon + "**.", SuccessIcon + " Nastavil jste si vlastní pozadí za **X001 " + GreditIcon + "**.", SuccessIcon + " Nastavil si **Vlastné pozadie** pre **X001 " + GreditIcon + "**.", SuccessIcon + " Usted ha establecido un **Fondo personalizado** para **X001 " + GreditIcon + "**.", SuccessIcon + " **X001 " + GreditIcon + "** için bir **Özel Arkaplan** ayarladınız.", SuccessIcon + " Вы установили пользовательский фон для **X001 " + GreditIcon + "**.", SuccessIcon + " **X001 " + GreditIcon + "**のカスタム背景を設定しました。"];
                     const embed = {"description": TranslatedMessages[Language].replace("X001", Setting.CustomBackgroundPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 } else {
-                  var TranslatedMessages = [ErrorIcon + " Failed to set your custom background.", ErrorIcon + " Nepodařilo se nastavit vaše vlastní pozadí.", ErrorIcon + " Nepodarilo s nastavit vlastné pozadie.", ErrorIcon + " Fallo de establecer su fondo personalizado.", ErrorIcon + " Özel arka planınız ayarlanamadı.", ErrorIcon + " Вы потеряли свой пользовательский опыт."];
+                  var TranslatedMessages = [ErrorIcon + " Failed to set your custom background.", ErrorIcon + " Nepodařilo se nastavit vaše vlastní pozadí.", ErrorIcon + " Nepodarilo s nastavit vlastné pozadie.", ErrorIcon + " Fallo de establecer su fondo personalizado.", ErrorIcon + " Özel arka planınız ayarlanamadı.", ErrorIcon + " Вы потеряли свой пользовательский опыт.", ErrorIcon + " カスタム背景を設定できませんでした。"];
                   const embed = {"description": TranslatedMessages[Language].replace("X001", Setting.CustomBackgroundPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -7613,7 +7613,7 @@ if (CommandName.startsWith("setbackground"))  {
 
                 peeky.userData.set(key, i, "Background");
 
-                var TranslatedMessages = [SuccessIcon + " You have set the **X001** background.", SuccessIcon + " Nastavil jste si pozadí **X001**.", SuccessIcon + " Nastavil si **X001** pozadie.", SuccessIcon + " Usted ha puesto el fondo **X001**.", SuccessIcon + " **X001** arka planını ayarladınız.", SuccessIcon + " Вы установили фон **X001**."];
+                var TranslatedMessages = [SuccessIcon + " You have set the **X001** background.", SuccessIcon + " Nastavil jste si pozadí **X001**.", SuccessIcon + " Nastavil si **X001** pozadie.", SuccessIcon + " Usted ha puesto el fondo **X001**.", SuccessIcon + " **X001** arka planını ayarladınız.", SuccessIcon + " Вы установили фон **X001**.", SuccessIcon + " **X001**の背景を設定しました。"];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -7638,6 +7638,109 @@ if (CommandName.startsWith("setbackground"))  {
         const embed = {"description": ErrorMessage16[Language], "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
+  
+};
+  
+//SellBackground
+if (CommandName.startsWith("sellbackground"))  {
+  
+    var i = CommandName.split("sellbackground ")[1];
+  
+if  (i !== AllString)  {
+
+    for (var i = 1; i <= Banners.length; i++)  {
+      
+        if  (message.content == Prefix + "sellbackground " + i)  {
+            
+            Failed = false;
+
+            if  (peeky.userData.get(key, "Inventory").includes(i))  {
+
+                if  (i !== 1)  {
+
+                    var BackgroundIndex  = peeky.userData.get(key, "Inventory").indexOf(i);
+                    var FinalPrice       = function_GetBackgroundInfo(i, ["price"]);
+                    var i                = Number(i);
+
+                    if  (FinalPrice == Exclusive)  {
+                        FinalPrice = 0;
+                    } else {
+                        FinalPrice = Math.round(FinalPrice / Setting.SellMultiplier);
+                    };
+
+                    peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
+                    peeky.userData.math(key, "+", FinalPrice, "Gredit");
+
+                    if  (i == peeky.userData.get(key, "Background"))  {
+                        peeky.userData.set(key, 1, "Background");
+                        InfoMessages.push(InfoMessage2[Language]);
+                    };
+
+                    var TranslatedMessages = [SuccessIcon + " You have sold the **X001** background for **X002 " + GreditIcon + "**.", SuccessIcon + " Prodal jste pozadí **X001** za **X002 " + GreditIcon + "**.", SuccessIcon + " Predal si **X001** pozadie za **X002 " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido el fondo **X001** por **X002 " + GreditIcon + "**.", SuccessIcon + " **X002** için **X001 " + GreditIcon + "** arka planını sattınız.", SuccessIcon + " Вы продали фон **X001** за **X002 " + GreditIcon + "**.", SuccessIcon + " **X002 " + GreditIcon + "**の**X001**背景を販売しました。"];
+                    const embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", FinalPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+                }
+                 else
+                {
+                  var TranslatedMessages = [ErrorIcon + " You cannot sell the default backgrounds.", ErrorIcon + " Nemůžete prodat základní pozadí.", ErrorIcon + " Nemôžeš predať štandardné pozadia.", ErrorIcon + " Usted no puede vender los fondos predeterminados.", ErrorIcon + " Varsayılan arka planları satamazsınız.", ErrorIcon + " Вы не можете продать фоны по умолчанию.", ErrorIcon + " デフォルトの背景は販売できません。"];
+                  const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                  
+                  break;
+                };
+
+            }
+             else
+            {
+              const embed = {"description": ErrorMessage5[Language],  "color": EmbedColor}; 
+              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                  
+              break;
+            };            
+          
+        };      
+      
+    };
+  
+    if  (Failed == true)  {
+        const embed = {"description": ErrorMessage16[Language], "color": EmbedColor}; 
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+} else {
+  
+  if  (!ProfileCooldown.has(message.author.id))  {
+
+      ProfileCooldown.add(message.author.id);
+      setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
+
+      var SetBackground = peeky.userData.get(key, "Background");
+      var SavedBackgrounds  = [1];
+      var MaxBackgrounds    = peeky.userData.get(key, "Inventory").length;
+      var CurrentBackground = 0;
+      var FullPrice         = 0;
+
+      peeky.userData.get(key, "Inventory").forEach(i => {  //.filter(i => Banners[i - 1][Banner.Price] !== Exclusive)
+          if  (Banners[i - 1][Banner.Price] == Exclusive || SetBackground == i)  {
+              SavedBackgrounds.push(i);
+          } else {
+              FullPrice += Math.round(Banners[i - 1][Banner.Price] / Setting.SellMultiplier);   
+          };     
+      });
+
+      peeky.userData.set(key, SavedBackgrounds, "Inventory");
+      peeky.userData.math(key, "+", FullPrice, "Gredit");
+
+      var TranslatedMessages = [SuccessIcon + " You have sold all your backgrounds for **X001 " + GreditIcon + "**.", SuccessIcon + " Prodal jste všechna svá pozadí za **X001 " + GreditIcon + "**.", SuccessIcon + " Predal si všetky tvoje pozadia za **X001 " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido todos sus fondos por **X001 " + GreditIcon + "**.", SuccessIcon + " **X001 " + GreditIcon + "** için tüm arka planlarınızı sattınız.", SuccessIcon + " Вы продали все свои фоны за **X001 " + GreditIcon + "**.", SuccessIcon + " **X001 " + GreditIcon + "**のすべての背景を販売しました。"];
+      const embed = {"description": TranslatedMessages[Language].replace("X001", FullPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+
+  } else {
+    const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+  };
+
+};
   
 };
   
@@ -7695,109 +7798,6 @@ if (CommandName.startsWith("seebackground"))  {
         const embed = {"description": ErrorMessage16[Language], "color": EmbedColor}; 
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
-  
-};
-  
-//SellBackground
-if (CommandName.startsWith("sellbackground"))  {
-  
-    var i = CommandName.split("sellbackground ")[1];
-  
-if  (i !== AllString)  {
-
-    for (var i = 1; i <= Banners.length; i++)  {
-      
-        if  (message.content == Prefix + "sellbackground " + i)  {
-            
-            Failed = false;
-
-            if  (peeky.userData.get(key, "Inventory").includes(i))  {
-
-                if  (i !== 1)  {
-
-                    var BackgroundIndex  = peeky.userData.get(key, "Inventory").indexOf(i);
-                    var FinalPrice       = function_GetBackgroundInfo(i, ["price"]);
-                    var i                = Number(i);
-
-                    if  (FinalPrice == Exclusive)  {
-                        FinalPrice = 0;
-                    } else {
-                        FinalPrice = Math.round(FinalPrice / Setting.SellMultiplier);
-                    };
-
-                    peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
-                    peeky.userData.math(key, "+", FinalPrice, "Gredit");
-
-                    if  (i == peeky.userData.get(key, "Background"))  {
-                        peeky.userData.set(key, 1, "Background");
-                        InfoMessages.push(InfoMessage2[Language]);
-                    };
-
-                    var TranslatedMessages = [SuccessIcon + " You have sold the **X001** background for **X002 " + GreditIcon + "**.", SuccessIcon + " Prodal jste pozadí **X001** za **X002 " + GreditIcon + "**.", SuccessIcon + " Predal si **X001** pozadie za **X002 " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido el fondo **X001** por **X002 " + GreditIcon + "**.", SuccessIcon + " **X002** için **X001 " + GreditIcon + "** arka planını sattınız.", SuccessIcon + " Вы продали фон **X001** за **X002 " + GreditIcon + "**."];
-                    const embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", FinalPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
-                    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-                }
-                 else
-                {
-                  var TranslatedMessages = [ErrorIcon + " You cannot sell the default backgrounds.", ErrorIcon + " Nemůžete prodat základní pozadí.", ErrorIcon + " Nemôžeš predať štandardné pozadia.", ErrorIcon + " Usted no puede vender los fondos predeterminados.", ErrorIcon + " Varsayılan arka planları satamazsınız.", ErrorIcon + " Вы не можете продать фоны по умолчанию."];
-                  const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-                  
-                  break;
-                };
-
-            }
-             else
-            {
-              const embed = {"description": ErrorMessage5[Language],  "color": EmbedColor}; 
-              message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                  
-              break;
-            };            
-          
-        };      
-      
-    };
-  
-    if  (Failed == true)  {
-        const embed = {"description": ErrorMessage16[Language], "color": EmbedColor}; 
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-
-} else {
-  
-  if  (!ProfileCooldown.has(message.author.id))  {
-
-      ProfileCooldown.add(message.author.id);
-      setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
-
-      var SetBackground = peeky.userData.get(key, "Background");
-      var SavedBackgrounds  = [1];
-      var MaxBackgrounds    = peeky.userData.get(key, "Inventory").length;
-      var CurrentBackground = 0;
-      var FullPrice         = 0;
-
-      peeky.userData.get(key, "Inventory").forEach(i => {  //.filter(i => Banners[i - 1][Banner.Price] !== Exclusive)
-          if  (Banners[i - 1][Banner.Price] == Exclusive || SetBackground == i)  {
-              SavedBackgrounds.push(i);
-          } else {
-              FullPrice += Math.round(Banners[i - 1][Banner.Price] / Setting.SellMultiplier);   
-          };     
-      });
-
-      peeky.userData.set(key, SavedBackgrounds, "Inventory");
-      peeky.userData.math(key, "+", FullPrice, "Gredit");
-
-      var TranslatedMessages = [SuccessIcon + " You have sold all your backgrounds for **X001 " + GreditIcon + "**.", SuccessIcon + " Prodal jste všechna svá pozadí za **X001 " + GreditIcon + "**.", SuccessIcon + " Predal si všetky tvoje pozadia za **X001 " + GreditIcon + "**.", SuccessIcon + " Usted ha vendido todos sus fondos por **X001 " + GreditIcon + "**.", SuccessIcon + " **X001 " + GreditIcon + "** için tüm arka planlarınızı sattınız.", SuccessIcon + " Вы продали все свои фоны за **X001 " + GreditIcon + "**."];
-      const embed = {"description": TranslatedMessages[Language].replace("X001", FullPrice.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
-  } else {
-    const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  };
-
-};
   
 };
 
@@ -7897,7 +7897,7 @@ if (CommandName.startsWith("open ") || CommandName == "open")  {
           peeky.userData.math(key, "-", ChestAmount, "Chests");
           peeky.userData.math(key, "+", TotalLoot, "Gredit");
 
-          var TranslatedMessages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** a získal **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otvoril si **X001" + " " + ChestIcon + "** pro **X002" + " " + GreditIcon +"**.", SuccessIcon + " Usted ha abierto el **X001" + " " + ChestIcon + "** por **X002 " + GreditIcon +"**.", SuccessIcon + " **X002" + " " + GreditIcon + "** için **X001" + " " + ChestIcon +"** ürününü açtınız.", SuccessIcon + " Вы открыли **X001" + " " + ChestIcon + "** за **X002 " + GreditIcon +"**."];
+          var TranslatedMessages = [SuccessIcon + " You have opened **X001" + " " + ChestIcon + "** for **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otevřel jste **X001" + " " + ChestIcon + "** a získal **X002" + " " + GreditIcon +"**.", SuccessIcon + " Otvoril si **X001" + " " + ChestIcon + "** pro **X002" + " " + GreditIcon +"**.", SuccessIcon + " Usted ha abierto el **X001" + " " + ChestIcon + "** por **X002 " + GreditIcon +"**.", SuccessIcon + " **X002" + " " + GreditIcon + "** için **X001" + " " + ChestIcon +"** ürününü açtınız.", SuccessIcon + " Вы открыли **X001" + " " + ChestIcon + "** за **X002 " + GreditIcon +"**.", SuccessIcon + " **X002 " + GreditIcon +"**の**X001 " + ChestIcon + "**を開きました。"];
           const embed = {"description": TranslatedMessages[Language].replace("X001", ChestAmount.toLocaleString('en')).replace("X002", TotalLoot.toLocaleString('en')) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
           await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8326,7 +8326,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                         if (err) console.log(err); 
                     });
 
-                    var TranslatedMessages = [InfoIcon + " This profile is now featured on the website.", InfoIcon + " Tento profil je nyní vystaven na strance.", InfoIcon + " Tento profil je teraz uvedený na webstránke.", InfoIcon + " Este perfil está ahora en el sitio web.", InfoIcon + " Bu profil artık web sitesinde yer alıyor.", InfoIcon + " Этот профиль теперь размещен на сайте."];
+                    var TranslatedMessages = [InfoIcon + " This profile is now featured on the website.", InfoIcon + " Tento profil je nyní vystaven na strance.", InfoIcon + " Tento profil je teraz uvedený na webstránke.", InfoIcon + " Este perfil está ahora en el sitio web.", InfoIcon + " Bu profil artık web sitesinde yer alıyor.", InfoIcon + " Этот профиль теперь размещен на сайте.", InfoIcon + " このプロフィールは現在、ウェブサイトで紹介されています。"];
                     InfoMessages.push(TranslatedMessages[Language]);
 
                     console.log("The featured profile has been updated.");
@@ -8442,7 +8442,7 @@ if (CommandName.startsWith("play"))  {
 
                                 const Listeners = voiceChannel.members.filter(m => !m.user.bot).map(m => m.id);
 
-                                var TranslatedMessages = [InfoIcon + " The music has now finished with **X001 listeners**.", InfoIcon + " Hudba právě skončila s **X001 posluchateli**.", InfoIcon + " Hudba sa skončila s **X001 poslucháčmi**.", InfoIcon + " La música ya se ha terminado con **X001 oyentes**.", InfoIcon + " Müzik şimdi **X001 dinleyicileri** ile bitti.", InfoIcon + " Музыка теперь закончена с **X001 слушателей**."];
+                                var TranslatedMessages = [InfoIcon + " The music has now finished with **X001 listeners**.", InfoIcon + " Hudba právě skončila s **X001 posluchateli**.", InfoIcon + " Hudba sa skončila s **X001 poslucháčmi**.", InfoIcon + " La música ya se ha terminado con **X001 oyentes**.", InfoIcon + " Müzik şimdi **X001 dinleyicileri** ile bitti.", InfoIcon + " Музыка теперь закончена с **X001 слушателей**.", InfoIcon + " 音楽は**X001リスナー**で終了しました。"];
                                 const embed = {"description": TranslatedMessages[Language].replace("X001", Listeners.length),  "color": EmbedColor};
                                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8473,7 +8473,7 @@ if (CommandName.startsWith("play"))  {
                     });
 
                 } else {
-                  var TranslatedMessages = [ErrorIcon + " You can only play songs between 1 to 30 minutes.", ErrorIcon + " Můžete pouze hrát písničky které trvají 1 až 30 minut.", ErrorIcon + " Môžeš hrať iba pesničky od 1 do 30 minút.", ErrorIcon + " Sólo puedes reproducir canciones entre 1 y 30 minutos.", ErrorIcon + " Yalnızca 1 ila 30 dakika arasında şarkı çalabilirsiniz.", ErrorIcon + " Вы можете играть песни только от 1 до 30 минут."];
+                  var TranslatedMessages = [ErrorIcon + " You can only play songs between 1 to 30 minutes.", ErrorIcon + " Můžete pouze hrát písničky které trvají 1 až 30 minut.", ErrorIcon + " Môžeš hrať iba pesničky od 1 do 30 minút.", ErrorIcon + " Sólo puedes reproducir canciones entre 1 y 30 minutos.", ErrorIcon + " Yalnızca 1 ila 30 dakika arasında şarkı çalabilirsiniz.", ErrorIcon + " Вы можете играть песни только от 1 до 30 минут.", ErrorIcon + " 1 ~ 30分の間の曲しか再生できません。"];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -8481,7 +8481,7 @@ if (CommandName.startsWith("play"))  {
             }).catch(error => {
                 ErrorBag.add(error);
 
-                var TranslatedMessages = [ErrorIcon + " Failed to get the YouTube video.", ErrorIcon + " Nepodařilo se získat YouTube video.", ErrorIcon + " Nepodarilo sa nájsť Youtube video.", ErrorIcon + " Fallo en conseguir el vídeo de YouTube.", ErrorIcon + " YouTube videosu alınamadı.", ErrorIcon + " Не смог получить видео с YouTube."];
+                var TranslatedMessages = [ErrorIcon + " Failed to get the YouTube video.", ErrorIcon + " Nepodařilo se získat YouTube video.", ErrorIcon + " Nepodarilo sa nájsť Youtube video.", ErrorIcon + " Fallo en conseguir el vídeo de YouTube.", ErrorIcon + " YouTube videosu alınamadı.", ErrorIcon + " Не смог получить видео с YouTube.", ErrorIcon + " YouTube動画を取得できませんでした"];
                 const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             });
@@ -8516,7 +8516,7 @@ if (CommandName.startsWith("play"))  {
 
             } else {
 
-              var TranslatedMessages = [InfoIcon + " Previous song not found - playing a random song.", InfoIcon + " Minulá písnička nenalezena - Pehrávám náhodnou písničku.", InfoIcon + " Predchodzá pesnička nenájdená - hrá sa random pesnička.", InfoIcon + " No se ha encontrado la canción anterior... Reproduciendo una canción al azar.", InfoIcon + " Önceki şarkı bulunamadı - rastgele bir şarkı çalıyor.", InfoIcon + " Предыдущая песня не найдена - исполнение случайной песни."];
+              var TranslatedMessages = [InfoIcon + " Previous song not found - playing a random song.", InfoIcon + " Minulá písnička nenalezena - Pehrávám náhodnou písničku.", InfoIcon + " Predchodzá pesnička nenájdená - hrá sa random pesnička.", InfoIcon + " No se ha encontrado la canción anterior... Reproduciendo una canción al azar.", InfoIcon + " Önceki şarkı bulunamadı - rastgele bir şarkı çalıyor.", InfoIcon + " Предыдущая песня не найдена - исполнение случайной песни.", InfoIcon + " 前の曲が見つかりません - ランダム曲を再生します。"];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8553,7 +8553,7 @@ if (CommandName.startsWith("play"))  {
 
             } else {
 
-              var TranslatedMessages = [InfoIcon + " Your playlist is empty - Playing a random song.", InfoIcon + " Váš playlist je prázdný - Přehrávám náhodnou písničku.", InfoIcon + " Tvôj playlist je prázdny - hrá sa random pesnička.", InfoIcon + " Su lista de reproducción está vacía... Reproduciendo una canción al azar.", InfoIcon + " Çalma listeniz boş - Rastgele bir şarkı çalıyor.", InfoIcon + " Ваш плейлист пуст - Воспроизведение случайной песни."];
+              var TranslatedMessages = [InfoIcon + " Your playlist is empty - Playing a random song.", InfoIcon + " Váš playlist je prázdný - Přehrávám náhodnou písničku.", InfoIcon + " Tvôj playlist je prázdny - hrá sa random pesnička.", InfoIcon + " Su lista de reproducción está vacía... Reproduciendo una canción al azar.", InfoIcon + " Çalma listeniz boş - Rastgele bir şarkı çalıyor.", InfoIcon + " Ваш плейлист пуст - Воспроизведение случайной песни.", InfoIcon + " プレイリストが空です - ランダム曲を再生します。"];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8702,7 +8702,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
                             peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
 
-                            var TranslatedMessages = [SuccessIcon + " Added the current song to your playlist.", SuccessIcon + " Aktuální písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pridal som aktuálnu pesničku do tvôjho playlistu.", SuccessIcon + " Añadi la canción actual a su lista de reproducción.", SuccessIcon + " Geçerli şarkı çalma listenize eklendi.", SuccessIcon + " Добавлена текущая песня в плейлист."];
+                            var TranslatedMessages = [SuccessIcon + " Added the current song to your playlist.", SuccessIcon + " Aktuální písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pridal som aktuálnu pesničku do tvôjho playlistu.", SuccessIcon + " Añadi la canción actual a su lista de reproducción.", SuccessIcon + " Geçerli şarkı çalma listenize eklendi.", SuccessIcon + " Добавлена текущая песня в плейлист.", SuccessIcon + " 現在の曲をプレイリストに追加しました。"];
                             const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                             message.channel.send({ embed }).catch(error => ErrorBag.add(error));    
 
@@ -8726,7 +8726,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
                             peeky.userData.get(key, "Playlist").push(PlaylistRequest);
 
-                            var TranslatedMessages = [SuccessIcon + " Added the song to your playlist.", SuccessIcon + " Písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pesnička pridaná do tvojho playlistu.", SuccessIcon + " Añadí la canción a su lista de reproducción.", SuccessIcon + " Şarkı çalma listenize eklendi.", SuccessIcon + " Добавил песню в плейлист."];
+                            var TranslatedMessages = [SuccessIcon + " Added the song to your playlist.", SuccessIcon + " Písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pesnička pridaná do tvojho playlistu.", SuccessIcon + " Añadí la canción a su lista de reproducción.", SuccessIcon + " Şarkı çalma listenize eklendi.", SuccessIcon + " Добавил песню в плейлист.", SuccessIcon + " 曲をプレイリストに追加しました。"];
                             const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8741,7 +8741,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                     };
 
                 } else {
-                  var TranslatedMessages = [ErrorIcon + " You cannot add playlists to your playlist.", ErrorIcon + " Do svého playlistu nemůžete přidat playlisty.", ErrorIcon + " Nemôžeš pridať playlisty do tvojich playlistov.", ErrorIcon + " No puedes añadir listas de reproducción a su lista de reproducción.", ErrorIcon + " Oynatma listenize oynatma listesi ekleyemezsiniz.", ErrorIcon + " Вы не можете добавлять плейлисты в свой плейлист."];
+                  var TranslatedMessages = [ErrorIcon + " You cannot add playlists to your playlist.", ErrorIcon + " Do svého playlistu nemůžete přidat playlisty.", ErrorIcon + " Nemôžeš pridať playlisty do tvojich playlistov.", ErrorIcon + " No puedes añadir listas de reproducción a su lista de reproducción.", ErrorIcon + " Oynatma listenize oynatma listesi ekleyemezsiniz.", ErrorIcon + " Вы не можете добавлять плейлисты в свой плейлист.", ErrorIcon + " プレイリストにプレイリストを追加することはできません。"];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -8762,12 +8762,12 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             peeky.userData.get(key, "Playlist").splice(BackgroundIndex, 1);  //Remove the background
 
-            var TranslatedMessages = [SuccessIcon + " The song has been removed from your playlist.", SuccessIcon + " Písnička byla odebrána z vašeho playlistu.", SuccessIcon + " Pieseň bola vymazaná z tvôjho playlistu.", SuccessIcon + " La canción ha sido eliminada de su lista de reproducción.", SuccessIcon + " Şarkı, çalma listenizden kaldırıldı.", SuccessIcon + " Песня была удалена из вашего плейлиста."];
+            var TranslatedMessages = [SuccessIcon + " The song has been removed from your playlist.", SuccessIcon + " Písnička byla odebrána z vašeho playlistu.", SuccessIcon + " Pieseň bola vymazaná z tvôjho playlistu.", SuccessIcon + " La canción ha sido eliminada de su lista de reproducción.", SuccessIcon + " Şarkı, çalma listenizden kaldırıldı.", SuccessIcon + " Песня была удалена из вашего плейлиста.", SuccessIcon + " 曲がプレイリストから削除されました。"];
             const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             } else {
-              var TranslatedMessages = [ErrorIcon + " That song is not in your playlist.", ErrorIcon + " Tato písnička ve vašem playlistu není.", ErrorIcon + " Táto pesnička neni v tvojom playliste.", ErrorIcon + " Esa canción no está en su lista de reproducción.", ErrorIcon + " Bu şarkı çalma listenizde değil.", ErrorIcon + " Этой песни нет в твоем плейлисте."];
+              var TranslatedMessages = [ErrorIcon + " That song is not in your playlist.", ErrorIcon + " Tato písnička ve vašem playlistu není.", ErrorIcon + " Táto pesnička neni v tvojom playliste.", ErrorIcon + " Esa canción no está en su lista de reproducción.", ErrorIcon + " Bu şarkı çalma listenizde değil.", ErrorIcon + " Этой песни нет в твоем плейлисте.", ErrorIcon + " その曲はあなたのプレイリストにありません。"];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8779,7 +8779,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             peeky.userData.set(key, PlaylistRequest, "PlaylistName")
 
-            var TranslatedMessages = [SuccessIcon + " Your playlist has been renamed to **X001**.", SuccessIcon + " Váš playlist byl přejmenován na **X001**.", SuccessIcon + " Tvôj playlist bol premenovaný na **X001**.", SuccessIcon + " Su lista de reproducción ha sido renombrada a **X001**.", SuccessIcon + " Oynatma listeniz yeniden adlandırıldı **X001**.", SuccessIcon + " Ваш плейлист был переименован в **X001**."];
+            var TranslatedMessages = [SuccessIcon + " Your playlist has been renamed to **X001**.", SuccessIcon + " Váš playlist byl přejmenován na **X001**.", SuccessIcon + " Tvôj playlist bol premenovaný na **X001**.", SuccessIcon + " Su lista de reproducción ha sido renombrada a **X001**.", SuccessIcon + " Oynatma listeniz yeniden adlandırıldı **X001**.", SuccessIcon + " Ваш плейлист был переименован в **X001**.", SuccessIcon + " プレイリストの名前が **X001**に変更されました。"];
             const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.userData.get(key, "PlaylistName")),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8794,12 +8794,12 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                   
                     peeky.userData.set(key, Thumbnail, "PlaylistThumbnail");
 
-                    var TranslatedMessages = [SuccessIcon + " You have set the thumbnail for your playlist.", SuccessIcon + " Nastavil jste miniaturu pro váš playlist.", SuccessIcon + " Nastavil si náhladovku na tvôj playlist.", SuccessIcon + " Usted ha establecido la miniatura de su lista de reproducción.", SuccessIcon + " Oynatma listeniz için küçük resmi ayarladınız.", SuccessIcon + " Вы установили миниатюру для своего плейлиста."];
+                    var TranslatedMessages = [SuccessIcon + " You have set the thumbnail for your playlist.", SuccessIcon + " Nastavil jste miniaturu pro váš playlist.", SuccessIcon + " Nastavil si náhladovku na tvôj playlist.", SuccessIcon + " Usted ha establecido la miniatura de su lista de reproducción.", SuccessIcon + " Oynatma listeniz için küçük resmi ayarladınız.", SuccessIcon + " Вы установили миниатюру для своего плейлиста.", SuccessIcon + " プレイリストのサムネイルを設定しました。"];
                     const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                   
                 } else {
-                  var TranslatedMessages = [ErrorIcon + " Failed to set your playlist thumbnail.", ErrorIcon + " Nepodařilo se nastavit miniaturu pro váš playlist.", ErrorIcon + " Nepodarilo sa nastaviť náhladovku pre tvôj playlist.", ErrorIcon + " Fallo en establecer su miniatura de la lista de reproducción.", ErrorIcon + " Oynatma listesi için küçük resminiz ayarlanamadı.", ErrorIcon + " Не смог установить миниатюру для плейлиста."];
+                  var TranslatedMessages = [ErrorIcon + " Failed to set your playlist thumbnail.", ErrorIcon + " Nepodařilo se nastavit miniaturu pro váš playlist.", ErrorIcon + " Nepodarilo sa nastaviť náhladovku pre tvôj playlist.", ErrorIcon + " Fallo en establecer su miniatura de la lista de reproducción.", ErrorIcon + " Oynatma listesi için küçük resminiz ayarlanamadı.", ErrorIcon + " Не смог установить миниатюру для плейлиста.", ErrorIcon + " プレイリストのサムネイルを設定できませんでした。"];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -8807,7 +8807,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
             } else {
               peeky.userData.set(key, null, "PlaylistThumbnail");
 
-              var TranslatedMessages = [SuccessIcon + " You have set the default thumbnail for your playlist.", SuccessIcon + " Nastavil jste základní miniaturu pro váš playlist.", SuccessIcon + " Nastavil si štandardnú náhladovku pre tvôj playlist.", SuccessIcon + " Usted ha establecido la miniatura predeterminada para su lista de reproducción.", SuccessIcon + " Oynatma listeniz için varsayılan küçük resmi ayarladınız.", SuccessIcon + " Вы установили миниатюру по умолчанию для своего плейлиста."];
+              var TranslatedMessages = [SuccessIcon + " You have set the default thumbnail for your playlist.", SuccessIcon + " Nastavil jste základní miniaturu pro váš playlist.", SuccessIcon + " Nastavil si štandardnú náhladovku pre tvôj playlist.", SuccessIcon + " Usted ha establecido la miniatura predeterminada para su lista de reproducción.", SuccessIcon + " Oynatma listeniz için varsayılan küçük resmi ayarladınız.", SuccessIcon + " Вы установили миниатюру по умолчанию для своего плейлиста.", SuccessIcon + " プレイリストのデフォルトのサムネイルを設定しました。"];
               const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             };
@@ -8815,7 +8815,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
         } else
         if  (CommandArgument.startsWith(" clear"))  {
 
-            var TranslatedMessages = [SuccessIcon + " You have cleared your playlist of **X001 songs**.", SuccessIcon + " Vyčistili jste svůj playlist od **X001 písniček**.", SuccessIcon + " Vymazal si **X001 piesní** zo svôjho playlistu.", SuccessIcon + " Usted ha limpiado su lista de reproducción de **X001 canciones**.", SuccessIcon + " **X001 şarkıları** oynatma listesi temizlendi.", SuccessIcon + " Вы очистили свой плейлист от **X001** песен."];
+            var TranslatedMessages = [SuccessIcon + " You have cleared your playlist of **X001 songs**.", SuccessIcon + " Vyčistili jste svůj playlist od **X001 písniček**.", SuccessIcon + " Vymazal si **X001 piesní** zo svôjho playlistu.", SuccessIcon + " Usted ha limpiado su lista de reproducción de **X001 canciones**.", SuccessIcon + " **X001 şarkıları** oynatma listesi temizlendi.", SuccessIcon + " Вы очистили свой плейлист от **X001** песен.", SuccessIcon + " **X001曲**のプレイリストをクリアしました。"];
             const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.userData.get(key, "Playlist").length),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -8894,7 +8894,7 @@ if (CommandName == "stop")  {
                     CurrentlyPlaying.delete(message.guild.id);
 
                 } else {
-                  var TranslatedMessages = [ErrorIcon + " Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže preskočiť túto pieseň teraz.", ErrorIcon + " Sólo el dueño del servidor puede saltarse esta canción ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi ilerletebilir.", ErrorIcon + " Только владелец сервера может остановить эту музыку прямо сейчас."];
+                  var TranslatedMessages = [ErrorIcon + " Only the server owner can stop the music right now.", ErrorIcon + " Hudbu může momentálně zastavit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže preskočiť túto pieseň teraz.", ErrorIcon + " Sólo el dueño del servidor puede saltarse esta canción ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi ilerletebilir.", ErrorIcon + " Только владелец сервера может остановить эту музыку прямо сейчас.", ErrorIcon + " この音楽を今すぐ停止できるのは、サーバーの所有者だけです。"];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
@@ -8950,7 +8950,7 @@ if (CommandName.startsWith("skip ") || CommandName == "skip")  {
                     };
 
                 } else {
-                  var TranslatedMessages = [ErrorIcon + " Only the server owner can skip the song right now.", ErrorIcon + " Písniku může momentálně přeskočit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže zastaviť hudbu teraz.", ErrorIcon + " Sólo el dueño del servidor puede detener esta música ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi durdurabilir.", ErrorIcon + " Только владелец сервера может пропустить эту песню прямо сейчас."];
+                  var TranslatedMessages = [ErrorIcon + " Only the server owner can skip the song right now.", ErrorIcon + " Písniku může momentálně přeskočit pouze vlastník serveru.", ErrorIcon + " Iba vlastník tohoto servera môže zastaviť hudbu teraz.", ErrorIcon + " Sólo el dueño del servidor puede detener esta música ahora mismo.", ErrorIcon + " Bu şarkıyı sadece sunucu sahibi durdurabilir.", ErrorIcon + " Только владелец сервера может пропустить эту песню прямо сейчас.", ErrorIcon + " この曲を今すぐスキップできるのは、サーバーの所有者だけです。"];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                 };
