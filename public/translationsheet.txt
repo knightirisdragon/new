@@ -117,10 +117,6 @@ You have cleared your playlist of **X001 songs**. |
 Only the server owner can stop this music right now. | 
 Only the server owner can skip this song right now. | 
 
-**Try to guess the name of this song!** | 
-
-If you want to see some hot **X001** action, follow this tutorial! | 
-
 Before we start the giveaway, can you tell me what is gonna be the prize? | 
 Nice, now tell me what is gonna be the amount of winners in this giveaway. | 
 Now the last thing, how long is the giveaway gonna be in minutes? | 
@@ -147,8 +143,8 @@ You cannot ban that user. |
 I have kicked **X001** at **X002**'s request. | 
 You cannot kick that user. | 
 
-You can only purge 1 to 100 messages. | 
 I have purged **X001 messages** at **X002**'s request. | 
+You can only purge 1 to 100 messages. | 
 
 The prefix is now **X001**. | 
 
