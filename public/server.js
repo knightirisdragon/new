@@ -1208,18 +1208,20 @@ const RandomWords = [
 
 const WeeklyChallenges = [
   
-    ["perfect_hangman", "Professional Unhanger", "Win the Hangman minigame without any errors.", 1000, "Gredit"],
-    ["song_master", "Song Master", "Win the Guess the Song minigame by guessing a hard song.", 2500, "Exp"],
+    ["perfect_hangman", "Professional Unhanger", "Win the Hangman minigame without any errors.", 5, "Chests"],
+    ["song_master", "Song Master", "Win the Guess the Song minigame by guessing a hard song.", 7500, "Exp"],
+    ["song_master", "Song Master", "Win the Guess the Song minigame by guessing a hard song.", 1000, "Gredit"],
   
 ];
 
 const DailyChallenges = [
   
-    ["open_background", "Hunt for Backgrounds", "Find a background by opening chests.", 250, "Exp"],
-    ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 500, "Exp"],
+    ["open_background", "Hunt for Backgrounds", "Find a background by opening chests.", 1500, "Exp"],
+    ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 1000, "Exp"],
     ["beat_akinator", "Eat that, Akinator", "Beat Akinator after 25 questions.", 1, "Chests"],
     ["clean_hangman", "Life Saver", "Win the Hangman minigame.", 250, "Gredit"],
-    ["treasure_hunt", "Treasure Hunting", "Be the first one to claim a random treasure.", 393, "Background"]
+    ["treasure_hunt", "Treasure Hunting", "Be the first one to claim a random treasure.", 393, "Background"],
+    ["buy_background", "Going Shopping", "Purchase a new background for your profile.", 1000, "Exp"]
   
 ];
 
@@ -8975,6 +8977,7 @@ if (CommandName == "guessthesong")  {
             ActiveMinigames.add(message.guild.id);
           
             const voiceChannel  = message.member.voice.channel;
+            var LastMember = message.member;
             var ChosenSong = Math.floor((Math.random() * YoutubeSongs.length));
           
             InfoMessages.push(InfoIcon + " Full Song: <" + YoutubeSongs[ChosenSong][0] + ">");
@@ -9002,20 +9005,22 @@ if (CommandName == "guessthesong")  {
 
                     message.channel.awaitMessages(response => response.content.toLowerCase() == YoutubeSongs[ChosenSong][1].toLowerCase(), { max: 1, time: 30000, errors: ['time'] })
                     .then(collected => {
-                        var key = collected.first().author.id;
+
+                        LastMember = collected.first().member;
+                        var key2 = `${LastMember.user.id}`;
 
                         //Gamer Badge
-                        if  (peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
-                            peeky.userData.set(key, true, "GamerBadge");
+                        if  (peeky.userData.has(key2) && !peeky.userData.has(key2, "GamerBadge"))  {
+                            peeky.userData.set(key2, true, "GamerBadge");
                             InfoMessages.push(InfoMessage1[Language]);
                         };
                             
-                        if  (YoutubeSongs[ChosenSong][2] == "Hard" && peeky.peekyData.get("weeklychallenge", "data")[0] == "song_master" && function_ChallengeRewards(key, peeky.peekyData.get("weeklychallenge", "data"), "LastWeeklyChallenge") == true)  {
+                        if  (YoutubeSongs[ChosenSong][2] == "Hard" && peeky.peekyData.get("weeklychallenge", "data")[0] == "song_master" && function_ChallengeRewards(key2, peeky.peekyData.get("weeklychallenge", "data"), "LastWeeklyChallenge") == true)  {
                             InfoMessages.push(InfoMessage5[Language]);
                         };
 
-                        if  (peeky.userData.has(key))  {
-                            peeky.userData.math(key, "+", 100, "Exp");
+                        if  (peeky.userData.has(key2))  {
+                            peeky.userData.math(key2, "+", 100, "Exp");
                         };
 
                         const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has guessed the song's name!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
@@ -9076,18 +9081,18 @@ if (CommandName == "triviaquestions")  {
     
         message.channel.awaitMessages(response => response.content.toLowerCase() == TriviaQuestions[ChosenQuestion][1][0].toLowerCase(), { max: 1, time: 30000, errors: ['time'] })
         .then(collected => {
-          
+
             LastMember = collected.first().member;
-            var key = collected.first().author.id;
+            var key2 = `${LastMember.user.id}`;
 
             //Gamer Badge
-            if  (peeky.userData.has(key) && !peeky.userData.has(key, "GamerBadge"))  {
-               peeky.userData.set(key, true, "GamerBadge");
-               InfoMessages.push(InfoMessage1[Language]);
+            if  (peeky.userData.has(key2) && !peeky.userData.has(key2, "GamerBadge"))  {
+                peeky.userData.set(key2, true, "GamerBadge");
+                InfoMessages.push(InfoMessage1[Language]);
             };
 
-            if  (peeky.userData.has(key))  {
-               peeky.userData.math(key, "+", 50, "Exp");
+            if  (peeky.userData.has(key2))  {
+                peeky.userData.math(key2, "+", 50, "Exp");
             };
 
             const embed = {"description": SuccessIcon +  " **" + function_RemoveFormatting(collected.first().member.displayName, "other", true) + "** has chosen the right answer!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
