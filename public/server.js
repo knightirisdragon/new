@@ -9591,7 +9591,7 @@ if  (CommandName == "giveaway")  {
                                     ErrorIcon + " Çekiliş iptal edildi.",
                                     ErrorIcon + " Creación del sorteo fue cancelada.",
                                     ErrorIcon + " Создание конкурса было отменено.",
-                                    ErrorIcon + " The giveaway creation has been cancelled.", //jap
+                                    ErrorIcon + " プレゼントの作成はキャンセルされました。", //jap
                                 ];
                               
                                 const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
@@ -10232,8 +10232,10 @@ if  (CommandName.startsWith("timezone"))  {
             if  (!isNaN(CommandArgument) && CommandArgument >= -12 && CommandArgument < 12)  {
 
                 peeky.serverData.set(keySF, CommandArgument, "timezone");
+              
+                var TranslatedMessages = [SuccessIcon + " The time zone is now **X001**.", SuccessIcon + " Časové pásmo je nyní **X001**.", SuccessIcon + " The time zone is now **X001**.", SuccessIcon + " La zona horaria ahora es **X001**.", SuccessIcon + " Saat şuan da **X001**.", SuccessIcon + " Часовой пояс теперь **X001**.", SuccessIcon + " 現在、タイムゾーンは**X001**です。"];
 
-                const embed = {"description": SuccessIcon + " The time zone is now **" + peeky.serverData.get(keySF, "timezone") + " hours**." + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+                const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "timezone")) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
               
             } else {

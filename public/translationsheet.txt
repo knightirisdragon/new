@@ -148,7 +148,7 @@ You can only purge 1 to 100 messages. |
 
 The prefix is now **X001**. | 
 
-The timezone is now **X001**. | 
+The timezone is now **X001** hours. | 
 
 The highlighted channel is now **#X001**. | 
 
