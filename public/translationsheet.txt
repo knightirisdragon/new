@@ -156,9 +156,9 @@ The function notifications are now set to **X001**. |
 
 The level notifications are now set to **X001**. | 
 
-The mute role is now set to **@X001**. | 
 Edited **X001** channels for the **@X002** role. | 
 Couldn't edit channels for the **@X001** role. | 
+The mute role is now set to **@X001**. | 
 
 You are currently on a cooldown for that command. | 
 Automated channel creation is currently on a cooldown. | 

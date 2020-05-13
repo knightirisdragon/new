@@ -251,7 +251,7 @@ const ErrorMessage1 = [
   ErrorIcon + " Usted necesita más Gredit para hacer eso.",
   ErrorIcon + " Bunu yapmak için daha fazla Gredit'e ihtiyacınız var.",
   ErrorIcon + " Для этого вам нужно больше Gredit.",
-  ErrorIcon + " "
+  ErrorIcon + " それを行うためにより多くのGreditが必要です。"
 ];
 const ErrorMessage2 = [
   ErrorIcon + " The new description is too large.",
@@ -260,7 +260,7 @@ const ErrorMessage2 = [
   ErrorIcon + " La nueva descripción es demasiada larga.",
   ErrorIcon + " Yeni açıklama çok büyük.",
   ErrorIcon + " Новое описание слишком большое.",
-  ErrorIcon + " "
+  ErrorIcon + " 新しい説明が大きすぎます。"
 ];
 const ErrorMessage3 = [
   ErrorIcon + " The provided mention is invalid.",
@@ -269,7 +269,7 @@ const ErrorMessage3 = [
   ErrorIcon + " La mención proporcionada es inválida.",
   ErrorIcon + " Verilen söz geçersiz.",
   ErrorIcon + " Приведенное упоминание недействительно.",
-  ErrorIcon + " "
+  ErrorIcon + " 指定されたメンションは無効です。"
 ];
 const ErrorMessage4 = [
   ErrorIcon + " You need to enter a valid YouTube link.",
@@ -278,7 +278,7 @@ const ErrorMessage4 = [
   ErrorIcon + " Usted tiene que entrar en un enlace válido de YouTube.",
   ErrorIcon + " Geçerli bir YouTube bağlantısı girmeniz gerekiyor.",
   ErrorIcon + " Необходимо ввести действительную ссылку YouTube.",
-  ErrorIcon + " "
+  ErrorIcon + " 有効なYouTubeリンクを入力する必要があります。"
 ];
 const ErrorMessage5 = [
   ErrorIcon + " You do not have that background in your inventory.",
@@ -287,7 +287,7 @@ const ErrorMessage5 = [
   ErrorIcon + " Usted no tiene esos fondos en su inventario.",
   ErrorIcon + " nvanterinizde bu arka plan yok.",
   ErrorIcon + " У вас нет этого фона в вашем инвентаре.",
-  ErrorIcon + " "
+  ErrorIcon + " インベントリにその背景がありません。"
 ];
 const ErrorMessage6 = [
   ErrorIcon + " You do not have enough chests.",
@@ -296,7 +296,7 @@ const ErrorMessage6 = [
   ErrorIcon + " Usted no tiene suficientes cofres.",
   ErrorIcon + " Yeterli sandığın yok.",
   ErrorIcon + " У вас недостаточно сундуков.",
-  ErrorIcon + " "
+  ErrorIcon + " チェストが足りません。"
 ];
 const ErrorMessage7 = [
   ErrorIcon + " The mentioned user has no profile.",
@@ -305,7 +305,7 @@ const ErrorMessage7 = [
   ErrorIcon + " El usuario mencionado no tiene un perfil.",
   ErrorIcon + " Söz konusu kullanıcının profili yok.",
   ErrorIcon + " У упомянутого пользователя нет профиля.",
-  ErrorIcon + " "
+  ErrorIcon + " 言及されたユーザーにはプロファイルがありません。"
 ];
 const ErrorMessage8 = [
   ErrorIcon + " Mentions are not allowed for this command.",
@@ -314,7 +314,7 @@ const ErrorMessage8 = [
   ErrorIcon + " No se permiten menciones para este comando.",
   ErrorIcon + " Bu komut için bahsetmeye izin verilmez.",
   ErrorIcon + " Упоминания для этой команды запрещены.",
-  ErrorIcon + " "
+  ErrorIcon + " このコマンドではメンションは許可されません。"
 ];
 const ErrorMessage9 = [
   ErrorIcon + " You must enter a valid amount.",
@@ -323,7 +323,7 @@ const ErrorMessage9 = [
   ErrorIcon + " Debe introducir una cantidad válida.",
   ErrorIcon + " Geçerli bir tutar girmelisiniz.",
   ErrorIcon + " Вы должны ввести действительную сумму.",
-  ErrorIcon + " "
+  ErrorIcon + " 有効な金額を入力してください。"
 ];
 const ErrorMessage10 = [
   ErrorIcon + " Make sure the function's name is all in lowercase.",
@@ -332,7 +332,7 @@ const ErrorMessage10 = [
   ErrorIcon + " Asegúrate de que el nombre de la función esté en minúsculas.",
   ErrorIcon + " Fonksiyon adının küçük harfle yazıldığından emin olun.",
   ErrorIcon + " Убедитесь, что название функции написано в нижнем регистре.",
-  ErrorIcon + " "
+  ErrorIcon + " 関数の名前が小文字であることを確認します。"
 ];
 const ErrorMessage11 = [
   ErrorIcon + " You need to become a Premium user to do that.",
@@ -341,7 +341,7 @@ const ErrorMessage11 = [
   ErrorIcon + " Necesitas convertirte en un usuario Premium para hacer eso.",
   ErrorIcon + " Bunu yapmak için Premium kullanıcı olmanız gerekir.",
   ErrorIcon + " Для этого вам нужно стать премиум-пользователем.",
-  ErrorIcon + " "
+  ErrorIcon + " そのためにはプレミアムユーザーになる必要があります。"
 ];
 const ErrorMessage12 = [
   ErrorIcon + " There are no songs playing right now.",
@@ -350,7 +350,7 @@ const ErrorMessage12 = [
   ErrorIcon + " No hay ninguna canción sonando ahora mismo.",
   ErrorIcon + " Şu anda çalan şarkı yok.",
   ErrorIcon + " Сейчас не играют песни.",
-  ErrorIcon + " "
+  ErrorIcon + " 今は曲が再生されません。"
 ];
 const ErrorMessage13 = [
   ErrorIcon + " Something has gone unexpectedly wrong.",
@@ -359,7 +359,7 @@ const ErrorMessage13 = [
   ErrorIcon + " Algo ha salido mal inesperadamente.",
   ErrorIcon + " Bir şey beklenmedik bir şekilde yanlış gitti.",
   ErrorIcon + "  Что-то пошло не так.",
-  ErrorIcon + " "
+  ErrorIcon + " 予期しない問題が発生しました。"
 ];
 const ErrorMessage14 = [
   ErrorIcon + " I cannot find a role called **X001**.",
@@ -368,7 +368,7 @@ const ErrorMessage14 = [
   ErrorIcon + " No puedo encontrar un papel llamado **X001**.",
   ErrorIcon + " **X001** adında bir rol bulamıyorum.",
   ErrorIcon + " Я не могу найти роль под названием **X001**.",
-  ErrorIcon + " "
+  ErrorIcon + " **X001**というロールが見つかりません。"
 ];
 const ErrorMessage15 = [
   ErrorIcon + " You cannot add any more songs to your playlist.",
@@ -377,7 +377,7 @@ const ErrorMessage15 = [
   ErrorIcon + " Usted no puede añadir más canciones a su lista de reproducción.",
   ErrorIcon + " Çalma listenize başka şarkı ekleyemezsiniz.",
   ErrorIcon + " Больше нельзя добавлять песни в плейлист.",
-  ErrorIcon + " "
+  ErrorIcon + " これ以上プレイリストに曲を追加することはできません。"
 ];
 const ErrorMessage16 = [
   ErrorIcon + " That background doesn't exist.",
@@ -386,7 +386,7 @@ const ErrorMessage16 = [
   ErrorIcon + " Ese fondo no existe.",
   ErrorIcon + " Bu arka plan yok.",
   ErrorIcon + " Этот фон не существует.",
-  ErrorIcon + " "
+  ErrorIcon + " その背景は存在しません。"
 ];
 const ErrorMessage17 = [
   ErrorIcon + " You need to specify the function.",
@@ -395,7 +395,7 @@ const ErrorMessage17 = [
   ErrorIcon + " Es necesario especificar la función.",
   ErrorIcon + " Fonksiyon belirtmeniz gerekir.",
   ErrorIcon + " Вам необходимо указать функцию.",
-  ErrorIcon + " "
+  ErrorIcon + " 関数を指定する必要があります。"
 ];
 const ErrorMessage18 = [
   ErrorIcon + " You need to provide valid arguments for the command.",
@@ -404,7 +404,7 @@ const ErrorMessage18 = [
   ErrorIcon + " Tienes que proporcionar argumentos válidos para el comando.",
   ErrorIcon + " Komut için geçerli değişkenler sağlamanız gerekiyor.",
   ErrorIcon + " Вам необходимо предоставить действительные аргументы для команды.",
-  ErrorIcon + " "
+  ErrorIcon + " コマンドに有効な引数を指定する必要があります。"
 ];
 const ErrorMessage19 = [
   ErrorIcon + " You need to join the Support Server.",
@@ -413,7 +413,7 @@ const ErrorMessage19 = [
   ErrorIcon + " Tienes que unirte al Servidor de Soporte.",
   ErrorIcon + " Destek Sunucusuna katılmanız gerekir.",
   ErrorIcon + " Вам нужно присоединиться к серверу поддержки.",
-  ErrorIcon + " "
+  ErrorIcon + " サポートサーバーに参加する必要があります。"
 ];
 const ErrorMessage20 = [
   ErrorIcon + " You need to upload a file.",
@@ -422,7 +422,7 @@ const ErrorMessage20 = [
   ErrorIcon + " Tienes que subir un archivo.",
   ErrorIcon + " Bir dosya yüklemeniz gerekiyor.",
   ErrorIcon + " Вам нужно загрузить файл.",
-  ErrorIcon + " "
+  ErrorIcon + " ファイルをアップロードする必要があります。"
 ];
 const ErrorMessage21 = [
   ErrorIcon + " You can only do that in upgraded servers.",
@@ -431,7 +431,7 @@ const ErrorMessage21 = [
   ErrorIcon + " Sólo puedes hacer eso en servidores actualizados.",
   ErrorIcon + " Bunu yalnızca yükseltilmiş sunucularda yapabilirsiniz.",
   ErrorIcon + " Это можно сделать только на обновленных серверах.",
-  ErrorIcon + " "
+  ErrorIcon + " アップグレードされたサーバーでのみ実行できます。"
 ];
 const ErrorMessage22 = [
   ErrorIcon + " You need to join a voice channel.",
@@ -440,7 +440,7 @@ const ErrorMessage22 = [
   ErrorIcon + " Usted necesita unirse a un canal de voz.",
   ErrorIcon + " Bir ses kanalına katılmanız gerekir.",
   ErrorIcon + " Вы должны присоединиться к голосовому каналу.",
-  ErrorIcon + " "
+  ErrorIcon + " 音声チャンネルに参加する必要があります。"
 ];
 const ErrorMessage23 = [
   ErrorIcon + " This command only works in NSFW channels.",
@@ -448,8 +448,8 @@ const ErrorMessage23 = [
   ErrorIcon + " This command only works in NSFW channels.",
   ErrorIcon + " This command only works in NSFW channels.",
   ErrorIcon + " Bu komut sadece NSFW kanalında çalışır.",
-  ErrorIcon + " ",
-  ErrorIcon + " "
+  ErrorIcon + " This command only works in NSFW channels.",
+  ErrorIcon + " このコマンドはNSFWチャネルでのみ機能します。"
 ];
 
 const InfoMessage1 = [
@@ -459,7 +459,7 @@ const InfoMessage1 = [
   InfoIcon + " Usted ha ganado una nueva placa.",
   InfoIcon + " Yeni bir rozet kazandın.",
   InfoIcon + " Вы заработали новый значок.",
-  InfoIcon + " "
+  InfoIcon + " 新しいバッジを獲得しました。"
 ];
 const InfoMessage2 = [
   InfoIcon + " You have set the default background.",
@@ -468,7 +468,7 @@ const InfoMessage2 = [
   InfoIcon + " Usted ha establecido el fondo predeterminado.",
   InfoIcon + " Varsayılan arka planı belirlediniz.",
   InfoIcon + " Вы установили фон по умолчанию.",
-  InfoIcon + " "
+  InfoIcon + " デフォルト背景を設定しました。"
 ];
 const InfoMessage3 = [
   InfoIcon + " You have lost your custom background.",
@@ -477,7 +477,7 @@ const InfoMessage3 = [
   InfoIcon + " Usted ha perdido su fondo personalizado.",
   InfoIcon + " Üzerinde bulunan özel arkaplanı kaybettin.",
   InfoIcon + " Вы потеряли свой пользовательский опыт.",
-  InfoIcon + " "
+  InfoIcon + " カスタム背景が失われました。"
 ];
 const InfoMessage4 = [
   InfoIcon + " You have completed the daily challenge.",
@@ -486,7 +486,7 @@ const InfoMessage4 = [
   InfoIcon + " You have completed the daily challenge.",
   InfoIcon + " You have completed the daily challenge.",
   InfoIcon + " You have completed the daily challenge.",
-  InfoIcon + " "
+  InfoIcon + " You have completed the daily challenge."
 ];
 const InfoMessage5 = [
   InfoIcon + " You have completed the weekly challenge.",
@@ -495,7 +495,7 @@ const InfoMessage5 = [
   InfoIcon + " You have completed the weekly challenge.",
   InfoIcon + " You have completed the weekly challenge.",
   InfoIcon + " You have completed the weekly challenge.",
-  InfoIcon + " "
+  InfoIcon + " You have completed the weekly challenge."
 ];
 
 //Small Arrays
@@ -4623,6 +4623,7 @@ if  (!message.author.bot)  {
                                           InfoIcon + " ¡Felicitaciones a X001 por ganar el sorteo de **X002**!",
                                           InfoIcon + " X001 Tebrikler **X002** çekilişini kazandiniz.",
                                           InfoIcon + " Поздравляем X001 с выигрышем подарка **X002**!",
+                                          InfoIcon + " **X002**プレゼントを獲得したX001おめでとうございます!",
                                       ];
 
                                       var embed = {"description": TranslatedMessages[Language].replace("X001", FixedWinners.join(" ")).replace("X002", giveaway[0]), "color": EmbedColor}; 
@@ -9503,7 +9504,7 @@ if  (CommandName == "giveaway")  {
                                     InfoIcon + " Antes de empezar el sorteo, ¿puedes decirme cuál será el premio?",
                                     InfoIcon + " Çekilişe başlamadan önce bana ödülün ne olacagini söyleyebilir misin?",
                                     InfoIcon + " Перед тем, как мы начнем конкурс, не могли бы вы сказать мне, какой будет приз?",
-                                    InfoIcon + " Before we start the giveaway, can you tell me what is gonna be the prize?", //jap
+                                    InfoIcon + " プレゼントを始める前に、賞品は何になるのか教えてもらえますか?",
                                 ];
                               
                                 var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
@@ -9517,7 +9518,7 @@ if  (CommandName == "giveaway")  {
                                     InfoIcon + " Güzel, şimdi söyle bana bu hediyenin kazananlari kaç kişi olacak.",
                                     InfoIcon + " Bien, ahora dime cuántos ganadores habra en este sorteo.",
                                     InfoIcon + " Отлично, теперь скажи мне, сколько будет победителей в этом конкурсе.",
-                                    InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.", //jap
+                                    InfoIcon + " いいですね、プレゼントは何人の勝者を持っていますか?",
                                 ];
                               
                                 var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
@@ -9531,7 +9532,7 @@ if  (CommandName == "giveaway")  {
                                     InfoIcon + " Ahora lo último, ¿cuánto tiempo va a durar el sorteo en minutos?",
                                     InfoIcon + " Şimdi son şey, çekiliş kaç dakika sürecek?",
                                     InfoIcon + " И последнее, как долго будет продлиться конкурс в минутах?",
-                                    InfoIcon + " Now the last thing, how long is the giveaway gonna be in minutes?", //jap
+                                    InfoIcon + " さて、プレゼントは何分で終わるの？",
                                 ];
                               
                                 var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
@@ -9550,7 +9551,7 @@ if  (CommandName == "giveaway")  {
                                     ErrorIcon + " Yanliş argüman, çekiliş iptal edildi.",
                                     ErrorIcon + " El argumento proporcionado es incorrecto y la creación del sorteo fue cancelada.",
                                     ErrorIcon + " Предоставленный аргумент неверен, и создание конкурса было отменено.",
-                                    ErrorIcon + " The provided argument is incorrect and the giveaway creating was cancelled.", //jap
+                                    ErrorIcon + " 指定された引数が誤った、プレゼントの作成がキャンセルされました。",
                                 ];
 
                                 if  (CreationProgress == 1)  {
@@ -9629,7 +9630,7 @@ if  (CommandName == "giveaway")  {
                           ErrorIcon + " YNo puedes crear más sorteos ahora mismo.",
                           ErrorIcon + " Şu anda başka çekiliş oluşturamazsiniz.",
                           ErrorIcon + " Вы не можете больше создавать конкурсы прямо сейчас.",
-                          ErrorIcon + " You cannot create any more giveaways right now.", //jap
+                          ErrorIcon + " 今はプレゼントをこれ以上作成できません。",
                       ];
 
                       const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
@@ -10305,7 +10306,7 @@ if  (CommandName.startsWith("functionnotifications"))  {
 
         peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "level_notifications"),"level_notifications");
 
-        var TranslatedMessages = [SuccessIcon + " The function notifications are now set to **X001**.", SuccessIcon + " Upozornění na funkce jsou teď nastaveny na **X001**.", SuccessIcon + " Notifikácie funkcii su teraz nastavené na **X001**.", SuccessIcon + " Las notificaciones de función están ahora fijadas en **X001**.", SuccessIcon + " Fonksiyon bildirimleri artık **X001** olarak ayarlanmıştır.", SuccessIcon + " Функция уведомлений теперь установлена на **X001**."];
+        var TranslatedMessages = [SuccessIcon + " The function notifications are now set to **X001**.", SuccessIcon + " Upozornění na funkce jsou teď nastaveny na **X001**.", SuccessIcon + " Notifikácie funkcii su teraz nastavené na **X001**.", SuccessIcon + " Las notificaciones de función están ahora fijadas en **X001**.", SuccessIcon + " Fonksiyon bildirimleri artık **X001** olarak ayarlanmıştır.", SuccessIcon + " Функция уведомлений теперь установлена на **X001**.", SuccessIcon + " 関数通知は**X001**に設定されました。"];
         const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "function_notifications")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -10325,7 +10326,7 @@ if  (CommandName.startsWith("levelnotifications"))  {
 
         peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "level_notifications"),"level_notifications");
 
-        var TranslatedMessages = [SuccessIcon + " The level notifications are now set to **X001**.", SuccessIcon + " Upozornění na levely jsou teď nastaveny na **X001**.", SuccessIcon + " Level notifikácii je teraz nastavený na **X001**.", SuccessIcon + " Las notificaciones de nivel están ahora fijadas en **X001**.", SuccessIcon + " Seviye bildirimleri artık **X001** olarak ayarlanmıştır.", SuccessIcon + " Уведомления об уровне теперь установлены на **X001**."];
+        var TranslatedMessages = [SuccessIcon + " The level notifications are now set to **X001**.", SuccessIcon + " Upozornění na levely jsou teď nastaveny na **X001**.", SuccessIcon + " Level notifikácii je teraz nastavený na **X001**.", SuccessIcon + " Las notificaciones de nivel están ahora fijadas en **X001**.", SuccessIcon + " Seviye bildirimleri artık **X001** olarak ayarlanmıştır.", SuccessIcon + " Уведомления об уровне теперь установлены на **X001**.", SuccessIcon + " レベル通知は**X001**に設定されました。"];
         const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "level_notifications")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
@@ -10399,13 +10400,13 @@ if  (CommandName.startsWith("muterole"))  {
 
                        });
 
-                       var TranslatedMessages = [InfoIcon + " Edited **X001** channels for the **@X002** role.", InfoIcon + " Upravil jsem **X001** kanálu pro roli **X002**.", InfoIcon + " Upravené **X001** channely pre **@X002** rolu.", InfoIcon + " Edite **X001** canales para el papel **@X002**.", InfoIcon + " **@X002** rolü için **X001** kanalları düzenlendi.", InfoIcon + " Отредактировано **X001** каналов для роли **@X002**."];
+                       var TranslatedMessages = [InfoIcon + " Edited **X001** channels for the **@X002** role.", InfoIcon + " Upravil jsem **X001** kanálu pro roli **X002**.", InfoIcon + " Upravené **X001** channely pre **@X002** rolu.", InfoIcon + " Edite **X001** canales para el papel **@X002**.", InfoIcon + " **@X002** rolü için **X001** kanalları düzenlendi.", InfoIcon + " Отредактировано **X001** каналов для роли **@X002**.", InfoIcon + " **@X002**ロールの**X001**チャネルを編集しました。"];
                        InfoMessages.push(TranslatedMessages[Language].replace("X001", Amount + "/" + FilteredChannels.length).replace("X002", CommandArgument));     
 
                   }
                    else
                   {
-                   var TranslatedMessages = [ErrorIcon + " Couldn't edit channels for the **@X001** role.", ErrorIcon + " Nemohl jsem upravit kanály pro roli **X001**.", ErrorIcon + " Nemohol som upraviť channely pre **@X001** rolu.", ErrorIcon + " No pude editar los canales para el papel **@X001**.", ErrorIcon + " **@X001** rolü için kanallar düzenlenemedi.", ErrorIcon + " Не смог отредактировать каналы для роли **@X001**."];
+                   var TranslatedMessages = [ErrorIcon + " Couldn't edit channels for the **@X001** role.", ErrorIcon + " Nemohl jsem upravit kanály pro roli **X001**.", ErrorIcon + " Nemohol som upraviť channely pre **@X001** rolu.", ErrorIcon + " No pude editar los canales para el papel **@X001**.", ErrorIcon + " **@X001** rolü için kanallar düzenlenemedi.", ErrorIcon + " Не смог отредактировать каналы для роли **@X001**.", ErrorIcon + " **@X001**ロールのチャネルを編集できませんでした。"];
                    InfoMessages.push(TranslatedMessages[Language].replace("X001", CommandArgument));   
                   };
 
@@ -10420,7 +10421,7 @@ if  (CommandName.startsWith("muterole"))  {
 
             peeky.serverData.set(keySF, CommandArgument, "muted_role");
           
-            var TranslatedMessages = [SuccessIcon + " The mute role is now set to **@X001**.", SuccessIcon + " Role na ztlumení je teď nastavena na **@X001**.", SuccessIcon + " Mute rola je teraz nastavená na **@X001*.", SuccessIcon + " El papel de mute está ahora fijado en **@X001**.", SuccessIcon + " Sessiz rolü şimdi **@X001** olarak ayarlanmıştır.", SuccessIcon + " Роль отглушение теперь установлена на **@X001**."];
+            var TranslatedMessages = [SuccessIcon + " The mute role is now set to **@X001**.", SuccessIcon + " Role na ztlumení je teď nastavena na **@X001**.", SuccessIcon + " Mute rola je teraz nastavená na **@X001*.", SuccessIcon + " El papel de mute está ahora fijado en **@X001**.", SuccessIcon + " Sessiz rolü şimdi **@X001** olarak ayarlanmıştır.", SuccessIcon + " Роль отглушение теперь установлена на **@X001**.", SuccessIcon + " ミュートのロールが**@X001**に設定されます。"];
             const embed = {"description": TranslatedMessages[Language].replace("X001", CommandArgument) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
