@@ -1058,7 +1058,7 @@ const YoutubeSongs = [
     ["https://www.youtube.com/watch?v=XUhVCoTsBaM", "Awaken", "Medium"],
     ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "Medium"],
     ["https://www.youtube.com/watch?v=fcsvE1zv1ek", "Gangsta's Paradise", "Easy"],
-    ["https://www.youtube.com/watch?v=d5Ql4Sjo-GU", "Midsummer Madness", "medium"],
+    ["https://www.youtube.com/watch?v=d5Ql4Sjo-GU", "Midsummer Madness", "Medium"],
     ["https://www.youtube.com/watch?v=ZONlGIshF3o", "Where Does The Time Go", "Hard"],
     ["https://www.youtube.com/watch?v=3kCWT57h4J0", "Devilman no Uta", "Hard"],
     ["https://www.youtube.com/watch?v=dv13gl0a-FA", "Deja Vu", "Medium"],
@@ -1107,8 +1107,7 @@ const YoutubeSongs = [
     ["https://www.youtube.com/watch?v=AibtyCAhyQE", "Die In A Fire", "Easy"],
     ["https://www.youtube.com/watch?v=YREhVveHq9k", "I Got No Time", "Easy"],
     ["https://www.youtube.com/watch?v=kXMwZNRiPe0", "I Can't Fix You", "Easy"],
-    ["https://www.youtube.com/watch?v=JWeJHN5P-E8", "Teeth", "Medium"],
-    ["https://www.youtube.com/watch?v=KsDZix4ZSlU", "Liar", "Medium"]
+    ["https://www.youtube.com/watch?v=JWeJHN5P-E8", "Teeth", "Medium"]
 ];
 
 const TriviaQuestions = [
