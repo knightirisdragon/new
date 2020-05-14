@@ -4674,7 +4674,7 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
 
             if  (channel.permissionsFor(peeky.user).has('SEND_MESSAGES'))  {
 
-                var Rewards = [[GreditIcon, 500, "Gredit"], [ChestIcon, 1, "Chests"], ["Exp", 2500, "Exp"]];
+                var Rewards = [[GreditIcon, 500, "Gredit"], [ChestIcon, 1, "Chests"], ["Exp", 1000, "Exp"]];
                 var Index = Math.floor((Math.random() * Rewards.length));
                 var Amount = Math.floor((Math.random() * Rewards[Index][1])) + 1;
 
@@ -4684,17 +4684,18 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
                     m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { max: 1, time: 3600000, errors: ['time'] }).then(collected => {
 
                         var member = collected.first().member;
+                        var key2 = `${member.user.i}d`;
 
                         if  (peeky.userData.has(member.user.id))  {
                             
-                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "treasure_hunt" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
+                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "treasure_hunt" && function_ChallengeRewards(key2, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
                                 InfoMessages.push(InfoMessage4[Language]);
                             };
 
                             var embed = {"description": SuccessIcon + " **" + function_RemoveFormatting(member.displayName, "other", true) + "** has claimed the treasure!" + "\n\n" + InfoMessages.join("\n\n"), "color": EmbedColor}; 
                             m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
-                            peeky.userData.math(member.user.id, "+", Amount, Rewards[Index][2]);
+                            peeky.userData.math(key2, "+", Amount, Rewards[Index][2]);
 
                         };
 
