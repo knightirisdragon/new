@@ -4684,7 +4684,7 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
                     m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { max: 1, time: 3600000, errors: ['time'] }).then(collected => {
 
                         var member = collected.first().member;
-                        var key2 = `${member.user.i}`;
+                        var key2 = `${member.user.id}`;
 
                         if  (peeky.userData.has(member.user.id))  {
                             
