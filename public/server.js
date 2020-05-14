@@ -4687,10 +4687,6 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
                         var key2 = `${member.user.i}d`;
 
                         if  (peeky.userData.has(member.user.id))  {
-                            
-                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "treasure_hunt" && function_ChallengeRewards(key2, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
-                                InfoMessages.push(InfoMessage4[Language]);
-                            };
 
                             var embed = {"description": SuccessIcon + " **" + function_RemoveFormatting(member.displayName, "other", true) + "** has claimed the treasure!" + "\n\n" + InfoMessages.join("\n\n"), "color": EmbedColor}; 
                             m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
