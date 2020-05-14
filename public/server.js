@@ -4684,14 +4684,18 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
                     m.channel.awaitMessages(message => message.content.toLowerCase() == "claim", { max: 1, time: 3600000, errors: ['time'] }).then(collected => {
 
                         var member = collected.first().member;
-                        var key2 = `${member.user.i}d`;
+                        var key2 = `${member.user.i}`;
 
                         if  (peeky.userData.has(member.user.id))  {
+                            
+                            if  (peeky.peekyData.get("dailychallenge", "data")[0] == "treasure_hunt" && function_ChallengeRewards(key2, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
+                                InfoMessages.push(InfoMessage4[Language]);
+                            };
+
+                            peeky.userData.math(key2, "+", Amount, Rewards[Index][2]);
 
                             var embed = {"description": SuccessIcon + " **" + function_RemoveFormatting(member.displayName, "other", true) + "** has claimed the treasure!" + "\n\n" + InfoMessages.join("\n\n"), "color": EmbedColor}; 
                             m.channel.send({  embed  }).catch(error => ErrorBag.add(error));
-
-                            peeky.userData.math(key2, "+", Amount, Rewards[Index][2]);
 
                         };
 
