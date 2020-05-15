@@ -1991,7 +1991,7 @@ function function_ServerData(key)  {
             spoiler_lock_bonus: false,
             spoiler_lock_bonus_setting: 0,
             event_countdown_bonus: false,
-            event_countdown_bonus_setting: new Date(),
+            event_countdown_bonus_setting: Date.now(),
             event_countdown_bonus_id: 0,
             vote_kick_bonus_bonus: false,
             vote_kick_bonus_setting: 10,
@@ -10318,10 +10318,10 @@ if  (CommandName.startsWith("functionnotifications"))  {
 
     if  (message.member.permissions.has("MANAGE_GUILD"))  {
 
-        peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "level_notifications"),"level_notifications");
+        peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "function_notifications"),"function_notifications");
 
-        var TranslatedMessages = [SuccessIcon + " The function notifications are now set to **X001**.", SuccessIcon + " Upozornění na funkce jsou teď nastaveny na **X001**.", SuccessIcon + " Notifikácie funkcii su teraz nastavené na **X001**.", SuccessIcon + " Las notificaciones de función están ahora fijadas en **X001**.", SuccessIcon + " Fonksiyon bildirimleri artık **X001** olarak ayarlanmıştır.", SuccessIcon + " Функция уведомлений теперь установлена на **X001**.", SuccessIcon + " 関数通知は**X001**に設定されました。"];
-        const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "function_notifications")),  "color": EmbedColor};
+        var TranslatedMessages = [SuccessIcon + " The function notifications are now **X001**.", SuccessIcon + " Upozornění na funkce jsou teď **X001**.", SuccessIcon + " Notifikácie funkcii su teraz **X001**.", SuccessIcon + " Las notificaciones de función están ahora fijadas en **X001**.", SuccessIcon + " Fonksiyon bildirimleri artık **X001** olarak ayarlanmıştır.", SuccessIcon + " Функция уведомлений теперь установлена на **X001**.", SuccessIcon + " 関数通知は**X001**に設定されました。"];
+        const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "function_notifications").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language])),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
@@ -10340,8 +10340,8 @@ if  (CommandName.startsWith("levelnotifications"))  {
 
         peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "level_notifications"),"level_notifications");
 
-        var TranslatedMessages = [SuccessIcon + " The level notifications are now set to **X001**.", SuccessIcon + " Upozornění na levely jsou teď nastaveny na **X001**.", SuccessIcon + " Level notifikácii je teraz nastavený na **X001**.", SuccessIcon + " Las notificaciones de nivel están ahora fijadas en **X001**.", SuccessIcon + " Seviye bildirimleri artık **X001** olarak ayarlanmıştır.", SuccessIcon + " Уведомления об уровне теперь установлены на **X001**.", SuccessIcon + " レベル通知は**X001**に設定されました。"];
-        const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "level_notifications")),  "color": EmbedColor};
+        var TranslatedMessages = [SuccessIcon + " The level notifications are now **X001**.", SuccessIcon + " Upozornění na levely jsou teď **X001**.", SuccessIcon + " Level notifikácii je teraz **X001**.", SuccessIcon + " Las notificaciones de nivel están ahora fijadas en **X001**.", SuccessIcon + " Seviye bildirimleri artık **X001** olarak ayarlanmıştır.", SuccessIcon + " Уведомления об уровне теперь установлены на **X001**.", SuccessIcon + " レベル通知は**X001**に設定されました。"];
+        const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "level_notifications").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language])),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
