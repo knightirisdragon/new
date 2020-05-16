@@ -4765,7 +4765,7 @@ if  (peeky.serverData.get(keySF, "images_only_bonus") == true)  {
   
     if  (peeky.serverData.get(keySF, "images_only_bonus_setting").map(c => c.toLowerCase).includes(message.channel.name.toLowerCase()))  {
     
-        if  (message.author.id !== PeekyId && !message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+        if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
             if  (!message.member.permissions.has("MANAGE_MESSAGES") && message.attachments.size < 1)  {
 
