@@ -4763,7 +4763,7 @@ if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
 //Images Only
 if  (peeky.serverData.get(keySF, "images_only_bonus") == true)  {
   
-    if  (peeky.serverData.get(keySF, "images_only_bonus_setting").map(c => c.toLowerCase).includes(message.channel.name.toLowerCase()))  {
+    if  (peeky.serverData.get(keySF, "images_only_bonus_setting").map(c => c.toLowerCase()).includes(message.channel.name.toLowerCase()))  {
     
         if  (message.author.id !== PeekyId && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
 
