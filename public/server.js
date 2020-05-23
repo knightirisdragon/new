@@ -6728,9 +6728,39 @@ else
   
 //Toggle Veteran Role
 if  (FunctioName.startsWith("veteran role"))  {
+        
+    const guild = message.guild;
+    var name = peeky.serverData.get(keySF, "veteran_role_bonus_setting");
+    var role = guild.roles.cache.find(c=> c.name == name);
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "veteran_role_bonus"), "veteran_role_bonus");
     var StatusString = peeky.serverData.get(keySF, "veteran_role_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
+      
+    if (!role) {
+
+        if  (!RoleCooldown.has(message.guild.id))  {
+
+            if  (ManageRoles == true)  {
+
+                RoleCooldown.add(message.guild.id);
+                setTimeout(() => {RoleCooldown.delete(message.guild.id)}, RoleCooldownMS);
+
+                message.guild.roles.create({
+                data: {
+                  name: name,
+                  color: Setting.Blurple
+                }
+                }).catch(error => ErrorBag.add(error));
+
+                InfoMessages.push(RoleCreation.replace("X001", name).replace("X002", "Veteran Role"));
+
+            };
+
+        } else {
+          InfoMessages.push(CooldownMessage3[Language]);
+        };
+      
+    };
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Veteran Role").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
