@@ -2020,7 +2020,9 @@ function function_ServerData(key)  {
             verification_system_bonus_setting: "Verified",
             auto_channels_bonus: false,
             auto_channels_bonus_id: null,
-            auto_channels_bonus_channels: []
+            auto_channels_bonus_channels: [],
+            role_sync_bonus: false,
+            role_sync_bonus_setting: ""
         });
       
         console.log("Created server data for " + key + ".");
@@ -3255,8 +3257,8 @@ const member = newMember;
 //FUNCTIONS
 if (member.user.id !== PeekyId && peeky.serverData.has(keySF))  {
     
-//Role Saver System
-if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
+//Role Sync
+if  (peeky.serverData.get(keySF, "role_sync_bonus") == true)  {
 
     if  (!member.user.bot && member.guild.me.permissions.has("MANAGE_ROLES"))  {
   
@@ -3277,7 +3279,29 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
 
 };
     
-//Nickname Saver System
+//Role Saver
+if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
+
+    if  (!member.user.bot && member.guild.me.permissions.has("MANAGE_ROLES"))  {
+  
+        if  (peeky.serverData.has(keySF, "role_saver_bonus_array"))  {
+
+            const SavedRoles  = peeky.serverData.get(keySF, "role_saver_bonus_array");
+            const MemberIndex = SavedRoles.findIndex(i => i[0] == member.user.id);
+
+            if  (MemberIndex >= 0)  {
+                SavedRoles[MemberIndex][1] = member.roles.cache.filter(r => r.name !== "@everyone").map(r => r.id);
+            } else {
+              SavedRoles.push([member.user.id, member.roles.cache.filter(r => r.name !== "@everyone").map(r => r.id)]);
+            };
+
+        };
+      
+    };
+
+};
+
+//Nickname Saver
 if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
 
     if  (member.guild.me.permissions.has("MANAGE_NICKNAMES"))  {
