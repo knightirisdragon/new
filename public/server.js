@@ -3257,27 +3257,6 @@ const member = newMember;
 //FUNCTIONS
 if (member.user.id !== PeekyId && peeky.serverData.has(keySF))  {
     
-//Role Sync
-if  (peeky.serverData.get(keySF, "role_sync_bonus") == true)  {
-  
-    var guild2 = peeky.guilds.cache.find(g => g.id == peeky.serverData.get(keySF, "role_sync_bonus_setting"));
-  
-    if  (guild2)  {
-      
-        var member2 = guild2.members.cache.find(m => m.id);
-      
-        if  (member2)  {
-
-            var roles = member.roles.cache.filter(r => r.name !== "@everyone").map(r => r.id);
-            var roles2 = member2.roles.cache.filter(r => r.name !== "@everyone").map(r => r.id);
-            
-          
-        };
-
-    };
-
-};
-    
 //Role Saver
 if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
 
