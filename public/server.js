@@ -3259,22 +3259,21 @@ if (member.user.id !== PeekyId && peeky.serverData.has(keySF))  {
     
 //Role Sync
 if  (peeky.serverData.get(keySF, "role_sync_bonus") == true)  {
-
-    if  (!member.user.bot && member.guild.me.permissions.has("MANAGE_ROLES"))  {
   
-        if  (peeky.serverData.has(keySF, "role_saver_bonus_array"))  {
-
-            const SavedRoles  = peeky.serverData.get(keySF, "role_saver_bonus_array");
-            const MemberIndex = SavedRoles.findIndex(i => i[0] == member.user.id);
-
-            if  (MemberIndex >= 0)  {
-                SavedRoles[MemberIndex][1] = member.roles.cache.filter(r => r.name !== "@everyone").map(r => r.id);
-            } else {
-              SavedRoles.push([member.user.id, member.roles.cache.filter(r => r.name !== "@everyone").map(r => r.id)]);
-            };
-
-        };
+    var guild2 = peeky.guilds.cache.find(g => g.id == peeky.serverData.get(keySF, "role_sync_bonus_setting"));
+  
+    if  (guild2)  {
       
+        var member2 = guild2.members.cache.find(m => m.id);
+      
+        if  (member2)  {
+
+            var roles = member.roles.cache.filter(r => r.name !== "@everyone").map(r => r.id);
+            var roles2 = member2.roles.cache.filter(r => r.name !== "@everyone").map(r => r.id);
+            
+          
+        };
+
     };
 
 };
