@@ -6680,7 +6680,7 @@ if  (FunctioName.startsWith("banned words"))  {
 else
  
 //Clear Images Only
-if  (FunctioName.startsWith("image only"))  {
+if  (FunctioName.startsWith("images only"))  {
       
      peeky.serverData.set(keySF, [], "images_only_bonus_setting");
   
