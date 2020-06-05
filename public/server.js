@@ -511,7 +511,8 @@ var Banner          = {  Source: 0, Price: 1, Name: 2, Credit: 3, RevenueID: 4, 
 var StreamOptions   = {  volume: 1  };
 var SearchOptions   = {  maxResults: 1, type: "video", key: process.env.YT_TOKEN  };
 
-const Banners = require("./backgrounds.json");
+var Banners = require("./backgrounds.json");
+Banners[0][0] == DefaultBackground;
 
 const DefaultDescriptions = [  
     "I'm very busy and important.",
@@ -790,7 +791,7 @@ async function WebsiteStuff()  {
                 peeky.serverData.delete(data.GuildID);
 
                 var Guild = peeky.guilds.cache.get(data.GuildID);
-                if  (Guild !== undefined)  {
+                if  (Guild)  {
                     if  (Guild.owner)  {
                         const embed = {"description": "I'm leaving your server called **" + Guild.name + "** because of inactivity.", "footer": { "text": "https://peeky.glitch.me/tutorials.html#autowipe" }, "color": EmbedColor}; 
                         await function_DirectMessage(Guild.owner.user.id, { embed });
@@ -3925,7 +3926,7 @@ if  (!CheckedDataCreations.has(message.channel.id))  {
 };
 
 //Badge Checkers
-if  (message.guild.owner !== undefined && !message.author.bot)  {
+if  (message.guild.owner && !message.author.bot)  {
   
     if  (!BadgeCheckCooldown.has(message.guild.id + message.author.id))  {
 
@@ -7046,7 +7047,7 @@ if  (CommandName.startsWith("buybackground"))  {
                     };
 
                     var RevenueID = Banners[i - 1][Banner.RevenueID];
-                    if  (RevenueID !== undefined && peeky.userData.has(RevenueID) && message.author.id !== RevenueID && peeky.users.cache.has(RevenueID))  {
+                    if  (RevenueID && peeky.userData.has(RevenueID) && message.author.id !== RevenueID && peeky.users.cache.has(RevenueID))  {
                         peeky.userData.math(RevenueID, "-", (Banners[i - 1][Banner.Price] / Setting.SellMultiplier), "Gredit");
                         InfoMessages.push(InfoIcon + " Your purchase has generated **" + (Banners[i - 1][Banner.Price] / Setting.SellMultiplier).toLocaleString('en') + " " + GreditIcon + "** of revenue for **" + function_RemoveFormatting(peeky.users.cache.get(RevenueID).username, "other", true) + "**.");
                     };
@@ -7653,7 +7654,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);
 
     var MentionedMember = message.mentions.members.first();
-    if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
+    if  (MentionedMember)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
 
     const key2 = `${SomeoneTagged.user.id}`;
     
@@ -7718,7 +7719,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
               const StatsColor     = "lightgray";
 
               var MentionedMember = message.mentions.members.first();
-              if  (MentionedMember !== undefined)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
+              if  (MentionedMember)  {  var SomeoneTagged = MentionedMember  }  else  {  var SomeoneTagged = message.member;  };
 
               //Vars
               const ProfileName        = SomeoneTagged.displayName;
