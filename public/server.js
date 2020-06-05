@@ -23,7 +23,7 @@ peeky.userData = new Enmap({name: "userData"});
 peeky.serverData = new Enmap({name: "serverData"});
 peeky.channelData = new Enmap({name: "channelData"});
 peeky.peekyData = new Enmap({name: "peekyData"});
-const Setting = require('./setting.json');
+const Setting = require('./data/setting.json');
 
 //Website
 const http    = require('http');
