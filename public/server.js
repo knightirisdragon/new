@@ -72,8 +72,6 @@ const DayMs                 = 86400000;
 const WeekMs                = 604800000;  //7 Days
 const MonthMs               = 2592000000;  //30 Days
 const YearMs                = 31556952000;  //30 Days
-const InactiveWipe          = MonthMs;
-const InactiveTime          = (InactiveWipe  / ( 24 * 60 * 60 * 1000 ));
 
 //Sets and Arrays
 var ErrorBag                = new Set();
@@ -502,7 +500,6 @@ const InfoMessage5 = [
 const Days                = [  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  ];
 const BlacklistedWebsites = [  "discord.gg", "discord.io", "discord.me", "twitch.tv", "bit.ly", "goo.gl", "youtu.be", "youtube.com", "twitter.com", "paypal.me", "paypal.com", "selly.gg", "tiny.cc", " evassmant.com", "urlzs.com"   ];
 const VulgarPhrases       = [  "anal", "anus", "arse", "ass", "ballsack", "balls", "bastard", "bitch", "biatch", "bloody", "blowjob", "boner", "boob", "bugger", "bum", "butt", "buttplug", "clitoris", "cock", "coon", "crap", "cunt", "damn", "dick", "dildo", "dyke", "fag", "feck", "fellate", "fellatio", "felching", "fuck", "fudgepacker", "fudge", "packer", "flange", "Goddamn", "God", "damn", "hell", "homo", "jerk", "jizz", "knobend", "knob", "end", "labia", "lmao", "lmfao", "muff", "nigger", "nigga", "penis", "piss", "poop", "prick", "pube", "pussy", "queer", "scrotum", "sex", "shit", "sh1t", "slut", "smegma", "spunk", "tit", "tosser", "turd", "twat", "vagina", "wank", "whore", "wtf"  ];
-const ImmuneServers       = [  SupportServer, EmojiStorage1, `454933217666007052`, `264445053596991498`, `330777295952543744`, `387812458661937152`, `374071874222686211`, `439866052684283905`, `534551489595703306`, `608711879858192479`, `603194252872122389`, `630460214235103253`  ];
 const EmojiNumbers        = [  "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"  ];
 const TextChannels        = [  "text", "news"  ];
 
@@ -820,13 +817,7 @@ async function WebsiteStuff()  {
 
                 var guild = peeky.guilds.cache.get(data.GuildID);
 
-                if  (ImmuneServers.includes(data.GuildID) || data.server_upgraded == true)  {
-                    var ImmuneString = "Immune";
-                } else {
-                  var ImmuneString = "Not Immune";
-                };
-
-                ServerLogList.push("<div class='displayitem' style='background-image: url(" + guild.iconURL({ format: 'png' }) + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(guild.name) + "  <br>  " + function_TimeLeft(peeky.serverData.get(data.GuildID, "lastSeen"), "days", InactiveTime) + " days left" + ", " + Languages[peeky.serverData.get(`${guild.id}`, "language")] + "  <br>  " + guild.members.cache.filter(m => m.user.bot).size + " bots" + "  <br>  " + ImmuneString + "  <br>  " + guild.id + "   </b></div>");
+                ServerLogList.push("<div class='displayitem' style='background-image: url(" + guild.iconURL({ format: 'png' }) + ")'>  <b class='displayname' value='" + data.GuildID + "'>" + function_RemoveTags(guild.name) + "  <br>  " + Languages[peeky.serverData.get(`${guild.id}`, "language")] + "  <br>  " + guild.members.cache.filter(m => m.user.bot).size + " bots" + "  <br>  " + guild.id + "   </b></div>");
 
             };
 
@@ -3411,8 +3402,6 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                         await channel.send({  embed  }).catch(error => ErrorBag.add(error));
                     })
                     .catch(error => ErrorBag.add(error));
-
-                    function_UpdateAutowipe(keySF, "server");
                   
                 };
               
@@ -3454,8 +3443,6 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
                         } else {
                           Member.roles.remove(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
                         };
-
-                        function_UpdateAutowipe(keySF, "server");
 
                     };
 
@@ -3542,7 +3529,6 @@ if  (peeky.serverData.get(keySF, "message_log_bonus") == true)  {
         };
 
         console.log("The Message Log function has been triggered in " + reaction.message.guild.name + ".");
-        function_UpdateAutowipe(keySF, "server");
 
     };
               
@@ -3998,7 +3984,6 @@ if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
              KarmaImages.push([message.id, [message.author.id]]);
 
              console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
-             function_UpdateAutowipe(keySF, "server");
             }
              else
             { 
@@ -4008,7 +3993,6 @@ if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
              KarmaImages.push([message.id, [message.author.id]]);
 
              console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
-             function_UpdateAutowipe(keySF, "server");
             };
 
             };
@@ -4042,7 +4026,6 @@ if  (peeky.serverData.get(keySF, "images_only_bonus") == true)  {
                 };
 
                 console.log("The Images Only function has been triggered in " + message.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
 
             };
         };
@@ -4118,7 +4101,6 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
                 });
               
                 console.log("The Reddit Posts function has been triggered in " + message.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
             };
 
     };
@@ -4144,7 +4126,6 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
                 channel.setName(FinalName, "Triggered by the Server Age function.").catch(error => ErrorBag.add(error));
               
                 console.log("The Server Age function has been triggered in " + message.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
             };
 
         };
@@ -4172,7 +4153,6 @@ if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
                 channel.setName(FinalName, "Triggered by the Member Counter function.").catch(error => ErrorBag.add(error));    
               
                 console.log("The Member Counter function has been triggered in " + message.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
             };
 
         };
@@ -4200,7 +4180,6 @@ if  (peeky.serverData.get(keySF, "server_timezone_bonus") == true)  {
                 channel.setName(FinalName, "Triggered by the Server Time function.").catch(error => ErrorBag.add(error));    
               
                 console.log("The Server Time function has been triggered in " + message.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
             };
 
         };
@@ -4253,7 +4232,6 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
                 channel.setName(FinalName, "Triggered by the Event Countdown function.").catch(error => ErrorBag.add(error));
               
                 console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");    
             };
 
             }
@@ -4262,7 +4240,6 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
              channel.setName(EndName).catch(error => ErrorBag.add(error));
               
              console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
-             function_UpdateAutowipe(keySF, "server");
             };
 
         };
@@ -4306,7 +4283,6 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
                 };
 
                 console.log("The Flood Protection function has been triggered in " + message.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
 
             };
 
@@ -4361,7 +4337,6 @@ if  (peeky.serverData.get(keySF, "spoiler_lock_bonus") == true)  {
                      };
 
                      console.log("The Spoiler Lock function has been triggered in " + message.guild.name + ".");
-                     function_UpdateAutowipe(keySF, "server");
 
                 };
               
@@ -4419,7 +4394,6 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
                         Message.edit(FinalText).catch(error => ErrorBag.add(error));
 
                         console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
-                        function_UpdateAutowipe(keySF, "server");
                     };
 
                 };
@@ -4572,7 +4546,6 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
             };
 
             console.log("The Banned Words function has been triggered in " + message.guild.name + ".");
-            function_UpdateAutowipe(keySF, "server");
 
         };
 
@@ -4629,11 +4602,8 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
 //Prefixed Commands
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
-const Prefix       = peeky.serverData.get(keySF, "prefix");
-const CommandName  = message.content.replace(Prefix, "");
-
-function_UpdateAutowipe(key, "user");
-function_UpdateAutowipe(keySF, "server");
+const Prefix      = peeky.serverData.get(keySF, "prefix");
+const CommandName = message.content.replace(Prefix, "");
 
 /*
 //Command Template
