@@ -8721,6 +8721,8 @@ if  (CommandName == "akinator")  {
                 .catch(collected => {
                     const embed = {"description": ErrorIcon + " You have ran out of time to respond.",  "color": EmbedColor}; 
                     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                  
+                    ErrorBag.add(collected)
 
                     ActiveMinigames.delete(message.guild.id);
                 });
