@@ -511,149 +511,10 @@ var Banner          = {  Source: 0, Price: 1, Name: 2, Credit: 3, RevenueID: 4, 
 var StreamOptions   = {  volume: 1  };
 var SearchOptions   = {  maxResults: 1, type: "video", key: process.env.YT_TOKEN  };
 
-var Banners = require("./backgrounds.json");
-Banners[0][0] == DefaultBackground;
-
-const DefaultDescriptions = [  
-    "I'm very busy and important.",
-    "I sip water quite slowly.",
-    "Battery low, I'm scared.",
-    "I have a car for each day of the month.",
-    "I make up a dream in my head before I go to bed.",
-    "My life is a green screen.",
-    "I don't believe in showers.",
-    "Certified troublemaker.",
-    "I'm a Bacon Guru.",
-    "Smarter than a 5th grader.",
-    "I took an arrow to the knee.",
-    "Pikachu chooses me.",
-    "I'm real, I hope my followers are too.",
-    "I have invincible minions.",
-    "Is this water dry?",
-    "I yell at inanimate objects.",
-    "I sneak drinks into movie theatres.",
-    "I hide my sweat well.",
-    "I unleashed the zombie apocalypse.",
-    "I'm a very mysterious person.",
-    "I am so funny.",
-    "I slapped a chicken once.",
-    "I don't know what alt-tab does.",
-    "Hitting things to make them work.",
-    "I put fries into my straw.",
-    "I walk faster when I see a creepy van.",
-    "More than meets the eye.",
-    "I draw on fogged up windows.",
-    "Born at a very young age.",
-    "I did not set this description, I think."
-];
-
-const YoutubeSongs = [
-    ["https://www.youtube.com/watch?v=cPJUBQd-PNM", "Revenge", "Easy"],
-    ["https://www.youtube.com/watch?v=5-uWlFq380M", "Sanctuary", "Medium"],
-    ["https://www.youtube.com/watch?v=bpOSxM0rNPM", "Do I Wanna Know", "Medium"],
-    ["https://www.youtube.com/watch?v=2uRLJZxINAQ", "PEPE", "Hard"],
-    ["https://www.youtube.com/watch?v=aiSdTQ9DW9g", "Rasputin", "Easy"],
-    ["https://www.youtube.com/watch?v=6E5m_XtCX3c", "Ocean Man", "Easy"],
-    ["https://www.youtube.com/watch?v=3vVSBLkpO-8", "Baby I'm yours", "Hard"],
-    ["https://www.youtube.com/watch?v=rnO-MflYxCw", "Pumped Up Kicks", "Easy"],
-    ["https://www.youtube.com/watch?v=yGHBcpO-M0s", "Gotta Let Go", "Medium"],
-    ["https://www.youtube.com/watch?v=VMtarj8Ua0s", "Mr. Blue Sky", "Medium"],
-    ["https://www.youtube.com/watch?v=Gs069dndIYk", "September", "Medium"],
-    ["https://www.youtube.com/watch?v=pgN-vvVVxMA", "SAD!", "Easy"],
-    ["https://www.youtube.com/watch?v=kx0Z0B8Xox0", "Rodeo", "Easy"],
-    ["https://www.youtube.com/watch?v=DPVCNK74ZBI", "Hurt", "Medium"],
-    ["https://www.youtube.com/watch?v=52Gg9CqhbP8", "Let's Go", "Medium"],
-    ["https://www.youtube.com/watch?v=5ZYgIrqELFw", "All Star", "Easy"],
-    ["https://www.youtube.com/watch?v=7pzOBI3PD8E", "Sweater Weather", "Hard"],
-    ["https://www.youtube.com/watch?v=L3wKzyIN1yk", "Human", "Medium"],
-    ["https://www.youtube.com/watch?v=hWfbUTwzzZA", "Caramelldansen", "Hard"],
-    ["https://www.youtube.com/watch?v=oG7jKUHsLfY", "Last Train Home", "Hard"],
-    ["https://www.youtube.com/watch?v=XUhVCoTsBaM", "Awaken", "Medium"],
-    ["https://www.youtube.com/watch?v=vOXZkm9p_zY", "Birds", "Medium"],
-    ["https://www.youtube.com/watch?v=fcsvE1zv1ek", "Gangsta's Paradise", "Easy"],
-    ["https://www.youtube.com/watch?v=d5Ql4Sjo-GU", "Midsummer Madness", "Medium"],
-    ["https://www.youtube.com/watch?v=ZONlGIshF3o", "Where Does The Time Go", "Hard"],
-    ["https://www.youtube.com/watch?v=3kCWT57h4J0", "Devilman no Uta", "Hard"],
-    ["https://www.youtube.com/watch?v=dv13gl0a-FA", "Deja Vu", "Medium"],
-    ["https://www.youtube.com/watch?v=_ubnhgZgsfc", "Stronger", "Medium"],
-    ["https://www.youtube.com/watch?v=zKFzKIa_pIM", "Chlorine", "Easy"],
-    ["https://www.youtube.com/watch?v=HUHC9tYz8ik", "Bury a friend", "Medium"],
-    ["https://www.youtube.com/watch?v=gBRi6aZJGj4", "Bellyache", "Hard"],
-    ["https://www.youtube.com/watch?v=k1ATPhkVWi0", "My Strange Addiction", "Medium"],
-    ["https://www.youtube.com/watch?v=PoVgCOCt4KA", "Alien Boy", "Medium"],
-    ["https://www.youtube.com/watch?v=Sk-U8ruIQyA", "Blood // Water", "Hard"],
-    ["https://www.youtube.com/watch?v=eFVj0Z6ahcI", "Last Surprise", "Medium"],
-    ["https://www.youtube.com/watch?v=9fWxCIi5PIw", "Gillette", "Hard"],
-    ["https://www.youtube.com/watch?v=tMrRDb3ANx8", "Gotta Let Go", "Hard"],
-    ["https://www.youtube.com/watch?v=lP077RitNAc", "Bullet", "Medium"],
-    ["https://www.youtube.com/watch?v=zHNgeSg5hLw", "I'll Be There", "Hard"],
-    ["https://www.youtube.com/watch?v=_kTBbTSjZpI", "I Am... All of Me", "Hard"],
-    ["https://www.youtube.com/watch?v=fPO76Jlnz6c", "Gangsta's Paradise", "Medium"],
-    ["https://www.youtube.com/watch?v=Akx48dLnccQ", "The Only Thing They Fear is You", "Hard"],
-    ["https://www.youtube.com/watch?v=hbrpmQ09juQ", "The Middle", "Hard"],
-    ["https://www.youtube.com/watch?v=ZGM0tL0QeOI", "Nightmare", "Hard"],
-    ["https://www.youtube.com/watch?v=lDdQWA-TB3w", "Second Chances", "Hard"],
-    ["https://www.youtube.com/watch?v=3vPo2ADzJKo", "Wrong Side of Heaven", "Medium"],
-    ["https://www.youtube.com/watch?v=4S6STxv9LDE", "Fly me to the moon", "Medium"],
-    ["https://www.youtube.com/watch?v=h2vKhUmUSYo", "The Diary of Jane", "Hard"],
-    ["https://www.youtube.com/watch?v=GFcMlAK0KuU", "I Apologize", "Medium"],
-    ["https://www.youtube.com/watch?v=5-sfG8BV8wU", "Just Do It", "Easy"],
-    ["https://www.youtube.com/watch?v=jPan651rVMs", "Gimme Love", "Medium"],
-    ["https://www.youtube.com/watch?v=86IgLpeRBl4", "Run", "Easy"],
-    ["https://www.youtube.com/watch?v=J5IpfN94QCo", "Let Me Down", "Easy"],
-    ["https://www.youtube.com/watch?v=KnrGMHhnqrw", "I'll Keep Coming", "Medium"],
-    ["https://www.youtube.com/watch?v=yDlty38M_ZE", "Nothing Lasts", "Hard"],
-    ["https://www.youtube.com/watch?v=oIscL-Bjsq4", "The End of Evangolion", "Medium"],
-    ["https://www.youtube.com/watch?v=WXBHCQYxwr0", "Sweet but Psycho", "Medium"],
-    ["https://www.youtube.com/watch?v=NuB-1myGido", "RISE", "Medium"],
-    ["https://www.youtube.com/watch?v=U1vGosMScjM", "Cash Machine", "Medium"],
-    ["https://www.youtube.com/watch?v=5xwmensMDn0", "SLOW DANCING IN THE DARK", "Easy"],
-    ["https://www.youtube.com/watch?v=4DQ-2tDzJxw", "Thoughts and Prayers", "Easy"],
-    ["https://www.youtube.com/watch?v=GTISI3Bg4Mc", "Best Friends", "Medium"],
-    ["https://www.youtube.com/watch?v=8XkxjsiZoeo", "Despicable", "Medium"],
-    ["https://www.youtube.com/watch?v=lqSgsq4Bn2c", "Daddy Issues", "Hard"],
-    ["https://www.youtube.com/watch?v=m1jv7D85x-0", "Breezeblocks", "Hard"],
-    ["https://www.youtube.com/watch?v=UlF7LOqp6xY", "Social Man", "Medium"],
-    ["http://youtube.com/watch?v=id5wEaxOVL0", "Flyers", "Hard"],
-    ["https://www.youtube.com/watch?v=l18A5BOTlzE", "Five Nights at Freddy's Song", "Medium"],
-    ["https://www.youtube.com/watch?v=gk-aCL6eyGc", "It's Been So Long", "Easy"],
-    ["https://www.youtube.com/watch?v=AibtyCAhyQE", "Die In A Fire", "Easy"],
-    ["https://www.youtube.com/watch?v=YREhVveHq9k", "I Got No Time", "Easy"],
-    ["https://www.youtube.com/watch?v=kXMwZNRiPe0", "I Can't Fix You", "Easy"],
-    ["https://www.youtube.com/watch?v=JWeJHN5P-E8", "Teeth", "Medium"]
-];
-
-const TriviaQuestions = [
-    ["Who painted the Mona Lisa?", ["Da Vinci"], ["Mona Lisa"], ["Kars"], "Art"],
-    ["When did the Second World War end?", ["1945"], ["1939"], ["1944"], "History"],
-    ["Who starts first in chess?", ["White"], ["Black"], ["Arbitrary"], "Games"],
-    ["What year did Elvis Presley die?", ["1977"], ["1979"], ["1972"], "History"],
-    ["What colours make purple?", ["Red & Blue"], ["Blue & Black"], ["Pink & Red"], "Other"],
-    ["When was President Kennedy killed?", ["1963"], ["1969"], ["1961"], "History"],
-    ["What is the first letter on a typewriter?", ["Q"], ["A"], ["W"], "History"],
-    ["The average human body contains how many pints of blood?", ["9"], ["10"], ["8"], "Biology"],
-    ["Which of the planets is closest to the sun?", ["Mercury"], ["Mars"], ["Earth"], "Space"],
-    ["What was Twitter’s original name?", ["Twttr"], ["Twitter"], ["Tweeter"], "Internet"],
-    ["Which year was Minecraft released?", ["2009"], ["2010"], ["2008"], "Video Games"],
-    ["Resident Evil 7 was released in which year?", ["2017"], ["2016"], ["2018"], "Video Games"],
-    ["Name of the character abused by Mario?", ["Donkey Kong"], ["Yoshi"], ["Luigi"], "Video Games"],
-    ["How many layers are there in the Sun?", ["6"], ["4"], ["10"], "Space"],
-    ["How much water is evaporated every day?", ["1 Trillion Tons"], ["58 Billion Tons"], ["100 Trillion Tons"], "Space"],
-    ["Unlike most other fish, sharks have no ...?", ["Bones"], ["Gills"], ["Liver"], "Biology"],
-    ["Which of the following has more bones?", ["Baby"], ["Adult"], ["Teenager"], "Biology"],
-    ["Which game was delayed because it had a hidden photo of a developer's butt?", ["Halo 2"], ["Saints Row 3"], ["GTA V"], "Video Games"],
-    ["What Spanish artist said he would eat his wife when she died?", ["Dali"], ["Pablo Picasso"], ["El Greco"], "History"],
-    ["What was the first Nazi concentration camp?", ["Dachau"], ["Aushwitz"], ["Chelmno"], "History"],
-    ["How many U.S. presidents have been assassinated prior to 2019?", ["4"], ["9"], ["2"], "History"],
-    ["What three colors appear on the Italian flag?", ["Red, white and green"], ["Orange, white and green"], ["Red, blue and white"], "Other"],
-    ["How is CzechoSlovakia called today?", ["Czechia"], ["Bohemia"], ["Still CzechoSlovakia"], "History"],
-    ["Which war took place between 1950 and 1953?", ["The Korean War"], ["The second World War"], ["Nothing"], "History"],
-    ["Who was the first democratically elected President of Russia?", ["Boris Yeltsin"], ["Vladimir Putin"], ["Nikita Krushcev"], "History"],
-    ["What did ancient Egyptians use as pillows?", ["Stones"], ["Animal Pelts"], ["Bundles of Wheat"], "History"],
-    ["In the film Babe, what type of animal was Babe?", ["Pig"], ["Dog"], ["Bunny"], "Other"],
-    ["What’s the total number of dots on a pair of dice?", ["42"], ["6"], ["64"], "Other"],
-    ["Which of these is the tallest mammal?", ["Giraffe"], ["Sauropod"], ["Whale"], "Biology"]
-];
+var Banners = require("./lists/backgrounds.json");
+const DefaultDescriptions = require("./lists/descriptions.json");
+const YoutubeSongs = require("./lists/songs.json");
+const TriviaQuestions = require("./lists/trivia.json");
 
 const RandomWords = [
     "Life",
@@ -735,6 +596,14 @@ const DailyChallenges = [
     ["buy_background", "Going Shopping", "Purchase a new background for your profile.", 500, "Exp"]
   
 ];
+
+//CODE STUFF
+
+function JsonVars()  {
+  
+  Banners[0][0] = DefaultBackground;
+  
+};
 
 //WEBSITE STUFF
 
@@ -1253,7 +1122,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
         TheBannerShown = function_GetBackground(key);
     };
 
-    const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(member.id, DefaultBackground, "Background");});
+    const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(member.id, 0, "Background");});
       
     if  (Failed == false)  {
 
@@ -2320,7 +2189,7 @@ peeky.on('message', async (message) => {
             TheBannerShown = function_GetBackground(key);
         };
 
-        const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(message.author.id, DefaultBackground, "Background");});
+        const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(message.author.id, 0, "Background");});
 
         if  (Failed == false)  {
 
@@ -7730,7 +7599,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
 
               var TheBannerShown = function_GetBackground(key2);
 
-              var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, DefaultBackground, "Background");  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
+              var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, 0, "Background");  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
 
               if  (Failed == false)  {
                 
