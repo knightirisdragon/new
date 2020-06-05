@@ -8219,7 +8219,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
               "description": "**" + peeky.userData.get(key2, "PlaylistName") + "**" + "\n" + 
                             function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "\n\n" +
                             "**Songs**" + "\n" + 
-                            FinalizedPlaylist + "\n­",
+                            FinalizedPlaylist, // + "\n­"
               "color": EmbedColor}; 
               message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
