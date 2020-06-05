@@ -1220,7 +1220,21 @@ function function_StreamAnnouncements(member, activity)  {
 //JSON Variables
 function JsonVars()  {
   
+  //Default Background
   Banners[0][0] = DefaultBackground;
+  
+  //Other Variables
+  Banners.forEach(banner => {
+    
+      if  (banner[1] == "EXCLUSIVE")  {
+          banner[1] = Exclusive;
+      };
+    
+      if  (banner[0] == "NO_BACKGROUND")  {
+          banner[0] = NoBackground;
+      };
+                 
+  });
   
 };
 
@@ -2925,7 +2939,7 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
 
         const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted and will be added shortly!",  "color": EmbedColor}; 
         function_DirectMessage(reaction.message.author.id, { embed });
-        function_DirectMessage(OwnerId, '[NoBackground, ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + undefined + ', ' + Date.now() + ']');
+        function_DirectMessage(OwnerId, '["NO_BACKGROUND", ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + null + ', ' + Date.now() + ']');
       
     };
   
