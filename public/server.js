@@ -64,9 +64,6 @@ const node_fetch = require('node-fetch');
 const https      = require('https');
 const aki        = require('aki-api');
 
-//Ambassador Program
-var AmbassadorInvites = null;
-
 //Variables
 var   EmbedColor            = 3093047  //3553599;
 const AutoDeleteTime        = 250;
@@ -1818,6 +1815,18 @@ function function_TimeLeft(value, type, since)  {
 
 };
 
+function UpdateWebsiteStuff(data)  {
+  
+    data.forEach(item => {
+      
+        fetch('https://peeky.glitch.me/' + item[0])
+        .then(response => response.text()).then((data) => {
+           document.getElementById(item[1]).innerHTML = data;
+        });
+      
+    });
+};
+
 peeky.on('ready', () => {
 
 	  console.log("PEEKY is now online.");
@@ -1825,13 +1834,6 @@ peeky.on('ready', () => {
   
     //Functions
     JsonVars();
-
-    //Update Ambassador Program Invites
-    setTimeout(() => {
-        peeky.guilds.cache.get(SupportServer).fetchInvites().then(guildInvites => {
-            AmbassadorInvites = guildInvites;
-        });
-    }, 10000);
 
     //Update Banned Users
     setTimeout(() => {
@@ -1923,47 +1925,44 @@ peeky.on('message', async (message) => {
   
     if  (!message.author.bot && !message.webhookID)  {
       
-    peeky.userData.ensure(key , {
-      
-        //Database
-        UserID: message.author.id,
-        lastSeen: Date.now,
+        peeky.userData.ensure(key , {
 
-        //Profile
-        Background: 1,
-        Description: function_RandomDescription(),
-        Inventory: [1],
-        Badges: [],
-        Gredit: 0,
-        Karma: 0,
-        Exp: 1,
-        Level: 1,
-        Chests: 0,
-        Votes: 0,
-        UpgradedServers: 0,
-        SupporterLastPurchase: 0,
-        BoosterStart: 0,
-        DailyRewarded: 0,
-        LeaderboardRank: 1,
-        LastDailyChallenge: "",
-        LastWeeklyChallenge: "",
+            //Database
+            UserID: message.author.id,
+            lastSeen: Date.now,
 
-        //Playlist
-        Playlist: [],
-        PlaylistName: "Favorite Songs",
-        PlaylistThumbnail: null,
-      
-        //Badge Bonuses
-        BadgeGredit: 0,
-        BadgeExp: 0,
-      
-        //Events
-        ParticipatedEvents: [],
-      
-        //Other
-        AmbassadorInvites: []
+            //Profile
+            Background: 1,
+            Description: function_RandomDescription(),
+            Inventory: [1],
+            Badges: [],
+            Gredit: 0,
+            Karma: 0,
+            Exp: 1,
+            Level: 1,
+            Chests: 0,
+            Votes: 0,
+            UpgradedServers: 0,
+            SupporterLastPurchase: 0,
+            BoosterStart: 0,
+            DailyRewarded: 0,
+            LeaderboardRank: 1,
+            LastDailyChallenge: "",
+            LastWeeklyChallenge: "",
 
-    });
+            //Playlist
+            Playlist: [],
+            PlaylistName: "Favorite Songs",
+            PlaylistThumbnail: null,
+
+            //Badges
+            BadgeGredit: 0,
+            BadgeExp: 0,
+
+            //Events
+            ParticipatedEvents: []
+
+        });
 
     };
 
@@ -2249,34 +2248,12 @@ const keySF  = `${member.guild.id}`;
 var   Failed = false;
   
 if (member.user.id !== PeekyId && peeky.serverData.has(keySF)) {
-
-//AMBASSADOR PROGRAM
-if  (member.guild.id == SupportServer)  {
-  
-    member.guild.fetchInvites().then(guildInvites => {
-  
-        const ei = AmbassadorInvites;
-        AmbassadorInvites = guildInvites;
-
-        const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-        const inviter = peeky.users.cache.get(invite.inviter.id);
-
-        if  (peeky.userData.has(inviter))  {
-
-            peeky.userData.math(inviter, "+", 1, "AmbassadorInvites");
-
-        };
-
-    });
-  
-};
-
   
 //Server Message
 if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user.bot)  {
-      
+  
     const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
-
+      
     const embed = {"description": peeky.serverData.get(keySF, "server_message_bonus_setting").replace(GuildNameTag, function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.cache.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym),  "footer":  {"text": "This message's content was set by the server's staff."},  "color": EmbedColor}; 
     function_DirectMessage(member.user.id, { embed });
 
