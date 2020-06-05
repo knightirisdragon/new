@@ -560,47 +560,6 @@ async function WebsiteStuff()  {
 
     }, 300000);
 
-    //Auto Wipe
-    setInterval(async () => {
-
-        //Guilds
-        /*var filtered       = peeky.serverData.filter(p => p.GuildID && p.lastSeen);
-        var toRemoveGuilds = filtered.filter(data => new Date() - new Date(data.lastSeen) > InactiveWipe); //filtered.filter(data => rightNow - InactiveWipe > data.lastSeen);
-
-        toRemoveGuilds.forEach(async data => {
-
-            if  (data.server_upgraded == false && !ImmuneServers.includes(data.GuildID))  {
-
-                peeky.serverData.delete(data.GuildID);
-
-                var Guild = peeky.guilds.cache.get(data.GuildID);
-                if  (Guild)  {
-                    if  (Guild.owner)  {
-                        const embed = {"description": "I'm leaving your server called **" + Guild.name + "** because of inactivity.", "footer": { "text": "https://peeky.glitch.me/pages/tutorials.html#autowipe" }, "color": EmbedColor}; 
-                        await function_DirectMessage(Guild.owner.user.id, { embed });
-                    };
-                    await Guild.leave();
-                };
-
-                console.log("I have removed an inactive server.");    
-
-            };
-
-        });*/
-
-        //Profiles
-        var filtered         = peeky.userData.filter( p => p.UserID && p.lastSeen );
-        var toRemoveProfiles = filtered.filter(data => new Date() - new Date(data.lastSeen) > InactiveWipe);
-
-        toRemoveProfiles.forEach(data => {
-            if  (!peeky.users.cache.has(data.UserID) || data.FashionBadge == false)  {
-                console.log("I have wiped an inactive profile.");
-                peeky.userData.delete(`${data.UserID}`);
-            };
-        });
-
-    }, 3600000);
-
     //Leaderboard
     setInterval(async () => {
 
@@ -1440,20 +1399,6 @@ function function_UpdateBans()  {
   
 };
 
-function function_UpdateAutowipe(key, type)  {
-
-    if  (type == "server")  {
-        peeky.serverData.set(key, Date.now(), 'lastSeen');
-        console.log("Updated autowipe for " + key + ".");
-    };
-
-    if  (type == "user")  {
-        peeky.userData.set(key, Date.now(), 'lastSeen');
-        console.log("Updated autowipe for " + key + ".");
-    };
-  
-};
-
 //Remove Formatting
 function function_RemoveFormatting(text, type, sliced)  {
     
@@ -2173,7 +2118,6 @@ peeky.on('message', async (message) => {
             message.channel.send("", attachment).catch(error => ErrorBag.add(error));
 
             console.log("The Notifications function has been triggered in " + message.guild.name + ".");
-            function_UpdateAutowipe(keySF, "server");
 
         };
 
@@ -2287,7 +2231,6 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
         function_DirectMessage(owner, { embed }); 
         
         console.log("The Suspicion Alert function has been triggered in " + member.guild.name + ".");
-        function_UpdateAutowipe(keySF, "server");
     };
   
 };
@@ -2303,7 +2246,6 @@ if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
             member.roles.add(Role.id, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
           
             console.log("The Join Role function has been triggered in " + member.guild.name + ".");
-            function_UpdateAutowipe(keySF, "server");
         };
 
     };
@@ -2370,7 +2312,6 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
             }).catch(error => ErrorBag.add(error));
       
             console.log("The Verification System function has been triggered in " + member.guild.name + ".");
-            function_UpdateAutowipe(keySF, "server");
           
         };
 
@@ -2408,7 +2349,6 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
                       member.roles.set(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
 
                       console.log("The Role Saver function has been triggered in " + member.guild.name + ".");
-                      function_UpdateAutowipe(keySF, "server");
                     
                   };
                 
@@ -2456,7 +2396,6 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
                 member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
 
                 console.log("The Clear Nicknames function has been triggered in " + member.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
               
             };
 
@@ -2482,7 +2421,6 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
                     member.setNickname(current[1], "Triggered by the Nickname Saver function.");
 
                     console.log("The Nickname Saver function has been triggered in " + member.guild.name + ".");
-                    function_UpdateAutowipe(keySF, "server");
 
                 };
 
@@ -2526,7 +2464,6 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
         await channel.send("", await function_WelcomeMessagesEmbed(member, "join", Detected)).catch(error => ErrorBag.add(error));
 
         console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
-        function_UpdateAutowipe(keySF, "server");
       
     };
 
@@ -2563,7 +2500,6 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
         await channel.send("", await function_WelcomeMessagesEmbed(member, "leave", Detected)).catch(error => ErrorBag.add(error));
 
         console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
-        function_UpdateAutowipe(keySF, "server");
 
     };
   
@@ -2799,7 +2735,6 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
                  setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 1800000);
 
                  console.log("The Streamer Role function has been triggered in " + member.guild.name + ".");
-                 function_UpdateAutowipe(keySF, "server");
               
             };
 
@@ -2839,7 +2774,6 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                 Channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                 console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
 
             };
   
@@ -2870,7 +2804,6 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
                 member.roles.add(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
               
                 console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
             };   
 
             RoleCooldown.add(member.user.id + member.guild.id);
@@ -3102,7 +3035,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
              "**Veteran Role** " + JR + "\n" + "`@" + peeky.serverData.get(keySF, "veteran_role_bonus_setting") + "`",
              "**Automatic Reactions** " + AR + "\n" + "`:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_upvote:` `:" + peeky.serverData.get(keySF, "automatic_reactions_bonus_setting") + "_downvote:`",
              "**Verification System** " + VS + "\n" + "`" + peeky.serverData.get(keySF, "verification_system_bonus_setting") + "`",
-             "**Suspicion Alert** " + SA + "\n" + "`" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans`",
+             "**Suspicion Alert** " + SA + "\n" + "No setting",
              "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(peeky.serverData.get(keySF, "server_message_bonus_setting"), "other", true) + "`",
              "**Flood Protection** " + FP + "\n" + "`" + peeky.serverData.get(keySF, "flood_protection_bonus_setting") + " strikes`",
              "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`",
@@ -3408,7 +3341,6 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                 };
 
                 console.log("The Vote Kick function has been triggered in " + reaction.message.guild.name + ".");
-                function_UpdateAutowipe(keySF, "server");
 
             } else if (reaction.count == 1)  {
 
@@ -5930,8 +5862,7 @@ if  (FunctioName.startsWith("clear nicknames"))  {
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Clear Nicknames").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
     
-    message.channel.send({ embed })
-    .catch(error => ErrorBag.add(error));
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
   
@@ -5945,8 +5876,7 @@ if  (FunctioName.startsWith("suspicion alert"))  {
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Suspicion Alert").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
-    message.channel.send({ embed })
-    .catch(error => ErrorBag.add(error));
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
   
@@ -6318,29 +6248,6 @@ if  (FunctioName.startsWith("spoiler lock "))  {
         const embed = {"description": TranslatedMessages[Language].replace("X001", "Spoiler Lock").replace("X002", "" + GivenMinutes),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
-    }
-     else
-    {
-      const embed = {"description": ErrorMessage9[Language],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-
-}
-  
-else
-      
-//Set Suspicion Alert
-if  (FunctioName.startsWith("suspicion alert "))  {
-
-    var BanAmount = CommandName.split("suspicion alert ")[1];
-
-    if  (isNaN(BanAmount) == false) {
-
-        peeky.serverData.set(keySF, Number(BanAmount), "suspicion_alert_bonus_setting");
-
-        const embed = {"description": TranslatedMessages[Language].replace("X001", "Suspicion Alert").replace("X002", "" + peeky.serverData.get(keySF, "suspicion_alert_bonus_setting") + " bans"),  "color": EmbedColor};
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      
     }
      else
     {
@@ -8632,7 +8539,7 @@ if  (CommandName == "akinator")  {
 
             function Generate(message)  {
 
-                message.channel.awaitMessages(response => response.author.id == message.author.id && Responses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 10000, errors: ['time'] })
+                message.channel.awaitMessages(response => response.author.id == message.author.id && Responses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 30000, errors: ['time'] })
                 .then(async collected => {
 
                     var Continue = false;
@@ -8652,7 +8559,7 @@ if  (CommandName == "akinator")  {
                         var ImageUrl = win.answers[WinIndex].absolute_picture_path;
                         var FooterText = WinResponses.join(", ");
                       
-                        message.channel.awaitMessages(response => response.author.id == message.author.id && WinResponses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 10000, errors: ['time'] })
+                        message.channel.awaitMessages(response => response.author.id == message.author.id && WinResponses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 30000, errors: ['time'] })
                         .then(collected => {
                           
                             var response = collected.first();
