@@ -64,6 +64,9 @@ const node_fetch = require('node-fetch');
 const https      = require('https');
 const aki        = require('aki-api');
 
+//Ambassador Program
+var AmbassadorInvites = null;
+
 //Variables
 var   EmbedColor            = 3093047  //3553599;
 const AutoDeleteTime        = 250;
@@ -1823,6 +1826,13 @@ peeky.on('ready', () => {
     //Functions
     JsonVars();
 
+    //Update Ambassador Program Invites
+    setTimeout(() => {
+        peeky.guilds.cache.get(SupportServer).fetchInvites().then(guildInvites => {
+            AmbassadorInvites = guildInvites;
+        });
+    }, 10000);
+
     //Update Banned Users
     setTimeout(() => {
         peeky.guilds.cache.get(SupportServer).members.fetch();
@@ -1914,9 +1924,12 @@ peeky.on('message', async (message) => {
     if  (!message.author.bot && !message.webhookID)  {
       
     peeky.userData.ensure(key , {
+      
+        //Database
         UserID: message.author.id,
         lastSeen: Date.now,
 
+        //Profile
         Background: 1,
         Description: function_RandomDescription(),
         Inventory: [1],
@@ -1935,14 +1948,21 @@ peeky.on('message', async (message) => {
         LastDailyChallenge: "",
         LastWeeklyChallenge: "",
 
+        //Playlist
         Playlist: [],
         PlaylistName: "Favorite Songs",
         PlaylistThumbnail: null,
       
+        //Badge Bonuses
         BadgeGredit: 0,
         BadgeExp: 0,
       
-        ParticipatedEvents: []
+        //Events
+        ParticipatedEvents: [],
+      
+        //Other
+        AmbassadorInvites: []
+
     });
 
     };
@@ -2221,8 +2241,6 @@ if  (peeky.serverData.has(keySF))  {
 });
 //END
 
-//FUNCTIONS
-
 //MEMBER JOINED EVENTS
 peeky.on('guildMemberAdd', async (member) => {
   
@@ -2231,12 +2249,34 @@ const keySF  = `${member.guild.id}`;
 var   Failed = false;
   
 if (member.user.id !== PeekyId && peeky.serverData.has(keySF)) {
+
+//AMBASSADOR PROGRAM
+if  (member.guild.id == SupportServer)  {
   
-const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
+    member.guild.fetchInvites().then(guildInvites => {
+  
+        const ei = AmbassadorInvites;
+        AmbassadorInvites = guildInvites;
+
+        const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+        const inviter = peeky.users.cache.get(invite.inviter.id);
+
+        if  (peeky.userData.has(inviter))  {
+
+            peeky.userData.math(inviter, "+", 1, "AmbassadorInvites");
+
+        };
+
+    });
+  
+};
+
   
 //Server Message
 if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user.bot)  {
       
+    const VerificationLevels  = [  "None", "Low", "Medium", "High", "Very High"  ];
+
     const embed = {"description": peeky.serverData.get(keySF, "server_message_bonus_setting").replace(GuildNameTag, function_RemoveFormatting(member.guild.name, "other", true)).replace(GuildSizeTag, member.guild.members.cache.filter(m => !m.user.bot).size).replace(GuildOwnerTag, member.guild.owner.user.tag).replace(GuildVerificationTag, VerificationLevels[member.guild.verificationLevel]).replace(GuildAcronymTag, member.guild.nameAcronym),  "footer":  {"text": "This message's content was set by the server's staff."},  "color": EmbedColor}; 
     function_DirectMessage(member.user.id, { embed });
 
