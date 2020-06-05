@@ -8638,7 +8638,7 @@ if  (CommandName == "akinator")  {
 
                     var Continue = false;
                     var response = collected.first();
-                    const nextInfo = await aki.step(Region, data.session, data.signature, Responses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()), Step);
+                    const nextInfo = await aki.step(Region, data.session, data.signature, Responses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()), Step, data.frontAddr);
 
                     Step = nextInfo.nextStep;
 
