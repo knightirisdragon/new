@@ -484,6 +484,10 @@
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground482.png?v=1587833479620", 850, "Unfolded adventure", "For The King", null, 1587833309001],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground483.png?v=1587833480477", 925, "Skeleton slaying", "Prince of Persia", null, 1587833311844],
     ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground484.png?v=1587833482191", 1000, "Stranded", "Death Stranding", null, 1587833317293],
-    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground485.png?v=1587833578766", 950, "Rush C", "VALORANT", null, 1587833560795]
+    ["https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground485.png?v=1587833578766", 950, "Rush C", "VALORANT", null, 1587833560795],
+    [NoBackground, 975, "The city of lost heaven", "Mafia Definitive Edition", undefined, 1591356286903],
+    [NoBackground, 975, "For vallhala", "Assassin's Creed Vallhala", undefined, 1591356291612],
+    [NoBackground, 925, "Rogue manhunt", "The Division 2", undefined, 1591356297472],
+    [NoBackground, 725, "The slayer", "Spectre", undefined, 1591356293886]
 
 ]

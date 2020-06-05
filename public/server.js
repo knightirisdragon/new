@@ -515,98 +515,12 @@ var Banners = require("./lists/backgrounds.json");
 const DefaultDescriptions = require("./lists/descriptions.json");
 const YoutubeSongs = require("./lists/songs.json");
 const TriviaQuestions = require("./lists/trivia.json");
+const RandomWords = require("./lists/randomwords.json");
 
-const RandomWords = [
-    "Life",
-    "Happiness",
-    "Goal",
-    "School",
-    "Board",
-    "Sun",
-    "Space",
-    "Videogame",
-    "Restaurant",
-    "Discord",
-    "Worker",
-    "Website",
-    "Face",
-    "Human",
-    "PEEKY",
-    "Smile",
-    "Dog",
-    "Cat",
-    "Creeper",
-    "Devil",
-    "Fridge",
-    "Rose",
-    "Car",
-    "Donuts",
-    "Golf",
-    "Deer",
-    "Storage",
-    "Spiderman",
-    "Parents",
-    "Sheep",
-    "Photographer",
-    "Bunny",
-    "Pikachu",
-    "Pokemon",
-    "Store",
-    "Dress",
-    "Grapes",
-    "Hero",
-    "Minecraft",
-    "Weapon",
-    "Sleep",
-    "Fruit",
-    "Flower",
-    "Lover",
-    "Number",
-    "Trophy",
-    "Friends",
-    "Doctor",
-    "Donkey",
-    "Shrek",
-    "JoJo",
-    "Bus",
-    "Rat",
-    "Fedora",
-    "Money",
-    "Gems",
-    "Cocktail",
-    "Dance",
-    "Inventory",
-    "Jazz"
-];
-
-const WeeklyChallenges = [
-  
-    ["perfect_hangman", "Professional Unhanger", "Win the Hangman minigame without any errors.", 5, "Chests"],
-    ["song_master", "Song Master", "Win the Guess the Song minigame by guessing a hard song.", 5000, "Exp"]
-  
-];
-
-const DailyChallenges = [
-  
-    ["open_background", "Hunt for Backgrounds", "Find a background by opening chests.", 1000, "Exp"],
-    ["donate_alot", "Generous Donation", "Gift someone 5,000 Gredit.", 750, "Exp"],
-    ["beat_akinator", "Eat that, Akinator", "Beat Akinator after 25 questions.", 1, "Chests"],
-    ["clean_hangman", "Life Saver", "Win the Hangman minigame.", 250, "Gredit"],
-    ["treasure_hunt", "Treasure Hunting", "Be the first one to claim a random treasure.", 393, "Background"],
-    ["buy_background", "Going Shopping", "Purchase a new background for your profile.", 500, "Exp"]
-  
-];
-
-//CODE STUFF
-
-function JsonVars()  {
-  
-  Banners[0][0] = DefaultBackground;
-  
-};
+const WeeklyChallenges = require("./challenges/weekly.json");
+const DailyChallenges = require("./challenges/daily.json");
 
 //WEBSITE STUFF
-
 async function WebsiteStuff()  {
 
     //API
@@ -1303,6 +1217,13 @@ function function_StreamAnnouncements(member, activity)  {
 
 };
 
+//JSON Variables
+function JsonVars()  {
+  
+  Banners[0][0] = DefaultBackground;
+  
+};
+
 //Create Server Data
 function function_ServerData(key)  {
   
@@ -1896,6 +1817,9 @@ peeky.on('ready', () => {
 
 	  console.log("PEEKY is now online.");
     peeky.user.setActivity('people type p!help', { type: 'WATCHING' }).catch(error => ErrorBag.add(error));
+  
+    //Functions
+    JsonVars();
 
     //Update Banned Users
     setTimeout(() => {
