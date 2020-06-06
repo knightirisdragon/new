@@ -4509,7 +4509,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
             Channel.messages.fetch({ limit: 1 }).then(async messages => {
 
             const Message = messages.array()[0];
-            const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
+            const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting").slice(0, 10);
 
             if  (Message && Message.id == peeky.serverData.get(keySF, "reaction_roles_bonus_id"))  {
 
@@ -6433,8 +6433,6 @@ if  (FunctioName.startsWith("banned words "))  {
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Banned Words").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "banned_words_bonus_setting"), Setting.BannedWordsLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-}
 
 }
   
@@ -6442,21 +6440,12 @@ else
  
 //Set Weekend Channels
 if  (FunctioName.startsWith("weekend channels "))  {
-  
-if  (peeky.serverData.get(keySF, "weekend_channels_bonus_setting").length < Setting.WeekendChannelsLimit)  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("weekend channels ")[1].toLowerCase(), "channel", true);
     peeky.serverData.get(keySF, "weekend_channels_bonus_setting").push(ReceivedArray);
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "weekend_channels_bonus_setting"), Setting.BannedWordsLimit, "**, **")),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "weekend_channels_bonus_setting"), Setting.WeekendChannelsLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-}
- else
-{
- const embed = {"description": TranslatedFullSetting[Language],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
   
@@ -6464,21 +6453,12 @@ else
  
 //Set Images Only
 if  (FunctioName.startsWith("images only "))  {
-  
-if  (peeky.serverData.get(keySF, "images_only_bonus_setting").length < Setting.ImagesOnlyLimit)  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("images only ")[1].toLowerCase(), "channel", true);
     peeky.serverData.get(keySF, "images_only_bonus_setting").push(ReceivedArray);
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "images_only_bonus_setting"), Setting.BannedWordsLimit, "**, **")),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "images_only_bonus_setting"), Setting.ImagesOnlyLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-}
- else
-{
- const embed = {"description": TranslatedFullSetting[Language],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
   
@@ -6486,21 +6466,12 @@ else
  
 //Set Reaction Roles
 if  (FunctioName.startsWith("reaction roles "))  {
-  
-if  (peeky.serverData.get(keySF, "reaction_roles_bonus_setting").length < Setting.ReactionRolesLimit)  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("reaction roles ")[1], "other", true);
     peeky.serverData.get(keySF, "reaction_roles_bonus_setting").push(ReceivedArray);
   
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Reaction Roles").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "reaction_roles_bonus_setting"), Setting.BannedWordsLimit, "**, **")),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Reaction Roles").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "reaction_roles_bonus_setting"), Setting.ReactionRolesLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-}
- else
-{
- const embed = {"description": TranslatedFullSetting[Language],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
   
@@ -6508,21 +6479,12 @@ else
  
 //Set Role Saver
 if  (FunctioName.startsWith("role saver "))  {
-  
-if  (peeky.serverData.get(keySF, "role_saver_bonus_setting").length < Setting.RoleSaverLimit)  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("role saver ")[1], "other", true);
     peeky.serverData.get(keySF, "role_saver_bonus_setting").push(ReceivedArray);
   
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Role Saver").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "role_saver_bonus_setting"), Setting.BannedWordsLimit, "**, **")),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Role Saver").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "role_saver_bonus_setting"), Setting.RoleSaverLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-}
- else
-{
- const embed = {"description": TranslatedFullSetting[Language],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
   
@@ -6530,21 +6492,12 @@ else
  
 //Set Game Roles
 if  (FunctioName.startsWith("game roles "))  {
-  
-if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < Setting.GameRolesLimit)  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("game roles ")[1], "other", true);
     peeky.serverData.get(keySF, "game_roles_bonus_setting").push(ReceivedArray);
   
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Game Roles").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "game_roles_bonus_setting"), Setting.BannedWordsLimit, "**, **")),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Game Roles").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "game_roles_bonus_setting"), Setting.GameRolesLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-  
-}
- else
-{
- const embed = {"description": TranslatedFullSetting[Language],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
  else
