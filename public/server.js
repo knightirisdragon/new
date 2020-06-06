@@ -57,6 +57,9 @@ http.createServer((req, res) => {
 	res.end();
 })
 
+//Ambassador Program
+var AmbassadorInvites = null;
+
 //Miscellaneous Packages
 const fs         = require('fs');
 const ms         = require('parse-ms');
@@ -1771,11 +1774,18 @@ peeky.on('ready', () => {
     //Functions
     JsonVars();
 
+    //Update Ambassador Program Invites
+    setTimeout(() => {
+        peeky.guilds.cache.get(SupportServer).fetchInvites().then(guildInvites => {
+            AmbassadorInvites = guildInvites;
+        });
+    }, 1000);
+
     //Update Banned Users
     setTimeout(() => {
         peeky.guilds.cache.get(SupportServer).members.fetch();
         function_UpdateBans();
-    }, 10000);
+    }, 1000);
   
     //Clear Queues
     var filtered = peeky.serverData.filter( p => p.GuildID && p.Queue && p.Queue.length > 0);
@@ -1951,6 +1961,9 @@ peeky.on('message', async (message) => {
 
         //Celebrator
     if  (peeky.userData.get(key, "CelebratorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:celebrator:624237582355529729> Celebrator", "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcelebrator.png?v=1568900372214"]);  };
+
+        //Ambassador
+    if  (peeky.userData.get(key, "AmbassadorBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:ambassador:718752996074192957> Ambassador", "https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fambassador.png?v=1591434442413"]);  };
 
         //Movie Nighter
     if  (peeky.userData.get(key, "MovieNighterBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:movienighter:557968105494675456> Movie Nighter", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmovienighter.png?1553099659112"]);  };
@@ -2183,6 +2196,52 @@ const keySF  = `${member.guild.id}`;
 var   Failed = false;
   
 if (member.user.id !== PeekyId && peeky.serverData.has(keySF)) {
+
+//AMBASSADOR PROGRAM
+if  (member.guild.id == SupportServer)  {
+  
+    member.guild.fetchInvites().then(guildInvites => {
+  
+        const ei = AmbassadorInvites;
+        AmbassadorInvites = guildInvites;
+
+        const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+        const inviter = peeky.users.cache.get(invite.inviter.id);
+
+        if  (peeky.userData.has(inviter) && !peeky.userData.get(inviter, "AmbassadorInvites").includes(member.user.id))  {
+
+            peeky.userData.set(inviter, peeky.userData.get(inviter, "AmbassadorInvites").push(member.user.id), "AmbassadorInvites");
+
+            //Participated
+            if  (!peeky.userData.get(inviter, "ParticipatedEvents").includes("Ambassador Program"))  {
+                peeky.userData.get(inviter, "ParticipatedEvents").push("Ambassador Program");
+            };
+            
+            //Invite Reward
+            peeky.userData.math(inviter, "+", 1, "Chests");
+          
+            //Ambassador Badge
+            if  (peeky.userData.get(inviter, "AmbassadorInvites").length == 1)  {
+                peeky.userData.set(inviter, true, "AmbassadorBadge");
+            } else
+            
+            if  (peeky.userData.get(inviter, "AmbassadorInvites").length == 5)  {
+                
+            } else
+          
+            if  (peeky.userData.get(inviter, "AmbassadorInvites").length == 10)  {
+                
+            } else
+          
+            if  (peeky.userData.get(inviter, "AmbassadorInvites").length == 25)  {
+                
+            };
+
+        };
+
+    });
+  
+};
   
 //Server Message
 if  (peeky.serverData.get(keySF, "server_message_bonus") == true && !member.user.bot)  {
