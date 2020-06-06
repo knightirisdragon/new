@@ -7,166 +7,148 @@
   <link rel="stylesheet" href="/style.css">
   <script src="/website.js" defer></script>
 
-</head>
-<head>
-
-  <title>PEEKY</title>
-  <link rel="icon" href="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2-1.png.png?1553621395208">
-
-  <meta property="og:title"       content="PEEKY" />
   <meta property="og:url"         content="https://peeky.glitch.me/" />
   <meta property="og:description" content="PEEKY is a free and reliable multipurpose bot with frequent updates and lots of unique features."/>
   <meta property="og:image"       content="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2.png?1553619432603"/>
-  <meta name="theme-color"        content="#7289DA">
-  <meta property="og:type"        content="website" />
   <meta name="keywords"           content="peeky,discord,bot,discordapp,utility,moderation,music,protection,auto-mod,customizable,website">
-  
-  document.getElementsByTagName('meta')["image"].content = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2.png?1553619432603";
-  document.getElementsByTagName('meta')["description"].content = "PEEKY is a free and reliable multipurpose bot with frequent updates and lots of unique features.";
-  document.getElementsByTagName('meta')["url"].content = "https://peeky.glitch.me/";
+  <meta property="og:type"        content="website" />
+  <meta name="theme-color"        content="#7289DA">
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=1024">
+</head>
 
-  <link rel="stylesheet" href="/style.css">
-  <script src="/website.js" defer></script>
+<style>  
 
-  <style>  
+.newsitem  {
+  background-color: rgba(35, 39, 42, 0.5);
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+  width: 300px;
+  height: 300px;
+  flex-shrink: 0;
+  padding: 15px;
+  margin: 5px;
+  text-align: left;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform .25s ease;
+}
 
-  .newsitem  {
-    background-color: rgba(35, 39, 42, 0.5);
-    background-position: center;
-    background-size: cover;
-    border-radius: 10px;
-    width: 300px;
-    height: 300px;
-    flex-shrink: 0;
-    padding: 15px;
-    margin: 5px;
-    text-align: left;
-    text-decoration: none;
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    transition: transform .25s ease;
-  }
+.newsitem:hover  {
+  transform: scale(0.95);
+}
 
-  .newsitem:hover  {
-    transform: scale(0.95);
-  }
+.newsauthor  {
+  width: 100%;
+  padding-bottom: 25px;
+  font-size: 10px;
 
-  .newsauthor  {
-    width: 100%;
-    padding-bottom: 25px;
-    font-size: 10px;
+  display: inline-block;
+}
 
-    display: inline-block;
-  }
+.newsheader  {
+  width: 225px;
+  font-size: 14px;
 
-  .newsheader  {
-    width: 225px;
-    font-size: 14px;
+  display: inline-block;
+}
 
-    display: inline-block;
-  }
+.newsbody  {
+  font-size: 12px;
+  display: inline-block;
+}
 
-  .newsbody  {
-    font-size: 12px;
-    display: inline-block;
-  }
+.textbackground  {
+  height: 100%;
+}
 
-  .textbackground  {
-    height: 100%;
-  }
+.textbackground  .button  {
+  background-color: transparent;
+  border: 0px solid transparent;
+  padding: 0px;
+  bottom: 20px;
+  right: 20px;
+  position: absolute;
+  transform: scale(1);
+}
 
-  .textbackground  .button  {
-    background-color: transparent;
-    border: 0px solid transparent;
-    padding: 0px;
-    bottom: 20px;
-    right: 20px;
-    position: absolute;
-    transform: scale(1);
-  }
+.textbackground  .button:hover  {
+  border: 0px solid transparent;
+}
 
-  .textbackground  .button:hover  {
-    border: 0px solid transparent;
-  }
+#Reviews  {
+  background-color: rgba(35, 39, 42, 0.25);
+  border-radius: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 15px;
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform .25s ease;
+}
 
-  #Reviews  {
-    background-color: rgba(35, 39, 42, 0.25);
-    border-radius: 10px;
-    width: 100%;
-    text-align: left;
-    padding: 15px;
-    position: relative;
-    text-decoration: none;
-    display: inline-block;
-    transition: transform .25s ease;
-  }
+.stafficon  {
+  background-color: rgba(35, 39, 42, 1);
+  border-radius: 10px;
+  margin: 5px;
+  display: inline-block;
+}
 
-  .stafficon  {
-    background-color: rgba(35, 39, 42, 1);
-    border-radius: 10px;
-    margin: 5px;
-    display: inline-block;
-  }
+.featuredprofile  {
+  border-radius: 2px;
+  transition: transform .25s ease;
+}
 
-  .featuredprofile  {
-    border-radius: 2px;
-    transition: transform .25s ease;
-  }
+.featuredprofile:hover  {
+  transform: scale(0.99);
+}
 
-  .featuredprofile:hover  {
-    transform: scale(0.99);
-  }
+#InvBtn, 
+#InvBtn2 ,
+#InvBtn3,
+#InvBtn4,
+#InvBtn5  {
+  width: 100%;      
+}
 
-  #InvBtn, 
-  #InvBtn2 ,
-  #InvBtn3,
-  #InvBtn4,
-  #InvBtn5  {
-    width: 100%;      
-  }
+.botstats  {
+  padding: 10px;
+  display: inline-block;
+  background-color: transparent;
+  cursor: pointer;
+}
 
-  .botstats  {
-    padding: 10px;
-    display: inline-block;
-    background-color: transparent;
-    cursor: pointer;
-  }
+.botdiv  {
+  background-color: rgba(35, 39, 42, 0);
+  padding: 15px;
+  display: inline-block;    
+}
 
-  .botdiv  {
-    background-color: rgba(35, 39, 42, 0);
-    padding: 15px;
-    display: inline-block;    
-  }
+.botdesc  {
+  width: 100%;
+  display: inline-block;    
+}
 
-  .botdesc  {
-    width: 100%;
-    display: inline-block;    
-  }
+.fullsize  {
+  background-color: rgba(35, 39, 42, 0.25);
+}
 
-  .fullsize  {
-    background-color: rgba(35, 39, 42, 0.25);
-  }
+.summaryhome {
+  margin-left: 5px;
+  margin-right: 5px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
 
-  .summaryhome {
-    margin-left: 5px;
-    margin-right: 5px;
-    position: relative;
-    display: inline-block;
-    text-align: center;
-  }
+.container:hover .summaryhome {
+  filter: blur(0px);
+}
 
-  .container:hover .summaryhome {
-    filter: blur(0px);
-  }
-
-  </style>
-
-</head> 
+</style>
   
 <body onload="UpdateWebsiteStuff([['stats.txt','ServerCount'],['botdescription.txt','BotDescription'],['randomreview.txt','Reviews'],['news.txt','News'],['staff.txt','StaffList'],['featured_profile.txt','FeaturedProfile'],['messageheader.txt','MessageHeader'],['supportedlanguages.txt','SupportedLanguages']]);" class="imagebackground">
 <b>

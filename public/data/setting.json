@@ -2,7 +2,7 @@
   "Description": "PEEKY is a free and reliable multipurpose bot with frequent updates and lots of unique features.",
   "ShortDescription": "PEEKY is a free and reliable multipurpose bot.",
   "Summary": "Multiple Languages, Functions, Economy System, Music Player, Moderation Commands, Minigames and more!",
-  "Message": "Try out the Ambassador Program by clicking <a href='ambassador.html' rel='noopener noreferrer'><font color='#7289DA'>here</font></a>!",
+  "Message": "",
   
   "DefaultPrefix": "p!",
   "MaxServers": 1000,
