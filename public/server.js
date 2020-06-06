@@ -1511,6 +1511,17 @@ function function_ProperSlice(text, amount)  {
   
 };
 
+//Array Items
+function function_ArrayItems(array, limit, joiner)  {
+  
+    if  (!limit)  {
+        var limit = 10;
+    };
+  
+    if  (array.length < 1)  {  array = "None";  }  else  {  array = array.join(joiner);  };
+  
+};
+
 //Random Description
 function function_RandomDescription()  {
     return DefaultDescriptions[Math.floor(Math.random()*DefaultDescriptions.length)];
@@ -1540,7 +1551,7 @@ function function_GetBackground(key)  {
   
 };
 
-//Get Background
+//Get Background Info
 function function_GetBackgroundInfo(ID, args)  {
 
     for (var i = 0; i < Banners.length; i++)  {
