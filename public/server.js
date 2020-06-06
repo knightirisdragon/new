@@ -8582,7 +8582,7 @@ if  (CommandName == "akinator")  {
 
             function Generate(message)  {
 
-                message.channel.awaitMessages(response => response.author.id == message.author.id && Responses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 30000, errors: ['time'] })
+                message.channel.awaitMessages(response => response.author.id == message.author.id && Responses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 10000, errors: ['time'] })
                 .then(async collected => {
 
                     var Continue = false;
@@ -8602,7 +8602,7 @@ if  (CommandName == "akinator")  {
                         var ImageUrl = win.answers[WinIndex].absolute_picture_path;
                         var FooterText = WinResponses.join(", ");
                       
-                        message.channel.awaitMessages(response => response.author.id == message.author.id && WinResponses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 30000, errors: ['time'] })
+                        message.channel.awaitMessages(response => response.author.id == message.author.id && WinResponses.map(v => v.toLowerCase()).indexOf(response.content.toLowerCase()) >= 0, { max: 1, time: 10000, errors: ['time'] })
                         .then(collected => {
                           
                             var response = collected.first();
