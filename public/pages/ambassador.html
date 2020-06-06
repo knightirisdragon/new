@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+  <title>PEEKY</title>
+  <link rel="icon" href="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2-1.png.png?1553621395208">
+
+  <meta name="theme-color" content="#7289DA">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=1024">
+
+  <link rel="stylesheet" href="/style.css">
+  <script src="/website.js" defer></script>
+
+</head>
+  
+<script>
+      
+function ToggleCategory(id) {
+
+    var x = document.getElementsByClassName("inlinediv");
+    for (var i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+
+    var Element = document.getElementById(id);
+
+    if  (Element)  {  
+        Element.style.display = "flex";
+    };
+
+};
+  
+function ShowHighlighted(hash)  {
+    var id = hash.replace("#", "");
+    if  (hash && document.getElementById(id))  {
+        ToggleCategory(id);
+    };        
+};
+</script>
+  
+<body onload="ShowHighlighted(location.hash);" class="imagebackground">
+<b>
+  
+<a class="homebutton" href="https://peeky.glitch.me" rel="noopener noreferrer"> <img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fhome.png?v=1573247289278"> </a>
+
+<div class="fullsize">
+  
+<font size="7" class="headertext">Ambassador Program</font>
+<font size="4" class="headersub">Get rewarded for telling your friends about PEEKY!</font>
+
+<br><br><br>
+      
+<a class="item_header" onclick="ToggleCategory('starting');"><font size="5" >Setting up PEEKY in your server</font></a> <br>
+<div class="inlinediv" id="starting">
+
+    <div class="tutorial_item">
+
+    So you're interested in implementing PEEKY to your Discord server? Awesome!
+    <br>
+    <br>
+    The first thing you wanna do is to add PEEKY to your server with all the wanted permissions, so that you minimize the amount of problems that you and the bot that would come later on.
+    <br>
+    You can invite PEEKY by clicking <a href="invite.html" rel="noopener noreferrer" class="highlighted">here</a>, then you just select an arbitrary server from the list and PEEKY will be there in no time!
+    <br>
+    <br>
+    Now that PEEKY is in your server, there's alot of stuff that he can do, but right now we'll just focus on functions.
+    <br>
+    Functions are something that PEEKY uses to enhance your server, stuff like Welcome Messages and even Role savers.
+    <br>
+    You can find the list of all the available functions in the <a href="functions.html" rel="noopener noreferrer" class="highlighted">Functions page</a>.
+    <br>
+    <br>
+    After you find a function that you'd like PEEKY to use, simply use the Toggle and Set commands.
+    <br>
+    The Toggle command switches a function's state between enabled and disabled, but the Set command will change the function's setting.
+    <br>
+    For example, with the Welcome Messages function, we can use the Set command to change the channel that the function will send messages to, and then enable the function with the Toggle command.
+    <br>
+    <br>
+    If you wanna see all the enabled functions and their settings, you can use the Overview command.
+    <br>
+    List of all the commands can be found in the <a href="functions.html" rel="noopener noreferrer" class="highlighted">Commands page</a>.
+    <br>
+    <br>
+    Any further questions? Come and join the Support Server or checkout the server template!
+      
+    </div>
+
+</div>
+  
+<img src="https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fambassador_program.png?v=1591445422163">
+  
+</div>
+    
+</b>
+</body>
+</html>

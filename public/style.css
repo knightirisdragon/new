@@ -199,6 +199,11 @@ a.button:hover {
     display: inline-block;
 }
 
+.tutorial_item  {
+    text-align: left;
+    padding: 10px;
+}
+
 .displayitem  {
     background-size: 100% 100%;
     background-repeat: no-repeat;
