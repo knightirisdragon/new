@@ -2215,24 +2215,23 @@ if  (member.guild.id == SupportServer)  {
         const key2 = invite.inviter.id;
 
         if  (invitermember && !peeky.userData.get(key2, "AmbassadorInvites").includes(member.user.id))  {
+            
+            var invites = peeky.userData.get(key2, "AmbassadorInvites");
 
             peeky.userData.get(key2, "AmbassadorInvites").push(member.user.id);
           
             //Receiver Rewards
-          
-            //Receiver Badge
-            if  (peeky.userData.has(key) && !peeky.userData.get(key, "ReceiverBadge"))  {
-                peeky.userData.set(key, true, "ReceiverBadge");
+            if  (!["CUKraBe", "j4kArRh"].includes(invite.code) && peeky.userData.has(key) )  {
+
+                if  (!peeky.userData.get(key, "ReceiverBadge"))  {
+                    peeky.userData.set(key, true, "ReceiverBadge");
+                };
+              
             };
 
             //Inviter Rewards
-            
-            //Variables
-            var invites = peeky.userData.get(key2, "AmbassadorInvites");
-
             peeky.userData.math(key2, "+", 1, "Chests");
-          
-            //Ambassador Badge
+
             if  (invites.length == 1)  {
                 peeky.userData.set(key2, true, "AmbassadorBadge");
             } else

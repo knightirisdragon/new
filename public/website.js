@@ -26,7 +26,7 @@ if  (window.location.href == "https://peeky.glitch.me/")  {
     document.title = "PEEKY the Discord bot";
     //Home = true
 } else {
-  document.title = "PEEKY: " + function_FixCapitalization(window.location.href.replace("https://peeky.glitch.me/", "").replace("pages/", "").replace(".html", "")).replace(/[_]/g, ' ');
+  document.title = "PEEKY – " + function_FixCapitalization(window.location.href.replace("https://peeky.glitch.me/", "").replace("pages/", "").replace(".html", "")).replace(/[_]/g, ' ');
 };
 
 //Favicon
