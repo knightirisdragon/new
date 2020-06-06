@@ -2207,29 +2207,31 @@ if  (member.guild.id == SupportServer)  {
 
         const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
         const inviter = peeky.users.cache.get(invite.inviter.id);
-        const invitermember = peeky.guilds.cache.members.find(m => m.id == inviter);
+        const invitermember = peeky.guilds.cache.get(SupportServer).members.cache.find(m => m.user.id == inviter);
+      
+        const key2 = invite.inviter.id;
 
-        if  (invitermember && peeky.userData.has(inviter) && !peeky.userData.get(inviter, "AmbassadorInvites").includes(member.user.id))  {
+        if  (invitermember && !peeky.userData.get(key2, "AmbassadorInvites").includes(member.user.id))  {
 
-            peeky.userData.set(inviter, peeky.userData.get(inviter, "AmbassadorInvites").push(member.user.id), "AmbassadorInvites");
+            peeky.userData.set(key2, peeky.userData.get(key2, "AmbassadorInvites").push(member.user.id), "AmbassadorInvites");
           
-            var invites = peeky.userData.get(inviter, "AmbassadorInvites");
+            var invites = peeky.userData.get(key2, "AmbassadorInvites");
 
             //Participated
-            if  (!peeky.userData.get(inviter, "ParticipatedEvents").includes("Ambassador Program"))  {
-                peeky.userData.get(inviter, "ParticipatedEvents").push("Ambassador Program");
+            if  (!peeky.userData.get(key2, "ParticipatedEvents").includes("Ambassador Program"))  {
+                peeky.userData.get(key2, "ParticipatedEvents").push("Ambassador Program");
             };
             
             //Invite Reward
-            peeky.userData.math(inviter, "+", 1, "Chests");
+            peeky.userData.math(key2, "+", 1, "Chests");
           
             //Ambassador Badge
             if  (invites.length == 1)  {
-                peeky.userData.set(inviter, true, "AmbassadorBadge");
+                peeky.userData.set(key2, true, "AmbassadorBadge");
             } else
             
             if  (invites.length == 5)  {
-                peeky.userData.get(key, "Inventory").push(490);
+                peeky.userData.get(key2, "Inventory").push(490);
             } else
           
             if  (invites.length == 10)  {
@@ -2241,7 +2243,7 @@ if  (member.guild.id == SupportServer)  {
             };
           
             const embed = {"description": "**Ambassador Program**" + "\n" + "Someone has used your invite link!",  "color": EmbedColor}; 
-            function_DirectMessage(member.user.id, { embed });
+            function_DirectMessage(key2, { embed });
 
         };
 
