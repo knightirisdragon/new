@@ -17,32 +17,7 @@
 
 </head>
   
-<script>
-      
-function ToggleCategory(id) {
-
-    var x = document.getElementsByClassName("inlinediv");
-    for (var i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-    }
-
-    var Element = document.getElementById(id);
-
-    if  (Element)  {  
-        Element.style.display = "flex";
-    };
-
-};
-  
-function ShowHighlighted(hash)  {
-    var id = hash.replace("#", "");
-    if  (hash && document.getElementById(id))  {
-        ToggleCategory(id);
-    };        
-};
-</script>
-  
-<body onload="ShowHighlighted(location.hash);" class="imagebackground">
+<body class="imagebackground">
 <b>
   
 <a class="homebutton" href="https://peeky.glitch.me" rel="noopener noreferrer"> <img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fhome.png?v=1573247289278"> </a>
@@ -52,21 +27,16 @@ function ShowHighlighted(hash)  {
 <font size="7" class="headertext">Ambassador Program</font>
 <font size="4" class="headersub">Get rewarded for telling your friends about PEEKY!</font>
 
-<br><br><br>
-      
-<a class="item_header" onclick="ToggleCategory('starting');"><font size="5" >About the Ambassador Program</font></a> <br>
-<div class="inlinediv" id="starting">
+<br><br>
 
-    <div class="tutorial_item">
+<div class="fullsize">
 
-    The Ambassador Program is a way for you to get rewarded just for telling your friends about PEEKY!
-    <br>
-    <br>
-    If you
-    <br>
-    It was started after getting 100% approval in a community poll.
-      
-    </div>
+The Ambassador Program is a way for you to get rewarded just for telling your friends about PEEKY!
+<br>
+<br>
+The way it works is that you create your very own invite link in the <b class="highlighted">#home</b> channel of the Support Server and sending it to your friends.
+<br>
+After your friend joins the server using your invite link, you should get a message from the bot saying that it worked!
 
 </div>
   
