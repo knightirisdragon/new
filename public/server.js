@@ -1518,7 +1518,18 @@ function function_ArrayItems(array, limit, joiner)  {
         var limit = 10;
     };
   
-    if  (array.length < 1)  {  array = "None";  }  else  {  array = array.join(joiner);  };
+    if  (array.length < 1)  {
+        array = "None";
+    } else {
+      
+      if  (array.length > limit)  {
+          array.push(" and more...");
+          array = array.join(joiner);
+      } else {
+        array = array.join(joiner);
+      };
+
+    };
   
     return array;
   
