@@ -4520,7 +4520,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
             Channel.messages.fetch({ limit: 1 }).then(async messages => {
 
             const Message = messages.array()[0];
-            const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting").slice(0, 10);
+            const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting").slice(0, Setting.ReactionRolesLimit);
 
             if  (Message && Message.id == peeky.serverData.get(keySF, "reaction_roles_bonus_id"))  {
 
