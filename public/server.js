@@ -4787,8 +4787,8 @@ if (CommandName == "help")  {
     const embed = {  "description": 
                      "**Website** [[Open]](https://peeky.glitch.me/)\n" + WebsiteInfo[Language] +
                      "\n\n**Store** [[Open]](https://peeky.glitch.me/pages/store/) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\n" + StoreInfo[Language] +
-                     "\n\n**Support Server** [[Join]](https://peeky.glitch.me/pages/server/)\n" + SupportServerInfo[Language] +
-                     "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/pages/invite/)\n" + BotInvite[Language],
+                     "\n\n**Support Server** [[Join]](https://peeky.glitch.me/pages/support_server/)\n" + SupportServerInfo[Language] +
+                     "\n\n**Add Bot** [[Add]](https://peeky.glitch.me/pages/invite/)\n" + BotInvite[Language],
                      "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
                      "color": 7506394 
     };
