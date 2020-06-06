@@ -2207,10 +2207,13 @@ if  (member.guild.id == SupportServer)  {
 
         const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
         const inviter = peeky.users.cache.get(invite.inviter.id);
+        const invitermember = peeky.guilds.cache.members.find(m => m.id == inviter);
 
-        if  (peeky.userData.has(inviter) && !peeky.userData.get(inviter, "AmbassadorInvites").includes(member.user.id))  {
+        if  (invitermember && peeky.userData.has(inviter) && !peeky.userData.get(inviter, "AmbassadorInvites").includes(member.user.id))  {
 
             peeky.userData.set(inviter, peeky.userData.get(inviter, "AmbassadorInvites").push(member.user.id), "AmbassadorInvites");
+          
+            var invites = peeky.userData.get(inviter, "AmbassadorInvites");
 
             //Participated
             if  (!peeky.userData.get(inviter, "ParticipatedEvents").includes("Ambassador Program"))  {
@@ -2221,21 +2224,24 @@ if  (member.guild.id == SupportServer)  {
             peeky.userData.math(inviter, "+", 1, "Chests");
           
             //Ambassador Badge
-            if  (peeky.userData.get(inviter, "AmbassadorInvites").length == 1)  {
+            if  (invites.length == 1)  {
                 peeky.userData.set(inviter, true, "AmbassadorBadge");
             } else
             
-            if  (peeky.userData.get(inviter, "AmbassadorInvites").length == 5)  {
-                
+            if  (invites.length == 5)  {
+                peeky.userData.get(key, "Inventory").push(490);
             } else
           
-            if  (peeky.userData.get(inviter, "AmbassadorInvites").length == 10)  {
-                
+            if  (invites.length == 10)  {
+                invitermember.roles.add(ServerUpgradeRole).catch(error => ErrorBag.add(error));
             } else
           
-            if  (peeky.userData.get(inviter, "AmbassadorInvites").length == 25)  {
-                
+            if  (invites.length == 25)  {
+                invitermember.roles.add(PremiumRole).catch(error => ErrorBag.add(error));
             };
+          
+            const embed = {"description": "**Ambassador Program**" + "\n" + "Someone has used your invite link!",  "color": EmbedColor}; 
+            function_DirectMessage(member.user.id, { embed });
 
         };
 
