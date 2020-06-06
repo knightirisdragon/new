@@ -2643,7 +2643,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Boost", "serverboost", "For boosting the Support Server you receive a few [cool little bonuses](https://peeky.glitch.me/pages/store.html#serverupgrade) and help us stay boosted!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
+                TransactionInfo = ["Server Boost", "serverboost", "For boosting the Support Server you receive a few [cool little bonuses](https://peeky.glitch.me/pages/store/#serverupgrade) and help us stay boosted!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
                 //"Your reward expires once you stop boosting."
 
             };
@@ -2659,7 +2659,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Premium", "premium", "You can now enjoy all of the exciting [Premium features](https://peeky.glitch.me/pages/store.html#serverupgrade) that PEEKY has to offer!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
+                TransactionInfo = ["Premium", "premium", "You can now enjoy all of the exciting [Premium features](https://peeky.glitch.me/pages/store/#serverupgrade) that PEEKY has to offer!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
 
                 peeky.userData.set(key, Date.now(), "SupporterLastPurchase");
               
@@ -2676,7 +2676,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Upgrade", "serverupgrade", "You are now able to upgrade a server of your choice and unlock a bunch of [neat stuff](https://peeky.glitch.me/pages/store.html#serverupgrade) for it!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverupgrade.png?v=1585078211679"];
+                TransactionInfo = ["Server Upgrade", "serverupgrade", "You are now able to upgrade a server of your choice and unlock a bunch of [neat stuff](https://peeky.glitch.me/pages/store/#serverupgrade) for it!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverupgrade.png?v=1585078211679"];
 
             };
 
@@ -2691,7 +2691,7 @@ if  (keySF == SupportServer)  {
 
             const embed = {
                 "description": /*"­\n" + */ "**Thank you for the purchase of " + TransactionInfo[0] + "!**" + "\n" +
-                  TransactionInfo[2] /*+ " " + "You can view all the rewards by clicking [here](https://peeky.glitch.me/pages/store.html#" + TransactionInfo[1] + ")."*/,
+                  TransactionInfo[2] /*+ " " + "You can view all the rewards by clicking [here](https://peeky.glitch.me/pages/store/#" + TransactionInfo[1] + ")."*/,
                 "thumbnail": { "url": TransactionInfo[3] },
                 "color": EmbedColor
             };
@@ -3827,18 +3827,18 @@ if  (!AutoManagementCooldown.has("limitedroles"))  {
     await peeky.guilds.cache.get(SupportServer).members.cache.filter(m => !m.user.bot && m.roles.cache.has(PremiumRole)).forEach(m => {
 
         var ExpirationMs = MonthMs;
-        /*if  (peeky.userData.get(m.user.id, "PremiumLength") == "Lifetime")  {
+        if  (peeky.userData.get(m.user.id, "PremiumLength") == "Lifetime")  {
             var ExpirationMs = "infinite";
         } else if  (peeky.userData.get(m.user.id, "PremiumLength") == "Year")  {
           var ExpirationMs = YearMs;
         } else  {
           var ExpirationMs = MonthMs;
-        };*/
+        };
 
         if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= ExpirationMs))  {
             m.roles.remove(PremiumRole).catch(error => ErrorBag.add(error));
 
-            const embed = {"description": InfoIcon + " Your Premium has just expired, but you can renew it by going to the [store](https://peeky.glitch.me/pages/store.html#premium)!",  "color": EmbedColor}; 
+            const embed = {"description": InfoIcon + " Your Premium has just expired, but you can renew it by going to the [store](https://peeky.glitch.me/pages/store/#premium)!",  "color": EmbedColor}; 
             m.send({ embed }).catch(error => ErrorBag.add(error));
         };
       
@@ -4786,9 +4786,9 @@ if (CommandName == "help")  {
   
     const embed = {  "description": 
                      "**Website** [[Open]](https://peeky.glitch.me/)\n" + WebsiteInfo[Language] +
-                     "\n\n**Store** [[Open]](https://peeky.glitch.me/pages/store.html) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\n" + StoreInfo[Language] +
-                     "\n\n**Support Server** [[Join]](https://peeky.glitch.me/pages/server.html)\n" + SupportServerInfo[Language] +
-                     "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/pages/invite.html)\n" + BotInvite[Language],
+                     "\n\n**Store** [[Open]](https://peeky.glitch.me/pages/store/) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\n" + StoreInfo[Language] +
+                     "\n\n**Support Server** [[Join]](https://peeky.glitch.me/pages/server/)\n" + SupportServerInfo[Language] +
+                     "\n\n**Bot Invite** [[Add]](https://peeky.glitch.me/pages/invite/)\n" + BotInvite[Language],
                      "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
                      "color": 7506394 
     };
@@ -4800,28 +4800,28 @@ if (CommandName == "help")  {
 //Challenges
 if (CommandName == "challenges")  {
   
-    message.channel.send("https://peeky.glitch.me/pages/challenges.html").catch(error => ErrorBag.add(error));
+    message.channel.send("https://peeky.glitch.me/pages/challenges/").catch(error => ErrorBag.add(error));
   
 };
 
 //Backgrounds
 if (CommandName == "backgrounds")  {
   
-    message.channel.send("https://peeky.glitch.me/pages/backgrounds.html").catch(error => ErrorBag.add(error));
+    message.channel.send("https://peeky.glitch.me/pages/backgrounds/").catch(error => ErrorBag.add(error));
   
 };
 
 //Leaderboard
 if (CommandName == "leaderboard")  {
   
-    message.channel.send("https://peeky.glitch.me/pages/leaderboard.html").catch(error => ErrorBag.add(error));
+    message.channel.send("https://peeky.glitch.me/pages/leaderboard/").catch(error => ErrorBag.add(error));
   
 };
 
 //Store
 if (CommandName == "store")  {
   
-    message.channel.send("https://peeky.glitch.me/pages/store.html").catch(error => ErrorBag.add(error));
+    message.channel.send("https://peeky.glitch.me/pages/store/").catch(error => ErrorBag.add(error));
   
 };
 
@@ -7633,7 +7633,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                 await message.channel.send("", attachment).catch(error => ErrorBag.add(error)).then(async m => {
 
                 if  (!peeky.userData.get(key2, "FashionBadge") && !peeky.userData.get(key2, "PainterBadge"))  {
-                    InfoMessages.push(InfoIcon + " Check out this [tutorial](https://peeky.glitch.me/pages/tutorials.html#backgrounds) for help with buying a background.");
+                    InfoMessages.push(InfoIcon + " Check out this [tutorial](https://peeky.glitch.me/pages/tutorials/#backgrounds) for help with buying a background.");
                 };
 
                 if  (!WebsiteCooldowns.has("featuredprofile") && peeky.guilds.cache.get(SupportServer).members.cache.has(SomeoneTagged.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(SomeoneTagged.id).roles.cache.has(PremiumRole))  {
@@ -7641,7 +7641,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                     WebsiteCooldowns.add("featuredprofile");
                     setTimeout(() => {WebsiteCooldowns.delete("featuredprofile")}, 1800000);   
 
-                    fs.writeFile('public/featured_profile.txt', "<center>  <a href='https://peeky.glitch.me/pages/store.html#premium'><img src='" + m.attachments.array()[0].url + "' class='featuredprofile'></a>  </center>", (err) => {
+                    fs.writeFile('public/featured_profile.txt', "<center>  <a href='https://peeky.glitch.me/pages/store/#premium'><img src='" + m.attachments.array()[0].url + "' class='featuredprofile'></a>  </center>", (err) => {
                         if (err) console.log(err); 
                     });
 
