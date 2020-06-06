@@ -12,7 +12,9 @@ function UpdateWebsiteStuff(data)  {
 };
 
 //Fix Capitalization
-function function_FixCapitalization(text)  {
+function FixTitle(text)  {
+  
+    text = text.replace("https://peeky.glitch.me/pages/", "");
   
     var index = 0;
     var Array = [];
@@ -22,9 +24,7 @@ function function_FixCapitalization(text)  {
       
         w = w.replace("/", "").replace("peeky", "PEEKY");
       
-        console.log(w)
-      
-        if  (w.toUpperCase !== w && (w.length > 3 || index == 0))  {
+        if  (w.toUpperCase() !== w && (w.length > 3 || index == 0))  {
           
             Array.push(w.slice(0, 1).toUpperCase() + w.slice(1, w.length).toLowerCase());
           
@@ -40,13 +40,11 @@ function function_FixCapitalization(text)  {
       
 };
 
-//Head HTML
-
 //Title
 if  (window.location.href == "https://peeky.glitch.me/")  {
     document.title = "PEEKY the Discord bot";
 } else {
-  document.title = "PEEKY – " + function_FixCapitalization(window.location.href.replace("https://peeky.glitch.me/pages/", ""));
+  document.title = "PEEKY – " + FixTitle(window.location.href);
 };
 
 //Favicon
