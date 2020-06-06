@@ -19,10 +19,12 @@ function function_FixCapitalization(text)  {
 };
 
 //Head HTML
+ //var Home = false;
 
 //Title
 if  (window.location.href == "https://peeky.glitch.me/")  {
     document.title = "PEEKY the Discord bot";
+    //Home = true
 } else {
   document.title = "PEEKY: " + function_FixCapitalization(window.location.href.replace("https://peeky.glitch.me/", "").replace("pages/", "").replace(".html", "")).replace(/[_]/g, ' ');
 };
@@ -35,3 +37,8 @@ if  (window.location.href == "https://peeky.glitch.me/")  {
     link.href = 'https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2-1.png.png?1553621395208';
     document.getElementsByTagName('head')[0].appendChild(link);
 })();
+
+//Home Button
+/*  (Home == false)  {
+    document.write('<a class="homebutton" href="https://peeky.glitch.me" rel="noopener noreferrer"> <img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fhome.png?v=1573247289278"> </a>');
+};*/
