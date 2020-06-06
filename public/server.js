@@ -1985,6 +1985,9 @@ peeky.on('message', async (message) => {
       
         //Poller
     if  (peeky.userData.get(key, "PollerBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:poller:570845554758778880> Poller", "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpoller.png?1556170526097"]);  };
+
+        //Receiver
+    if  (peeky.userData.get(key, "ReceiverBadge") == true)  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:receiver:718833433467551774> Receiver", "https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fambassador.png?v=1591434442413"]);  };
       
         //Voter
     if  (peeky.userData.get(key, "VoterBadge") == true)  {  BadgeGreditAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:voter:551429736463859762> Voter", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fvoter.png?1551541314431"]);  };
@@ -2224,6 +2227,11 @@ if  (member.guild.id == SupportServer)  {
             
             //Invite Reward
             peeky.userData.math(key2, "+", 1, "Chests");
+          
+            //Ambassador Badge
+            if  (invites.length == 1)  {
+                peeky.userData.set(key2, true, "AmbassadorBadge");
+            } else
           
             //Ambassador Badge
             if  (invites.length == 1)  {
