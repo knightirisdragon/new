@@ -21,7 +21,11 @@ function function_FixCapitalization(text)  {
 //Head HTML
 
 //Title
-document.title = "PEEKY" + function_FixCapitalization(window.location.href.replace("https://peeky.glitch.me/pages/", "").replace(".html", ""));
+if  (window.location.href == "https://peeky.glitch.me/")  {
+    document.title = "PEEKY the Discord bot";
+} else {
+  document.title = "PEEKY: " + function_FixCapitalization(window.location.href.replace("https://peeky.glitch.me/", "").replace("pages/", "").replace(".html", ""));
+};
 
 //Favicon
 (function() {
