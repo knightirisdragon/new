@@ -2213,7 +2213,7 @@ if  (member.guild.id == SupportServer)  {
 
         if  (invitermember && !peeky.userData.get(key2, "AmbassadorInvites").includes(member.user.id))  {
 
-            peeky.userData.set(key2, peeky.userData.get(key2, "AmbassadorInvites").push(member.user.id), "AmbassadorInvites");
+            peeky.userData.get(key2, "AmbassadorInvites").push(member.user.id);
           
             var invites = peeky.userData.get(key2, "AmbassadorInvites");
 
@@ -2242,7 +2242,7 @@ if  (member.guild.id == SupportServer)  {
                 invitermember.roles.add(PremiumRole).catch(error => ErrorBag.add(error));
             };
           
-            const embed = {"description": "**Ambassador Program**" + "\n" + "Someone has used your invite link!",  "color": EmbedColor}; 
+            const embed = {"description": "**Ambassador Program**" + "\n" + "Someone has used your invite link to join the Support Server!",  "color": EmbedColor}; 
             function_DirectMessage(key2, { embed });
 
         };
