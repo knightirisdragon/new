@@ -14,18 +14,25 @@ function UpdateWebsiteStuff(data)  {
 //Fix Capitalization
 function function_FixCapitalization(text)  {
   
+    var index = 0;
     var Array = [];
     var Words = text.split("_");
   
     Words.forEach(w => {
       
-        if  (w.length > 3)  {
+        w = w.replace("/", "").replace("peeky", "PEEKY");
+      
+        console.log(w)
+      
+        if  (w.toUpperCase !== w && (w.length > 3 || index == 0))  {
           
             Array.push(w.slice(0, 1).toUpperCase() + w.slice(1, w.length).toLowerCase());
           
         } else {
           Array.push(w);          
         };
+      
+        index ++;
       
     });
 
@@ -39,8 +46,7 @@ function function_FixCapitalization(text)  {
 if  (window.location.href == "https://peeky.glitch.me/")  {
     document.title = "PEEKY the Discord bot";
 } else {
-  document.title = "PEEKY – " + function_FixCapitalization(window.location.href.replace("https://peeky.glitch.me/pages/", ""))
-  .replace("peeky", "PEEKY").replace(/[_]/g, ' ').replace(/[/]/g, '');
+  document.title = "PEEKY – " + function_FixCapitalization(window.location.href.replace("https://peeky.glitch.me/pages/", ""));
 };
 
 //Favicon
