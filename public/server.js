@@ -2218,9 +2218,9 @@ if  (member.guild.id == SupportServer)  {
             var invites = peeky.userData.get(key2, "AmbassadorInvites");
 
             //Participated
-            if  (!peeky.userData.get(key2, "ParticipatedEvents").includes("Ambassador Program"))  {
+            /*if  (!peeky.userData.get(key2, "ParticipatedEvents").includes("Ambassador Program"))  {
                 peeky.userData.get(key2, "ParticipatedEvents").push("Ambassador Program");
-            };
+            };*/
             
             //Invite Reward
             peeky.userData.math(key2, "+", 1, "Chests");

@@ -602,6 +602,7 @@ th, td {
 }
 
 .HomeHyperlinks {
+    color: #7289DA;
     text-decoration: underline;
     padding: 1px 1px;
 }
