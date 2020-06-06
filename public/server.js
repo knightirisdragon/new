@@ -3827,13 +3827,13 @@ if  (!AutoManagementCooldown.has("limitedroles"))  {
     await peeky.guilds.cache.get(SupportServer).members.cache.filter(m => !m.user.bot && m.roles.cache.has(PremiumRole)).forEach(m => {
 
         var ExpirationMs = MonthMs;
-        if  (peeky.userData.get(m.user.id, "PremiumLength") == "Lifetime")  {
+        /*if  (peeky.userData.get(m.user.id, "PremiumLength") == "Lifetime")  {
             var ExpirationMs = "infinite";
         } else if  (peeky.userData.get(m.user.id, "PremiumLength") == "Year")  {
           var ExpirationMs = YearMs;
         } else  {
           var ExpirationMs = MonthMs;
-        };
+        };*/
 
         if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= ExpirationMs))  {
             m.roles.remove(PremiumRole).catch(error => ErrorBag.add(error));
