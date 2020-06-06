@@ -13,8 +13,23 @@ function UpdateWebsiteStuff(data)  {
 
 //Fix Capitalization
 function function_FixCapitalization(text)  {
+  
+    var Array = [];
+    var Words = text.split("_");
+  
+    Words.forEach(w => {
+      
+        if  (w.length > 3)  {
+          
+            Array.push(w.slice(0, 1).toUpperCase() + w.slice(1, w.length).toLowerCase());
+          
+        } else {
+          Array.push(w);          
+        };
+      
+    });
 
-    return text.slice(0, 1).toUpperCase() + text.slice(1, text.length).toLowerCase();
+    return Array.join(" ");
       
 };
 
