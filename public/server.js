@@ -4226,7 +4226,7 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
               
             };
           
-            var FinalName = "Time Left: " + FixedTime.toLocaleString('en') + " " + LengthName;
+            var FinalName = "Starting in " + FixedTime.toLocaleString('en') + " " + LengthName;
           
             if  (channel.name !== FinalName)  {
                 channel.setName(FinalName, "Triggered by the Event Countdown function.").catch(error => ErrorBag.add(error));
