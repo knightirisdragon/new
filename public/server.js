@@ -1520,6 +1520,8 @@ function function_ArrayItems(array, limit, joiner)  {
   
     if  (array.length < 1)  {  array = "None";  }  else  {  array = array.join(joiner);  };
   
+    return array;
+  
 };
 
 //Random Description
@@ -3082,24 +3084,6 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
         if (peeky.serverData.get(keySF, "server_timezone_bonus") == true)        { var ST2 = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var ST2 = DisabledIcon};
         if (peeky.serverData.get(keySF, "auto_channels_bonus") == true)          { var AC = EnabledIcon; EnabledAmount ++; ServerAmount ++; } else { var AC = DisabledIcon};
 
-        var BWArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
-        if  (BWArray.length < 1)  {  BWArray = "None";  }  else  {  BWArray = BWArray.join("` `");  };
-      
-        var WCArray = peeky.serverData.get(keySF, "weekend_channels_bonus_setting");
-        if  (WCArray.length < 1)  {  WCArray = "None";  }  else  {  WCArray = "#" + WCArray.join("` `#");  };
-      
-        var IOArray = peeky.serverData.get(keySF, "images_only_bonus_setting");
-        if  (IOArray.length < 1)  {  IOArray = "None";  }  else  {  IOArray = "#" + IOArray.join("` `#");  };
-
-        var RRArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
-        if  (RRArray.length < 1)  {  RRArray = "None";  }  else  {  RRArray = "@" + RRArray.join("` `@");  };
-
-        var GRArray = peeky.serverData.get(keySF, "game_roles_bonus_setting");
-        if  (GRArray.length < 1)  {  GRArray = "None";  }  else  {  GRArray = "@" + GRArray.join("` `@");  };
-
-        var RSArray = peeky.serverData.get(keySF, "role_saver_bonus_setting");
-        if  (RSArray.length < 1)  {  RSArray = "None";  }  else  {  RSArray = "@" + RSArray.join("` `@");  };
-
         var GivenMinutes = peeky.serverData.get(keySF, "spoiler_lock_bonus_setting");
         if  (GivenMinutes == 0)  {GivenMinutes = "Never"}  else  {GivenMinutes = GivenMinutes + " minutes"};
           
@@ -3113,26 +3097,26 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
              "**Server Message** " + SM + "\n" + "`" + function_RemoveFormatting(peeky.serverData.get(keySF, "server_message_bonus_setting"), "other", true) + "`",
              "**Flood Protection** " + FP + "\n" + "`" + peeky.serverData.get(keySF, "flood_protection_bonus_setting") + " strikes`",
              "**Spoiler Lock** " + SL + "\n" + "`" + GivenMinutes + "`",
-             "**Banned Words** " + BW + "\n" + "`" + BWArray + "`",
-             "**Reaction Roles** " + RR + "\n" + "`" + RRArray + "`",
+             "**Banned Words** " + BW + "\n" + "`" + function_ArrayItems(peeky.serverData.get(keySF, "banned_words_bonus_setting"), Setting.BannedWordsLimit, "` `") + "`",
+             "**Reaction Roles** " + RR + "\n" + "`" + function_ArrayItems(peeky.serverData.get(keySF, "reaction_roles_bonus_setting"), Setting.ReactionRolesLimit, "` `") + "`",
              "**Ticket System** " + ST + "\n" + "`@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "`",
              "**Auto Channels** " + AC + "\n" + "No Setting.",
-             "**Weekend Channels** " + WC + "\n" + "`" + WCArray + "`",
+             "**Weekend Channels** " + WC + "\n" + "`" + function_ArrayItems(peeky.serverData.get(keySF, "weekend_channels_bonus_setting"), Setting.WeekendChannelsLimit, "` `") + "`",
              "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`",
              "**Vote Kick** " + VK + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`",
              "**Message Log** " + ML + "\n" + "`#" + peeky.serverData.get(keySF, "message_log_bonus_setting") + "`",
              "**Reddit Posts** " + RP + "\n" + "`r/" + peeky.serverData.get(keySF, "reddit_posts_bonus_setting") + "`",
              "**Clear Nicknames** " + CN + "\n" + "`" + peeky.serverData.get(keySF, "clear_nicknames_bonus_setting") + "`",
              "**Nickname Saver** " + NS + "\n" + "No Setting.",
-             "**Role Saver** " + RS + "\n" + "`" + RSArray + "`",
-             "**Game Roles** " + GR + "\n" + "`" + GRArray + "`",
+             "**Role Saver** " + RS + "\n" + "`" + function_ArrayItems(peeky.serverData.get(keySF, "role_saver_bonus_setting"), Setting.RoleSaverLimit, "` `") + "`",
+             "**Game Roles** " + GR + "\n" + "`" + function_ArrayItems(peeky.serverData.get(keySF, "game_roles_bonus_setting"), Setting.GameRolesLimit, "` `") + "`",
              "**Event Countdown** " + EC + "\n" + "`" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting"), "Date", 0) + "`",
              "**Member Counter** " + MC + "\n" + "`" + peeky.serverData.get(keySF, "member_counter_bonus_setting") + "`",
              "**Server Time** " + ST2 + "\n" + "No setting",
              "**Server Age** " + SA3 + "\n" + "No setting",
              "**Stream Announcements** " + SA2 + "\n" + "`#" + peeky.serverData.get(keySF, "stream_announcements_bonus_setting") + "`",
              "**Streamer Role** " + SR + "\n" + "`@" + peeky.serverData.get(keySF, "streamer_role_bonus_setting") + "`",
-             "**Images Only** " + IO + "\n" + "`" + IOArray + "`"
+             "**Images Only** " + IO + "\n" + "`" + function_ArrayItems(peeky.serverData.get(keySF, "images_only_bonus_setting"), Setting.ImagesOnlyLimit, "` `") + "`",
         ];
       
         if  (reaction.emoji.name == "⏹️")  {
@@ -6443,23 +6427,14 @@ else
  
 //Set Banned Words
 if  (FunctioName.startsWith("banned words "))  {
-  
-if  (peeky.serverData.get(keySF, "banned_words_bonus_setting").length < Setting.BannedWordsLimit)  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("banned words ")[1].toLowerCase(), "other", true);
     peeky.serverData.get(keySF, "banned_words_bonus_setting").push(ReceivedArray);
 
-    var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "banned_words_bonus_setting");
-
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Banned Words").replace("X002", FixedArray.join("**, **") + EndString),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Banned Words").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "banned_words_bonus_setting"), Setting.BannedWordsLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
- else
-{
- const embed = {"description": TranslatedFullSetting[Language],  "color": EmbedColor}; 
- message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-};
 
 }
   
@@ -6473,9 +6448,7 @@ if  (peeky.serverData.get(keySF, "weekend_channels_bonus_setting").length < Sett
     var ReceivedArray = function_RemoveFormatting(CommandName.split("weekend channels ")[1].toLowerCase(), "channel", true);
     peeky.serverData.get(keySF, "weekend_channels_bonus_setting").push(ReceivedArray);
 
-    var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "weekend_channels_bonus_setting");
-
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels").replace("X002", "#" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "weekend_channels_bonus_setting"), Setting.BannedWordsLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
@@ -6497,9 +6470,7 @@ if  (peeky.serverData.get(keySF, "images_only_bonus_setting").length < Setting.I
     var ReceivedArray = function_RemoveFormatting(CommandName.split("images only ")[1].toLowerCase(), "channel", true);
     peeky.serverData.get(keySF, "images_only_bonus_setting").push(ReceivedArray);
 
-    var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "images_only_bonus_setting");
-
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", "#" + FixedArray.join("**, **#") + EndString),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "images_only_bonus_setting"), Setting.BannedWordsLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
@@ -6520,10 +6491,8 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus_setting").length < Settin
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("reaction roles ")[1], "other", true);
     peeky.serverData.get(keySF, "reaction_roles_bonus_setting").push(ReceivedArray);
-
-    var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
   
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Reaction Roles").replace("X002", "@" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Reaction Roles").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "reaction_roles_bonus_setting"), Setting.BannedWordsLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
@@ -6544,10 +6513,8 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus_setting").length < Setting.Ro
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("role saver ")[1], "other", true);
     peeky.serverData.get(keySF, "role_saver_bonus_setting").push(ReceivedArray);
-
-    var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "role_saver_bonus_setting");
   
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Role Saver").replace("X002", "@" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Role Saver").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "role_saver_bonus_setting"), Setting.BannedWordsLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
@@ -6568,10 +6535,8 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus_setting").length < Setting.Ga
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("game roles ")[1], "other", true);
     peeky.serverData.get(keySF, "game_roles_bonus_setting").push(ReceivedArray);
-
-    var EndString = "";  var FixedArray = peeky.serverData.get(keySF, "game_roles_bonus_setting");
   
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Game Roles").replace("X002", "@" + FixedArray.join("**, **@") + EndString),  "color": EmbedColor};
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Game Roles").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "game_roles_bonus_setting"), Setting.BannedWordsLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
   
 }
