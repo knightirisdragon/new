@@ -2272,8 +2272,7 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
       
     var owner      = member.guild.owner.user.id;
     var Suspicions = 0;
-    var Reasons     = [];
-    const BanLimit = peeky.serverData.get(keySF, "suspicion_alert_bonus_setting");
+    var Reasons    = [];
   
     //Account created less than 7 days ago
     if  (new Date() - new Date(member.user.createdAt) <= WeekMs )  {
