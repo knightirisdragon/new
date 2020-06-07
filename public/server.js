@@ -1523,6 +1523,7 @@ function function_ArrayItems(array, limit, joiner)  {
     } else {
       
       if  (array.length > limit)  {
+          array = array
           array.push(" and more...");
           array = array.join(joiner);
       } else {

@@ -34,7 +34,7 @@
   "ImagesOnlyLimit": 10,
   "GameRolesLimit": 10,
   "RoleSaverLimit": 10,
-  "ReactionRolesLimit": 5,
+  "ReactionRolesLimit": 10,
   "InventoryLimit": 25,
   "RedditLimit": 25,
   "LeaderboardLimit": 100
