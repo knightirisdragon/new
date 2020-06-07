@@ -3493,98 +3493,94 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
   
 //Reaction Roles
 if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
-
-    if  (EmojiNumbers.includes(reaction.emoji.name))  {
       
-        if  (!user.bot & reaction.message.id == peeky.serverData.get(keySF, "reaction_roles_bonus_id"))  {
-          
-            if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
-                reaction.users.remove(user.id).catch(error => ErrorBag.add(error));
-            };
-          
-            if  (reaction.message.guild.me.permissions.has("MANAGE_ROLES"))  {
+    if  (!user.bot & reaction.message.id == peeky.serverData.get(keySF, "reaction_roles_bonus_id"))  {
 
-                if  (!FunctionCooldowns.has("reactionroles" + user.id))  {
+        if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
+            reaction.users.remove(user.id).catch(error => ErrorBag.add(error));
+        };
 
-                    FunctionCooldowns.add("reactionroles" + user.id)
-                    setTimeout(() => {FunctionCooldowns.delete("reactionroles" + user.id)}, 5000);
+        if  (reaction.message.guild.me.permissions.has("MANAGE_ROLES"))  {
 
-                    const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting").map(r => r.toLowerCase());
-                    const member = reaction.message.guild.members.cache.find(m => m.user.id == user.id);
-                  
-                    if  (reaction.emoji.name !== "🔠")  {
-            
-                        const embed = {"description": "**Reaction Roles**\nThese are all the reaction roles in the server, type the name of the one you'd like.\n\n" + reaction.message.guild.roles.cache.map(r => r.name && Setting.includes(r.name.toLowerCase())).join(", "), "color": EmbedColor}; 
-                        await function_DirectMessage(user.id, { embed });
-          
-                        user.createDM().then(channel =>  {
+            if  (!FunctionCooldowns.has("reactionroles" + user.id))  {
 
-                            QueuedSOSMessages.add(member.user.id);
+                FunctionCooldowns.add("reactionroles" + user.id)
+                setTimeout(() => {FunctionCooldowns.delete("reactionroles" + user.id)}, 5000);
 
-                            channel.awaitMessages(response => response.content, {
-                                max: 1,
-                                time: 30000,
-                                errors: ['time'],
-                            }).then(async (collected) => {
-                                QueuedSOSMessages.delete(member.user.id);
-                                const response = collected.first();
-                                const role = reaction.message.guild.roles.cache.find(r => r.name.toLowerCase() == response.content);
-                              
-                                if  (member && role && Setting.includes(role.name.toLowerCase()))  {
-                                    
-                                    if  (member.roles.cache.has(role.id))  {
-                                      
-                                        member.roles.remove(role.id).catch(error => ErrorBag.add(error));
+                const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting").map(r => r.toLowerCase());
+                const member = reaction.message.guild.members.cache.find(m => m.user.id == user.id);
 
-                                        const embed = {"description": SuccessIcon + " You have been given the **" + function_RemoveFormatting(role.name, "other", true) + "** role.",  "color": EmbedColor}; 
-                                        await function_DirectMessage(user.id, { embed });
-                                        
-                                    } else {
-                                      
-                                      member.roles.remove(role.id).catch(error => ErrorBag.add(error));
+                if  (reaction.emoji.name == "🔠")  {
 
-                                      const embed = {"description": SuccessIcon + " You have lost the **" + function_RemoveFormatting(role.name, "other", true) + "** role.",  "color": EmbedColor}; 
-                                      await function_DirectMessage(user.id, { embed });
-                                      
-                                    };
-                                  
+                    const embed = {"description": "**Reaction Roles**\nThese are all the reaction roles in the server, type the name of the one you'd like.\n\n" + reaction.message.guild.roles.cache.filter(r => Setting.has(r.name.toLowerCase()).map(r => r.name)).join(", "), "color": EmbedColor}; 
+                    await function_DirectMessage(user.id, { embed });
+
+                    user.createDM().then(channel =>  {
+
+                        QueuedSOSMessages.add(member.user.id);
+
+                        channel.awaitMessages(response => response.content, {
+                            max: 1,
+                            time: 30000,
+                            errors: ['time'],
+                        }).then(async (collected) => {
+                            QueuedSOSMessages.delete(member.user.id);
+
+                            const response = collected.first();
+                            const role = reaction.message.guild.roles.cache.find(r => r.name.toLowerCase() == response.content);
+
+                            if  (member && role && Setting.includes(role.name.toLowerCase()))  {
+
+                                if  (member.roles.cache.has(role.id))  {
+
+                                    member.roles.remove(role.id).catch(error => ErrorBag.add(error));
+
+                                    const embed = {"description": SuccessIcon + " You have been given the **" + function_RemoveFormatting(role.name, "other", true) + "** role.",  "color": EmbedColor}; 
+                                    await function_DirectMessage(user.id, { embed });
+
                                 } else {
 
-                                  const embed = {"description": ErrorIcon + " I couldn't find find that role.",  "color": EmbedColor}; 
+                                  member.roles.remove(role.id).catch(error => ErrorBag.add(error));
+
+                                  const embed = {"description": SuccessIcon + " You have lost the **" + function_RemoveFormatting(role.name, "other", true) + "** role.",  "color": EmbedColor}; 
                                   await function_DirectMessage(user.id, { embed });
-                                  
+
                                 };
 
-                            }).catch(async () => {
-                                QueuedSOSMessages.delete(member.user.id);
-
-                                const embed = {"description": ErrorIcon + " You have ran out of time to respond.",  "color": EmbedColor}; 
-                                await function_DirectMessage(user.id, { embed });
-                            });
-
-                        }).catch(error => ErrorBag.add(error));
-                      
-                    } else {
-                        const Index = EmojiNumbers.indexOf(reaction.emoji.name);
-                        const role = reaction.message.guild.roles.cache.find(r => r.name.toLowerCase() == Setting[Index].toLowerCase());
-
-                        if  (role)  {
-
-                            const Member = reaction.message.guild.members.cache.get(user.id);
-                            if  (!Member.roles.cache.has(role.id))  {
-                                Member.roles.add(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
                             } else {
-                              Member.roles.remove(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
+
+                              const embed = {"description": ErrorIcon + " I couldn't find find that role.",  "color": EmbedColor}; 
+                              await function_DirectMessage(user.id, { embed });
+
                             };
 
+                        }).catch(async () => {
+                            QueuedSOSMessages.delete(member.user.id);
+
+                            const embed = {"description": ErrorIcon + " You have ran out of time to respond.",  "color": EmbedColor}; 
+                            await function_DirectMessage(user.id, { embed });
+                        });
+
+                    }).catch(error => ErrorBag.add(error));
+
+                } else if  (EmojiNumbers.includes(reaction.emoji.name)) {
+                    const Index = EmojiNumbers.indexOf(reaction.emoji.name);
+                    const role = reaction.message.guild.roles.cache.find(r => r.name.toLowerCase() == Setting[Index].toLowerCase());
+
+                    if  (role)  {
+
+                        if  (!member.roles.cache.has(role.id))  {
+                            member.roles.add(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
+                        } else {
+                          member.roles.remove(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
                         };
-                      
+
                     };
 
                 };
-              
+
             };
-          
+
         };
 
     };
@@ -4577,11 +4573,11 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
             Channel.messages.fetch({ limit: 1 }).then(async messages => {
 
             const Message = messages.array()[0];
-            const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting").slice(0, Setting.ReactionRolesLimit);
+            const FunctionSetting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting").slice(0, Setting.ReactionRolesLimit);
 
             if  (Message && Message.id == peeky.serverData.get(keySF, "reaction_roles_bonus_id"))  {
 
-                const Roles = function_NumarizeArray(Setting, ["", ""], null);
+                const Roles = function_NumarizeArray(FunctionSetting, ["", ""], null);
               
                 var FinalText = "**Reaction Roles**" + "\n" + Roles;
 
@@ -4589,8 +4585,8 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
                     await Message.edit(FinalText).catch(error => ErrorBag.add(error));
                     await Message.reactions.removeAll().catch(error => ErrorBag.add(error));
 
-                    if  (Setting.length > 0)  {
-                        for (var i = 0; i < Setting.length; i++) {
+                    if  (FunctionSetting.length > 0)  {
+                        for (var i = 0; i < FunctionSetting.length; i++) {
                             await Message.react(EmojiNumbers[i]);
                         };
                     };
