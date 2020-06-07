@@ -3513,7 +3513,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                 if  (reaction.emoji.name == "🔠")  {
 
-                    const embed = {"description": "**Reaction Roles**\nThese are all the reaction roles in the server, type the name of the one you'd like.\n\n" + reaction.message.guild.roles.cache.filter(r => FunctionSetting.includes(r.name.toLowerCase())).map(r => r.name).join(", "), "color": EmbedColor}; 
+                    const embed = {"description": "**Reaction Roles**\nThese are all the reaction roles in " + function_RemoveFormatting(reaction.message.guild.name, "other", true) + ", type the name of the one you'd like.\n\n" + reaction.message.guild.roles.cache.filter(r => FunctionSetting.includes(r.name.toLowerCase())).map(r => r.name).join(", "), "color": EmbedColor}; 
                     await function_DirectMessage(user.id, { embed });
 
                     user.createDM().then(channel =>  {
