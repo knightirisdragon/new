@@ -3508,20 +3508,55 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                     FunctionCooldowns.add("reactionroles" + user.id)
                     setTimeout(() => {FunctionCooldowns.delete("reactionroles" + user.id)}, 5000);
+                  
+                    if  (reaction.emoji.name !== "🔠")  {
+          
+                        user.createDM().then(channel =>  {
 
-                    const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
-                    const Index = EmojiNumbers.indexOf(reaction.emoji.name);
-                    const role = reaction.message.guild.roles.cache.find(r => r.name.toLowerCase() == Setting[Index].toLowerCase());
+                            QueuedSOSMessages.add(member.user.id);
 
-                    if  (role)  {
+                            channel.awaitMessages(response => response.content, {
+                                max: 1,
+                                time: 60000,
+                                errors: ['time'],
+                            }).then(async (collected) => {
+                                QueuedSOSMessages.delete(member.user.id);
 
-                        const Member = reaction.message.guild.members.cache.get(user.id);
-                        if  (!Member.roles.cache.has(role.id))  {
-                            Member.roles.add(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
-                        } else {
-                          Member.roles.remove(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
+                                const embed = {"description": SuccessIcon + " You have unlocked the full access to the server.",  "color": EmbedColor}; 
+                                await function_DirectMessage(member.user.id, { embed });
+
+                                member.roles.add(Role.id, "Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
+
+                            }).catch(async () => {
+                                QueuedSOSMessages.delete(member.user.id);
+
+                                if  (!member.roles.cache.has(Role.id))  {
+                                    const embed = {"description": ErrorIcon + " Rejoin the server to restart the verfication process.",  "color": EmbedColor}; 
+                                    await function_DirectMessage(member.user.id, { embed });
+
+                                    member.kick("Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
+                                };
+                            });
+
+                        }).catch(error => ErrorBag.add(error));
+                      
+                    } else {
+
+                        const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
+                        const Index = EmojiNumbers.indexOf(reaction.emoji.name);
+                        const role = reaction.message.guild.roles.cache.find(r => r.name.toLowerCase() == Setting[Index].toLowerCase());
+
+                        if  (role)  {
+
+                            const Member = reaction.message.guild.members.cache.get(user.id);
+                            if  (!Member.roles.cache.has(role.id))  {
+                                Member.roles.add(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
+                            } else {
+                              Member.roles.remove(role.id, "Triggered by the Reaction Roles function.").catch(error => ErrorBag.add(error));
+                            };
+
                         };
-
+                      
                     };
 
                 };
