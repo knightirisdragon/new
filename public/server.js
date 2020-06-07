@@ -1527,7 +1527,7 @@ function function_ArrayItems(array, limit, joiner)  {
           array.push(" and more...");
           array = array.join(joiner);
       } else {
-        array = array.join(joiner);
+        array = array.join(joiner) + ".";
       };
 
     };
@@ -9728,8 +9728,7 @@ if  (CommandName.startsWith("muterole"))  {
                }
                 else
                {
-                const embed = {"description": CooldownMessage3[Language],  "color": EmbedColor}; 
-                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                InfoMessages.push(CooldownMessage3[Language]);
                };
               
             };
