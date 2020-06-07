@@ -4579,7 +4579,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                 const Roles = function_NumarizeArray(FunctionSetting, ["", ""], null);
               
-                var FinalText = "**Reaction Roles**" + "\n" + Roles + "\n\n" + "Click the 🔠 reaction for more.";
+                var FinalText = "**Reaction Roles**" + "\n" + Roles + "\n" + "Click the 🔠 reaction for more.";
 
                 if  (Message.content !== FinalText)  {
                     await Message.edit(FinalText).catch(error => ErrorBag.add(error));
