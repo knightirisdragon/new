@@ -14,7 +14,7 @@ function UpdateWebsiteStuff(data)  {
 //Fix Capitalization
 function FixTitle(text)  {
   
-    text = text.replace("https://peeky.glitch.me/pages/", "");
+    text = text.split("#")[0].replace("https://peeky.glitch.me/pages/", "");
   
     var index = 0;
     var Array = [];
