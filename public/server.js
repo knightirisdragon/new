@@ -3508,8 +3508,14 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                     FunctionCooldowns.add("reactionroles" + user.id)
                     setTimeout(() => {FunctionCooldowns.delete("reactionroles" + user.id)}, 5000);
+
+                    const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
+                    const member = reaction.message.guild.members.cache.find(m => m.user.id == user.id);
                   
                     if  (reaction.emoji.name !== "🔠")  {
+            
+                        const embed = {"description": "**Reaction Roles**\nThese are all the reaction roles in the server, type the name of the one you'd like.\n\n" + reaction.message.guild.roles.cache.map(r => r.name &&).join(", "), "color": EmbedColor}; 
+                        await function_DirectMessage(user.id, { embed });
           
                         user.createDM().then(channel =>  {
 
@@ -3517,32 +3523,35 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                             channel.awaitMessages(response => response.content, {
                                 max: 1,
-                                time: 60000,
+                                time: 30000,
                                 errors: ['time'],
                             }).then(async (collected) => {
                                 QueuedSOSMessages.delete(member.user.id);
+                                const response = collected.first();
+                                const role = reaction.message.guild.roles.cache.find(r => r.name.toLowerCase() == response.content);
+                              
+                                if  (role && member)  {
+                                    
+                                    if  (member.roles.cache.has())  {
+                                      
+                                        
+                                      
+                                    };
+                                  
+                                } else {
+                                  
+                                };
 
-                                const embed = {"description": SuccessIcon + " You have unlocked the full access to the server.",  "color": EmbedColor}; 
+                                const embed = {"description": SuccessIcon + " You have been given the **** role.",  "color": EmbedColor}; 
                                 await function_DirectMessage(member.user.id, { embed });
-
-                                member.roles.add(Role.id, "Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
 
                             }).catch(async () => {
                                 QueuedSOSMessages.delete(member.user.id);
-
-                                if  (!member.roles.cache.has(Role.id))  {
-                                    const embed = {"description": ErrorIcon + " Rejoin the server to restart the verfication process.",  "color": EmbedColor}; 
-                                    await function_DirectMessage(member.user.id, { embed });
-
-                                    member.kick("Triggered by the Verification System function.").catch(error => ErrorBag.add(error));
-                                };
                             });
 
                         }).catch(error => ErrorBag.add(error));
                       
                     } else {
-
-                        const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting");
                         const Index = EmojiNumbers.indexOf(reaction.emoji.name);
                         const role = reaction.message.guild.roles.cache.find(r => r.name.toLowerCase() == Setting[Index].toLowerCase());
 
