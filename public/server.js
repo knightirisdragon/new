@@ -3531,9 +3531,9 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                             if  (member && role && FunctionSetting.includes(role.name.toLowerCase()))  {
 
-                                if  (member.roles.cache.has(role.id))  {
+                                if  (!member.roles.cache.has(role.id))  {
 
-                                    member.roles.remove(role.id).catch(error => ErrorBag.add(error));
+                                    member.roles.add(role.id).catch(error => ErrorBag.add(error));
 
                                     const embed = {"description": SuccessIcon + " You have been given the **" + function_RemoveFormatting(role.name, "other", true) + "** role.",  "color": EmbedColor}; 
                                     await function_DirectMessage(user.id, { embed });
@@ -4579,7 +4579,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                 const Roles = function_NumarizeArray(FunctionSetting, ["", ""], null);
               
-                var FinalText = "**Reaction Roles**" + "\n" + Roles;
+                var FinalText = "**Reaction Roles**" + "\n" + Roles + "\n\n" + "Click the 🔠 reaction for more.";
 
                 if  (Message.content !== FinalText)  {
                     await Message.edit(FinalText).catch(error => ErrorBag.add(error));
