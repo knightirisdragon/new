@@ -30,6 +30,7 @@ const http    = require('http');
 const express = require('express');
 const app     = express();
 const port    = process.env.PORT;
+const url     = require('url');
 
 app.use(express.static('public'));
 app.get('/', function(request, response) {
@@ -41,20 +42,20 @@ app.listen(process.env.PORT);
 }, 280000);
 
 http.createServer((req, res) => {
-	let responseCode = 404;
-	let content = '404 Error';
+    let responseCode = 404;
+    let content = '404 Error';
 
-	if (req.url === '/') {
-		responseCode = 200;
-		content = fs.readFileSync('./index.html');
-	}
+    if (req.url === '/') {
+        responseCode = 200;
+        content = fs.readFileSync('./index.html');
+    }
 
-	res.writeHead(responseCode, {
-		'content-type': 'text/html;charset=utf-8',
-	});
+    res.writeHead(responseCode, {
+        'content-type': 'text/html;charset=utf-8',
+    });
 
-	res.write(content);
-	res.end();
+    res.write(content);
+    res.end();
 })
 
 //Ambassador Program
