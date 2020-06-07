@@ -2414,7 +2414,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
       if  (peeky.serverData.has(keySF, "role_saver_bonus_array"))  {
       
           var SavedRoles = peeky.serverData.get(keySF, "role_saver_bonus_array");
-          var Setting = peeky.serverData.get(keySF, "role_saver_bonus_setting");
+          var FunctionSetting = peeky.serverData.get(keySF, "role_saver_bonus_setting");
         
           SavedRoles.forEach(current => {
             
@@ -2425,7 +2425,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
                   current[1].forEach(role => {
                     
                       var r = member.guild.roles.cache.find(r => r.id == role);
-                      if  (r && r.name.toLowerCase() !== peeky.serverData.get(keySF, "verification_system_bonus_setting").toLowerCase() && !Setting.includes(r.name))  {
+                      if  (r && r.name.toLowerCase() !== peeky.serverData.get(keySF, "verification_system_bonus_setting").toLowerCase() && !FunctionSetting.includes(r.name))  {
                           ValidRoles.push(role);
                       };                  
                     
@@ -3507,12 +3507,12 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
                 FunctionCooldowns.add("reactionroles" + user.id)
                 setTimeout(() => {FunctionCooldowns.delete("reactionroles" + user.id)}, 5000);
 
-                const Setting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting").map(r => r.toLowerCase());
+                const FunctionSetting = peeky.serverData.get(keySF, "reaction_roles_bonus_setting").map(r => r.toLowerCase());
                 const member = reaction.message.guild.members.cache.find(m => m.user.id == user.id);
 
                 if  (reaction.emoji.name == "🔠")  {
 
-                    const embed = {"description": "**Reaction Roles**\nThese are all the reaction roles in the server, type the name of the one you'd like.\n\n" + reaction.message.guild.roles.cache.filter(r => Setting.has(r.name.toLowerCase()).map(r => r.name)).join(", "), "color": EmbedColor}; 
+                    const embed = {"description": "**Reaction Roles**\nThese are all the reaction roles in the server, type the name of the one you'd like.\n\n" + reaction.message.guild.roles.cache.filter(r => FunctionSetting.includes(r.name.toLowerCase())).map(r => r.name).join(", "), "color": EmbedColor}; 
                     await function_DirectMessage(user.id, { embed });
 
                     user.createDM().then(channel =>  {
@@ -3529,7 +3529,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
                             const response = collected.first();
                             const role = reaction.message.guild.roles.cache.find(r => r.name.toLowerCase() == response.content);
 
-                            if  (member && role && Setting.includes(role.name.toLowerCase()))  {
+                            if  (member && role && FunctionSetting.includes(role.name.toLowerCase()))  {
 
                                 if  (member.roles.cache.has(role.id))  {
 
@@ -3565,7 +3565,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
                 } else if  (EmojiNumbers.includes(reaction.emoji.name)) {
                     const Index = EmojiNumbers.indexOf(reaction.emoji.name);
-                    const role = reaction.message.guild.roles.cache.find(r => r.name.toLowerCase() == Setting[Index].toLowerCase());
+                    const role = reaction.message.guild.roles.cache.find(r => r.name.toLowerCase() == FunctionSetting[Index].toLowerCase());
 
                     if  (role)  {
 
