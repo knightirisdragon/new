@@ -538,7 +538,6 @@ async function WebsiteStuff()  {
 
           "defaultPrefix": Setting.DefaultPrefix,
           "ageCount": function_TimeLeft(peeky.user.createdAt, "days", null),
-          "serverLimit": Setting.MaxServers,
           "serverCount": peeky.guilds.cache.size,
           "upgradedServers": peeky.serverData.filter(i => i.server_upgraded == true).size,
           "profileCount": peeky.userData.count,
@@ -935,7 +934,7 @@ async function WebsiteStuff()  {
     //PEEKY Stats
     setInterval(async () => {
 
-        await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.cache.size + " / " + Setting.MaxServers + "</font> Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days old</a>", (err) => {
+        await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.cache.size + "</font> Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days old</a>", (err) => {
             if (err) console.log(err); 
         });
 
@@ -2172,7 +2171,7 @@ peeky.on("guildCreate", async (guild) =>  {
     peeky.channels.cache.get(ServerLogChannel).send({ embed });
 
     if  (peeky.guilds.cache.size > Setting.MaxServers || BannedUsers.includes(guild.owner.user.id))  {
-        const embed = {"description": "Something went wrong while joining your server, try again later.",  "color": EmbedColor}; 
+        const embed = {"description": "Something went wrong while joining your server, maybe PEEKY can't handle anymore servers?",  "color": EmbedColor}; 
         await function_DirectMessage(guild.owner.user.id, { embed });
         guild.leave();
     } else {
