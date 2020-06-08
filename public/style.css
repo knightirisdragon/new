@@ -471,6 +471,11 @@ a.button:hover {
     transition: transform .25s ease;
 }
 
+.img_badge  {
+    width: 15px;
+    heght: 15px;
+}
+
 .peeky_icon:hover  {
     transform: scale(0.99);
 }

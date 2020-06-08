@@ -960,10 +960,10 @@ async function WebsiteStuff()  {
     const BadgeList = [];
   
     Badges.forEach(badge => {          
-        BadgeList.push("<div>    </div>");
+        BadgeList.push("<div class='itemdiv'>  <font size='4'>  <img src='" + badge[2] + "' class='img_badge'>  " + badge[7] + "</font>  <br>  <font size='2'>" + badge[8] + "</font>  <br><br>  <font size='1'>" + badge[3] + " Gredit gain, " + badge[4] + " Exp gain</font>  </div>");
     });
 
-    await fs.writeFile('public/badges.txt', SongList.join(" <br> "), (err) => {
+    await fs.writeFile('public/badges.txt', BadgeList.join(" <br> "), (err) => {
         if (err) console.log(err);
     });
 
