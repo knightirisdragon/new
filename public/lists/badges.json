@@ -8,7 +8,7 @@
     true,
     "494429609874685983",
     "Staff",
-    ""
+    "Exclusive to staff members of the Support Server."
   ],
   [
     "PremiumBadge",
@@ -19,7 +19,7 @@
     true,
     "504740473185894400",
     "Premium",
-    ""
+    "Obtained by becoming a Premium user."
   ],
   [
     "BoosterBadge",
@@ -30,7 +30,7 @@
     true,
     "620654437081415686",
     "Booster",
-    ""
+    "Obtained by boosting the Support Server."
   ],
   [
     "VeteranBadge",
@@ -41,7 +41,7 @@
     true,
     "679051643756478539",
     "Veteran",
-    ""
+    "Obtained by being in the Support Server for over a year."
   ],
   [
     "TranslatorBadge",
@@ -52,7 +52,7 @@
     false,
     null,
     "Translator",
-    ""
+    "Obtained for contributing to PEEKY's language support."
   ],
   [
     "UpgraderBadge",
@@ -63,7 +63,7 @@
     false,
     null,
     "Upgrader",
-    ""
+    "Obtained after upgrading an arbitrary Discord server."
   ],
   [
     "ContributorBadge",
@@ -74,7 +74,7 @@
     false,
     null,
     "Contributor",
-    ""
+    "Obtained after purchasing a store item like Premium or Server Upgrade."
   ],
   [
     "BugHunterBadge",
@@ -85,7 +85,7 @@
     false,
     null,
     "Bug Hunter",
-    ""
+    "Obtained after reporting a valid bug."
   ],
   [
     "CelebratorBadge",
@@ -96,18 +96,7 @@
     false,
     null,
     "Celebrator",
-    ""
-  ],
-  [
-    "AmbassadorBadge",
-    "<:ambassador:718752996074192957> Ambassador",
-    "https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fambassador.png?v=1591434442413",
-    2,
-    0,
-    false,
-    null,
-    "Ambassador",
-    ""
+    "Obtained by celebrating PEEKY's birthday."
   ],
   [
     "MovieNighterBadge",
@@ -118,7 +107,18 @@
     false,
     null,
     "Movie Nighter",
-    ""
+    "Obtained after participating a Movie Night event."
+  ],
+  [
+    "AmbassadorBadge",
+    "<:ambassador:718752996074192957> Ambassador",
+    "https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fambassador.png?v=1591434442413",
+    2,
+    0,
+    false,
+    null,
+    "Ambassador",
+    "Obtained when someone uses your own invite link in the Support Server."
   ],
   [
     "MedallistBadge",
@@ -129,7 +129,7 @@
     false,
     null,
     "Medallist",
-    ""
+    "Obtained after reaching the TOP 3 placement in the leaderboard."
   ],
   [
     "EvilBadge",
@@ -140,7 +140,7 @@
     false,
     null,
     "Evil",
-    ""
+    "Obtained after reaching -50 Karma."
   ],
   [
     "GoodBadge",
@@ -151,7 +151,7 @@
     false,
     null,
     "Good",
-    ""
+    "Obtained after reaching 50 Karma."
   ],
   [
     "VirusBadge",
@@ -162,7 +162,7 @@
     false,
     null,
     "Virus",
-    ""
+    "No longer obtainable."
   ],
   [
     "PartyBadge",
@@ -173,7 +173,7 @@
     false,
     null,
     "Party",
-    ""
+    "Obtained for listening to PEEKY's music with your friends."
   ],
   [
     "ReceiverBadge",
@@ -184,7 +184,7 @@
     false,
     null,
     "Receiver",
-    ""
+    "Obtained after using your friend's invite link to the Support Server."
   ],
   [
     "PollerBadge",
@@ -195,7 +195,7 @@
     false,
     null,
     "Poller",
-    ""
+    "Obtained after voting on a poll in the Support Server's #news channel."
   ],
   [
     "VoterBadge",
@@ -206,7 +206,7 @@
     false,
     null,
     "Voter",
-    ""
+    "No longer obtainable."
   ],
   [
     "CompletionistBadge",
@@ -217,7 +217,7 @@
     false,
     null,
     "Completionist",
-    ""
+    "Obtained after completing a challenge."
   ],
   [
     "PublisherBadge",
@@ -228,7 +228,7 @@
     false,
     null,
     "Publisher",
-    ""
+    "Obtained after uploading a valid background to the Workshop."
   ],
   [
     "OwnershipBadge",
@@ -239,7 +239,7 @@
     false,
     null,
     "Ownership",
-    ""
+    "Obtained after adding PEEKY to your server."
   ],
   [
     "FunctionalBadge",
@@ -250,7 +250,7 @@
     false,
     null,
     "Functional",
-    ""
+    "Obtained after setting up a function."
   ],
   [
     "GopbotBadge",
@@ -261,7 +261,7 @@
     false,
     null,
     "GOPBOT",
-    ""
+    "Obtained by having GOPBOT in your server, along with PEEKY."
   ],
   [
     "MinerBadge",
@@ -272,7 +272,7 @@
     false,
     null,
     "Miner",
-    ""
+    "No longer obtainable"
   ],
   [
     "GamerBadge",
@@ -283,7 +283,7 @@
     false,
     null,
     "Gamer",
-    ""
+    "Obtained aft"
   ],
   [
     "HorderBadge",
