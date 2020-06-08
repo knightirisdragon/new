@@ -1959,6 +1959,8 @@ peeky.on('message', async (message) => {
         BadgeGreditAmount += 2;
         BadgeExpAmount += 2;
     };
+      
+    var 
 
         //Staff
     if  (peeky.guilds.cache.get(SupportServer).members.cache.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.cache.has(StaffRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:moderator:540036307213221901> Staff", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmoderator.png?1548824732338"]);  };
