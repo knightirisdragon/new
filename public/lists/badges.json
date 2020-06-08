@@ -283,7 +283,7 @@
     false,
     null,
     "Gamer",
-    "Obtained aft"
+    "Obtained after winning a minigame."
   ],
   [
     "HorderBadge",
@@ -294,7 +294,7 @@
     false,
     null,
     "Horder",
-    ""
+    "Obtained when owning over 10 backgrounds."
   ],
   [
     "GamblerBadge",
@@ -305,7 +305,7 @@
     false,
     null,
     "Gambler",
-    ""
+    "Obtained after opening 10 chests."
   ],
   [
     "CharityBadge",
@@ -316,7 +316,7 @@
     false,
     null,
     "Charity",
-    ""
+    "Obtained after giving someone 1,000 Gredit at once."
   ],
   [
     "PainterBadge",
@@ -327,7 +327,7 @@
     false,
     null,
     "Painter",
-    ""
+    "Obtained after purchasing a custom background."
   ],
   [
     "ExclusiveBadge",
@@ -338,7 +338,7 @@
     false,
     null,
     "Exclusive",
-    ""
+    "Obtained after getting an exclusive background."
   ],
   [
     "FashionBadge",
@@ -349,6 +349,6 @@
     false,
     null,
     "Fashion",
-    ""
+    "Obtained after purchasing a background."
   ]
 ]
