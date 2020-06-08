@@ -513,6 +513,7 @@ var StreamOptions   = {  volume: 1  };
 var SearchOptions   = {  maxResults: 1, type: "video", key: process.env.YT_TOKEN  };
 
 var Banners = require("./lists/backgrounds.json");
+const Badges = require("./lists/badges.json");
 const DefaultDescriptions = require("./lists/descriptions.json");
 const YoutubeSongs = require("./lists/songs.json");
 const TriviaQuestions = require("./lists/trivia.json");
@@ -1960,7 +1961,17 @@ peeky.on('message', async (message) => {
         BadgeExpAmount += 2;
     };
       
-    var 
+    Badges.forEach(badge => {
+
+        if  ((badge[6] == false && peeky.userData.get(key, badge[0]) == true) || (badge[6] == true && peeky.guilds.cache.get(SupportServer).members.cache.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.cache.has(badge[7])))  {
+          
+            CollectedBadges.push([badge[2], badge[3]]);
+            BadgeGreditAmount = BadgeGreditAmount + badge[4];
+            BadgeExpAmount = BadgeExpAmount + badge[5];
+          
+        };
+      
+    });
 
         //Staff
     if  (peeky.guilds.cache.get(SupportServer).members.cache.has(message.author.id) && peeky.guilds.cache.get(SupportServer).members.cache.get(message.author.id).roles.cache.has(StaffRole))  {  BadgeExpAmount += 2;  BadgesAmount ++;  CollectedBadges.push(["<:moderator:540036307213221901> Staff", "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmoderator.png?1548824732338"]);  };
