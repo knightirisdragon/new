@@ -6387,7 +6387,7 @@ if  (FunctioName.startsWith("flood protection "))  {
     }
      else
     {
-      const embed = {"description": ErrorIcon + " The provided amount must be between **1** and **10**.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " The provided amount must be between 1 and 10.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
