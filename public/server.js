@@ -134,7 +134,6 @@ const EnabledIcon     = "<:enabled:538295053940948993>";
 const DisabledIcon    = "<:disabled:538295054431813662>";
 const SettingsIcon    = "<:settings:586612320839532573>";
 const Hollow          = "<:peeky_hollow:506921440067452928>";
-const WhiteSquare     = "<:peeky_white:529305474604990464>";
 const TreasureIcon    = "<:treasure:623186257404755969>";
 const GreditIcon      = "<:gredit:558673809343774720>";
 const ChestIcon       = "<:chest:561511603305185280>";

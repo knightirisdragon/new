@@ -110,6 +110,17 @@
     "Obtained after participating a Movie Night event."
   ],
   [
+    "NightGamerBadge",
+    "<:movienighter:557968105494675456> Movie Nighter",
+    "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fmovienighter.png?1553099659112",
+    0,
+    2,
+    false,
+    null,
+    "Night Gamer",
+    "Obtained after participating a Game Night event."
+  ],
+  [
     "AmbassadorBadge",
     "<:ambassador:718752996074192957> Ambassador",
     "https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fambassador.png?v=1591434442413",

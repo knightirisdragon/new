@@ -1,32 +1,175 @@
 [
-    ["Who painted the Mona Lisa?", ["Da Vinci"], ["Mona Lisa"], ["Kars"], "Art"],
-    ["When did the Second World War end?", ["1945"], ["1939"], ["1944"], "History"],
-    ["Who starts first in chess?", ["White"], ["Black"], ["Arbitrary"], "Games"],
-    ["What year did Elvis Presley die?", ["1977"], ["1979"], ["1972"], "History"],
-    ["What colours make purple?", ["Red & Blue"], ["Blue & Black"], ["Pink & Red"], "Other"],
-    ["When was President Kennedy killed?", ["1963"], ["1969"], ["1961"], "History"],
-    ["What is the first letter on a typewriter?", ["Q"], ["A"], ["W"], "History"],
-    ["The average human body contains how many pints of blood?", ["9"], ["10"], ["8"], "Biology"],
-    ["Which of the planets is closest to the sun?", ["Mercury"], ["Mars"], ["Earth"], "Space"],
-    ["What was Twitter’s original name?", ["Twttr"], ["Twitter"], ["Tweeter"], "Internet"],
-    ["Which year was Minecraft released?", ["2009"], ["2010"], ["2008"], "Video Games"],
-    ["Resident Evil 7 was released in which year?", ["2017"], ["2016"], ["2018"], "Video Games"],
-    ["Name of the character abused by Mario?", ["Donkey Kong"], ["Yoshi"], ["Luigi"], "Video Games"],
-    ["How many layers are there in the Sun?", ["6"], ["4"], ["10"], "Space"],
-    ["How much water is evaporated every day?", ["1 Trillion Tons"], ["58 Billion Tons"], ["100 Trillion Tons"], "Space"],
-    ["Unlike most other fish, sharks have no ...?", ["Bones"], ["Gills"], ["Liver"], "Biology"],
-    ["Which of the following has more bones?", ["Baby"], ["Adult"], ["Teenager"], "Biology"],
-    ["Which game was delayed because it had a hidden photo of a developer's butt?", ["Halo 2"], ["Saints Row 3"], ["GTA V"], "Video Games"],
-    ["What Spanish artist said he would eat his wife when she died?", ["Dali"], ["Pablo Picasso"], ["El Greco"], "History"],
-    ["What was the first Nazi concentration camp?", ["Dachau"], ["Aushwitz"], ["Chelmno"], "History"],
-    ["How many U.S. presidents have been assassinated prior to 2019?", ["4"], ["9"], ["2"], "History"],
-    ["What three colors appear on the Italian flag?", ["Red, white and green"], ["Orange, white and green"], ["Red, blue and white"], "Other"],
-    ["How is CzechoSlovakia called today?", ["Czechia"], ["Bohemia"], ["Still CzechoSlovakia"], "History"],
-    ["Which war took place between 1950 and 1953?", ["The Korean War"], ["The second World War"], ["Nothing"], "History"],
-    ["Who was the first democratically elected President of Russia?", ["Boris Yeltsin"], ["Vladimir Putin"], ["Nikita Krushcev"], "History"],
-    ["What did ancient Egyptians use as pillows?", ["Stones"], ["Animal Pelts"], ["Bundles of Wheat"], "History"],
-    ["In the film Babe, what type of animal was Babe?", ["Pig"], ["Dog"], ["Bunny"], "Other"],
-    ["What’s the total number of dots on a pair of dice?", ["42"], ["6"], ["64"], "Other"],
-    ["Which of these is the tallest mammal?", ["Giraffe"], ["Sauropod"], ["Whale"], "Biology"]
-
+  ["Who painted the Mona Lisa?", ["Da Vinci"], ["Mona Lisa"], ["Kars"], "Art"],
+  [
+    "When did the Second World War end?",
+    ["1945"],
+    ["1939"],
+    ["1944"],
+    "History"
+  ],
+  ["Who starts first in chess?", ["White"], ["Black"], ["Arbitrary"], "Games"],
+  ["What year did Elvis Presley die?", ["1977"], ["1979"], ["1972"], "History"],
+  [
+    "What colours make purple?",
+    ["Red & Blue"],
+    ["Blue & Black"],
+    ["Pink & Red"],
+    "Other"
+  ],
+  [
+    "When was President Kennedy killed?",
+    ["1963"],
+    ["1969"],
+    ["1961"],
+    "History"
+  ],
+  ["What is the first letter on a typewriter?", ["Q"], ["A"], ["W"], "History"],
+  [
+    "The average human body contains how many pints of blood?",
+    ["9"],
+    ["10"],
+    ["8"],
+    "Biology"
+  ],
+  [
+    "Which of the planets is closest to the sun?",
+    ["Mercury"],
+    ["Mars"],
+    ["Earth"],
+    "Space"
+  ],
+  [
+    "What was Twitter’s original name?",
+    ["Twttr"],
+    ["Twitter"],
+    ["Tweeter"],
+    "Internet"
+  ],
+  [
+    "Which year was Minecraft released?",
+    ["2009"],
+    ["2010"],
+    ["2008"],
+    "Video Games"
+  ],
+  [
+    "Resident Evil 7 was released in which year?",
+    ["2017"],
+    ["2016"],
+    ["2018"],
+    "Video Games"
+  ],
+  [
+    "Name of the character abused by Mario?",
+    ["Donkey Kong"],
+    ["Yoshi"],
+    ["Luigi"],
+    "Video Games"
+  ],
+  ["How many layers are there in the Sun?", ["6"], ["4"], ["10"], "Space"],
+  [
+    "How much water is evaporated every day?",
+    ["1 Trillion Tons"],
+    ["58 Billion Tons"],
+    ["100 Trillion Tons"],
+    "Space"
+  ],
+  [
+    "Unlike most other fish, sharks have no ...?",
+    ["Bones"],
+    ["Gills"],
+    ["Liver"],
+    "Biology"
+  ],
+  [
+    "Which of the following has more bones?",
+    ["Baby"],
+    ["Adult"],
+    ["Teenager"],
+    "Biology"
+  ],
+  [
+    "Which game was delayed because it had a hidden photo of a developer's butt?",
+    ["Halo 2"],
+    ["Saints Row 3"],
+    ["GTA V"],
+    "Video Games"
+  ],
+  [
+    "What Spanish artist said he would eat his wife when she died?",
+    ["Dali"],
+    ["Pablo Picasso"],
+    ["El Greco"],
+    "History"
+  ],
+  [
+    "What was the first Nazi concentration camp?",
+    ["Dachau"],
+    ["Aushwitz"],
+    ["Chelmno"],
+    "History"
+  ],
+  [
+    "How many U.S. presidents have been assassinated prior to 2019?",
+    ["4"],
+    ["9"],
+    ["2"],
+    "History"
+  ],
+  [
+    "What three colors appear on the Italian flag?",
+    ["Red, white and green"],
+    ["Orange, white and green"],
+    ["Red, blue and white"],
+    "Other"
+  ],
+  [
+    "How is CzechoSlovakia called today?",
+    ["Czechia"],
+    ["Bohemia"],
+    ["Still CzechoSlovakia"],
+    "History"
+  ],
+  [
+    "Which war took place between 1950 and 1953?",
+    ["The Korean War"],
+    ["The second World War"],
+    ["Nothing"],
+    "History"
+  ],
+  [
+    "Who was the first democratically elected President of Russia?",
+    ["Boris Yeltsin"],
+    ["Vladimir Putin"],
+    ["Nikita Krushcev"],
+    "History"
+  ],
+  [
+    "What did ancient Egyptians use as pillows?",
+    ["Stones"],
+    ["Animal Pelts"],
+    ["Bundles of Wheat"],
+    "History"
+  ],
+  [
+    "In the film Babe, what type of animal was Babe?",
+    ["Pig"],
+    ["Dog"],
+    ["Bunny"],
+    "Other"
+  ],
+  [
+    "What’s the total number of dots on a pair of dice?",
+    ["42"],
+    ["6"],
+    ["64"],
+    "Other"
+  ],
+  [
+    "Which of these is the tallest mammal?",
+    ["Giraffe"],
+    ["Sauropod"],
+    ["Whale"],
+    "Biology"
+  ]
 ]
