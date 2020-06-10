@@ -2231,11 +2231,6 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
         Reasons.push("Account created less than 7 days ago.");
     };
   
-    //Account has no profile picture.
-    if  (member.user.avatarURL().startsWith("https://cdn.discordapp.com/embed/avatars"))  {
-        Reasons.push("Has a default profile picture.");
-    };
-  
     //Account is banned from using PEEKY
     if  (BannedUsers.includes(member.user.id))  {
         Reasons.push("Banned from using PEEKY.");
