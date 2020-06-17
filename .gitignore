@@ -1,4 +1,4 @@
-api.json
+website_data/api.json
 
 enmap.sqlite
 
@@ -6,40 +6,40 @@ enmap.sqlite-shm
 
 enmap.sqlite-wal
 
-news.txt
+website_data/
 
-stats.txt
+website_data/news.txt
 
-botdescription.txt
+website_data/stats.txt
 
-randomreview.txt
+website_data/botdescription.txt
 
-messageheader.txt
+website_data/randomreview.txt
 
-staff.txt
+website_data/staff.txt
 
-leaderboard.txt
+website_data/leaderboard.txt
 
-backgrounds.txt
+website_data/backgrounds.txt
 
-badges.txt
+website_data/badges.txt
 
-workshop.txt
+website_data/workshop.txt
 
-random_songs.txt
+website_data/random_songs.txt
 
-boosters.txt
+website_data/boosters.txt
 
-premiumusers.txt
+website_data/premiumusers.txt
 
-server_list.txt
+website_data/server_list.txt
 
-server_log.txt
+website_data/server_log.txt
 
-featured_profile.txt
+website_data/featured_profile.txt
 
-supportedlanguages.txt
+website_data/supportedlanguages.txt
 
-weeklychallenge.txt
+website_data/weeklychallenge.txt
 
-dailychallenge.txt
+website_data/dailychallenge.txt

@@ -552,7 +552,7 @@ async function WebsiteStuff()  {
           "expMultiplier": Setting.ExpNeeded
         };
 
-        await fs.writeFile('public/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
+        await fs.writeFile('public/website_data/api.json', JSON.stringify(UpdatedApi, null, 2), (err) => {
             if (err) console.log(err); 
         });
 
@@ -625,7 +625,7 @@ async function WebsiteStuff()  {
         //var LeaderboardLevel  = await UpdateLeaderboardTypes("Levels");
 
         //<div id='karma'>" +  LeaderboardKarma + "</div>  <div id='levels'>" +  LeaderboardLevel + "</div>
-        await fs.writeFile('public/leaderboard.txt', "<div id='gredit'>" +  LeaderboardGredit + "</div>", (err) => {
+        await fs.writeFile('public/website_data/leaderboard.txt', "<div id='gredit'>" +  LeaderboardGredit + "</div>", (err) => {
             if (err) console.log(err);
         });
 
@@ -685,7 +685,7 @@ async function WebsiteStuff()  {
           
         };
 
-        await fs.writeFile('public/backgrounds.txt', "<div> " + BackgroundList.join(" ") + " </div>", (err) => {
+        await fs.writeFile('public/website_data/backgrounds.txt', "<div> " + BackgroundList.join(" ") + " </div>", (err) => {
             if (err) console.log(err);
         });
 
@@ -715,7 +715,7 @@ async function WebsiteStuff()  {
             WorkshopList = ["There are no new submissions in the Workshop right now."];
         };
 
-        await fs.writeFile('public/workshop.txt', "<div class='workshop'>" + WorkshopList.join(" ") + "</div>", (err) => {
+        await fs.writeFile('public/website_data/workshop.txt', "<div class='workshop'>" + WorkshopList.join(" ") + "</div>", (err) => {
             if (err) console.log(err);
         });  
 
@@ -737,7 +737,7 @@ async function WebsiteStuff()  {
             Message = '<b class="messageheader">' + Setting.Announcement + ' </b>';  
         };
 
-        await fs.writeFile('public/messageheader.txt', Message, (err) => {
+        await fs.writeFile('public/website_data/messageheader.txt', Message, (err) => {
             if (err) console.log(err);
         });
 
@@ -762,7 +762,7 @@ async function WebsiteStuff()  {
 
         };
 
-        await fs.writeFile('public/server_list.txt', ServerList.join(" "), (err) => {
+        await fs.writeFile('public/website_data/server_list.txt', ServerList.join(" "), (err) => {
             if (err) console.log(err);
         });
 
@@ -780,7 +780,7 @@ async function WebsiteStuff()  {
             };
         });
 
-        await fs.writeFile('public/premiumusers.txt', PremiumUsersList.join(" "), (err) => {
+        await fs.writeFile('public/website_data/premiumusers.txt', PremiumUsersList.join(" "), (err) => {
             if (err) console.log(err);
         });
 
@@ -800,7 +800,7 @@ async function WebsiteStuff()  {
         };
         });
 
-        await fs.writeFile('public/boosters.txt', PremiumUsersList.join(" "), (err) => {
+        await fs.writeFile('public/website_data/boosters.txt', PremiumUsersList.join(" "), (err) => {
             if (err) console.log(err);
         });
 
@@ -826,7 +826,7 @@ async function WebsiteStuff()  {
 
         });
 
-        await fs.writeFile('public/server_log.txt', ServerLogList.join(" "), (err) => {
+        await fs.writeFile('public/website_data/server_log.txt', ServerLogList.join(" "), (err) => {
             if (err) console.log(err);
         });
 
@@ -855,7 +855,7 @@ async function WebsiteStuff()  {
             NewsList.push('<div class="newsitem" style="background-image: url(' + ImageLink + ')">  <div class="textbackground">  <b class="newsheader">  ' + function_RemoveFormatting(Header, "other", true) + '  </b>  <br>  <b class="newsauthor">  <font color="#7289DA">' + m.author.tag + '</font> @ <font color="#7289DA">' + function_DateFormat(m.createdAt, "Date", 0) + '</font>  </b>  <b class="newsbody">  ' + function_ProperSlice(function_RemoveFormatting(Body, "other", false), 250) + '  </b>  <a class="button" href="' + m.url + '">🔍</a>  </div>  </div>');
         });
 
-        await fs.writeFile('public/news.txt', NewsList.join(""), (err) => {
+        await fs.writeFile('public/website_data/news.txt', NewsList.join(""), (err) => {
             if (err) console.log(err);
         });    
 
@@ -893,7 +893,7 @@ async function WebsiteStuff()  {
             ModList = ["There are currently no Moderators in the Support Server."];
         };
 
-        await fs.writeFile('public/staff.txt', '<font size="5" class="item_header">Developers of PEEKY</font>  <br>  <div class="inlinediv">  ' + DevList.join(" ") + '  </div>  <font size="5" class="item_header">Moderators of the Support Server</font>  <br>  <div class="inlinediv">  ' + ModList.join(" ") + '  </div>', (err) => {
+        await fs.writeFile('public/website_data/staff.txt', '<font size="5" class="item_header">Developers of PEEKY</font>  <br>  <div class="inlinediv">  ' + DevList.join(" ") + '  </div>  <font size="5" class="item_header">Moderators of the Support Server</font>  <br>  <div class="inlinediv">  ' + ModList.join(" ") + '  </div>', (err) => {
             if (err) console.log(err);
         });
 
@@ -919,7 +919,7 @@ async function WebsiteStuff()  {
         var ReviewDate     = new Date(FilteredReviews[RandomReview].date);
         var ReviewFullDate = function_DateFormat(ReviewDate, "Date", 0);
 
-        await fs.writeFile('public/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + "/5 Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast " + Setting.MinReviewLength + " characters long to show up.</font></center>", (err) => {
+        await fs.writeFile('public/website_data/randomreview.txt',  "<font color='#7289DA' size='1'>Review with " + FilteredReviews[RandomReview].rating + "/5 Star rating from " + ReviewFullDate + ".</font>" + "<br>" + " <font color='white' size='3'>" + FilteredReviews[RandomReview].text + "</font>  <br><br>  <center><font color='#7289DA' size='1'>Your review must be atleast " + Setting.MinReviewLength + " characters long to show up.</font></center>", (err) => {
             if (err) console.log(err); 
         });
 
@@ -934,7 +934,7 @@ async function WebsiteStuff()  {
     //PEEKY Stats
     setInterval(async () => {
 
-        await fs.writeFile('public/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.cache.size + "</font> Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days old</a>", (err) => {
+        await fs.writeFile('public/website_data/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.cache.size + "</font> Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days old</a>", (err) => {
             if (err) console.log(err); 
         });
 
@@ -949,7 +949,7 @@ async function WebsiteStuff()  {
         SongList.push('<iframe width="560px" height="315px" src="' + song_info[0].replace("watch?v=", "embed/") + '" frameborder="0"></iframe>');
     });
 
-    await fs.writeFile('public/random_songs.txt', SongList.join(" <br> "), (err) => {
+    await fs.writeFile('public/website_data/random_songs.txt', SongList.join(" <br> "), (err) => {
         if (err) console.log(err);
     });
 
@@ -962,18 +962,18 @@ async function WebsiteStuff()  {
         BadgeList.push("<div class='itemdiv'>  <font size='4'>  <img src='" + badge[2] + "' class='img_badge'>  " + badge[7] + "</font>  <br>  <font size='2'>" + badge[8] + "</font>  <br><br>  <font size='1'>" + badge[3] + " Gredit gain, " + badge[4] + " Exp gain</font>  </div>");
     });
 
-    await fs.writeFile('public/badges.txt', BadgeList.join(" <br> "), (err) => {
+    await fs.writeFile('public/website_data/badges.txt', BadgeList.join(" <br> "), (err) => {
         if (err) console.log(err);
     });
 
     console.log("The random songs have been updated.");
 
     //Miscellaneous
-    await fs.writeFile('public/supportedlanguages.txt', Languages.join(", ") + ".", (err) => {
+    await fs.writeFile('public/website_data/supportedlanguages.txt', Languages.join(", ") + ".", (err) => {
         if (err) console.log(err); 
     });
 
-    await fs.writeFile('public/botdescription.txt', Setting.Description, (err) => {
+    await fs.writeFile('public/website_data/botdescription.txt', Setting.Description, (err) => {
         if (err) console.log(err); 
     });
 
@@ -3743,7 +3743,7 @@ if  (!AutoManagementCooldown.has("challenges"))  {
         peeky.peekyData.set("dailychallenge", ChallengeChosen, "data");
         peeky.peekyData.set("dailychallenge", new Date(), "started");
 
-        fs.writeFile('public/dailychallenge.txt', [
+        fs.writeFile('public/website_data/dailychallenge.txt', [
 
             "<b class='itemdiv'>  <font size='5'>" + ChallengeChosen[1] + "</font>",
             "<font size='2'>" + ChallengeChosen[2] + "</font>",
@@ -3764,7 +3764,7 @@ if  (!AutoManagementCooldown.has("challenges"))  {
         peeky.peekyData.set("weeklychallenge", ChallengeChosen, "data");
         peeky.peekyData.set("weeklychallenge", new Date(), "started");
 
-        fs.writeFile('public/weeklychallenge.txt', [
+        fs.writeFile('public/website_data/weeklychallenge.txt', [
           
             "<b class='itemdiv'>  <font size='5'>" + ChallengeChosen[1] + "</font>",
             "<font size='2'>" + ChallengeChosen[2] + "</font>",
@@ -7558,7 +7558,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                     WebsiteCooldowns.add("featuredprofile");
                     setTimeout(() => {WebsiteCooldowns.delete("featuredprofile")}, 1800000);   
 
-                    fs.writeFile('public/featured_profile.txt', "<center>  <a href='https://peeky.glitch.me/pages/store/#premium'><img src='" + m.attachments.array()[0].url + "' class='featuredprofile'></a>  </center>", (err) => {
+                    fs.writeFile('public/website_data/featured_profile.txt', "<center>  <a href='https://peeky.glitch.me/pages/store/#premium'><img src='" + m.attachments.array()[0].url + "' class='featuredprofile'></a>  </center>", (err) => {
                         if (err) console.log(err); 
                     });
 
