@@ -1,5 +1,3 @@
-website_data/api.json
-
 enmap.sqlite
 
 enmap.sqlite-shm
@@ -7,39 +5,3 @@ enmap.sqlite-shm
 enmap.sqlite-wal
 
 website_data/
-
-website_data/news.txt
-
-website_data/stats.txt
-
-website_data/botdescription.txt
-
-website_data/randomreview.txt
-
-website_data/staff.txt
-
-website_data/leaderboard.txt
-
-website_data/backgrounds.txt
-
-website_data/badges.txt
-
-website_data/workshop.txt
-
-website_data/random_songs.txt
-
-website_data/boosters.txt
-
-website_data/premiumusers.txt
-
-website_data/server_list.txt
-
-website_data/server_log.txt
-
-website_data/featured_profile.txt
-
-website_data/supportedlanguages.txt
-
-website_data/weeklychallenge.txt
-
-website_data/dailychallenge.txt
