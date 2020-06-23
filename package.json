@@ -14,7 +14,7 @@
     "rgb-hex": "^3.0.0",
     "color-thief-node": "^1.0.2",
     "aki-api": "^4.0.0",
-    "enmap": "^5.2.9",
+    "enmap": "^5.3.1",
     "better-sqlite-pool": "^0.3.0",
     "sqlite3": "^4.2.0",
     "express": "^4.17.1",
