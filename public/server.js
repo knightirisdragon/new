@@ -7630,6 +7630,8 @@ if (CommandName.startsWith("play"))  {
                 if  (Length <= 1800 && Length > 60)  { //1800
 
                     await voiceChannel.join().then(async connection => {
+                      
+                        voiceChannel.members.
 
                         peeky.serverData.set(keySF, Title, "Title");
                         peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
@@ -7816,7 +7818,11 @@ if (CommandName.startsWith("play"))  {
       
         var Queue = peeky.serverData.get(keySF, "Queue");
 
-        if  ((Queue.length > 0) && (Queue[Queue.length - 1].includes("youtube.com") || Queue[Queue.length - 1].includes("youtu.be")) && !Queue[Queue.length - 1].includes("?list="))  { //&& (ytdl.validateURL(Queue[Queue.length - 1]) == true)
+        if  ((Queue.length > 0) && (Queue[Queue.length - 1].includes("youtube.com") || Queue[Queue.length - 1].includes("youtu.be")))  { //&& (ytdl.validateURL(Queue[Queue.length - 1]) == true)
+          
+            if  (Queue[Queue.length - 1].includes("?list="))  {
+                Queue[Queue.length - 1] = Queue[Queue.length - 1].split()
+            };
           
             if  (message.member.voice.channel)  {
 
