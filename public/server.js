@@ -7801,9 +7801,9 @@ if (CommandName.startsWith("play"))  {
             };
 
         };
-          
-        if  (CommandArgument.includes("?list="))  {
-            CommandArgument = CommandArgument.split("?list=")[0];
+      
+        if  (CommandArgument.includes("&list="))  {
+            CommandArgument = CommandArgument.split("&list=")[0];
         };
 
         search(CommandArgument, SearchOptions, async function(error, results)  {
