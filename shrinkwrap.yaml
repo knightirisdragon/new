@@ -7,7 +7,7 @@ dependencies:
   color-thief-node: 1.0.3
   ddblapi.js: 1.0.0
   discord.js: 12.2.0
-  enmap: 5.2.9
+  enmap: 5.3.1
   express: 4.17.1
   https: 1.0.0
   node-fetch: 2.6.0
@@ -442,14 +442,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
-  /enmap/5.2.9:
+  /enmap/5.3.1:
     dependencies:
       lodash: 4.17.15
+      on-change: 2.0.1
     dev: false
     peerDependencies:
-      better-sqlite3: ^5.4.1
+      better-sqlite3: ^7.0.1
     resolution:
-      integrity: sha512-PoZU4WQT9+JH4Lq2ImfR8NiGZvWqCJAI58PSyMbT4Whg3khC+vFAXsP4rJfeduOYEFUf19itCtvK5AqcxNAdZQ==
+      integrity: sha512-s/tJwhUWebf7Scip9RyOY0hzOUKfqab3CdcSr+Dkn5Z8qKtIoIsS8hKqWnYvSYZXVBKP2WIzaBWn+0qRXWNYhA==
   /escape-html/1.0.3:
     dev: false
     resolution:
@@ -1099,6 +1100,12 @@ packages:
     optional: true
     resolution:
       integrity: sha512-dW1ok3BMnMikyXGDIgVEckWnlViW8JLWQV4qj9aN/rNRVqHlDYSlcIEtSIMH7tpuUOiIxAhY3+OxNdIOm6s17A==
+  /on-change/2.0.1:
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-M/XA/VXeR3ElAlyYBv2Bow0BtNt6qKI8mNmBI+cw+wyjatoZ3tJQPq6RNYWCaV81uKKbm3svROi6TDS3TtWVzQ==
   /on-finished/2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -1746,7 +1753,7 @@ specifiers:
   color-thief-node: ^1.0.2
   ddblapi.js: ^1.0.0
   discord.js: ^12.2.0
-  enmap: ^5.2.9
+  enmap: ^5.3.1
   express: ^4.17.1
   https: ^1.0.0
   node-fetch: ^2.6.0

@@ -7630,8 +7630,6 @@ if (CommandName.startsWith("play"))  {
                 if  (Length <= 1800 && Length > 60)  { //1800
 
                     await voiceChannel.join().then(async connection => {
-                      
-                        voiceChannel.members.
 
                         peeky.serverData.set(keySF, Title, "Title");
                         peeky.serverData.set(keySF, Thumbnail, "Thumbnail");
@@ -7821,8 +7819,10 @@ if (CommandName.startsWith("play"))  {
         if  ((Queue.length > 0) && (Queue[Queue.length - 1].includes("youtube.com") || Queue[Queue.length - 1].includes("youtu.be")))  { //&& (ytdl.validateURL(Queue[Queue.length - 1]) == true)
           
             if  (Queue[Queue.length - 1].includes("?list="))  {
-                Queue[Queue.length - 1] = Queue[Queue.length - 1].split()
+                Queue[Queue.length - 1] = Queue[Queue.length - 1].split("?list=")[0];
             };
+          
+            console.log(Queue);
           
             if  (message.member.voice.channel)  {
 
@@ -7960,7 +7960,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
                 } else
 
-                if  (!PlaylistRequest.includes("?list="))  {
+                //if  (!PlaylistRequest.includes("?list="))  {
 
                     if  ((PlaylistRequest.includes("youtube.com") || PlaylistRequest.includes("youtu.be")))  {
 
@@ -7982,11 +7982,11 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
 
-                } else {
+                /*} else {
                   var TranslatedMessages = [ErrorIcon + " You cannot add playlists to your playlist.", ErrorIcon + " Do svého playlistu nemůžete přidat playlisty.", ErrorIcon + " Nemôžeš pridať playlisty do tvojich playlistov.", ErrorIcon + " No puedes añadir listas de reproducción a su lista de reproducción.", ErrorIcon + " Oynatma listenize oynatma listesi ekleyemezsiniz.", ErrorIcon + " Вы не можете добавлять плейлисты в свой плейлист.", ErrorIcon + " プレイリストにプレイリストを追加することはできません。"];
                   const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                };
+                };*/
 
             } else {
               const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
