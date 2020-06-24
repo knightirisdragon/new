@@ -7935,35 +7935,28 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
                 var PlaylistRequest = CommandArgument.replace(" add ", "");
 
-                if  (PlaylistRequest == "current")  {
+                //if  (peeky.userData.get(key, "Playlist").length < Setting.PlaylistLimit)  {
 
-                    if  (CurrentlyPlaying.has(message.guild.id) && peeky.serverData.get(keySF, "Link") !== "None")  {
+                    if  (PlaylistRequest == "current")  {
 
-                        if  (peeky.userData.get(key, "Playlist").length < Setting.PlaylistLimit)  {
+                        if  (CurrentlyPlaying.has(message.guild.id) && peeky.serverData.get(keySF, "Link") !== "None")  {
 
-                            peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
+                                peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
 
-                            var TranslatedMessages = [SuccessIcon + " Added the current song to your playlist.", SuccessIcon + " Aktuální písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pridal som aktuálnu pesničku do tvôjho playlistu.", SuccessIcon + " Añadi la canción actual a su lista de reproducción.", SuccessIcon + " Geçerli şarkı çalma listenize eklendi.", SuccessIcon + " Добавлена текущая песня в плейлист.", SuccessIcon + " 現在の曲をプレイリストに追加しました。"];
-                            const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
-                            message.channel.send({ embed }).catch(error => ErrorBag.add(error));    
+                                var TranslatedMessages = [SuccessIcon + " Added the current song to your playlist.", SuccessIcon + " Aktuální písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pridal som aktuálnu pesničku do tvôjho playlistu.", SuccessIcon + " Añadi la canción actual a su lista de reproducción.", SuccessIcon + " Geçerli şarkı çalma listenize eklendi.", SuccessIcon + " Добавлена текущая песня в плейлист.", SuccessIcon + " 現在の曲をプレイリストに追加しました。"];
+                                const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                                message.channel.send({ embed }).catch(error => ErrorBag.add(error));    
 
                         } else {
-                          const embed = {"description": ErrorMessage15[Language],  "color": EmbedColor}; 
+                          const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
                           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                        };           
+                        };
 
-                    } else {
-                      const embed = {"description": ErrorMessage12[Language],  "color": EmbedColor}; 
-                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                    };
+                    } else
 
-                } else
+                    if  (!PlaylistRequest.includes("?list="))  {
 
-                if  (!PlaylistRequest.includes("?list="))  {
-
-                    if  ((PlaylistRequest.includes("youtube.com") || PlaylistRequest.includes("youtu.be")))  {
-
-                        if  (peeky.userData.get(key, "Playlist").length < Setting.PlaylistLimit)  {
+                        if  ((PlaylistRequest.includes("youtube.com") || PlaylistRequest.includes("youtu.be")))  {
 
                             peeky.userData.get(key, "Playlist").push(PlaylistRequest);
 
@@ -7972,20 +7965,20 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
                         } else {
-                          const embed = {"description": ErrorMessage15[Language],  "color": EmbedColor}; 
+                          const embed = {"description": ErrorMessage4[Language],  "color": EmbedColor}; 
                           message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                        }; 
+                        };
 
                     } else {
-                      const embed = {"description": ErrorMessage4[Language],  "color": EmbedColor}; 
+                      var TranslatedMessages = [ErrorIcon + " You cannot add playlists to your playlist.", ErrorIcon + " Do svého playlistu nemůžete přidat playlisty.", ErrorIcon + " Nemôžeš pridať playlisty do tvojich playlistov.", ErrorIcon + " No puedes añadir listas de reproducción a su lista de reproducción.", ErrorIcon + " Oynatma listenize oynatma listesi ekleyemezsiniz.", ErrorIcon + " Вы не можете добавлять плейлисты в свой плейлист.", ErrorIcon + " プレイリストにプレイリストを追加することはできません。"];
+                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };
 
-                } else {
-                  var TranslatedMessages = [ErrorIcon + " You cannot add playlists to your playlist.", ErrorIcon + " Do svého playlistu nemůžete přidat playlisty.", ErrorIcon + " Nemôžeš pridať playlisty do tvojich playlistov.", ErrorIcon + " No puedes añadir listas de reproducción a su lista de reproducción.", ErrorIcon + " Oynatma listenize oynatma listesi ekleyemezsiniz.", ErrorIcon + " Вы не можете добавлять плейлисты в свой плейлист.", ErrorIcon + " プレイリストにプレイリストを追加することはできません。"];
-                  const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                /*} else {
+                  const embed = {"description": ErrorMessage15[Language],  "color": EmbedColor}; 
                   message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                };
+                };*/
 
             } else {
               const embed = {"description": CooldownMessage1[Language],  "color": EmbedColor}; 
@@ -8073,7 +8066,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
               const Playlist = peeky.userData.get(key2, "Playlist");
 
               if  (Playlist.length > 0)  {
-                  var FinalizedPlaylist = function_NumarizeArray(Playlist, ["<", ">"], null)
+                  var FinalizedPlaylist = function_NumarizeArray(Playlist.slice(0, ), ["<", ">"], null)
               }  else  {
                  var FinalizedPlaylist = "The playlist is empty.";
               };

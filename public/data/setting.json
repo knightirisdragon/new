@@ -26,7 +26,7 @@
   "Blurple": "#7289DA",
 
   "GiveawayLimit": 5,
-  "QueueLimit": 25,
+  "QueueLimit": 100,
   "PlaylistLimit": 10,
   "ClassificationWallLimit": 50,
   "BannedWordsLimit": 10,
