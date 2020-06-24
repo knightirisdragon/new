@@ -198,7 +198,7 @@ const CooldownMessage2 = [
   ErrorIcon + " La creación de canales automatizada está actualmente en proceso de enfriamiento.",
   ErrorIcon + " Otomatik kanal oluşturma şu anda bir bekleme süresinde.",
   ErrorIcon + " Автоматизированное создание канала находится на перезагрузке.",
-  ErrorIcon + " 現在、自動ロール作成はクールダウン状態です。"
+  ErrorIcon + " 現在、自動チャネル作成はクールダウン状態です。"
 ];
 const CooldownMessage3 = [
   ErrorIcon + " Automated role creation is currently on a cooldown.",
@@ -7907,7 +7907,7 @@ if  (CommandName == "queue")  {
       
     var Queue = peeky.serverData.get(keySF, "Queue");
     if  (Queue.length > 0)  {
-        var FinalizedPlaylist = function_NumarizeArray(Queue, ["<", ">"], null)
+        var FinalizedPlaylist = function_NumarizeArray(Queue.slice(0, 10), ["<", ">"], null);
     }  else  {
        var FinalizedPlaylist = "The queue is empty.";
     };
