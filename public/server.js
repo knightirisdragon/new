@@ -7984,7 +7984,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                       MusicCmdCooldown.add(message.guild.id);
                       setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 10000);
 
-                      await ytdl.getBasicInfo(peeky.serverData.get(keySF, "Queue")[0]).then(async (info) => {
+                      await ytdl.getBasicInfo(peeky.userData.get(key, "Playlist")[0]).then(async (info) => {
                         
                           info = info.player_response.videoDetails;
 
