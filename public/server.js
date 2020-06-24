@@ -37,9 +37,9 @@ app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
   response.sendStatus(200);
 });
-app.listen(process.env.PORT);
+/*app.listen(process.env.PORT);
   setInterval(() => { http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000);
+}, 280000);*/
 
 http.createServer((req, res) => {
     let responseCode = 404;
