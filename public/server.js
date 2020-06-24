@@ -7978,6 +7978,24 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                       const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     };*/
+              
+                  if  (peeky.userData.get(key, "Playlist").length == 1 && peeky.userData.get(key, "PlaylistThumbnail") == null)  {
+
+                      MusicCmdCooldown.add(message.guild.id);
+                      setTimeout(() => {MusicCmdCooldown.delete(message.guild.id)}, 10000);
+
+                      await ytdl.getBasicInfo(peeky.serverData.get(keySF, "Queue")[0]).then(async (info) => {
+                        
+                          info = info.player_response.videoDetails;
+
+                          var Thumbnail = info.thumbnail.thumbnails[info.thumbnail.thumbnails.length - 1].url;
+                  
+                          peeky.userData.set(key, Thumbnail, "PlaylistThumbnail");
+                      
+                      });
+
+                  
+                  };
 
                 /*} else {
                   const embed = {"description": ErrorMessage15[Language],  "color": EmbedColor}; 
