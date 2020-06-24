@@ -189,7 +189,7 @@ const CooldownMessage1 = [
   ErrorIcon + " Actualmente estás en un período de enfriamiento para ese comando.",
   ErrorIcon + " Şu anda bu komutun bekleme süresindesiniz.",
   ErrorIcon + " Вы сейчас на перезагрузке для этой команды.",
-  ErrorIcon + " "
+  ErrorIcon + " 現在、そのコマンドのクールダウンを行っています。"
 ];
 const CooldownMessage2 = [
   ErrorIcon + " Automated channel creation is currently on a cooldown.",
@@ -198,7 +198,7 @@ const CooldownMessage2 = [
   ErrorIcon + " La creación de canales automatizada está actualmente en proceso de enfriamiento.",
   ErrorIcon + " Otomatik kanal oluşturma şu anda bir bekleme süresinde.",
   ErrorIcon + " Автоматизированное создание канала находится на перезагрузке.",
-  ErrorIcon + " "
+  ErrorIcon + " 現在、自動ロール作成はクールダウン状態です。"
 ];
 const CooldownMessage3 = [
   ErrorIcon + " Automated role creation is currently on a cooldown.",
@@ -207,7 +207,7 @@ const CooldownMessage3 = [
   ErrorIcon + " La creación automatizada de roles está actualmente en proceso de enfriamiento.",
   ErrorIcon + " Otomatik rol oluşturma şu anda bir bekleme süresinde.",
   ErrorIcon + " Автоматизированное создание ролей находится на перезагрузке.",
-  ErrorIcon + " "
+  ErrorIcon + " 現在、自動ロール作成はクールダウン状態です。"
 ];
 const CooldownMessage4 = [
   ErrorIcon + " You are currently on a cooldown for that function.",
@@ -216,7 +216,7 @@ const CooldownMessage4 = [
   ErrorIcon + " Usted actualmente está en un período de enfriamiento para esa función.",
   ErrorIcon + " Şu anda bu işlev için bir bekleme süresindesiniz.",
   ErrorIcon + " Вы сейчас на перезагрузке для этой функции.",
-  ErrorIcon + " "
+  ErrorIcon + " 現在、その関数のクールダウンを行っています。"
 ];
 
 const PermissionsMessageError1 = [
@@ -226,7 +226,7 @@ const PermissionsMessageError1 = [
   ErrorIcon + " Usted no tiene los permisos necesarios para hacerlo.",
   ErrorIcon + " Bunu yapmak için gerekli izinlere sahip değilsiniz.",
   ErrorIcon + " У вас нет необходимых разрешений для этого.",
-  ErrorIcon + " "
+  ErrorIcon + " 現在、自動ロール作成はクールダウン状態です。"
 ];
 const PermissionsMessageError2 = [
   ErrorIcon + " You need to be the owner of this server to do that.",
@@ -235,7 +235,7 @@ const PermissionsMessageError2 = [
   ErrorIcon + " Usted necesita ser el dueño de este servidor para hacer eso.",
   ErrorIcon + " Bunu yapmak için bu sunucunun sahibi olmanız gerekir.",
   ErrorIcon + " Для этого вы должны быть владельцем этого сервера.",
-  ErrorIcon + " "
+  ErrorIcon + " これを行うには、このサーバーの所有者である必要があります。"
 ];
 const PermissionsMessageError3 = [
   ErrorIcon + " I am missing required permissions to do that.",
@@ -244,7 +244,7 @@ const PermissionsMessageError3 = [
   ErrorIcon + " No tengo los permisos necesarios para hacerlo.",
   ErrorIcon + " Bunu yapmak için gerekli izinlere sahip değilim.",
   ErrorIcon + " У меня нет необходимых разрешений для этого.",
-  ErrorIcon + " "
+  ErrorIcon + " 私はそれを行うために必要な権限が欠落しています。"
 ];
 
 const ErrorMessage1 = [
