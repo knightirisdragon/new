@@ -134,6 +134,7 @@ a.button:hover {
     position: absolute;
     left: 17%;
     bottom: 0%;
+    padding: 25px;
 }
 
 .sidemenucontent img,
