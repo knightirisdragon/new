@@ -33,17 +33,6 @@
     "Obtained by boosting the Support Server."
   ],
   [
-    "PeekyFriendBadge",
-    "<:peekyfriends:726023941856165978> PEEKY's Friend",
-    "https://cdn.glitch.com/3ce4786a-18bd-42b7-b36f-7f1dfc598668%2Fpeekyfriends.png?v=1593168018162",
-    0,
-    2,
-    false,
-    null,
-    "PEEKY's Friend",
-    "Obtained by being a part of PEEKY's community in a significant way."
-  ],
-  [
     "VeteranBadge",
     "<:veteran:540565010972147724> Veteran",
     "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fveteran.png?1548951084956",
@@ -64,6 +53,17 @@
     null,
     "Translator",
     "Obtained for contributing to PEEKY's language support."
+  ],
+  [
+    "PeekyFriendBadge",
+    "<:peekyfriends:726217678921924669> PEEKY's Friend",
+    "https://cdn.glitch.com/3ce4786a-18bd-42b7-b36f-7f1dfc598668%2Fpeekyfriends.png?v=1593214167867",
+    0,
+    2,
+    false,
+    null,
+    "PEEKY's Friend",
+    "Obtained by being a part of PEEKY's community in a significant way."
   ],
   [
     "UpgraderBadge",
