@@ -968,7 +968,7 @@ async function WebsiteStuff()  {
         if (err) console.log(err);
     });
 
-    console.log("The random songs have been updated.");
+    console.log("The badges have been updated.");
 
     //Miscellaneous
     await fs.writeFile('public/website_data/supportedlanguages.txt', Languages.join(", ") + ".", (err) => {
