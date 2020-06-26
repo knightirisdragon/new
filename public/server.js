@@ -1488,10 +1488,10 @@ function function_DetectLink(string)  {
 
   if  (string.length > 0)  {
     
-      if  (string.match(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|mp4|mp3)/g) || string.match(/(http(s?):\/\/tenor.com)/g) || string.match(/(http(s?):\/\/tenor.com)/g))  {
+      if  (string.match(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g) || string.match(/(http(s?):\/\/tenor.com)/g))  {
           return true;
       } else {
-          return false;
+        return false;
       };
     
   };
@@ -4026,7 +4026,7 @@ if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
         //FunctionCooldowns.add("automaticreactions" + message.channel.id);
         //setTimeout(() => {FunctionCooldowns.delete("automaticreactions" + message.channel.id)}, 2000);
   
-        if  ((message.attachments.size > 0 || function_DetectLink(message.content) == true) && !message.author.bot)  {
+        if  ((message.attachments.size > 0 || function_DetectLink(message.content)) && !message.author.bot)  {
 
         if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS', 'EXTERNAL_EMOJIS'))  {
 
@@ -4375,7 +4375,7 @@ if  (peeky.serverData.get(keySF, "spoiler_lock_bonus") == true)  {
 
         if  (!message.member.permissions.has("MANAGE_MESSAGES"))  {
 
-            if  ((message.attachments.size > 0 && !message.attachments.array()[0].name.startsWith("SPOILER_")) || function_DetectLink(message.content) == true)  {
+            if  ((message.attachments.size > 0 && !message.attachments.array()[0].name.startsWith("SPOILER_")) || function_DetectLink(message.content))  {
 
                 if  ((((new Date() - new Date(message.member.joinedAt)) / 60000) < peeky.serverData.get(keySF, "spoiler_lock_bonus_setting")) || peeky.serverData.get(keySF, "spoiler_lock_bonus_setting") == 0)  {
 
@@ -6782,7 +6782,7 @@ if (CommandName.startsWith("custombackground"))  {
               
                 var Thumbnail = message.attachments.array()[0].url;
 
-                if  (function_DetectLink(Thumbnail) == true)  {
+                if  (function_DetectLink(Thumbnail))  {
 
                     if  (!peeky.userData.get(key, "PainterBadge"))  {
 
@@ -8048,7 +8048,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
           
                 var Thumbnail = message.attachments.array()[0].url;
               
-                if  (function_DetectLink(Thumbnail) == true)  {
+                if  (function_DetectLink(Thumbnail))  {
                   
                     peeky.userData.set(key, Thumbnail, "PlaylistThumbnail");
 
