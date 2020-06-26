@@ -510,7 +510,7 @@ const TextChannels        = [  "text", "news"  ];
 
 //Small Objects
 var Banner          = {  Source: 0, Price: 1, Name: 2, Credit: 3, RevenueID: 4, AddedDate: 5  };
-var StreamOptions   = {  volume: 1  };
+var StreamOptions   = {  volume: false  };
 var SearchOptions   = {  maxResults: 1, type: "video", key: process.env.YT_TOKEN  };
 
 var Banners = require("./lists/backgrounds.json");
