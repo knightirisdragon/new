@@ -24,7 +24,7 @@ function FixTitle(text)  {
       
         w = w.replace("/", "").replace("peeky", "PEEKY");
       
-        if  (w.toUpperCase() !== w && (w.length > 3 || index == 0))  {
+        if  (w.toUpperCase() !== w && (w.length >= 3 || index == 0))  {
           
             Array.push(w.slice(0, 1).toUpperCase() + w.slice(1, w.length).toLowerCase());
           
