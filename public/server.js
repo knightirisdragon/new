@@ -1488,7 +1488,7 @@ function function_DetectLink(string)  {
 
   if  (string.length > 0)  {
     
-      if  (string.match(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g) !== null)  {
+      if  (string.match(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|mp4|mp3)/g) || string.match(/(http(s?):\/\/tenor.com)/g) || string.match(/(http(s?):\/\/tenor.com)/g))  {
           return true;
       } else {
           return false;
