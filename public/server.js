@@ -736,7 +736,7 @@ async function WebsiteStuff()  {
             Message = '<b class="messageheader">You can currently participate in the ' + Setting.EventName + ' event!</b>';  
         }
         else if  (Setting.Message !== "")  {
-            Message = '<b class="messageheader">' + Setting.Announcement + ' </b>';  
+            Message = '<b class="messageheader">' + Setting.Message + ' </b>';  
         };
 
         await fs.writeFile('public/website_data/messageheader.txt', Message, (err) => {
