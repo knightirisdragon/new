@@ -3452,7 +3452,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
                             QueuedSOSMessages.delete(member.user.id);
 
                             const response = collected.first();
-                            const role = reaction.message.guild.roles.cache.find(r => r.name.toLowerCase() == response.content);
+                            const role = reaction.message.guild.roles.cache.find(r => r.name.toLowerCase() == response.content.toLowerCase());
 
                             if  (member && role && FunctionSetting.includes(role.name.toLowerCase()))  {
 
