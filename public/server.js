@@ -8871,6 +8871,8 @@ if  (CommandName == "giveaway")  {
                               m.react("🎁").catch(error => ErrorBag.add(error));
                           });
                           
+                          //Save the giveaway
+                          peeky.serverData.set(keySF, peeky.serverData.get(keySF, "ActiveGiveaways"), "ActiveGiveaways");
                               
                           CommandCooldown.delete("giveaway" + message.guild.id);
                         };
