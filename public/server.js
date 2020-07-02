@@ -146,11 +146,11 @@ const BoostTag        = "<:boost:642647004056518665>";
 const BotTag          = "<:bot:541014775468130336>";
 
 //Role IDs
-const StaffRole          = "494429609874685983";
-const VeteranRole        = "679051643756478539";
-const PremiumRole        = "504740473185894400";
-const BoosterRole        = "620654437081415686";
-const ServerUpgradeRole  = "549190337437106176";
+const StaffRole            = "494429609874685983";
+const VeteranRole          = "679051643756478539";
+const PremiumRole          = "504740473185894400";
+const BoosterRole          = "620654437081415686";
+const ServerUpgradeRole    = "549190337437106176";
 
 //Other IDs
 const OwnerId              = "108899856889737216";
@@ -1928,6 +1928,7 @@ peeky.on('message', async (message) => {
             Votes: 0,
             UpgradedServers: 0,
             SupporterLastPurchase: 0,
+            PremiumLength: "Month",
             BoosterStart: 0,
             DailyRewarded: 0,
             LeaderboardRank: 1,
@@ -2600,11 +2601,25 @@ if  (keySF == SupportServer)  {
 
         //Premium
         if  (peeky.userData.has(key))  {
+          
+            var PremiumRoles = ["728347101934649356", "728347295631802398", "728347264900136990"];
 
-            var HadRole = oldMember.roles.cache.find(r => r.id == PremiumRole);
-            var HasRole = newMember.roles.cache.find(r => r.id == PremiumRole);
+            var HadRole = oldMember.roles.cache.find(r => PremiumRoles.includes(r.id));
+            var HasRole = newMember.roles.cache.find(r => PremiumRoles.includes(r.id));
 
-            if  (!HadRole && HasRole)  {
+            if  (!HadRole && HadRole)  {
+                  
+                if  (HasRole.id == PremiumRoles[0]) {
+                    peeky.userData.set(key, "Month", "PremiumLength");
+                } else 
+                  
+                if  (HasRole.id == PremiumRoles[1]) {
+                    peeky.userData.set(key, "Year", "PremiumLength");
+                } else 
+                  
+                if  (HasRole.id == PremiumRoles[2]) {
+                    peeky.userData.set(key, "Permanent", "PremiumLength");
+                };
 
                 PurchaseComplete = true;
                 TransactionInfo = ["Premium", "premium", "You can now enjoy all of the exciting [Premium features](https://peeky.glitch.me/pages/store/#serverupgrade) that PEEKY has to offer!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
@@ -3809,14 +3824,13 @@ if  (!AutoManagementCooldown.has("limitedroles"))  {
     //Premium
     await peeky.guilds.cache.get(SupportServer).members.cache.filter(m => !m.user.bot && m.roles.cache.has(PremiumRole)).forEach(m => {
 
-        var ExpirationMs = MonthMs;
-        /*if  (peeky.userData.get(m.user.id, "PremiumLength") == "Lifetime")  {
+        if  (peeky.userData.get(m.user.id, "PremiumLength") == "Permanent")  {
             var ExpirationMs = "infinite";
         } else if  (peeky.userData.get(m.user.id, "PremiumLength") == "Year")  {
           var ExpirationMs = YearMs;
         } else  {
           var ExpirationMs = MonthMs;
-        };*/
+        };
 
         if  (peeky.userData.has(m.user.id, "SupporterLastPurchase") && (new Date() - new Date(peeky.userData.get(m.user.id, "SupporterLastPurchase")) >= ExpirationMs))  {
             m.roles.remove(PremiumRole).catch(error => ErrorBag.add(error));
