@@ -525,6 +525,22 @@ const DailyChallenges = require("./challenges/daily.json");
 
 //WEBSITE STUFF
 async function WebsiteStuff()  {
+  
+  //Auto Wipe
+    setInterval(async () => {
+
+        //Profiles
+        var filtered         = peeky.userData.filter( p => p.UserID && p.lastSeen );
+        var toRemoveProfiles = filtered.filter(data => new Date() - new Date(data.lastSeen) > MonthMs);
+
+        toRemoveProfiles.forEach(data => {
+            if  (!peeky.users.cache.has(data.UserID) || data.FashionBadge == false)  {
+                console.log("I have wiped an inactive profile.");
+                peeky.userData.delete(`${data.UserID}`);
+            };
+        });
+
+    }, 3600000);
 
     //API
     setInterval(async () => {
@@ -7069,7 +7085,25 @@ if (CommandName.startsWith("seebackground"))  {
 };
 
 //Open
-if (CommandName.startsWith("open ") || CommandName == "open")  {
+if  (CommandName == "daily")  {
+  
+    var DailyDate = new Date().getDate() + "/" + new Date().getMonth();
+
+    if  (peeky.userData.get(key, "LastDaily") !== DailyDate)  {
+      
+        peeky.userData.set(key, DailyDate, "LastDaily");
+      
+    } else {
+      
+      var TranslatedMessages = [SuccessIcon + " Cleared the setting for the **X001** function.", SuccessIcon + " Nastavení pro funkci **X001** bylo vyčištěno.", SuccessIcon + " Vymazal som nastavenie pre **X001** funkciu.", SuccessIcon + " Despejó la configuración de la función **X001**.", SuccessIcon + " **X001** adlı fonksiyonun ayarı sıfırlandı.", SuccessIcon + " Очистили настройку для функции **X001**.", SuccessIcon + " **X001**関数の設定をクリアしました。"];
+    
+      
+    };
+  
+};
+
+//Open
+if  (CommandName.startsWith("open ") || CommandName == "open")  {
 
     if  (!ProfileCooldown.has(message.author.id))  {
 
