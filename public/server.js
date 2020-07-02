@@ -8870,6 +8870,7 @@ if  (CommandName == "giveaway")  {
 
                               m.react("🎁").catch(error => ErrorBag.add(error));
                           });
+                          
                               
                           CommandCooldown.delete("giveaway" + message.guild.id);
                         };
