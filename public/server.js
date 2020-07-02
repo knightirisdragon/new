@@ -7092,11 +7092,19 @@ if  (CommandName == "daily")  {
     if  (peeky.userData.get(key, "LastDaily") !== DailyDate)  {
       
         peeky.userData.set(key, DailyDate, "LastDaily");
+        peeky.userData.math(key, "+", 1, "Chests");
+      
+        var TranslatedMessages = [SuccessIcon + " You have retrieved your daily reward, but you can still check out the current challenges for more!", SuccessIcon + " Dostali jste vaši denní odměnu, ale stále se můžete kouknot na vaše úkoly pro více odměn!", SuccessIcon + " slovak", SuccessIcon + " Vuelva más tarde para recibir su recompensa diaria.", SuccessIcon + " Günlük ödülünü aldın, ama daha fazlası için şuan'ki meydan okumaları kontrol edebilirsin.", SuccessIcon + " Приходите позже, чтобы получить вашу ежедневную награду.", SuccessIcon + " 毎日のご褒美は後で取りに来てください。"];
+
+        const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     } else {
       
-      var TranslatedMessages = [SuccessIcon + " Cleared the setting for the **X001** function.", SuccessIcon + " Nastavení pro funkci **X001** bylo vyčištěno.", SuccessIcon + " Vymazal som nastavenie pre **X001** funkciu.", SuccessIcon + " Despejó la configuración de la función **X001**.", SuccessIcon + " **X001** adlı fonksiyonun ayarı sıfırlandı.", SuccessIcon + " Очистили настройку для функции **X001**.", SuccessIcon + " **X001**関数の設定をクリアしました。"];
-    
+      var TranslatedMessages = [SuccessIcon + " Come back later to retrieve your daily reward.", SuccessIcon + " Přijďte později pro vaši denní odměnu.", SuccessIcon + " slovak", SuccessIcon + " Vuelva más tarde para recibir su recompensa diaria.", SuccessIcon + " Günlük ödülünüzü almak için daha sonra tekrar gelin.", SuccessIcon + " Приходите позже, чтобы получить вашу ежедневную награду.", SuccessIcon + " 毎日のご褒美は後で取りに来てください。"];
+      
+      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     };
   

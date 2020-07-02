@@ -92,6 +92,9 @@ You have sold the **X001** background for **X002**. |
 You cannot sell the default backgrounds. | 
 You have sold all your backgrounds for **X001**. | 
 
+You have retrieved your daily reward, but you can still check out the current challenges for more! | 
+Come back later to retrieve your daily reward | 
+
 You have opened **X001** for **X002**. | 
 
 This profile is now featured on the website. | 
