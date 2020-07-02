@@ -2933,7 +2933,7 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
 
         const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted and will be added shortly!",  "color": EmbedColor}; 
         function_DirectMessage(reaction.message.author.id, { embed });
-        function_DirectMessage(OwnerId, '["NO_BACKGROUND", ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", ' + null + ', ' + Date.now() + ']');
+        function_DirectMessage(OwnerId, '[ \n "NO_BACKGROUND", \n ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', \n "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", \n "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", \n ' + null + ', \n ' + Date.now() + ' \n ]');
       
     };
   
@@ -7084,7 +7084,7 @@ if (CommandName.startsWith("seebackground"))  {
   
 };
 
-//Open
+//Daily
 if  (CommandName == "daily")  {
   
     var DailyDate = new Date().getDate() + "/" + new Date().getMonth();
@@ -7094,14 +7094,14 @@ if  (CommandName == "daily")  {
         peeky.userData.set(key, DailyDate, "LastDaily");
         peeky.userData.math(key, "+", 1, "Chests");
       
-        var TranslatedMessages = [SuccessIcon + " You have retrieved your daily reward, but you can still check out the current challenges for more!", SuccessIcon + " Dostali jste vaši denní odměnu, ale stále se můžete kouknot na vaše úkoly pro více odměn!", SuccessIcon + " slovak", SuccessIcon + " Vuelva más tarde para recibir su recompensa diaria.", SuccessIcon + " Günlük ödülünü aldın, ama daha fazlası için şuan'ki meydan okumaları kontrol edebilirsin.", SuccessIcon + " Приходите позже, чтобы получить вашу ежедневную награду.", SuccessIcon + " 毎日のご褒美は後で取りに来てください。"];
+        var TranslatedMessages = [SuccessIcon + " You have retrieved your daily reward, but you can still check out the current challenges for more!", SuccessIcon + " Dostali jste vaši denní odměnu, ale stále se můžete kouknot na vaše úkoly pro více odměn!", SuccessIcon + " slovak", SuccessIcon + " Has recuperado tu recompensa diaria, ¡pero aún puedes revisar los desafíos para obtener más!", SuccessIcon + " Günlük ödülünü aldın, ama daha fazlası için şuan'ki meydan okumaları kontrol edebilirsin.", SuccessIcon + " Вы получили ваше ежедневное вознаграждение, но вы все еще можете проверить испытания для большего!", SuccessIcon + " 毎日の報酬を受け取りましたが、より多くを受け取るために挑戦を試すことができます！"];
 
         const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     } else {
       
-      var TranslatedMessages = [SuccessIcon + " Come back later to retrieve your daily reward.", SuccessIcon + " Přijďte později pro vaši denní odměnu.", SuccessIcon + " slovak", SuccessIcon + " Vuelva más tarde para recibir su recompensa diaria.", SuccessIcon + " Günlük ödülünüzü almak için daha sonra tekrar gelin.", SuccessIcon + " Приходите позже, чтобы получить вашу ежедневную награду.", SuccessIcon + " 毎日のご褒美は後で取りに来てください。"];
+      var TranslatedMessages = [ErrorIcon + " Come back later to retrieve your daily reward.", ErrorIcon + " Pro vaši odměnu si můžete přijít později.", ErrorIcon + " slovak", ErrorIcon + " Vuelva más tarde para recibir su recompensa diaria.", ErrorIcon + " Günlük ödülünüzü almak için daha sonra tekrar gelin.", ErrorIcon + " Приходите позже, чтобы получить вашу ежедневную награду.", ErrorIcon + " 毎日のご褒美は後で取りに来てください。"];
       
       const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
