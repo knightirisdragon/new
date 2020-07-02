@@ -2604,12 +2604,18 @@ if  (keySF == SupportServer)  {
           
             var PremiumRoles = ["728347101934649356", "728347295631802398", "728347264900136990"];
           
-            if 
+            newMember.roles.cache.map(r => r.id).forEach(role => {
+              
+                if  (PremiumRoles.includes(role))  {
 
-            var HadRole = oldMember.roles.cache.find(r => PremiumRoles.includes(r.id));
-            var HasRole = newMember.roles.cache.find(r => PremiumRoles.includes(r.id));
+                    var HadRole = oldMember.roles.cache.find(r => r.id == role);
+                    var HasRole = newMember.roles.cache.find(r => r.id == role);
+                  
+                };
+              
+            });
 
-            if  (!HadRole && HadRole)  {
+            if  (!HadRole && HasRole)  {
                   
                 if  (HasRole.id == PremiumRoles[0]) {
                     peeky.userData.set(key, "Month", "PremiumLength");
