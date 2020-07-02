@@ -3647,19 +3647,21 @@ if  (peeky.serverData.get(keySF, "message_log_bonus") == true)  {
 
 //MESSAGE  DELETE EVENTS
 peeky.on("messageDelete", async (message) => {
+
 if  (message)  {
-  
-//Workshop Response
-if  (message.channel.id == WorkshopChannel && message.author.id !== PeekyId)  {
-    if  (new Date() - new Date(message.createdAt) < 5000)  {
-        var embed = {"description": ErrorIcon + " Your submission in the Workshop had a wrong format.",  "color": EmbedColor};
-    } else {
-      var embed = {"description": ErrorIcon + " Your submission in the Workshop has been denied.",  "color": EmbedColor};
+
+    //Workshop Response
+    if  (message.channel.id == WorkshopChannel && message.author.id !== PeekyId)  {
+        if  (new Date() - new Date(message.createdAt) < 5000)  {
+            var embed = {"description": ErrorIcon + " Your submission in the Workshop had a wrong format.",  "color": EmbedColor};
+        } else {
+          var embed = {"description": ErrorIcon + " Your submission in the Workshop has been denied.",  "color": EmbedColor};
+        };
+        function_DirectMessage(message.author.id, { embed });
     };
-    function_DirectMessage(message.author.id, { embed });
+
 };
-  
-};
+
 });
 
 //MESSAGE EVENTS
