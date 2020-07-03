@@ -1,0 +1,1 @@
+<div class='workshop'>There are no new submissions in the Workshop right now.</div>

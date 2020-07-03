@@ -1,0 +1,1 @@
+<a class='botstats'><font color='#7289DA'>63</font> Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>21488</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>678</font> Days old</a>
