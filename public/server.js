@@ -7094,14 +7094,14 @@ if  (CommandName == "daily")  {
         peeky.userData.set(key, DailyDate, "LastDaily");
         peeky.userData.math(key, "+", 1, "Chests");
       
-        var TranslatedMessages = [SuccessIcon + " You have retrieved your daily reward, but you can still check out the current challenges for more!", SuccessIcon + " Dostali jste vaši denní odměnu, ale stále se můžete kouknot na vaše úkoly pro více odměn!", SuccessIcon + " slovak", SuccessIcon + " Has recuperado tu recompensa diaria, ¡pero aún puedes revisar los desafíos para obtener más!", SuccessIcon + " Günlük ödülünü aldın, ama daha fazlası için şuan'ki meydan okumaları kontrol edebilirsin.", SuccessIcon + " Вы получили ваше ежедневное вознаграждение, но вы все еще можете проверить испытания для большего!", SuccessIcon + " 毎日の報酬を受け取りましたが、より多くを受け取るために挑戦を試すことができます！"];
+        var TranslatedMessages = [SuccessIcon + " You have retrieved your daily reward, but you can still check out the current challenges for more!", SuccessIcon + " Dostali jste vaši denní odměnu, ale stále se můžete kouknot na vaše úkoly pro více odměn!", SuccessIcon + " Získali ste svoju dennú odmenu, ale stále si môžete pozrieť súčasné výzvy na ďalšie!", SuccessIcon + " Has recuperado tu recompensa diaria, ¡pero aún puedes revisar los desafíos para obtener más!", SuccessIcon + " Günlük ödülünü aldın, ama daha fazlası için şuan'ki meydan okumaları kontrol edebilirsin.", SuccessIcon + " Вы получили ваше ежедневное вознаграждение, но вы все еще можете проверить испытания для большего!", SuccessIcon + " 毎日の報酬を受け取りましたが、より多くを受け取るために挑戦を試すことができます！"];
 
         const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     } else {
       
-      var TranslatedMessages = [ErrorIcon + " Come back later to retrieve your daily reward.", ErrorIcon + " Pro vaši odměnu si můžete přijít později.", ErrorIcon + " slovak", ErrorIcon + " Vuelva más tarde para recibir su recompensa diaria.", ErrorIcon + " Günlük ödülünüzü almak için daha sonra tekrar gelin.", ErrorIcon + " Приходите позже, чтобы получить вашу ежедневную награду.", ErrorIcon + " 毎日のご褒美は後で取りに来てください。"];
+      var TranslatedMessages = [ErrorIcon + " Come back later to retrieve your daily reward.", ErrorIcon + " Pro vaši odměnu si můžete přijít později.", ErrorIcon + " Vráťte sa neskôr aby ste získali svoju dennú odmenu.", ErrorIcon + " Vuelva más tarde para recibir su recompensa diaria.", ErrorIcon + " Günlük ödülünüzü almak için daha sonra tekrar gelin.", ErrorIcon + " Приходите позже, чтобы получить вашу ежедневную награду.", ErrorIcon + " 毎日のご褒美は後で取りに来てください。"];
       
       const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
