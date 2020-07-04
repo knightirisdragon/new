@@ -1,0 +1,16 @@
+[
+  [
+    "perfect_hangman",
+    "Professional Unhanger",
+    "Win the Hangman minigame without any errors.",
+    5,
+    "Chests"
+  ],
+  [
+    "song_master",
+    "Song Master",
+    "Win the Guess the Song minigame by guessing a hard song.",
+    5000,
+    "Exp"
+  ]
+]

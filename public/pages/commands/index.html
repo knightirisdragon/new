@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <link rel="stylesheet" href="/style.css">
+  <script src="/website.js" defer></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+  
+<body class="imagebackground">
+<b>
+  
+<a class="homebutton" href="https://peeky--vojtech-jilovec.repl.co/" rel="noopener noreferrer"> <img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fhome.png?v=1573247289278"> </a>
+
+<div class="fullsize">
+  
+<font size="7" class="headertext">Commands</font> 
+<font size="4" class="headersub">  <font color="gold">Premium Users</font>, <font color="#7289DA">Upgraded Servers</font>, <font color="pink">NSFW channels</font>, <font color="white">Anyone/Anywhere</font>  </font>
+
+<br><br><br>
+    
+<center><b class="item_header"><font size="4" >Function Commands</font></b></center>
+<table>
+  <br>
+  <tr>
+    <td>Overview</td>
+    <td>Gives you the list of all the functions and their current state and setting.</td>
+    <td>p!overview</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Toggle</td>
+    <td>Toggles a function's state between enabled and disabled.</td>
+    <td>p!toggle <font color="#7289DA">[<a href="https://peeky.glitch.me/pages/functions" rel="noopener noreferrer"><font color="#7289DA">function name</font></a>]</font></td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+  <tr>
+    <td>Set</td>
+    <td>Sets a function's setting, if available.</td>
+    <td>p!set <font color="#7289DA">[<a href="https://peeky.glitch.me/pages/functions" rel="noopener noreferrer"><font color="#7289DA">function name</font></a>] [setting]</font></td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+  <tr>
+    <td>Clear</td>
+    <td>Clears a function's array setting, if available.</td>
+    <td>p!clear <font color="#7289DA">[<a href="https://peeky.glitch.me/pages/functions" rel="noopener noreferrer"><font color="#7289DA">function name</font></a>]</font></td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+  <tr>
+    <td>Ticket</td>
+    <td>Used to control channels created through the Ticket System function.</td>
+    <td>p!ticket <font color="#7289DA">["rename"] [text]</font> <br>
+        p!ticket <font color="#7289DA">["cancel"]</font> <br>
+    </td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+</table>   
+    
+<br>
+<br>
+    
+<center><b class="item_header"><font size="4" >Server Setting Commands</font></b></center>
+<table>
+  <br>
+  <tr>
+    <td>Prefix</td>
+    <td>Changes the prefix for the entire server.</td>
+    <td>p!prefix <font color="#7289DA">[text]</font></td>
+    <td>Server Owner</td>
+  </tr>
+  <tr>
+    <td>Languages</td>
+    <td>Shows the list of languages and allows you to set one for of the server.</td>
+    <td>p!languages</td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+  <tr>
+    <td>MuteRole</td>
+    <td>Changes the name of the Mute role that PEEKY uses for the moderation commands and some functions.</td>
+    <td>p!muterole <font color="#7289DA">[role name]</font></td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+  <tr>
+    <td>HighlightedChannel</td>
+    <td>Changes the highlighted channel, which is used for some functions.</td>
+    <td>p!highlightedchannel <font color="#7289DA">[channel name]</font></td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+  <tr>
+    <td>LevelNotifications</td>
+    <td>Toggles the Level Notifications between enabled and disabled.</td>
+    <td>p!functionnotifications</td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+  <tr>
+    <td>FunctionNotifications</td>
+    <td>Toggles the Function Notifications between enabled and disabled.</td>
+    <td>p!functionnotifications</td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+</table>   
+    
+<br>
+<br>
+    
+<center><b class="item_header"><font size="4">Moderation Commands</font></b></center>
+<table>
+  <br>
+  <tr>
+    <td>Mute</td>
+    <td>Mutes the mentioned user.</td>
+    <td>p!mute <font color="#7289DA">[user mention]</font></td>
+    <td>MUTE_MEMBERS</td>
+  </tr>
+  <tr>
+    <td>Unmute</td>
+    <td>Unmutes the mentioned user.</td>
+    <td>p!unmute <font color="#7289DA">[user mention]</font></td>
+    <td>MUTE_MEMBERS</td>
+  </tr>
+  <tr>
+    <td>Slowmode</td>
+    <td>Sets a slowmode with a custom length.</td>
+    <td>p!slowmode <font color="#7289DA">[number]</font></td>
+    <td>MANAGE_CHANNELS</td>
+  </tr>
+  <tr>
+    <td>Purge</td>
+    <td>Purges a specific amont of messages.</td>
+    <td>p!purge <font color="#7289DA">[number]</font></td>
+    <td>MANAGE_MESSAGES</td>
+  </tr>
+  <tr>
+    <td>IDBan</td>
+    <td>Bans a user outside the server based on their ID.</td>
+    <td>p!idban <font color="#7289DA">[user id]</font></td>
+    <td>BAN_MEMBERS</td>
+  </tr>
+  <tr>
+    <td>Ban</td>
+    <td>Bans a user inside the server.</td>
+    <td>p!ban <font color="#7289DA">[user mention]</font></td>
+    <td>BAN_MEMBERS</td>
+  </tr>
+  <tr>
+    <td>Kick</td>
+    <td>Kicks a user inside the server.</td>
+    <td>p!kick <font color="#7289DA">[user mention]</font></td>
+    <td>KICK_MEMBERS</td>
+  </tr>
+</table>
+
+<br>
+<br>
+    
+<center><b class="item_header"><font size="4" >Music Commands</font></b></center>
+<table>
+  <br>
+  <tr>
+    <td>Play</td>
+    <td>Plays a song from YouTube or adds it to the queue when there's a song already playing.</td>
+    <td>p!play <font color="#7289DA">[song name]</font> <br>
+        p!play <font color="#7289DA">[YouTube URL]</font> <br>
+        p!play <font color="#7289DA">["random"]</font> <br>
+        p!play <font color="#7289DA">["previous"]</font> <br>
+        p!play <font color="#7289DA">["playlist"]</font> <br>
+        p!playlist <font color="#7289DA">["playlist"] [user mention]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Playlist</td>
+    <td>Manages or shows your music playlist.</td>
+    <td>p!playlist <br>
+        p!playlist <font color="#7289DA">["add"] [YouTube URL]</font> <br>
+        p!playlist <font color="#7289DA">["add"] ["current"]</font> <br>
+        p!playlist <font color="#7289DA">["remove"] [YouTube URL]</font> <br>
+        p!playlist <font color="#7289DA">["clear"]</font> <br>
+        p!playlist <font color="#7289DA">["rename"] [name]</font> <br>
+        p!playlist <font color="#7289DA">["thumbnail"] [file]</font> <br>
+        p!playlist <font color="#7289DA">[user mention]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Music</td>
+    <td>Displays a music menu that allows you to toggle stuff like the Music Mode.</td>
+    <td>p!music</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Queue</td>
+    <td>Displays the entire queue for the server.</td>
+    <td>p!queue</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Current</td>
+    <td>Shows what song is currently being played and how much time is left until it ends.</td>
+    <td>p!current</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Skip</td>
+    <td>Can either skip the current song or remove songs from the queue.</td>
+    <td>p!skip <br>
+        p!skip <font color="#7289DA">[YouTube URL]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Stop</td>
+    <td>Clears the entire queue and makes PEEKY leave the voice channel.</td>
+    <td>p!stop</td>
+    <td>None</td>
+  </tr>
+</table>
+
+<br>
+<br>
+
+<center><b class="item_header"><font size="4" >Profile Commands</font></b></center>
+<table>
+  <br>
+  <tr>
+    <td>Profile</td>
+    <td>Shows a profile of you or someone else.</td>
+    <td>p!profile <br>
+        p!profile <font color="#7289DA">[user mention]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Inventory</td>
+    <td>Shows the profile inventory of you or someone else.</td>
+    <td>p!inventory <br>
+        p!inventory <font color="#7289DA">[user mention]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>BuyBackground</td>
+    <td>Buys a specified background for your profile and adds it your inventory.</td>
+    <td>p!buybackground <font color="#7289DA">[<a href="https://peeky.glitch.me/pages/backgrounds" rel="noopener noreferrer" class="HomeHyperlinks"><font color="#7289DA">background ID</font></a>]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td><font color="gold">CustomBackground</font></td>
+    <td>Buys a custom background for your profile.</td>
+    <td>p!custombackground  <font color="#7289DA">[file]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>SetBackground</td>
+    <td>Sets the specified background for your profile, but only if you already have it in your inventory.</td>
+    <td>p!setbackground <font color="#7289DA">[<a href="https://peeky.glitch.me/pages/backgrounds" rel="noopener noreferrer" class="HomeHyperlinks"><font color="#7289DA">background ID</font></a>]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>SellBackground</td>
+    <td>Sells a background from your inventory for a fraction of it's original price.</td>
+    <td>p!sellbackground <font color="#7289DA">[<a href="https://peeky.glitch.me/pages/backgrounds" rel="noopener noreferrer" class="HomeHyperlinks"><font color="#7289DA">background ID</font></a>]</font> <br>
+        p!sellbackground <font color="#7289DA">[<font color="#7289DA">"all"</font>]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>SeeBackground</td>
+    <td>Shows the image and stats of a specified background.</td>
+    <td>p!seebackground <font color="#7289DA">[<a href="https://peeky.glitch.me/pages/backgrounds" rel="noopener noreferrer" class="HomeHyperlinks"><font color="#7289DA">background ID</font></a>]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>BuyDescription</td>
+    <td>Buys a description for your profile at an indefinite price.</td>
+    <td>p!buydescription <font color="#7289DA">[text]</font> <br>
+        p!buydescription <font color="#7289DA">["random"]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Daily</td>
+    <td>Gives you a chest as a daily reward.</td>
+    <td>p!daily <br></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Gift</td>
+    <td>Give someone some of your items like backgrounds, chests, etc...</td>
+    <td>p!gift <font color="#7289DA">[user mention] ["gredit"] [number]</font> <br>
+        p!gift <font color="#7289DA">[user mention] ["chest"] [number]</font> <br>
+        p!gift <font color="#7289DA">[user mention] ["background"] [number]</font></td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Open</td>
+    <td>Opens one or more of your chests for a nice loot.</td>
+    <td>p!open <br>
+        p!open <font color="#7289DA">["all"]</font></td>
+    <td>None</td>
+  </tr>
+</table>
+    
+<br>
+<br>
+
+<center><b class="item_header"><font size="4" >Minigame Commands</font></b></center>
+<table>
+  <br>
+  <tr>
+    <td>Akinator</td>
+    <td>Starts the "Akinator" minigame.</td>
+    <td>p!akinator</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Hangman</td>
+    <td>Starts the "Hangman" minigame.</td>
+    <td>p!hangman</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>DrawAndGuess</td>
+    <td>Starts the "Draw and Guess" minigame.</td>
+    <td>p!drawandguess</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>GuessTheSong</td>
+    <td>Starts the "Guess the Song" minigame.</td>
+    <td>p!guessthesong</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>TriviaQuestions</td>
+    <td>Starts the "Trivia Questions" minigame.</td>
+    <td>p!triviaquestions</td>
+    <td>None</td>
+  </tr>
+</table>
+    
+<br>
+<br>
+
+<center><b class="item_header"><font size="4" >Miscellaneous Commands</font></b></center>
+<table>
+  <br>
+  <tr>
+    <td>TimeZone</td>
+    <td>Sets the time offset in your server, which is used in several functions and commands</td>
+    <td>p!timezone <font color="#7289DA">[number]</font></td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+  <tr>
+    <td>Giveaway</td>
+    <td>Starts the proccess of creating a giveaway in the current channel.</td>
+    <td>p!giveaway</td>
+    <td>MANAGE_GUILD</td>
+  </tr>
+  <tr>
+    <td>Upgrade</td>
+    <td>Upgrades the current server, if available.</td>
+    <td>p!upgrade</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td><font color="#7289DA">SetInvite</font></td>
+    <td>Searches the current channel for a server invite to use in the Server List.</td>
+    <td>p!setinvite</td>
+    <td>Server Owner</td>
+  </tr>
+  <tr>
+    <td><font color="pink">NSFW</font></td>
+    <td>Shows NSFW content for the specified term.</td>
+    <td>p!nsfw [text]</td>
+    <td>None</td>
+  </tr>
+</table>
+    
+<br>
+<br>
+
+<center><b class="item_header"><font size="4" >Other Commands</font></b></center>
+<table>
+  <br>
+  <tr>
+    <td>Help</td>
+    <td>Shows PEEKY's help menu.</td>
+    <td>p!help</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Challenges</td>
+    <td>Shows a link to the Challenges page.</td>
+    <td>p!challenges</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Backgrounds</td>
+    <td>Shows a link to the Backgrounds page.</td>
+    <td>p!backgrounds</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Leaderboard</td>
+    <td>Shows a link to the Leaderboard page.</td>
+    <td>p!leaderboard</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Store</td>
+    <td>Shows a link to the Store page.</td>
+    <td>p!store</td>
+    <td>None</td>
+  </tr>
+</table>
+  
+</div>
+    
+</b>
+</body>
+</html>

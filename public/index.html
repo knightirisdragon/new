@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <link rel="stylesheet" href="/style.css">
+  <script src="/website.js" defer></script>
+
+  <meta property="og:url"         content="https://peeky.glitch.me/" />
+  <meta property="og:description" content="PEEKY is a free and reliable multipurpose bot with frequent updates and lots of unique features."/>
+  <meta property="og:image"       content="https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2.png?1553619432603"/>
+  <meta name="keywords"           content="peeky,discord,bot,discordapp,utility,moderation,music,protection,auto-mod,customizable,website">
+  <meta property="og:type"        content="website" />
+  <meta name="theme-color"        content="#7289DA">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<style>  
+
+.newsitem  {
+  background-color: rgba(35, 39, 42, 0.5);
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+  width: 300px;
+  height: 300px;
+  flex-shrink: 0;
+  padding: 15px;
+  margin: 5px;
+  text-align: left;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform .25s ease;
+}
+
+.newsitem:hover  {
+  transform: scale(0.95);
+}
+
+.newsauthor  {
+  width: 100%;
+  padding-bottom: 25px;
+  font-size: 10px;
+
+  display: inline-block;
+}
+
+.newsheader  {
+  width: 225px;
+  font-size: 14px;
+
+  display: inline-block;
+}
+
+.newsbody  {
+  font-size: 12px;
+  display: inline-block;
+}
+
+.textbackground  {
+  height: 100%;
+}
+
+.textbackground  .button  {
+  background-color: transparent;
+  border: 0px solid transparent;
+  padding: 0px;
+  bottom: 20px;
+  right: 20px;
+  position: absolute;
+  transform: scale(1);
+}
+
+.textbackground  .button:hover  {
+  border: 0px solid transparent;
+}
+
+#Reviews  {
+  background-color: rgba(35, 39, 42, 0.25);
+  border-radius: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 15px;
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform .25s ease;
+}
+
+.stafficon  {
+  background-color: rgba(35, 39, 42, 1);
+  border-radius: 10px;
+  margin: 5px;
+  display: inline-block;
+}
+
+.featuredprofile  {
+  border-radius: 2px;
+  transition: transform .25s ease;
+}
+
+.featuredprofile:hover  {
+  transform: scale(0.99);
+}
+
+.botstats  {
+  padding: 10px;
+  display: inline-block;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.botdiv  {
+  background-color: rgba(35, 39, 42, 0);
+  padding: 15px;
+  display: inline-block;    
+}
+
+.botdesc  {
+  width: 100%;
+  display: inline-block;    
+}
+
+.fullsize  {
+  background-color: rgba(35, 39, 42, 0.25);
+}
+
+.summaryhome {
+  margin-left: 5px;
+  margin-right: 5px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.container:hover .summaryhome {
+  filter: blur(0px);
+}
+
+</style>
+  
+<body onload="UpdateWebsiteStuff([['stats.txt','ServerCount'],['botdescription.txt','BotDescription'],['randomreview.txt','Reviews'],['news.txt','News'],['staff.txt','StaffList'],['featured_profile.txt','FeaturedProfile'],['messageheader.txt','MessageHeader'],['supportedlanguages.txt','SupportedLanguages']]);" class="imagebackground">
+<b>
+
+<div class="sidenav">
+ 
+<div class="botdiv">
+
+<img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Flogo.png?v=1579942425418" width="100%" class="peeky_icon">
+
+<br>
+<br>
+  
+<div id="ServerCount"></div>
+
+</div>
+
+      <br>
+
+      <div class="category">
+      <br><b class="category_name">  Discord  <br>  <font size="1">  Pages that interact with Discord.  </font>  </b><br><br>
+  
+      <a class="button" href="pages/add_peeky" rel="noopener noreferrer">   <img class="pageicon" src="https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fpage_addpeeky.png?v=1591468400174"> <font size="4">Add PEEKY</font></a>  <br><br>
+      <a class="button" href="pages/support_server" rel="noopener noreferrer">   <img class="pageicon" src="https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fpage_supportserver.png?v=1591468400540"> <font size="4">Support Server</font></a>  <br><br>
+      <a class="button" href="pages/server_template" rel="noopener noreferrer">   <img class="pageicon" src="https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fpage_servertemplate.png?v=1591467997314"> <font size="4">Server Template</font></a>
+        
+      <br><br></div>
+
+      <br>
+
+      <div class="category">
+      <br><b class="category_name">  Important  <br>  <font size="1">  Pages that you should definitely check out!  </font>  </b><br><br>
+  
+      <a class="button" href="pages/ambassador_program" rel="noopener noreferrer">   <img class="pageicon" src="https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fpage_envelope.png?v=1591467779282"> <font size="4">Ambassador Program</font></a>  <br><br>
+      <a class="button" href="pages/store" rel="noopener noreferrer">  <img class="pageicon" src="https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fpage_store.png?v=1591468957413">  <font size="4">  Store  </font>  </a>
+        
+      <br><br></div>
+
+      <br>
+
+      <div class="category">
+      <br><b class="category_name">  Documentation  <br>  <font size="1">  Pages that will help tell you how to use PEEKY.  </font>  </b><br><br>
+  
+      <a class="button" href="pages/functions" rel="noopener noreferrer">  <img class="pageicon" src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffuncitons.png?v=1573248456504">  <font size="4">  Functions</font></a>  <br><br>
+      <a class="button" href="pages/commands" rel="noopener noreferrer">  <img class="pageicon" src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fcommands.png?v=1573248076135">  <font size="4">   Commands</font></a>  <br><br>
+      <a class="button" href="pages/tutorials" rel="noopener noreferrer">  <img class="pageicon" src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ftutorials.png?v=1573246871083">  <font size="4">  Tutorials</font></a>  <br><br>
+      <a class="button" href="api.json" rel="noopener noreferrer">  <img class="pageicon" src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fapi.png?v=1573248253248">  <font size="4">  API  </font></a>
+        
+      <br><br></div>
+  
+      <br>
+
+      <div class="category">
+      <br><b class="category_name">  Economy System  <br>  <font size="1">  Pages for PEEKY's economy system.  </font>  </b><br><br>
+        
+      <a class="button" href="pages/wall_of_fame" rel="noopener noreferrer">  <img class="pageicon" src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fsupporters.png?v=1573248626618">  <font size="4">  Wall of Fame  </font>  </a>  <br><br>
+      <a class="button" href="pages/challenges" rel="noopener noreferrer">  <img class="pageicon" src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fdailychallenges.png?v=1586426054512">  <font size="4">  Challenges  </font>  </a>  <br><br>
+      <a class="button" href="pages/leaderboard" rel="noopener noreferrer">  <img class="pageicon" src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fleaderboard.png?v=1573247692775">  <font size="4">  Leaderboard</font></a>  <br><br>
+      <a class="button" href="pages/backgrounds" rel="noopener noreferrer">  <img class="pageicon" src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackgrounds.png?v=1573248944414">  <font size="4">  Backgrounds</font></a>  <br><br>
+      <a class="button" href="pages/badges" rel="noopener noreferrer">  <img class="pageicon" src="https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fpage_badges.png?v=1591468958732">  <font size="4">       Badges</font></a>
+      
+      <br><br></div>
+  
+      <br>
+
+      <div class="category">
+      <br><b class="category_name">  Miscellaneous  <br>  <font size="1">  Stuff that didn't fit into the other categories.  </font>  </b><br><br>
+       
+      <a class="button" href="pages/translation_sheet" rel="noopener noreferrer">   <img class="pageicon" src="https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fpage_translationsheet.png?v=1591467847844"> <font size="4">Translation Sheet</font></a>  <br><br>
+      <a class="button" href="pages/minigames" rel="noopener noreferrer">  <img class="pageicon" src="https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fpage_minigames.png?v=1591468957502">  <font size="4">  Minigames</font></a>  <br><br>
+      <a class="button" href="pages/randomsongs" rel="noopener noreferrer">  <img class="pageicon" src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fmusic.png?v=1573250781570">  <font size="4">  Random Songs</font></a>  
+      
+      <br><br></div>
+  
+      <br>
+
+      <div class="category">
+      <br><b class="category_name">  Listing Sites  <br>  <font size="1">  Bot listing websites where you can find or vote for PEEKY.  </font>  </b><br><br>
+
+      <a class="button" href="https://botlist.space/bot/482945063282802698/upvote" rel="noopener noreferrer"><font size="4">  botlist.space  </font>  <br>  <font size="2">  botlist.space  </font></a>  <br><br>
+      <a class="button" href="https://discordapps.dev/en-GB/bots/482945063282802698" rel="noopener noreferrer"><font size="4">  Discord Apps  </font>  <br>  <font size="2">  discordapps.dev  </font></a>  <br><br>
+      <a class="button" href="https://discord.boats/bot/482945063282802698/vote" rel="noopener noreferrer"><font size="4">  Discord Boats  </font>  <br>  <font size="2">  discord.boats  </font></a>  <br><br>
+      <a class="button" href="https://bots.discord.gl/bot/482945063282802698" rel="noopener noreferrer"><font size="4">  Discord.gl  </font>  <br>  <font size="2">  bots.discord.gl  </font></a>  <br><br>
+      <a class="button" href="https://bots.discordlabs.org/bot/482945063282802698" rel="noopener noreferrer"><font size="4">  Discord Labs  </font>  <br>  <font size="2">  bots.discordlabs.org  </font></a>  <br><br>
+      <a class="button" href="https://botsfordiscord.com/bot/482945063282802698/vote" rel="noopener noreferrer"><font size="4">  Bots For Discord  </font>  <br>  <font size="2">  botsfordiscord.com  </font></a>  <br><br>
+      <a class="button" href="https://thediscordbots.com/bot/482945063282802698/vote" rel="noopener noreferrer"><font size="4">  The Discord Bots  </font>  <br>  <font size="2">  thediscordbots.com  </font></a>
+      
+      <br><br></div>
+  
+      <br>
+
+      <div class="category">
+      <br><b class="category_name">  Sources  <br>  <font size="1">  Websites where I take some of the assests from.  </font>  </b><br><br>
+  
+      <a class="button" href="https://game-icons.net/" rel="noopener noreferrer"><font size="4">  Older profile and store icons  </font>  <br>  <font size="2">  game-icons.net  </font> </a> <br><br>
+      <a class="button" href="https://wall.alphacoders.com/" rel="noopener noreferrer"><font size="4">  Some of the profile backgrounds  </font>  <br>  <font size="2">  wall.alphacoders.com  </font></a>
+      
+      <br><br></div>
+
+</div>
+
+<div class="subbody">
+  
+<b id="MessageHeader"></b>
+  
+<div id="messageheader"></div>
+
+<div class="fullsize">
+
+<font size="7" class="headertext">Why PEEKY?</font>
+<font size="4" class="headersub" id="BotDescription"></font>
+
+<br><br>
+    
+    <div class="inlinediv">
+  
+    <div class="container">
+      <img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fmultiple_languages.png?v=1586180764168" width="300px" class="summaryhome">
+      
+      <b class="description">
+      <font size="4">Multiple Languages</font>  <br><br>
+      <font size="2">Select from a list of languages and make your Discord experience as familiar as possible.</font>  <br><br>
+      <font size="1" id="SupportedLanguages"></font>
+      </b>
+      
+    </div>
+  
+    <div class="container">
+      <img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffeature_template.png?v=1585069656758" width="300px" class="summaryhome">
+      
+      <b class="description">
+      <font size="4">Functions</font>  <br><br>
+      <font size="2">Enhance your server with functions such as Welcome Messages, Ticket System, Reaction Roles and more!</font>
+      </b>
+      
+    </div>
+  
+    <div class="container">
+      <img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffeature_template.png?v=1585069656758" width="300px" class="summaryhome">
+      
+      <b class="description">
+      <font size="4">Economy System</font>  <br><br>
+      <font size="2">Customize your very own profile, complete Challenges and climb the Leaderboard ranks!</font>
+      </b>
+  
+    </div>
+    
+    <div class="container">
+      <img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffeature_template.png?v=1585069656758" width="300px" class="summaryhome">
+      
+      <b class="description">
+      <font size="4">Music Player</font>  <br><br>
+      <font size="2">Listen to music with your friends along with a built-in YouTube searching and Customizable Playlists!</font>
+      </b>
+        
+    </div>
+    
+    <div class="container">
+      <img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffeature_template.png?v=1585069656758" width="300px" class="summaryhome">
+      
+      <b class="description">
+      <font size="4">Minigames</font>  <br><br>
+      <font size="2">Engage in a bunch of fun minigames like Draw and Guess, Akinator, Hangman, Guess the Song and so on!</font>
+      </b>
+        
+    </div>
+    
+    <div class="container">
+      <img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffeature_template.png?v=1585069656758" width="300px" class="summaryhome">
+      
+      <b class="description">
+      <font size="4">Moderation Commands</font>  <br><br>
+      <font size="2">Make moderating your servers much easier with commands like IDBan, Mute and Purge!</font>
+      </b>
+        
+    </div>
+        
+    </div>
+  
+</div>
+  
+<br>
+
+<div class="fullsize">
+
+<font size="7" class="headertext">Random Review</font>
+<font size="4" class="headersub">This is what people say about PEEKY.</font>
+  
+<br><br>
+  
+<div id="Reviews"></div>  <br>
+
+<br>
+
+<a class="button" style="width: 100%;" href="https://discordapps.dev/en-GB/bots/482945063282802698" rel="noopener noreferrer"><font size="4">View all</font></a>
+
+</div> 
+  
+<br>
+
+<div class="fullsize">
+
+<font size="7" class="headertext">News</font>
+<font size="4" class="headersub">Here you can keep up with all things PEEKY.</font>
+  
+<br><br>
+  
+<div id="News" class="inlinediv"></div>  <br>
+<a class="button" style="width: 100%;" href="https://peeky.glitch.me/pages/server">View all</a>
+</div> 
+  
+<br>
+
+<div class="fullsize">
+
+<font size="7" class="headertext">Contacts</font>
+<font size="4" class="headersub">These are the guys currently associated with PEEKY.</font>
+  
+<br><br><br>
+
+<center>
+<div id="StaffList"></div>
+<br>
+</center>
+
+</div>
+  
+<br>
+    
+<div class="fullsize">
+  
+<font size="7" class="headertext">Featured Profile</font>
+<font size="4" class="headersub">You can get your profile featured by becoming a Premium user!</font>
+  
+<br><br><br>
+    
+<div id="FeaturedProfile"></div>
+
+<br><br>
+
+</div>
+
+</div>
+
+</b>
+</body>
+</html>
