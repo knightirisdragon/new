@@ -70,3 +70,5 @@ if  (window.location.href == Domain + "/")  {
     link.href = 'https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fpeeky%204-2-1.png.png?1553621395208';
     document.getElementsByTagName('head')[0].appendChild(link);
 })();
+
+HomeButton();
