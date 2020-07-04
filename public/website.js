@@ -40,7 +40,20 @@ function FixTitle(text)  {
       
 };
 
-var Domain = "https://peeky--vojtech-jilovec.repl.co";
+function HomeButton() {
+  
+  
+    var Button = document.getElementById("homebuttonplace");
+  
+    if  (Button)  {
+      
+        Button.innerHTML = '<a class="homebutton" href="' + Domain + '" rel="noopener noreferrer"> <img src="https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fhome.png?v=1573247289278"> </a>';
+    };
+  
+  
+};
+
+var Domain = "https://peeky.glitch.me";
 
 //Title
 if  (window.location.href == Domain + "/")  {
