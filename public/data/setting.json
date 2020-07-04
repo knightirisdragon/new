@@ -1,0 +1,42 @@
+{
+  "Description": "PEEKY is a free and reliable multipurpose bot with frequent updates and lots of unique features.",
+  "ShortDescription": "PEEKY is a free and reliable multipurpose bot.",
+  "Summary": "Multiple Languages, Functions, Economy System, Music Player, Moderation Commands, Minigames and more!",
+  "Message": "",
+  "Domain": "https://peeky--vojtech-jilovec.repl.co",
+
+  "DefaultPrefix": "p!",
+  "MaxServers": 1000,
+
+  "EventName": "None",
+  "EventStatus": false,
+  "EventBackground": 0,
+  "EventChests": 0,
+  "EventGredit": 0,
+  "EventExp": 0,
+
+  "CustomBackgroundPrice": 1000,
+  "SellMultiplier": 1,
+  "ExpNeeded": 125,
+  "MinReviewLength": 100,
+
+  "DefaultFont": "Roboto",
+  "Dark": "#36393E",
+  "LessDark": "#3f3f3f",
+  "Light": "#424549",
+  "Blurple": "#7289DA",
+
+  "GiveawayLimit": 5,
+  "QueueLimit": 100,
+  "PlaylistLimit": 10,
+  "ClassificationWallLimit": 50,
+  "BannedWordsLimit": 10,
+  "WeekendChannelsLimit": 10,
+  "ImagesOnlyLimit": 10,
+  "GameRolesLimit": 10,
+  "RoleSaverLimit": 10,
+  "ReactionRolesLimit": 10,
+  "InventoryLimit": 25,
+  "RedditLimit": 25,
+  "LeaderboardLimit": 100
+}
