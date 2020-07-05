@@ -534,7 +534,7 @@ async function WebsiteStuff()  {
         var toRemoveProfiles = filtered.filter(data => new Date() - new Date(data.lastSeen) > MonthMs);
 
         toRemoveProfiles.forEach(data => {
-            if  (!peeky.users.cache.has(data.UserID) || !data.FashionBadge)  {
+            if  (!data.FashionBadge)  {  //!peeky.users.cache.has(data.UserID) ||
                 console.log("I have wiped an inactive profile.");
                 peeky.userData.delete(`${data.UserID}`);
             };
