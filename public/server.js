@@ -1043,7 +1043,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
     else if (type == "leave")  {  ctx.fillStyle = "pink";  };
 
     ctx.font = "64px " + Setting.DefaultFont;
-    ctx.fillText("•", canvas.width, 34);
+    ctx.fillText("•", canvas.width - 2, 36);
       
     //Name String
     ctx.font = "25px " + Setting.DefaultFont;
