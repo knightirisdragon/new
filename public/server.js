@@ -6289,15 +6289,16 @@ else
 if  (FunctioName.startsWith("event countdown "))  {
 
     var Timestamp = CommandName.split("event countdown ")[1];
+    Timestamp = Number(Timestamp);
 
-    if  (!isNaN(Timestamp))  {
+    if  (!isNaN(Timestamp) && Timestamp > Date.now())  {
 
-    var GivenDate = new Date(Number(Timestamp));
+        var GivenDate = new Date(Timestamp);
 
-    peeky.serverData.set(keySF, GivenDate, "event_countdown_bonus_setting");
+        peeky.serverData.set(keySF, GivenDate.toString(), "event_countdown_bonus_setting");
 
-    const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", "" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting")), "Date", 0),  "color": EmbedColor};
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", "" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting")), "Date", 0),  "color": EmbedColor};
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
      else
