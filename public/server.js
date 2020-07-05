@@ -179,6 +179,7 @@ const Exclusive      = "Exclusive";
 const EnableStrings  = [  "enabled", "zapnutá", "zapnutá", "encender", "aktif", "Включено", "有効"  ];
 const DisableStrings = [  "disabled", "vypnutá", "vypnutá", "apagado", "deaktif", "Включено", "無効"  ];
 const Languages      = [  "English",  "Čeština", "Slovenčina", "Español", "Türkçe", "Русский", "日本語"  ];
+const Booleans       = [  true, false  ];
 
 //Response Messages
 const CooldownMessage1 = [
@@ -1318,6 +1319,7 @@ function function_ServerData(key)  {
             verification_system_bonus: false,
             verification_system_bonus_setting: "Verified",
             auto_channels_bonus: false,
+            auto_channels_bonus_setting: true,
             auto_channels_bonus_id: null,
             auto_channels_bonus_channels: [],
             role_sync_bonus: false,
@@ -2135,7 +2137,7 @@ if  (peeky.channelData.has(keyCF))  {
   
 if  (peeky.serverData.has(keySF))  {
     
-    if  (peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id))  {
+    if  (peeky.serverData.get(keySF, "auto_channels_bonus_setting") && peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id))  {
         var index = peeky.serverData.get(keySF, "auto_channels_bonus_channels").indexOf(channel.id);
         peeky.serverData.get(keySF, "auto_channels_bonus_channels").splice(index, 1);
     };
@@ -6348,7 +6350,7 @@ if  (FunctioName.startsWith("vote kick "))  {
     }
      else
     {
-      const embed = {"description": ErrorIcon + " The provided amount must be greater than **1**.",  "color": EmbedColor}; 
+      const embed = {"description": ErrorIcon + " The provided amount must be greater than 1.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
@@ -6431,6 +6433,29 @@ if  (FunctioName.startsWith("flood protection "))  {
      else
     {
       const embed = {"description": ErrorIcon + " The provided amount must be between 1 and 10.",  "color": EmbedColor}; 
+      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+}
+  
+else
+
+//Set Auto Channels
+if  (FunctioName.startsWith("auto channels "))  {
+
+    var NewSetting = CommandName.split("auto channels ")[1];
+  
+    if  (Booleans.include(NewSetting))  {
+      
+        peeky.serverData.set(keySF, Number(NewSetting), "flood_protection_bonus_setting");
+
+        const embed = {"description": TranslatedMessages[Language].replace("X001", "Flood Protection").replace("X002", "" + peeky.serverData.get(keySF, "flood_protection_bonus_setting") + " strikes"),  "color": EmbedColor};
+        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+      
+    }
+     else
+    {
+      const embed = {"description": ErrorIcon + " The provided argument must be a boolean.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
