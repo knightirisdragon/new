@@ -1689,6 +1689,7 @@ function function_ShuffleArray(array) {
 function function_DateFormat(value, type, timezone)  {
   
     value = new Date(value + (timezone * 3600000));
+
   
     if  (type == "Both")  {
       
@@ -6293,11 +6294,11 @@ if  (FunctioName.startsWith("event countdown "))  {
 
     if  (!isNaN(Timestamp) && Timestamp > Date.now())  {
 
-        var GivenDate = new Date(Timestamp);
+        var GivenDate = Date.now(Timestamp);
 
-        peeky.serverData.set(keySF, GivenDate.toString(), "event_countdown_bonus_setting");
+        peeky.serverData.set(keySF, GivenDate, "event_countdown_bonus_setting");
 
-        const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", "" + function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting")), "Date", 0),  "color": EmbedColor};
+        const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting"), "Date", peeky.serverData.get(keySF, "timezone"))),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
     }
