@@ -179,7 +179,7 @@ const Exclusive      = "Exclusive";
 const EnableStrings  = [  "enabled", "zapnutá", "zapnutá", "encender", "aktif", "Включено", "有効"  ];
 const DisableStrings = [  "disabled", "vypnutá", "vypnutá", "apagado", "deaktif", "Включено", "無効"  ];
 const Languages      = [  "English",  "Čeština", "Slovenčina", "Español", "Türkçe", "Русский", "日本語"  ];
-const Booleans       = [  true, false  ];
+const Booleans       = [  "true", "false"  ];
 
 //Response Messages
 const CooldownMessage1 = [
@@ -3077,7 +3077,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
              "**Banned Words** " + BW + "\n" + "`" + function_ArrayItems(peeky.serverData.get(keySF, "banned_words_bonus_setting"), Setting.BannedWordsLimit, "` `") + "`",
              "**Reaction Roles** " + RR + "\n" + "`" + function_ArrayItems(peeky.serverData.get(keySF, "reaction_roles_bonus_setting"), Setting.ReactionRolesLimit, "` `") + "`",
              "**Ticket System** " + ST + "\n" + "`@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "`",
-             "**Auto Channels** " + AC + "\n" + "No Setting.",
+             "**Auto Channels** " + AC + "\n" + "`" + peeky.serverData.get(keySF, "auto_channels_bonus_setting").toString().replace("true", "Delete empty channels").replace("false", "Keep empty channels") + "`",
              "**Weekend Channels** " + WC + "\n" + "`" + function_ArrayItems(peeky.serverData.get(keySF, "weekend_channels_bonus_setting"), Setting.WeekendChannelsLimit, "` `") + "`",
              "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`",
              "**Vote Kick** " + VK + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`",
@@ -6445,11 +6445,11 @@ if  (FunctioName.startsWith("auto channels "))  {
 
     var NewSetting = CommandName.split("auto channels ")[1];
   
-    if  (Booleans.include(NewSetting))  {
+    if  (Booleans.includes(NewSetting))  {
       
-        peeky.serverData.set(keySF, Number(NewSetting), "flood_protection_bonus_setting");
+        peeky.serverData.set(keySF, NewSetting, "auto_channels_bonus_setting");
 
-        const embed = {"description": TranslatedMessages[Language].replace("X001", "Flood Protection").replace("X002", "" + peeky.serverData.get(keySF, "flood_protection_bonus_setting") + " strikes"),  "color": EmbedColor};
+        const embed = {"description": TranslatedMessages[Language].replace("X001", "Auto Channels").replace("X002", peeky.serverData.get(keySF, "auto_channels_bonus_setting").toString().replace("true", "Delete empty channels").replace("false", "Keep empty channels")),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
       
     }
