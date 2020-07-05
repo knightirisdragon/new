@@ -6294,9 +6294,7 @@ if  (FunctioName.startsWith("event countdown "))  {
 
     if  (!isNaN(Timestamp) && Timestamp > Date.now())  {
 
-        var GivenDate = Date.now(Timestamp);
-
-        peeky.serverData.set(keySF, GivenDate, "event_countdown_bonus_setting");
+        peeky.serverData.set(keySF, Timestamp, "event_countdown_bonus_setting");
 
         const embed = {"description": TranslatedMessages[Language].replace("X001", "Event Countdown").replace("X002", function_DateFormat(peeky.serverData.get(keySF, "event_countdown_bonus_setting"), "Date", peeky.serverData.get(keySF, "timezone"))),  "color": EmbedColor};
         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
