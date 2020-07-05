@@ -1319,7 +1319,7 @@ function function_ServerData(key)  {
             verification_system_bonus: false,
             verification_system_bonus_setting: "Verified",
             auto_channels_bonus: false,
-            auto_channels_bonus_setting: true,
+            auto_channels_bonus_setting: "Delete empty channels",
             auto_channels_bonus_id: null,
             auto_channels_bonus_channels: [],
             role_sync_bonus: false,
@@ -2137,7 +2137,7 @@ if  (peeky.channelData.has(keyCF))  {
   
 if  (peeky.serverData.has(keySF))  {
     
-    if  (peeky.serverData.get(keySF, "auto_channels_bonus_setting") && peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id))  {
+    if  (peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id))  {
         var index = peeky.serverData.get(keySF, "auto_channels_bonus_channels").indexOf(channel.id);
         peeky.serverData.get(keySF, "auto_channels_bonus_channels").splice(index, 1);
     };
@@ -2722,7 +2722,7 @@ const channel = newState.member.voice.channel;
 if  (peeky.serverData.get(keySF, "auto_channels_bonus") == true)  {
   
     var filteredChannels = member.guild.channels.cache.filter(channel => peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id) && channel.members.size < 1).map(i => i.id);
-    if  (filteredChannels.length > 0)  {
+    if  (filteredChannels.length > 0 && peeky.serverData.get(keySF, "auto_channels_bonus_setting") == "Delete empty channels")  {
         member.guild.channels.cache.get(filteredChannels[0]).delete().catch(error => ErrorBag.add(error));
     };
   
@@ -3077,7 +3077,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
              "**Banned Words** " + BW + "\n" + "`" + function_ArrayItems(peeky.serverData.get(keySF, "banned_words_bonus_setting"), Setting.BannedWordsLimit, "` `") + "`",
              "**Reaction Roles** " + RR + "\n" + "`" + function_ArrayItems(peeky.serverData.get(keySF, "reaction_roles_bonus_setting"), Setting.ReactionRolesLimit, "` `") + "`",
              "**Ticket System** " + ST + "\n" + "`@" + peeky.serverData.get(keySF, "ticket_system_bonus_setting") + "`",
-             "**Auto Channels** " + AC + "\n" + "`" + peeky.serverData.get(keySF, "auto_channels_bonus_setting").toString().replace("true", "Delete empty channels").replace("false", "Keep empty channels") + "`",
+             "**Auto Channels** " + AC + "\n" + "`" + peeky.serverData.get(keySF, "auto_channels_bonus_setting") + "`",
              "**Weekend Channels** " + WC + "\n" + "`" + function_ArrayItems(peeky.serverData.get(keySF, "weekend_channels_bonus_setting"), Setting.WeekendChannelsLimit, "` `") + "`",
              "**Classification Wall** " + CW + "\n" + "`@" + peeky.serverData.get(keySF, "donor_wall_bonus_setting") + "` `#" + peeky.serverData.get(keySF, "donor_wall_bonus_channel") + "`",
              "**Vote Kick** " + VK + "\n" + "`" + peeky.serverData.get(keySF, "vote_kick_bonus_setting") + " votes`",
@@ -6445,19 +6445,15 @@ if  (FunctioName.startsWith("auto channels "))  {
 
     var NewSetting = CommandName.split("auto channels ")[1];
   
-    if  (Booleans.includes(NewSetting))  {
-      
-        peeky.serverData.set(keySF, NewSetting, "auto_channels_bonus_setting");
-
-        const embed = {"description": TranslatedMessages[Language].replace("X001", "Auto Channels").replace("X002", peeky.serverData.get(keySF, "auto_channels_bonus_setting").toString().replace("true", "Delete empty channels").replace("false", "Keep empty channels")),  "color": EmbedColor};
-        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-      
-    }
-     else
-    {
-      const embed = {"description": ErrorIcon + " The provided argument must be a boolean.",  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    if  (NewSetting.toLowerCase() == "delete")  {
+        peeky.serverData.set(keySF, "Delete empty channels", "auto_channels_bonus_setting");
+    } else
+    if  (NewSetting.toLowerCase() == "keep")  {
+    peeky.serverData.set(keySF, "Keep empty channels", "auto_channels_bonus_setting");
     };
+
+    const embed = {"description": TranslatedMessages[Language].replace("X001", "Auto Channels").replace("X002", peeky.serverData.get(keySF, "auto_channels_bonus_setting")),  "color": EmbedColor};
+    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 }
   
