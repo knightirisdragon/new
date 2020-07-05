@@ -26,6 +26,7 @@ peeky.serverData = new Enmap({name: "serverData"});
 peeky.channelData = new Enmap({name: "channelData"});
 peeky.peekyData = new Enmap({name: "peekyData"});
 const Setting = require('./data/setting.json');
+const DefaultServerData = require('./lists/defaultserverdata.json');
 
 //Website
 const http    = require('http');
@@ -1227,6 +1228,13 @@ function function_ServerData(key)  {
     if  (!peeky.serverData.has(key))  {
 
         peeky.serverData.ensure(key, DefaultServerData);
+        peeky.serverData.set(key, key, "GuildID");
+      
+        DefaultServerData.array().forEach(item => {
+          
+            console.log(item)
+          
+        });
       
         console.log("Created server data for " + key + ".");
   

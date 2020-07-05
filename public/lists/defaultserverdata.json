@@ -18,7 +18,7 @@
   "Queue": [],
 
   "Title": "None",
-  "Thumbnail": DefaultBackground,
+  "Thumbnail": null,
   "Author": "No one",
   "Length": 60,
   "Started": 0,
@@ -63,7 +63,7 @@
   "spoiler_lock_bonus": false,
   "spoiler_lock_bonus_setting": 0,
   "event_countdown_bonus": false,
-  "event_countdown_bonus_setting": Date.now(),
+  "event_countdown_bonus_setting": 0,
   "event_countdown_bonus_id": 0,
   "vote_kick_bonus_bonus": false,
   "vote_kick_bonus_setting": 10,
