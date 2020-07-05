@@ -3936,7 +3936,7 @@ if  (!message.author.bot)  {
                                                       Winners.push(winner);
                                                       FixedWinners.push("<@" + winner + ">");
 
-                                                      var embed = {"description": SuccessIcon + " You have won a giveaway for **" + giveaway[0] + "** in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
+                                                      var embed = {"description": "You have won a giveaway for **" + giveaway[0] + "** in the **" + function_RemoveFormatting(message.guild.name, "other", true) + "** server!", "color": EmbedColor}; 
                                                       function_DirectMessage(winner, { embed });
                                                   };
 
@@ -3965,13 +3965,13 @@ if  (!message.author.bot)  {
                                       message.edit(newEmbed).catch(error => ErrorBag.add(error));
                                     
                                       var TranslatedMessages = [
-                                          InfoIcon + " Congratulations to X001 for winning the **X002** giveaway!",
-                                          InfoIcon + " Gratulace pro X001 za to že vyhráli soutež o **X002**!",
-                                          InfoIcon + " Blahoželanie pre X001 za vyhratie X002 rozdávania!",
-                                          InfoIcon + " ¡Felicitaciones a X001 por ganar el sorteo de **X002**!",
-                                          InfoIcon + " X001 Tebrikler **X002** çekilişini kazandiniz.",
-                                          InfoIcon + " Поздравляем X001 с выигрышем подарка **X002**!",
-                                          InfoIcon + " **X002**プレゼントを獲得したX001おめでとうございます!",
+                                          "Congratulations to X001 for winning the **X002** giveaway!",
+                                          "Gratulace pro X001 za to že vyhráli soutež o **X002**!",
+                                          "Blahoželanie pre X001 za vyhratie X002 rozdávania!",
+                                          "¡Felicitaciones a X001 por ganar el sorteo de **X002**!",
+                                          "X001 Tebrikler **X002** çekilişini kazandiniz.",
+                                          "Поздравляем X001 с выигрышем подарка **X002**!",
+                                          "**X002**プレゼントを獲得したX001おめでとうございます!",
                                       ];
 
                                       var embed = {"description": TranslatedMessages[Language].replace("X001", FixedWinners.join(" ")).replace("X002", giveaway[0]), "color": EmbedColor}; 
