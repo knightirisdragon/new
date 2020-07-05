@@ -1237,8 +1237,8 @@ function function_ServerData(key)  {
       
       for  (const item in peeky.serverData.get(key))  {
         
-          if  (!DefaultServerData.find(item))  {
-              console.log(item)
+          if  (!(item in DefaultServerData))  {
+              peeky.serverData.delete(key, item);
           };
         
       };
