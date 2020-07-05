@@ -1229,15 +1229,20 @@ function function_ServerData(key)  {
 
         peeky.serverData.ensure(key, DefaultServerData);
         peeky.serverData.set(key, key, "GuildID");
-      
-        DefaultServerData.array().forEach(item => {
-          
-            console.log(item)
-          
-        });
+        peeky.serverData.set(key, Setting.DefaultPrefix, "prefix");
       
         console.log("Created server data for " + key + ".");
   
+    } else {
+      
+      for  (const item in peeky.serverData.get(key))  {
+        
+          if  (!DefaultServerData.find(item))  {
+              console.log(item)
+          };
+        
+      };
+      
     };
   
 };
