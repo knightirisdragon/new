@@ -9721,7 +9721,7 @@ if  (CommandName.startsWith("muterole"))  {
                    await message.guild.roles.create({
                        data: {
                          name: CommandArgument,
-                         color: Setting.Blurple
+                         color: "#e91e63"
                        }
                    }).catch(error => ErrorBag.add(error));
                   
