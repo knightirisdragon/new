@@ -1,9 +1,9 @@
 {
-  "GuildID": "GUILD_ID",
+  "GuildID": "REPLACED_IN_CODE",
   "lastSeen": 0,
   "server_upgraded": false,
   "server_invite": "no_invite",
-  "prefix": "DEFAULT_PREFIX",
+  "prefix": "REPLACED_IN_CODE",
   "language": 0,
   "timezone": 0,
   "muted_role": "Muted",

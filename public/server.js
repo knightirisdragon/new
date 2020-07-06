@@ -26,7 +26,7 @@ peeky.serverData = new Enmap({name: "serverData"});
 peeky.channelData = new Enmap({name: "channelData"});
 peeky.peekyData = new Enmap({name: "peekyData"});
 const Setting = require('./data/setting.json');
-const DefaultServerData = require('./lists/defaultserverdata.json');
+const DefaultServerData = require('./data/defaultserverdata.json');
 
 //Website
 const http    = require('http');
@@ -535,7 +535,7 @@ async function WebsiteStuff()  {
         var toRemoveProfiles = filtered.filter(data => new Date() - new Date(data.lastSeen) > MonthMs);
 
         toRemoveProfiles.forEach(data => {
-            if  (!data.FashionBadge)  {  //!peeky.users.cache.has(data.UserID) ||
+            if  (!peeky.users.cache.has(data.UserID) || !data.FashionBadge)  {
                 console.log("I have wiped an inactive profile.");
                 peeky.userData.delete(`${data.UserID}`);
             };
@@ -1230,6 +1230,7 @@ function function_ServerData(key)  {
         peeky.serverData.ensure(key, DefaultServerData);
         peeky.serverData.set(key, key, "GuildID");
         peeky.serverData.set(key, Setting.DefaultPrefix, "prefix");
+        peeky.serverData.set(key, new Date(), "lastSeen");
       
         console.log("Created server data for " + key + ".");
   
