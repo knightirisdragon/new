@@ -1291,7 +1291,7 @@ function function_ChallengeRewards(key, challenge, type)  {
 
         } else {
 
-          peeky.userData.get(key, "Inventory").push(TotalReward);
+          peeky.userData.observe(key, "Inventory").push(TotalReward);
 
         };
 
@@ -2114,7 +2114,7 @@ if  (member.guild.id == SupportServer)  {
             } else
             
             if  (invites.length == 5)  {
-                peeky.userData.get(key2, "Inventory").push(490);
+                peeky.userData.observe(key2, "Inventory").push(490);
             } else
           
             if  (invites.length == 10)  {
@@ -4306,7 +4306,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
              FloodProtectionStrikes.push(message.author.id);
 
              setTimeout(() => {
-                 FloodProtectionStrikes.splice(peeky.userData.get(key, "Inventory").indexOf(i), 1);
+                 FloodProtectionStrikes.splice(FloodProtectionStrikes.indexOf(message.author.id), 1);
              }, 30000); 
 
             };
@@ -4777,7 +4777,7 @@ if (CommandName == "eventrewards")  {
       
         if  (!peeky.userData.get(key, "ParticipatedEvents").includes(Setting.EventName))  {
       
-            peeky.userData.get(key, "ParticipatedEvents").push(Setting.EventName);
+            peeky.userData.observe(key, "ParticipatedEvents").push(Setting.EventName);
           
             //Setting
             var Background = Setting.EventBackground;
@@ -4797,7 +4797,7 @@ if (CommandName == "eventrewards")  {
           
             if  (Background > 0)  {
                 InfoMessages.push("•" + " The **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
-                peeky.userData.get(key, "Inventory").push(Background);
+                peeky.userData.observe(key, "Inventory").push(Background);
             };
           
             if  (Gredit > 0)  {
@@ -6715,7 +6715,7 @@ if  (CommandName.startsWith("buybackground"))  {
                     };
 
                     peeky.userData.math(key, "-", Banners[i - 1][Banner.Price], "Gredit");
-                    peeky.userData.get(key, "Inventory").push(i);
+                    peeky.userData.observe(key, "Inventory").push(i);
 
                     var TranslatedMessages = [SuccessIcon + " You have bought the **X001** background for **X002" + " " + GreditIcon + "**.", SuccessIcon + " Koupil jste si pozadí **X001** za **X002" + " " + GreditIcon + "**.", SuccessIcon + " Kupil si **X001** pozadie pre **X002" + " " + GreditIcon + "**.", SuccessIcon + " Usted ha comprado el fondo **X001** para **X002" + " " + GreditIcon + "**.", SuccessIcon + " **X002" + " " + GreditIcon + "** için **X001** arka planını satın aldınız.", SuccessIcon + " Вы купили фон **X001** за **X002" + " " + GreditIcon + "**.", SuccessIcon + " **X002" + " " + GreditIcon + "**の**X001**背景を購入しました。"];
                     var embed = {"description": TranslatedMessages[Language].replace("X001", function_GetBackgroundInfo(i, ["name"])).replace("X002", function_GetBackgroundInfo(i, ["price"])) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
@@ -7123,7 +7123,7 @@ if  (CommandName.startsWith("open ") || CommandName == "open")  {
 
                   if  (Background !== 0 && Banners[Background][Banner.Price] !== Exclusive)  {
 
-                      peeky.userData.get(key, "Inventory").push(Background);
+                      peeky.userData.observe(key, "Inventory").push(Background);
                       InfoMessages.push(InfoIcon + " You have found the **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
                     
                       if  (peeky.peekyData.get("dailychallenge", "data")[0] == "open_background" && function_ChallengeRewards(key, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
@@ -7247,8 +7247,8 @@ if  (!ProfileCooldown.has(message.author.id))  {
 
             var BackgroundIndex = peeky.userData.get(key, "Inventory").indexOf(DonatedAmount);
 
-            peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
-            peeky.userData.get(key2, "Inventory").push(DonatedAmount);
+            peeky.userData.observe(key, "Inventory").slice(BackgroundIndex, 1);
+            peeky.userData.observe(key2, "Inventory").push(DonatedAmount);
 
             //Set Default Background
             if  (isNaN(peeky.userData.get(key, "Background")) == false && peeky.userData.get(key, "Background") == DonatedAmount)  {
@@ -7947,7 +7947,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
                         if  (CurrentlyPlaying.has(message.guild.id) && peeky.serverData.get(keySF, "Link") !== "None")  {
 
-                            peeky.userData.get(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
+                            peeky.userData.observe(key, "Playlist").push(peeky.serverData.get(keySF, "Link"));
 
                             var TranslatedMessages = [SuccessIcon + " Added the current song to your playlist.", SuccessIcon + " Aktuální písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pridal som aktuálnu pesničku do tvôjho playlistu.", SuccessIcon + " Añadi la canción actual a su lista de reproducción.", SuccessIcon + " Geçerli şarkı çalma listenize eklendi.", SuccessIcon + " Добавлена текущая песня в плейлист.", SuccessIcon + " 現在の曲をプレイリストに追加しました。"];
                             const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
@@ -7968,7 +7968,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
                               PlaylistRequest = PlaylistRequest.split("&list=")[0];
                           };
 
-                          peeky.userData.get(key, "Playlist").push(PlaylistRequest);
+                          peeky.userData.observe(key, "Playlist").push(PlaylistRequest);
 
                           var TranslatedMessages = [SuccessIcon + " Added the song to your playlist.", SuccessIcon + " Písnička byla přidána do vašeho playlistu.", SuccessIcon + " Pesnička pridaná do tvojho playlistu.", SuccessIcon + " Añadí la canción a su lista de reproducción.", SuccessIcon + " Şarkı çalma listenize eklendi.", SuccessIcon + " Добавил песню в плейлист.", SuccessIcon + " 曲をプレイリストに追加しました。"];
                           const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
@@ -8022,7 +8022,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             var BackgroundIndex = peeky.userData.get(key, "Playlist").indexOf(PlaylistRequest);
 
-            peeky.userData.get(key, "Playlist").splice(BackgroundIndex, 1);  //Remove the background
+            peeky.userData.observe(key, "Playlist").slice(BackgroundIndex, 1);
 
             var TranslatedMessages = [SuccessIcon + " The song has been removed from your playlist.", SuccessIcon + " Písnička byla odebrána z vašeho playlistu.", SuccessIcon + " Pieseň bola vymazaná z tvôjho playlistu.", SuccessIcon + " La canción ha sido eliminada de su lista de reproducción.", SuccessIcon + " Şarkı, çalma listenizden kaldırıldı.", SuccessIcon + " Песня была удалена из вашего плейлиста.", SuccessIcon + " 曲がプレイリストから削除されました。"];
             const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
@@ -8201,7 +8201,7 @@ if (CommandName.startsWith("skip ") || CommandName == "skip")  {
                     var CommandArgument = CommandName.split("skip ")[1];
                     if  (CommandArgument && peeky.serverData.get(keySF, "Queue").includes(CommandArgument) && peeky.serverData.get(keySF, "Queue")[0] !== CommandArgument)  {
                         var Index = peeky.serverData.get(keySF, "Queue").indexOf(CommandArgument);
-                        peeky.serverData.get(keySF, "Queue").splice(Index, 1);
+                        peeky.serverData.observe(keySF, "Queue").slice(Index, 1);
                         const embed = {"description": SuccessIcon + " The song has been removed from the queue.", "color": EmbedColor};
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     } else {
@@ -8870,7 +8870,7 @@ if  (CommandName == "giveaway")  {
                                         "color": EmbedColor};
                           message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
                               GiveawayInfo[4] = m.id;
-                              peeky.serverData.get(keySF, "ActiveGiveaways").push(GiveawayInfo);
+                              peeky.serverData.observe(keySF, "ActiveGiveaways").push(GiveawayInfo);
 
                               m.react("🎁").catch(error => ErrorBag.add(error));
                           });
