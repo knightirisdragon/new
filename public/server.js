@@ -8774,13 +8774,13 @@ if  (CommandName == "giveaway")  {
                             } else 
                             if  (CreationProgress == 2)  {
                                 var TranslatedMessages = [
-                                    InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.",
-                                    InfoIcon + " Dobre, teraz mi povedz koľko bude počet výhercov pre toto rozdávanie.",
-                                    InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.",
-                                    InfoIcon + " Güzel, şimdi söyle bana bu hediyenin kazananlari kaç kişi olacak.",
-                                    InfoIcon + " Bien, ahora dime cuántos ganadores habra en este sorteo.",
-                                    InfoIcon + " Отлично, теперь скажи мне, сколько будет победителей в этом конкурсе.",
-                                    InfoIcon + " いいですね、プレゼントは何人の勝者を持っていますか?",
+                                    InfoIcon + " Also, do you have an icon for the giveaway? Paste the link if so, otherwise just say \"none\".",
+                                    InfoIcon + " Taktéž, pokud máte nějaký obrázek pro tuto soutěž, vložte sem odkaz, jinak napište \"none\.",
+                                    InfoIcon + " placeholder",
+                                    InfoIcon + " Además, ¿tienes un icono para el sorteo?  Pegue el enlace si es así, de lo contrario diga \"none\".",
+                                    InfoIcon + " А еще, у вас есть икона для подарка?  Вставьте ссылку, если да, иначе просто скажите \"none\".",
+                                    InfoIcon + " また、プレゼントのアイコンはありますか？リンクを貼り付けます、それ以外の場合は「none」と発声します。",
+                                    InfoIcon + " placeholder",
                                 ];
                               
                                 var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
@@ -8788,13 +8788,13 @@ if  (CommandName == "giveaway")  {
                             } else 
                             if  (CreationProgress == 3)  {
                                 var TranslatedMessages = [
-                                    InfoIcon + " Also, do you have an icon for the giveaway? Paste the link if so, otherwise just say \"none\".",
-                                    InfoIcon + " Taktéž, pokud máte nějaký obrázek pro tuto soutěž, vložte sem odkaz, jinak napište \"none\.",
-                                    InfoIcon + " placeholder",
-                                    InfoIcon + " placeholder",
-                                    InfoIcon + " placeholder",
-                                    InfoIcon + " placeholder",
-                                    InfoIcon + " placeholder",
+                                    InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.",
+                                    InfoIcon + " Dobre, teraz mi povedz koľko bude počet výhercov pre toto rozdávanie.",
+                                    InfoIcon + " Sweet, now tell me what is gonna be the amount of winners in this giveaway.",
+                                    InfoIcon + " Güzel, şimdi söyle bana bu hediyenin kazananlari kaç kişi olacak.",
+                                    InfoIcon + " Bien, ahora dime cuántos ganadores habra en este sorteo.",
+                                    InfoIcon + " Отлично, теперь скажи мне, сколько будет победителей в этом конкурсе.",
+                                    InfoIcon + " いいですね、プレゼントは何人の勝者を持っていますか?",
                                 ];
                               
                                 var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
@@ -8840,6 +8840,21 @@ if  (CommandName == "giveaway")  {
                                     };  
                                 } else 
                                 if  (CreationProgress == 2)  {
+                                    if  (Answer)  {
+                                        if  (function_DetectLink(Answer))  {
+                                            GiveawayInfo[7] = Answer;
+                                            Generate(message);
+                                        } else
+                                        if  (Answer.toLowerCase() == "none")  {
+                                            GiveawayInfo[7] = null;
+                                            Generate(message);
+                                        };
+                                    } else {
+                                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
+                                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                    };   
+                                } else
+                                if  (CreationProgress == 3)  {
                                     if  (Answer && !isNaN(Answer) && Answer > 0 && Answer <= 10)  {
                                         GiveawayInfo[1] = Answer;
                                         Generate(message);
@@ -8848,17 +8863,6 @@ if  (CommandName == "giveaway")  {
                                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                                     };    
                                 } else 
-                                if  (CreationProgress == 3)  {
-                                    if  (Answer)  {
-                                        if  (Answer.toLowerCase() == "none" || function_DetectLink(Answer))  {
-                                            GiveawayInfo[7] = Answer;
-                                            Generate(message);
-                                        };
-                                    } else {
-                                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
-                                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-                                    };   
-                                } else
                                 if  (CreationProgress == 4)  {
                                     if  (Answer && !isNaN(Answer) && Answer >= 1 && Answer <= 43000)  {
                                         GiveawayInfo[2] = Answer * MinuteMs;
