@@ -1019,7 +1019,7 @@ async function function_WelcomeMessagesEmbed(member, type, detected)  {
         TheBannerShown = function_GetBackground(key);
     };
 
-    const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(member.id, 0, "Background");});
+    const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(member.id, 1, "Background");});
       
     if  (Failed == false)  {
 
@@ -1964,7 +1964,7 @@ peeky.on('message', async (message) => {
             TheBannerShown = function_GetBackground(key);
         };
 
-        const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key, 0, "Background");});
+        const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key, 1, "Background");});
 
         if  (Failed == false)  {
 
@@ -7417,7 +7417,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
 
               var TheBannerShown = function_GetBackground(key2);
 
-              var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, 0, "Background");  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
+              var background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key2, 1, "Background");  setTimeout(() => {ProfileCooldown.delete(message.author.id)}, ProfileCooldownMS);});
 
               if  (Failed == false)  {
                 

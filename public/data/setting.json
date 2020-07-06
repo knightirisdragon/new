@@ -1,7 +1,7 @@
 {
-  "Description": "PEEKY is a free and reliable multipurpose bot with frequent updates and lots of unique features.",
+  "Description": "PEEKY is a free and reliable multipurpose bot ready to enhance your Discord community!",
   "ShortDescription": "PEEKY is a free and reliable multipurpose bot.",
-  "Summary": "Multiple Languages, Functions, Economy System, Music Player, Moderation Commands, Minigames and more!",
+  "Summary": "Multiple Languages, Functions, Economy System, Music Player, Moderation Commands, Minigames and much more!",
   "Message": "",
   "Domain": "https://peeky.glitch.me",
 
@@ -26,7 +26,7 @@
   "Light": "#424549",
   "Blurple": "#7289DA",
 
-  "GiveawayLimit": 5,
+  "GiveawayLimit": 10,
   "QueueLimit": 100,
   "PlaylistLimit": 10,
   "ClassificationWallLimit": 50,
