@@ -8788,6 +8788,20 @@ if  (CommandName == "giveaway")  {
                             } else 
                             if  (CreationProgress == 3)  {
                                 var TranslatedMessages = [
+                                    InfoIcon + " Also, do you have an icon for the giveaway? Paste the link if so, otherwise just say \"none\".",
+                                    InfoIcon + " Taktéž, pokud máte nějaký obrázek pro tuto soutěž, vložte sem odkaz, jinak napište \"none\.",
+                                    InfoIcon + " placeholder",
+                                    InfoIcon + " placeholder",
+                                    InfoIcon + " placeholder",
+                                    InfoIcon + " placeholder",
+                                    InfoIcon + " placeholder",
+                                ];
+                              
+                                var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
+                                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                            } else 
+                            if  (CreationProgress == 4)  {
+                                var TranslatedMessages = [
                                     InfoIcon + " Now the last thing, how long is the giveaway gonna be in minutes?",
                                     InfoIcon + " Poslední otázka, kolik minut bude tato soutěž trvat?",
                                     InfoIcon + " A teraz posledná vec, aké dlhé bude rozdávanie v minútach?",
@@ -8835,20 +8849,20 @@ if  (CommandName == "giveaway")  {
                                     };    
                                 } else 
                                 if  (CreationProgress == 3)  {
-                                    if  (Answer && !isNaN(Answer) && Answer >= 1 && Answer <= 43000)  {
-                                        GiveawayInfo[2] = Answer * MinuteMs;
-                                        Generate(message);
+                                    if  (Answer)  {
+                                        if  (Answer.toLowerCase() == "none" || function_DetectLink(Answer))  {
+                                            GiveawayInfo[7] = Answer;
+                                            Generate(message);
+                                        };
                                     } else {
                                       const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
                                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                                     };   
-                                } else 
+                                } else
                                 if  (CreationProgress == 4)  {
-                                    if  (Answer)  {
-                                        if  (Answer.toLowerCase() !== "none" && function_DetectLink(Answer))  {
-                                            GiveawayInfo[7] = Answer;
-                                            Generate(message);
-                                        };
+                                    if  (Answer && !isNaN(Answer) && Answer >= 1 && Answer <= 43000)  {
+                                        GiveawayInfo[2] = Answer * MinuteMs;
+                                        Generate(message);
                                     } else {
                                       const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
                                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));

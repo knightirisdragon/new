@@ -122,6 +122,7 @@ Only the server owner can skip this song right now. |
 
 Before we start the giveaway, can you tell me what is gonna be the prize? | 
 Nice, now tell me what is gonna be the amount of winners in this giveaway. | 
+Also, do you have an icon for the giveaway? Paste the link if so, otherwise just say \"none\". | 
 Now the last thing, how long is the giveaway gonna be in minutes? | 
 The provided argument is incorrect and the giveaway creating was cancelled. | 
 You cannot create any more giveaways right now. | 
