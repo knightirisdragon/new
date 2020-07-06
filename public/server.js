@@ -4279,38 +4279,39 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
             if  (((LastMsgUser == message.author.id) && (ThisMsgDate - LastMsgDate <= 500)) || (message.content == LastMsgContent) || (isNaN(message.content) && message.content.toUpperCase() == message.content))  {
 
-            if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length == peeky.serverData.get(keySF, "flood_protection_bonus_setting"))  {
+                if  (FloodProtectionStrikes.filter(i => i == message.author.id).map(i => "Strike").length == peeky.serverData.get(keySF, "flood_protection_bonus_setting"))  {
 
-            const name = peeky.serverData.get(keySF, "muted_role");
-            const Role = message.guild.roles.cache.find(role => role.name == name);
+                    const name = peeky.serverData.get(keySF, "muted_role");
+                    const Role = message.guild.roles.cache.find(role => role.name == name);
 
-            if  (Role && !message.member.roles.cache.has(Role.id))  {
+                    if  (Role && !message.member.roles.cache.has(Role.id))  {
 
-                message.member.roles.add(Role.id, "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
+                        message.member.roles.add(Role.id, "Triggered by the Flood Protection function.").catch(error => ErrorBag.add(error));
 
-                if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "FP"))  {
+                        if  (peeky.serverData.get(keySF, "function_notifications") == true && !ResponseCooldowns.has(message.guild.id + "FP"))  {
 
-                    ResponseCooldowns.add(message.guild.id + "FP");
-                    setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "FP")}, ResponseCooldownMS);
+                            ResponseCooldowns.add(message.guild.id + "FP");
+                            setTimeout(() => {ResponseCooldowns.delete(message.guild.id + "FP")}, ResponseCooldownMS);
 
-                    var TranslatedMessages = [InfoIcon + " I have muted **X001** because of the **Flood Protection** function.", InfoIcon + " Ztlumil jsem **X001** kvůli **Flood Protection** funkci.", InfoIcon + " Mutol som **X001** kvôli **Flood Protection** funkcii.", InfoIcon + " He silenciado a **X001** por la función de **Flood Protection**.", InfoIcon + " **Flood Protection** fonksiyonu yüzünden **X001** adlı kişi susturuldu.", InfoIcon + " Я приглушил **X001** из-за функции **Защита от наводнений**.", InfoIcon + " **Flood Protection**関数のため、**X001**はミュートされました。"];
-                    const embed = {"description": TranslatedMessages[Language].replace("X001", message.member.displayName),  "color": EmbedColor};
-                    await message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))}); 
+                            var TranslatedMessages = [InfoIcon + " I have muted **X001** because of the **Flood Protection** function.", InfoIcon + " Ztlumil jsem **X001** kvůli **Flood Protection** funkci.", InfoIcon + " Mutol som **X001** kvôli **Flood Protection** funkcii.", InfoIcon + " He silenciado a **X001** por la función de **Flood Protection**.", InfoIcon + " **Flood Protection** fonksiyonu yüzünden **X001** adlı kişi susturuldu.", InfoIcon + " Я приглушил **X001** из-за функции **Защита от наводнений**.", InfoIcon + " **Flood Protection**関数のため、**X001**はミュートされました。"];
+                            const embed = {"description": TranslatedMessages[Language].replace("X001", message.member.displayName),  "color": EmbedColor};
+                            await message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))}); 
+
+                        };
+
+                        console.log("The Flood Protection function has been triggered in " + message.guild.name + ".");
+
+                    };
+
+                } else {
+
+                  FloodProtectionStrikes.push(message.author.id);
+
+                  setTimeout(() => {
+                     FloodProtectionStrikes.splice(FloodProtectionStrikes.indexOf(message.author.id), 1);
+                  }, 30000); 
 
                 };
-
-                console.log("The Flood Protection function has been triggered in " + message.guild.name + ".");
-
-            };
-
-            } else {
-             FloodProtectionStrikes.push(message.author.id);
-
-             setTimeout(() => {
-                 FloodProtectionStrikes.splice(FloodProtectionStrikes.indexOf(message.author.id), 1);
-             }, 30000); 
-
-            };
 
             };
 
@@ -4318,9 +4319,9 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
             peeky.channelData.set(keyCF, message.author.id, "flood_protection_bonus_lastuser");
 
             if  (message.content == "")  {
-                peeky.channelData.set(keyCF, null, "flood_protection_bonus_lastmsg");
+              peeky.channelData.set(keyCF, null, "flood_protection_bonus_lastmsg");
             } else {
-                peeky.channelData.set(keyCF, message.content, "flood_protection_bonus_lastmsg");    
+              peeky.channelData.set(keyCF, message.content, "flood_protection_bonus_lastmsg");    
             };
 
         };
