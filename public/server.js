@@ -8774,8 +8774,8 @@ if  (CommandName == "giveaway")  {
                             } else 
                             if  (CreationProgress == 2)  {
                                 var TranslatedMessages = [
-                                    InfoIcon + " Also, do you have an icon for the giveaway? Paste the link if so, otherwise just say \"none\".",
-                                    InfoIcon + " Taktéž, pokud máte nějaký obrázek pro tuto soutěž, vložte sem odkaz, jinak napište \"none\.",
+                                    InfoIcon + " Also, do you have an icon for the giveaway? Paste the link or just say \"none\".",
+                                    InfoIcon + " Pokud máte nějaký obrázek pro tuto soutěž, vložte sem odkaz anebo napište \"none\.",
                                     InfoIcon + " placeholder",
                                     InfoIcon + " Además, ¿tienes un icono para el sorteo?  Pegue el enlace si es así, de lo contrario diga \"none\".",
                                     InfoIcon + " А еще, у вас есть икона для подарка?  Вставьте ссылку, если да, иначе просто скажите \"none\".",
@@ -8841,7 +8841,7 @@ if  (CommandName == "giveaway")  {
                                 } else 
                                 if  (CreationProgress == 2)  {
                                     if  (Answer)  {
-                                        if  (function_DetectLink(Answer))  {
+                                        if  (Answer.toLowerCase() !== "none" && function_DetectLink(Answer))  {
                                             GiveawayInfo[7] = Answer;
                                             Generate(message);
                                         } else
