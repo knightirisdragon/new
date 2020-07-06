@@ -3868,9 +3868,10 @@ if  (!message.author.bot)  {
 
                                       const newEmbed = new Discord.MessageEmbed({
                                           "description": 
-                                          "**" + giveaway[0] + "**" + "\n" +
-                                          "Host: " + "<@" + giveaway[6] + ">" + "\n" +
-                                          "Winners:" + WinnerSeparator + FixedWinners.join("\n"),
+                                            "**" + giveaway[0] + "**" + "\n" +
+                                            "Host: " + "<@" + giveaway[6] + ">" + "\n" +
+                                            "Winners:" + WinnerSeparator + FixedWinners.join("\n"),
+                                          "thumbnail":  {  "url": GiveawayInfo[7]  },
                                           "footer": { "text": "This giveaway has ended." },
                                           "color": EmbedColor
                                       });
@@ -8749,11 +8750,11 @@ if  (CommandName == "giveaway")  {
                     CommandCooldown.add("giveaway" + message.guild.id)
 
                     var CreationProgress = 0;
-                    var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.author.id  ];
+                    var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.author.id, null  ];
 
                     function Generate(message)  {
 
-                        if  (CreationProgress < 3)  {
+                        if  (CreationProgress < 4)  {
 
                             CreationProgress ++;
 
@@ -8841,6 +8842,17 @@ if  (CommandName == "giveaway")  {
                                       const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
                                       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                                     };   
+                                } else 
+                                if  (CreationProgress == 4)  {
+                                    if  (Answer)  {
+                                        if  (Answer.toLowerCase() !== "none" && function_DetectLink(Answer))  {
+                                            GiveawayInfo[7] = Answer;
+                                            Generate(message);
+                                        };
+                                    } else {
+                                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
+                                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                    };   
                                 };
 
                             })
@@ -8863,9 +8875,10 @@ if  (CommandName == "giveaway")  {
 
                         } else {
                           var embed = { "description": 
-                                         "**" + GiveawayInfo[0] + "**" + "\n" +
-                                        "Host: " + "<@" + GiveawayInfo[6] + ">" + "\n" +
-                                        "Max Winners: " + GiveawayInfo[1],
+                                           "**" + GiveawayInfo[0] + "**" + "\n" +
+                                          "Host: " + "<@" + GiveawayInfo[6] + ">" + "\n" +
+                                          "Max Winners: " + GiveawayInfo[1],
+                                        "thumbnail":  {  "url": GiveawayInfo[7]  },
                                         "footer": { "text": "This giveaway ends on " + function_DateFormat(Date.now() + GiveawayInfo[2], "Both", peeky.serverData.get(keySF, "timezone")) + "." },
                                         "color": EmbedColor};
                           message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {
