@@ -1963,7 +1963,7 @@ peeky.on('message', async (message) => {
             TheBannerShown = function_GetBackground(key);
         };
 
-        const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(message.author.id, 0, "Background");});
+        const background = await Canvas.loadImage(TheBannerShown).catch(error => {Failed = true;  peeky.userData.set(key, 0, "Background");});
 
         if  (Failed == false)  {
 
