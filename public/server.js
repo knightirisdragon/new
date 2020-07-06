@@ -2055,12 +2055,12 @@ if  (peeky.serverData.has(keySF))  {
     
     if  (peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id))  {
         var index = peeky.serverData.get(keySF, "auto_channels_bonus_channels").indexOf(channel.id);
-        peeky.serverData.get(keySF, "auto_channels_bonus_channels").splice(index, 1);
+        peeky.serverData.observe(keySF, "auto_channels_bonus_channels").splice(index, 1);
     };
     
     if  (peeky.serverData.get(keySF, "ticket_system_bonus_channels").includes(channel.id))  {
         var index = peeky.serverData.get(keySF, "ticket_system_bonus_channels").indexOf(channel.id);
-        peeky.serverData.get(keySF, "ticket_system_bonus_channels").splice(index, 1);
+        peeky.serverData.observe(keySF, "ticket_system_bonus_channels").splice(index, 1);
     };
   
 };
@@ -2654,8 +2654,7 @@ if  (peeky.serverData.get(keySF, "auto_channels_bonus") == true)  {
         ], reason: "Channel created by @" + member.user.tag + " through a function." })
         .then(function (newchannel)  {
           
-            peeky.serverData.get(keySF, "auto_channels_bonus_channels").push(newchannel.id);
-            peeky.serverData.set(keySF, peeky.serverData.get(keySF, "auto_channels_bonus_channels"), "auto_channels_bonus_channels");
+            peeky.serverData.observe(keySF, "auto_channels_bonus_channels").push(newchannel.id);
 
             if  (channel.parentID)  {
                 newchannel.setParent(channel.parentID).catch(error => ErrorBag.add(error));
@@ -3811,7 +3810,7 @@ if  (!message.author.bot)  {
                     if  (new Date() - new Date(giveaway[3]) >= giveaway[2])  {
 
                         FinishedGiveaway = true;
-                        peeky.serverData.get(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
+                        peeky.serverData.observe(keySF, "ActiveGiveaways").slice(currentgiveaway, 1);
 
                         if  (peeky.channels.cache.has(giveaway[5]) && giveaway[4] > 0)  {
 
@@ -4080,7 +4079,7 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
                                     peeky.serverData.set(keySF, [], "reddit_posts_bonus_last");
                                 };
 
-                                peeky.serverData.get(keySF, "reddit_posts_bonus_last").push(Post.url);
+                                peeky.serverData.observe(keySF, "reddit_posts_bonus_last").push(Post.url);
 
                                 if  ((Post.url.includes(".png") || Post.url.includes(".gif") || Post.url.includes(".jpg")))  {  var image = Post.url;  }  else  {  var image = HollowImage;  }; 
 
@@ -6399,7 +6398,7 @@ else
 if  (FunctioName.startsWith("banned words "))  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("banned words ")[1].toLowerCase(), "other", true);
-    peeky.serverData.get(keySF, "banned_words_bonus_setting").push(ReceivedArray);
+    peeky.serverData.observe(keySF, "banned_words_bonus_setting").push(ReceivedArray);
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Banned Words").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "banned_words_bonus_setting"), Setting.BannedWordsLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -6412,7 +6411,7 @@ else
 if  (FunctioName.startsWith("weekend channels "))  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("weekend channels ")[1].toLowerCase(), "channel", true);
-    peeky.serverData.get(keySF, "weekend_channels_bonus_setting").push(ReceivedArray);
+    peeky.serverData.observe(keySF, "weekend_channels_bonus_setting").push(ReceivedArray);
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Weekend Channels").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "weekend_channels_bonus_setting"), Setting.WeekendChannelsLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -6425,7 +6424,7 @@ else
 if  (FunctioName.startsWith("images only "))  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("images only ")[1].toLowerCase(), "channel", true);
-    peeky.serverData.get(keySF, "images_only_bonus_setting").push(ReceivedArray);
+    peeky.serverData.observe(keySF, "images_only_bonus_setting").push(ReceivedArray);
 
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Images Only").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "images_only_bonus_setting"), Setting.ImagesOnlyLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -6438,7 +6437,7 @@ else
 if  (FunctioName.startsWith("reaction roles "))  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("reaction roles ")[1], "other", true);
-    peeky.serverData.get(keySF, "reaction_roles_bonus_setting").push(ReceivedArray);
+    peeky.serverData.observe(keySF, "reaction_roles_bonus_setting").push(ReceivedArray);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Reaction Roles").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "reaction_roles_bonus_setting"), Setting.ReactionRolesLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -6451,7 +6450,7 @@ else
 if  (FunctioName.startsWith("role saver "))  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("role saver ")[1], "other", true);
-    peeky.serverData.get(keySF, "role_saver_bonus_setting").push(ReceivedArray);
+    peeky.serverData.observe(keySF, "role_saver_bonus_setting").push(ReceivedArray);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Role Saver").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "role_saver_bonus_setting"), Setting.RoleSaverLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -6464,7 +6463,7 @@ else
 if  (FunctioName.startsWith("game roles "))  {
 
     var ReceivedArray = function_RemoveFormatting(CommandName.split("game roles ")[1], "other", true);
-    peeky.serverData.get(keySF, "game_roles_bonus_setting").push(ReceivedArray);
+    peeky.serverData.observe(keySF, "game_roles_bonus_setting").push(ReceivedArray);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Game Roles").replace("X002", function_ArrayItems(peeky.serverData.get(keySF, "game_roles_bonus_setting"), Setting.GameRolesLimit, "**, **")),  "color": EmbedColor};
     message.channel.send({ embed }).catch(error => ErrorBag.add(error));
@@ -7661,16 +7660,16 @@ if (CommandName.startsWith("play"))  {
                             if  (peeky.serverData.get(keySF, "Queue").length < Setting.QueueLimit)  {
                                       
                                 if  (peeky.serverData.get(keySF, "MusicMode") == "Looping")  {
-                                    peeky.serverData.get(keySF, "Queue").push(peeky.serverData.get(keySF, "Queue")[0]);
-                                    peeky.serverData.get(keySF, "Queue").shift();
+                                    peeky.serverData.observe(keySF, "Queue").push(peeky.serverData.get(keySF, "Queue")[0]);
+                                    peeky.serverData.observe(keySF, "Queue").shift();
                                 } else
                                 if  (peeky.serverData.get(keySF, "MusicMode") == "Automated")  {
                                     if  (peeky.serverData.get(keySF, "Queue").length > 0)  {
                                         peeky.serverData.set(keySF, [], "Queue");
-                                        peeky.serverData.get(keySF, "Queue").unshift(YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0]);
+                                        peeky.serverData.observe(keySF, "Queue").unshift(YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0]);
                                     };
                                 } else {
-                                  peeky.serverData.get(keySF, "Queue").shift();
+                                  peeky.serverData.observe(keySF, "Queue").shift();
                                 };
                               
                             } else {
@@ -7742,7 +7741,7 @@ if (CommandName.startsWith("play"))  {
             CommandArgument = YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0];
             Type = "Random";
               
-            peeky.serverData.get(keySF, "Queue").push(CommandArgument);
+            peeky.serverData.observe(keySF, "Queue").push(CommandArgument);
 
         };
 
@@ -7755,7 +7754,7 @@ if (CommandName.startsWith("play"))  {
                 CommandArgument = peeky.serverData.get(keySF, "Link");
                 Type = "Previous";
               
-                peeky.serverData.get(keySF, "Queue").push(CommandArgument);
+                peeky.serverData.observe(keySF, "Queue").push(CommandArgument);
 
             } else {
 
@@ -7766,7 +7765,7 @@ if (CommandName.startsWith("play"))  {
               CommandArgument = YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0];
               Type = "Random";
               
-              peeky.serverData.get(keySF, "Queue").push(CommandArgument);
+              peeky.serverData.observe(keySF, "Queue").push(CommandArgument);
             };
 
         };
@@ -7788,7 +7787,7 @@ if (CommandName.startsWith("play"))  {
 
                 Playlist.forEach(song => {
                     if  (peeky.serverData.get(keySF, "Queue").length < Setting.QueueLimit)  {
-                        peeky.serverData.get(keySF, "Queue").push(song);
+                        peeky.serverData.observe(keySF, "Queue").push(song);
                     };
                 });
                 Type = "Playlist";
@@ -7803,7 +7802,7 @@ if (CommandName.startsWith("play"))  {
               CommandArgument = YoutubeSongs[Math.floor(Math.random()*YoutubeSongs.length)][0];
               Type = "Random";
               
-              peeky.serverData.get(keySF, "Queue").push(CommandArgument);
+              peeky.serverData.observe(keySF, "Queue").push(CommandArgument);
 
             };
 
@@ -7820,7 +7819,7 @@ if (CommandName.startsWith("play"))  {
             if  (ChoosingMode == true)  {
 
                 if  (results.length > 0)  {      
-                    peeky.serverData.get(keySF, "Queue").push(results[0].link);
+                    peeky.serverData.observe(keySF, "Queue").push(results[0].link);
                 };
 
             };
