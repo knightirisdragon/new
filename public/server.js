@@ -8740,8 +8740,6 @@ if  (CommandName == "drawandguess")  {
 
 //Giveaway
 if  (CommandName == "giveaway")  {
-  
-    if  (message.author.id == OwnerId)  {
 
     if  (message.member.permissions.has("MANAGE_GUILD"))  {
 
@@ -8945,11 +8943,6 @@ if  (CommandName == "giveaway")  {
 
     } else {
       const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
-      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-    };
-
-    } else {
-      const embed = {"description": "Currently unavailable due a bug.",  "color": EmbedColor}; 
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
       
