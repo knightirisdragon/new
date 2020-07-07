@@ -593,7 +593,7 @@ async function WebsiteStuff()  {
                 var sorted   = filtered.sort((a, b) => b.LeaderboardRank - a.LeaderboardRank);
             };
 
-            const top            = sorted.splice(0, Setting.LeaderboardLimit);
+            const top            = sorted.slice(0, Setting.LeaderboardLimit);
             var currentplace     = 0;
             var CurrentID        = 0;
             var GotBadge         = true;
@@ -1327,7 +1327,7 @@ function  function_DirectMessage(key, message)  {
 //Update Bans
 function function_UpdateBans()  {
   
-    BannedUsers.splice(0, BannedUsers.length);
+    BannedUsers.slice(0, BannedUsers.length);
     peeky.guilds.cache.get(SupportServer).fetchBans().then(banned => {
         
         banned.array().forEach(i => {
@@ -2056,12 +2056,12 @@ if  (peeky.serverData.has(keySF))  {
     
     if  (peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id))  {
         var index = peeky.serverData.get(keySF, "auto_channels_bonus_channels").indexOf(channel.id);
-        peeky.serverData.observe(keySF, "auto_channels_bonus_channels").splice(index, 1);
+        peeky.serverData.observe(keySF, "auto_channels_bonus_channels").slice(index, 1);
     };
     
     if  (peeky.serverData.get(keySF, "ticket_system_bonus_channels").includes(channel.id))  {
         var index = peeky.serverData.get(keySF, "ticket_system_bonus_channels").indexOf(channel.id);
-        peeky.serverData.observe(keySF, "ticket_system_bonus_channels").splice(index, 1);
+        peeky.serverData.observe(keySF, "ticket_system_bonus_channels").slice(index, 1);
     };
   
 };
@@ -3806,14 +3806,12 @@ if  (!message.author.bot)  {
             var currentgiveaway = 0;
             Giveaways.forEach(giveaway => {
 
-                currentgiveaway ++;
-
                 if  (FinishedGiveaway == false)  {
 
                     if  (new Date() - new Date(giveaway[3]) >= giveaway[2])  {
 
                         FinishedGiveaway = true;
-                        peeky.serverData.observe(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
+                        peeky.serverData.observe(keySF, "ActiveGiveaways").slice(currentgiveaway, 1);
 
                         if  (peeky.channels.cache.has(giveaway[5]) && giveaway[4] > 0)  {
 
@@ -3909,6 +3907,8 @@ if  (!message.author.bot)  {
                     };
 
                 };
+
+                currentgiveaway ++;
 
           });
 
@@ -6887,7 +6887,7 @@ if  (i !== AllString)  {
                         FinalPrice = Math.round(FinalPrice / Setting.SellMultiplier);
                     };
 
-                    peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
+                    peeky.userData.get(key, "Inventory").slice(BackgroundIndex, 1);
                     peeky.userData.math(key, "+", FinalPrice, "Gredit");
 
                     if  (i == peeky.userData.get(key, "Background"))  {
