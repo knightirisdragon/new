@@ -2056,12 +2056,12 @@ if  (peeky.serverData.has(keySF))  {
     
     if  (peeky.serverData.get(keySF, "auto_channels_bonus_channels").includes(channel.id))  {
         var index = peeky.serverData.get(keySF, "auto_channels_bonus_channels").indexOf(channel.id);
-        peeky.serverData.observe(keySF, "auto_channels_bonus_channels").slice(index, 1);
+        peeky.serverData.observe(keySF, "auto_channels_bonus_channels").splice(index, 1);
     };
     
     if  (peeky.serverData.get(keySF, "ticket_system_bonus_channels").includes(channel.id))  {
         var index = peeky.serverData.get(keySF, "ticket_system_bonus_channels").indexOf(channel.id);
-        peeky.serverData.observe(keySF, "ticket_system_bonus_channels").slice(index, 1);
+        peeky.serverData.observe(keySF, "ticket_system_bonus_channels").splice(index, 1);
     };
   
 };
@@ -3811,7 +3811,7 @@ if  (!message.author.bot)  {
                     if  (new Date() - new Date(giveaway[3]) >= giveaway[2])  {
 
                         FinishedGiveaway = true;
-                        peeky.serverData.observe(keySF, "ActiveGiveaways").slice(currentgiveaway, 1);
+                        peeky.serverData.observe(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
 
                         if  (peeky.channels.cache.has(giveaway[5]) && giveaway[4] > 0)  {
 
@@ -6887,7 +6887,7 @@ if  (i !== AllString)  {
                         FinalPrice = Math.round(FinalPrice / Setting.SellMultiplier);
                     };
 
-                    peeky.userData.get(key, "Inventory").slice(BackgroundIndex, 1);
+                    peeky.userData.get(key, "Inventory").splice(BackgroundIndex, 1);
                     peeky.userData.math(key, "+", FinalPrice, "Gredit");
 
                     if  (i == peeky.userData.get(key, "Background"))  {
@@ -7250,7 +7250,7 @@ if  (!ProfileCooldown.has(message.author.id))  {
 
             var BackgroundIndex = peeky.userData.get(key, "Inventory").indexOf(DonatedAmount);
 
-            peeky.userData.observe(key, "Inventory").slice(BackgroundIndex, 1);
+            peeky.userData.observe(key, "Inventory").splice(BackgroundIndex, 1);
             peeky.userData.observe(key2, "Inventory").push(DonatedAmount);
 
             //Set Default Background
@@ -8025,7 +8025,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
 
             var BackgroundIndex = peeky.userData.get(key, "Playlist").indexOf(PlaylistRequest);
 
-            peeky.userData.observe(key, "Playlist").slice(BackgroundIndex, 1);
+            peeky.userData.observe(key, "Playlist").splice(BackgroundIndex, 1);
 
             var TranslatedMessages = [SuccessIcon + " The song has been removed from your playlist.", SuccessIcon + " Písnička byla odebrána z vašeho playlistu.", SuccessIcon + " Pieseň bola vymazaná z tvôjho playlistu.", SuccessIcon + " La canción ha sido eliminada de su lista de reproducción.", SuccessIcon + " Şarkı, çalma listenizden kaldırıldı.", SuccessIcon + " Песня была удалена из вашего плейлиста.", SuccessIcon + " 曲がプレイリストから削除されました。"];
             const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
@@ -8204,7 +8204,7 @@ if (CommandName.startsWith("skip ") || CommandName == "skip")  {
                     var CommandArgument = CommandName.split("skip ")[1];
                     if  (CommandArgument && peeky.serverData.get(keySF, "Queue").includes(CommandArgument) && peeky.serverData.get(keySF, "Queue")[0] !== CommandArgument)  {
                         var Index = peeky.serverData.get(keySF, "Queue").indexOf(CommandArgument);
-                        peeky.serverData.observe(keySF, "Queue").slice(Index, 1);
+                        peeky.serverData.observe(keySF, "Queue").splice(Index, 1);
                         const embed = {"description": SuccessIcon + " The song has been removed from the queue.", "color": EmbedColor};
                         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
                     } else {
