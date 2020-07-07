@@ -3806,12 +3806,14 @@ if  (!message.author.bot)  {
             var currentgiveaway = 0;
             Giveaways.forEach(giveaway => {
 
+                currentgiveaway ++;
+
                 if  (FinishedGiveaway == false)  {
 
                     if  (new Date() - new Date(giveaway[3]) >= giveaway[2])  {
 
                         FinishedGiveaway = true;
-                        peeky.serverData.observe(keySF, "ActiveGiveaways").slice(currentgiveaway, 1);
+                        peeky.serverData.observe(keySF, "ActiveGiveaways").splice(currentgiveaway, 1);
 
                         if  (peeky.channels.cache.has(giveaway[5]) && giveaway[4] > 0)  {
 
@@ -3872,7 +3874,7 @@ if  (!message.author.bot)  {
                                             "**" + giveaway[0] + "**" + "\n" +
                                             "Host: " + "<@" + giveaway[6] + ">" + "\n" +
                                             "Winners:" + WinnerSeparator + FixedWinners.join("\n"),
-                                          "thumbnail":  {  "url": GiveawayInfo[7]  },
+                                          "thumbnail":  {  "url": giveaway[7]  },
                                           "footer": { "text": "This giveaway has ended." },
                                           "color": EmbedColor
                                       });
@@ -3907,8 +3909,6 @@ if  (!message.author.bot)  {
                     };
 
                 };
-
-                currentgiveaway ++;
 
           });
 
