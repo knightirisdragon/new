@@ -1292,6 +1292,20 @@ function function_ChannelData(key)  {
   
 };
 
+function function_UpdateAutowipe(key, type)  {
+
+    if  (type == "server")  {
+        peeky.serverData.set(key, Date.now(), 'lastSeen');
+        console.log("Updated autowipe for " + key + ".");
+    };
+
+    if  (type == "user")  {
+        peeky.userData.set(key, Date.now(), 'lastSeen');
+        console.log("Updated autowipe for " + key + ".");
+    };
+  
+};
+
 //Challenge Rewards
 function function_ChallengeRewards(key, challenge, type)  {
     
@@ -2191,7 +2205,7 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
         const embed = {"description": "**Someone suspicious has joined " + function_RemoveFormatting(member.guild.name, "other", true) + "!**\nBe wary about this user but don't punish them just yet!\n\n**Suspect:** " + function_RemoveFormatting(member.user.tag, "other", true) + " (<@" + member.user.id + ">)\n**Reasons:** " + Reasons.join(" / "), "color": EmbedColor}; 
         function_DirectMessage(owner, { embed }); 
           
-        peeky.userData.set(key, new Date(), "lastSeen");
+        function_UpdateAutowipe(keySF, "server");
         console.log("The Suspicion Alert function has been triggered in " + member.guild.name + ".");
     };
   
@@ -2207,7 +2221,7 @@ if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
         if  (Role) {
             member.roles.add(Role.id, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
           
-            peeky.userData.set(key, new Date(), "lastSeen");
+            function_UpdateAutowipe(keySF, "server");
             console.log("The Join Role function has been triggered in " + member.guild.name + ".");
         };
 
@@ -2274,7 +2288,7 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
               
             }).catch(error => ErrorBag.add(error));
       
-            peeky.userData.set(key, new Date(), "lastSeen");
+            function_UpdateAutowipe(keySF, "server");
             console.log("The Verification System function has been triggered in " + member.guild.name + ".");
           
         };
@@ -2312,7 +2326,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
                 
                       member.roles.set(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
 
-            peeky.userData.set(key, new Date(), "lastSeen");
+                      function_UpdateAutowipe(keySF, "server");
                       console.log("The Role Saver function has been triggered in " + member.guild.name + ".");
                     
                   };
@@ -2360,6 +2374,7 @@ if  (peeky.serverData.get(keySF, "clear_nicknames_bonus") == true)  {
 
                 member.setNickname(NewNickname, "Triggered by the Clear Nicknames function.").catch(error => ErrorBag.add(error));
 
+                function_UpdateAutowipe(keySF, "server");
                 console.log("The Clear Nicknames function has been triggered in " + member.guild.name + ".");
               
             };
@@ -2385,6 +2400,7 @@ if  (peeky.serverData.get(keySF, "nick_saver_bonus") == true)  {
 
                     member.setNickname(current[1], "Triggered by the Nickname Saver function.");
 
+                    function_UpdateAutowipe(keySF, "server");
                     console.log("The Nickname Saver function has been triggered in " + member.guild.name + ".");
 
                 };
@@ -2428,6 +2444,7 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
 
         await channel.send("", await function_WelcomeMessagesEmbed(member, "join", Detected)).catch(error => ErrorBag.add(error));
 
+        function_UpdateAutowipe(keySF, "server");
         console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
       
     };
@@ -2464,6 +2481,7 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
 
         await channel.send("", await function_WelcomeMessagesEmbed(member, "leave", Detected)).catch(error => ErrorBag.add(error));
 
+        function_UpdateAutowipe(keySF, "server");
         console.log("The Welcome Messages function has been triggered in " + member.guild.name + ".");
 
     };
@@ -2725,16 +2743,17 @@ if  (peeky.serverData.get(keySF, "streamer_role_bonus") == true)  {
 
             if  (Activity && Activity.type == "STREAMING" || member.voice.channel && member.voice.streaming == true)  {
 
-            if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
-              
-                 member.roles.add(GuildRole.id).catch(error => ErrorBag.add(error));
+                if  (!HasRole && !CurrentlyStreaming.has(member.user.id + member.guild.id + "SR"))  {
 
-                 CurrentlyStreaming.add(member.user.id + member.guild.id + "SR");
-                 setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 1800000);
+                     member.roles.add(GuildRole.id).catch(error => ErrorBag.add(error));
 
-                 console.log("The Streamer Role function has been triggered in " + member.guild.name + ".");
-              
-            };
+                     CurrentlyStreaming.add(member.user.id + member.guild.id + "SR");
+                     setTimeout(() => {CurrentlyStreaming.delete(member.user.id + member.guild.id + "SR")}, 1800000);
+
+                     function_UpdateAutowipe(keySF, "server");
+                     console.log("The Streamer Role function has been triggered in " + member.guild.name + ".");
+
+                };
 
             }  else  {
 
@@ -2771,6 +2790,7 @@ if  (peeky.serverData.get(keySF, "stream_announcements_bonus") == true)  {
                 const embed = function_StreamAnnouncements(member, Activity);
                 Channel.send({ embed }).catch(error => ErrorBag.add(error));
 
+                function_UpdateAutowipe(keySF, "server");
                 console.log("The Stream Announcements function has been triggered in " + member.guild.name + ".");
 
             };
@@ -2790,32 +2810,34 @@ if  (peeky.serverData.get(keySF, "game_roles_bonus") == true)  {
       
         peeky.serverData.get(keySF, "game_roles_bonus_setting").forEach(GameName => {
 
-        var GameName = GameName.toLowerCase();
-        var HasRole  = member.roles.cache.find(r => r.name.toLowerCase() == GameName);
-        var Role = member.guild.roles.cache.find(r => r.name.toLowerCase() == GameName);
+            var GameName = GameName.toLowerCase();
+            var HasRole  = member.roles.cache.find(r => r.name.toLowerCase() == GameName);
+            var Role = member.guild.roles.cache.find(r => r.name.toLowerCase() == GameName);
 
-        if  (Role)  {
-          
-        if  (member.presence.activity && member.presence.activity.type == 0 && member.presence.activity.name.toLowerCase() == GameName)  {
+            if  (Role)  {
 
-            if  (!HasRole && !RoleCooldown.has(member.user.id + member.guild.id))  {
-                member.roles.add(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
-              
-                console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
-            };   
+                if  (member.presence.activity && member.presence.activity.type == 0 && member.presence.activity.name.toLowerCase() == GameName)  {
 
-            RoleCooldown.add(member.user.id + member.guild.id);
-            setTimeout(() => {RoleCooldown.delete(member.user.id + member.guild.id)}, RoleCooldownMS);         
+                    if  (!HasRole && !RoleCooldown.has(member.user.id + member.guild.id))  {
+                        member.roles.add(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
 
-        } else { 
+                        console.log("The Game Roles function has been triggered in " + member.guild.name + ".");
+                    };   
 
-          if  (HasRole)  {
-              member.roles.remove(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
-          };
+                    RoleCooldown.add(member.user.id + member.guild.id);
+                    setTimeout(() => {RoleCooldown.delete(member.user.id + member.guild.id)}, RoleCooldownMS);         
 
-        };
-      
-        };
+                } else { 
+
+                  if  (HasRole)  {
+                      member.roles.remove(Role.id, "Triggered by the Game Roles function.").catch(error => ErrorBag.add(error));
+                  };
+
+                };
+
+                function_UpdateAutowipe(keySF, "server");
+
+            };
           
         });
       
@@ -3320,6 +3342,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                   
                 };
 
+                function_UpdateAutowipe(keySF, "server");
                 console.log("The Vote Kick function has been triggered in " + reaction.message.guild.name + ".");
 
             } else if (reaction.count == 1)  {
@@ -3571,6 +3594,7 @@ if  (peeky.serverData.get(keySF, "message_log_bonus") == true)  {
                   
         };
 
+        function_UpdateAutowipe(keySF, "server");
         console.log("The Message Log function has been triggered in " + reaction.message.guild.name + ".");
 
     };
@@ -4030,6 +4054,7 @@ if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
 
              KarmaImages.push([message.id, [message.author.id]]);
 
+             function_UpdateAutowipe(keySF, "server");
              console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
             }
              else
@@ -4038,7 +4063,8 @@ if  (peeky.serverData.get(keySF, "automatic_reactions_bonus") == true)  {
              await message.react(DefaultDownvote).catch(error => ErrorBag.add(error));
 
              KarmaImages.push([message.id, [message.author.id]]);
-
+             
+             function_UpdateAutowipe(keySF, "server");
              console.log("The Automatic Reactions function has been triggered in " + message.guild.name + ".");
             };
 
@@ -4072,6 +4098,7 @@ if  (peeky.serverData.get(keySF, "images_only_bonus") == true)  {
 
                 };
 
+                function_UpdateAutowipe(keySF, "server");
                 console.log("The Images Only function has been triggered in " + message.guild.name + ".");
 
             };
@@ -4146,7 +4173,8 @@ if  (peeky.serverData.get(keySF, "reddit_posts_bonus") == true)  {
                     };
                   
                 });
-              
+
+                function_UpdateAutowipe(keySF, "server");
                 console.log("The Reddit Posts function has been triggered in " + message.guild.name + ".");
             };
 
@@ -4172,6 +4200,7 @@ if  (peeky.serverData.get(keySF, "server_age_bonus") == true)  {
             if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
                 channel.setName(FinalName, "Triggered by the Server Age function.").catch(error => ErrorBag.add(error));
               
+                function_UpdateAutowipe(keySF, "server");
                 console.log("The Server Age function has been triggered in " + message.guild.name + ".");
             };
 
@@ -4199,6 +4228,7 @@ if  (peeky.serverData.get(keySF, "member_counter_bonus") == true)  {
             if  (channel && channel.name !== FinalName && channel.permissionsFor(peeky.user).has('CONNECT'))  {
                 channel.setName(FinalName, "Triggered by the Member Counter function.").catch(error => ErrorBag.add(error));    
               
+                function_UpdateAutowipe(keySF, "server");
                 console.log("The Member Counter function has been triggered in " + message.guild.name + ".");
             };
 
@@ -4250,44 +4280,46 @@ if  (peeky.serverData.get(keySF, "event_countdown_bonus") == true)  {
             var TheDate = peeky.serverData.get(keySF, "event_countdown_bonus_setting") - Date.now();
             const EndName = "The Countdown has ended.";
 
-        if  (peeky.serverData.get(keySF, "event_countdown_bonus_setting") > 0 && TheDate > 0)  {
+            if  (peeky.serverData.get(keySF, "event_countdown_bonus_setting") > 0 && TheDate > 0)  {
 
-            var Time = peeky.serverData.get(keySF, "event_countdown_bonus_setting");
-          
-            var FixedTime = function_TimeLeft(Time, "minutes", null);
-            var LengthName = "minutes";
-          
-            if  (FixedTime > 60)  {  
-              
-                var FixedTime = function_TimeLeft(Time, "hours", null);
-                var LengthName = "hours";
+                var Time = peeky.serverData.get(keySF, "event_countdown_bonus_setting");
 
-                if  (FixedTime > 24)  {
-                    FixedTime = function_TimeLeft(Time, "days", null); LengthName = "days";
+                var FixedTime = function_TimeLeft(Time, "minutes", null);
+                var LengthName = "minutes";
 
-                    if  (FixedTime >= 365)  {
-                        FixedTime = "over"; LengthName = "a year";
+                if  (FixedTime > 60)  {  
+
+                    var FixedTime = function_TimeLeft(Time, "hours", null);
+                    var LengthName = "hours";
+
+                    if  (FixedTime > 24)  {
+                        FixedTime = function_TimeLeft(Time, "days", null); LengthName = "days";
+
+                        if  (FixedTime >= 365)  {
+                            FixedTime = "over"; LengthName = "a year";
+                        };
+
                     };
 
                 };
-              
-            };
-          
-            var FinalName = "Starting in " + FixedTime.toLocaleString('en') + " " + LengthName;
-          
-            if  (channel.name !== FinalName)  {
-                channel.setName(FinalName, "Triggered by the Event Countdown function.").catch(error => ErrorBag.add(error));
-              
-                console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
-            };
+
+                var FinalName = "Starting in " + FixedTime.toLocaleString('en') + " " + LengthName;
+
+                if  (channel.name !== FinalName)  {
+                    channel.setName(FinalName, "Triggered by the Event Countdown function.").catch(error => ErrorBag.add(error));
+
+                    console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
+                };
 
             }
              else if (channel.name !== EndName)
             {
              channel.setName(EndName).catch(error => ErrorBag.add(error));
-              
+
              console.log("The Event Countdown function has been triggered in " + message.guild.name + ".");
             };
+
+            function_UpdateAutowipe(keySF, "server");
 
         };
 
@@ -4329,6 +4361,7 @@ if  (peeky.serverData.get(keySF, "flood_protection_bonus") == true)  {
 
                         };
 
+                        function_UpdateAutowipe(keySF, "server");
                         console.log("The Flood Protection function has been triggered in " + message.guild.name + ".");
 
                     };
@@ -4384,6 +4417,7 @@ if  (peeky.serverData.get(keySF, "spoiler_lock_bonus") == true)  {
 
                      };
 
+                     function_UpdateAutowipe(keySF, "server");
                      console.log("The Spoiler Lock function has been triggered in " + message.guild.name + ".");
 
                 };
@@ -4441,6 +4475,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
                     if  (Message.content !== FinalText)  {
                         Message.edit(FinalText).catch(error => ErrorBag.add(error));
 
+                        function_UpdateAutowipe(keySF, "server");
                         console.log("The Classification Wall function has been triggered in " + message.guild.name + ".");
                     };
 
@@ -4595,6 +4630,7 @@ if  (peeky.serverData.get(keySF, "banned_words_bonus") == true)  {
 
             };
 
+            function_UpdateAutowipe(keySF, "server");
             console.log("The Banned Words function has been triggered in " + message.guild.name + ".");
 
         };
@@ -4655,8 +4691,8 @@ if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
 const Prefix = peeky.serverData.get(keySF, "prefix");
 const CommandName = message.content.replace(Prefix, "");
   
-peeky.serverData.set(keySF, new Date(), "lastSeen");
-peeky.userData.set(key, new Date(), "lastSeen");
+function_UpdateAutowipe(keySF, "server");
+function_UpdateAutowipe(key, "user");
 
 /*
 //Command Template
