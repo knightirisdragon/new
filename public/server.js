@@ -8846,11 +8846,11 @@ if  (CommandName == "giveaway")  {
                                 var TranslatedMessages = [
                                     InfoIcon + " Also, do you have an icon for the giveaway? Paste the link or just say \"none\".",
                                     InfoIcon + " Pokud máte nějaký obrázek pro tuto soutěž, vložte sem odkaz anebo napište \"none\.",
-                                    InfoIcon + " placeholder",
+                                    InfoIcon + " Also, do you have an icon for the giveaway? Paste the link or just say \"none\".",
                                     InfoIcon + " Además, ¿tienes un icono para el sorteo?  Pegue el enlace si es así, de lo contrario diga \"none\".",
+                                    InfoIcon + " Ayrıca, hediye için bir simgeniz var mı? Varsa bağlantıyı yapıştırın, aksi takdirde \"none\" deyin.",
                                     InfoIcon + " А еще, у вас есть икона для подарка?  Вставьте ссылку, если да, иначе просто скажите \"none\".",
                                     InfoIcon + " また、プレゼントのアイコンはありますか？リンクを貼り付けます、それ以外の場合は「none」と発声します。",
-                                    InfoIcon + " placeholder",
                                 ];
                               
                                 var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
