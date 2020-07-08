@@ -4688,11 +4688,11 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
 //Prefixed Commands
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
-const Prefix = peeky.serverData.get(keySF, "prefix");
-const CommandName = message.content.replace(Prefix, "");
-  
-function_UpdateAutowipe(keySF, "server");
-function_UpdateAutowipe(key, "user");
+    const Prefix = peeky.serverData.get(keySF, "prefix");
+    const CommandName = message.content.replace(Prefix, "");
+
+    function_UpdateAutowipe(keySF, "server");
+    function_UpdateAutowipe(key, "user");
 
 /*
 //Command Template
