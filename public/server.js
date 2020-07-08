@@ -530,6 +530,31 @@ async function WebsiteStuff()  {
   //Auto Wipe
     setInterval(async () => {
 
+        //Guilds
+        var filtered       = peeky.serverData.filter(p => p.GuildID && p.lastSeen);
+        var toRemoveGuilds = filtered.filter(data => new Date() - new Date(data.lastSeen) > YearMs);
+
+        toRemoveGuilds.forEach(async data => {
+
+            if  (!data.server_upgraded)  {
+
+                peeky.serverData.delete(data.GuildID);
+
+                var Guild = peeky.guilds.cache.get(data.GuildID);
+                if  (Guild)  {
+                    if  (Guild.owner)  {
+                        const embed = {"description": "I'm leaving your server **" + Guild.name + "** because of a year long inactivity.", "footer": { "text": "https://peeky.glitch.me/pages/tutorials.html#autowipe" }, "color": EmbedColor}; 
+                        await function_DirectMessage(Guild.owner.user.id, { embed });
+                    };
+                    await Guild.leave();
+                };
+
+                console.log("I have removed an inactive server.");    
+
+            };
+
+        });
+
         //Profiles
         var filtered = peeky.userData.filter( p => p.UserID && p.lastSeen );
         var toRemoveProfiles = filtered.filter(data => new Date() - new Date(data.lastSeen) > MonthMs);
@@ -2165,7 +2190,8 @@ if  (peeky.serverData.get(keySF, "suspicion_alert_bonus") == true && !member.use
     if  (Reasons.length > 0)  {
         const embed = {"description": "**Someone suspicious has joined " + function_RemoveFormatting(member.guild.name, "other", true) + "!**\nBe wary about this user but don't punish them just yet!\n\n**Suspect:** " + function_RemoveFormatting(member.user.tag, "other", true) + " (<@" + member.user.id + ">)\n**Reasons:** " + Reasons.join(" / "), "color": EmbedColor}; 
         function_DirectMessage(owner, { embed }); 
-        
+          
+        peeky.userData.set(key, new Date(), "lastSeen");
         console.log("The Suspicion Alert function has been triggered in " + member.guild.name + ".");
     };
   
@@ -2181,6 +2207,7 @@ if  (peeky.serverData.get(keySF, "join_role_bonus") == true)  {
         if  (Role) {
             member.roles.add(Role.id, "Triggered by the Join Role function.").catch(error => ErrorBag.add(error));
           
+            peeky.userData.set(key, new Date(), "lastSeen");
             console.log("The Join Role function has been triggered in " + member.guild.name + ".");
         };
 
@@ -2247,6 +2274,7 @@ if  (peeky.serverData.get(keySF, "verification_system_bonus") == true)  {
               
             }).catch(error => ErrorBag.add(error));
       
+            peeky.userData.set(key, new Date(), "lastSeen");
             console.log("The Verification System function has been triggered in " + member.guild.name + ".");
           
         };
@@ -2284,6 +2312,7 @@ if  (peeky.serverData.get(keySF, "role_saver_bonus") == true)  {
                 
                       member.roles.set(ValidRoles, "Triggered by the Role Saver function.").catch(error => ErrorBag.add(error));
 
+            peeky.userData.set(key, new Date(), "lastSeen");
                       console.log("The Role Saver function has been triggered in " + member.guild.name + ".");
                     
                   };
@@ -4623,8 +4652,11 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
 //Prefixed Commands
 if  (message.content.startsWith(peeky.serverData.get(keySF, "prefix")))  {
 
-const Prefix      = peeky.serverData.get(keySF, "prefix");
+const Prefix = peeky.serverData.get(keySF, "prefix");
 const CommandName = message.content.replace(Prefix, "");
+  
+peeky.serverData.set(keySF, new Date(), "lastSeen");
+peeky.userData.set(key, new Date(), "lastSeen");
 
 /*
 //Command Template
