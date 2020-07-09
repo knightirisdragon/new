@@ -937,7 +937,11 @@ async function WebsiteStuff()  {
             ModList = ["There are currently no Moderators in the Support Server."];
         };
 
-        await fs.writeFile('public/website_data/staff.txt', '<font size="5" class="item_header">Developers of PEEKY</font>  <br>  <div class="inlinediv">  ' + DevList.join(" ") + '  </div>  <font size="5" class="item_header">Moderators of the Support Server</font>  <br>  <div class="inlinediv">  ' + ModList.join(" ") + '  </div>', (err) => {
+        /*await fs.writeFile('public/website_data/staff.txt', '<font size="5" class="item_header">Developers of PEEKY</font>  <br>  <div class="inlinediv">  ' + DevList.join(" ") + '  </div>  <font size="5" class="item_header">Moderators of the Support Server</font>  <br>  <div class="inlinediv">  ' + ModList.join(" ") + '  </div>', (err) => {
+            if (err) console.log(err);
+        });*/
+
+        await fs.writeFile('public/website_data/staff.txt', '<div class="inlinediv">  ' + DevList.join(" ") + ModList.join(" ") + '  </div>', (err) => {
             if (err) console.log(err);
         });
 
