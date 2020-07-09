@@ -920,7 +920,7 @@ async function WebsiteStuff()  {
 
           if  (m.roles.cache.has(StaffRole))  {
 
-              var CurrentContact = '<div class="container">  <img src=' + '"' + m.user.displayAvatarURL({ format: 'png' }) + '" width="200px" height="200px" class="stafficon">  <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  <br>  <font size="1" color="lightgray"> ' + function_RemoveTags(m.user.tag) + '  </font>  </b>  </div>';  
+              var CurrentContact = '<div class="container" style="background-image: url(\'' + m.user.displayAvatarURL({ format: 'png' }) + '\');">  <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  <br>  <font size="1" color="lightgray"> ' + function_RemoveTags(m.user.tag) + '  </font>  </b>  </div>';  
 
               if  (m.roles.cache.has("574255080069398543"))  {
                   DevList.push(CurrentContact);
