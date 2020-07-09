@@ -1395,7 +1395,7 @@ function function_AmbassadorProgram(member, real)  {
                 };
 
                 //Inviter Rewards
-                peeky.userData.math(key2, "+", 1, "Chests");
+                //peeky.userData.math(key2, "+", 1, "Chests");
 
                 if  (invites.length == 1)  {
                     peeky.userData.set(key2, true, "AmbassadorBadge");
