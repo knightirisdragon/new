@@ -2678,7 +2678,7 @@ if  (keySF == SupportServer)  {
 
                 peeky.userData.set(key, Date.now(), "SupporterLastPurchase");
               
-                if  (peeky.userData.get(key, "PremiumLength"))  {
+                if  (peeky.userData.get(key, "PremiumLength") !== "Trial")  {
                     function_AmbassadorProgram(member, false);
                 };
 
