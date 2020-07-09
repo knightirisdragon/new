@@ -1406,23 +1406,35 @@ function function_AmbassadorProgram(member, real)  {
                 } else
 
                 if  (invites.length == 10)  {
-                    peeky.userData.math(key2, "+", 500, "Gredit");
+                    peeky.userData.math(key2, "+", 250, "Gredit");
                 } else
 
                 if  (invites.length == 15)  {
                     peeky.userData.observe(key2, "Inventory").push(504);
                 } else
 
+                if  (invites.length == 20)  {
+                    peeky.userData.math(key2, "+", 1, "Chests");
+                } else
+
                 if  (invites.length == 25)  {
-                    peeky.userData.math(key2, "+", 1000, "Gredit");
+                    peeky.userData.math(key2, "+", 500, "Gredit");
+                } else
+
+                if  (invites.length == 30)  {
+                    peeky.userData.observe(key2, "Inventory").push(425);
                 } else
 
                 if  (invites.length == 35)  {
                     peeky.userData.math(key2, "+", 1000, "Exp");
                 } else
 
+                if  (invites.length == 40)  {
+                    peeky.userData.observe(key2, "Inventory").push(396);
+                } else
+
                 if  (invites.length == 45)  {
-                    peeky.userData.math(key2, "+", 2500, "Gredit");
+                    peeky.userData.math(key2, "+", 1000, "Gredit");
                 } else
 
                 if  (invites.length == 50)  {
@@ -1433,16 +1445,36 @@ function function_AmbassadorProgram(member, real)  {
                     peeky.userData.math(key2, "+", 5000, "Exp");
                 } else
 
+                if  (invites.length == 60)  {
+                    peeky.userData.observe(key2, "Inventory").push(193);
+                } else
+
                 if  (invites.length == 65)  {
-                    peeky.userData.math(key2, "+", 5000, "Gredit");
+                    peeky.userData.math(key2, "+", 2500, "Gredit");
+                } else
+
+                if  (invites.length == 70)  {
+                    peeky.userData.observe(key2, "Inventory").push(441);
+                } else
+
+                if  (invites.length == 75)  {
+                    peeky.userData.math(key2, "+", 1, "Chests");
                 } else
 
                 if  (invites.length == 80)  {
-                    peeky.userData.math(key2, "+", 10000, "Gredit");
+                    peeky.userData.observe(key2, "Inventory").push(480);
                 } else
 
                 if  (invites.length == 85)  {
                     peeky.userData.math(key2, "+", 10000, "Exp");
+                } else
+
+                if  (invites.length == 90)  {
+                    peeky.userData.math(key2, "+", 5000, "Gredit");
+                } else
+
+                if  (invites.length == 95)  {
+                    peeky.userData.observe(key2, "Inventory").push(283);
                 } else
 
                 if  (invites.length == 100)  {
