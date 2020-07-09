@@ -2160,17 +2160,21 @@ if  (member.guild.id == SupportServer)  {
             if  (invites.length == 5)  {
                 peeky.userData.observe(key2, "Inventory").push(490);
             } else
-          
+
             if  (invites.length == 10)  {
-                invitermember.roles.add(ServerUpgradeRole).catch(error => ErrorBag.add(error));
+                peeky.userData.math(key2, "+", 2500, "Gredit");
             } else
           
             if  (invites.length == 15)  {
+                invitermember.roles.add(ServerUpgradeRole).catch(error => ErrorBag.add(error));
+            } else
+          
+            if  (invites.length == 20)  {
                 peeky.userData.observe(key2, "Inventory").push(504);
             } else
           
-            if  (invites.length == 25)  {
-                invitermember.roles.add("").catch(error => ErrorBag.add(error));
+            if  (invites.length == 100)  {
+                invitermember.roles.add(TrialRole).catch(error => ErrorBag.add(error));
             };
           
             const embed = {"description": "**Ambassador Program**" + "\n" + "Someone has used your invite link to join the Support Server!",  "color": EmbedColor}; 
