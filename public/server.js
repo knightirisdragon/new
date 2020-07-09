@@ -2162,15 +2162,31 @@ if  (member.guild.id == SupportServer)  {
             } else
 
             if  (invites.length == 10)  {
-                peeky.userData.math(key2, "+", 2500, "Gredit");
+                peeky.userData.math(key2, "+", 500, "Gredit");
             } else
           
             if  (invites.length == 15)  {
-                invitermember.roles.add(ServerUpgradeRole).catch(error => ErrorBag.add(error));
+                peeky.userData.observe(key2, "Inventory").push(504);
+            } else
+
+            if  (invites.length == 25)  {
+                peeky.userData.math(key2, "+", 1000, "Gredit");
+            } else
+
+            if  (invites.length == 45)  {
+                peeky.userData.math(key2, "+", 2500, "Gredit");
             } else
           
-            if  (invites.length == 20)  {
-                peeky.userData.observe(key2, "Inventory").push(504);
+            if  (invites.length == 50)  {
+                invitermember.roles.add(ServerUpgradeRole).catch(error => ErrorBag.add(error));
+            } else
+
+            if  (invites.length == 65)  {
+                peeky.userData.math(key2, "+", 5000, "Gredit");
+            } else
+
+            if  (invites.length == 80)  {
+                peeky.userData.math(key2, "+", 10000, "Gredit");
             } else
           
             if  (invites.length == 100)  {
