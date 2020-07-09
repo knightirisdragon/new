@@ -2250,7 +2250,7 @@
   ],
   [
     "https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground283.png?1558877694122",
-    725,
+    10000,
     "Golden",
     "Unknown",
     null,
@@ -4010,16 +4010,8 @@
   ],
   [
     "https://cdn.glitch.com/e2b3bafd-96e2-44bc-a3bf-c5a8414594d3%2Fbackground503.png?v=1594305375739",
-    675,
-    "8-bit PEEKY",
-    "Serafimas Sergijus Štefans",
-    "720355448058019861",
-    1594305360476
-  ],
-  [
-    "https://cdn.glitch.com/e2b3bafd-96e2-44bc-a3bf-c5a8414594d3%2Fbackground504.png?v=1594305373690",
     "EXCLUSIVE",
-    "Cooler PEEKY",
+    "8-bit PEEKY",
     "Serafimas Sergijus Štefans",
     null,
     1594305358144

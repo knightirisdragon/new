@@ -6899,7 +6899,7 @@ if  (CommandName.startsWith("buybackground"))  {
                         var CustomBackgroundAmount = 1;
                     } else {  var CustomBackgroundAmount = 0;  };
 
-                    if  (!peeky.userData.get(key, "HorderBadge") && (peeky.userData.get(key, "Inventory").length + CustomBackgroundAmount) >= 10)  {
+                    if  (!peeky.userData.get(key, "HorderBadge") && (peeky.userData.get(key, "Inventory").length) >= 10)  {
                         InfoMessages.push(InfoMessage1[Language]);
                         peeky.userData.set(key, true, "HorderBadge");
                     };
@@ -7021,6 +7021,11 @@ if (CommandName.startsWith("setbackground"))  {
                 if  (!peeky.userData.get(key, "ExclusiveBadge") && function_GetBackgroundInfo(i, ["price"]) == Exclusive)  {
                     InfoMessages.push(InfoMessage1[0]);
                     peeky.userData.set(key, true, "ExclusiveBadge");    
+                };
+
+                if  (!peeky.userData.get(key, "MinerBadge") && i == 283)  {
+                    InfoMessages.push(InfoMessage1[0]);
+                    peeky.userData.set(key, true, "MinerBadge");    
                 };
 
                 if  (isNaN(peeky.userData.get(key, "Background")))  {
