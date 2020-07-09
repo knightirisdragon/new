@@ -1352,7 +1352,7 @@ function function_ChallengeRewards(key, challenge, type)  {
   
 };
 
-function function_AmbassadorProgram(member, notify)  {
+function function_AmbassadorProgram(member, real)  {
   
     var key = `${member.user.id}`;
   
@@ -1360,26 +1360,35 @@ function function_AmbassadorProgram(member, notify)  {
 
         const ei = AmbassadorInvites;
         AmbassadorInvites = guildInvites;
+      
+        var invite;
+        var inviter;
+        var invitermember = member;
+        var key2 = key;
 
-        const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-        const inviter = peeky.users.cache.get(invite.inviter.id);
-        const invitermember = peeky.guilds.cache.get(SupportServer).members.cache.find(m => m.user.id == inviter);
+        if  (real)  {
+            invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+            invitermember = peeky.guilds.cache.get(SupportServer).members.cache.find(m => m.user.id == invite.inviter.id);
 
-        const key2 = invite.inviter.id;
+            key2 = invite.inviter.id;
+        };
 
-        if  (invitermember && !peeky.userData.get(key2, "AmbassadorInvites").includes(member.user.id))  {
+        if  ((real && invitermember && !peeky.userData.get(key2, "AmbassadorInvites").includes(member.user.id)) || (!real))  {
 
             var invites = peeky.userData.get(key2, "AmbassadorInvites");
+            if  (real)  {
+                peeky.userData.observe(key2, "AmbassadorInvites").push(member.user.id);
 
-            peeky.userData.get(key2, "AmbassadorInvites").push(member.user.id);
+                //Receiver Rewards
+                if  (!["CUKraBe", "j4kArRh"].includes(invite.code) && peeky.userData.has(key) )  {
 
-            //Receiver Rewards
-            if  (!["CUKraBe", "j4kArRh"].includes(invite.code) && peeky.userData.has(key) )  {
+                    if  (!peeky.userData.get(key, "ReceiverBadge"))  {
+                        peeky.userData.set(key, true, "ReceiverBadge");
+                    };
 
-                if  (!peeky.userData.get(key, "ReceiverBadge"))  {
-                    peeky.userData.set(key, true, "ReceiverBadge");
                 };
-
+            } else {
+               peeky.userData.c(key2, "AmbassadorInvites").push("Purchased");
             };
 
             //Inviter Rewards
@@ -1437,7 +1446,7 @@ function function_AmbassadorProgram(member, notify)  {
                 invitermember.roles.add(TrialRole).catch(error => ErrorBag.add(error));
             };
 
-            if  (notify)  {
+            if  (real)  {
             
                 const embed = {"description": "**Ambassador Program**" + "\n" + "Someone has used your invite link to join the Support Server!",  "color": EmbedColor}; 
                 function_DirectMessage(key2, { embed });
@@ -2616,7 +2625,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Boost", "serverboost", "For boosting the Support Server you receive a few [cool little bonuses](" + Setting.Domain + "/pages/store/#serverupgrade) and help us stay boosted!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
+                TransactionInfo = ["Server Boost", "serverboost", "For boosting the Support Server you receive a few cool little bonuses and help us stay boosted!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
                 //"Your reward expires once you stop boosting."
 
             };
@@ -2694,25 +2703,21 @@ if  (keySF == SupportServer)  {
             var HasRole = newMember.roles.cache.find(r => r.id == AmbassadorSkipRole);
 
             if  (!HadRole && HasRole)  {
-              
                 
+                for (var i = 1; i < 5; i++)  {
+
+                    function_AmbassadorProgram(member, false);
+
+                };
 
                 PurchaseComplete = true;
                 TransactionInfo = ["Ambassador Skip", "ambassadorskip", "You have skipped 5 invites in the Ambassador Program, which has helped you earn a cool reward!", "https://cdn.glitch.com/e2b3bafd-96e2-44bc-a3bf-c5a8414594d3%2Fstore_tierskip.png?v=1594308683082"];
-              
-                newMember.roles.add(PremiumRole).catch(error => ErrorBag.add(error));
+                
                 newMember.roles.remove(HasRole.id).catch(error => ErrorBag.add(error));
               
             };
 
         };
-        for (var i = 1; i < 5; i++)  {
-            
-            
-          
-        };
-      
-        //function_AmbassadorProgram(member, false);
 
         //Complete Purchase
         if  (PurchaseComplete == true)  {
@@ -2725,7 +2730,7 @@ if  (keySF == SupportServer)  {
                 "description": /*"­\n" + */ "**Thank you for the purchase of " + TransactionInfo[0] + "!**" + "\n" +
                   TransactionInfo[2] /*+ " " + "You can view all the rewards by clicking [here](" + Setting.Domain + "/pages/store/#" + TransactionInfo[1] + ")."*/,
                 "thumbnail": { "url": TransactionInfo[3] },
-                "footer": {  "text": ""  },
+                "footer": {  "text": Setting.Domain + "/pages/store/#" + TransactionInfo[1]  },
                 "color": EmbedColor
             };
 
