@@ -151,6 +151,7 @@ const PremiumRole          = "504740473185894400";
 const TrialRole            = "729017737632022538";
 const BoosterRole          = "620654437081415686";
 const ServerUpgradeRole    = "549190337437106176";
+const AmbassadorSkipRole   = "730811646447976528";
 
 //Other IDs
 const OwnerId              = "108899856889737216";
@@ -2222,7 +2223,7 @@ if (member.user.id !== PeekyId && peeky.serverData.has(keySF)) {
 //AMBASSADOR PROGRAM
 if  (member.guild.id == SupportServer)  {
   
-    function_AmbassadorProgram(member);
+    function_AmbassadorProgram(member, true);
   
 };
   
@@ -2615,7 +2616,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Boost", "serverboost", "For boosting the Support Server you receive a few [cool little bonuses](' + Setting.Domain + '/pages/store/#serverupgrade) and help us stay boosted!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
+                TransactionInfo = ["Server Boost", "serverboost", "For boosting the Support Server you receive a few [cool little bonuses](" + Setting.Domain + "/pages/store/#serverupgrade) and help us stay boosted!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
                 //"Your reward expires once you stop boosting."
 
             };
@@ -2662,7 +2663,7 @@ if  (keySF == SupportServer)  {
                 peeky.userData.set(key, Date.now(), "SupporterLastPurchase");
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Premium", "premium", "You can now enjoy all of the exciting [Premium features](" + Setting.Domain + "/pages/store/#serverupgrade) that PEEKY has to offer for a " + peeky.userData.get(key, "PremiumLength").toLowerCase() + "!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
+                TransactionInfo = ["Premium", "premium", "You can now enjoy all of the exciting Premium features that PEEKY has to offer for a " + peeky.userData.get(key, "PremiumLength").toLowerCase() + "!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
               
                 newMember.roles.add(PremiumRole).catch(error => ErrorBag.add(error));
                 newMember.roles.remove(HasRole.id).catch(error => ErrorBag.add(error));
@@ -2680,11 +2681,38 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Upgrade", "serverupgrade", "You are now able to upgrade a server of your choice and unlock a bunch of [neat stuff](" + Setting.Domain + "/pages/store/#serverupgrade) for it!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverupgrade.png?v=1585078211679"];
+                TransactionInfo = ["Server Upgrade", "serverupgrade", "You are now able to upgrade a server of your choice and unlock a bunch of neat stuff for it!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverupgrade.png?v=1585078211679"];
 
             };
 
         };
+      
+        //Ambassador Skip
+        if  (peeky.userData.has(key))  {
+          
+            var HadRole = oldMember.roles.cache.find(r => r.id == AmbassadorSkipRole);
+            var HasRole = newMember.roles.cache.find(r => r.id == AmbassadorSkipRole);
+
+            if  (!HadRole && HasRole)  {
+              
+                
+
+                PurchaseComplete = true;
+                TransactionInfo = ["Ambassador Skip", "ambassadorskip", "You have skipped 5 invites in the Ambassador Program, which has helped you earn a cool reward!", "https://cdn.glitch.com/e2b3bafd-96e2-44bc-a3bf-c5a8414594d3%2Fstore_tierskip.png?v=1594308683082"];
+              
+                newMember.roles.add(PremiumRole).catch(error => ErrorBag.add(error));
+                newMember.roles.remove(HasRole.id).catch(error => ErrorBag.add(error));
+              
+            };
+
+        };
+        for (var i = 1; i < 5; i++)  {
+            
+            
+          
+        };
+      
+        //function_AmbassadorProgram(member, false);
 
         //Complete Purchase
         if  (PurchaseComplete == true)  {
@@ -2697,6 +2725,7 @@ if  (keySF == SupportServer)  {
                 "description": /*"­\n" + */ "**Thank you for the purchase of " + TransactionInfo[0] + "!**" + "\n" +
                   TransactionInfo[2] /*+ " " + "You can view all the rewards by clicking [here](" + Setting.Domain + "/pages/store/#" + TransactionInfo[1] + ")."*/,
                 "thumbnail": { "url": TransactionInfo[3] },
+                "footer": {  "text": ""  },
                 "color": EmbedColor
             };
 
