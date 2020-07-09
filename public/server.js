@@ -2165,6 +2165,10 @@ if  (member.guild.id == SupportServer)  {
                 invitermember.roles.add(ServerUpgradeRole).catch(error => ErrorBag.add(error));
             } else
           
+            if  (invites.length == 15)  {
+                peeky.userData.observe(key2, "Inventory").push(504);
+            } else
+          
             if  (invites.length == 25)  {
                 invitermember.roles.add("").catch(error => ErrorBag.add(error));
             };
