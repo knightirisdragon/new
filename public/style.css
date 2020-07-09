@@ -622,6 +622,7 @@ th, td {
 }
 
 .container {
+    background-color: #7289DA;
     border-radius: 25px;
     transition: transform .25s ease;
     position: relative;

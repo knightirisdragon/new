@@ -1388,7 +1388,7 @@ function function_AmbassadorProgram(member, real)  {
 
                 };
             } else {
-               peeky.userData.c(key2, "AmbassadorInvites").push("Purchased");
+               peeky.userData.observe(key2, "AmbassadorInvites").push("Purchased");
             };
 
             //Inviter Rewards
@@ -2704,7 +2704,7 @@ if  (keySF == SupportServer)  {
 
             if  (!HadRole && HasRole)  {
                 
-                for (var i = 1; i < 5; i++)  {
+                for (var i = 0; i < 5; i++)  {
 
                     function_AmbassadorProgram(member, false);
 
@@ -2730,7 +2730,7 @@ if  (keySF == SupportServer)  {
                 "description": /*"­\n" + */ "**Thank you for the purchase of " + TransactionInfo[0] + "!**" + "\n" +
                   TransactionInfo[2] /*+ " " + "You can view all the rewards by clicking [here](" + Setting.Domain + "/pages/store/#" + TransactionInfo[1] + ")."*/,
                 "thumbnail": { "url": TransactionInfo[3] },
-                "footer": {  "text": Setting.Domain + "/pages/store/#" + TransactionInfo[1]  },
+                //"footer": {  "text": Setting.Domain + "/pages/store/#" + TransactionInfo[1]  },
                 "color": EmbedColor
             };
 
