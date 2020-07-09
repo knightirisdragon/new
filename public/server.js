@@ -1422,7 +1422,7 @@ function function_AmbassadorProgram(member, real)  {
                 } else
 
                 if  (invites.length == 30)  {
-                    peeky.userData.observe(key2, "Inventory").push(425);
+                    peeky.userData.observe(key2, "Inventory").push(193);
                 } else
 
                 if  (invites.length == 35)  {
@@ -1446,7 +1446,7 @@ function function_AmbassadorProgram(member, real)  {
                 } else
 
                 if  (invites.length == 60)  {
-                    peeky.userData.observe(key2, "Inventory").push(193);
+                    peeky.userData.observe(key2, "Inventory").push(425);
                 } else
 
                 if  (invites.length == 65)  {
