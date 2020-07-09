@@ -1376,81 +1376,86 @@ function function_AmbassadorProgram(member, real)  {
         if  ((real && invitermember && !peeky.userData.get(key2, "AmbassadorInvites").includes(member.user.id)) || (!real))  {
 
             var invites = peeky.userData.get(key2, "AmbassadorInvites");
-            if  (real)  {
-                peeky.userData.observe(key2, "AmbassadorInvites").push(member.user.id);
+          
+            if  (invites.length < 100)  {
+              
+                if  (real)  {
+                    peeky.userData.observe(key2, "AmbassadorInvites").push(member.user.id);
 
-                //Receiver Rewards
-                if  (!["CUKraBe", "j4kArRh"].includes(invite.code) && peeky.userData.has(key) )  {
+                    //Receiver Rewards
+                    if  (!["CUKraBe", "j4kArRh"].includes(invite.code) && peeky.userData.has(key) )  {
 
-                    if  (!peeky.userData.get(key, "ReceiverBadge"))  {
-                        peeky.userData.set(key, true, "ReceiverBadge");
+                        if  (!peeky.userData.get(key, "ReceiverBadge"))  {
+                            peeky.userData.set(key, true, "ReceiverBadge");
+                        };
+
                     };
+                } else {
+                   peeky.userData.observe(key2, "AmbassadorInvites").push("Purchased");
+                };
+
+                //Inviter Rewards
+                peeky.userData.math(key2, "+", 1, "Chests");
+
+                if  (invites.length == 1)  {
+                    peeky.userData.set(key2, true, "AmbassadorBadge");
+                } else
+
+                if  (invites.length == 5)  {
+                    peeky.userData.observe(key2, "Inventory").push(490);
+                } else
+
+                if  (invites.length == 10)  {
+                    peeky.userData.math(key2, "+", 500, "Gredit");
+                } else
+
+                if  (invites.length == 15)  {
+                    peeky.userData.observe(key2, "Inventory").push(504);
+                } else
+
+                if  (invites.length == 25)  {
+                    peeky.userData.math(key2, "+", 1000, "Gredit");
+                } else
+
+                if  (invites.length == 35)  {
+                    peeky.userData.math(key2, "+", 1000, "Exp");
+                } else
+
+                if  (invites.length == 45)  {
+                    peeky.userData.math(key2, "+", 2500, "Gredit");
+                } else
+
+                if  (invites.length == 50)  {
+                    invitermember.roles.add(ServerUpgradeRole).catch(error => ErrorBag.add(error));
+                } else
+
+                if  (invites.length == 55)  {
+                    peeky.userData.math(key2, "+", 5000, "Exp");
+                } else
+
+                if  (invites.length == 65)  {
+                    peeky.userData.math(key2, "+", 5000, "Gredit");
+                } else
+
+                if  (invites.length == 80)  {
+                    peeky.userData.math(key2, "+", 10000, "Gredit");
+                } else
+
+                if  (invites.length == 85)  {
+                    peeky.userData.math(key2, "+", 10000, "Exp");
+                } else
+
+                if  (invites.length == 100)  {
+                    invitermember.roles.add(TrialRole).catch(error => ErrorBag.add(error));
+                };
+
+                if  (real)  {
+
+                    const embed = {"description": "**Ambassador Program**" + "\n" + "Someone has used your invite link to join the Support Server!",  "color": EmbedColor}; 
+                    function_DirectMessage(key2, { embed });
 
                 };
-            } else {
-               peeky.userData.observe(key2, "AmbassadorInvites").push("Purchased");
-            };
-
-            //Inviter Rewards
-            peeky.userData.math(key2, "+", 1, "Chests");
-
-            if  (invites.length == 1)  {
-                peeky.userData.set(key2, true, "AmbassadorBadge");
-            } else
-
-            if  (invites.length == 5)  {
-                peeky.userData.observe(key2, "Inventory").push(490);
-            } else
-
-            if  (invites.length == 10)  {
-                peeky.userData.math(key2, "+", 500, "Gredit");
-            } else
-
-            if  (invites.length == 15)  {
-                peeky.userData.observe(key2, "Inventory").push(504);
-            } else
-
-            if  (invites.length == 25)  {
-                peeky.userData.math(key2, "+", 1000, "Gredit");
-            } else
-
-            if  (invites.length == 35)  {
-                peeky.userData.math(key2, "+", 1000, "Exp");
-            } else
-
-            if  (invites.length == 45)  {
-                peeky.userData.math(key2, "+", 2500, "Gredit");
-            } else
-
-            if  (invites.length == 50)  {
-                invitermember.roles.add(ServerUpgradeRole).catch(error => ErrorBag.add(error));
-            } else
-
-            if  (invites.length == 55)  {
-                peeky.userData.math(key2, "+", 5000, "Exp");
-            } else
-
-            if  (invites.length == 65)  {
-                peeky.userData.math(key2, "+", 5000, "Gredit");
-            } else
-
-            if  (invites.length == 80)  {
-                peeky.userData.math(key2, "+", 10000, "Gredit");
-            } else
-
-            if  (invites.length == 85)  {
-                peeky.userData.math(key2, "+", 10000, "Exp");
-            } else
-
-            if  (invites.length == 100)  {
-                invitermember.roles.add(TrialRole).catch(error => ErrorBag.add(error));
-            };
-
-            if  (real)  {
-            
-                const embed = {"description": "**Ambassador Program**" + "\n" + "Someone has used your invite link to join the Support Server!",  "color": EmbedColor}; 
-                function_DirectMessage(key2, { embed });
-            
+          
             };
 
         };
@@ -2672,6 +2677,10 @@ if  (keySF == SupportServer)  {
                 };
 
                 peeky.userData.set(key, Date.now(), "SupporterLastPurchase");
+              
+                if  (peeky.userData.get(key, "PremiumLength"))  {
+                    function_AmbassadorProgram(member, false);
+                };
 
                 PurchaseComplete = true;
                 TransactionInfo = ["Premium", "premium", "You can now enjoy all of the exciting Premium features that PEEKY has to offer for a " + peeky.userData.get(key, "PremiumLength").toLowerCase() + "!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815"];
@@ -7528,7 +7537,7 @@ if  (!ProfileCooldown.has(message.author.id)) {
     if  ((peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount) > Setting.InventoryLimit)  {  var EndStringBackgrounds = " and some more..."  } else {  var EndStringBackgrounds = "";  };
     if  ((peeky.userData.get(key2, "Badges").length) > Setting.InventoryLimit)  {  var EndStringBadges = " and some more..."  } else {  var EndStringBadges = "";  };
 
-    const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + EndStringBackgrounds + ".\n\n**" + peeky.userData.get(key2, "Badges").length + " Badges**\n" + AllBadges.slice(0, Setting.InventoryLimit).join(', ') + EndStringBadges + ".",  "color": EmbedColor}; 
+    const embed = {"description": "**" + function_RemoveFormatting(SomeoneTagged.displayName, "other", true) + "'s Inventory**" + "\n" + peeky.userData.get(key2, "BadgeGredit").toLocaleString('en') + " Gredit Gain, " + peeky.userData.get(key2, "BadgeExp").toLocaleString('en') + " Exp Gain" + "\n\n" + "**" + (peeky.userData.get(key2, "Inventory").length + CustomBackgroundAmount).toLocaleString('en') + " Backgrounds (Worth " + InventoryWorth.toLocaleString('en')  + " Gredit)**\n" + FixedBackgrounds.join(", ") + EndStringBackgrounds + ".\n\n**" + peeky.userData.get(key2, "Badges").length + " Badges**\n" + AllBadges.slice(0, Setting.InventoryLimit).join(', ') + EndStringBadges + ".\n\n**Other**" + "\n" + peeky.userData.get(key2, "AmbassadorInvites").length + "/100 Ambassador Program score",  "color": EmbedColor}; 
     message.channel.send({  embed  }).catch(error => ErrorBag.add(error));
 
     }
