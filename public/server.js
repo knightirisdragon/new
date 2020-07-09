@@ -1351,6 +1351,104 @@ function function_ChallengeRewards(key, challenge, type)  {
   
 };
 
+function function_AmbassadorProgram(member, notify)  {
+  
+    var key = `${member.user.id}`;
+  
+    member.guild.fetchInvites().then(guildInvites => {
+
+        const ei = AmbassadorInvites;
+        AmbassadorInvites = guildInvites;
+
+        const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+        const inviter = peeky.users.cache.get(invite.inviter.id);
+        const invitermember = peeky.guilds.cache.get(SupportServer).members.cache.find(m => m.user.id == inviter);
+
+        const key2 = invite.inviter.id;
+
+        if  (invitermember && !peeky.userData.get(key2, "AmbassadorInvites").includes(member.user.id))  {
+
+            var invites = peeky.userData.get(key2, "AmbassadorInvites");
+
+            peeky.userData.get(key2, "AmbassadorInvites").push(member.user.id);
+
+            //Receiver Rewards
+            if  (!["CUKraBe", "j4kArRh"].includes(invite.code) && peeky.userData.has(key) )  {
+
+                if  (!peeky.userData.get(key, "ReceiverBadge"))  {
+                    peeky.userData.set(key, true, "ReceiverBadge");
+                };
+
+            };
+
+            //Inviter Rewards
+            peeky.userData.math(key2, "+", 1, "Chests");
+
+            if  (invites.length == 1)  {
+                peeky.userData.set(key2, true, "AmbassadorBadge");
+            } else
+
+            if  (invites.length == 5)  {
+                peeky.userData.observe(key2, "Inventory").push(490);
+            } else
+
+            if  (invites.length == 10)  {
+                peeky.userData.math(key2, "+", 500, "Gredit");
+            } else
+
+            if  (invites.length == 15)  {
+                peeky.userData.observe(key2, "Inventory").push(504);
+            } else
+
+            if  (invites.length == 25)  {
+                peeky.userData.math(key2, "+", 1000, "Gredit");
+            } else
+
+            if  (invites.length == 35)  {
+                peeky.userData.math(key2, "+", 1000, "Exp");
+            } else
+
+            if  (invites.length == 45)  {
+                peeky.userData.math(key2, "+", 2500, "Gredit");
+            } else
+
+            if  (invites.length == 50)  {
+                invitermember.roles.add(ServerUpgradeRole).catch(error => ErrorBag.add(error));
+            } else
+
+            if  (invites.length == 55)  {
+                peeky.userData.math(key2, "+", 5000, "Exp");
+            } else
+
+            if  (invites.length == 65)  {
+                peeky.userData.math(key2, "+", 5000, "Gredit");
+            } else
+
+            if  (invites.length == 80)  {
+                peeky.userData.math(key2, "+", 10000, "Gredit");
+            } else
+
+            if  (invites.length == 85)  {
+                peeky.userData.math(key2, "+", 10000, "Exp");
+            } else
+
+            if  (invites.length == 100)  {
+                invitermember.roles.add(TrialRole).catch(error => ErrorBag.add(error));
+            };
+
+            if  (notify)  {
+            
+                const embed = {"description": "**Ambassador Program**" + "\n" + "Someone has used your invite link to join the Support Server!",  "color": EmbedColor}; 
+                function_DirectMessage(key2, { embed });
+            
+            };
+
+        };
+
+    });
+  
+};
+
 //Direct Message
 function  function_DirectMessage(key, message)  {
   
@@ -2124,81 +2222,7 @@ if (member.user.id !== PeekyId && peeky.serverData.has(keySF)) {
 //AMBASSADOR PROGRAM
 if  (member.guild.id == SupportServer)  {
   
-    member.guild.fetchInvites().then(guildInvites => {
-  
-        const ei = AmbassadorInvites;
-        AmbassadorInvites = guildInvites;
-
-        const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-        const inviter = peeky.users.cache.get(invite.inviter.id);
-        const invitermember = peeky.guilds.cache.get(SupportServer).members.cache.find(m => m.user.id == inviter);
-      
-        const key2 = invite.inviter.id;
-
-        if  (invitermember && !peeky.userData.get(key2, "AmbassadorInvites").includes(member.user.id))  {
-            
-            var invites = peeky.userData.get(key2, "AmbassadorInvites");
-
-            peeky.userData.get(key2, "AmbassadorInvites").push(member.user.id);
-          
-            //Receiver Rewards
-            if  (!["CUKraBe", "j4kArRh"].includes(invite.code) && peeky.userData.has(key) )  {
-
-                if  (!peeky.userData.get(key, "ReceiverBadge"))  {
-                    peeky.userData.set(key, true, "ReceiverBadge");
-                };
-              
-            };
-
-            //Inviter Rewards
-            peeky.userData.math(key2, "+", 1, "Chests");
-
-            if  (invites.length == 1)  {
-                peeky.userData.set(key2, true, "AmbassadorBadge");
-            } else
-            
-            if  (invites.length == 5)  {
-                peeky.userData.observe(key2, "Inventory").push(490);
-            } else
-
-            if  (invites.length == 10)  {
-                peeky.userData.math(key2, "+", 500, "Gredit");
-            } else
-          
-            if  (invites.length == 15)  {
-                peeky.userData.observe(key2, "Inventory").push(504);
-            } else
-
-            if  (invites.length == 25)  {
-                peeky.userData.math(key2, "+", 1000, "Gredit");
-            } else
-
-            if  (invites.length == 45)  {
-                peeky.userData.math(key2, "+", 2500, "Gredit");
-            } else
-          
-            if  (invites.length == 50)  {
-                invitermember.roles.add(ServerUpgradeRole).catch(error => ErrorBag.add(error));
-            } else
-
-            if  (invites.length == 65)  {
-                peeky.userData.math(key2, "+", 5000, "Gredit");
-            } else
-
-            if  (invites.length == 80)  {
-                peeky.userData.math(key2, "+", 10000, "Gredit");
-            } else
-          
-            if  (invites.length == 100)  {
-                invitermember.roles.add(TrialRole).catch(error => ErrorBag.add(error));
-            };
-          
-            const embed = {"description": "**Ambassador Program**" + "\n" + "Someone has used your invite link to join the Support Server!",  "color": EmbedColor}; 
-            function_DirectMessage(key2, { embed });
-
-        };
-
-    });
+    function_AmbassadorProgram(member);
   
 };
   
