@@ -2623,6 +2623,8 @@ if  (keySF == SupportServer)  {
             var HasRole = newMember.roles.cache.find(r => r.id == BoosterRole);
 
             if  (!HadRole && HasRole)  {
+                
+                function_AmbassadorProgram(member, false);
 
                 PurchaseComplete = true;
                 TransactionInfo = ["Server Boost", "serverboost", "For boosting the Support Server you receive a few cool little bonuses and help us stay boosted!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
