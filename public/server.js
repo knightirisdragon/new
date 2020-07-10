@@ -7767,7 +7767,7 @@ if  (CommandName.startsWith("profile ") || CommandName == "profile")  {
                     WebsiteCooldowns.add("featuredprofile");
                     setTimeout(() => {WebsiteCooldowns.delete("featuredprofile")}, 1800000);   
 
-                    fs.writeFile('public/website_data/featured_profile.txt', "<center>  <a href='" + Setting.Domain + "/pages/store/#premium'><img src='" + m.attachments.array()[0].url + "' class='featuredprofile'></a>  </center>", (err) => {
+                    fs.writeFile('public/website_data/featured_profile.txt', "<center>  <img src='" + m.attachments.array()[0].url + "' class='featuredprofile'>  </center>", (err) => {
                         if (err) console.log(err); 
                     });
 
