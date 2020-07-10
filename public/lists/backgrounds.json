@@ -4016,20 +4016,20 @@
     null,
     1594305358144
   ],
-  [ 
- "NO_BACKGROUND", 
- 775, 
- "Rules of nature", 
- "Boxman", 
- null, 
- 1594367456431 
- ],
-  [ 
- "NO_BACKGROUND", 
- 900, 
- "Chaos maker", 
- "PAYDAY 2", 
- null, 
- 1594367454135 
- ]
+  [
+    "https://cdn.glitch.com/e2b3bafd-96e2-44bc-a3bf-c5a8414594d3%2Fbackground504.png?v=1594367484334",
+    775,
+    "Rules of nature",
+    "Boxman",
+    null,
+    1594367456431
+  ],
+  [
+    "https://cdn.glitch.com/e2b3bafd-96e2-44bc-a3bf-c5a8414594d3%2Fbackground505.png?v=1594367486750",
+    925,
+    "Chaos maker",
+    "PAYDAY 2",
+    null,
+    1594367454135
+  ]
 ]
