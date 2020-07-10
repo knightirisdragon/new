@@ -4892,7 +4892,7 @@ if (CommandName == "help")  {
   
     const WebsiteInfo = [
       "Visit the website to vote, read tutorials, browse the backgrounds, view the leaderboard and pretty much everything PEEKY related.",
-      "Navštivte moji stránku aby jste mohli hlasovat, číst návody, koukat na pozadí, otevřit žebříček a vlastně všechno co se týče PEEKYho.",
+      "Navštivte moji stránku aby jste mohli hlasovat, získat pomoc s botem, surfovat profilová pozadí, zkouknout profilový žebíček a vlastně všechno, co se týče PEEKYho.",
       "Navštívte webovú stránku, kde môžete hlasovať, prečítať si návody, prehliadať pozadia, prezerať výsledkové tabuľky a takmer všetko, čo sa týka PEEKYho.",
       "Visita el sitio web para votar, leer tutoriales, navegar por los fondos, ver la tabla de clasificación y casi todo relacionado con PEEKY.",
       "Oy vermek, öğretici sayfaları okumak, arka planlara göz atmak, Sıralama tablosu ve PEEKY ile ilgili hemen hemen her şeyi görüntülemek için web sitesini ziyaret edin.",
@@ -4901,7 +4901,7 @@ if (CommandName == "help")  {
     ];
     const StoreInfo = [
       "Support PEEKY by purchasing some neat items from the store!",
-      "Podpořte PEEKYho tím, že si koupíte nějaké supr věcičky z obchodu!",
+      "Podpořte PEEKYho tím, že si koupíte nějaké vylepšení z obchodu!",
       "Navštívte webovú stránku, kde môžete hlasovať, prečítať si návody, prehliadať pozadia, prezerať výsledkové tabuľky a takmer všetko, čo sa týka PEEKYho.",
       "¡Apoya a PEEKY comprando algunos artículos de la tienda!",
       "Mağazadan bazı ürünler satın alarak PEEKY'yi destekleyin.",
@@ -4910,7 +4910,7 @@ if (CommandName == "help")  {
     ];
     const SupportServerInfo = [
       "Join the Support Server for important announcements, assistance with the bot, giveaways and much more!",
-      "Připojte se na můj Discord server pro důležitá upozornění, podporu s botem, soutěže a mnoho dalšího!",
+      "Připojte se na můj Discord server pro důležité upozornění, podporu s botem, akce a mnoho dalšího!",
       "Pripojte sa k serveru podpory a získajte dôležité oznámenia, pomoc s botom, darčeky a oveľa viac.",
       "Únete al Servidor de Soporte para anuncios importantes, asistencia con el bot, regalos y mucho más!",
       "Önemli duyurular, botla ilgili yardım, hediyeler ve çok daha fazlası için Destek Sunucusuna katılın!",
@@ -4919,7 +4919,7 @@ if (CommandName == "help")  {
     ];
     const BotInvite = [
       "Add PEEKY to your server and get all the features for free and quick!",
-      "Přidejte si PEEKYho na váš server a dostanete všechny funkce zdarma a rychle.",
+      "Přidejte si PEEKYho na váš server a dostaňte přístup k jeho funkcím - Rychle a zdarma!",
       "Pridaj PEEKYho na tvôj server a získaj všetky funkcie.",
       "Añade a PEEKY a tu servidor y obtén todas las características de forma rápida y gratuita!",
       "Sunucunuza PEEKY ekleyin ve tüm özellikleri ücretsiz ve hızlı bir şekilde alın!",
