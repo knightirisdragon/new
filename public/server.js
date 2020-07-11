@@ -16,7 +16,7 @@ const Canvas  = require('canvas');
 const request = require('request');
 const rgbHex  = require('rgb-hex');
 const { getColorFromURL } = require('color-thief-node');
-const { registerFont } = require('canvas');
+const { registerFont } = Canvas;
 registerFont('public/fonts/Roboto-Regular.ttf', { family: 'Roboto' });
 
 //Data
