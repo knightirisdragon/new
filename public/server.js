@@ -5000,12 +5000,6 @@ if (CommandName == "eventrewards")  {
             if  (Setting.EventName.includes("PEEKY's Birthday") || Setting.EventName.includes("Christmas"))  {
                 InfoMessages.push("•" + " The **Celebrator** badge.");
                 peeky.userData.set(key, true, "CelebratorBadge");
-            };
-          
-            if  (Setting.EventName.includes("Movie Night"))  {
-                InfoMessages.push("•" + " The **Movie Nighter** badge.");
-                peeky.userData.set(key, true, "MovieNighterBadge");
-            };
           
             if  (Background > 0)  {
                 InfoMessages.push("•" + " The **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
