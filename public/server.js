@@ -2140,7 +2140,7 @@ peeky.on('message', async (message) => {
     };
 
     //Level Up
-    if  (peeky.userData.get(key, "Exp") >= Setting.ExpNeeded * peeky.userData.get(key, "Level") && TextChannels.includes(message.channel.type) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES' && 'ATTACH_FILES')) { 
+    if  (peeky.userData.get(key, "Exp") >= Setting.ExpNeeded * peeky.userData.get(key, "Level") && TextChannels.includes(message.channel.type) && message.channel.permissionsFor(peeky.user).has('SEND_MESSAGES', 'ATTACH_FILES', 'READ_MESSAGE_HISTORY')) { 
         
         peeky.userData.set(key, 1, "Exp");
         peeky.userData.math(key, "+", 1, "Level");
@@ -2532,7 +2532,7 @@ if  (peeky.serverData.get(keySF, "welcome_messages_bonus") == true)  {
 
     var channel = guild.channels.cache.find(c=> c.name == name);
     
-    if  (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES' && 'ATTACH_FILES'))  {
+    if  (channel && channel.permissionsFor(peeky.user).has('SEND_MESSAGES', 'ATTACH_FILES'))  {
       
         if  (BlacklistedWebsites.some(word => function_RemoveFormatting(member.user.username.toLowerCase(), "other", false).includes(word)))  {
             Detected = true;
