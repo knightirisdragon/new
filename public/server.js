@@ -129,7 +129,6 @@ const DefaultDownvote = "529413312862093322";
 const ErrorIcon       = "<:peeky_error:529412267343872031>";
 const SuccessIcon     = "<:peeky_success:529415084804669487>";
 const InfoIcon        = "<:peeky_info:529412267746394133>";
-const LoadingIcon     = "<:peeky_loading:688396910251344030>";
 const EnabledIcon     = "<:enabled:538295053940948993>";
 const DisabledIcon    = "<:disabled:538295054431813662>";
 const SettingsIcon    = "<:settings:586612320839532573>";
