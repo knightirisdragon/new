@@ -1259,7 +1259,7 @@ function function_ServerData(key)  {
         peeky.serverData.ensure(key, DefaultServerData);
         peeky.serverData.set(key, key, "GuildID");
         peeky.serverData.set(key, Setting.DefaultPrefix, "prefix");
-        peeky.serverData.set(key, new Date(), "lastSeen");
+        peeky.serverData.set(key, Date.now(), "lastSeen");
       
         console.log("Created server data for " + key + ".");
   
@@ -1299,12 +1299,12 @@ function function_ChannelData(key)  {
 function function_UpdateAutowipe(key, type)  {
 
     if  (type == "server")  {
-        peeky.serverData.set(key, Date.now(), 'lastSeen');
+        peeky.serverData.set(key, Date.now(), "lastSeen");
         console.log("Updated autowipe for " + key + ".");
     };
 
     if  (type == "user")  {
-        peeky.userData.set(key, Date.now(), 'lastSeen');
+        peeky.userData.set(key, Date.now(), "lastSeen");
         console.log("Updated autowipe for " + key + ".");
     };
   
