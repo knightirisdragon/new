@@ -1659,7 +1659,7 @@ function function_ArrayItems(array, limit, joiner)  {
           array.push(" and more...");
           array = array.join(joiner);
       } else {
-        array = array.join(joiner) + ".";
+        array = array.join(joiner);
       };
 
     };
