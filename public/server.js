@@ -4052,6 +4052,8 @@ if  (!message.author.bot)  {
                                               current ++;
 
                                           });
+                                      } else {
+                                        FixedWinners = ["No one"];
                                       };
                                     
                                       var WinnerSeparator = " ";
