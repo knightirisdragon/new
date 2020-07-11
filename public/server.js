@@ -64,7 +64,6 @@ var AmbassadorInvites = null;
 
 //Miscellaneous Packages
 const fs         = require('fs');
-const ms         = require('parse-ms');
 const node_fetch = require('node-fetch');
 const https      = require('https');
 const aki        = require('aki-api');
