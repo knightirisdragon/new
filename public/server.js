@@ -1643,6 +1643,31 @@ function function_ProperSlice(text, amount)  {
   
 };
 
+//Array Items
+function function_ArrayItems(array, limit, joiner)  {
+  
+    if  (!limit)  {
+        var limit = 10;
+    };
+  
+    if  (array.length < 1)  {
+        array = "None";
+    } else {
+      
+      if  (array.length > limit)  {
+          array = array.slice(0, limit);
+          array.push(" and more...");
+          array = array.join(joiner);
+      } else {
+        array = array.join(joiner) + ".";
+      };
+
+    };
+  
+    return array;
+  
+};
+
 //Random Description
 function function_RandomDescription()  {
     return DefaultDescriptions[Math.floor(Math.random()*DefaultDescriptions.length)];
@@ -1711,31 +1736,6 @@ function function_GetBackgroundInfo(ID, args)  {
         };
               
     };
-  
-};
-
-//Array Items
-function function_ArrayItems(array, limit, joiner)  {
-  
-    if  (!limit)  {
-        var limit = 10;
-    };
-  
-    if  (array.length < 1)  {
-        array = "None";
-    } else {
-      
-      if  (array.length > limit)  {
-          array = array.slice(0, limit);
-          array.push(" and more...");
-          array = array.join(joiner);
-      } else {
-        array = array.join(joiner);
-      };
-
-    };
-  
-    return array;
   
 };
 
@@ -5000,6 +5000,12 @@ if (CommandName == "eventrewards")  {
             if  (Setting.EventName.includes("PEEKY's Birthday") || Setting.EventName.includes("Christmas"))  {
                 InfoMessages.push("•" + " The **Celebrator** badge.");
                 peeky.userData.set(key, true, "CelebratorBadge");
+            };
+          
+            if  (Setting.EventName.includes("Movie Night"))  {
+                InfoMessages.push("•" + " The **Movie Nighter** badge.");
+                peeky.userData.set(key, true, "MovieNighterBadge");
+            };
           
             if  (Background > 0)  {
                 InfoMessages.push("•" + " The **" + function_GetBackgroundInfo(Background, ["name", "id"]) + "** background.");
