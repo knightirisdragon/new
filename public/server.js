@@ -1929,8 +1929,9 @@ peeky.on('ready', () => {
 
     //Update Banned Users
     setTimeout(() => {
-        peeky.guilds.cache.get(SupportServer).members.fetch();
-        function_UpdateBans();
+        peeky.guilds.cache.get(SupportServer).members.fetch().then(m => {
+            function_UpdateBans();
+        });
     }, 1000);
   
     //Clear Queues
@@ -1940,7 +1941,26 @@ peeky.on('ready', () => {
     });
   
     WebsiteStuff();
+  
+    //Miscellaneous Interval
+    setInterval(() =>  {        
 
+        //Update Banned Users
+        function_UpdateBans();
+
+        //Fix ServerData
+        peeky.guilds.cache.forEach(guild => {
+            function_ServerData(`${guild.id}`);
+        });
+
+        //Fix ChannelData
+        peeky.channels.cache.forEach(channel => {
+            function_ChannelData(`${channel.id}`);
+        });
+
+    }, 3600000);
+
+    //Bot Stats
     setInterval(() => {
       
         var GuildSize = peeky.guilds.cache.size;
@@ -1951,7 +1971,9 @@ peeky.on('ready', () => {
         console.log("Updated PEEKY's avatar.");*/
       
         //Post Server Counts - BLS
-        bls.postServerCount(GuildSize).catch(err => {console.log("Failed to post the server count to BLS."); ErrorBag.add(err)});
+        bls.postServerCount(GuildSize).catch(err => {
+            console.log("Failed to post the server count to BLS."); ErrorBag.add(err);
+        });
 
         //Post Server Counts - BFD
         node_fetch(`https://botsfordiscord.com/api/bot/${peeky.user.id}`, {
@@ -1961,7 +1983,9 @@ peeky.on('ready', () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({  server_count: GuildSize  })
-        }).catch(err => {console.log("Failed to post the server count to BFD."); ErrorBag.add(err)});
+        }).catch(err => {
+            console.log("Failed to post the server count to BFD."); ErrorBag.add(err);
+        });
 
         //Post Server Counts - BD
         node_fetch(`https://discord.boats/api/v2/bot/${peeky.user.id}`, {
@@ -1971,7 +1995,9 @@ peeky.on('ready', () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({  server_count: GuildSize  })
-        }).catch(err => {console.log("Failed to post the server count to DB."); ErrorBag.add(err)});
+        }).catch(err => {
+            console.log("Failed to post the server count to DB."); ErrorBag.add(err);
+        });
 
         //Post Server Counts - CDL
         node_fetch(`https://www.cloudlist.xyz/api/stats/${peeky.user.id}`, {
@@ -1981,24 +2007,13 @@ peeky.on('ready', () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({  server_count: GuildSize  })
-        }).catch(err => {console.log("Failed to post the server count to CDL."); ErrorBag.add(err)});
-      
-        console.log("Stats posted to Bot Lists.");
-
-        //Update Banned Users
-        function_UpdateBans();
-      
-        //Fix ServerData
-        peeky.guilds.cache.forEach(guild => {
-            function_ServerData(`${guild.id}`);
+        }).catch(err => {
+            console.log("Failed to post the server count to CDL."); ErrorBag.add(err);
         });
       
-        //Fix ChannelData
-        peeky.channels.cache.forEach(channel => {
-            function_ChannelData(`${channel.id}`);
-        });
+        console.log("Stats posted to the bot lists.");
       
-    }, 7200000);
+    }, 3600000);
   
 });
 
