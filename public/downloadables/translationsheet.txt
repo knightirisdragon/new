@@ -154,7 +154,7 @@ The prefix is now **X001**. |
 
 The timezone is now **X001** hours. | 
 
-The highlighted channel is now **#X001**. | 
+The channel for random treasures is now **#X001**. | 
 
 The function notifications are now set to **X001**. | 
 

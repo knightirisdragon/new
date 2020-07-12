@@ -3222,7 +3222,7 @@ if  (peeky.userData.has(key, "OverviewID") && reaction.message.id == peeky.userD
                                 "**Time Zone** " + SettingsIcon + "\n" + "`" + TimeZone + "`" + "\n\n" +
                                 "**Server State** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "server_upgraded").toString().replace("true", "Upgraded").replace("false", "Not Upgraded") + "`" + "\n\n" +
                                 "**Mute Role** " + SettingsIcon + "\n" + "`@" + peeky.serverData.get(keySF, "muted_role") + "`" + "\n\n" +
-                                "**Highlighted Channel** " + SettingsIcon + "\n" + "`#" + peeky.serverData.get(keySF, "highlighted_channel") + "`" + "\n\n" +
+                                "**Treasure Channel** " + SettingsIcon + "\n" + "`#" + peeky.serverData.get(keySF, "treasure_channel") + "`" + "\n\n" +
                                 "**Function Notifications** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "function_notifications").toString().replace("true", "Enabled").replace("false", "Disabled") + "`" + "\n\n" +
                                 "**Level Notifications** " + SettingsIcon + "\n" + "`" + peeky.serverData.get(keySF, "level_notifications").toString().replace("true", "Enabled").replace("false", "Disabled") + "`",
                   color: EmbedColor,
@@ -4122,7 +4122,7 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
 
     if  (peeky.guilds.cache.has(server.GuildID) && peeky.serverData.has(`${server.GuildID}`))  {
 
-        var name = peeky.serverData.get(`${server.GuildID}`, "highlighted_channel");
+        var name = peeky.serverData.get(`${server.GuildID}`, "treasure_channel");
         var guild = peeky.guilds.cache.get(server.GuildID);
         var channel = guild.channels.cache.find(c => c.name == name);
       
@@ -9766,10 +9766,10 @@ if  (CommandName.startsWith("timezone"))  {
 
 };
   
-//HighlightedChannel
-if  (CommandName.startsWith("highlightedchannel"))  {
+//TreasureChannel
+if  (CommandName.startsWith("treasurechannel"))  {
   
-    var CommandArgument = CommandName.split("highlightedchannel")[1];
+    var CommandArgument = CommandName.split("treasurechannel")[1];
   
     if  (CommandArgument.startsWith(" "))  {
 
@@ -9779,10 +9779,10 @@ if  (CommandName.startsWith("highlightedchannel"))  {
 
             if  (!message.mentions.channels.first() && !message.mentions.roles.first() && !message.mentions.members.first())  {
 
-                peeky.serverData.set(keySF, CommandArgument, "highlighted_channel");
+                peeky.serverData.set(keySF, CommandArgument, "treasure_channel");
 
-                var TranslatedMessages = [SuccessIcon + " The highlighted channel is now **#X001**.", SuccessIcon + " Zvýrazněný kanál je teď **#X001**.", SuccessIcon + " Zvýraznený channel je teraz **#X001**.", SuccessIcon + " El canal resaltado es ahora **#X001**.", SuccessIcon + " Vurgulanan kanal şimdi **#X001**.", SuccessIcon + " Выделенный канал теперь **#X001**.", SuccessIcon + " 強調表示されたチャンネルは**#X001**になります。"];
-                const embed = {"description": TranslatedMessages[Language].replace("X001", peeky.serverData.get(keySF, "highlighted_channel")) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
+                var TranslatedMessages = [SuccessIcon + " The channel for random treasures is now **#X001**.", SuccessIcon + " Kanál pro náhodné poklady je nyní **#X001**.", SuccessIcon + " The treasure channel is now **#X001**.", SuccessIcon + " The treasure channel is now **#X001**.", SuccessIcon + " The treasure channel is now **#X001**.", SuccessIcon + " The treasure channel is now **#X001**.", SuccessIcon + " The treasure channel is now **#X001**."];
+                const embed = {"description": TranslatedMessages[0].replace("X001", peeky.serverData.get(keySF, "treasure_channel")) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
             }
