@@ -7,7 +7,7 @@
   "language": 0,
   "timezone": 0,
   "muted_role": "Muted",
-  "highlighted_channel": "treasures",
+  "treasure_channel": "treasures",
   "function_notifications": false,
   "level_notifications": false,
 
