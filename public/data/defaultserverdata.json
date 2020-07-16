@@ -59,6 +59,7 @@
   "donor_wall_bonus_id": null,
   "donor_wall_bonus_channel": "boosters",
   "donor_wall_bonus_array": [],
+  "banned_words_bonus": false,
   "banned_words_bonus_setting": [],
   "spoiler_lock_bonus": false,
   "spoiler_lock_bonus_setting": 0,
