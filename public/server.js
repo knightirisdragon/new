@@ -5003,7 +5003,7 @@ if (["website", "home"].includes(CommandName))  {
 };
   
 //Say
-if  (CommandName.startsWith("say"))  {
+/*if  (CommandName.startsWith("say"))  {
 
     if  (message.author.id == message.guild.owner.user.id)  {
   
@@ -5028,7 +5028,7 @@ if  (CommandName.startsWith("say"))  {
        message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
-};
+};*/
 
 //EventRewards
 if (CommandName == "eventrewards")  {
