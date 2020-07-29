@@ -4981,6 +4981,54 @@ if (CommandName == "store")  {
   
 };
 
+//Commands
+if (CommandName == "commands")  {
+  
+    message.channel.send(Setting.Domain + "/pages/commands/").catch(error => ErrorBag.add(error));
+  
+};
+
+//Commands
+if (CommandName == "functions")  {
+  
+    message.channel.send(Setting.Domain + "/pages/functions/").catch(error => ErrorBag.add(error));
+  
+};
+
+//Commands
+if (["website", "home"].includes(CommandName))  {
+  
+    message.channel.send(Setting.Domain).catch(error => ErrorBag.add(error));
+  
+};
+  
+//Command Template
+if  (CommandName.startsWith("say"))  {
+
+    if  (message.author.id == message.guild.owner.user.id)  {
+  
+        var CommandArgument = CommandName.split("say")[1];
+
+        if  (CommandArgument.startsWith(" "))  {
+
+            CommandArgument = message.content.replace(CommandName + " ", "");        
+
+            console.log(CommandArgument);
+
+        }
+         else if (CommandArgument == "")
+        {
+         const embed = {"description": ErrorMessage18[Language],  "color": EmbedColor}; 
+         message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        };
+      
+    }  else  {
+       const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
+       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+    };
+
+};
+
 //EventRewards
 if (CommandName == "eventrewards")  {
   
