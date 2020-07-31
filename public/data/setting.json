@@ -9,12 +9,12 @@
   "MaxServers": 1000,
 
   "event": {
-    "name": "None",
+    "name": "PEEKY's Birthday",
     "status": false,
     "background": 0,
-    "chests": 0,
+    "chests": 10,
     "gredit": 0,
-    "exp": 0
+    "exp": 10000
   },
 
   "CustomBackgroundPrice": 1000,

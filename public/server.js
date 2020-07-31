@@ -3037,7 +3037,7 @@ if  (reaction.message.channel.id == WorkshopChannel && user.id == OwnerId)  {
   
     if  (reaction.emoji.name == "🏁")  {
 
-        const embed = {"description": SuccessIcon + " Your submission in the Workshop has been accepted and will be added shortly!",  "color": EmbedColor}; 
+        const embed = {"description": "**Workshop**" + "\n" + " Your submission has been accepted and will be added shortly!",  "color": EmbedColor}; 
         function_DirectMessage(reaction.message.author.id, { embed });
         function_DirectMessage(OwnerId, '[ \n "NO_BACKGROUND", \n ' + reaction.message.content.split('\n')[2].replace("Price: ", "") + ', \n "' + function_FixCapitalization(reaction.message.content.split("\n")[0].replace("Name: ", "")) + '", \n "' + reaction.message.content.split("\n")[1].replace("Credit: ", "") + '", \n ' + null + ', \n ' + Date.now() + ' \n ]');
       
@@ -3778,9 +3778,9 @@ if  (message)  {
     //Workshop Response
     if  (message.channel.id == WorkshopChannel && message.author.id !== PeekyId)  {
         if  (new Date() - new Date(message.createdAt) < 5000)  {
-            var embed = {"description": ErrorIcon + " Your submission in the Workshop had a wrong format.",  "color": EmbedColor};
+            var embed = {"description": "**Workshop**" + "\n" + " Your submission has been removed for having an incorrect format.",  "color": EmbedColor}; 
         } else {
-          var embed = {"description": ErrorIcon + " Your submission in the Workshop has been denied.",  "color": EmbedColor};
+          var embed = {"description": "**Workshop**" + "\n" + " Your submission has been denied and removed.",  "color": EmbedColor}; 
         };
         function_DirectMessage(message.author.id, { embed });
     };
@@ -3911,7 +3911,7 @@ if  (!AutoManagementCooldown.has("challenges"))  {
             if (err) console.log(err); 
         });
 
-        console.log("The new Daily Challenge is " + peeky.peekyData.get("dailychallenge", "data")[1] + ".");
+        console.log("The new Daily Challenge is \"" + peeky.peekyData.get("dailychallenge", "data")[1] + "\".");
       
     };
   
@@ -3932,7 +3932,7 @@ if  (!AutoManagementCooldown.has("challenges"))  {
             if (err) console.log(err); 
         });
 
-        console.log("The new Weekly Challenge is " + peeky.peekyData.get("weeklychallenge", "data")[1] + ".");
+        console.log("The new Weekly Challenge is \"" + peeky.peekyData.get("weeklychallenge", "data")[1] + "\".");
       
     };
 };
