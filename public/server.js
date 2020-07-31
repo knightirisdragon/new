@@ -5050,10 +5050,6 @@ if (CommandName == "eventrewards")  {
             if  (["PEEKY's Birthday"].includes(Setting.event.name))  {
                 InfoMessages.push("•" + " The **Celebrator** badge.");
                 peeky.userData.set(key, true, "CelebratorBadge");
-            } else
-            if  (["Movie Night"].includes(Setting.event.name))  {
-                InfoMessages.push("•" + " The **Movie Nighter** badge.");
-                peeky.userData.set(key, true, "MovieNighterBadge");
             };
           
             if  (Background > 0)  {
