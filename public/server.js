@@ -8894,7 +8894,7 @@ if  (CommandName == "akinator")  {
         .catch(collected => {
             const embed = {"description": ErrorMessage13[Language],  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));
-
+            
             ActiveMinigames.delete(message.guild.id);
         });
 
