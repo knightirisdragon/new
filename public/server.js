@@ -589,8 +589,8 @@ async function WebsiteStuff()  {
           "premiumCount": peeky.guilds.cache.get(SupportServer).members.cache.filter(m => m.roles.cache.has(PremiumRole)).size,
           "backgroundsCount": Banners.length,
 
-          "eventName": Setting.EventName,
-          "eventStatus": Setting.EventStatus,
+          "eventName": Setting.event.name,
+          "eventStatus": Setting.event.status,
 
           "customBackground": Setting.CustomBackgroundPrice,
           "sellMultiplier": Setting.SellMultiplier,
@@ -775,8 +775,8 @@ async function WebsiteStuff()  {
 
         var Message = "";
 
-        if  (Setting.EventStatus == true)  {
-            Message = '<b class="messageheader">You can currently participate in the ' + Setting.EventName + ' event!</b>';  
+        if  (Setting.event.status)  {
+            Message = '<b class="messageheader">You can currently participate in the ' + Setting.event.name + ' event!</b>';  
         }
         else if  (Setting.Message !== "")  {
             Message = '<b class="messageheader">' + Setting.Message + ' </b>';  
@@ -2114,7 +2114,7 @@ peeky.on('message', async (message) => {
     //BadgeGreditAmount += peeky.userData.get(key, "UpgradedServers");
 
     //EVENT DOUBLE EXP
-    if  (Setting.EventStatus == true)  {
+    if  (Setting.event.status)  {
         BadgeExpAmount = BadgeExpAmount * 2;
     };
 
@@ -5035,24 +5035,23 @@ if (["website", "home"].includes(CommandName))  {
 //EventRewards
 if (CommandName == "eventrewards")  {
   
-    if  (Setting.EventStatus == true)  {
+    if  (Setting.event.status)  {
       
-        if  (!peeky.userData.get(key, "ParticipatedEvents").includes(Setting.EventName))  {
+        if  (!peeky.userData.get(key, "ParticipatedEvents").includes(Setting.event.name))  {
       
-            peeky.userData.observe(key, "ParticipatedEvents").push(Setting.EventName);
+            peeky.userData.observe(key, "ParticipatedEvents").push(Setting.event.name);
           
             //Setting
-            var Background = Setting.EventBackground;
-            var Chests     = Setting.EventChests;
-            var Gredit     = Setting.EventGredit;
-            var Exp        = Setting.EventExp;
+            var Background = Setting.event.background;
+            var Chests = Setting.event.chest;
+            var Gredit = Setting.event.gredit;
+            var Exp = Setting.event.exp;
           
-            if  (Setting.EventName.includes("PEEKY's Birthday") || Setting.EventName.includes("Christmas"))  {
+            if  (["PEEKY's Birthday"].includes(Setting.event.name))  {
                 InfoMessages.push("•" + " The **Celebrator** badge.");
                 peeky.userData.set(key, true, "CelebratorBadge");
-            };
-          
-            if  (Setting.EventName.includes("Movie Night"))  {
+            } else
+            if  (["Movie Night"].includes(Setting.event.name))  {
                 InfoMessages.push("•" + " The **Movie Nighter** badge.");
                 peeky.userData.set(key, true, "MovieNighterBadge");
             };
@@ -5072,7 +5071,7 @@ if (CommandName == "eventrewards")  {
                 peeky.userData.math(key, "+", Chests, "Chests");
             };
 
-            const embed = {"description": "You have received some cool rewards from the **" + Setting.EventName + "** event!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
+            const embed = {"description": "You have received some cool rewards from the **" + Setting.event.name + "** event!" + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor}; 
             message.channel.send({ embed }).catch(error => ErrorBag.add(error));          
           
         };

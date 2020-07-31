@@ -8,12 +8,14 @@
   "DefaultPrefix": "p!",
   "MaxServers": 1000,
 
-  "EventName": "None",
-  "EventStatus": false,
-  "EventBackground": 0,
-  "EventChests": 0,
-  "EventGredit": 0,
-  "EventExp": 0,
+  "event": {
+    "name": "None",
+    "status": false,
+    "background": 0,
+    "chests": 0,
+    "gredit": 0,
+    "exp": 0
+  },
 
   "CustomBackgroundPrice": 1000,
   "SellMultiplier": 1,
