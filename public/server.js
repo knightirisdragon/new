@@ -3548,7 +3548,7 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                     ], reason: "Channel created by @" + reaction.message.author.tag + " through a function." })
                     .then(async function (channel)  {
           
-                        peeky.serverData.set(keySF, peeky.serverData.get(keySF, "ticket_system_bonus_channels").push(channel.id), "ticket_system_bonus_channels");
+                        peeky.serverData.observe(keySF, "ticket_system_bonus_channels").push(channel.id);;
                       
                         if  (category && category.permissionsFor(peeky.user).has('VIEW_CHANNEL'))  {
                             channel.setParent(category.id).catch(error => ErrorBag.add(error));
