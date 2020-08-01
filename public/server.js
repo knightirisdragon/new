@@ -951,7 +951,7 @@ async function WebsiteStuff()  {
     }, 600000);
 
     //Random Review
-    setInterval(async () => {
+    /*setInterval(async () => {
 
         node_fetch(`https://ls.terminal.ink/api/v2/bots/${peeky.user.id}`, {
             method: 'GET'
@@ -978,7 +978,7 @@ async function WebsiteStuff()  {
 
         console.log("The random review have been updated.");
 
-    }, 600000);
+    }, 600000);*/
 
     //PEEKY Stats
     setInterval(async () => {
@@ -3570,12 +3570,11 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
 
     if  (reaction.emoji.name == "❌")  {
       
-        if  (!user.bot & peeky.serverData.get(keySF, "ticket_system_bonus_channels").includes(reaction.message.channel.name) && reaction.message.author.id == PeekyId)  {
+        if  (!user.bot & peeky.serverData.get(keySF, "ticket_system_bonus_channels").includes(reaction.message.channel.id) && reaction.message.author.id == PeekyId)  {
               
-            if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_CHANNELS'))  {
+            if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_CHANNELS') || reaction.message.guild.me.permissions.has("MANAGE_CHANNELS"))  {
               
-                console.log("channel deleted " + reaction.message.channel.name);
-                //reaction.message.channel.delete();
+                reaction.message.channel.delete().catch(error => ErrorBag.add(error));
               
             };
           
