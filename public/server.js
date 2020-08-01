@@ -3554,11 +3554,28 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                             channel.setParent(category.id).catch(error => ErrorBag.add(error));
                         };
                       
-                        await channel.send({  embed  }).catch(error => ErrorBag.add(error));
+                        await channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(m => m.react("❌")).catch(error => ErrorBag.add(error));
                     })
                     .catch(error => ErrorBag.add(error));
                   
                 };
+              
+            };
+          
+        };
+
+    }
+  
+    else
+
+    if  (reaction.emoji.name == "❌")  {
+      
+        if  (!user.bot & peeky.serverData.get(keySF, "ticket_system_bonus_channels").includes(reaction.message.channel.name) && reaction.message.author.id == PeekyId)  {
+              
+            if  (reaction.message.channel.permissionsFor(peeky.user).has('MANAGE_CHANNELS'))  {
+              
+                console.log("channel deleted " + reaction.message.channel.name);
+                //reaction.message.channel.delete();
               
             };
           
@@ -5173,7 +5190,7 @@ if (CommandName == "setinvite")  {
 };
 
 //Ticket
-if  (CommandName.startsWith("ticket"))  {
+/*if  (CommandName.startsWith("ticket"))  {
   
     if  (peeky.serverData.get(keySF, "ticket_system_bonus_channels").includes(message.channel.id))  {
   
@@ -5212,7 +5229,7 @@ if  (CommandName.startsWith("ticket"))  {
         
     };
 
-};
+};*/
       
 //Overview
 if (CommandName == "overview")  {
