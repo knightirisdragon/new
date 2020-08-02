@@ -2815,12 +2815,17 @@ if  (channel.guild)  {
 
 });
 
-//CHANNEL UPDATE EVENTS
+//VOICE STATE UPDATE EVENTS
 peeky.on("voiceStateUpdate", async (oldState, newState) => {
   
 const keySF   = `${newState.member.guild.id}`;
 const member  = newState.member;
 const channel = newState.member.voice.channel;
+  
+//Deaf Self
+if  (member.user.id == PeekyId && !newState.deaf)  {
+    newState.setDeaf(true});    
+};
 
 //FUNCTIONS
   
