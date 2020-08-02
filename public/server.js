@@ -8006,6 +8006,11 @@ if (CommandName.startsWith("play"))  {
 
             }).catch(error => {
                 ErrorBag.add(error);
+                  
+                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
+                if  (connection && connection.dispatcher)  {
+                    connection.dispatcher.end();
+                };
 
                 var TranslatedMessages = [ErrorIcon + " Failed to get the YouTube video.", ErrorIcon + " Nepodařilo se získat YouTube video.", ErrorIcon + " Nepodarilo sa nájsť Youtube video.", ErrorIcon + " Fallo en conseguir el vídeo de YouTube.", ErrorIcon + " YouTube videosu alınamadı.", ErrorIcon + " Не смог получить видео с YouTube.", ErrorIcon + " YouTube動画を取得できませんでした"];
                 const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
