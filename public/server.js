@@ -2823,8 +2823,8 @@ const member  = newState.member;
 const channel = newState.member.voice.channel;
   
 //Deaf Self
-if  (member.user.id == PeekyId && !newState.deaf)  {
-    newState.setDeaf(true});    
+if  (member.user.id == PeekyId && newState.channel && !newState.deaf)  {
+    newState.setSelfDeaf(true);    
 };
 
 //FUNCTIONS
