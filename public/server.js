@@ -8006,14 +8006,9 @@ if (CommandName.startsWith("play"))  {
 
             }).catch(error => {
                 ErrorBag.add(error);
-                  
-                const connection = peeky.voice.connections.find(c => c.channel.id == message.member.voice.channel.id);
-                if  (connection && connection.dispatcher)  {
-                    connection.dispatcher.end();
-                };
 
                 var TranslatedMessages = [ErrorIcon + " Failed to get the YouTube video.", ErrorIcon + " Nepodařilo se získat YouTube video.", ErrorIcon + " Nepodarilo sa nájsť Youtube video.", ErrorIcon + " Fallo en conseguir el vídeo de YouTube.", ErrorIcon + " YouTube videosu alınamadı.", ErrorIcon + " Не смог получить видео с YouTube.", ErrorIcon + " YouTube動画を取得できませんでした"];
-                const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                const embed = {"description": TranslatedMessages[Language],  "footer": {"text": peeky.serverData.get(keySF, "Queue")[0]},  "color": EmbedColor};
                 message.channel.send({ embed }).catch(error => ErrorBag.add(error));
             });
           
@@ -8165,7 +8160,7 @@ if (CommandName.startsWith("play"))  {
 };
 
 //Current
-if (CommandName == "current")  {
+/*if (CommandName == "current")  {
       
     if  (!MusicCmdCooldown.has(message.author.id))  {
 
@@ -8193,7 +8188,7 @@ if (CommandName == "current")  {
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
 
-};
+};*/
 
 //Queue
 if  (CommandName == "queue")  {
@@ -8206,14 +8201,21 @@ if  (CommandName == "queue")  {
     };
 
     const embed = {
-    "image": {
-      "url": Thumbnail
-    },
-    "description": "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s Queue**" + "\n" +
-                   peeky.serverData.get(keySF, "Queue").length + "/" + Setting.QueueLimit + " songs" + "\n\n" +
-                   FinalizedPlaylist,
-    "color": EmbedColor}; 
-    message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+        "description": "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s Queue**" + "\n" +
+                       peeky.serverData.get(keySF, "Queue").length + "/" + Setting.QueueLimit + " songs" + "\n\n" +
+                       FinalizedPlaylist,
+        "color": EmbedColor
+    }; 
+
+    const Title     = peeky.serverData.get(keySF, "Title");
+    const Thumbnail = peeky.serverData.get(keySF, "Thumbnail");
+    const Author    = peeky.serverData.get(keySF, "Author");
+    const Length    = peeky.serverData.get(keySF, "Length");
+    const Started   = peeky.serverData.get(keySF, "Started");
+  
+    const attachment = await new Discord.MessageAttachment(await function_MusicEmbed(Title, Thumbnail, Author, Length, "minutes left", "Current", peeky.serverData.get(keySF, "Queue"), message.member, peeky.serverData.get(keySF, "LastPlaylist")));
+
+    await message.channel.send({ embed,  attachment }).catch(error => ErrorBag.add(error));
 
 };
 
