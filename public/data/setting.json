@@ -19,7 +19,7 @@
   },
 
   "CustomBackgroundPrice": 1000,
-  "SellMultiplier": 1,
+  "SellMultiplier": 5,
   "ExpNeeded": 125,
   "MinReviewLength": 100,
 
