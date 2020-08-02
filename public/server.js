@@ -2068,8 +2068,9 @@ peeky.on('message', async (message) => {
             BadgeGredit: 0,
             BadgeExp: 0,
 
-            //Events
-            ParticipatedEvents: []
+            //Other
+            ParticipatedEvents: [],
+            AmbassadorInvites: []
 
         });
 
