@@ -4033,27 +4033,35 @@
     1594367454135
   ],
   [
-    "https://cdn.glitch.com/1b7a7509-c3a2-4da3-953e-ee672f08f95b%2Fbackground506.png?v=1596229484531", 
-    575, 
-    "Elver zoldier", 
-    "Unturned", 
-    null, 
+    "https://cdn.glitch.com/1b7a7509-c3a2-4da3-953e-ee672f08f95b%2Fbackground506.png?v=1596229484531",
+    575,
+    "Elver zoldier",
+    "Unturned",
+    null,
     1596229320183
   ],
   [
-    "https://cdn.glitch.com/1b7a7509-c3a2-4da3-953e-ee672f08f95b%2Fbackground507.png?v=1596229484402", 
-    775, 
-    "Rat band", 
-    "Unknown", 
-    null, 
+    "https://cdn.glitch.com/1b7a7509-c3a2-4da3-953e-ee672f08f95b%2Fbackground507.png?v=1596229484402",
+    775,
+    "Rat band",
+    "Unknown",
+    null,
     1596229324580
   ],
-  [ 
-   "https://cdn.glitch.com/4c7051b7-6ac1-4e72-b8c5-47792c69f89f%2Fbackground508.png?v=1596391766299", 
-   "EXCLUSIVE", 
-   "Second party", 
-   "Vojtěch Jílovec", 
-   null, 
-   1596373109055 
- ]
+  [
+    "https://cdn.glitch.com/4c7051b7-6ac1-4e72-b8c5-47792c69f89f%2Fbackground508.png?v=1596391766299",
+    "EXCLUSIVE",
+    "Second party",
+    "Vojtěch Jílovec",
+    null,
+    1596373109055
+  ],
+  [
+    "https://cdn.glitch.com/4c7051b7-6ac1-4e72-b8c5-47792c69f89f%2Fbackground509.png?v=1596392147067",
+    675,
+    "Dolls of Sera",
+    "Serafimas Sergijus Štefans",
+    "730487433182838922",
+    1596392063277
+  ]
 ]
