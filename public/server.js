@@ -5064,14 +5064,15 @@ if (CommandName == "eventrewards")  {
             peeky.userData.observe(key, "ParticipatedEvents").push(Setting.event.name);
           
             //Setting
+            var Badge = Setting.event.badge;
             var Background = Setting.event.background;
             var Chests = Setting.event.chest;
             var Gredit = Setting.event.gredit;
             var Exp = Setting.event.exp;
           
-            if  (["PEEKY's Birthday"].includes(Setting.event.name))  {
-                InfoMessages.push("•" + " The **Celebrator** badge.");
-                peeky.userData.set(key, true, "CelebratorBadge");
+            if  (Badge)  {
+                InfoMessages.push("•" + " The **" + Badge + "** badge.");
+                peeky.userData.set(key, true, Badge + "Badge");
             };
           
             if  (Background > 0)  {
