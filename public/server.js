@@ -8201,21 +8201,17 @@ if  (CommandName == "queue")  {
     };
 
     const embed = {
-        "description": "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s Queue**" + "\n" +
-                       peeky.serverData.get(keySF, "Queue").length + "/" + Setting.QueueLimit + " songs" + "\n\n" +
-                       FinalizedPlaylist,
+        "description": 
+            "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s Queue**" + "\n" +
+            peeky.serverData.get(keySF, "Queue").length + "/" + Setting.QueueLimit + " songs" + "\n\n" +
+            FinalizedPlaylist,
+        "image":  {
+            "url": peeky.serverData.get(keySF, "Thumbnail")
+        },
         "color": EmbedColor
-    }; 
+    };
 
-    const Title     = peeky.serverData.get(keySF, "Title");
-    const Thumbnail = peeky.serverData.get(keySF, "Thumbnail");
-    const Author    = peeky.serverData.get(keySF, "Author");
-    const Length    = peeky.serverData.get(keySF, "Length");
-    const Started   = peeky.serverData.get(keySF, "Started");
-  
-    const attachment = await new Discord.MessageAttachment(await function_MusicEmbed(Title, Thumbnail, Author, Length, "minutes left", "Current", peeky.serverData.get(keySF, "Queue"), message.member, peeky.serverData.get(keySF, "LastPlaylist")));
-
-    await message.channel.send({ embed,  attachment }).catch(error => ErrorBag.add(error));
+    await message.channel.send({ embed }).catch(error => ErrorBag.add(error));
 
 };
 
@@ -8391,7 +8387,7 @@ if (CommandName.startsWith("playlist ") || CommandName == "playlist")  {
               };
 
               var Thumbnail = "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fneedhelp_playlists.png?v=1584183423255";
-              if  (peeky.userData.get(key2, "PlaylistThumbnail") !== null)  {
+              if  (peeky.userData.get(key2, "PlaylistThumbnail"))  {
                   Thumbnail = peeky.userData.get(key2, "PlaylistThumbnail");
               };
 
