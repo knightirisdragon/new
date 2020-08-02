@@ -515,12 +515,12 @@ var Banner          = {  Source: 0, Price: 1, Name: 2, Credit: 3, RevenueID: 4, 
 var StreamOptions   = {  volume: false  };
 var SearchOptions   = {  maxResults: 1, type: "video", key: process.env.YT_TOKEN  };
 
-var Banners = require("./lists/backgrounds.json");
-const Badges = require("./lists/badges.json");
-const DefaultDescriptions = require("./lists/descriptions.json");
-const YoutubeSongs = require("./lists/songs.json");
-const TriviaQuestions = require("./lists/trivia.json");
-const RandomWords = require("./lists/randomwords.json");
+var Banners = require("./data/backgrounds.json");
+const Badges = require("./data/badges.json");
+const DefaultDescriptions = require("./data/descriptions.json");
+const YoutubeSongs = require("./data/songs.json");
+const TriviaQuestions = require("./data/trivia.json");
+const RandomWords = require("./data/randomwords.json");
 
 const WeeklyChallenges = require("./challenges/weekly.json");
 const DailyChallenges = require("./challenges/daily.json");
