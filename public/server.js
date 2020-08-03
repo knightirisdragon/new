@@ -8196,20 +8196,20 @@ if  (CommandName == "queue")  {
       
     var Queue = peeky.serverData.get(keySF, "Queue");
     if  (Queue.length > 0)  {
+        var Thumbnail = peeky.serverData.get(keySF, "Thumbnail");
         var FinalizedPlaylist = function_NumarizeArray(Queue.slice(0, 10), ["<", ">"], null);
-    }  else  {
-       var FinalizedPlaylist = "The queue is empty.";
+    } else {
+      var Thumbnail = null;
+      var FinalizedPlaylist = "The queue is empty.";
     };
-  
-    	
 
     const embed = {
         "description": 
             "**" + function_RemoveFormatting(message.guild.name, "other", true) + "'s Queue**" + "\n" +
-            peeky.serverData.get(keySF, "Queue").length + "/" + Setting.QueueLimit + " songs" + "\n\n" +
+            Queue.length + "/" + Setting.QueueLimit + " songs" + "\n\n" +
             FinalizedPlaylist,
         "image":  {
-            "url": 
+            "url": Thumbnail
         },
         "color": EmbedColor
     };
