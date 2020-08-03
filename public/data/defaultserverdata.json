@@ -87,6 +87,7 @@
   "reaction_roles_bonus": false,
   "reaction_roles_bonus_setting": [],
   "reaction_roles_bonus_id": null,
+  "reaction_roles_bonus_channel": null,
   "weekend_channels_bonus": false,
   "weekend_channels_bonus_setting": [],
   "verification_system_bonus": false,
