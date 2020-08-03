@@ -2848,7 +2848,7 @@ if  (peeky.serverData.get(keySF, "auto_channels_bonus") == true)  {
             {id: member.id, allow: ['CONNECT', 'MANAGE_CHANNELS']},
             {id: channel.guild.id, allow: ['CONNECT']}
         ], reason: "Channel created by @" + member.user.tag + " through a function." })
-        .then(function (newchannel)  {
+        .then(newchannel =>  {
           
             peeky.serverData.observe(keySF, "auto_channels_bonus_channels").push(newchannel.id);
 
@@ -3559,7 +3559,6 @@ if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true) {
                         if  (category && category.permissionsFor(peeky.user).has('VIEW_CHANNEL'))  {
                             channel.setParent(category.id).catch(error => ErrorBag.add(error));
                         };
-                      
                         
                         setTimeout(async () => {
                             await channel.send({  embed  }).catch(error => ErrorBag.add(error)).then(m => m.react("❌")).catch(error => ErrorBag.add(error));
@@ -4680,7 +4679,7 @@ if  (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)  {
 //Reaction Roles
 if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
-    const Channel = peeky.guilds.cache.get(message.guild.id).channels.cache.find(c => c.name == "roles");
+    const Channel = peeky.guilds.cache.get(message.guild.id).channels.cache.find(c => c.id == peeky.serverData.set(keySF, "reaction_roles_bonus_channel"));
 
     if  (Channel)  {
 
@@ -4728,7 +4727,7 @@ if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 if  (peeky.serverData.get(keySF, "ticket_system_bonus") == true)  {
 
     const Role    = peeky.guilds.cache.get(message.guild.id).roles.cache.find(r => r.name == peeky.serverData.get(keySF, "ticket_system_bonus_setting"));
-    const Channel = peeky.guilds.cache.get(message.guild.id).channels.cache.find(c => c.name == "tickets");
+    const Channel = peeky.guilds.cache.get(message.guild.id).channels.cache.find(c => c.id == peeky.serverData.get(keySF, "ticket_system_bonus_channel"));
 
     if  (!ActivatedTicketSystems.has(message.guild.id) && Role && Channel)  {
       
@@ -5521,7 +5520,7 @@ else
 if  (FunctioName.startsWith("ticket system"))  {
     
     const name = "tickets";
-    const channel = message.guild.channels.cache.find(channel => channel.name == name);
+    const channel = message.guild.channels.cache.find(channel => channel.id == peeky.serverData.get(keySF, "ticket_system_bonus_channel"));
     const category = message.guild.channels.cache.find(c => c.name.includes("Tickets") && c.type == "category");
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "ticket_system_bonus"), "ticket_system_bonus");
@@ -5542,8 +5541,12 @@ if  (FunctioName.startsWith("ticket system"))  {
                     {id: message.guild.id, deny: ['SEND_MESSAGES', 'MANAGE_MESSAGES', 'ADD_REACTIONS']}
                 ], reason: "Channel created by @" + message.author.tag + " through a function." })
 
-                .then(async channel =>  {
-                      await channel.send("**Need help with something?**" + "\n" + "Click on the reaction below to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_bonus_id");  }).catch(error => ErrorBag.add(error));
+                .then(channel =>  {
+                      
+                    setTimeout(async () => {
+                        await channel.send("**Need help with something?**" + "\n" + "Click on the reaction below to create a ticket.").catch(error => ErrorBag.add(error)).then(m => {  m.react("🎟️");  peeky.serverData.set(keySF, m.id, "ticket_system_bonus_id");  }).catch(error => ErrorBag.add(error));
+                    }, 10000);
+                        
                 }).catch(error => ErrorBag.add(error));
 
                 InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Ticket System"));
@@ -5572,7 +5575,7 @@ else
 if  (FunctioName.startsWith("reaction roles"))  {
     
     const name = "roles";
-    const channel = message.guild.channels.cache.find(channel => channel.name == name);
+    const channel = message.guild.channels.cache.find(channel => channel.id == peeky.serverData.set(keySF, "reaction_roles_bonus_channel"));
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "reaction_roles_bonus"), "reaction_roles_bonus");
     var StatusString = peeky.serverData.get(keySF, "reaction_roles_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
@@ -5592,11 +5595,14 @@ if  (FunctioName.startsWith("reaction roles"))  {
                     {id: message.guild.id, deny: ['SEND_MESSAGES', 'MANAGE_MESSAGES', 'ADD_REACTIONS']}
                 ], reason: "Channel created by @" + message.author.tag + " through a function." })
                   
-                .then(async channel =>  {
+                .then(channel =>  {
                   
                     peeky.serverData.set(keySF, channel.id, "reaction_roles_bonus_channel");
+                      
+                    setTimeout(async () => {
+                        channel.send("**Reaction Roles**" + "\n" + "Preparing... Come back in a few minutes!").catch(error => ErrorBag.add(error)).then(m => {  peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id");  }).catch(error => ErrorBag.add(error));
+                    }, 10000);
                   
-                    channel.send("**Reaction Roles**" + "\n" + "Preparing... Come back in a few minutes!").catch(error => ErrorBag.add(error)).then(m => {  peeky.serverData.set(keySF, m.id, "reaction_roles_bonus_id");  }).catch(error => ErrorBag.add(error));
                 }).catch(error => ErrorBag.add(error));
 
                 InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Reaction Roles"));
@@ -5773,6 +5779,7 @@ if  (FunctioName.startsWith("message log"))  {
     InfoMessages.push(ChannelCreation.replace("X001", "#" + name).replace("X002", "Message Log"));
     
     };
+    
     } else {
       InfoMessages.push(CooldownMessage2[Language]);
     };
@@ -5947,6 +5954,7 @@ if  (FunctioName.startsWith("auto channels"))  {
         {id: PeekyId, allow: ['CONNECT']},
         {id: message.guild.id, allow: ['CONNECT'], deny: ['SPEAK']}
     ], reason: "Channel created by @" + message.author.tag + " through a function." })
+    
     .then(channel =>  {
         peeky.serverData.set(keySF, channel.id, "auto_channels_bonus_id");
     }).catch(error => ErrorBag.add(error));

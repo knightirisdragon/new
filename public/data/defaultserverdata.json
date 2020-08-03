@@ -83,6 +83,7 @@
   "ticket_system_bonus": false,
   "ticket_system_bonus_setting": "Staff",
   "ticket_system_bonus_id": null,
+  "ticket_system_bonus_channel": null,
   "ticket_system_bonus_channels": [],
   "reaction_roles_bonus": false,
   "reaction_roles_bonus_setting": [],
