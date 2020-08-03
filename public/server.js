@@ -8200,6 +8200,8 @@ if  (CommandName == "queue")  {
     }  else  {
        var FinalizedPlaylist = "The queue is empty.";
     };
+  
+    	
 
     const embed = {
         "description": 
@@ -8207,7 +8209,7 @@ if  (CommandName == "queue")  {
             peeky.serverData.get(keySF, "Queue").length + "/" + Setting.QueueLimit + " songs" + "\n\n" +
             FinalizedPlaylist,
         "image":  {
-            "url": peeky.serverData.get(keySF, "Thumbnail")
+            "url": 
         },
         "color": EmbedColor
     };
