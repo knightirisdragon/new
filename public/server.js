@@ -4679,7 +4679,7 @@ if  (peeky.serverData.get(keySF, "weekend_channels_bonus") == true)  {
 //Reaction Roles
 if  (peeky.serverData.get(keySF, "reaction_roles_bonus") == true)  {
 
-    const Channel = peeky.guilds.cache.get(message.guild.id).channels.cache.find(c => c.id == peeky.serverData.set(keySF, "reaction_roles_bonus_channel"));
+    const Channel = peeky.guilds.cache.get(message.guild.id).channels.cache.find(c => c.id == peeky.serverData.get(keySF, "reaction_roles_bonus_channel"));
 
     if  (Channel)  {
 
@@ -5575,7 +5575,7 @@ else
 if  (FunctioName.startsWith("reaction roles"))  {
     
     const name = "roles";
-    const channel = message.guild.channels.cache.find(channel => channel.id == peeky.serverData.set(keySF, "reaction_roles_bonus_channel"));
+    const channel = message.guild.channels.cache.find(channel => channel.id == peeky.serverData.get(keySF, "reaction_roles_bonus_channel"));
 
     peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "reaction_roles_bonus"), "reaction_roles_bonus");
     var StatusString = peeky.serverData.get(keySF, "reaction_roles_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
