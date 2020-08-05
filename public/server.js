@@ -3708,7 +3708,7 @@ if  (peeky.serverData.get(keySF, "message_log_bonus") == true)  {
       
     if  (Channel && reaction.message.guild.me.permissions.has("MANAGE_WEBHOOKS"))  {
 
-    if  (reaction.message.attachments.size > 0)  {  var image = reaction.message.attachments.array()[0].url;  }  else  {  var image = HollowImage;  }; 
+        if  (reaction.message.attachments.size > 0)  {  var image = reaction.message.attachments.array()[0].url;  }  else  {  var image = HollowImage;  }; 
             
         Channel.fetchWebhooks().then(webhook =>  {
             
