@@ -6,8 +6,6 @@
 
   <link rel="stylesheet" href="/style.css">
   <script src="/website.js" defer></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
   
@@ -20,7 +18,7 @@
   
 </style>
   
-<body class="imagebackground">
+<body onload="UpdateWebsiteStuff([['ambassaddorrewards.txt','Rewards'],['ambassaddorseason.txt','Season']]);" class="imagebackground">
 <b>
   
 <div id="homebuttonplace"></div>
@@ -28,15 +26,15 @@
 <div class="fullsize">
   
 <font size="7" class="headertext">Ambassador Program</font>
-<font size="4" class="headersub">Tell your friends about PEEKY and get rewarded!</font>
+<font size="4" class="headersub" id="Season"></font>
   
 <br><br>
 
 <div class="fullsize">
 
-    The Ambassador Program is a linear progression system, which kind of resembles the likes of a Battle Pass, except all the rewards can be obtained for free.
+    The Ambassador Program is a linear progression system that allows you to earn a ton of reward every season, which last around 30 days.
     <br>
-    The way you make some progress in the Ambassador Program is by increasing your score, which you can view in your inventory and increase for free by inviting your friends to the Support Server, or by paying a small fee.
+    The way you make some progress in the Ambassador Program is by increasing your score, which you can view in your inventory and increase for free by inviting your friends to the Community Server, or by paying a small fee.
     <br>
     <br>
     How to increase your score for free:
@@ -44,7 +42,7 @@
     <br>
     <center><div style="width: 700px; text-align: left;">
         <code>
-        1. Go to the #home channel inside the Support Server. <br>
+        1. Go to the #home channel inside the Community Server. <br>
         2. Create a permanent link connected to the channel. <br>
         3. Send it to your friends and wait for them to join. <br>
         4. If everything works, you should get a DM from PEEKY.    
@@ -56,7 +54,7 @@
     <br>
     <center><div style="width: 700px; text-align: left;">
         <code>
-        1. Go to the Store page and find the "Ambasador Skips" item. <br>
+        1. Go to the Store page and find the "Ambassador Skips" item. <br>
         2. Click the purchase button, after which you want to complete the transaction. <br>
         3. If the transaction was accepted and everything works out, you should get a DM from PEEKY.
         </code>
@@ -66,185 +64,7 @@
   
 <br>
 
-<div id="Rewards" class="inlinediv">
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Freceiver.png?v=1591453720618')">
-      
-      <b class="description">
-      <font size="4">Receiver Badge</font>  <br>
-      <font size="2">Join the Support Server using your friend's link.</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fambassador.png?v=1591434442413')">
-      
-      <b class="description">
-      <font size="4">Ambassador Badge</font>  <br>
-      <font size="2">Have a friend use your invite link.</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fbackground490.png?v=1591435255896')">
-      
-      <b class="description">
-      <font size="4">Exclusive Background</font>  <br>
-      <font size="2">5 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?v=1543767999542')">
-      
-      <b class="description">
-      <font size="4">250 Gredit</font>  <br>
-      <font size="2">10 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/e2b3bafd-96e2-44bc-a3bf-c5a8414594d3%2Fbackground503.png?v=1594305375739')">
-      
-      <b class="description">
-      <font size="4">Exclusive Background</font>  <br>
-      <font size="2">15 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?v=1541260288051')">
-      
-      <b class="description">
-      <font size="4">Chest</font>  <br>
-      <font size="2">20 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?v=1543767999542')">
-      
-      <b class="description">
-      <font size="4">500 Gredit</font>  <br>
-      <font size="2">25 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbackground193.png?v=1550954101975')">
-      
-      <b class="description">
-      <font size="4">Background</font>  <br>
-      <font size="2">30 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fexp.png?v=1564224431507')">
-      
-      <b class="description">
-      <font size="4">1,000 Exp</font>  <br>
-      <font size="2">35 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/25a353a8-b52c-4952-b9ff-833fcdaee8f2%2Fbackground396.png?v=1565844170105')">
-      
-      <b class="description">
-      <font size="4">Background</font>  <br>
-      <font size="2">40 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?v=1543767999542')">
-      
-      <b class="description">
-      <font size="4">1,000 Gredit</font>  <br>
-      <font size="2">45 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverupgrade.png?v=1585078211679')">
-      
-      <b class="description">
-      <font size="4">Server Upgrade</font>  <br>
-      <font size="2">50 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fexp.png?v=1564224431507')">
-      
-      <b class="description">
-      <font size="4">5,000 Exp</font>  <br>
-      <font size="2">55 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground425.png?v=1575345556036')">
-      
-      <b class="description">
-      <font size="4">Background</font>  <br>
-      <font size="2">60 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?v=1543767999542')">
-      
-      <b class="description">
-      <font size="4">2,500 Gredit</font>  <br>
-      <font size="2">65 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground441.png?v=1577453753300')">
-      
-      <b class="description">
-      <font size="4">Background</font>  <br>
-      <font size="2">70 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_chest.png?v=1541260288051')">
-      
-      <b class="description">
-      <font size="4">Chest</font>  <br>
-      <font size="2">75 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fbackground480.png?v=1587833475463')">
-      
-      <b class="description">
-      <font size="4">Background</font>  <br>
-      <font size="2">80 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/bb3aad24-5d49-4fdf-ba07-725b7b1750e9%2Fexp.png?v=1564224431507')">
-      
-      <b class="description">
-      <font size="4">10,000 Exp</font>  <br>
-      <font size="2">85 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fimage_coins.png?v=1543767999542')">
-      
-      <b class="description">
-      <font size="4">5,000 Gredit</font>  <br>
-      <font size="2">90 invites</font>
-      </b>
-    </div>
-
-    <div class="container" style="background-image: url('https://cdn.glitch.com/46947ddd-36b7-479e-8616-87eb256d5e93%2Fbackground283.png?v=1558877694122')">
-      
-      <b class="description">
-      <font size="4">Background</font>  <br>
-      <font size="2">95 invites</font>
-      </b>
-    </div>
-    
-    <div class="container" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815')">
-      
-      <b class="description">
-      <font size="4">Premium Trial</font>  <br>
-      <font size="2">100 invites</font>
-      </b>
-    </div>
-        
-</div>
+<div id="Rewards" class="inlinediv"></div>
   
 </div>
     

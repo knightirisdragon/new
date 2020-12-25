@@ -23,7 +23,6 @@
   "Length": 60,
   "Started": 0,
   "Link": "None",
-  "PlaylistName": "Unknown",
 
   "welcome_messages_bonus": false,
   "welcome_messages_bonus_setting": "welcome_messages",
@@ -66,10 +65,10 @@
   "event_countdown_bonus": false,
   "event_countdown_bonus_setting": 0,
   "event_countdown_bonus_id": 0,
-  "vote_kick_bonus_bonus": false,
+  "vote_kick_bonus": false,
   "vote_kick_bonus_setting": 10,
   "stream_announcements_bonus": false,
-  "stream_announcements_bonus_setting": "twitch",
+  "stream_announcements_bonus_setting": "streams",
   "role_saver_bonus": false,
   "role_saver_bonus_setting": [],
   "role_saver_bonus_array": [],
@@ -97,6 +96,8 @@
   "auto_channels_bonus_setting": "Delete empty channels",
   "auto_channels_bonus_id": null,
   "auto_channels_bonus_channels": [],
-  "role_sync_bonus": false,
-  "role_sync_bonus_setting": ""
+  "follow_cleaner_bonus": false,
+  "classification_counter_bonus": false,
+  "classification_counter_bonus_id": null,
+  "classification_counter_bonus_setting": "Server Booster"
 }

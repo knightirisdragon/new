@@ -6,8 +6,6 @@
 
   <link rel="stylesheet" href="/style.css">
   <script src="/website.js" defer></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
@@ -29,6 +27,10 @@
   
     display: inline-block;
     transition: transform .25s ease;
+}
+
+.function_showcase  .fancybutton {
+    background-color: rgba(35, 39, 42, 1);
 }
 
 .function_showcase:hover {
@@ -104,12 +106,17 @@ function AR_Popup() {
   
 function WM_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Welcome Messages</b>  <br>  <b class="functiondescription">Documents who leaves and joins your server to a specific channel.  <br>  Also automatically censors and bans users that have scam/spam links in their names.  </b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle welcome messages  <br>p!set welcome messages [channel name]</b>' + Note;  
+     document.getElementById('description').innerHTML = '<b class="functionname">Welcome Messages</b>  <br>  <b class="functiondescription">Documents who leaves and joins your server to a specific channel.  <br>  Also automatically censors users that have a scam/spam link in their names.  </b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle welcome messages  <br>p!set welcome messages [channel name]</b>' + Note;  
 };
   
 function MC_Popup() {
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="functionname">Member Counter</b>  <br>  <b class="functiondescription">Creates a customizable member counter inside the channel list.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle member counter  <br>  p!set member counter [text]</b>' + Note;  
+};
+  
+function CC_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<b class="functionname">Classification Counter</b>  <br>  <b class="functiondescription">Creates a counter for members with a specific role inside the channel list.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle classification counter  <br>  p!set classification counter [text]</b>' + Note;  
 };
 
 function CN_Popup() {
@@ -119,7 +126,7 @@ function CN_Popup() {
 
 function WC_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Weekend Channels</b>  <br>  <b class="functiondescription">Hides specified channels to everyone without additional permissions during weekdays, then opens them during the weekend.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">1 Hour</b>  ' + Commands + '  <b class="functioncommand">p!toggle weekend channels  <br>  p!set weekend channels [channel name]  <br>  p!clear weekend channels</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Weekend Channels</b>  <br>  <b class="functiondescription">Hides specified channels to everyone without additional permissions during weekdays, then opens them during the weekend.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle weekend channels  <br>  p!set weekend channels [channel name]  <br>  p!clear weekend channels</b>' + Note;
 };
   
 function CW_Popup() {
@@ -144,7 +151,7 @@ function SA_Popup() {
 
 function SA2_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Stream Announcements</b>  <br>  <b class="functiondescription">Sends a message to a specific channel everytime that a server member starts live streaming.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle stream announcements  <br>  p!set stream announcements [channel name]</b>' + Note; 
+     document.getElementById('description').innerHTML = '<b class="functionname">Stream Announcements</b>  <br>  <b class="functiondescription">Sends a message to a specific channel everytime that a server member <a href="https://peeky.glitch.me/pages/tutorials/#essentials" rel="noopener noreferrer">with essentials enabled</a> starts live streaming.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle stream announcements  <br>  p!set stream announcements [channel name]</b>' + Note; 
 };
 
 function SA3_Popup() {
@@ -164,13 +171,9 @@ function FP_Popup() {
 
 function EC_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Event Countdown</b>  <br>  <b class="functiondescription">Creates a countdown in the channel list that ticks down until a specific date.  <br>  The setting is a timestamp.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle event countdown  <br>  p!set event countdown [timestamp]</b>' + Note; 
+     document.getElementById('description').innerHTML = '<b class="functionname">Event Countdown</b>  <br>  <b class="functiondescription">Creates a countdown in the channel list that ticks down until a specific date.  <br>  The setting is a Unix Timestamp for when the countdown should stop.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">5 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle event countdown  <br>  p!set event countdown [timestamp]</b>' + Note; 
 };
 
-function SM_Popup() {
-     document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Server Message</b>  <br>  <b class="functiondescription">Sends a custom welcoming and informative message to any user that joins your server.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle server message  <br>  p!set server message [text]</b>' + Note; 
-};
 function RP_Popup() {
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="functionname">Reddit Posts</b>  <br>  <b class="functiondescription">Shows the current top posts from your favorite subreddit.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">30 Minutes</b>  ' + Commands + '  <b class="functioncommand">p!toggle reddit posts  <br>  p!set reddit posts [subreddit name]</b>' + Note; 
@@ -178,7 +181,7 @@ function RP_Popup() {
 
 function VT_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Vote Kick</b>  <br>  <b class="functiondescription">If a message gets the 🚪 reaction enough times, the message author will get kicked from the server.  <br>  The setting determines how many reactions a message needs to get.  </b>  ' + Ignores + '  <b class="functioncommand">Bots and members with the KICK_MEMBERS permission</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle vote kick  <br>  p!set vote kick [number]</b>' + Note; 
+     document.getElementById('description').innerHTML = '<b class="functionname">Vote Kick</b>  <br>  <b class="functiondescription">If a message gets the 🚪 reaction enough times, the message author will get kicked from the server.</b>  ' + Ignores + '  <b class="functioncommand">Bots and members with the KICK_MEMBERS permission</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle vote kick  <br>  p!set vote kick [amount]</b>' + Note; 
 };
 
 function DR_Popup() {
@@ -196,10 +199,10 @@ function VR_Popup() {
      document.getElementById('description').innerHTML = '<b class="functionname">Veteran Role</b>  <br>  <b class="functiondescription">Gives a specified role to anyone who has been on your server for a year.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle veteran role  <br>  p!set veteran role [role name]</b>' + Note;
 };
   
-function GR_Popup() {
+/*function GR_Popup() {
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="functionname">Game Roles</b>  <br>  <b class="functiondescription">Gives a specific role to any server member that starts playing a specific game.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">10 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle game roles  <br>  p!set game roles [game name]</b>' + Note;
-};
+};*/
   
 function RS_Popup() {
      document.getElementById('fulldesc').style.display = "block";
@@ -213,12 +216,12 @@ function NS_Popup() {
 
 function SR_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Streamer Role</b>  <br>  <b class="functiondescription">Gives a role to anyone that starts live streaming.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle streamer role  <br>  p!set streamer role [role name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Streamer Role</b>  <br>  <b class="functiondescription">Gives a role to anyone <a href="https://peeky.glitch.me/pages/tutorials/#essentials" rel="noopener noreferrer">with essentials enabled</a>, when they start live streaming.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle streamer role  <br>  p!set streamer role [role name]</b>' + Note;
 };
 
 function ML_Popup() {
      document.getElementById('fulldesc').style.display = "block";
-     document.getElementById('description').innerHTML = '<b class="functionname">Message Log</b>  <br>  <b class="functiondescription">Logs any message that gets a 📌 reaction to a specific channel.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle message log  <br>  p!set message log [channel name]</b>' + Note;
+     document.getElementById('description').innerHTML = '<b class="functionname">Message Log</b>  <br>  <b class="functiondescription">Logs any message that gets the 📌 reaction to a specific channel.</b>  ' + Ignores + '  <b class="functioncommand">Bots</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle message log  <br>  p!set message log [channel name]</b>' + Note;
 };
   
 function IO_Popup() {
@@ -249,6 +252,11 @@ function ST2_Popup() {
 function AC_Popup() {
      document.getElementById('fulldesc').style.display = "block";
      document.getElementById('description').innerHTML = '<b class="functionname">Auto Channels</b>  <br>  <b class="functiondescription">Creates a voice channel that lets your members create their own space to talk in.  <br>  The setting determines if the bot automatically deletes empty voice channels.</b>  ' + Ignores + '  <b class="functioncommand">None</b>  ' + Cooldown + '  <b class="functioncommand">10 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle auto channels  <br>  p!set auto channels ["delete" / "keep"]</b>' + Note; 
+};
+
+function FC_Popup() {
+     document.getElementById('fulldesc').style.display = "block";
+     document.getElementById('description').innerHTML = '<b class="functionname">Follow Cleaner</b>  <br>  <b class="functiondescription">Deletes messages from followed channels after the original message was removed.</b>  ' + Ignores + '  <b class="functioncommand">Non-Webhook messages</b>  ' + Cooldown + '  <b class="functioncommand">0 Seconds</b>  ' + Commands + '  <b class="functioncommand">p!toggle follow cleaner</b>' + Note; 
 };
     
 function Close()  {
@@ -321,14 +329,6 @@ function Close()  {
       </div>
     </div>
     
-    <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunction_servermessage.png?v=1580137967478');">
-      <div class="centered">
-        
-    <div class="fancybutton" onclick="SM_Popup()">  Server Message  </div>
-        
-      </div>
-    </div>
-    
     <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunction_floodprotection.png?v=1580137650729');">
       <div class="centered">
         
@@ -353,7 +353,7 @@ function Close()  {
       </div>
     </div>
         
-    <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunction_reactionroles.png?v=1580061970179');">
+    <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/3bc14a68-fb41-491d-a354-37e71d57e224%2Ffunction_reactionroles.png?v=1596987380478');">
       <div class="centered">
         
     <div class="fancybutton" onclick="RR_Popup()">  Reaction Roles  </div>
@@ -361,7 +361,7 @@ function Close()  {
       </div>
     </div>
     
-    <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunction_ticketsystem.png?v=1580061668012');">
+    <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/3bc14a68-fb41-491d-a354-37e71d57e224%2Ffunction_ticketsystem.png?v=1596987380274');">
       <div class="centered">
         
     <div class="fancybutton" onclick="TS_Popup()">  Ticket System  </div>
@@ -409,6 +409,14 @@ function Close()  {
       </div>
     </div>
     
+    <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/3bc14a68-fb41-491d-a354-37e71d57e224%2Ffunction_followcleaner.png?v=1596871020216');">
+      <div class="centered">
+        
+    <div class="fancybutton" onclick="FC_Popup()">  Follow Cleaner  </div>
+        
+      </div>
+    </div>
+    
     <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunction_redditposts.png?v=1580061678964');">
       <div class="centered">
         
@@ -441,18 +449,18 @@ function Close()  {
       </div>
     </div>
     
-    <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunction_gameroles.png?v=1580137652057');">
-      <div class="centered"> 
-        
-    <div class="fancybutton" onclick="GR_Popup()">  Game Roles  </div>
-        
-      </div>
-    </div>
-    
     <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Ffunction_eventcountdown.png?v=1580061683387');">
       <div class="centered">
         
     <div class="fancybutton" onclick="EC_Popup()">  Event Countdown  </div>
+        
+      </div>
+    </div>
+    
+    <div class="function_showcase" style="background-image: url('https://cdn.glitch.com/d9bb996a-db4b-4b93-a2ff-b2d493777812%2Ffunction_classificationcounter.png?v=1603875885796');">
+      <div class="centered">
+        
+    <div class="fancybutton" onclick="CC_Popup()">  Classification Counter  </div>
         
       </div>
     </div>
@@ -509,7 +517,7 @@ function Close()  {
 
 <div class="sidemenucontent" id="fulldesc">
   <a>
-  <b id="description" style="text-align: left;">  <br>  Select the function you want to learn more about.</b>
+  <b id="description" style="text-align: left;">  <br>  Select a function you want to learn more about.</b>
   </a>
 </div>
 

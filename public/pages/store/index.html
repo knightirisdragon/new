@@ -6,8 +6,6 @@
 
   <link rel="stylesheet" href="/style.css">
   <script src="/website.js" defer></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
   
@@ -113,7 +111,7 @@ function ServerBoost()
                                                   + "<div class='storecategory'>"
                                                   + "<img src='https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fimage_discordperks.png?v=1586867903981'>"
                                                   + "<b class='storeheader'>Discord Perks</b>"
-                                                  + "<b class='storesub'>You will get certain perks in the Support Server, such as being able to use external emojis.</b>"
+                                                  + "<b class='storesub'>You will get certain perks in the Community Server, such as being able to use external emojis.</b>"
                                                   + "</div>"
 };
 function Premium()
@@ -176,7 +174,7 @@ function Premium()
                                                   + "<div class='storecategory'>"
                                                   + "<img src='https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fimage_discordperks.png?v=1586867903981'>"
                                                   + "<b class='storeheader'>Discord Perks</b>"
-                                                  + "<b class='storesub'>You will get certain perks in the Support Server, such as being able to use external emojis.</b>"
+                                                  + "<b class='storesub'>You will get certain perks in the Community Server, such as being able to use external emojis.</b>"
                                                   + "</div>"
 };
 
@@ -190,9 +188,15 @@ function ServerUpgrade()
                                                   + "</div>"
 
                                                   + "<div class='storecategory'>"
+                                                  + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_autowipe.png?v=1558538116364'>"
+                                                  + "<b class='storeheader'>Auto Wipe Protection</b>"
+                                                  + "<b class='storesub'>Upgraded servers are not affected by the Auto Wipe system.</b>"
+                                                  + "</div>"
+
+                                                  + "<div class='storecategory'>"
                                                   + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_shoutout.png?1558538117165'>"
                                                   + "<b class='storeheader'>Shoutout</b>"
-                                                  + "<b class='storesub'>Upon upgrading a server, it will get a shoutout in the Support Server.</b>"
+                                                  + "<b class='storesub'>Upon upgrading a server, you will get a shoutout in the Community Server.</b>"
                                                   + "</div>"
 
                                                   + "<div class='storecategory'>"
@@ -250,6 +254,16 @@ function Merch()
                                                   + "</div>"
 };
 
+function Donation()
+{    
+ document.getElementById('fulldesc').style.display = "block";
+ document.getElementById('description').innerHTML = "<div class='storecategory'>"
+                                                  + "<img src='https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fimage_shoutout.png?1558538117165'>"
+                                                  + "<b class='storeheader'>Shoutout</b>"
+                                                  + "<b class='storesub'>You will get a shoutout in the Community Server.</b>"
+                                                  + "</div>"
+};
+
 function Close()  {
    document.getElementById('fulldesc').style.display = "none";
 };
@@ -285,8 +299,7 @@ function ShowHighlighted(hash)  {
 <div class="fullsize">
   
 <font size="7" class="headertext">Store</font>
-<font size="4" class="headersub">Here you can buy some cool stuff and support PEEKY while doing it.  <br>
-<font size="1">You can read the refund policy <a href="refund_policy.txt" rel="noopener noreferrer"><u>here</u></a>, optionally you can just donate money to me via <a href="https://www.paypal.me/botpeeky" rel="noopener noreferrer"><u>my paypal.me</u></a>.</font></font>
+<font size="4" class="headersub">Here you can buy some cool stuff and support PEEKY while doing it.</font>
 
 <br><br>
 
@@ -297,8 +310,8 @@ function ShowHighlighted(hash)  {
     <div class="listitem" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_premium.png?v=1585086074815');">
     <div class="textlistitem">
     <b>
-    <a class="second" onclick="Premium();" href="#premium"> View Rewards </a>
-    <b class="name">  Premium  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+    <a class="second" onclick="Premium();" href="#premium"> Rewards </a>
+    <b class="name">  Premium  </b>  <a class="first" href="https://upgrade.chat/checkout/319891596772638744"> Purchase </a>
     <b class="price">$5, $25, $100</b>
     </b>
     </div>
@@ -309,21 +322,9 @@ function ShowHighlighted(hash)  {
     <div class="listitem" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverupgrade.png?v=1585078211679')">
     <div class="textlistitem">
     <b>
-    <a class="second" onclick="ServerUpgrade();" href="#serverupgrade"> View Rewards </a>
-    <b class="name">  Server Upgrade  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+    <a class="second" onclick="ServerUpgrade();" href="#serverupgrade"> Rewards </a>
+    <b class="name">  Server Upgrade  </b>  <a class="first" href="https://upgrade.chat/checkout/319891596772638744"> Purchase </a>
     <b class="price">$5</b>
-    </b>
-    </div>
-    </div>
-
-    <br>
-
-    <div class="listitem" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090')">
-    <div class="textlistitem">
-    <b>
-    <a class="second" onclick="ServerBoost();" href="#serverboost"> View Rewards </a>
-    <b class="name">  Server Boost  </b>  <a class="first" href="https://peeky.glitch.me/pages/support_server"> Purchase </a>
-    <b class="price"></b>
     </b>
     </div>
     </div>
@@ -333,8 +334,8 @@ function ShowHighlighted(hash)  {
     <div class="listitem" style="background-image: url('https://cdn.glitch.com/e2b3bafd-96e2-44bc-a3bf-c5a8414594d3%2Fstore_tierskip.png?v=1594308683082')">
     <div class="textlistitem">
     <b>
-    <a class="second" onclick="AmbassadorSkip();" href="#ambassadorskip"> View Rewards </a>
-    <b class="name">  Ambassador Skip  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+    <a class="second" onclick="AmbassadorSkip();" href="#ambassadorskip"> Rewards </a>
+    <b class="name">  Ambassador Skip  </b>  <a class="first" href="https://upgrade.chat/checkout/319891596772638744"> Purchase </a>
     <b class="price">$1</b>
     </b>
     </div>
@@ -345,9 +346,33 @@ function ShowHighlighted(hash)  {
     <div class="listitem" style="display: none; background-image: url('https://cdn.glitch.com/a531987f-6fbe-46fc-9f76-d8ca20132d4c%2Fstore_lapelpin.png?v=1593780860332')">
     <div class="textlistitem">
     <b>
-    <a class="second" onclick="Merch();"> View Rewards </a>
-    <b class="name">  Lapel Pin  </b>  <a class="first" href="https://donatebot.io/checkout/319891596772638744"> Purchase </a>
+    <a class="second" onclick="Merch();"> Rewards </a>
+    <b class="name">  Lapel Pin  </b>  <a class="first" href="https://upgrade.chat/checkout/319891596772638744"> Purchase </a>
     <b class="price">WIP</b>
+    </b>
+    </div>
+    </div>
+
+    <br>
+
+    <div class="listitem" style="display: none; background-image: url('https://cdn.glitch.com/21fdc0b9-6e63-44ab-8a9f-cf89fb77868a%2Fstore_donation.png?v=1598114140218')">
+    <div class="textlistitem">
+    <b>
+    <a class="second" onclick="Donation();"> Rewards </a>
+    <b class="name">  Donation  </b>  <a class="first" href="https://upgrade.chat/checkout/319891596772638744"> Purchase </a>
+    <b class="price">$1 or more</b>
+    </b>
+    </div>
+    </div>
+
+    <br>
+
+    <div class="listitem" style="background-image: url('https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090')">
+    <div class="textlistitem">
+    <b>
+    <a class="second" onclick="ServerBoost();" href="#serverboost"> Rewards </a>
+    <b class="name">  Server Boost  </b>  <a class="first" href="https://peeky.glitch.me/pages/support_server"> Purchase </a>
+    <b class="price"></b>
     </b>
     </div>
     </div>

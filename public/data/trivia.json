@@ -124,10 +124,10 @@
     "Other"
   ],
   [
-    "How is CzechoSlovakia called today?",
+    "How is Czecho Slovakia called today?",
     ["Czechia"],
     ["Bohemia"],
-    ["Still CzechoSlovakia"],
+    ["Czecho Slovakia"],
     "History"
   ],
   [
@@ -171,5 +171,33 @@
     ["Sauropod"],
     ["Whale"],
     "Biology"
+  ],
+  [
+    "In which European city would you find Orly airport?",
+    ["Paris"],
+    ["France"],
+    ["Orlice"],
+    "Geography"
+  ],
+  [
+    "Which African country was formerly known as Abyssinia?",
+    ["Ethiopia"],
+    ["Hadzizan"],
+    ["Bloss"],
+    "Geography"
+  ],
+  [
+    "What was the first toy to be advertised on television?",
+    ["Mr. Potato Head"],
+    ["Nerf"],
+    ["Barbie Dolls"],
+    "Other"
+  ],
+  [
+    "What is the smallest country in the world?",
+    ["Vatican City"],
+    ["Czechia"],
+    ["Hawaii"],
+    "Geography"
   ]
 ]

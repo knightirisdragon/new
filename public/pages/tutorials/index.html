@@ -6,8 +6,6 @@
 
   <link rel="stylesheet" href="/style.css">
   <script src="/website.js" defer></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
   
@@ -53,7 +51,7 @@ function ShowHighlighted(hash)  {
   
 <font size="7" class="headertext">Tutorials</font>
 <font size="4" class="headersub">Here are some quick and easy guides for PEEKY. <br>
-<font size="1">If you don't understand something, join the Support Server!</font></font>
+<font size="1">If you don't understand something, join the Community Server!</font></font>
 
 <br><br><br>
       
@@ -90,35 +88,7 @@ function ShowHighlighted(hash)  {
     List of all the commands can be found in the Commands page.
     <br>
     <br>
-    Any further questions? Come and join the Support Server or consider using the server template!
-      
-    </div>
-
-</div>
-  
-<br>
-      
-<a class="item_header" onclick="ToggleCategory('musicmodes');" href="#musicmode"><font size="5" >Music Modes and their usage</font></a> <br><br>
-<div class="inlinediv" id="musicmodes">
-
-    <div class="tutorial_item">
-
-    PEEKY has a small selection of so called Music Modes, which can be changed through the Music Menu.
-    <br>
-    In this tutorial you will learn what each of them can do and then you can choose your favorite!
-    <br>
-    <br>
-    The Normal music mode will delete any songs from the queue one they end or are skipped.
-    <br>
-    <br>
-    The Looping music mode will put the songs that end or are skipped to the end of the queue.
-    <br>
-    To remove a song from the queue while this music mode is active, you can use the Skip command to skip the song while its not playing.
-    <br>
-    <br>
-    The Automated music mode will add a random song to the queue everytime a song ends, best used if you just want to listen to some music and not bother with having to add any.
-    <br>
-    It is not possible to add any songs to the queue while this mode is on.
+    Any further questions? Come and join the Community Server or consider using the server template!
       
     </div>
 
@@ -156,15 +126,15 @@ function ShowHighlighted(hash)  {
 
     <div class="tutorial_item">
 
-    The Ambassador Program is a linear progression system, which kind of resembles the likes of a Battle Pass, except all the rewards can be obtained for free.
+    The Ambassador Program is a linear progression system that allows you to earn a ton of rewards every season, which last around 30 days.
     <br>
-    The way you make some progress in the Ambassador Program is by increasing your score, which you can view in your inventory and increase for free by inviting your friends to the Support Server, or by paying a small fee.
+    The way you make some progress in the Ambassador Program is by increasing your score, which you can view in your inventory and increase for free by inviting your friends to the Community Server, or by paying a small fee.
     <br>
     <br>
     How to increase your score for free:
     <br>
     <code>
-    1. Go to the #home channel inside the Support Server. <br>
+    1. Go to the #home channel inside the Community Server. <br>
     2. Create a permanent link connected to the channel. <br>
     3. Send it to your friends and wait for them to join. <br>
     4. If everything works, you should get a DM from PEEKY. <br><br>
@@ -191,7 +161,7 @@ function ShowHighlighted(hash)  {
 
     <div class="tutorial_item">
 
-    Workshop is a channel in the Support Server that allows you to submit your images to PEEKY's background gallery.
+    Workshop is a channel in the Community Server that allows you to submit your images to PEEKY's background gallery.
     <br>
     <br>
     When uploading a background, you should also keeep in mind that racist or NSFW images are strongly forbidden and could get you blocked from the Workshop.
@@ -238,28 +208,6 @@ function ShowHighlighted(hash)  {
   
 <br>
       
-<a class="item_header" onclick="ToggleCategory('servermessage');" href="#servermessage"><font size="5">Server Message function and Tags</font></a> <br><br>
-<div class="inlinediv" id="servermessage">
-
-    <div class="tutorial_item">
-
-    You can utilize Tags in the setting of the Server Message function to customize it even more!
-    <br>
-    The currently available Tags are listed below.
-    <br>
-    <br>
-    [GuildName] - Shows the server's current name.  <br>
-    [GuildAcronym] - Shows the server's Acronym.  <br>
-    [GuildOwner] - Shows server's current owner.  <br>
-    [GuildSize] - Shows the amount of user members in the server.  <br>
-    [GuildLevel] - Shows the current verification level.
-      
-    </div>
-
-</div>
-  
-<br>
-      
 <a class="item_header" onclick="ToggleCategory('api');"><font size="5" href="#api">API</font></a> <br><br>
 <div class="inlinediv" id="api">
 
@@ -274,13 +222,52 @@ function ShowHighlighted(hash)  {
     <code>
     const fetch = require('node-fetch');
 
-    fetch(`https://peeky--vojtech-jilovec.repl.co/website_data/api.json`, {
+    fetch(`https://peeky.glitch.me/website_data/api.json`, {
         method: 'GET'
     }).then(response =&gt response.json()).then(async (data) =&gt {
          console.log(data);
     });
     </code>
     </pre>
+      
+    </div>
+
+</div>
+  
+<br>
+      
+<a class="item_header" onclick="ToggleCategory('autowipe');" href="#autowipe"><font size="5">Auto Wipe</font></a> <br><br>
+<div class="inlinediv" id="autowipe">
+
+    <div class="tutorial_item">
+
+    Auto Wipe is a system that helps PEEKY runs smoother and cooler, so here's how it works.
+    <br>
+    <br>
+    Non-Upgraded servers that were not using the bot's commands or functions for a year will now be considered inactive and removed.
+    <br>
+    <br>
+    Unavailable or Fashion Badge-less profiles will now be auto wiped after a month of inactivity.
+    <br>
+    In this case, inactivity means not using the bot's commands.
+      
+    </div>
+
+</div>
+  
+<br>
+      
+<a class="item_header" onclick="ToggleCategory('essentials');" href="#essentials"><font size="5">Essentials</font></a> <br><br>
+<div class="inlinediv" id="essentials">
+
+    <div class="tutorial_item">
+
+    By default, users that are using the bot are opted out of some of the bot's functions, which includes the following functions:
+    <br>• Stream Announcements
+    <br>• Streamer Role
+    <br>
+    <br>
+    You can op in or out of this by typing the Essentials command.
       
     </div>
 

@@ -6,9 +6,9 @@
     2,
     2,
     true,
-    "494429609874685983",
+    "713539779224010802",
     "Staff",
-    "Exclusive to staff members of the Support Server."
+    "Exclusive to members of the moderator team."
   ],
   [
     "PremiumBadge",
@@ -17,7 +17,7 @@
     2,
     2,
     true,
-    "504740473185894400",
+    "759839046158647347",
     "Premium",
     "Obtained by becoming a Premium user."
   ],
@@ -28,9 +28,9 @@
     2,
     2,
     true,
-    "620654437081415686",
+    "760871079685128274",
     "Booster",
-    "Obtained by boosting the Support Server."
+    "Obtained by boosting the Community Server."
   ],
   [
     "VeteranBadge",
@@ -39,9 +39,9 @@
     0,
     2,
     true,
-    "679051643756478539",
+    "760621597395517450",
     "Veteran",
-    "Obtained by being in the Support Server for over a year."
+    "Obtained by being in the Community Server for over a year."
   ],
   [
     "TranslatorBadge",
@@ -66,17 +66,6 @@
     "Obtained after upgrading an arbitrary Discord server."
   ],
   [
-    "ContributorBadge",
-    "<:contributor:539895189334917130> Contributor",
-    "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fcontributor.png?1548786864495",
-    0,
-    2,
-    false,
-    null,
-    "Contributor",
-    "Obtained after purchasing a store item like Premium or Server Upgrade."
-  ],
-  [
     "BugHunterBadge",
     "<:bugcatcher:539895189737832448> Bug Hunter",
     "https://cdn.glitch.com/64aa05ba-d02f-4949-a4e2-d166873c672a%2Fbugcatcher.png?1548261764050",
@@ -88,6 +77,17 @@
     "Obtained after reporting a valid bug."
   ],
   [
+    "FollowerBadge",
+    "<:badge_follower:756559267166945320> Follower",
+    "https://cdn.glitch.com/21fdc0b9-6e63-44ab-8a9f-cf89fb77868a%2Fbadge_follower.png?v=1600448137032",
+    2,
+    0,
+    false,
+    null,
+    "Follower",
+    "Obtained by following any news channel in the Community Server."
+  ],
+  [
     "CelebratorBadge",
     "<:celebrator:624237582355529729> Celebrator",
     "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcelebrator.png?v=1568900372214",
@@ -96,7 +96,7 @@
     false,
     null,
     "Celebrator",
-    "Obtained by celebrating PEEKY's birthdays."
+    "Obtained by celebrating PEEKY's birthday."
   ],
   [
     "MovieNighterBadge",
@@ -129,7 +129,7 @@
     false,
     null,
     "Ambassador",
-    "Obtained by having a friend user your invite link to join the Support Server."
+    "Obtained by having a friend use your invite link to join the Community Server."
   ],
   [
     "MedallistBadge",
@@ -195,7 +195,7 @@
     false,
     null,
     "Receiver",
-    "Obtained after using your friend's invite link to the Support Server."
+    "Obtained after using your friend's invite link to the Community Server."
   ],
   [
     "PollerBadge",
@@ -206,7 +206,7 @@
     false,
     null,
     "Poller",
-    "Obtained after voting on a poll in the Support Server's #news channel."
+    "Obtained after voting on a poll in the Community Server's #news channel."
   ],
   [
     "VoterBadge",
@@ -322,7 +322,7 @@
     "CharityBadge",
     "<:charity:624330470515277853> Charity",
     "https://cdn.glitch.com/42356302-206d-447f-8c79-4ee43df1a258%2Fcharity.png?v=1568922627904",
-    2,
+    0,
     2,
     false,
     null,
