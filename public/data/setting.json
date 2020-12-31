@@ -5,7 +5,7 @@
   "Domain": "https://peeky.glitch.me",
 
   "DefaultPrefix": "p!",
-  "MaxServers": 250,
+  "MaxServers": 50,
   "MaxBots": 25,
 
   "event": {
