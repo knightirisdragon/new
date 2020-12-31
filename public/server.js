@@ -158,7 +158,7 @@ const DonationRole         = "787061956992565308";
 
 //Other IDs
 const OwnerId              = "108899856889737216";
-const PeekyId              = "482945063282802698" //"741865644605177899";
+const PeekyId              = "741865644605177899" //"482945063282802698";
 const SupportServer        = "713538424954552423";
 const AnnouncementsChannel = "787052463232516117";
 const EmojiStorage1        = "493048757286600716";
@@ -10419,4 +10419,4 @@ if  (CommandName.startsWith("muterole"))  {
 };
 });
   
-peeky.login(process.env.BOT_TOKEN).catch(console.error);
+peeky.login(process.env.PRIVATE_BOT_TOKEN).catch(console.error);
