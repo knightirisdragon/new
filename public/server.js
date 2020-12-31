@@ -9429,7 +9429,7 @@ if  (CommandName == "drawandguess")  {
 //Giveaway
 if  (CommandName == "giveaway")  {
 
-    if  (message.member.permissions.has("MANAGE_GUILD"))  {
+    if  (message.member.permissions.has("MANAGE_GUILD") || message.channel.name.toLowerCase() == "giveaways")  {
 
         if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
           
