@@ -953,7 +953,7 @@ async function WebsiteStuff()  {
     //PEEKY Stats
     setInterval(async () => {
 
-        await fs.writeFile('public/website_data/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.cache.size + "</font> Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days old</a>", (err) => {
+        await fs.writeFile('public/website_data/stats.txt', "<a class='botstats'><font color='#7289DA'>" + peeky.guilds.cache.size + " / " + Setting.MaxServers + "</font> Servers</a>  <br>  <a class='botstats'><font color='#7289DA'>" + peeky.userData.count + "</font> Profiles</a>  <br>  <a class='botstats'><font color='#7289DA'>" + function_TimeLeft(peeky.user.createdAt, "days", null) + "</font> Days old</a>", (err) => {
             if (err) console.log(err); 
         });
 
