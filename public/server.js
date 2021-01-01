@@ -9524,10 +9524,9 @@ if  (CommandName == "giveaway")  {
                                         if  (Answer.toLowerCase() !== "none" && function_DetectLink(Answer))  {
                                             GiveawayInfo[7] = Answer;
                                             Generate(message);
-                                        } else
-                                        if  (Answer.toLowerCase() == "none")  {
-                                            GiveawayInfo[7] = null;
-                                            Generate(message);
+                                        } else {
+                                          GiveawayInfo[7] = null;
+                                          Generate(message);
                                         };
                                     } else {
                                       embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
