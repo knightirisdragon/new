@@ -9426,6 +9426,7 @@ if  (CommandName == "giveaway")  {
 
                     var CreationProgress = 0;
                     var GiveawayInfo = [  "nothing", 1, 1, Date.now(), 0, message.channel.id, message.author.id, null  ];
+                    var LastFeedbackMsg = null;
 
                     function Generate(message)  {
 
@@ -9488,7 +9489,9 @@ if  (CommandName == "giveaway")  {
                                 embed = { description: TranslatedMessages[Language], "color": EmbedColor };
                             };
                           
-                            message.channel.send({ embed }).catch(error => ErrorBag.add(error)).delete({ timeout: 10000 });
+                            message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(msg => {
+                                LastFeedbackMsg = msg;
+                            });
 
                             message.channel.awaitMessages(response => !response.author.bot && response.author.id == message.author.id, { max: 1, time: 10000, errors: ['time'] })
                             .then(collected => {
@@ -9556,6 +9559,12 @@ if  (CommandName == "giveaway")  {
                                         msg.delete({ timeout: 10000 });
                                     });
                                   
+                                };
+                              
+                                collected.first().delete().catch(error => ErrorBag.add(error));
+                              
+                                if  (LastFeedbackMsg)  {
+                                    LastFeedbackMsg.delete().catch(error => ErrorBag.add(error));
                                 };
 
                             })
