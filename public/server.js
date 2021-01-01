@@ -4323,7 +4323,7 @@ if  (!message.author.bot)  {
 
                                           });
                                       } else {
-                                        FixedWinners = ["No one"];
+                                        FixedWinners = ["Nobody"];
                                       };
                                     
                                       var WinnerSeparator = " ";
@@ -4903,7 +4903,7 @@ if  (peeky.serverData.get(keySF, "donor_wall_bonus") == true)  {
             const WallAmount = WallList.length;
 
             if  (WallAmount > Setting.ClassificationWallLimit)  {  EndString = "\n and " + (WallAmount - Setting.ClassificationWallLimit) + " more..."  };
-            if  (WallAmount == 0)  {  WallList = ["No one."]  };
+            if  (WallAmount == 0)  {  WallList = ["Nobody."]  };
 
                 if  (Message && Message.id == peeky.serverData.get(keySF, "donor_wall_bonus_id"))  {
 
