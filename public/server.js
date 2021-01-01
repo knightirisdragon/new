@@ -9494,6 +9494,7 @@ if  (CommandName == "giveaway")  {
                             .then(collected => {
 
                                 var Answer = collected.first().content;
+                                var embed = {"description": "",  "color": EmbedColor};
                               
                                 var TranslatedMessages = [
                                     ErrorIcon + " The provided argument is incorrect and the giveaway creating was cancelled.",
@@ -9510,8 +9511,7 @@ if  (CommandName == "giveaway")  {
                                         GiveawayInfo[0] = function_ProperSlice(function_RemoveFormatting(Answer, "other", true), 50);
                                         Generate(message);
                                     } else {
-                                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
-                                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                      embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                                     };  
                                 } else 
                                 if  (CreationProgress == 2)  {
@@ -9525,8 +9525,7 @@ if  (CommandName == "giveaway")  {
                                             Generate(message);
                                         };
                                     } else {
-                                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
-                                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                      embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
                                     };   
                                 } else
                                 if  (CreationProgress == 3)  {
@@ -9534,8 +9533,7 @@ if  (CommandName == "giveaway")  {
                                         GiveawayInfo[1] = Answer;
                                         Generate(message);
                                     } else {
-                                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
-                                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                      embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
                                     };    
                                 } else 
                                 if  (CreationProgress == 4)  {
@@ -9543,10 +9541,13 @@ if  (CommandName == "giveaway")  {
                                         GiveawayInfo[2] = Answer * MinuteMs;
                                         Generate(message);
                                     } else {
-                                      const embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
-                                      message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                      embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
                                     };   
                                 };
+                                
+                                message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(message => {
+                                    message.delete({ timeout: AutoDeleteTime});
+                                });
 
                             })
                             .catch(collected => {
