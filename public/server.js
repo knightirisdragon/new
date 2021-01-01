@@ -9416,7 +9416,7 @@ if  (CommandName == "giveaway")  {
 
     if  (message.member.permissions.has("MANAGE_GUILD") || message.channel.name.toLowerCase() == "giveaways")  {
 
-        if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
+        if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS') && message.channel.permissionsFor(peeky.user).has('MANAGE_MESSAGES'))  {
           
             if  (!CommandCooldown.has("giveaway" + message.guild.id))  {
 
@@ -9433,6 +9433,8 @@ if  (CommandName == "giveaway")  {
 
                             CreationProgress ++;
 
+                            var embed = {"description": ErrorMessage13[Language],  "color": EmbedColor};
+                          
                             if  (CreationProgress == 1)  {
                                 var TranslatedMessages = [
                                     InfoIcon + " Before we start the giveaway, can you tell me what is gonna be the prize?",
@@ -9444,8 +9446,7 @@ if  (CommandName == "giveaway")  {
                                     InfoIcon + " プレゼントを始める前に、賞品は何になるのか教えてもらえますか?",
                                 ];
                               
-                                var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
-                                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                embed = { description: TranslatedMessages[Language], "color": EmbedColor };
                             } else 
                             if  (CreationProgress == 2)  {
                                 var TranslatedMessages = [
@@ -9458,8 +9459,7 @@ if  (CommandName == "giveaway")  {
                                     InfoIcon + " また、プレゼントのアイコンはありますか？リンクを貼り付けます、それ以外の場合は「none」と発声します。",
                                 ];
                               
-                                var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
-                                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                embed = { description: TranslatedMessages[Language], "color": EmbedColor };
                             } else 
                             if  (CreationProgress == 3)  {
                                 var TranslatedMessages = [
@@ -9472,8 +9472,7 @@ if  (CommandName == "giveaway")  {
                                     InfoIcon + " いいですね、プレゼントは何人の勝者を持っていますか?",
                                 ];
                               
-                                var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
-                                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                embed = { description: TranslatedMessages[Language], "color": EmbedColor };
                             } else 
                             if  (CreationProgress == 4)  {
                                 var TranslatedMessages = [
@@ -9486,15 +9485,17 @@ if  (CommandName == "giveaway")  {
                                     InfoIcon + " さて、プレゼントは何分で終わるの？",
                                 ];
                               
-                                var embed = { description: TranslatedMessages[Language], "color": EmbedColor };
-                                message.channel.send({ embed }).catch(error => ErrorBag.add(error));
+                                embed = { description: TranslatedMessages[Language], "color": EmbedColor };
                             };
+                          
+                            message.channel.send({ embed }).catch(error => ErrorBag.add(error)).delete({ timeout: 10000 });
 
                             message.channel.awaitMessages(response => !response.author.bot && response.author.id == message.author.id, { max: 1, time: 10000, errors: ['time'] })
                             .then(collected => {
 
                                 var Answer = collected.first().content;
-                                var embed = {"description": "",  "color": EmbedColor};
+                                var CanReply = false;
+                                var embed = {"description": ErrorMessage13[Language],  "color": EmbedColor};
                               
                                 var TranslatedMessages = [
                                     ErrorIcon + " The provided argument is incorrect and the giveaway creating was cancelled.",
@@ -9512,6 +9513,7 @@ if  (CommandName == "giveaway")  {
                                         Generate(message);
                                     } else {
                                       embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                                      CanReply = true;
                                     };  
                                 } else 
                                 if  (CreationProgress == 2)  {
@@ -9526,6 +9528,7 @@ if  (CommandName == "giveaway")  {
                                         };
                                     } else {
                                       embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
+                                      CanReply = true;
                                     };   
                                 } else
                                 if  (CreationProgress == 3)  {
@@ -9534,6 +9537,7 @@ if  (CommandName == "giveaway")  {
                                         Generate(message);
                                     } else {
                                       embed = {"description": TranslatedMessages[Language],  "color": EmbedColor}; 
+                                      CanReply = true;
                                     };    
                                 } else 
                                 if  (CreationProgress == 4)  {
@@ -9542,12 +9546,17 @@ if  (CommandName == "giveaway")  {
                                         Generate(message);
                                     } else {
                                       embed = {"description": TranslatedMessages[Language],  "color": EmbedColor};
+                                      CanReply = true;
                                     };   
                                 };
                                 
-                                message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(message => {
-                                    message.delete({ timeout: AutoDeleteTime});
-                                });
+                                if  (CanReply)  {
+                              
+                                    message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(msg => {
+                                        msg.delete({ timeout: 10000 });
+                                    });
+                                  
+                                };
 
                             })
                             .catch(collected => {
