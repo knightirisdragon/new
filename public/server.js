@@ -402,7 +402,7 @@ const ErrorMessage18 = [
   ErrorIcon + " コマンドに有効な引数を指定する必要があります。"
 ];
 const ErrorMessage19 = [
-  ErrorIcon + " You need to join the Support Server.",
+  ErrorIcon + " You need to join the Community Server.",
   ErrorIcon + " Musíte se připojit na můj server.",
   ErrorIcon + " Músíš sa pridať na Server Podpory.",
   ErrorIcon + " Tienes que unirte al Servidor de Soporte.",
@@ -921,28 +921,13 @@ async function WebsiteStuff()  {
           if  (m.roles.cache.has(StaffRole))  {
 
               var CurrentContact = '<div class="container" style="background-image: url(\'' + m.user.displayAvatarURL({ format: 'png' }) + '\');">  <b class="description">  <font size="3"> ' + function_RemoveTags(m.displayName) + '  </font>  <br>  <font size="1" color="lightgray"> ' + function_RemoveTags(m.user.tag) + '  </font>  </b>  </div>';  
-
-              if  (m.roles.cache.has("574255080069398543"))  {
-                  DevList.push(CurrentContact);
-              };
-
-              if  (m.roles.cache.has("574255771840282625"))  {
-                  ModList.push(CurrentContact);
-              };
+              ModList.push(CurrentContact);
 
           };
 
         });
 
-        /*if  (ModList.length == 0)  {
-            ModList = [""];
-        };*/
-
-        /*await fs.writeFile('public/website_data/staff.txt', '<font size="5" class="item_header">Developers of PEEKY</font>  <br>  <div class="inlinediv">  ' + DevList.join(" ") + '  </div>  <font size="5" class="item_header">Moderators of the Support Server</font>  <br>  <div class="inlinediv">  ' + ModList.join(" ") + '  </div>', (err) => {
-            if (err) console.log(err);
-        });*/
-
-        await fs.writeFile('public/website_data/staff.txt', '<div class="inlinediv">  ' + DevList.join(" ") + ModList.join(" ") + '  </div>', (err) => {
+        await fs.writeFile('public/website_data/staff.txt', '<div class="inlinediv">  ' + ModList.join(" ") + '  </div>', (err) => {
             if (err) console.log(err);
         });
 
@@ -1584,7 +1569,7 @@ function function_AmbassadorProgram(member, real)  {
               
                 if  (real)  {
 
-                    const embed = {"description": "**Ambassador Program**" + "\n" + "Someone has used your invite link to join the Support Server!" + RewardName,  "color": EmbedColor}; 
+                    const embed = {"description": "**Ambassador Program**" + "\n" + "Someone has used your invite link to join the Community Server!" + RewardName,  "color": EmbedColor}; 
                     function_DirectMessage(key2, { embed });
 
                 };
@@ -2675,7 +2660,7 @@ if  (keySF == SupportServer)  {
             if  (!HadRole && HasRole)  {
 
                 PurchaseComplete = true;
-                TransactionInfo = ["Server Boost", "serverboost", "For boosting the Support Server you receive a few cool little bonuses and help us stay boosted!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
+                TransactionInfo = ["Server Boost", "serverboost", "For boosting the Community Server you receive a few cool little bonuses and help us stay boosted!", "https://cdn.glitch.com/dc816b2d-b8c8-4e70-bd44-28cadfd2342f%2Fstore_serverboost.png?v=1585077082090"];
                 //"Your reward expires once you stop boosting."
 
             };
@@ -3514,7 +3499,7 @@ if  (peeky.userData.has(key, "LanguageID") && reaction.message.id == peeky.userD
         CommandCooldown.add("languages" + user.id);
         setTimeout(() => {CommandCooldown.delete("languages" + user.id)}, 2500);
       
-        var Footer = "Be sure to report invalid translations by creating a Ticket in the Support Server.";
+        var Footer = "Be sure to report invalid translations by creating a Ticket in the Community Server.";
 
         if  (reaction.emoji.name == "🇬🇧")  {
             peeky.serverData.set(keySF, 0, "language");
@@ -4176,7 +4161,7 @@ if  (!AutoManagementCooldown.has("challenges"))  {
   
     var Template = "<div class='container' style='background-image: url(TEMPLATE_ICON)'>  <b class='description'>  <font size='4'>TEMPLATE_NAME</font>  <br>  <font size='2'>TEMPLATE_DESC</font>  </b>  </div>";
 
-    VisualizedRewards.push(Template.replace("TEMPLATE_ICON", "https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Freceiver.png?v=1591453720618").replace("TEMPLATE_NAME", "Receiver Badge").replace("TEMPLATE_DESC", "Join the Support Server using your friend's link."));
+    VisualizedRewards.push(Template.replace("TEMPLATE_ICON", "https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Freceiver.png?v=1591453720618").replace("TEMPLATE_NAME", "Receiver Badge").replace("TEMPLATE_DESC", "Join the Community Server using your friend's link."));
     VisualizedRewards.push(Template.replace("TEMPLATE_ICON", "https://cdn.glitch.com/fe9dc061-f995-42cd-9ec2-2758398cb29b%2Fambassador.png?v=1591434442413").replace("TEMPLATE_NAME", "Ambassador Badge").replace("TEMPLATE_DESC", "Have a friend use your invite link."));
     
     var Invites = 0; 
@@ -5172,7 +5157,7 @@ if (CommandName == "help")  {
       "店からいくつかのきちんとしたアイテムを購入することでPEEKYをサポート!"
     ];
     const SupportServerInfo = [
-      "Join the Support Server for important announcements, assistance with the bot, giveaways and much more!",
+      "Join the Community Server for important announcements, assistance with the bot, giveaways and much more!",
       "Připojte se na můj Discord server pro důležité upozornění, podporu s botem, akce a mnoho dalšího!",
       "Pripojte sa k serveru podpory a získajte dôležité oznámenia, pomoc s botom, darčeky a oveľa viac.",
       "Únete al Servidor de Soporte para anuncios importantes, asistencia con el bot, regalos y mucho más!",
@@ -5192,8 +5177,8 @@ if (CommandName == "help")  {
   
     const embed = {  "description": 
                      "**Website** [[Open]](" + Setting.Domain + ")\n" + WebsiteInfo[Language] +
-                     "\n\n**Store** [[Open]](" + Setting.Domain + "/pages/store/) [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\n" + StoreInfo[Language] +
-                     "\n\n**Support Server** [[Join]](" + Setting.Domain + "/pages/support_server/)\n" + SupportServerInfo[Language] +
+                     "\n\n**Store** [[Open]](" + Setting.Domain + "/pages/store/)" +  // [[Checkout]](https://donatebot.io/checkout/" + SupportServer + ")\n" + StoreInfo[Language]
+                     "\n\n**Community Server** [[Join]](" + Setting.Domain + "/pages/join_server/)\n" + SupportServerInfo[Language] +
                      "\n\n**Add Bot** [[Add]](" + Setting.Domain + "/pages/add_peeky/)\n" + BotInvite[Language],
                      "image": {  "url": "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Fnew_header.png?1553884542855"  },
                      "color": 7506394 
@@ -10167,7 +10152,7 @@ if  (CommandName.startsWith("prefix"))  {
           
             if  (!message.mentions.channels.first() && !message.mentions.roles.first() && !message.mentions.members.first())  {
 
-                //InfoMessages.push(InfoIcon + " If the prefix is broken, join the Support Server.");
+                //InfoMessages.push(InfoIcon + " If the prefix is broken, join the Community Server.");
 
                 peeky.serverData.set(keySF, CommandArgument, "prefix");
 
