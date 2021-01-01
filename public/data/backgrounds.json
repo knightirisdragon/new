@@ -4273,26 +4273,27 @@
     1603180522823
   ],
   [
-    "NO_BACKGROUND",
-    925,
-    "Chemical romance",
-    "Breaking Bad",
-    null,
-    1609459334989
-  ],
-  [
-    "NO_BACKGROUND",
-    875,
-    "Co-workers",
-    "Aggretsuko",
-    null,
-    1609459342094],
-  [
-    "NO_BACKGROUND",
+    "https://cdn.glitch.com/4c7051b7-6ac1-4e72-b8c5-47792c69f89f%2Fbackground536.png?v=1609459472655",
     950,
     "Bury the light",
     "Lee J.P",
     null,
     1609459344856
+  ],
+  [
+    "https://cdn.glitch.com/4c7051b7-6ac1-4e72-b8c5-47792c69f89f%2Fbackground537.png?v=1609459473333",
+    875,
+    "Co-workers",
+    "Aggretsuko",
+    null,
+    1609459342094
+  ],
+  [
+    "https://cdn.glitch.com/4c7051b7-6ac1-4e72-b8c5-47792c69f89f%2Fbackground538.png?v=1609459480078",
+    925,
+    "Chemical romance",
+    "Breaking Bad",
+    null,
+    1609459334989
   ]
 ]
