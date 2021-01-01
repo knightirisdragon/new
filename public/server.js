@@ -6486,8 +6486,8 @@ else
 //Toggle Nickname Saver
 if  (FunctioName.startsWith("nickname saver"))  {
 
-    peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "nickname_saver_bonus"), "nickname_saver_bonus");
-    var StatusString = peeky.serverData.get(keySF, "nickname_saver_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
+    peeky.serverData.set(keySF, !peeky.serverData.get(keySF, "nick_saver_bonus"), "nick_saver_bonus");
+    var StatusString = peeky.serverData.get(keySF, "nick_saver_bonus").toString().replace("true", EnableStrings[Language]).replace("false", DisableStrings[Language]);
   
     const embed = {"description": TranslatedMessages[Language].replace("X001", "Nickname Saver").replace("X002", StatusString) + "\n\n" + InfoMessages.join("\n\n"),  "color": EmbedColor};
 
