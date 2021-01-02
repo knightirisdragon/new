@@ -158,7 +158,7 @@ const DonationRole         = "787061956992565308";
 
 //Other IDs
 const OwnerId              = "108899856889737216";
-const PeekyId              = "741865644605177899" //"482945063282802698";
+const PeekyId              = "482945063282802698" //"741865644605177899";
 const SupportServer        = "713538424954552423";
 const AnnouncementsChannel = "787052463232516117";
 const EmojiStorage1        = "493048757286600716";
@@ -4154,6 +4154,12 @@ if  (!AutoManagementCooldown.has("challenges"))  {
         peeky.peekyData.math("ambassadorprogram", "+", 1, "season");
 
         console.log("📡 The Ambassador Program has been updated.");
+      
+        peeky.channels.cache.get(AnnouncementsChannel).send("**Ambassador Program - Season " + peeky.peekyData.get("ambassadorprogram", "season") + "**"
+                                                            + "\n" +
+                                                            "The next season for the Ambassador Program has just started, which means you can earn a bunch of new rewards for your profile just by inviting friends to the server!"
+                                                            + "\n" +
+                                                           "For more info visit https://peeky.glitch.me/pages/ambassador_program/.");
       
     };
   
@@ -10423,4 +10429,4 @@ if  (CommandName.startsWith("muterole"))  {
 };
 });
   
-peeky.login(process.env.PRIVATE_BOT_TOKEN).catch(console.error);
+peeky.login(process.env.BOT_TOKEN).catch(console.error);
