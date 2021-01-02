@@ -174,9 +174,9 @@ const AllString      = "all";
 const RandomString   = "random";
 const BadFormat      = "invalid";
 const Exclusive      = "Exclusive";
-const EnableStrings  = [  "enabled", "zapnutá", "zapnutá", "encender", "aktif", "Включено", "有効", ""  ];
-const DisableStrings = [  "disabled", "vypnutá", "vypnutá", "apagado", "deaktif", "Включено", "無効", ""  ];
-const Languages      = [  "English",  "Čeština", "Slovenčina", "Español", "Türkçe", "Русский", "日本語", ""  ];
+const EnableStrings  = [  "enabled", "zapnutá", "zapnutá", "encender", "aktif", "bключено", "有効", "habilitado"  ];
+const DisableStrings = [  "disabled", "vypnutá", "vypnutá", "apagado", "deaktif", "bключено", "無効", "deshabilitado"  ];
+const Languages      = [  "English",  "Čeština", "Slovenčina", "Español", "Türkçe", "Русский", "日本語", "Español"  ];
 const Booleans       = [  "true", "false"  ];
 
 //Response Messages
@@ -3602,7 +3602,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
 
                 reaction.message.reactions.removeAll().catch(error => ErrorBag.add(error));
 
-                var TranslatedMessages = [InfoIcon + " **X001** has been vote kicked with **X002 votes**.", InfoIcon + " **X** byl vyhlasován ze serveru se **X002 hlasy**.", InfoIcon + " **X001** bol hlasovo-vyhodený s **X002 hlasami**.", InfoIcon + " **X001** ha sido expulsado con **X002 votos**.", InfoIcon + " **X002 oy** adlı kişi **X001** adlı kişiye oy ile atılmasını istedi.", InfoIcon + " **X001**は**X002票**でキックされています。"];
+                var TranslatedMessages = [InfoIcon + " **X001** has been vote kicked with **X002 votes**.", InfoIcon + " **X** byl vyhlasován ze serveru se **X002 hlasy**.", InfoIcon + " **X001** bol hlasovo-vyhodený s **X002 hlasami**.", InfoIcon + " **X001** ha sido expulsado con **X002 votos**.", InfoIcon + " **X002 oy** adlı kişi **X001** adlı kişiye oy ile atılmasını istedi.", InfoIcon + " **X001**は**X002票**でキックされています。", "**X001** ha sido tirado con **X002 votos**."];
                 const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(reaction.message.member.displayName, "other", true)).replace("X002", peeky.serverData.get(keySF, "vote_kick_bonus_setting")),  "color": EmbedColor};
                 reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
 
@@ -3616,7 +3616,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
                   ResponseCooldowns.add(reaction.message.guild.id + "VK");
                   setTimeout(() => {ResponseCooldowns.delete(reaction.message.guild.id + "VK")}, ResponseCooldownMS);
 
-                  var TranslatedMessages = [InfoIcon + " **X001** has started a vote kick against **X002**.", InfoIcon + " **X001** začal hlasovat o vyhození **X002**.", InfoIcon + " **X001** začal hlasovanie za vyhodenie proti **X002**.", InfoIcon + " **X001** ha iniciado una kickeado de voto contra **X002**.", InfoIcon + " **X001** adlı kişi **X002** adlı kişiye karşı oy ile atılmasını istedi.", InfoIcon + " **X001**は**X002**に投票キックを開始しました。"];
+                  var TranslatedMessages = [InfoIcon + " **X001** has started a vote kick against **X002**.", InfoIcon + " **X001** začal hlasovat o vyhození **X002**.", InfoIcon + " **X001** začal hlasovanie za vyhodenie proti **X002**.", InfoIcon + " **X001** ha iniciado una kickeado de voto contra **X002**.", InfoIcon + " **X001** adlı kişi **X002** adlı kişiye karşı oy ile atılmasını istedi.", InfoIcon + " **X001**は**X002**に投票キックを開始しました。", "**X001** ha iniciado un votekick contra **X002**."];
                   const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)).replace("X002", function_RemoveFormatting(reaction.message.member.displayName, "other", true)),  "color": EmbedColor};
                   reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
                 
@@ -3625,7 +3625,7 @@ if  (peeky.serverData.get(keySF, "vote_kick_bonus") == true) {
             };
  
         } else {
-          var TranslatedMessages = [ErrorIcon + " You cannot start a vote kick against that user, **X001**.", ErrorIcon + " Tohoto uživatele nelze vyhlasovat ze serveru, **X001**.", ErrorIcon + " Nemožeš začať hlasovanie za vyhodenie proti tomu uživateľovi; **X001**.", ErrorIcon + " No puedes iniciar un kick de voto contra ese usuario, **X001**.", ErrorIcon + " **X001**, bu kişiye karşı oy ile atılmasını isteyemezsiniz.", ErrorIcon + " そのユーザーに対して投票キックを開始することはできません、**X001**。"];
+          var TranslatedMessages = [ErrorIcon + " You cannot start a vote kick against that user, **X001**.", ErrorIcon + " Tohoto uživatele nelze vyhlasovat ze serveru, **X001**.", ErrorIcon + " Nemožeš začať hlasovanie za vyhodenie proti tomu uživateľovi; **X001**.", ErrorIcon + " No puedes iniciar un kick de voto contra ese usuario, **X001**.", ErrorIcon + " **X001**, bu kişiye karşı oy ile atılmasını isteyemezsiniz.", ErrorIcon + " そのユーザーに対して投票キックを開始することはできません、**X001**。", "No puedes iniciar un votekick contra **X001**."];
           const embed = {"description": TranslatedMessages[Language].replace("X001", function_RemoveFormatting(member.displayName, "other", true)).replace("X002", ""),  "color": EmbedColor};
           reaction.message.channel.send({ embed }).catch(error => ErrorBag.add(error)).then(m => {m.delete({ timeout: 10000}).catch(error => ErrorBag.add(error))});
           
