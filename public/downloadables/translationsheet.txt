@@ -14,10 +14,8 @@ Answer:
 SUBMIT TRANSLATION:
 After translating all the phrases below, send me the translation file on Discord by following the steps below.
 
-1. Join the Support Server. (peeky.glitch.me/server.html)
-2. Create a ticket by going to the #tickets channel.
-3. Upload the file with an optional note.
-4. We will contact you with further (if any) questions.
+1. Join the Community Server. (peeky.glitch.me/server.html)
+3. Send this file to the bot's owner.
 
 TRANSLATE:
 Do not replace/remove any symbols such as X001, X002 and so on...
