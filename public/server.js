@@ -4413,7 +4413,7 @@ if  (!AutoManagementCooldown.has("randomtreasures"))  {
                         var member = collected.first().member;
                         var key2 = `${member.user.id}`;
 
-                        if  (peeky.userData.has(member.user.id))  {
+                        if  (peeky.userData.has(key2))  {
                             
                             if  (peeky.peekyData.get("dailychallenge", "data")[0] == "treasure_hunt" && function_ChallengeRewards(key2, peeky.peekyData.get("dailychallenge", "data"), "LastDailyChallenge") == true)  {
                                 InfoMessages.push(InfoMessage4[Language]);
