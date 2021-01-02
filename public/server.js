@@ -2,7 +2,7 @@ console.log("⚙️ Project started.");
 
 //Discord
 const Discord = require('discord.js');
-const peeky   = new Discord.Client({  disabledEvents: ["TYPING_START"], disableEveryone: true  });
+const peeky   = new Discord.Client({  disabledEvents: ["TYPING_START", "PRESENCE_UPDATE"], disableEveryone: true  });
 
 //BLS
 const BotList = require('botlist.space');
