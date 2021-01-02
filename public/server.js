@@ -1537,7 +1537,7 @@ function function_AmbassadorProgram(member, real)  {
                   
                     if  (invites.length == index * 5)  {
                         
-                        var RewardName = "You have received X as a reward.";
+                        RewardName = "You have received X as a reward.";
                       
                         if  (reward[0] == "gredit")  {
                             peeky.userData.math(key2, "+", reward[1], "Gredit");
@@ -1558,6 +1558,7 @@ function function_AmbassadorProgram(member, real)  {
                             peeky.userData.observe(key2, "Inventory").push(reward[1] + 1);
                             RewardName = RewardName.replace("X", "The \"" + function_GetBackgroundInfo(69, ["name"]) + "\" Background");
                         } else
+                          
                         if  (reward[0] == "premiumtrial")  {
                             RewardName = RewardName.replace("X", reward[1] + " Premium Trial");
                             invitermember.roles.add(TrialRole).catch(error => ErrorBag.add(error));
@@ -3360,7 +3361,7 @@ if  (peeky.userData.has(key, "InventoryInfo") && reaction.message.id == peeky.us
             peeky.userData.observe(key, "InventoryInfo")[1] = "Statistics";
             peeky.userData.observe(key, "InventoryInfo")[2] = 1;
 
-            NewDesc = "**Ambassador Program score (Season " + peeky.userData.get(key2, "AmbassadorSeason") + ")** \n" + peeky.userData.get(key2, "AmbassadorInvites").length + "/50" 
+            NewDesc = "**Ambassador Program Score (Season " + peeky.userData.get(key2, "AmbassadorSeason") + ")** \n" + peeky.userData.get(key2, "AmbassadorInvites").length + "/50" 
                       + "\n\n **Gredit Gain** \n" + peeky.userData.get(key2, "BadgeGredit")
                       + "\n\n **Exp Gain** \n" + peeky.userData.get(key2, "BadgeExp")
                       + "\n\n **Gredit** \n" + peeky.userData.get(key2, "Gredit")
