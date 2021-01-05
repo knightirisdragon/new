@@ -69,7 +69,7 @@ const fs         = require('fs');
 const node_fetch = require('node-fetch');
 const https      = require('https');
 const aki        = require('aki-api');
-
+  
 //Variables
 var   EmbedColor         = 3093047  //3553599;
 const AutoDeleteTime     = 250;
