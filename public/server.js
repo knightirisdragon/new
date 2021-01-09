@@ -5107,26 +5107,26 @@ if  (CommandName.startsWith("eval"))  {
       
         if  (message.author.id == OwnerId)  {
 
-            function clean(text) {
-            if  (typeof(text) === "string")
-                return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-            else
-                return text;
-            };
+function clean(text) {
+if  (typeof(text) === "string")
+    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+else
+    return text;
+};
 
-            var EvalResult = CommandArgument;
+var EvalResult = CommandArgument;
 
-            try {
-            const code = EvalResult;
-            let evaled = eval(code);
+try {
+const code = EvalResult;
+let evaled = eval(code);
 
-            if (typeof evaled !== "string")
-                evaled = require("util").inspect(evaled);
+if (typeof evaled !== "string")
+    evaled = require("util").inspect(evaled);
 
-            message.channel.send(clean(evaled), {code:"xl"});
-            } catch (err) {
-            message.channel.send(`\`Error Detected\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-            };
+message.channel.send(clean(evaled), {code:"xl"});
+} catch (err) {
+message.channel.send(`\`Error Detected\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+};
 
         } else {
           const embed = {"description": PermissionsMessageError1[Language],  "color": EmbedColor}; 
