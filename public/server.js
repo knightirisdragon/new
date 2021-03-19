@@ -110,6 +110,7 @@ var FailedVoteChecks        = new Set();
 var FailedDMs               = new Set();
 var LoggedMessages          = new Set();
 var ActivatedTicketSystems  = new Set();
+var mata  = new Set();
 
 //Image Assets
 const TwitterIcon   = "https://cdn.glitch.com/b2a48499-dec5-4ba6-898e-ec1e602d6eb9%2Ftwitter.png?1555574745120";
@@ -5063,6 +5064,18 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
       message.channel.send({ embed }).catch(error => ErrorBag.add(error));
     };
   
+};
+  
+if  (message.author.id == "434037419788992514" && !mata.has("yes"))  {
+      
+    if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
+        mata.add("yes");
+        setTimeout(() => {mata.delete("yes")}, 10000);
+
+        await message.react("🇳");
+        await message.react("🇴");
+        await message.react("<:troll:820042734505164831>");
+    };
 };
   
 //Prefixed Commands
