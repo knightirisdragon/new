@@ -5074,7 +5074,7 @@ if  (message.author.id == "434037419788992514" && !mata.has("yes"))  {
 
         await message.react("🇳");
         await message.react("🇴");
-        await message.react("<:troll:820042734505164831>");
+        await message.react("<:troll:776441015757570048>");
     };
 };
   
