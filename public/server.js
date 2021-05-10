@@ -1336,6 +1336,12 @@ async function BannedWords(keySF, message, Language)  {
 
             if  (!message.member.permissions.has("MANAGE_MESSAGES") && peeky.serverData.get(keySF, "banned_words_bonus_setting").some(word => message.content.toLowerCase().includes(word)))  {  //function_RemoveFormatting(message.content.toLowerCase(), "strict", false)
 
+                const role = message.guild.roles.cache.find(role => role.name == peeky.serverData.get(keySF, "muted_role"));
+              
+                if (role)  {
+                    message.member.roles.add(role.id).catch(error => null);
+                };
+
                 message.delete({ timeout: AutoDeleteTime}).catch(error => ErrorBag.add(error));
 
                 if  (message.channel.permissionsFor(peeky.user).has('MANAGE_WEBHOOKS'))  {
