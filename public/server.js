@@ -5072,15 +5072,23 @@ if  ((message.mentions.members.first() && message.mentions.members.first().id ==
   
 };
   
-if  (message.author.id == "434037419788992514" && !mata.has("yes"))  {
+if  (!mata.has("yes"))  {
       
     if  (message.channel.permissionsFor(peeky.user).has('ADD_REACTIONS'))  {
         mata.add("yes");
         setTimeout(() => {mata.delete("yes")}, 10000);
 
-        await message.react("🇳");
-        await message.react("🇴");
-        await message.react("<:troll:776441015757570048>");
+        if (message.author.id == "434037419788992514") {
+          await message.react("🇳");
+          await message.react("🇴");
+          await message.react("<:troll:776441015757570048>");
+        } else if (message.author.id == "434037419788992514") {
+          await message.react("🇩");
+          await message.react("🇪");
+          await message.react("🇧");
+          await message.react("🇮");
+          await message.react("🇱");
+        };
     };
 };
   
