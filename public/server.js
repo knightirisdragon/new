@@ -5082,7 +5082,7 @@ if  (!mata.has("yes"))  {
           await message.react("🇳");
           await message.react("🇴");
           await message.react("<:troll:776441015757570048>");
-        } else if (message.author.id == "434037419788992514") {
+        } else if (message.author.id == "303492688437837824") {
           await message.react("🇩");
           await message.react("🇪");
           await message.react("🇧");
